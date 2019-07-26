@@ -7,6 +7,9 @@
 Willkommen bei gView Online
 ===========================
 
+gView Framework
+---------------
+
 gView GIS ist ein benutzerfreundliches GI Framework zum Visualisieren und Verwalten von räumlichen Daten (Geodaten). 
 Außer dem Anzeigen der Daten unterstützt gView GIS eine Menge weiter Features, wie zum Beispiel Layer Kontrolle, Legendengestaltung, 
 räumliche und sachbezogene Abfragen, Themenbeschriftung (Labeling), messen von Strecken und Flächen und vieles mehr.
