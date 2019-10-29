@@ -8,5 +8,6 @@ Der gView Server ist eine .NET Core Web Anwendungen und kann auf unterschiedlich
    installation_iis
    installation_docker
    installation_standalone
+   postinstallation
 
 
