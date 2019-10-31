@@ -1,7 +1,7 @@
-Konfiguration
+Configuration
 =============
 
-Der gView Server kann über die Datei _config/mapserver.json konfiguriert werden:
+The gView Server can be configured from the _config/mapserver.json file:
 
 .. code-block:: javascript
 

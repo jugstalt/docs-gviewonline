@@ -31,12 +31,12 @@ Nach Installation der Runtime & Hosting Bundle sollte
 * Microsoft.NETCore.App
 in der richtigen Version aufscheinen.
 
-.NET Anwendung in IIS einbinden
--------------------------------
+.NET Core Anwendung in IIS einbinden
+------------------------------------
 
 Voraussetzung, damit .NET Core Anwendungen im IIS laufen ist das entsprechende Modul 
 „AspNetCoreModuleV2“. Dieses Modul steuert die Überwachung und die Weiterleitung der 
-Request vom IIS zur Applikation. Ob dieses Module im obigen Schritt richtig installiert wurde 
+Requests vom IIS zur Applikation. Ob dieses Module im obigen Schritt richtig installiert wurde, 
 kann über den IIS Manager überprüft werden:
 
 .. image:: img/iis4.png
