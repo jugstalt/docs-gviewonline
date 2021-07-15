@@ -12,3 +12,6 @@ Die hier gezeigten Beispiel sind beispielsweise:
     :caption: Inhaltsverzeichnis:
  
     overviewmap/index
+    mapservice/index
+    tilecache/index
+    commandline/index

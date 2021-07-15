@@ -141,6 +141,3 @@ Interessant ist hier neben der Symbolik auch die ``Text Orientierung``. Ein Klic
 .. image:: img/map14.png
 
 Hier kann für die angeben werden, das der Text entlang des Straßenzuges gezeichnet wird.
-
-
-
