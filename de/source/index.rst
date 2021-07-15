@@ -42,5 +42,6 @@ Die Komponenten des gView Frameworks lassen sich in zwei Kategorien einteilen:
    desktop/index
    server/index
    online/index
+   examples/index
 
 
