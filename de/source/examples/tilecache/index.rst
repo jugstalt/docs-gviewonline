@@ -85,6 +85,6 @@ ein Verzeichnis geben. Erst wenn dieses Verzeichnis existiert, wird der Maßstab
 Tiles berechnen
 ---------------
 
-Zum Berechnen der Tiles wird ein Kommandozeilen Tool angeboten ``gView.Cmd.RenderTileCache``. Damit werden unter Angabe des des Severs und des Dienstes die einzelnen Tiles für ein TileCache berechnet.
+Zum Berechnen der Tiles wird ein Kommandozeilen Tool angeboten ``gView.Cmd.RenderTileCache``. Damit werden unter Angabe des des Servers und des Dienstes die einzelnen Tiles für ein TileCache berechnet.
 Die Beschreibung erfolgt im Abschnitt Kommandozeilen Werkzeuge.  
 
