@@ -11,7 +11,6 @@ Die hier gezeigten Beispiel sind beispielsweise:
     :maxdepth: 1
     :caption: Inhaltsverzeichnis:
  
-    overviewmap/index
+    createmap/index
     mapservice/index
     tilecache/index
-    commandline/index

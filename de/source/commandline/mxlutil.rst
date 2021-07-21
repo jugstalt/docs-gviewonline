@@ -162,7 +162,8 @@ Beispiel:
    Ist ein MXL beschädigt und es kann mit den Verbindungsparametern keine Verbindung aufgebaut werden, kann dieses Werkzeug nicht verwendet werden.
    In diesem Fall muss das MXL File über einen Texteditor repariert werden.
 
-**Command - MxlToFdb**
+MxlToFdb
+--------
 
 Kopieren aller Vektor Daten eines Kartenprojektes in einer *gView Feature Database*. *gView FDB* ist ein Format, für das von *gView* eine hohe Performance garantiert wird. Die Datenbank werden hier in *SQL Server*, *PostGre* oder *Sqlite* angelegt.
 Dieses Werkzeug kann verwendet werden, um Kartenprojekte *offline* zur Verfügung zu stellen (alle Daten in einer *Sqlite* Datenbank) 

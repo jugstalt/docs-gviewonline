@@ -1,5 +1,5 @@
-Erstellen eines Ortspanes
-=========================
+Erstellen einer Karte (Ortspan)
+===============================
 
 Hier wird kurz und stichwortartig erklärt, wie mit gView GIS ein Ortsplan erstellt wird. Dieser 
 Bericht soll im Speziellen die kartographischen Möglichkeiten von gView GIS zeigen. Zur 
