@@ -10,5 +10,5 @@ GI Systemen wird dabei voraus gesetzt.
    :maxdepth: 2
    :caption: Inhaltsverzeichnis:
 
-   installation
+   carto/index
    dataexplorer/index

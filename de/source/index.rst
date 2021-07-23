@@ -20,7 +20,37 @@ Positionierung von gView GIS
 *gView GIS* ist nicht als eigenstänge GIS Plattform zu verstehen. Es bietet lediglich ein benutzerfreundliches Autorentool (*gView Carto*) zum Erstellen von Karten mit ansprechender 
 kartographischer Darstellung und einen performanten Kartenserver zum Veröffentlichen dieser Karten. Diese Karten stehen damit in verschieden Schnittstelen zur Verfügung und können beispielsweise in ein bestehendes WebGIS eingebunden werden.
 
-*gVie GIS* ist als Desktop Software zu verstehen, mit der man Geo-Daten visualisiert/analysiert werden können. Für diese Aufgaben gibt es bereits leistungsfähige Open Source Projekte wie  etwa https://www.qgis.org
+*gView GIS* ist nicht als Desktop Software zu verstehen, mit der man Geo-Daten visualisiert/analysiert werden können. Für diese Aufgaben gibt es bereits leistungsfähige Open Source Projekte wie  etwa https://www.qgis.org
+
+Eine empfohlen produktive Konstellation für den Einsatz von *gView GIS* wäre beispielsweise:
+
+.. code::
+
+   +-- Datenbank ----+     +-- Karten-/FeatureServer -+     +-- GIS Client --+
+   |                 |     |                          |     |                |
+   |   PostGIS,      | <=> |   gView MapServer        | <=> |   WebGIS,      |
+   |   SQL Server    |     |                          |     |   QGis, ...    | 
+   +-----------------+     +--------------------------+     +----------------+
+                                       ^
+                                       |
+                           +--------------------------+
+                           |                          |
+                           |  gView Carto:            |  
+                           |  Zum Erstellen der       |
+                           |  Karten                  |
+                           |                          | 
+                           +--------------------------+         
+
+Die beiden Komponenten ``Datenbank`` und ``Karten-/FeatureServer`` können sich hier auf einem Server befinden und der ``GIS Client`` local auf dem Desktop oder in einem Browser laufen.
+*gView Carto* wird ebenfalls lokal auf einem Desktop installiert. Die erstellten Karten werden im *gView MapServer* veröffentlicht. Der *gView MapServer* besitzt zusätzlich einen Security Layer,
+mit dem bestimmt werden kann, welcher Client Karten anzeigen, abfragen oder die Daten bearbeiten darf.
+
+Ein weitere Einsatzmöglichkeit von *gView GIS* ist die Erstellungen von Offline GIS Lösungen. Diese können auf einem beliebigen (Windows, Linux, MacOS) Gerät installiert werden und können 
+als Ausfalls-/Notsystem oder Offline System (Laptop) dienen.
+Dazu bietet *gView GIS* über die Kommandozeilen Tools die Möglichkeit an, alle Vektordaten einer Karte in eine SQLite Datenbnk zu übernehmen. Damit fällt die Datenbank schickt weg und die SQLite Datenbank 
+kann einfach auf das Zielgerät kopiert werden. Am Zielgerät muss dann nur noch der *gView MapServer* installiert und die entsprechende Client Software installiert werden. Der *gView MapServer* kann 
+auf dem Zielgerät wie in Installationsanleitung gezeigt als *Standalone* Anwendung ausgeführt werden.
+           
 
 Komponenten von gView GIS
 -------------------------
