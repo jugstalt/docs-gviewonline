@@ -1,17 +1,12 @@
 
-.. gView Online documentation master file, created by
-   sphinx-quickstart on Thu Jul 25 18:00:17 2019.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 Willkommen bei gView GIS
 ========================
 
 gView GIS ist ein benutzerfreundliches `Open Source`_ GI Framework zum Erstellen von Karten- und Featurediensten. 
-Die Erstellung der Karten erfolgt in einer Windwos Desktop Programm *gView Carto*. Die Karten bestehen aus Layern, die auf verschiedene GeoDaten Qeullen basieren können.
+Die Erstellung der Karten erfolgt in einer Windwos Desktop Programm *gView Carto*. Die Karten bestehen aus Layern, die auf verschiedene GeoDaten Quellen basieren können.
 Die einzelnen Layer können beliebig eingefärbt und/oder beschriftet werden.
 
-Fertige Karten könne dann über den *gView Server* publiziert werden. Auf die so entstehenden Karten- und Featuredienste kann dann über definierte Schnittstellen (WMS, WMTS, GeoServices REST...)
+Fertige Karten könne über den *gView Server* publiziert werden. Auf die so entstehenden Karten- und Featuredienste kann dann über definierte Schnittstellen (WMS, WMTS, GeoServices REST...)
 zugegriffen werden. 
 
 Positionierung von gView GIS
@@ -47,8 +42,8 @@ mit dem bestimmt werden kann, welcher Client Karten anzeigen, abfragen oder die 
 
 Ein weitere Einsatzmöglichkeit von *gView GIS* ist die Erstellungen von Offline GIS Lösungen. Diese können auf einem beliebigen (Windows, Linux, MacOS) Gerät installiert werden und können 
 als Ausfalls-/Notsystem oder Offline System (Laptop) dienen.
-Dazu bietet *gView GIS* über die Kommandozeilen Tools die Möglichkeit an, alle Vektordaten einer Karte in eine SQLite Datenbnk zu übernehmen. Damit fällt die Datenbank schickt weg und die SQLite Datenbank 
-kann einfach auf das Zielgerät kopiert werden. Am Zielgerät muss dann nur noch der *gView MapServer* installiert und die entsprechende Client Software installiert werden. Der *gView MapServer* kann 
+Dazu bietet *gView GIS* über die Kommandozeilen Tools die Möglichkeit an, alle Vektordaten einer Karte in eine SQLite Datenbnk zu übernehmen. Damit fällt die Datenbank Schicht weg und die SQLite Datenbank 
+kann einfach auf das Zielgerät kopiert werden. Am Zielgerät muss dann nur noch der *gView MapServer* und die entsprechende Client Software installiert werden. Der *gView MapServer* kann 
 auf dem Zielgerät wie in Installationsanleitung gezeigt als *Standalone* Anwendung ausgeführt werden.
            
 

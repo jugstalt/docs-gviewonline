@@ -2,3 +2,18 @@
 .wy-table-responsive table th {
     white-space: normal !important;
 }
+
+.rst-content section ul {
+    list-style: disc;
+    line-height: 24px;
+    margin-bottom: 24px;
+}
+
+.rst-content section ul li {
+    list-style: disc;
+    margin-left: 24px;
+}
+
+.rst-content section ul li p:last-child {
+    margin-bottom: 0;
+}

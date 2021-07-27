@@ -5,8 +5,8 @@ In diesem Beispiel wird gezeigt, wie aus einem bestehenden *gView Server* Dienst
 Dieser kann über die WMTS Schnittstelle in unterschiedlichen Anwendungen eingebunden werden. Durch das Vorprozessieren der Kacheln
 erhöht sich die Performance des Dienstes. Außerdem vermindert sich die Serverlast.
 
-Ein *TileCache* besteht man Ende nur noch aus einzelnen (Kachel) Bilder. Diese können auch ein *Compact TileCache Kacheln* zusammengefasst werden,
-wodurch die Anzahl der vorgehalten Einzelbilder reduziert werden (einfache zu kopieren, weniger Speicherplatz)
+Ein *TileCache* besteht man Ende nur noch aus einzelnen (Kachel) Bildern. Diese können auch als *Compact TileCache Kacheln* zusammengefasst werden,
+wodurch die Anzahl der vorgehalten Einzelbilder reduziert werden kann (einfacher zu kopieren, weniger Speicherplatz)
 
 Ein *gView TileCache* bietet unterschiedliche *Styles* an. Die Kacheln können über Filter *on-the-fly* beispielsweise auch in Schwarz-Weiß angezeigt werden.
 
@@ -30,17 +30,17 @@ angeben werden (``+`` Button):
 
 .. image:: img/metadata2.png
 
-FÜr die Berechnung der Tiles kann ein Ursprung (Tile 0/0/0) links oben oder links unten angegeben werden. Tilecaches mit Ursprung links unten sind allerdings veraltet und 
-werden hier nur der Vollständigkeit angeboten. FÜr WMTS Dienste sollten Einstellungen mit dem Ursprung links oben erzeugt werden.
+Für die Berechnung der Tiles kann ein Ursprung (Tile 0/0/0) links oben oder links unten angegeben werden. Tilecaches mit Ursprung links unten sind allerdings veraltet und 
+werden hier nur der Vollständigkeit angeboten. Für WMTS Dienste sollten Einstellungen mit dem Ursprung links oben erzeugt werden.
 
-Werden die Einstellungen auf für andere Dienste verwendet, könne diese auch mit dem ``Speichern`` / ``Laden`` Button gespeichert bzw. geladen werden.
+Werden die Einstellungen auch für andere Dienste verwendet, könne diese auch mit dem ``Speichern`` / ``Laden`` Button gespeichert bzw. geladen werden.
 Für WebMercator Karten können die Einstellungen beispielsweise von ``gview5/desktop/misc/tiling/osm.xml`` geladen werden.
 
 Dienst veröffentlichen
 ----------------------
 
 Im nächsten Schritt muss der Dienst in *gView MapServer* veröffentlicht werden. Dazu kann jede *gView MapServer* Instanz verwendet werden, die Zugriff auf die Daten
-unsere Karte haben. Da die Berechnung TileCaches Resource- und Zeitaufwendig sein kann, kann hier auch ein *lokale* *gView MapServer* Instanz sein. Diese kann einfach über den 
+unsere Karte haben. Da die Berechnung TileCaches Resource- und Zeitaufwendig sein kann, kann hier auch ein *lokale gView MapServer* Instanz verwendet werden. Diese kann einfach über den 
 Installationspfad per Script gestartet werden. Mit dieser Instanz kann der TileCache berechnet werden. Danach kann der Dienst auch in einer produktiven Instanz veröffentlicht 
 werden und der TileCache kopiert werden.
 
@@ -50,7 +50,7 @@ Der TileCache wird bei der Berechnung im Dateisystem angelegt. Der Pfad wird in 
 
     "tilecache-root": "C:\\temp\\tilecache"
 
-Unter diesem Verzeichnis werden alle TileCaches abgelegt. Es kann nachträglich geändert werden. Dabei sind alle Caches zu kopieren und nach dem Änderen des Eintrags in der 
+Unter diesem Verzeichnis werden alle TileCaches abgelegt. Der Pfad kann nachträglich geändert werden. Dabei sind alle Caches zu kopieren und nach dem Änderen des Eintrags in der 
 ``_config/mapserver.json`` der *gView Server* neu gestartet werden.
 
 Für dieses Beispiel wurde die Kartendienst ``ortsplan`` im Verzeichnis ``cache`` veröffentlicht:
@@ -66,7 +66,7 @@ Der hier angeführte Link leitet zu den *Capabilities* des *WMTS* Services weite
 
 .. image:: img/service3.png
 
-Ist der Dienst nicht für Tilecaches zugelassen, kann hier auch folgende Ansicht kommen:
+Ist der Dienst nicht für Tilecaches zugelassen, kann hier auch folgende Fehlermeldung angezeigt werden:
 
 .. image:: img/service4.png
 
@@ -78,13 +78,13 @@ Der Grund ist, das der *gView Server* die *MatrixSets* erst dann auflistet, wenn
 ein Verzeichnis geben. Erst wenn dieses Verzeichnis existiert, wird der Maßstab auch in den *Capabilities* aufgelistet.
 
 .. note::
-   Hier wird nicht überprüft, ob im (Maßstabs)Verzeichnis auch alle Tiles vorhanden sind. Es reicht in der Regen auch ein leeres Verzeichnis. Ein leeres Verzeichnis macht sinn, wenn die Tiles für den Dienst *on-the-fly* berechnet werden sollten.
+   Hier wird nicht überprüft, ob im (Maßstabs)Verzeichnis auch alle Tiles vorhanden sind. Es reicht in der Regel auch ein leeres Verzeichnis. Ein leeres Verzeichnis macht sinn, wenn die Tiles für den Dienst *on-the-fly* berechnet werden sollten.
    Dann werden keine Tiles im Filesystem angelegt. Die Verzeichnisse müssen in diesem Fall eventuelle händisch angelegt werden. *On-the-fly* Berechnung sollte aber aus Performance überlegung in der Praxis nicht verwendet werden, warum dieser 
    Vorgang hier nicht beschrieben wird.
    
 Tiles berechnen
 ---------------
 
-Zum Berechnen der Tiles wird ein Kommandozeilen Tool angeboten ``gView.Cmd.RenderTileCache``. Damit werden unter Angabe des des Servers und des Dienstes die einzelnen Tiles für ein TileCache berechnet.
-Die Beschreibung erfolgt im Abschnitt Kommandozeilen Werkzeuge.  
+Zum Berechnen der Tiles wird ein Kommandozeilen Tool angeboten ``gView.Cmd.RenderTileCache``. Damit werden unter Angabe des des Servers und des Dienstes die einzelnen Tiles für einen TileCache berechnet.
+Die Beschreibung erfolgt im :ref:`commandline-tools` (:ref:`commandline-tools-render-tile-cache`).  
 

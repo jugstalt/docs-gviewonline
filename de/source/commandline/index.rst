@@ -1,8 +1,10 @@
+.. _commandline-tools:
+
 gView Commandline Tools
 =======================
 
 Hier werden einige Kommandozeilen Tools für *gView GIS* gezeigt, um wiederkehrende Vorgänge zu automatisieren.
-Die Kommandozeilen Werkzeuge befinden sich im Installationspfad im Verzeichnis ``cmd``. Dieser muss der absolute Pfad muss den 
+Die Kommandozeilen Werkzeuge befinden sich im Installationspfad im Verzeichnis ``cmd``. Dieser absolute Pfad muss den 
 hier gezeigten Kommandos immer vorangestellt oder eine Verweis über die ``PATH`` Umgebungsvariable erzeugt werden.
 
 .. note::

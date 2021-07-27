@@ -1,5 +1,7 @@
-Anwendungsbeispiele
-===================
+.. _examples:
+
+Schnelleinstig
+==============
 
 In diesem Abschnitt werden Anwendungsbeispiele vorgestellt, die einen praxisnahen Umgang mit gView GIS zeigen.
 Die hier gezeigten Beispiel sind beispielsweise:

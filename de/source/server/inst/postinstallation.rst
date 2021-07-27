@@ -1,3 +1,5 @@
+.. _server_postinatalltion:
+
 Postinstallation
 ================
 

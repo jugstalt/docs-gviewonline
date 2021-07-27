@@ -6,9 +6,13 @@ Da alle Komponenten zumindest auf Windows laufen, gibt es für Windows ein Insta
 Allerdings wird für die Desktop Programme (*gView.Carto* und *gView.DataExplorer*) unter Windows ein .NET Framework 4.7.2 vorausgesetzt. Server un Kommandozeilen Werkzeuge setzten 
 eine .NET Core 3.1 Laufzeitumgebung voraus, die es sowohl für Windows, Linux und MacOS gibt.
 
-Die Installationspakete können als *Releases* aus dem GitHub Repository https://github.com/jugstalt/gview5/releases heruntergeladen werden. Das Paket besteht aus einer ZIP-Datei und 
-muss im ersten Schritt an einer beliebigen Stelle entpackt werden. Es können unterschiedliche Versionen von *gView GIS* parallel installiert werden. Diesen empfiehlt es sich das
-ZIP File unter ``C:\gview5\5.21.2801`` zu entpacken:
+Die Installationspakete können unter *Releases* aus dem GitHub Repository https://github.com/jugstalt/gview5/releases heruntergeladen werden:
+
+.. image:: img/setup0.png 
+
+Das Paket besteht aus einer ZIP-Datei und 
+muss im ersten Schritt an einer beliebigen Stelle entpackt werden. Es können unterschiedliche Versionen von *gView GIS* parallel installiert werden. Dabei empfiehlt es sich das
+ZIP File beispielsweise unter ``C:\gview5\5.21.2801`` zu entpacken:
 
 .. image:: img/setup1.png
 
@@ -16,7 +20,7 @@ Im Verzeichnis ``_setup`` befindet sich folgende Verzeichnisstruktur:
 
 .. image:: img/setup2.png
 
-In hier Unterverzeichnis dargestellen Unterverzeichnissen befinden sich die eigentlichen Softwarekomponenten. Diese müssen und sollten nicht geöffnet oder geändert werden.
+Im hier dargestellen Unterverzeichnissen befinden sich die eigentlichen Softwarekomponenten. Diese müssen und sollten nicht geöffnet oder geändert werden.
 Der Setupvorgang wird von den drei Batch Dateien erledigt:
 
 * ``install-desktop.bat``: Installiert die Desktop Applikationen *gView.Carto* und *gView.DataExplorer*
@@ -26,18 +30,18 @@ Der Setupvorgang wird von den drei Batch Dateien erledigt:
 Desktop
 -------
 
-Ein Doppelklick auf ``install-desktop.bat`` startet das Zusammenstellen der notwendigen Softwarekomponenten für *gView Desktop*. Das Skript sollte ja nach Geschwindigkeit des Datenträgers nur einige Sekunden dauern.
-Ziel jeder Installation ist immer der Ordner, in sich auch das ``_setup`` Verzeichnis befindet. Wechselt man ein Ordner nach oben, erscheinen jetzt zusätzich folgende Dateien/Ordner:
+Ein Doppelklick auf ``install-desktop.bat`` startet das Zusammenstellen der notwendigen Softwarekomponenten für *gView Desktop*. Das Skript sollte je nach Geschwindigkeit des Datenträgers nur einige Sekunden dauern.
+Ziel jeder Installation ist immer der Ordner, in dem sich auch das ``_setup`` Verzeichnis befindet. Wechselt man einen Ordner nach oben, erscheinen jetzt zusätzich folgende Dateien/Ordner:
 
 .. image:: img/setup3.png
 
-Im Verzeichnis ``desktop`` befinden sich jetzt die fertig zusammengestellten Softwarekomponenten. Der Inhalt des Verzeichnisses ist allerdings nicht relevant. Die beiden *Desktop Applikationen* werden über die entsprechenden
+Im Verzeichnis ``desktop`` befinden sich jetzt die fertig zusammengestellten Softwarekomponenten. Der Inhalt des Verzeichnisses ist allerdings nicht relevant. Die beiden *Desktop Applikationen* werden durch die entsprechenden
 Batch Dateien gestartet (Doppelklick):
 
 * ``gView.Carto.bat``: Öffnet *gView.Carto*
 * ``gView.DataExplorer.bat``: Öffnet *gView.DataExplorer*
 
-Öffnet man *gView.Carto* erscheint ein *Splash Screnn* und *gView GIS* sucht im Programmverzeichnis nach möglichen Plugins. Danach sollte das Programm in etwa so angezeigt werden:
+Öffnet man *gView.Carto* erscheint ein *Splash Screnn* und *gView GIS* sucht im Programmverzeichnis nach vorhandenen Plugins. Danach sollte das Programm in etwa so angezeigt werden:
 
 .. image:: img/setup4.png
 

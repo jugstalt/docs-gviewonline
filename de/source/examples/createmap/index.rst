@@ -44,7 +44,7 @@ Danach sollte die Umlaute und Sonderzeichen richtig angezeigt werden.
 
 .. note::
    Shapefiles können auf unterschiedliche Weise in *gView* eingebunden werden. Hier wird die Daten direkt über dein *gView Data Explorer* im 
-   Filesystem angezeigt und übernommen. Das lesen der Daten übernimmt hier die *gView Shape Schnittstelle*. Alternativ können Daten allerdings
+   Filesystem angezeigt und übernommen. Das Lesen der Daten übernimmt hier die *gView Shape Schnittstelle*. Alternativ können Daten allerdings
    auch über OGR (GDAL) Schnittstelle eingebunden werden (Shapefiles, GeoPackage, ...). Sollten, so wie hier Umlautprobleme auftreten, 
    kann diese durch eine Änderung Lese-Schnittstelle gehoben werden.
 
@@ -57,9 +57,9 @@ Danach sollte die Umlaute und Sonderzeichen richtig angezeigt werden.
 Kartenprojekt anlegen
 ---------------------
 
-Nach dem Starten von gView Carto können die Daten mit dem „Daten hinzufügen“ Button hinzugefügt werden. Dazu klickt man im TOC auf das Kartensymbol. Im Ribbon erscheinen danach, die für die Karte relevanten
+Nach dem Starten von gView Carto können die Daten mit dem ``Daten hinzufügen`` Button hinzugefügt werden. Dazu klickt man im TOC auf das Kartensymbol. Im Ribbon erscheinen danach, die für die Karte relevanten
 Werkzeuge. Alternativ dazu kann auch mit der rechten Maustaste auf die Karte im TOC geklickt werden und der entsprechende Punkt aus dem Kontextmenü gewählt werden.
-Nach den Einfügen kann kann der Layer „roads“ über das Kontextmenü geklont werden:
+Nach den Einfügen kann kann der Layer ``roads`` über das Kontextmenü geklont werden:
 
 .. image:: img/map1.png
 
@@ -72,7 +72,7 @@ werden:
 
 Zuerst müssen für diesen Layer die Maßstabsgrenzen angegeben werden. Der Layer soll für unseren
 Ortsplan bis 1:100.000 sichtbar sein (Straßen Übersicht).
-Bei der Darstellung soll ein Value Map Renderer verwendet werden, bei dem die Werte „motorway“
+Bei der Darstellung soll ein *Value Map Renderer* verwendet werden, bei dem die Werte ``motorway``
 und ``primary`` eingefügt werden. Wie diese beiden Kategorien angefärbt werden zeigen die unten
 angeführten Darstellungen:
 
@@ -92,13 +92,13 @@ wird als Glättungsmethode *Antialias* angeben. Bei den ``motorways`` werden hie
 *dummy* Ebenen eingefügt; die eigengliche Symbolik beginnt erst bei Ebene 3 und 4. Der Grund
 wird unten noch erläutert.
 
-Beschriftet soll nach dem Feld „ref“ werden wobei ein Block Symbol verwendet wird:
+Beschriftet soll nach dem Feld ``ref`` werden wobei ein Block Symbol verwendet wird:
 
 .. image:: img/map6.png
 
 .. image:: img/map7.png
 
-Nach der Bestätigung des Eigenschaftendialgs mit „OK“ sollte die Darstellung des Layers in der
+Nach der Bestätigung des Eigenschaftendialgs mit ``OK`` sollte die Darstellung des Layers in der
 Karte folgendermaßen aussehen:
 
 .. image:: img/map8.png
@@ -140,4 +140,4 @@ Interessant ist hier neben der Symbolik auch die ``Text Orientierung``. Ein Klic
 
 .. image:: img/map14.png
 
-Hier kann für die angeben werden, das der Text entlang des Straßenzuges gezeichnet wird.
+Hier kann angeben werden, das der Text entlang des Straßenzuges gezeichnet wird.

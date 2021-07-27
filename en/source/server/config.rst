@@ -33,3 +33,24 @@ The gView Server can be configured from the _config/mapserver.json file:
         // It can be assumed that all calls are made over HTTPS
         "force-https":  false
     }
+
+
+If you start the viewer as described in the installation procedure in *standalone* mode, this file, if not yet
+existing at the first start automatically generated. The output directories are stored in the folder ''server-files'' parallel to the
+folder ``server``.
+
+The starting point for the default configuration is the file ``_config/_mapserver.json`` which is included in the installation package.
+This is a template file with placeholders (``{installation-path}`` and ``{installation-host}``). The placeholders
+are replaced at the first start and a ``_config/mapserver.json`` file is generated.
+
+This mechanism can also be used on Linux or within *Docker containers*. For this, only the appropriate
+Environment variables (``GV_REPOSITORY_PATH`` and ``GV_ONLINERESOURCE_URL``). An image and a
+description of this can be found under https://hub.docker.com/r/gstalt/gview5-server
+
+.. note::
+    Map images are stored in the output directory and then picked up by the client there. The *gView Server* must have write rights
+    for this directory. The client must reach the url specified here. As a server that delivers the images,
+    any existing Http server can be used (IIS, Nginx, ...). There is also the possibility to use *gView Server* for 
+    delivery of the map images. To do this (as in the default configuration), the url to the *gView MapServer* must be the ``output-url``,
+    e.g: ``https://gview.my-server.com/output`` oder ``https://www.my-server.com/gview5/output``
+

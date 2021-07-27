@@ -17,8 +17,8 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'gView Online'
-copyright = '2019, Jürgen Gstaltmaier'
+project = 'gView GIS'
+copyright = '2021, Jürgen Gstaltmaier'
 author = 'Jürgen Gstaltmaier'
 
 # The full version, including alpha/beta/rc tags
@@ -31,6 +31,7 @@ release = '1.0.0'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -62,7 +63,7 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
 html_css_files = [
-    'css/custom.css',
+    'css/custom.css'
 ]
 
 master_doc = 'index'

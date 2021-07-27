@@ -6,7 +6,7 @@ Weiters wäre es wünschenswert die Bundesländer aus diesem Beispiel zu beschri
 
 .. image:: img/labeling1.png
 
-Hier steuert das Kontrollkästchen „Layer beschriften“, ob ein Thema beschriftet wird. Anstelle eines einfachen Beschriftungsfeldes, dass ebenfalls diesem Dialog angeführt werden kann,
+Hier steuert das Kontrollkästchen ``Layer beschriften``, ob ein Thema beschriftet wird. Anstelle eines einfachen Beschriftungsfeldes, dass ebenfalls in diesem Dialog angeführt werden kann,
 kann auch eine so genannte ``Expression`` über den gleichnamigen Button angeben werden. Eine *Expresson* kann sich aus mehreren Feldern und fixem Text zusammensetzen:
 
 .. image:: img/labeling2.png
@@ -17,7 +17,7 @@ Durch einen Doppelklick auf einen Feldnamen im oberen Bereich des Dialogs wird d
 .. note::
    Zeilenumbrüche werden ebenfalls in die Expression mit aufgenommen.
 
-Weitere Einstellmöglichkeiten bei der  Beschriftungshäufigkeit angeboten:
+Weitere Einstellmöglichkeiten werden bei der  Beschriftungshäufigkeit angeboten:
 
 * One Label Per Name: Ein Name wird in der Karte pro Featureklasse nur einmal angezeigt.
 * One Label Per Feature: Ein Objekt wird nur einmal beschriftet, auch wenn es aus mehreren Teilen besteht.

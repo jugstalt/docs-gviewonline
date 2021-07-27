@@ -11,7 +11,7 @@ Diese kann unter folgender Web Seite heruntergeladen werden:
 https://dotnet.microsoft.com/download/dotnet-core
 
 Hier muss die aktuelle Version gewählt werden. Zur Zeit der Erstellung dieser Dokumentation ist die
-aktuelle Version unter der gView Server läuft .NET Core 3.0
+aktuelle Version unter der gView Server läuft .NET Core 3.1
 
 .. image:: img/iis1.png
 
@@ -29,7 +29,7 @@ richtig gesetzt wurden).
 Nach Installation der Runtime & Hosting Bundle sollte 
 * Microsoft.AspNetCore.App 
 * Microsoft.NETCore.App
-in der richtigen Version aufscheinen.
+in der richtigen Version (3.1.x) aufscheinen.
 
 .NET Core Anwendung in IIS einbinden
 ------------------------------------

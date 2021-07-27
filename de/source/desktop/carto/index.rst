@@ -8,7 +8,7 @@ wird nur kurz bzw. gar nicht eingegangen. Sie sollten aber nach der Lektüre die
 der Lage sein, Daten in eine Karte hinzuzufügen und die Legenden nach ihren Vorstellungen
 zu gestalten.
 
-Nach dem Start des Programms über das Startmenü zeigt die Anwendungen vorerst ein leeres
+Nach dem Start durch ``gView Carto.bat`` zeigt die Anwendungen vorerst ein leeres
 Kartenbild:
 
 .. image:: img/carto1.png

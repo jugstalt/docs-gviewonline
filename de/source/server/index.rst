@@ -15,3 +15,4 @@ publiziert. Die Kartendienste bieten je nach Schnittstelle folgende Funktionalit
 
    config
    inst/installation
+   manual/index

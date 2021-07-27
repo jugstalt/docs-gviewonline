@@ -7,7 +7,7 @@ die Geometrie der Features den Ausdehnungen der einzelnen Bilder entspricht. In 
 Sachdaten der Featureklasse werden die Verweise auf die Bilddateien gespeichert.
 
 Zum Anlegen gehen Sie analog wie bei normalen Datasets vor. Klicken Sie mit der rechten
-Maustaste in den Contents-Bereich einer Sql Feature Database und wählen ``Neu/Sql Feature
+Maustaste in den Contents-Bereich einer Sql Feature Database und wählen ``New/Sql Feature
 Database Dataset``. Im daraufhin erscheinenden Dialog stellen Sie den Typ Image Dataset
 ein:
 
@@ -87,7 +87,7 @@ Sie können jetzt auf Wunsch auch noch weitere Bilder hinzufügen oder einzelne 
 wieder aus dem Dataset löschen. Dazu markieren Sie die Bilder in der List und wählen über
 das Kontextmenü (rechte Maustaste) den entsprechenden Menüpunkt.
 
-In der Registerkarte ``Preview`` Bereich können Sie die eingespielten Bilder betrachten, wobei
+In der Registerkarte ``Preview`` können Sie die eingespielten Bilder betrachten, wobei
 Sie mit den oben bereits beschriebenen Werkzeugen in der Karte navigieren können.
 
 .. image:: img/raster9.png 

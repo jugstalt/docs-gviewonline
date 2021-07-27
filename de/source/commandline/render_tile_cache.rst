@@ -1,3 +1,5 @@
+.. _commandline-tools-render-tile-cache:
+
 gView.Cmd.RenderTileCache
 =========================
 
@@ -43,7 +45,7 @@ Erforderliche Parameter:
      EPSG:31256: -226900, 163300, 0, 315500
    
 Außerdem werden hier alle Inforationen zurückgegeben, die für optionalen Parameter für das Rendering nützlich sein können.
-Ist der Dienst nicht als *Tiling Dienst* zur Verfügung lautet die Ausgabe in etwa folgendermaßen:
+Steht der Dienst nicht als *Tiling Dienst* zur Verfügung lautet die Ausgabe in etwa folgendermaßen:
 
 .. code::
 
@@ -54,12 +56,12 @@ Ist der Dienst nicht als *Tiling Dienst* zur Verfügung lautet die Ausgabe in et
   geschickt, die das Rendern veranlassen. Das *Rending* passiert im *gView Server*. Dort werden die Tiles erstellt und im File System abgelegt.
   
 .. note::
-   Existiert eine Kachel bereits, wird sie vom Server nicht neu berechnet. Der Server berechnet nur Kacheln, die noch nicht existieren. Das macht Sinn, wenn nur Tile eine *Tile Cache* neu berechnet werden müssen.
+   Existiert eine Kachel bereits, wird sie vom Server nicht neu berechnet. Der Server berechnet nur Kacheln, die noch nicht existieren. Das macht Sinn, wenn nur einige Tiles eines *Tile Cache* neu berechnet werden müssen.
    Hier löscht man zuerst die betroffen *Tiles* am File Sytsem (z.B. mit dem Befehl ``gView.Cmd.ClipCompactTilecache``)
 
 Optionale Parameter:
 
-* ``-epsg``: Der *gView Server* kann für einen Dienst Tilecaches in unterschiedlichen Koordinatensystemen anbieten. Welche möglich, kann bei den Metadaten in *gView Carto* eingestellt werden. Über den oben gezeigten ``-info`` Befehl
+* ``-epsg``: Der *gView Server* kann für einen Dienst Tilecaches in unterschiedlichen Koordinatensystemen anbieten. Welche Koordinatensystemen möglich sind, kann bei den Metadaten in *gView Carto* eingestellt werden. Über den oben gezeigten ``-info`` Befehl
   können die möglichen Werte angezeigt werden.
 
 * ``-compact``: Mit dieser Option wird ein *Compact Tile Cache* erzeugt. Der Unterschied zu einem *klassischen Tile Cache* ist, dass nicht für jede Kachel eine Datei angelegt wird. Hier werden immer 128 x 128 Kacheln zu einer 
@@ -74,8 +76,8 @@ Optionale Parameter:
 * ``-scales``: Eine Liste von Maßstäben (mit Komma getrennt) für die Kommandos an der Server geschickt werden.
 
 * ``-threads``: Zum Beschleunigungen der Tile Cache Erstellung, können mehrere Kommandos gleichzeitig zum *gView Server* geschickt werden. Ansonsten wird gleichzeitig immer nur das Kommando für eine Kachel zum Server geschickt. Es macht keinen
-  Sinn, hier extrem hohe Werte anzugeben. Faustregel: ``-threads`` = Anzahl der Prozessoren. Steigt die Prozessorlast damit nicht hoch an, bedeutet das, dass die meiste Zeit beim rendern mit dem Warten auf die Datenbank verwendet wird.
-  In diesem Fall kann der Wert hier auch noch erhöht werden.
+   Sinn, hier extrem hohe Werte anzugeben. Faustregel: ``-threads`` = Anzahl der Prozessoren. Steigt die Prozessorlast damit nicht hoch an, bedeutet das, dass die meiste Zeit beim rendern mit dem Warten auf die Datenbank verwendet wird.
+   In diesem Fall kann der Wert hier auch noch erhöht werden.
   
 
 Beispiel:

@@ -1,11 +1,11 @@
 gView.Cmd.MxlUtil
 =================
 
-Dieses Werkzeugt stellt einige Methoden zur Verfügung, um wiederkehrende Aufgaben im Umfeld mit Map Projektdateien (MXL)  zu automatisieren:
+Dieses Werkzeugt stellt einige Methoden zur Verfügung, um wiederkehrende Aufgaben im Umfeld mit Map Projektdateien (MXL) zu automatisieren:
 
 * **PublishService**: Ein Karte im *gView MapServer* veröffentlichen.
 * **MxlDataset**: Anzeigen und anpassen von Verbindungseigenschaften eines MXL Files
-* **MxlToFdb**: Kopieren aller Vektor Daten eines Kartenprojektes in einer *gView Feature Database*. *gView FDB* ist ein Format, für das von *gView* eine hohe Performance garantiert wird. Die Datenbank werden hier in *SQL Server*, *PostGre* oder *Sqlite* angelegt.
+* **MxlToFdb**: Kopieren aller Vektor Daten eines Kartenprojektes in einer *gView Feature Database*. *gView FDB* ist ein Format, für das *gView* eine hohe Performance garantiert wird. Die Datenbank werden hier in *SQL Server*, *PostGre* oder *Sqlite* angelegt.
   Dieses Werkzeug kann verwendet werden, um Kartenprojekte *offline* zur Verfügung zu stellen (alle Daten in einer *Sqlite* Datenbank) 
 
 Der allgemeine Aufruf für dieses Werkzeug lautet:
@@ -19,7 +19,7 @@ Als ``Utility-Name`` kann eines der hier vorgestellten Optionen verwendet werden
 PublishService
 --------------
 
-Zum publizieren von Kartendiensten können folgende Parameter übergeben werden:
+Zum Publizieren von Kartendiensten können folgende Parameter übergeben werden:
 
 .. code::
 
@@ -51,7 +51,7 @@ Beispiel:
 
 Über die optionalen Parameter kann ein *Client* übergeben werden, über den der Dienst publiziert werden sollte.
 In Regel sollte man nicht jedem Benutzer erlauben, Dienste zu publizieren. Um das zu steuern kann der Administrator/Manager des *gView MapServer* 
-Clients anlegen (in der Manager Weboberfäche unter ``Security``). Für diese Clients können auf Services und Verzeichnisse Rechte 
+Clients anlegen (in der Manager Weboberfäche unter ``Security``). Für diese Clients können auf Service- und Verzeichnis-Ebene Rechte 
 vergeben werden (Schloss Symbol). Clients die dort das Recht ``publish`` für ein Verzeichnis bekommen, dürfen Dienste Publizieren.
  
 .. note::
@@ -69,8 +69,8 @@ MxlDatasets
 -----------
 
 Hier können die Verbindungsparameter der Datasets innerhalb einer XML Datei angezeigt oder verändert werden. Ein Anwendungsfall
-kann sein, wenn Karten mit Verbindungen zu einer (lokalen) Testenbank entwickelt werden. Vor den (automatisierten) veröffentlichen
-kann hier die Verbindungseingenschaften auf eine produktive Datenbank umgeschrieben werden.
+kann sein, wenn Karten mit Verbindungen zu einer (lokalen) Testdatenbank entwickelt werden. Vor dem (automatisierten) Veröffentlichen
+können hier die Verbindungseingenschaften auf eine produktive Datenbank umgeschrieben werden.
 
 Aufruf:
 
@@ -102,16 +102,16 @@ Aufruf:
    -dsindex|-dataset-index <the index of the dataset you want change the parameter> default = -1 => all datasets 
 
 
-* ``-mxl``: Pfad zum XML File
+* ``-mxl``: Pfad zum MXL File
 * ``-cmd``: Weitere Spezifikation des Commands, dass für die Dataset Verbindungen ausgeführt werden soll.
  
 Optional:
  
-* ``-mxl-out``: Pfad zur einem MXL, dass erstellt werden sollte (nur bei ``modify-connectionstring``). Wird kein Output XML angegeben, wird die ursprüngliche Datei überschreiben.
+* ``-mxl-out``: Pfad zur einem MXL, die erstellt werden sollte (nur bei ``modify-connectionstring``). Wird kein Output XML angegeben, wird die ursprüngliche Datei überschreiben.
     
 **Command - Info**
 
-Dieses Kommando ist der Standard. Wird dieses oder keine Kommando übergeben, wird die Verbindungsparameter der einzelnen 
+Dieses Kommando ist der Standard. Wird dieses oder kein Kommando übergeben, wird die Verbindungsparameter der einzelnen 
 Dataset angezeigt:
 
 .. code::
@@ -135,7 +135,7 @@ Dataset ändern muss dies mit dem Parameter ``-dsindex`` (siehe unten) angeführ
 
 **Command - modify-cs|modify-connectionstring**
 
-Mit diesem Kommando können einzelne *Connection Parameter* geändert werden. Zusätzlich zu den oben angeführten Parameter müssen dazu noch folgende 
+Mit diesem Kommando können einzelne *Connection Parameter* geändert werden. Zusätzlich zu den oben angeführten Parametern müssen dazu noch folgende 
 Parameter übergeben werden:
 
 * ``-parameter|-parameter-name``: Der name des Parameters (z.B. ``server``) der geändert werden soll
@@ -159,13 +159,13 @@ Beispiel:
 .. note::
    Die Verbindungsparameter werden sowohl beim Öffnen als auch beim Überschreiben überprüft. Ist mit den gegeben Parameter keine Verbindung möglich,
    bricht das Programm ab.
-   Ist ein MXL beschädigt und es kann mit den Verbindungsparametern keine Verbindung aufgebaut werden, kann dieses Werkzeug nicht verwendet werden.
+   Ist eine MXL beschädigt und es kann mit den Verbindungsparametern keine Verbindung aufgebaut werden, kann dieses Werkzeug nicht verwendet werden.
    In diesem Fall muss das MXL File über einen Texteditor repariert werden.
 
 MxlToFdb
 --------
 
-Kopieren aller Vektor Daten eines Kartenprojektes in einer *gView Feature Database*. *gView FDB* ist ein Format, für das von *gView* eine hohe Performance garantiert wird. Die Datenbank werden hier in *SQL Server*, *PostGre* oder *Sqlite* angelegt.
+Kopieren aller Vektor Daten eines Kartenprojektes in eine *gView Feature Database*. *gView FDB* ist ein Format, für das von *gView* eine hohe Performance garantiert wird. Die Datenbank werden hier in *SQL Server*, *PostGre* oder *Sqlite* angelegt.
 Dieses Werkzeug kann verwendet werden, um Kartenprojekte *offline* zur Verfügung zu stellen (alle Daten in einer *Sqlite* Datenbank) 
 
 .. code::
@@ -197,7 +197,7 @@ Dieses Werkzeug kann verwendet werden, um Kartenprojekte *offline* zur Verfügun
  
 Optional:
  
-* ``-mxl-out``: Pfad zur einem MXL, dass erstellt werden sollte (nur bei ``modify-connectionstring``). Wird kein Output XML angegeben, wird die ursprüngliche Datei überschreiben.
+* ``-mxl-out``: Pfad zur einer MXL, dass erstellt werden sollte. Wird kein Output XML angegeben, wird die ursprüngliche Datei überschreiben.
 * ``--dont-copy-features-from``: Eine Liste von Layern, die nicht kopiert werden sollten. Das Tool wird hauptsächlich dazu, bestehende Karten *offline* 
   fähig zu machen, indem die Daten in eine SQLite Datenbank geschrieben werden. Wenn (große) Datensätze einer Karte *offline* nicht zwingend notwendig
   sind, können sie hier angegeben werden. In der Zieldatenbank wird zwar das Schema dieser Tabellen angelegt, jedoch werden keine Daten kopiert.

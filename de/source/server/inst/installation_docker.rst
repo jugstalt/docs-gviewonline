@@ -3,12 +3,25 @@ Docker Container (Linux)
 
 Im folgenden Abschnitt werden fundierte Kenntnisse von Docker vorausgesetzt.
 
+gView MapServer Image verwenden
+-------------------------------
+
+Unter https://hub.docker.com/r/gstalt/gview5-server wird ein aktuelles Image für den *gView MapServer* angeboten.
+In diesem sind bereits alle notwendigen Abhängigkeiten enthalten. Über Umgebungsvariablen kann der Speicherort 
+für die Konfiguration (``GV_REPOSITORY_PATH``) und die Url mit der *gView MapServer* nach außen sichtbar ist (``GV_ONLINERESOURCE_URL``)
+gesteuert werden.
+
+Benutzerdefinierte Container erstellen
+--------------------------------------
+
+Reicht die Standardkonfiguration nicht aus kann aus der bestehenden Inatallation eine Image erzeugt werden.
+
 Als erstes muss ein Dockerfile erstellt werden. Hier ein Beispiel, in dem auch gezeigt wird,
 wie die notwendigen Libraries *GDI+* und *proj4* installiert werden.
 
 .. code::
 
-   FROM mcr.microsoft.com/dotnet/core/aspnet:3.0.0-buster-slim
+   FROM mcr.microsoft.com/dotnet/core/aspnet:3.1.17-buster-slim
 
    #
    # Install GDI +

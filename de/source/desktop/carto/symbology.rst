@@ -1,14 +1,14 @@
 Darstellung und Symbolik
 ========================
 
-Hier wird für beschrieben, wie die Darstellung einzelnen Layer angepasster werden kann. In diesem Beispiel sollten Gewässer blau und die
+Hier wird beschrieben, wie die Darstellung einzelner Layer angepasster werden kann. In diesem Beispiel sollten Gewässer blau und die
 Straßen in gelb und rot erscheinen. Der einfachste Weg, um ein Symbol zu ändern, ist ein
 Doppelklick auf das entsprechende Legendensymbol im TOC. Für die Gewässerlinie aus dem
 Beispiel ergibt sich dabei folgender Dialog:
 
 .. image:: img/symbology1.png
 
-Der ÜSymbol Composer* gestaltet sich für alle Symbole ähnlich. Rechts können die Attribute
+Der *Symbol Composer* gestaltet sich für alle Symbole ähnlich. Rechts können die Attribute
 wie Farbe, Linienstärke usw. für ein Symbol angegeben werden. Links werden die
 Symbolebenen und die Vorschau angezeigt. Zu beachten ist, dass bei den meisten
 Attributen ein Auswahldialog existiert. Dieser öffnet sich mit dem Dreiecksymbol, das
@@ -22,7 +22,7 @@ Auswahldialog beispielsweise wie folgt aus:
 .. image:: img/symbology3.png 
 
 Auf eine genaue Beschreibung wird hier nicht eingegangen, da die Bedienung möglichst intuitiv gestaltet wurde. Entspricht
-die Symbolvorschau den Vorstellungen kann der Dialog mit OK bestätigt werden.
+die Symbolvorschau den Vorstellungen kann der Dialog mit ``OK`` bestätigt werden.
 
 Die Symbolik der Straßen soll in diesem Beispiel aus mehreren Symbolebenen bestehen. Dazu wird die erste Ebene als rote Linie mit der Linienstärke ``3`` realisiert:
 
@@ -44,11 +44,11 @@ Geometrien erscheint:
 
 Dabei können unterschiedliche Symboltypen gemischte werden wie hier:
 * Fill Symbol: ein einfaches Füllsymbol mit farbiger Umrandung
-* Hatch Symbol: ein einfaches Schraffursymbol mit farbiger Umrandung
+* Hatch Symbol: ein einfaches Schraffursymbol
   
 Änderungen des Symboltypes wirken sich immer auf die aktuell markierte Symbolebene aus.
 
-Für die Gemeindeflächen aus dem Beispiel werden jetzt eine tranzparente Füllfarbe (``no
+Für die Gemeindeflächen aus dem Beispiel werden jetzt eine transparente Füllfarbe (``no
 Color``) und eine schwarze Umrandung gewählt:
 
 .. image:: img/symbology7.png
