@@ -1,44 +1,44 @@
 Browse Services 
 ===============
 
-In diesem Abschnitt wird gezeigt, wie *gView MapServer* Dienste und Verzeichnisse in der WebOberfläche aufgelistet werden.
-Zum Auflisten der Dienste steht der Menüpunkt ``Browse Services`` zur Verfügung (Kachel auf der Startseite bzw. Sidebar):
+This section shows how to list *gView MapServer* services and folders in the Web Interface.
+To list the services, the menu item ``Browse Services`` is available (tile on the start page or sidebar):
 
 .. image:: img/browse1.png 
 
-Die Start Ansicht bei ``Browse Service`` sieht in etwas folgendermaßen aus:
+The start view at ``Browse Service`` looks something like this:
 
 .. image:: img/browse2.png 
 
-Fett gedruckt werden hier *Folder* (Verzeichnisse) angezeigt. Dienste werden mit normaler Schrift
-angezeigt. Außerdem besteht bei Diensten auch die Möglichkeit des Löschen über das Papierkorb Symbol.
-Dieses wird nur angezeigt, wenn der angemeldete Benutzer/Client dazu berechtigt ist.
+*Folders* (directories) are displayed in bold here. Services are displayed with normal font. 
+In addition, there is also the possibility of deleting services via the recycle bin icon.
+This is only displayed if the logged-in user/client is authorized to do so.
 
 .. note::
-   ``Browse Services`` ist für jeden User möglich (auch ohne Anmeldung). Es werden allerdings nur 
-   jene Dienste aufgelistet, auf die für den aktuellen Anwender eine Berechtigung besteht.
+   ``Browse Services`` is possible for every user (even without registration). However, only 
+   those services are listed for which current users is permitted.
 
 .. note::
-   In diesem Beispiel ist immer noch er Administrator angemeldet. Daher stehen auch noch die 
-   Optionen ``Publish Service`` und ``Create Folder`` zur Verfügung. Die Vorgehensweise für das 
-   Veröffentlichen wird unter :ref:`publish-map-service-example` im Abschnitt :ref:`examples` behandelt.
+   In this example, the administrator is still logged on. Therefore, there are also the 
+   ``Publish Service`` and ``Create Folder`` options. The procedure for the 
+   Publishing is discussed in the ref:`examples` section of ref:`publish-map-service-example`.
 
 .. note::
-   In diesem Beispiel lieft der Dienst ``ortsplan`` nicht in einem Verzeichnis sondern im sogenannten 
-   *root* Bereich. In der Praxis sollte Dienste immer in Verzeichnissen organisiert werden!
+   In this example, the service ``ortsplan`` is not in a folder but in the so-called 
+   *root* folder. In practice, services should always be organized in folders!
 
-Klickt man auf einen Dienst in dieser Ansicht wirden alle möglichen Schnittstellen für diesen Dienst 
-angezeigt:
+If you click on a service in this view, all possible interfaces for this service 
+displayed:
 
 .. image:: img/browse3.png 
 
-Für jede dieser Schnittstellen werden Links angeboten, mit denen diese Dienste in diverse GIS Programme
-eingebunden werden können. Klickt man beispielsweise auf einen Link für WMS werden direkt im Browser
-der *Capabilities Request* für diesen Dienst angezeigt:
+For each of these interfaces, links are offered with which these services can be integrated into various GIS programs. 
+For example, if you click on a link for WMS, the browser displays
+the *Capabilities Request* for this service:
 
 .. image:: img/browse4.png 
 
-Dieser Link könnte beispielswiese auch in **QGIS** als *WMS Layer* eingebunden werden.
+For example, this link could also be included in **QGIS** as a *WMS layer*.
 
-Welche Schnittstellen hier angeboten werden, kann über die *Manage WebOberfläche* bei den Berechtigungen
-für den Dienst oder das Verzeichnis festgelegt werden.
+Which interfaces are offered here can be found via the *Manage Web Interface* for the authorizations
+for the service or folder.

@@ -1,61 +1,60 @@
-GeoServices REST Schnittstelle 
-==============================
+GeoServices REST Interface 
+==========================
 
-*GeoServices REST* ist eine Schnittstelle, die von ESRI für den ArcGIS Server entwickelt wurden.
-*gView MapServer* unterstützt diese Schnittstelle (*MapServer* und *FeatureServer*). Da über diese 
-Schnittstelle diverse Werkzeuge in der WebOberfläche angeboten werden,
-mit denen ein *gView MapServer* Dienst getestet werden kann, wird eine eigener Menüpunkt dafür angeboten:
+*GeoServices REST* is an interface developed by ESRI for ArcGIS Server.
+*gView MapServer* supports this interface (*MapServer* and *FeatureServer*). With this 
+interface various tools are offered in the web interface,
+with which a *gView MapServer* service can be tested. Thats why there is an extra menu item for this interface:
 
 .. image:: img/geoservices1.png 
 
-*GeoServices REST* ist eine *RESTful API* bie der über HTTP GET und POST Requests, Befehle zum um Server
-geschickt und in der Regel eine JSON Dokument zurückgegeben wird.
+*GeoServices REST* is a *RESTful API* in which via HTTP GET and POST requests, commands send to the server
+and usually a JSON document is returned.
 
-Über die WebOberfläche können diese JSON Dokumente angezeigt werden. Wegen der besseren Lesbarkeit,
-wird hier allerdings nicht JSON sondern YAML als Anzeigestandard gewählt.
+These JSON documents can be viewed via the web interface. For better readability YAML is chosen as the display standard.
 
-Das Übergeordnete JSON File gibt die *Folder* und Services der ersten Ebene zurück:
+The parent JSON file returns the *folders* and services of the first level:
 
 .. image:: img/geoservices2.png
 
-Hyperlinks werden im YAML als Buttons hervorgehoben. Außerdem werden einige Auflistungen (Services) nach
-definierten Attributwerten gruppiert (``Type: MapServer``, ``Type: FeatureServer``)
+Hyperlinks are highlighted as buttons in the YAML. In addition, some listings (services) are grouped by
+defined attribute values (``Type: MapServer``, ``Type: FeatureServer``)
 
-Klickt man auf einen der Hyperlinks kommt man zur nächsten Ansicht. Die YAML Darstellung für einen ``MapServer``
-Dienst sieht etwas folgendermaßen aus:
+If you click on one of the hyperlinks you get to the next view. The YAML representation for a ''MapServer''
+service looks something like this:
 
 .. image:: img/geoservices3.png 
 
-Hier hier gibt es weiterführenden Links zu den einzelnen Layern. Darin werden dann beispielsweise
-Details zu den Feldern aufgelistet.
+Here you can find further links to the layers of the service. In it, for example,
+Details about the fields are listed.
 
-Über der YAML Darstellung gibt es für manche Typen noch weiterführende Link-Buttons.
-Bei ``MapServer`` Typen ist beispielsweise ``ExportMap`` interessant. Mit einen ``ExportMap`` Request,
-kann ein Kartenbild für einen bestimmten Ausschnitt abgeholt werden. Klickt man auf ``ExportMap``
-erscheint ein Formular, in das man die gewünschten Werte für den Request eintragen kann:
+Above the YAML display, there are further link buttons for some types.
+For example, for ``MapServer`` types, ''ExportMap'' is interesting. With an ``ExportMap`` request,
+a map image for a specific extend can be requested. Click on ´´ExportMap``
+a form appears in which you can enter the values for the request:
 
 .. image:: img/geoservices4.png
 
-Das Outputformat kann von ``json`` auf ``pjson`` umgestellt werden (das ``p`` steht für *Pretty*, 
-was das Ergebnis eine bessere Lesbarkeit garantiert). Bestätigt man das Formular mit ``Submit``
-kommt in etwa folgendes Ergebnis:
+The output format can be changed from ``json`` to ``pjson`` (the ``p`` stands for *Pretty*, 
+which guarantees better readability for the result). Confirm the form with ``Submit`` with the following result:
 
 .. image:: img/geoservices5.png
 
-Der Server erstellt hier ein Bild und legt im *Outputverzeichnis* ab. Die zurückgegeben Url
-kann aus dem JSON kopiert und in Browseradresszeile kopiert werden. Hat alles geklappt, sollte ein Kartenbild
-angezeigt werden.
+The server creates an image and stores it in the *output directory*. The returned url.
+can be copied from the JSON to browser address line. If everything worked out, a map image should
+be displayed.
 
-Zum selben Ergebnis sollte man kommen, wenn man ein Schritt zurück geht und im Formular als ``OutputFormat``
-den Wert ``image`` angibt. Damit entfällt der Zwischenschritt über das JSON Dokument:
+The same result should be obtained if you take a step back and in the form as ``OutputFormat``
+specifies the value ``image``. This eliminates the step via the JSON document:
 
 .. image:: img/geoservices6.png
 
 .. note::
-   Standardmäßig wird im Formular der größtmögliche Extend angezeigt. Sind in diesem Maßstab keine Themen sichtbar, kann das Ergebnis auch ein leeres Bild sein.
-   Außerdem wird vom Server die Standard Layer sichtbarkeit zurückgegeben, wenn keine Sichtbarkeit im Formular angeben wird.
+   By default, the form displays the full map extend. If no layers are visible on this scale, the result can also be an empty image.
+   In addition, the server returns the default layer visibility if no visibility is specified in the form.
 
-Auf die gleiche Art und Weise können auch Abfragen auf Layer getestet werden (zum Layer YAML und dort auf ``Query``)
+In the same way, queries on layers can also be tested (go to the *Layer YAML* and click on ''Query'')
 
 .. note::
-   Die Parameter entsprechen der GeoServices REST Spezifiktion. Diese kann bei ESRI nachgeschlagen werden, beispielsweise unter https://developers.arcgis.com/rest/services-reference/enterprise/export-map.htm
+   The parameters correspond to the GeoServices REST specification.
+   This can be looked up at ESRI, for example under https://developers.arcgis.com/rest/services-reference/enterprise/export-map.htm

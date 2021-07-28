@@ -6,7 +6,7 @@ Zum Auflisten der Dienste steht der Menüpunkt ``Browse Services`` zur Verfügun
 
 .. image:: img/browse1.png 
 
-Die Start Ansicht bei ``Browse Service`` sieht in etwas folgendermaßen aus:
+Die Start Ansicht bei ``Browse Service`` sieht in etwa folgendermaßen aus:
 
 .. image:: img/browse2.png 
 
@@ -16,7 +16,7 @@ Dieses wird nur angezeigt, wenn der angemeldete Benutzer/Client dazu berechtigt 
 
 .. note::
    ``Browse Services`` ist für jeden User möglich (auch ohne Anmeldung). Es werden allerdings nur 
-   jene Dienste aufgelistet, auf die für den aktuellen Anwender eine Berechtigung besteht.
+   jene Dienste aufgelistet, für die aktuelle Anwender berechtigt ist.
 
 .. note::
    In diesem Beispiel ist immer noch er Administrator angemeldet. Daher stehen auch noch die 
@@ -24,16 +24,16 @@ Dieses wird nur angezeigt, wenn der angemeldete Benutzer/Client dazu berechtigt 
    Veröffentlichen wird unter :ref:`publish-map-service-example` im Abschnitt :ref:`examples` behandelt.
 
 .. note::
-   In diesem Beispiel lieft der Dienst ``ortsplan`` nicht in einem Verzeichnis sondern im sogenannten 
+   In diesem Beispiel liegt der Dienst ``ortsplan`` nicht in einem Verzeichnis sondern im sogenannten 
    *root* Bereich. In der Praxis sollte Dienste immer in Verzeichnissen organisiert werden!
 
-Klickt man auf einen Dienst in dieser Ansicht wirden alle möglichen Schnittstellen für diesen Dienst 
+Klickt man auf einen Dienst in dieser Ansicht werden alle möglichen Schnittstellen für diesen Dienst 
 angezeigt:
 
 .. image:: img/browse3.png 
 
 Für jede dieser Schnittstellen werden Links angeboten, mit denen diese Dienste in diverse GIS Programme
-eingebunden werden können. Klickt man beispielsweise auf einen Link für WMS werden direkt im Browser
+eingebunden werden können. Klickt man beispielsweise auf einen Link für WMS wird im Browser
 der *Capabilities Request* für diesen Dienst angezeigt:
 
 .. image:: img/browse4.png 
@@ -41,4 +41,4 @@ der *Capabilities Request* für diesen Dienst angezeigt:
 Dieser Link könnte beispielswiese auch in **QGIS** als *WMS Layer* eingebunden werden.
 
 Welche Schnittstellen hier angeboten werden, kann über die *Manage WebOberfläche* bei den Berechtigungen
-für den Dienst oder das Verzeichnis festgelegt werden.
+für den Dienst oder für das Verzeichnis festgelegt werden.
