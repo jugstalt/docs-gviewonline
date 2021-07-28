@@ -14,3 +14,5 @@ Die folgenden Punkte decken noch weitere Themen ab:
     :caption: Inhaltsverzeichnis:
  
     manage
+    browse
+    geoservices-rest
