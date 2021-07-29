@@ -4,6 +4,12 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+.. note::
+  This documentation was based on the *gView documentation* in German
+  Language.
+  The translation was (semi) automated. 
+  Feel free to contribute! More inforation in the document footer.
+
 Welcome to gView GIS
 ====================
 

@@ -75,11 +75,10 @@ Optionale Parameter:
 
 * ``-scales``: Eine Liste von Maßstäben (mit Komma getrennt) für die Kommandos an der Server geschickt werden.
 
-* ``-threads``: Zum Beschleunigungen der Tile Cache Erstellung, können mehrere Kommandos gleichzeitig zum *gView Server* geschickt werden. Ansonsten wird gleichzeitig immer nur das Kommando für eine Kachel zum Server geschickt. Es macht keinen
-   Sinn, hier extrem hohe Werte anzugeben. Faustregel: ``-threads`` = Anzahl der Prozessoren. Steigt die Prozessorlast damit nicht hoch an, bedeutet das, dass die meiste Zeit beim rendern mit dem Warten auf die Datenbank verwendet wird.
-   In diesem Fall kann der Wert hier auch noch erhöht werden.
+* ``-threads``: Zum Beschleunigungen der Tile Cache Erstellung, können mehrere Kommandos gleichzeitig zum *gView Server* geschickt werden. Ansonsten wird gleichzeitig immer nur das Kommando für eine Kachel zum Server geschickt. 
+  Es macht keinen Sinn, hier extrem hohe Werte anzugeben. Faustregel: ``-threads`` = Anzahl der Prozessoren. Steigt die Prozessorlast damit nicht hoch an, bedeutet das, dass die meiste Zeit beim rendern mit dem Warten auf die Datenbank verwendet wird.
+  In diesem Fall kann der Wert hier auch noch erhöht werden.
   
-
 Beispiel:
 
 .. code::

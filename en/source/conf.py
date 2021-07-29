@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'gView GIS'
-copyright = '2021, Jürgen Gstaltmaier'
+copyright = '2021, https://github.com/jugstalt/docs-gviewonline'
 author = 'Jürgen Gstaltmaier'
 
 # The full version, including alpha/beta/rc tags
@@ -42,7 +42,7 @@ templates_path = ['_templates']
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = 'de'
+language = 'en'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.

@@ -107,6 +107,3 @@ Command buttons are also available for each service, which can be used to set it
 * **Start**: Start service (if stopped)
 * **Stop**: Stop service (no longer visible to clients)
 * **Refresh**: a restart of the service is forced
-
-
-

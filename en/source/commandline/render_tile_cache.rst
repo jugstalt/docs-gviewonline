@@ -83,6 +83,3 @@ of completeness and can usually be omitted.
 Example:
 
 .. code::
-
-   .\gView.Cmd.RenderTileCache.exe -render -server https://localhost:44331 -service cache/ortsplan -compact -scales 1000000,500000,250000,100000,50000,25000,10000,5000 -threads 10
-

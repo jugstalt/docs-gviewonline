@@ -6,7 +6,7 @@ This tool provides some methods to automate recurring tasks with map project fil
 * **PublishService**: Publish a map to *gView MapServer*.
 * **MxlDataset**: View and customize connection properties of an MXL file
 * **MxlToFdb**: Copy all vector data of a map project in a *gView Feature Database*. *gView FDB* is a format for which *gView* guarantees high performance. The database is created here in *SQL Server*, *PostGre* or *Sqlite*.
-   This tool can be used to provide map projects *offline* (all data in a *Sqlite* database) 
+  This tool can be used to provide map projects *offline* (all data in a *Sqlite* database) 
 
    The general call for this tool is:
 
@@ -145,8 +145,8 @@ If several parameters are changed, the parameters must be repeated in the comman
 Optional:
 
 * ``-dsindex|-dataset-index``: If only one specific dataset is changed, the index number of the dataset can be specified here.
-   The index number can be taken from the ``info`` command shown above. If the parameters are not specified, the parameters for 
-   all datasets changed.
+  The index number can be taken from the ``info`` command shown above. If the parameters are not specified, the parameters for 
+  all datasets changed.
 
 Example:
 
@@ -199,8 +199,8 @@ Optional:
  
 * ``-mxl-out``: Path to an MXL that should be created. If no Output XML is specified, the original file is overwritten!
 * ``--dont-copy-features-from``: A list of layers that should not be copied. The tool will mainly be used to make existing maps *offline* 
-   by writing the data to a SQLite database. If (large) data sets of a map *offline* not absolutely necessary, 
-   they can be specified here. Although the schema of these tables is created in the target database, no data is copied.
+  by writing the data to a SQLite database. If (large) data sets of a map *offline* not absolutely necessary, 
+  they can be specified here. Although the schema of these tables is created in the target database, no data is copied.
   
 Example:
 

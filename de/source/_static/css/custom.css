@@ -17,3 +17,9 @@
 .rst-content section ul li p:last-child {
     margin-bottom: 0;
 }
+
+.footer-info {
+    margin:5px 0px;
+    padding:3px;
+    background-color:#eee;
+}

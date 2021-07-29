@@ -1,4 +1,3 @@
-
 Willkommen bei gView GIS
 ========================
 
