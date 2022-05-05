@@ -61,3 +61,49 @@ Weiters muss der vorher erstellte Applikation Pool angeführt werden.
 Jetzt sollte der gView Server beispielsweise über https://localhost/gview5-server erreichbar sein:
 
 .. image:: img/iis8.png
+
+GDAL Driver
+-----------
+
+GDAL zum anzeigen von Rasterdaten (GeoTIFF, ...) ist im Installationspaket enthalten.
+Damit auch zusätzliche Formate (JPG2000, ECW) funktionieren muss GDAL das ``gdalplugins`` Verzeichnis
+finden. Dieses befindet sich im Programmverzeichnis. Wird die Applikation allerdings 
+in einem IIS Applikation Pool gehostet, muss das Verzeichnis über die Umgebungsvariable 
+``GDAL_DRIVER_PATH`` gesetzt werden. Der Pfad kann hier der absolute oder relative angegeben werden.
+
+**Variante 1:**
+
+* ``GDAL_DRIVER_PATH=C:\.....\gview\server\gdalplugins``
+* ``GDAL_DRIVER_PATH=.\gdalplugins``
+
+Damit der Applikation Pool die Informationen aus den Umgebungsvariablen bekommt, muss in den 
+``Erweiterten Einstellungen`` die Option ``Benutzerprofil laden`` auf ``true`` gesetzt werden.
+
+**Variante 2: (empfohlen)**
+
+Verwendet man IIS 10  kann für einen Applikation Pool 
+alternativ die Umgebungsvariablen auch über die IIS Konfiguration (Abschnitt ``system.applicationHost``) 
+gesetzt werden:
+
+https://docs.microsoft.com/en-us/iis/configuration/system.applicationhost/applicationpools/add/environmentvariables/
+
+**Variante 3:**
+
+Lässt man die Applikation ``OutOfProcess`` laufen, kann die Umgebungsvariable in der ``web.config``
+der WebApplikation gesetzt werden:
+
+.. note::
+   Diese Methode sollte nur Verwendet werden, wenn Variante 1 und 2 nicht möglich sind.
+   Empfohlen wird, die Applikation aus Performance Gründen ``InProcess`` laufen zu lassen.
+
+.. code::
+   
+   ...
+   <aspNetCore processPath="%LAUNCHER_PATH%" stdoutLogEnabled="false" hostingModel="OutOfProcess">
+      <environmentVariables>
+        ...
+        <environmentVariable name="GDAL_DRIVER_PATH" value=".\gdalplugins" />
+      </environmentVariables>
+   ...
+
+
