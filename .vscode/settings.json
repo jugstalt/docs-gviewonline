@@ -1,5 +1,6 @@
 {
     "cSpell.language": ",de",
     "restructuredtext.linter.disabled": true,
-    "restructuredtext.confPath": ""
+    "restructuredtext.confPath": "",
+    "esbonio.sphinx.confDir": ""
 }
