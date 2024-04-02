@@ -62,9 +62,10 @@ Components of gView GIS
 
 The components of the gView Framework can be divided into two categories:
 
-* **Desktop GIS:** the programs *gView Carto* and *gView DataExplorer*, which were developed for the Windows desktop. 
+* **Desktop GIS:** the programs *gView Carto* and *gView DataExplorer*. 
+  Both are Web applications running in modern browsers 
   With the help of these programs, maps can be created or geodata can be managed.
-  The base for both programs is **.NET Framework 4.7.2**. The software can only be run on Windows systems.
+  The base for both programs is .NET 8 (server side).
 
 * **Server GIS:** The gView Server is a map and feature server that allows the created maps to be published as map services.
   In addition to OGC standards (WMS, WFS), the services are also available in formats such as GeoServices REST and ArcXML. This makes it possible to 

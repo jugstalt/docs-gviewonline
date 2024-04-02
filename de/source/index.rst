@@ -51,14 +51,15 @@ Komponenten von gView GIS
 
 Die Komponenten des gView Frameworks lassen sich in zwei Kategorien einteilen:
 
-* **Desktop GIS:** Hierbei handelt es sich um die Programme *gView Carto* und *gView DataExplorer*, die für den Windows Desktop entwickelt wurden. 
+* **gView Web:** Hierbei handelt es sich um die Web Anwendugen *gView Carto* und *gView DataExplorer*. 
+  Beide können über eine Web Oberfläche bedient werden.
   Mithilfe dieser Programme, können Karten erstellt bzw. GeoDaten verwaltet werden.
-  Die Basis für beide Programme ist **.NET Framework 4.7.2**. Die Software ist damit nur auf Windows Systemen lauffähig.
+  Die Basis für beide Programme ist .NET 8 (serverseitig)
 
-* **Server GIS:** Der gView Server ist ein Karten und Featureserver, mit dem die erstellten Karten als Kartendienste veröffentlicht werden können.
+* **gView Server:** Der gView Server ist ein Karten und Featureserver, mit dem die erstellten Karten als Kartendienste veröffentlicht werden können.
   Neben OGC Standards (WMS, WFS) stehen die Dienste auch in Formaten wie GeoServices REST und ArcXML zu verfügung. Damit lassen sich 
   die Dienste in jeder gängigen GIS Software anzeigen und Abfragen.
-  Die Basis ist **.NET Core 3.1**. Der Server ist sowohl auf Windows, Linux und MacOS lauffähig
+  Die Basis ist .NET 8. Der Server ist sowohl auf Windows, Linux und MacOS lauffähig.
 
 
 * **gView Commandline Tools:** Eine Sammlung von Kommandozeilen Werkzeugen, mit der immer wieder kehrende Aufgaben im *gView GIS* Umfeld automatisiert werden können (z.B. Karte für den Server veröffentlichen)
