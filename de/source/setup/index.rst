@@ -1,6 +1,139 @@
 Installation
 ============
 
+Die Installation erfolgt über das Kommandozeilen-Programm ``gview.deploy`` oder ``gview.deploy.exe``.
+Unter Windows kann das Programm beispielsweise nach ``C:\deploy\gview-gis`` kopiert werden.
+
+Startet man das Programm zum ersten Mal, muss zuert ein Profil angelegt werden.
+In Profil kann beispielweise ``test``, ``staging``, ``production`` sein. Da wir im ersten
+Schritt *gView GIS* nur einmal local testen wollen, bietet sich ein Profil mit dem 
+Namen ``local`` für den Start an:
+
+.. code::
+
+   1> .\\gview.deploy.exe
+
+   Work-Directory: C:\\deploy\\gview-gis
+   Choose a profile or create a new by enter an unique name, eg. production, staging, test
+   Input profile index [0]: local
+
+In nächten Schritt bietet das Programm an, den aktuellen Release von Github herunter zu laden,
+falls noch nicht vorhanden. 
+
+.. code::
+
+   Do you want to download latetest version from GitHub? Y/N [Y]
+
+Ist das nicht möglich, kann der letzte Release auch manuell 
+herunter geladen werden. Dazu müssen die ZIP Dateien ins ``download`` Verzeichnis gelegt werden.
+Im Beispiel also hier: ``C:\deploy\gview-gis\download``
+
+Liegen ZIP Dateien im ``download`` Verzeichnis, werden die unterschiedlihen Versionen
+angezeigt:
+
+.. code::
+
+   Choose a version
+   0 ... 6.24.1801
+   Input version index [0]:
+
+Die neueste Version bekommt den Index ``0``. 
+
+.. note::
+
+   Alle Werte die über das ``gviewdeploy`` eingeben werden, müssen bei späteren
+   Aufrufen nicht mehr eingegeben werden. Stattdessen werden diese Werte mit einer 
+   Indexnummer angezeigt. Man muss damit nur noch die entsprechende Nummer eingeben 
+   bzw reicht es einfach ``ENTER`` zu drücken, wenn der gewünschte Index der
+   vorgeschlagene Wert ist, zB ``Input version index [0]`` => ``ENTER`` => Version mit
+   Index ``0``.
+
+Nachdem die Version gewählt wurde, fragt das Deployment Tool noch einmal nach, ob 
+tatsächlich die gewählte Version mit dem Profil deployed werden sollte:
+
+.. code::
+
+   Deploy version 6.24.1801 to profile local
+   Do you want to continue? Y/N [Y]
+
+Ein ``ENTER`` oder ``Y`` Started den Deploy Vorgang.
+
+Publiziert man ein Profil (hier ``local``) das erste Mal, müssen noch ein paar 
+Werte bekannt geben werden. Möcht man den Standardwert verwenden, reicht es, die Frage
+mit ``ENTER`` zu bestätigen.
+
+.. code::
+
+   Target installation path [C:\\apps\\gview-gis]:
+   Repsitory path [C:\\apps\\gview-gis\\local\\gview-repository]:
+   gView Server online url [http://localhost:5050]:
+
+* **Target installation path:** Der Pfad, an dem gview-gis installiert werden sollte
+  unter diesem Verzeichnis, legt das Deploy Werzeug noch einem Order mit dem Profil
+  Namen und der Version an. Hier würde die App unter ``C:\\apps\\gview-gis\\local\\6.24.1801``
+  installiert werden.
+
+* **Repository path:** Im Repository Path, werden unterschiedliche Dateien gespeicht, die
+  für das funktioneren der Software notwendig sind, beispielsweise die Karten Dokumente (XML 
+  Files), die vom Kartenserver veröffentlicht werden. Der Repository Ordner wird 
+  normaleweise im Verzeichnis des Profiles (hier: ``C:\\apps\\gview-gis\\local``) gelegt.
+  Da der Ordner nicht im Verions Ordner liegt, kann er von einer neuen installierten Version
+  gleich mit verwendet werden. Wichtig ist, dass unterschiedliche Profile ihr eigenes 
+  Repository Verzeichnis verwenden.
+
+* **gView Server online url:** Eine Url, unter der der *gView.Server* zugänglich sein wird.
+  Möchte man das ``local`` Profil testen und die Proramme nur lokal ausführen, erfolgt das 
+  in der Regel über http://localhost:5050.
+  Der Verteil diesen Wert hier Festzulegen ist, dass später in der *gView.Web* App eine
+  zusätzliche Kachel zum Aufruf des *gView.Servers* angeboten wird. Das erleicht die 
+  Administration. Ohne diese Url, würden nur die Kacheln für *gView.Carto* und 
+  *gView.Explorer* angezeigt werden.
+
+Die nächsten Werte legen wir den **Admin User** und das Admin Passwort fest.
+Außerdem definieren wir einen **Carto User** ein.
+Das Passwort ist jeweils einzugeben:
+
+.. code::
+
+   gView Admin Username [admin]:
+   gView Admin Password [*****]: my-secret-admin-password
+   gView Admin Username [carto]:
+   gView Admin Password [*****]: my-secret-carto-password
+
+Der Unterschied der beiden User ist, dass der **Carto User** nur auf eingeschränkte 
+Werzeuge zugreifen kann. Er kann beispielsweise den **gView.Explorer** nicht aufrufen
+sondern nur **gView.Carto**. Außerdem sieht er die eigentlichen *Connection Strings*
+der Verbindungen nicht. Der **Carto User** kann somit nur auf vordefinierte Verbindungen
+zugreifen, aber keinen eigenen Verbindungen zu Datenbanken anlegen, etc. Dieser User 
+sollte von Benutzern verwendet werden, um neue Karte zu erstellen. Diese User müssen in 
+der Regel keine Datenbank Credentials kennen.
+
+Danach started der Deploy Vorgang:
+
+.. code::
+
+   ***********************************************************************
+   Create a new webgis repositiry C:\apps\gview-gis\local\gview-repository
+   ***********************************************************************
+
+   Deploy version 6.24.1801
+   Deploy gView Server:
+   ...succeeded 972 items created
+   Deploy gView Web:
+   ...succeeded 448 items created
+   Overrides
+   Copy C:\deploy\gview-gis\_deploy_repository\profiles\local\server\override\_config\mapserver.json
+   ...succeeded 1 items created/overridden
+   Copy C:\deploy\gview-gis\_deploy_repository\profiles\local\web\override\_config\gview-web.config
+   ...succeeded 1 items created/overridden
+
+
+
+
+
+Installation old
+================
+
 *gView GIS* läuft mit Ausnahme der Desktop Programme auf unterschiedlichen Plattformen. Die einzelnen Komponenten sind sowohl (Windows) Destop, (Web) Server oder Kommandozeilen Werkzeuge.
 Da alle Komponenten zumindest auf Windows laufen, gibt es für Windows ein Installationspaket. Die Software muss nicht direkt Installiert werden sondern läuft auch als *Portable* Version. 
 Allerdings wird für die Desktop Programme (*gView.Carto* und *gView.DataExplorer*) unter Windows ein .NET Framework 4.7.2 vorausgesetzt. Server un Kommandozeilen Werkzeuge setzten 

@@ -64,8 +64,7 @@ Hier sind noch keine Berechtigungen gesetzt, dass heißt jeder Benutzer/Client d
 
 * **Export Map**: Kartenbilder dürfen für beliebige Ausschnitte abgeholt werden.
 * **Query**: Geo-Objekte können abgefragt und gesucht werden.
-* **Features**: Geo-Objekte können als Features heruntergeladen oder bearbeite werden. Diese setzt als Schnittstelle *GeoServices REST* voraus. Welche Geo-Objekte bearbeite werden dürfen, wird im Kartenprojekt (MXL) über *gView Carto*
-im *Ribbon* unter *Options* eingestellt.
+* **Features**: Geo-Objekte können als Features heruntergeladen oder bearbeite werden. Diese setzt als Schnittstelle *GeoServices REST* voraus. Welche Geo-Objekte bearbeite werden dürfen, wird im Kartenprojekt (MXL) über *gView Carto* im *Ribbon* unter *Options* eingestellt.
 * **Publish Service**: Dienste dürfen für dieses Verzeichnis veröffentlicht und gelöscht werden.
 * **Schnittstellen**: Berechtigungen können hier für bestimmte Schnittstellen (WMS, ...) eingeschränkt werden.
 
