@@ -8,6 +8,9 @@ werden.
    :maxdepth: 1
 
    run-local
+   run-iis
+   run-docker 
+   run-kubernetes
 
 
 

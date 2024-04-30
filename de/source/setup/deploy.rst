@@ -18,9 +18,10 @@ In Profil kann beispielweise ``test``, ``staging``, ``production`` sein. Da wir 
 Schritt *gView GIS* nur einmal local testen wollen, bietet sich ein Profil mit dem 
 Namen ``local`` für den Start an:
 
-.. code::
+.. code-block:: batch
+   :emphasize-lines: 1,5
 
-   1> .\\gview.deploy.exe
+   C:\> .\gview.deploy.exe
 
    Work-Directory: C:\\deploy\\gview-gis
    Choose a profile or create a new by enter an unique name, eg. production, staging, test
@@ -29,7 +30,7 @@ Namen ``local`` für den Start an:
 In nächsten Schritt bietet das Programm an, den aktuellen Release von *Github* herunter zu laden,
 falls noch nicht vorhanden. 
 
-.. code::
+.. code-block:: batch
 
    Do you want to download latetest version from GitHub? Y/N [Y]
 
@@ -40,7 +41,7 @@ Im Beispiel also hier: ``C:\deploy\gview-gis\download``
 Liegen ZIP Dateien im ``download`` Verzeichnis, werden die unterschiedlihen Versionen
 angezeigt:
 
-.. code::
+.. code-block:: batch
 
    Choose a version
    0 ... 6.24.1801
@@ -60,7 +61,7 @@ Die neueste Version bekommt den Index ``0``.
 Nachdem die Version gewählt wurde, fragt das Deployment Tool noch einmal nach, ob 
 tatsächlich die gewählte Version mit dem Profil deployed werden sollte:
 
-.. code::
+.. code-block:: batch
 
    Deploy version 6.24.1801 to profile local
    Do you want to continue? Y/N [Y]
@@ -71,10 +72,10 @@ Publiziert man ein Profil (hier ``local``) das erste Mal, müssen noch ein paar
 Werte bekannt geben werden. Möcht man den Standardwert verwenden, reicht es, die Frage
 mit ``ENTER`` zu bestätigen.
 
-.. code::
+.. code-block:: batch
 
-   Target installation path [C:\\apps\\gview-gis]:
-   Repsitory path [C:\\apps\\gview-gis\\local\\gview-repository]:
+   Target installation path [C:\apps\gview-gis]:
+   Repsitory path [C:\apps\gview-gis\local\gview-repository]:
    gView Server online url [http://localhost:5050]:
 
 * **Target installation path:** Der Pfad, an dem gview-gis installiert werden sollte
@@ -102,7 +103,7 @@ Die nächsten Werte legen wir den **Admin User** und das Admin Passwort fest.
 Außerdem definieren wir einen **Carto User** ein.
 Das Passwort ist jeweils einzugeben:
 
-.. code::
+.. code-block:: batch
 
    gView Admin Username [admin]:
    gView Admin Password [*****]: my-secret-admin-password
@@ -119,7 +120,7 @@ der Regel keine Datenbank Credentials kennen.
 
 Danach startet der Deploy Vorgang:
 
-.. code::
+.. code-block:: batch
 
    ***********************************************************************
    Create a new webgis repositiry C:\apps\gview-gis\local\gview-repository
@@ -156,7 +157,7 @@ Aktuelle Konfiguration ändern
 Fügt am Änderungen in der Konfiguration durch (zB ``mapserver.json``) erfolgt dies im *Override*
 Verzeichnis, danach führt man erneut ``gview.deploy`` aus und bekommt folgende Meldung:
 
-.. code::
+.. code-block:: batch
 
    Choose a profile or create a new by enter an unique name, eg. production, staging, test
    0 ... local
