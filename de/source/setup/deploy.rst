@@ -58,12 +58,23 @@ Die neueste Version bekommt den Index ``0``.
    vorgeschlagene Wert ist, zB ``Input version index [0]`` => ``ENTER`` => Version mit
    Index ``0``.
 
-Nachdem die Version gewählt wurde, fragt das Deployment Tool noch einmal nach, ob 
+Im nächsten Schritt kann festgelegt werden, welche Produkt installiert werden soll. 
+``Everything``deployed sowohl ```gView.Server`` als auch ``gView.Web``:
+
+.. code-block:: batch
+
+   Choose a product
+   0 ... Everything
+   1 ... gView.Server
+   2 ... gView.Web
+   Input product index [0]:
+
+Nachdem die Version und Produkt gewählt wurde, fragt das Deployment Tool noch einmal nach, ob 
 tatsächlich die gewählte Version mit dem Profil deployed werden sollte:
 
 .. code-block:: batch
 
-   Deploy version 6.24.1801 to profile local
+   Deploy 'Everything' from version 6.24.1801 to profile local
    Do you want to continue? Y/N [Y]
 
 Ein ``ENTER`` oder ``Y`` Started den Deploy Vorgang.
