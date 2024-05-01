@@ -1,8 +1,7 @@
 Konfiguration gView.Web
 =======================
 
-Die *gView.Web* Anwendung kann über die Datei ``_config/gview-web.config`` 
-konfiguriert werden:
+Die *gView.Web* Anwendung kann über die Datei ``_config/gview-web.config`` konfiguriert werden:
 
 .. code-block:: javascript
 
@@ -28,81 +27,81 @@ Benutzerdefinierte Laufwerke/Verzeichnisse
 ------------------------------------------
 
 Im Abschnitt ``Drives`` können Pfade festgelegt werden, die im **gView.DataExplorer** unter 
-``Computer`` aufgelistet werden. Wird dieser Abschnitt weg gelassen, werden alle Laufwerke,
-die zur Verfügung stehen angezeigt.
+``Computer`` aufgelistet werden. Wird dieser Abschnitt weggelassen, werden alle verfügbaren 
+Laufwerke angezeigt.
 
 .. note::
 
-    Die Pfade und Laufwerke beziehen sich auf den Computer/Server auf dem **gView.Web** 
+    Die Pfade und Laufwerke beziehen sich auf den Computer/Server, auf dem **gView.Web** 
     installiert ist.
 
 .. note::
 
-    Wenn **gView.Web** am Server installiert ist, wird **dringend** empfohlen, diesen Abschnitt
-    zu pflegen. Hier darf und soll man aus Sicherheitsgründen nicht auf das komplette Dateisystem
-    zugreifen können. Ein potentieller Angreifer hätte so theoretisch Zugriff auf alle 
-    Dateien des Servers!
+    Wenn **gView.Web** auf einem Server installiert ist, wird **dringend** empfohlen, diesen 
+    Abschnitt zu pflegen. Aus Sicherheitsgründen darf und soll man hier nicht auf das komplette 
+    Dateisystem zugreifen können. Ein potentieller Angreifer hätte sonst theoretisch Zugriff auf 
+    alle Dateien des Servers.
 
-Innerhalb einen Pfades kann ein Platzhalter ``{{username}}`` verwendet werden. Dienst wird mit dem 
-Usernamen des aktuell bei **gView.Web** angemeldeten Benutzers ersetzt. Dann kann ein 
-Anwender beispielsweise MXL Dateien in einem *privaten* Verzeichnis ablegen.
+Innerhalb eines Pfades kann ein Platzhalter ``{{username}}`` verwendet werden. Dieser wird mit dem 
+Usernamen des aktuell bei **gView.Web** angemeldeten Benutzers ersetzt. So kann ein 
+Anwender beispielsweise MXD-Dateien in einem *privaten* Verzeichnis ablegen.
 
 Benutzerdefinierte Kacheln
 --------------------------
 
 Im Abschnitt ``CustomTiles`` können beliebige weitere Kacheln angelegt werden, die auf der 
-Startseite von **gView.Web** angezeigt werden. Damit können beispielsweise eine Kacheln zu
+Startseite von **gView.Web** angezeigt werden. Damit können beispielsweise Kacheln zu 
 einer oder mehreren **gView.Server** Instanzen angelegt werden.
 
 Authentifizierung
 -----------------
 
-Um zu bestimmen, wie man sich bei **gView.Web** anmelden kann/muss dient der Abschnitt 
+Um zu bestimmen, wie man sich bei **gView.Web** anmelden kann/muss, dient der Abschnitt 
 ``Authentication``.
 
 .. note::
 
-    Wird der Abschnitt weg gelassen, erfolgt eine Authentifizierung. Jeder Benutzer darf 
-    alles. Das sollte allerdings nur für lokale Installation möglich sein.
-    Läuft **gView.Web** auf einem Server sollte **unbedingt** eine Authentifizierungsmethode
+    Wird der Abschnitt weggelassen, findet keine Authentifizierung statt. Jeder Benutzer darf 
+    alles. Dies sollte jedoch nur für lokale Installationen möglich sein.
+    Läuft **gView.Web** auf einem Server, sollte **unbedingt** eine Authentifizierungsmethode
     eingestellt werden.
 
 **gView.Web** unterscheidet zwei Kategorien von Benutzern:
 
 * **Admin-User:** Benutzer, die alle Anwendungen und Werkzeuge verwenden dürfen.
-* **Carto-User:** Benutzer, die nur die *Carto* Anwendung benutzen dürfen. Die Anwender
-  können nur Karten erstellen und Speichern. Sie können auf vordefinierte Datenbank Verbindungen
-  zugreifen, um Geodaten in die Karte einzubinden. Allerdings könne die die *Connection String*
-  für diese nicht einsehen oder ändern (im Gegensatz *Admin-Usern*) 
+* **Carto-User:** Benutzer, die nur die *Carto* Anwendung benutzen dürfen. Diese Anwender
+  können nur Karten erstellen und speichern. Sie können auf vordefinierte Datenbankverbindungen
+  zugreifen, um Geodaten in die Karte einzubinden. Allerdings können sie den *Connection String*
+  für diese nicht einsehen oder ändern (im Gegensatz zu *Admin-Usern*). 
 
 Derzeit sind folgende Authentifizierungsmethoden möglich:
 
-* ``forms``: Benutzer können sich mit Benutzername/Passwort über eine Login Maske
+* ``forms``: Benutzer können sich mit Benutzername/Passwort über eine Login-Maske
   anmelden. Welche Benutzer es gibt, wird direkt in der ``gview-web.config`` eingestellt.
-  Hierbei handelt es sich um eine einfach zu pflegende Art der Authentifizierung die 
+  Dies ist eine einfach zu pflegende Methode der Authentifizierung, die 
   für kleine Teams oft ausreicht. Diese Methode bietet keine fortgeschrittenen Sicherheitsrichtlinien
   und sollte maximal für Anwendungen im Intranet oder abgegrenzten Bereichen verwendet werden.
-
+  
   Eine Bereitstellung von **gView.Web** über das Internet sollte mit dieser Methode nicht
-  angedacht werden.
+  erfolgen.
 
-* ``oidc``: OpenID Connect ist eine weiter Methode der Authentifizierung. Dabei meldet 
-  sich der Anwender über einen extern Authentifizierungsstelle an. Diese biete in der 
-  Regel höhere Sicherheit und Zwei Faktor Authentifizierung, etc
+* ``oidc``: OpenID Connect ist eine weitere Methode der Authentifizierung. Dabei meldet 
+  sich der Anwender über einen externen Authentifizierungsdienst an. Dieser bietet in der 
+  Regel höhere Sicherheit und Zwei-Faktor-Authentifizierung, etc.
 
 Forms Authentifizierung
-+++++++++++++++++++++++  
++++++++++++++++++++++++
 
 Hier wird als ``Type`` der Wert ``forms`` angegeben. In der Sektion ``Forms`` können dann 
-mehrerer ``AdminUsers`` und ``CartoUsers`` angegeben werden. Jeweils als Array von Objekten
+mehrere ``AdminUsers`` und ``CartoUsers`` angegeben werden, jeweils als Array von Objekten
 mit den Eigenschaften ``Username`` und ``PasswordHash``.
-Damit das Passwort hier nicht im Klartext angeben werden muss, wird statt dessen ein 
-Hashwert im Hexadezimal Format angeben. Dieser Hash kann sowohl mit dem 
-``SHA256`` als auch mit ``SHA512`` Algorithmus gehasht worden sein. 
+Damit das Passwort hier nicht im Klartext angegeben werden muss, wird stattdessen ein 
+Hashwert im Hexadezimalformat angegeben. Dieser Hash kann mit dem 
+``SHA256``- oder ``SHA512``-Algorithmus erstellt worden sein.
 
 .. note::
-    
-    Es gibt Online Tools, mit den diese Hashwerte berechnet werden können, z.B:
+
+    Es gibt Online-Tools, mit denen diese Hashwerte berechnet werden können, z.B.:
 
     * https://coding.tools/sha256
     * https://coding.tools/sha512
@@ -130,13 +129,13 @@ Hashwert im Hexadezimal Format angeben. Dieser Hash kann sowohl mit dem
 OpenID Connect Authentifizierung
 ++++++++++++++++++++++++++++++++
 
-Steht ein *Identity Dienst* zur Verfügung, der *OpenID Connect* unterstützt, kann dieser für
-Authentifizierung verwendet werden.
+Steht ein *Identity-Dienst* zur Verfügung, der *OpenID Connect* unterstützt, kann dieser für
+die Authentifizierung verwendet werden.
 
 Als ``Type`` muss hier der Wert ``oidc`` eingetragen werden. Im Abschnitt ``Oidc`` muss
-der *Identity Server* (``Authority``) eingetragen werden. Am *Identity Server* muss 
+der *Identity Server* (``Authority``) angegeben werden. Am *Identity Server* muss 
 *gView.Web* als Client hinzugefügt werden. Die entsprechende ``ClientId`` und das 
-``ClientSecret`` sind ebenfalls hier einzutragen. Als ``Scopes`` werden die unter angeführten
+``ClientSecret`` sind ebenfalls hier einzutragen. Als ``Scopes`` werden die folgenden
 Werte empfohlen:
 
 .. code-block:: javascript
@@ -153,6 +152,6 @@ Werte empfohlen:
             }
         }
 
-Da der *Identity Server* auch Rollen mitliefert muss noch jeweils eine Rolle für 
+Da der *Identity Server* auch Rollen mitliefert, muss jeweils eine Rolle für 
 **Admin-User** und **Carto-User** angegeben werden. Das erfolgt über die Parameter 
-``RequiredUserRole`` (Carto-User) und ``RequiredAdminRole`` (Admin-User).
+``RequiredUserRole`` (für Carto-User) und ``RequiredAdminRole`` (für Admin-User).

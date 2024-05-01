@@ -1,0 +1,115 @@
+<mxfile host="app.diagrams.net" modified="2024-05-01T07:50:34.837Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:125.0) Gecko/20100101 Firefox/125.0" etag="99Fp7-jOt-cVxUdt35RY" version="24.2.9" type="device">
+  <diagram name="Seite-1" id="Wo1bKJcvPPJqR11z6W8k">
+    <mxGraphModel dx="954" dy="654" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="dpQYXd6wPJJuDFLn7hWi-5" value="Ellipsoid2Space" style="curved=1;startArrow=none;endArrow=block;exitX=0.4999425427667026;exitY=0.9852941176470589;entryX=0.4999685611364976;entryY=0;rounded=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint x="152.49166870117188" y="122" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dpQYXd6wPJJuDFLn7hWi-6" value="Space2Space" style="curved=1;startArrow=none;endArrow=block;exitX=0.4999685611364976;exitY=0.9852941176470589;entryX=0.49996571481963736;entryY=0;rounded=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint x="152.49166870117188" y="224" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dpQYXd6wPJJuDFLn7hWi-7" value="Ellipsoid2Plane" style="curved=1;startArrow=none;endArrow=block;exitX=0.49996571481963736;exitY=0.9852941176470589;entryX=0.49631643986356433;entryY=0;rounded=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint x="152.49166870117188" y="326" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-5" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="359" y="380" width="110" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-1" value="" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="dJMbMw9GqMwcQIYmpqRa-5">
+          <mxGeometry y="40" width="110" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-2" value="PostGIS, SQL Server" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="dJMbMw9GqMwcQIYmpqRa-5">
+          <mxGeometry x="15" y="100" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-4" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Datenbank&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="dJMbMw9GqMwcQIYmpqRa-5">
+          <mxGeometry x="11" width="85" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-24" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="299" y="110" width="331" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-12" value="" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="dJMbMw9GqMwcQIYmpqRa-24">
+          <mxGeometry x="40" y="50" width="150" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-17" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;MapServer, FeatureServer&lt;br&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="dJMbMw9GqMwcQIYmpqRa-24">
+          <mxGeometry width="230" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-19" value="&lt;p&gt;&lt;b&gt;&lt;span class=&quot;n&quot;&gt;gView&lt;/span&gt;.S&lt;span class=&quot;n&quot;&gt;erver&lt;/span&gt;&lt;/b&gt; &lt;/p&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="dJMbMw9GqMwcQIYmpqRa-24">
+          <mxGeometry x="60" y="70" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-29" value="" style="html=1;shadow=0;dashed=0;align=center;verticalAlign=middle;shape=mxgraph.arrows2.arrow;dy=0.6;dx=40;flipH=1;notch=0;" vertex="1" parent="dJMbMw9GqMwcQIYmpqRa-24">
+          <mxGeometry x="201" y="85" width="119" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-39" value="GeoServices, WMS" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="dJMbMw9GqMwcQIYmpqRa-24">
+          <mxGeometry x="201" y="115" width="130" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-40" value="MapServices, FeatureServices" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="dJMbMw9GqMwcQIYmpqRa-24">
+          <mxGeometry x="50" y="100" width="130" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-25" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="610" y="110" width="200" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-6" value="" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="dJMbMw9GqMwcQIYmpqRa-25">
+          <mxGeometry y="30" width="200" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-18" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;GIS Client&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="dJMbMw9GqMwcQIYmpqRa-25">
+          <mxGeometry x="40" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-20" value="WebGIS, QGIS, ..." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="dJMbMw9GqMwcQIYmpqRa-25">
+          <mxGeometry x="70" y="75" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-26" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="60" y="387.5" width="169" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-21" value="" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="dJMbMw9GqMwcQIYmpqRa-26">
+          <mxGeometry x="9.5" y="40" width="150" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-22" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;GIS Tools&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="dJMbMw9GqMwcQIYmpqRa-26">
+          <mxGeometry width="169" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-23" value="&lt;b&gt;gView.Web&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="dJMbMw9GqMwcQIYmpqRa-26">
+          <mxGeometry x="29.5" y="52.5" width="110" height="27.5" as="geometry" />
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-41" value="&lt;div&gt;gView.Carto gView.DataExplorer&lt;/div&gt;gView.Cmd.*" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="dJMbMw9GqMwcQIYmpqRa-26">
+          <mxGeometry x="29.5" y="80" width="110.5" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-28" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="dJMbMw9GqMwcQIYmpqRa-32">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="310" as="sourcePoint" />
+            <mxPoint x="790" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-34" value="" style="html=1;shadow=0;dashed=0;align=center;verticalAlign=middle;shape=mxgraph.arrows2.jumpInArrow;dy=15;dx=38;arrowHead=55;" vertex="1" parent="1">
+          <mxGeometry x="130" y="190" width="200" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-35" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1" target="dJMbMw9GqMwcQIYmpqRa-32">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="320" as="sourcePoint" />
+            <mxPoint x="790" y="310" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-32" value="" style="html=1;shadow=0;dashed=0;align=center;verticalAlign=middle;shape=mxgraph.arrows2.twoWayArrow;dy=0.6;dx=35;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="365.25" y="310" width="103.75" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-36" value="" style="html=1;shadow=0;dashed=0;align=center;verticalAlign=middle;shape=mxgraph.arrows2.arrow;dy=0.6;dx=40;notch=0;" vertex="1" parent="1">
+          <mxGeometry x="240" y="470" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-37" value="Read / Write" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#f8cecc;strokeColor=#b85450;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="400" y="315" width="100" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="dJMbMw9GqMwcQIYmpqRa-42" value="Publish Maps as Services" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="130" y="250" width="100" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -3,6 +3,7 @@ Konfiguration gView.Server
 
 Der **gView.Server** kann über die Datei ``_config/mapserver.json`` konfiguriert werden:
 
+
 .. code-block:: javascript
 
    {
@@ -47,32 +48,33 @@ Der **gView.Server** kann über die Datei ``_config/mapserver.json`` konfigurier
         }
     }
 
-Im ersten Abschnitt werden Pfade und Urls definiert. Diese werden im ersten Schritt über das ``gview.deploy``
+Im ersten Abschnitt werden Pfade und URLs definiert. Diese werden im ersten Schritt über das ``gview.deploy``
 Tool angelegt und können hier noch einfach angepasst werden.
 
-Unter ``task-queue`` kann angeben werden, wie viele Requests gleichzeitig abgearbeitet werden können.
-Wenn ausreichend RAM zur Verfügung steht kann dieser Wert beliebig erhöht werden. Bedenken muss man,
+Unter ``task-queue`` kann angegeben werden, wie viele Requests gleichzeitig abgearbeitet werden können.
+Wenn ausreichend RAM zur Verfügung steht, kann dieser Wert beliebig erhöht werden. Man muss jedoch bedenken,
 dass der Server Kartenbilder (Bitmaps) erzeugt, die einiges an RAM benötigen können. Ist man mit der 
-RAM Auslastung immer wieder am Limit (aufgrund vieler Anfragen), kann man Wert auch niedriger ansetzten.
+RAM-Auslastung immer wieder am Limit (aufgrund vieler Anfragen), kann der Wert auch niedriger angesetzt werden.
 Sind alle Tasks belegt, kommt ein Request in die Warteschleife. Die Länge der Warteschleife kann hier ebenfalls
 angepasst werden.
 
-Im Abschnitt ``graphics`` kann die *Graphic Engine* angegeben werden. Die kann entweder ``skia`` oder
-``gdiplus`` (auf Windows Plattformen) lauten. ``gdiplus`` ist allerdings ein Auslaufmodell und 
-funktioniert nur, wenn die Anwendung auf einen Windowssystem ausgeführt wird.
+Im Abschnitt ``graphics`` kann die *Graphic Engine* angegeben werden. Diese kann entweder ``skia`` oder
+``gdiplus`` (auf Windows-Plattformen) sein. ``gdiplus`` ist allerdings ein Auslaufmodell und 
+funktioniert nur, wenn die Anwendung auf einem Windows-System ausgeführt wird.
 
-Unter ``Facilities`` können weiter optionale Einstellungen getroffen werden.
+Unter ``Facilities`` können weitere optionale Einstellungen vorgenommen werden.
 
-Eine Options ist beispielsweise ``MessageQueue``. Dort kann bisher nur eine MessageQueue vom 
-Type ``messagequeue-net`` angeben werden (https://github.com/jugstalt/messagequeuenet).
-Eine MessageQueue macht Sinn, wenn der *gView.Server* in mehreren Instanzen gleichzeitig ausgeführt wird.
-Beispielsweise, wenn *gView.Server* in Kubernetes mit mehren *Replicas* läuft.
+Eine Option ist beispielsweise ``MessageQueue``. Dort kann bisher nur eine MessageQueue vom 
+Typ ``messagequeue-net`` angegeben werden (https://github.com/jugstalt/messagequeuenet).
+Eine MessageQueue ist sinnvoll, wenn der *gView.Server* in mehreren Instanzen gleichzeitig ausgeführt wird,
+beispielsweise wenn *gView.Server* in Kubernetes mit mehreren *Replicas* läuft.
 Über die MessageQueue können die einzelnen Komponenten miteinander kommunizieren, wenn beispielsweise 
-eine Kartendienst geändert oder gelöscht wird. So bleiben alle Instanzen auf dem aktuellen Stand.
-Mit ``Namespace`` kann hier ein Namensraum angegeben werden, der definiert, welche Instanzen zusammen 
-gehören. Da beispielsweise sowohl Instanzen aus ``Staging`` und ``Production`` auf die selbe 
-MessageQueue API zugreifen, kann über den Namensraum unterschieden werden, welche Instanzen wirklich 
-zusammen gehören.
+ein Kartendienst geändert oder gelöscht wird. So bleiben alle Instanzen auf dem aktuellen Stand.
+Mit ``Namespace`` kann hier ein Namensraum angegeben werden, der definiert, welche Instanzen zusammengehören.
+Da beispielsweise sowohl Instanzen aus ``Staging`` als auch ``Production`` auf dieselbe 
+MessageQueue-API zugreifen können, kann über den Namensraum unterschieden werden, welche Instanzen wirklich 
+zusammengehören.
+
 
 
 

@@ -1,8 +1,8 @@
-Ausführen
-=========
+gView Anwendungen Ausführen
+===========================
 
-Nach erfolgreichem Deploy Vorgang können die gView Anwendungen auf unterschiedliche Weise gestartet 
-werden.
+Nach einem erfolgreichen Deploy-Vorgang können die gView-Anwendungen auf unterschiedliche 
+Weise gestartet werden.
 
 .. toctree::
    :maxdepth: 1

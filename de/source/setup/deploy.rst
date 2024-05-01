@@ -1,22 +1,24 @@
 Installation
 ============
 
-Die Installation erfolgt über das Kommandozeilen-Programm ``gview.deploy`` oder ``gview.deploy.exe``.
+Die Installation erfolgt über das Kommandozeilenprogramm ``gview.deploy`` oder ``gview.deploy.exe``.
 Dieses Tool erledigt folgende Aufgaben:
 
 * Neuinstallation von *gView.Web* und *gView.Server*
-* Verwalten von Deploy Profilen (zB ``local``, ``test``, ``staging``, ``production``)
-* Verteilen von Änderungen an der Konfiguration (zB ``mapserver.json``, ``gview-web.config``)
+* Verwaltung von Deploy-Profilen (z.B. ``local``, ``test``, ``staging``, ``production``)
+* Verteilung von Änderungen an der Konfiguration (z.B. ``mapserver.json``, ``gview-web.config``)
+
 
 Neue Version ausliefern
 -----------------------
 
 Unter Windows kann das Programm beispielsweise nach ``C:\deploy\gview-gis`` kopiert werden.
 
-Startet man das Programm zum ersten Mal, muss zuert ein Profil angelegt werden.
-In Profil kann beispielweise ``test``, ``staging``, ``production`` sein. Da wir im ersten
-Schritt *gView GIS* nur einmal local testen wollen, bietet sich ein Profil mit dem 
-Namen ``local`` für den Start an:
+Wenn man das Programm zum ersten Mal startet, muss zunächst ein Profil angelegt werden.
+Das Profil kann beispielsweise ``test``, ``staging`` oder ``production`` sein. Da wir im ersten
+Schritt *gView GIS* nur lokal testen wollen, bietet sich ein Profil mit dem Namen ``local`` 
+für den Start an:
+
 
 .. code-block:: batch
    :emphasize-lines: 1,5
@@ -27,19 +29,19 @@ Namen ``local`` für den Start an:
    Choose a profile or create a new by enter an unique name, eg. production, staging, test
    Input profile index [0]: local
 
-In nächsten Schritt bietet das Programm an, den aktuellen Release von *Github* herunter zu laden,
-falls noch nicht vorhanden. 
+Im nächsten Schritt bietet das Programm an, den aktuellen Release von *GitHub* herunterzuladen,
+falls dieser noch nicht vorhanden ist.
 
 .. code-block:: batch
 
    Do you want to download latetest version from GitHub? Y/N [Y]
 
-Ist das nicht möglich, kann der letzte Release auch manuell 
-herunter geladen werden. Dazu müssen die ZIP Dateien ins ``download`` Verzeichnis gelegt werden.
+Ist das nicht möglich, kann der letzte Release auch manuell heruntergeladen werden. 
+Dazu müssen die ZIP-Dateien in das ``download`` Verzeichnis gelegt werden.
 Im Beispiel also hier: ``C:\deploy\gview-gis\download``
 
-Liegen ZIP Dateien im ``download`` Verzeichnis, werden die unterschiedlihen Versionen
-angezeigt:
+Liegen ZIP-Dateien im ``download`` Verzeichnis, werden die verschiedenen Versionen angezeigt:
+
 
 .. code-block:: batch
 
@@ -49,17 +51,20 @@ angezeigt:
 
 Die neueste Version bekommt den Index ``0``. 
 
+Die neueste Version bekommt den Index ``0``.
+
 .. note::
 
-   Alle Werte die über das ``gviewdeploy`` eingeben werden, müssen bei späteren
-   Aufrufen nicht mehr eingegeben werden. Stattdessen werden diese Werte mit einer 
-   Indexnummer angezeigt. Man muss damit nur noch die entsprechende Nummer eingeben 
-   bzw reicht es einfach ``ENTER`` zu drücken, wenn der gewünschte Index der
-   vorgeschlagene Wert ist, zB ``Input version index [0]`` => ``ENTER`` => Version mit
+   Alle Werte, die über das ``gview.deploy`` eingegeben werden, müssen bei späteren
+   Aufrufen nicht mehr eingegeben werden. Stattdessen werden diese Werte mit einer
+   Indexnummer angezeigt. Man muss dann nur noch die entsprechende Nummer eingeben,
+   oder es reicht einfach, ``ENTER`` zu drücken, wenn der gewünschte Index der
+   vorgeschlagene Wert ist, z.B. ``Input version index [0]`` => ``ENTER`` => Version mit
    Index ``0``.
 
-Im nächsten Schritt kann festgelegt werden, welche Produkt installiert werden soll. 
-``Everything``deployed sowohl ```gView.Server`` als auch ``gView.Web``:
+Im nächsten Schritt kann festgelegt werden, welche Produkte installiert werden sollen.
+``Everything`` deployed sowohl ``gView.Server`` als auch ``gView.Web``:
+
 
 .. code-block:: batch
 
@@ -69,7 +74,7 @@ Im nächsten Schritt kann festgelegt werden, welche Produkt installiert werden s
    2 ... gView.Web
    Input product index [0]:
 
-Nachdem die Version und Produkt gewählt wurde, fragt das Deployment Tool noch einmal nach, ob 
+Nachdem die Version und das Produkt gewählt wurden, fragt das Deployment-Tool noch einmal nach, ob 
 tatsächlich die gewählte Version mit dem Profil deployed werden sollte:
 
 .. code-block:: batch
@@ -77,10 +82,10 @@ tatsächlich die gewählte Version mit dem Profil deployed werden sollte:
    Deploy 'Everything' from version 6.24.1801 to profile local
    Do you want to continue? Y/N [Y]
 
-Ein ``ENTER`` oder ``Y`` Started den Deploy Vorgang.
+Ein ``ENTER`` oder ``Y`` startet den Deploy-Vorgang.
 
-Publiziert man ein Profil (hier ``local``) das erste Mal, müssen noch ein paar 
-Werte bekannt geben werden. Möcht man den Standardwert verwenden, reicht es, die Frage
+Wenn man ein Profil (hier ``local``) das erste Mal publiziert, müssen noch einige 
+Werte angegeben werden. Möchte man den Standardwert verwenden, reicht es, die Frage
 mit ``ENTER`` zu bestätigen.
 
 .. code-block:: batch
@@ -89,29 +94,27 @@ mit ``ENTER`` zu bestätigen.
    Repsitory path [C:\apps\gview-gis\local\gview-repository]:
    gView Server online url [http://localhost:5050]:
 
-* **Target installation path:** Der Pfad, an dem gview-gis installiert werden sollte
-  unter diesem Verzeichnis, legt das Deploy Werzeug noch einem Order mit dem Profil
-  Namen und der Version an. Hier würde die App unter ``C:\\apps\\gview-gis\\local\\6.24.1801``
+* **Zielpfad der Installation:** Der Pfad, an dem gView-GIS installiert werden sollte.
+  Unter diesem Verzeichnis legt das Deployment-Werkzeug noch einen Ordner mit dem Profilnamen
+  und der Version an. Hier würde die App unter ``C:\\apps\\gview-gis\\local\\6.24.1801``
   installiert werden.
 
-* **Repository path:** Im Repository Path, werden unterschiedliche Dateien gespeichert, die
-  für das funktionieren der Software notwendig sind, beispielsweise die Karten Dokumente (XML 
-  Files), die vom Kartenserver veröffentlicht werden. Der Repository Ordner wird 
-  normaleweise im Verzeichnis des Profiles (hier: ``C:\\apps\\gview-gis\\local``) gelegt.
-  Da der Ordner nicht im *Versions* Ordner liegt, kann er von einer neuen installierten Version
-  gleich mit verwendet werden. Wichtig ist, dass unterschiedliche Profile ihr eigenes 
-  Repository Verzeichnis verwenden.
+* **Repository-Pfad:** Im Repository-Pfad werden unterschiedliche Dateien gespeichert, die
+  für das Funktionieren der Software notwendig sind, beispielsweise die Kartendokumente (XML-Dateien),
+  die vom Kartenserver veröffentlicht werden. Der Repository-Ordner wird normalerweise im Verzeichnis
+  des Profils (hier: ``C:\\apps\\gview-gis\\local``) angelegt. Da der Ordner nicht im *Versions*-
+  Ordner liegt, kann er von einer neu installierten Version gleich mit verwendet werden. Wichtig ist,
+  dass unterschiedliche Profile ihr eigenes Repository-Verzeichnis verwenden.
 
-* **gView Server online url:** Eine Url, unter der der *gView.Server* zugänglich sein wird.
-  Möchte man das ``local`` Profil testen und die Programme nur lokal ausführen, erfolgt das 
-  in der Regel über http://localhost:5050.
-  Der Verteil diesen Wert hier Festzulegen ist, dass später in der *gView.Web* App eine
-  zusätzliche Kachel zum Aufruf des *gView.Servers* angeboten wird. Das erleichtert die 
-  Administration. Ohne diese Url, würden nur die Kacheln für *gView.Carto* und 
+* **gView Server Online-URL:** Eine URL, unter der der *gView.Server* zugänglich sein wird.
+  Möchte man das ``local`` Profil testen und die Programme nur lokal ausführen, erfolgt das
+  in der Regel über http://localhost:5050. Der Vorteil, diesen Wert hier festzulegen, ist, dass später
+  in der *gView.Web* App eine zusätzliche Kachel zum Aufruf des *gView.Servers* angeboten wird. Das
+  erleichtert die Administration. Ohne diese URL würden nur die Kacheln für *gView.Carto* und
   *gView.Explorer* angezeigt werden.
 
-Die nächsten Werte legen wir den **Admin User** und das Admin Passwort fest.
-Außerdem definieren wir einen **Carto User** ein.
+Die nächsten Werte, die wir festlegen, sind der **Admin User** und das Admin-Passwort.
+Außerdem definieren wir einen **Carto User**.
 Das Passwort ist jeweils einzugeben:
 
 .. code-block:: batch
@@ -121,15 +124,17 @@ Das Passwort ist jeweils einzugeben:
    gView Admin Username [carto]:
    gView Admin Password [*****]: my-secret-carto-password
 
-Der Unterschied der beiden User ist, dass der **Carto User** nur auf eingeschränkte 
-Werkzeuge zugreifen kann. Er kann beispielsweise den **gView.Explorer** nicht aufrufen
+Der Unterschied zwischen den beiden Benutzern besteht darin, dass der **Carto User** 
+nur auf eingeschränkte Werkzeuge zugreifen kann. 
+Er kann beispielsweise **gView.Explorer** nicht aufrufen,
 sondern nur **gView.Carto**. Außerdem sieht er die eigentlichen *Connection Strings*
 der Verbindungen nicht. Der **Carto User** kann somit nur auf vordefinierte Verbindungen
-zugreifen, aber keinen eigenen Verbindungen zu Datenbanken anlegen, etc. Dieser User 
-sollte von Benutzern verwendet werden, um neue Karte zu erstellen. Diese User müssen in 
-der Regel keine Datenbank Credentials kennen.
+zugreifen, aber keine eigenen Verbindungen zu Datenbanken anlegen, etc. Dieser Benutzer 
+sollte von denen verwendet werden, die neue Karten erstellen möchten. Diese Benutzer müssen in 
+der Regel keine Datenbank-Credentials kennen.
 
-Danach startet der Deploy Vorgang:
+Danach startet der Deploy-Vorgang:
+
 
 .. code-block:: batch
 
@@ -148,25 +153,25 @@ Danach startet der Deploy Vorgang:
    Copy C:\deploy\gview-gis\_deploy_repository\profiles\local\web\override\_config\gview-web.config
    ...succeeded 1 items created/overridden
 
-Es werden sowohl *gView.Web* als auch *gView.Server* deployed. Nach dem entpacken der ZIP Files
-werden benutzerspezifische Files aus dem ``_deploy_repository\profiles\{profile}\[server|web]\override``
-Verzeichnis ins jeweilige Applikationsverzeichnis kopiert.
-Hier wird beispielsweise die Konfiguration aus dem Installationspaket mit den Konfiguration aus dem
-aktuellen Profil überschrieben. 
+Es werden sowohl *gView.Web* als auch *gView.Server* deployed. Nach dem Entpacken der ZIP-Dateien
+werden benutzerspezifische Dateien aus dem Verzeichnis ``_deploy_repository\profiles\{profile}\[server|web]\override``
+in das jeweilige Applikationsverzeichnis kopiert.
+Hierbei wird die Konfiguration aus dem Installationspaket mit der Konfiguration aus dem
+aktuellen Profil überschrieben.
 
 .. note::
-   
-   In die *Override* Verzeichnisse können können beliebige Dateien kopiert werden, die zusätzlich
-   in die Applikationsverzeichnisse kopiert oder überschrieben werden sollte.
-   Konfigurationsdateien sollten nie direkt im Applikationsverzeichnis (Deploy Verzeichnis) geändert
-   werden, sondern immer im *Override* Verzeichnis. Damit wird sicher gestellt, dass Änderungen
-   an der Konfiguration auch beim nächsten Update eines Profiles wieder kopiert werden.
+
+   In die *Override*-Verzeichnisse können beliebige Dateien kopiert werden, die zusätzlich
+   in die Applikationsverzeichnisse kopiert oder überschrieben werden sollen.
+   Konfigurationsdateien sollten nie direkt im Applikationsverzeichnis (Deploy-Verzeichnis) geändert
+   werden, sondern immer im *Override*-Verzeichnis. Damit wird sichergestellt, dass Änderungen
+   an der Konfiguration auch beim nächsten Update eines Profils wieder kopiert werden.
   
 Aktuelle Konfiguration ändern
 -----------------------------
 
-Fügt am Änderungen in der Konfiguration durch (zB ``mapserver.json``) erfolgt dies im *Override*
-Verzeichnis, danach führt man erneut ``gview.deploy`` aus und bekommt folgende Meldung:
+Fügt man Änderungen in der Konfiguration durch (z.B. ``mapserver.json``), erfolgt dies im *Override*
+Verzeichnis. Danach führt man erneut ``gview.deploy`` aus und erhält folgende Meldung:
 
 .. code-block:: batch
 
@@ -206,6 +211,7 @@ Verzeichnis, danach führt man erneut ``gview.deploy`` aus und bekommt folgende 
    ...succeeded 1 items created/overridden
 
 
-Es erscheint die Warnung, dass diese Version bereits deployed wurde. Aus den ZIP Dateien werden keine 
-Daten kopiert. Durchgeführt werden nur die *Overrides*
+Es erscheint die Warnung, dass diese Version bereits deployed wurde. Aus den ZIP-Dateien werden keine 
+Daten kopiert. Durchgeführt werden nur die *Overrides*.
+
 
