@@ -11,7 +11,7 @@ gView GIS is a user-friendly `Open Source` GI framework for creating map and fea
 
 The tools for creating maps are offered through a web interface, which can be run locally 
 on the client or hosted on a server.
-The maps are created using the *gView Carto* program, which is available within the *gView.Web* 
+The maps are created using the *gView Carto* program, which is available within the *gView.WebApps* 
 application. The maps consist of layers based on various geo-data sources. Individual layers 
 can be colored and/or labeled as desired.
 
@@ -58,7 +58,7 @@ Components of gView GIS
 
 The components of the gView Framework can be divided into three categories:
 
-* **gView Web:** This includes the web applications *gView Carto* and *gView DataExplorer*. 
+* **gView WebApps:** This includes the web applications *gView Carto* and *gView DataExplorer*. 
   Both can be operated via a web interface.
   Using these programs, maps can be created or geo-data can be managed.
   The basis for both programs is .NET 8 (Microsoft.AspNetCore.App 8.0.x Runtime)
@@ -73,7 +73,7 @@ The components of the gView Framework can be divided into three categories:
 
 * **gView Commandline Tools:** A collection of command-line tools that automate recurring 
   tasks in the *gView GIS* environment (e.g., publishing a map for the server).
-  The tools are located in the same directory as *gView.Web* after installation
+  The tools are located in the same directory as *gView.WebApps* after installation
   and have the same runtime requirements.
 
 

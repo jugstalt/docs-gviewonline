@@ -4,7 +4,7 @@ Installation
 Die Installation erfolgt über das Kommandozeilenprogramm ``gview.deploy`` oder ``gview.deploy.exe``.
 Dieses Tool erledigt folgende Aufgaben:
 
-* Neuinstallation von *gView.Web* und *gView.Server*
+* Neuinstallation von *gView.WebApps* und *gView.Server*
 * Verwaltung von Deploy-Profilen (z.B. ``local``, ``test``, ``staging``, ``production``)
 * Verteilung von Änderungen an der Konfiguration (z.B. ``mapserver.json``, ``gview-web.config``)
 
@@ -109,7 +109,7 @@ mit ``ENTER`` zu bestätigen.
 * **gView Server Online-URL:** Eine URL, unter der der *gView.Server* zugänglich sein wird.
   Möchte man das ``local`` Profil testen und die Programme nur lokal ausführen, erfolgt das
   in der Regel über http://localhost:5050. Der Vorteil, diesen Wert hier festzulegen, ist, dass später
-  in der *gView.Web* App eine zusätzliche Kachel zum Aufruf des *gView.Servers* angeboten wird. Das
+  in der *gView.WebApps* App eine zusätzliche Kachel zum Aufruf des *gView.Servers* angeboten wird. Das
   erleichtert die Administration. Ohne diese URL würden nur die Kacheln für *gView.Carto* und
   *gView.Explorer* angezeigt werden.
 
@@ -145,7 +145,7 @@ Danach startet der Deploy-Vorgang:
    Deploy version 6.24.1801
    Deploy gView Server:
    ...succeeded 972 items created
-   Deploy gView Web:
+   Deploy gView WebApps:
    ...succeeded 448 items created
    Overrides
    Copy C:\deploy\gview-gis\_deploy_repository\profiles\local\server\override\_config\mapserver.json
@@ -153,7 +153,7 @@ Danach startet der Deploy-Vorgang:
    Copy C:\deploy\gview-gis\_deploy_repository\profiles\local\web\override\_config\gview-web.config
    ...succeeded 1 items created/overridden
 
-Es werden sowohl *gView.Web* als auch *gView.Server* deployed. Nach dem Entpacken der ZIP-Dateien
+Es werden sowohl *gView.WebApps* als auch *gView.Server* deployed. Nach dem Entpacken der ZIP-Dateien
 werden benutzerspezifische Dateien aus dem Verzeichnis ``_deploy_repository\profiles\{profile}\[server|web]\override``
 in das jeweilige Applikationsverzeichnis kopiert.
 Hierbei wird die Konfiguration aus dem Installationspaket mit der Konfiguration aus dem

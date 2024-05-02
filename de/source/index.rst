@@ -7,7 +7,7 @@ und Featurediensten.
 Die Tools zum Erstellen der Karten werden über eine Web-Oberfläche angeboten, 
 die sowohl lokal am Client 
 ausgeführt als auch auf einem Server gehostet werden können.
-Die Erstellung der Karten erfolgt mit dem Programm *gView Carto*, das innerhalb der *gView.Web*
+Die Erstellung der Karten erfolgt mit dem Programm *gView Carto*, das innerhalb der *gView.WebApps*
 Anwendung angeboten wird. Die Karten bestehen aus Layern, die auf verschiedene GeoDaten-Quellen 
 basieren können. Die einzelnen Layer können beliebig eingefärbt und/oder beschriftet werden.
 
@@ -60,7 +60,7 @@ Komponenten von gView GIS
 
 Die Komponenten des gView Frameworks lassen sich in drei Kategorien einteilen:
 
-* **gView Web:** Dies umfasst die Web-Anwendungen *gView Carto* und *gView DataExplorer*. 
+* **gView WebApps:** Dies umfasst die Web-Anwendungen *gView Carto* und *gView DataExplorer*. 
   Beide können über eine Web-Oberfläche bedient werden.
   Mithilfe dieser Programme können Karten erstellt bzw. GeoDaten verwaltet werden.
   Die Basis für beide Programme ist .NET 8 (Microsoft.AspNetCore.App 8.0.x Runtime)
@@ -76,7 +76,7 @@ Die Komponenten des gView Frameworks lassen sich in drei Kategorien einteilen:
 
 * **gView Commandline Tools:** Eine Sammlung von Kommandozeilenwerkzeugen, mit denen wiederkehrende 
   Aufgaben im *gView GIS* Umfeld automatisiert werden können (z.B. eine Karte für den Server veröffentlichen).
-  Die Tools befinden sich nach der Installation im gleichen Verzeichnis wie *gView.Web*
+  Die Tools befinden sich nach der Installation im gleichen Verzeichnis wie *gView.WebApps*
   und haben die gleichen Laufzeitvoraussetzungen.
 
  
@@ -88,10 +88,12 @@ Die Komponenten des gView Frameworks lassen sich in drei Kategorien einteilen:
    :caption: Inhaltsverzeichnis:
 
    setup/index
-   desktop/index
+   webapps/index
    server/index
    commandline/index
    examples/index
    appendix/index
+
+   desktop/index
 
 

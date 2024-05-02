@@ -1,7 +1,7 @@
-Configuration of gView.Web
-==========================
+Configuration of gView.WebApps
+==============================
 
-The *gView.Web* application can be configured via the file ``_config/gview-web.config``:
+The *gView.WebApps* application can be configured via the file ``_config/gview-web.config``:
 
 .. code-block:: javascript
 
@@ -31,37 +31,37 @@ in **gView.DataExplorer**. If this section is omitted, all available drives will
 
 .. note::
 
-    The paths and drives refer to the computer/server on which **gView.Web** is installed.
+    The paths and drives refer to the computer/server on which **gView.WebApps** is installed.
 
 .. note::
 
-    If **gView.Web** is installed on a server, it is **strongly** recommended to maintain this 
+    If **gView.WebApps** is installed on a server, it is **strongly** recommended to maintain this 
     section. For security reasons, access should not be allowed to the entire filesystem. 
     Otherwise, a potential attacker could theoretically access all files on the server.
 
 Within a path, a placeholder ``{{username}}`` can be used. This will be replaced with the 
-username of the user currently logged into **gView.Web**. This allows a user, for example, 
+username of the user currently logged into **gView.WebApps**. This allows a user, for example, 
 to store MXD files in a *private* directory.
 
 Custom Tiles
 ------------
 
 In the ``CustomTiles`` section, you can create additional tiles that are displayed on the 
-homepage of **gView.Web**. This allows, for example, the creation of tiles linking to 
+homepage of **gView.WebApps**. This allows, for example, the creation of tiles linking to 
 one or more **gView.Server** instances.
 
 
 Authentication
 -----------------
 
-To determine how one can/must sign in to **gView.Web**, the ``Authentication`` section is used.
+To determine how one can/must sign in to **gView.WebApps**, the ``Authentication`` section is used.
 
 .. note::
 
     If this section is omitted, no authentication occurs. Every user can do everything. However, this should only be possible for local installations.
-    If **gView.Web** is running on a server, it is **absolutely necessary** to set up an authentication method.
+    If **gView.WebApps** is running on a server, it is **absolutely necessary** to set up an authentication method.
 
-**gView.Web** distinguishes two categories of users:
+**gView.WebApps** distinguishes two categories of users:
 
 * **Admin-User:** Users who are allowed to use all applications and tools.
 * **Carto-User:** Users who are only allowed to use the *Carto* application. These users can only create and save maps. They can access predefined database connections to incorporate geo-data into the map. However, unlike *Admin-Users*, they cannot view or modify the *Connection String*.
@@ -74,7 +74,7 @@ Currently, the following authentication methods are available:
   often suffices for small teams. This method does not provide advanced security policies
   and should be used only for applications within an intranet or confined areas.
 
-  Deploying **gView.Web** over the Internet should not be considered with this method.
+  Deploying **gView.WebApps** over the Internet should not be considered with this method.
 
 * ``oidc``: OpenID Connect is another method of authentication. In this case, 
   users log in through an external authentication service. This generally offers higher security,
@@ -126,7 +126,7 @@ authentication.
 
 The value ``oidc`` must be entered as the ``Type``. In the ``Oidc`` section,
 the *Identity Server* (``Authority``) must be specified. On the *Identity Server*,
-*gView.Web* must be added as a client. The respective ``ClientId`` and
+*gView.WebApps* must be added as a client. The respective ``ClientId`` and
 ``ClientSecret`` must also be entered here. The following values are recommended for ``Scopes``:
 
 .. code-block:: javascript

@@ -1,7 +1,7 @@
 Run Locally (Desktop Mode)
 ==========================
 
-Both *gView.Web* and *gView.Server* can be launched locally on the desktop.
+Both *gView.WebApps* and *gView.Server* can be launched locally on the desktop.
 
 Using *gView.Server* locally mainly makes sense for testing purposes.
 
@@ -14,7 +14,7 @@ Using *gView.Server* locally mainly makes sense for testing purposes.
     * All necessary data (e.g., in a SQLite database)
     * A WebGIS solution that displays maps through the map server.
 
-Since *gView.Web* replaces the previous desktop applications *gView.Carto* and *gView.DataExplorer*, 
+Since *gView.WebApps* replaces the previous desktop applications *gView.Carto* and *gView.DataExplorer*, 
 it may make sense to only start this application when needed.
 
 To do this, you need to change to the directory where the application was deployed in the previous step
@@ -31,7 +31,7 @@ In this directory, the following files and folders should be present:
 .. image:: img/run01.png
 
 * ``gview-server.bat`` launches the *gView.Server* locally.
-* ``gview-web.bat`` launches *gView.Web* (*gView.Carto*, *gView.DataExplorer*) locally.
+* ``gview-web.bat`` launches *gView.WebApps* (*gView.Carto*, *gView.DataExplorer*) locally.
 
 When you start ``gview-web.bat``, you will see the following output:
 
@@ -69,7 +69,7 @@ Click on Login and sign in as ``admin``. After that, all programs will be availa
 
 .. note::
 
-    The **Used Memory** tile is only meant to optimize memory usage when *gView.Web* 
+    The **Used Memory** tile is only meant to optimize memory usage when *gView.WebApps* 
     consumes many resources. Clicking on the symbol in the tile triggers a ``GC.Collect()``.
 
 When you click on a tile, the corresponding application opens in the current browser tab.
@@ -88,7 +88,7 @@ When you open the URL in the browser (here: http://localhost:5050), the followin
 .. note::
 
     When you access the *gView.Server* for the first time, usually no administrator user 
-    is defined. The *gView.Server* operates independently of *gView.Web* and does not access 
+    is defined. The *gView.Server* operates independently of *gView.WebApps* and does not access 
     the user settings of this application.
 
     It is advisable to click on the red **Manage** tile after logging in and 

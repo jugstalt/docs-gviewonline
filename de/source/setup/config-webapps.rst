@@ -1,7 +1,7 @@
-Konfiguration gView.Web
-=======================
+Konfiguration gView.WebApps
+===========================
 
-Die *gView.Web* Anwendung kann über die Datei ``_config/gview-web.config`` konfiguriert werden:
+Die *gView.WebApps* Anwendung kann über die Datei ``_config/gview-web.config`` konfiguriert werden:
 
 .. code-block:: javascript
 
@@ -32,41 +32,41 @@ Laufwerke angezeigt.
 
 .. note::
 
-    Die Pfade und Laufwerke beziehen sich auf den Computer/Server, auf dem **gView.Web** 
+    Die Pfade und Laufwerke beziehen sich auf den Computer/Server, auf dem **gView.WebApps** 
     installiert ist.
 
 .. note::
 
-    Wenn **gView.Web** auf einem Server installiert ist, wird **dringend** empfohlen, diesen 
+    Wenn **gView.WebApps** auf einem Server installiert ist, wird **dringend** empfohlen, diesen 
     Abschnitt zu pflegen. Aus Sicherheitsgründen darf und soll man hier nicht auf das komplette 
     Dateisystem zugreifen können. Ein potentieller Angreifer hätte sonst theoretisch Zugriff auf 
     alle Dateien des Servers.
 
 Innerhalb eines Pfades kann ein Platzhalter ``{{username}}`` verwendet werden. Dieser wird mit dem 
-Usernamen des aktuell bei **gView.Web** angemeldeten Benutzers ersetzt. So kann ein 
+Usernamen des aktuell bei **gView.WebApps** angemeldeten Benutzers ersetzt. So kann ein 
 Anwender beispielsweise MXD-Dateien in einem *privaten* Verzeichnis ablegen.
 
 Benutzerdefinierte Kacheln
 --------------------------
 
 Im Abschnitt ``CustomTiles`` können beliebige weitere Kacheln angelegt werden, die auf der 
-Startseite von **gView.Web** angezeigt werden. Damit können beispielsweise Kacheln zu 
+Startseite von **gView.WebApps** angezeigt werden. Damit können beispielsweise Kacheln zu 
 einer oder mehreren **gView.Server** Instanzen angelegt werden.
 
 Authentifizierung
 -----------------
 
-Um zu bestimmen, wie man sich bei **gView.Web** anmelden kann/muss, dient der Abschnitt 
+Um zu bestimmen, wie man sich bei **gView.WebApps** anmelden kann/muss, dient der Abschnitt 
 ``Authentication``.
 
 .. note::
 
     Wird der Abschnitt weggelassen, findet keine Authentifizierung statt. Jeder Benutzer darf 
     alles. Dies sollte jedoch nur für lokale Installationen möglich sein.
-    Läuft **gView.Web** auf einem Server, sollte **unbedingt** eine Authentifizierungsmethode
+    Läuft **gView.WebApps** auf einem Server, sollte **unbedingt** eine Authentifizierungsmethode
     eingestellt werden.
 
-**gView.Web** unterscheidet zwei Kategorien von Benutzern:
+**gView.WebApps** unterscheidet zwei Kategorien von Benutzern:
 
 * **Admin-User:** Benutzer, die alle Anwendungen und Werkzeuge verwenden dürfen.
 * **Carto-User:** Benutzer, die nur die *Carto* Anwendung benutzen dürfen. Diese Anwender
@@ -82,7 +82,7 @@ Derzeit sind folgende Authentifizierungsmethoden möglich:
   für kleine Teams oft ausreicht. Diese Methode bietet keine fortgeschrittenen Sicherheitsrichtlinien
   und sollte maximal für Anwendungen im Intranet oder abgegrenzten Bereichen verwendet werden.
   
-  Eine Bereitstellung von **gView.Web** über das Internet sollte mit dieser Methode nicht
+  Eine Bereitstellung von **gView.WebApps** über das Internet sollte mit dieser Methode nicht
   erfolgen.
 
 * ``oidc``: OpenID Connect ist eine weitere Methode der Authentifizierung. Dabei meldet 
@@ -134,7 +134,7 @@ die Authentifizierung verwendet werden.
 
 Als ``Type`` muss hier der Wert ``oidc`` eingetragen werden. Im Abschnitt ``Oidc`` muss
 der *Identity Server* (``Authority``) angegeben werden. Am *Identity Server* muss 
-*gView.Web* als Client hinzugefügt werden. Die entsprechende ``ClientId`` und das 
+*gView.WebApps* als Client hinzugefügt werden. Die entsprechende ``ClientId`` und das 
 ``ClientSecret`` sind ebenfalls hier einzutragen. Als ``Scopes`` werden die folgenden
 Werte empfohlen:
 

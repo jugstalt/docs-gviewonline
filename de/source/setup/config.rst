@@ -1,7 +1,7 @@
 Konfiguration
 =============
 
-Jede Anwendung (**gView.Web** und **gView.Server**) verfügt im ``_config`` Verzeichnis über Dateien,
+Jede Anwendung (**gView.WebApps** und **gView.Server**) verfügt im ``_config`` Verzeichnis über Dateien,
 um sie zu konfigurieren.
 
 Es ist jedoch keine gute Praxis, die Dateien direkt dort zu verändern. Bei einem Update 
@@ -65,7 +65,7 @@ zu ändern:
 .. toctree::
    :maxdepth: 2
 
-   config-web
+   config-webapps
    config-server
 
 

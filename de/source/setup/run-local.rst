@@ -1,7 +1,7 @@
 Lokal ausführen (Desktop Modus)
 ===============================
 
-Sowohl *gView.Web* als auch *gView.Server* können lokal auf dem Desktop gestartet werden.
+Sowohl *gView.WebApps* als auch *gView.Server* können lokal auf dem Desktop gestartet werden.
 
 Der Einsatz von *gView.Server* lokal macht hauptsächlich für Testzwecke Sinn.
 
@@ -14,7 +14,7 @@ Der Einsatz von *gView.Server* lokal macht hauptsächlich für Testzwecke Sinn.
     * Alle notwendigen Daten (z.B. in einer SQLite-Datenbank)
     * Eine WebGIS-Lösung, die über den Kartenserver Karten darstellt.
 
-Da *gView.Web* die früheren Desktop-Anwendungen *gView.Carto* und *gView.DataExplorer* ablöst, kann 
+Da *gView.WebApps* die früheren Desktop-Anwendungen *gView.Carto* und *gView.DataExplorer* ablöst, kann 
 es sinnvoll sein, diese Applikation nur bei Bedarf zu starten.
 
 Dazu muss man in das Verzeichnis wechseln, in dem im vorherigen Schritt die Anwendung *deployed* wurde
@@ -31,7 +31,7 @@ In diesem Verzeichnis sollten sich folgende Dateien und Ordner befinden:
 .. image:: img/run01.png
 
 * ``gview-server.bat`` startet den *gView.Server* lokal.
-* ``gview-web.bat`` startet *gView.Web* (*gView.Carto*, *gView.DataExplorer*) lokal.
+* ``gview-web.bat`` startet *gView.WebApps* (*gView.Carto*, *gView.DataExplorer*) lokal.
 
 Wenn man ``gview-web.bat`` startet, erhält man folgende Ausgabe:
 
@@ -70,7 +70,7 @@ Dazu auf Login klicken und sich als ``admin`` anmelden. Danach stehen alle Progr
 
 .. note::
 
-    Die Kachel **Used Memory** dient nur dem Zweck, die Speicherbelegung zu optimieren, wenn *gView.Web*
+    Die Kachel **Used Memory** dient nur dem Zweck, die Speicherbelegung zu optimieren, wenn *gView.WebApps*
     viele Ressourcen verbraucht. Ein Klick auf das Symbol in der Kachel führt ein ``GC.Collect()`` 
     aus.
 
@@ -90,7 +90,7 @@ In der Ausgabe wird die URL angezeigt, unter der der *gView.Server* läuft:
 .. note::
 
     Ruft man den *gView.Server* das erste Mal auf, sind in der Regel noch kein Administrator-User 
-    definiert. Der *gView.Server* agiert unabhängig von *gView.Web* und greift nicht auf 
+    definiert. Der *gView.Server* agiert unabhängig von *gView.WebApps* und greift nicht auf 
     die Benutzereinstellungen dieser Anwendung zu.
 
     Es empfiehlt sich, nach dem Einloggen auf die rote Kachel **Manage** zu klicken und 

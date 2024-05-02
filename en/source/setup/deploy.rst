@@ -4,7 +4,7 @@ Installation
 The installation is carried out via the command line program ``gview.deploy`` or ``gview.deploy.exe``.
 This tool performs the following tasks:
 
-* Fresh installation of *gView.Web* and *gView.Server*
+* Fresh installation of *gView.WebApps* and *gView.Server*
 * Management of deployment profiles (e.g., ``local``, ``test``, ``staging``, ``production``)
 * Distribution of configuration changes (e.g., ``mapserver.json``, ``gview-web.config``)
 
@@ -102,7 +102,7 @@ If you want to use the default value, simply confirm by pressing ``ENTER``.
 
 * **gView Server online URL:** A URL at which the *gView.Server* will be accessible.
   If you want to test the ``local`` profile and only run the programs locally, this is usually done through http://localhost:5050.
-  The advantage of setting this value here is that later, in the *gView.Web* app, an additional tile for accessing the *gView.Server*
+  The advantage of setting this value here is that later, in the *gView.WebApps* app, an additional tile for accessing the *gView.Server*
   will be offered, which facilitates administration. Without this URL, only tiles for *gView.Carto* and *gView.Explorer* would be displayed.
 
 The next values we set are the **Admin User** and the Admin password.
@@ -133,7 +133,7 @@ Afterwards, the deployment process begins:
    Deploy version 6.24.1801
    Deploy gView Server:
    ...succeeded 972 items created
-   Deploy gView Web:
+   Deploy gView WebApps:
    ...succeeded 448 items created
    Overrides
    Copy C:\deploy\gview-gis\_deploy_repository\profiles\local\server\override\_config\mapserver.json
@@ -141,7 +141,7 @@ Afterwards, the deployment process begins:
    Copy C:\deploy\gview-gis\_deploy_repository\profiles\local\web\override\_config\gview-web.config
    ...succeeded 1 items created/overridden
 
-Both *gView.Web* and *gView.Server* are deployed. After the ZIP files are unpacked,
+Both *gView.WebApps* and *gView.Server* are deployed. After the ZIP files are unpacked,
 user-specific files from the directory ``_deploy_repository\profiles\{profile}\[server|web]\override``
 are copied to the respective application directory.
 This process overwrites the configuration from the installation package with the configuration from the
