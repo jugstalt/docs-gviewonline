@@ -1,94 +1,93 @@
-Anlegen eines Raster(katalog) Datasets
-======================================
+Creating a Raster(Catalog) Dataset
+==================================
 
-Im diesem Abschnitt wird das Anlegen eines Rasterkatalog Datasets in einer gView Feature
-Database beschrieben. Dabei handelt es sich um Datasets mit nur einer Featureklasse, wobei
-die Geometrie der Features den Ausdehnungen der einzelnen Bilder entspricht. In den
-Sachdaten der Featureklasse werden die Verweise auf die Bilddateien gespeichert.
+In this section, creating a raster catalog dataset in a gView feature
+Database. These are datasets with only one feature class, where
+the geometry of the features corresponds to the extents of each image. In the
+property data of the feature class the references to the image files is stored.
 
-Zum Anlegen gehen Sie analog wie bei normalen Datasets vor. Klicken Sie mit der rechten
-Maustaste in den Contents-Bereich einer Sql Feature Database und wählen ``New/Sql Feature
-Database Dataset``. Im daraufhin erscheinenden Dialog stellen Sie den Typ Image Dataset
-ein:
+To create data, proceed in the same way as with normal datasets. Right-click
+Mouse button in the Contents area of a Sql Feature Database and select ''New/Sql Feature
+Database Dataset''. In the dialog that appears, set the type Image Dataset:
 
 .. image:: img/raster1.png 
 
-Vergeben Sie für den Namen des Datasets eine sprechende Bezeichnung, z.B. „Luftbilder“.
-Derzeit ist nur die erste Option „Bilder nicht verwalten“ möglich. Nicht verwalten bedeutet
-dabei, dass die Bilder im Dateisystem liegen bleiben. Im Dataset wird abgesehen von der
-Ausdehnung und dem Speicherort der Bilder keine Bildinformation in die Datenbank
-verspeichert.
+Assign a telling name for the name of the dataset, e.B.e. "Aerial Photographs".
+Currently, only the first option "Do not manage images" is possible. Not managing means
+that the images remain in the file system. In the dataset, apart from the
+Extent and location of the images no image information in the database
+is stored.
 
-In der Registerkarte „Räumliches Bezugssystem“ vergeben Sie die Projektionseigenschaften
-für Ihre Daten. Die Vorgehensweise wurde oben bereits beschrieben.
+In the "Spatial Reference System" tab, you assign the projection properties
+for your data. The procedure has already been described above.
 
-Neu hinzugekommen sind im Gegensatz zu den normal Datasets die Registerkarten
-„Räumlicher Index“ und „Zusätzliche Felder“.
-In einer Feature Database wird für jede Featureklasse ein räumlicher Index angelegt. Diese
-ist für einen schnellen Zugriff bei räumlichen Suchabfragen verantwortlich. Beim Kopieren
-von Daten wird der räumliche Index automatisch angelegt. Dieser Punkt entfiel also in der
-oben beschrieben Methode des Datenimports. Bei Rasterkatalogen ist jedoch die räumliche
-Ausdehnung dieses Index beim Anlegen des Datasets anzugeben. Dabei sollte die
-Rechtecksausdehnung so angegeben werden, dass alle georeferenzierten Bilder in den
-Ausschnitt passen. Es ist jedoch auch möglich, Bilder einzuspielen, die nicht innerhalb der
-Indexausdehnung liegen. Diese Bilder werden jedoch nicht indiziert. Geben sie also eine
-großzügige Ausdehnung an. Um sich die Arbeit zu erleichtern, besteht die Möglichkeit die
-Ausdehnung aus einer bestehenden Featureklasse zu importieren (Button „Importieren…“).
-Die Indizierung der einzelnen Features erfolgt hierarchisch in einer Baumstruktur. Die
-„Tiefe“ es Indexbaumes stellen Sie im Bereich Ebenen ein. Erhöhen Sie dazu den Wert
-„Maximale Ebenentiefe“ so lange, bis die Zellengröße ungefähr zwei- bis dreimal so groß ist
-wie die geographische Diagonale eines georeferenzierten Bildes. Sind alle Werte eingeben
-sieht der Dialog zum Beispiel wie folgt aus: 
+In contrast to the normal datasets, the tabs have been added to eu
+Spatial Index and Additional Fields.
+
+In a feature database, a spatial index is created for each feature class. these
+is responsible for quick access to spatial search queries. When copying
+of data, the spatial index is created automatically. This point was therefore omitted in the
+method of data import described above. However, for raster catalogs, the spatial extent shoud be defined here. 
+In doing so, the rectangular extent is specified so that all georeferenced images in the
+fits. However, it is also possible to import images that are not within the
+index extent. However, these images are not indexed. 
+
+So give a generous extension. In order to make your work easier, there is the possibility of
+Import extension from an existing feature class (button "Import...").
+The indexing of the individual features takes place hierarchically in a tree structure.
+You set the index tree to "Depth" in the Layers pane. To do this, increase the value
+Maximum layer depth until the cell size is approximately two to three times greater
+such as the geographical diagonal of a georeferenced image. Enter all values
+for example, the dialog looks like this:  
 
 .. image:: img/raster2.png 
 
-Unter ``Zusätzliche Felder`` können dann noch Felder in die Image-Featureklasse hinzugefügt
-werden, die von der Datenbank für jedes Bildpolygon automatisch berechnet werden. Alle
-diese Felder sind optional. Wählen Sie zum Beispiel ``Shape Area`` aus, wenn Sie zu jedem
-Polygon die Fläche abspeichern wollen:
+Under ''Additional Fields'' you can then add fields to the Image feature class
+, which are automatically calculated by the database for each image polygon. all
+these fields are optional. For example, select ''Shape Area'' if you want to save the area of each image:
 
 .. image:: img/raster3.png 
 
-Bestätigen Sie den Dialog schließlich mit OK. Der gView Data Explorer legt jetzt das
-Rasterkatalog Dataset an. Das Icon unterscheidet sich leicht von einem normalen Dataset
-Icon, um erkenntlich zu machen, dass es sich um Rasterkatalog Dataset handelt:
+Finally, confirm the dialog with OK. The gView Data Explorer now creates the
+Raster Catalog Dataset. The icon is slightly different from a normal dataset
+Icon to make it clear that this is raster catalog dataset:
 
 .. image:: img/raster4.png 
 
-Ein Doppelklick auf das Icon eröffnet den Inhalt dieses Datasets:
+Double-clicking on the icon opens the contents of this dataset:
 
 .. image:: img/raster5.png 
 
-Wie schon oben beschreiben werden die Bildpolygone in einer Featureklasse angelegt. Der
-Name der Featureklasse lautet immer gleich wie der Name des Datasets mit angehängtem
-„_IMAGE_POLYGONS“. Dieser Name darf **nicht** geändert werden! Das erste Icon mit dem
-Namen „Luftbilder“ (immer gleich wie das Dataset) dient zum Einspielen der Bilder. Nach
-dem Öffnen durch ein Doppelklick erscheint folgende Ansicht:
+As described above, the image polygons are created in a feature class. the
+Feature class name is always the same as the name of the dataset with attached
+"_IMAGE_POLYGONS". This name may not be changed! The first icon with the
+Name "Aerial images" (always the same as the dataset) is used to import the images. after
+the opening by double-clicking the following view appears:
 
 .. image:: img/raster6.png 
 
-In der Registerkarte ``Images`` werden die im Rasterkatalog Dataset enthaltenen Bilddatei
-Pfade angezeigt. Die Liste ist nach dem Anlegen natürlich noch leer. Um Daten hinzuzufügen
-stehen ihnen zwei Werkzeuge zur Verfügung:
+In the Images tab, the image files contained in the Raster Catalog Dataset are
+Paths are displayed. Of course, the list is still empty after creation. To add data
+two tools are available:
 
-* Einzelne Bilddateien auswählen. Dabei öffnet sich ein Dialog zum Öffnen von
-  Dateien, in dem auch eine Mehrfachauswahl möglich ist.
-* Ein Verzeichnis und dessen Unterverzeichnisse nach Bildern durchsuchen. Dabei
-  wählen Sie in einem Dialog ein Wurzelverzeichnis und einen Filter aus:
+* Select image files. This opens a dialog to open
+  Files in which a multiple selection is also possible.
+
+* Search a directory and its subdirectories for images. thereby
+  select a root directory and a filter in a dialog:
 
 .. image:: img/raster7.png 
 
-Nachdem Sie mit einer der beiden Methoden Bilder ausgewählt haben, werden diese in das
-Rasterkatalog Dataset hinzugefügt:
+After you have selected images using one of the two methods, they are displayed in the raster catalog dataset:
 
 .. image:: img/raster8.png 
 
-Sie können jetzt auf Wunsch auch noch weitere Bilder hinzufügen oder einzelne Bilder
-wieder aus dem Dataset löschen. Dazu markieren Sie die Bilder in der List und wählen über
-das Kontextmenü (rechte Maustaste) den entsprechenden Menüpunkt.
+You can now add more images or individual images if you wish
+delete from the dataset. To do this, select the images in the list and choose via
+the context menu (right mouse button) the corresponding menu item.
 
-In der Registerkarte ``Preview`` können Sie die eingespielten Bilder betrachten, wobei
-Sie mit den oben bereits beschriebenen Werkzeugen in der Karte navigieren können.
+In the tab ''Preview'' you can view the imported images, where
+You can navigate the map using the tools described above.
 
 .. image:: img/raster9.png 
 

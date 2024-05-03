@@ -1,196 +1,189 @@
-Anlegen einer MS SQL Feature Database
-=====================================
+Creating an MS SQL Feature Database
+===================================
 
-Bei dieser Datenbank handelt es sich um ein proprietäres Format und kann nur mit gView GIS
-verwendet werden. Der Vorteil ist jedoch die hohe Performance bei großen Datenmengen.
-Außerdem können mit diesem Format Imagekataloge in einer komfortablen graphischen
-Oberfläche erstellt und verwaltet werden. Voraussetzung zur Erstellung einer Datenbank ist
-ein MS SQLServer 2008 oder höher. Wird die kostenlose Express Variante vom MS SQL
-verwendet, gelten die entsprechenden Einschränkungen des Servers (max. 4GB pro
-Datenbank, …). Die Feature Database Funktionalität wird dadurch aber nicht eingeschränkt.
+This database is a proprietary format and can only be used with gView GIS. 
+The advantage, however, is the high performance with large amounts of data.
+In addition, with this format, image catalogs can be created an managed in a comfortable graphical
+interface. Prerequisite for creating a database is
+an MS SQLServer 2008 or higher. Will the free Express version of MS SQL, 
+the corresponding restrictions of the server apply (max. 4GB per
+Database, ...). However, this does not limit the Feature Database functionality.
+
 
 .. note::
-   Der hier gezeigt Weg bezieht sich auf eine *gView Feature Database* in SQLServer. 
-   Die Erstellung von *gView Feature Database* in Postgres erfolgt analog.
-   Um eine *gView Feature Database* auf Basis von SQLite zu erstellen muss zuerst an die 
-   Stelle im Filesystem navigiert werden, wo die Datenbank angelegt werden sollte. Im *Context Menü* 
-   kann dort dann der Punkte ``Create New: SQlite Feature Database`` ausgewählt werden.
+    The guide shown here refers to a *gView Feature Database* in SQLServer. 
+    The creation of *gView Feature Database* in Postgres is analogous.
+    To create a *gView Feature Database* based on SQLite, you must navigate to the file system where the database should be created. 
+    In the *Context menu*  the item ``Create New: SQlite Feature Database`` can then be selected there.
+ 
 
-Um eine neue Feature Database anzulegen, wählen Sie in der Baumansicht den Knoten ``Sql Feature Database Connections`` aus:
+To create a new Feature Database, select the node ``Sql Feature Database Connections`` in the tree view:
 
 .. image:: img/create1.png 
 
-Klicken sie nun mit der rechten Maustaste in den *Contents-Bereich*. Im dort erscheinenden
-Kontextmenü wählen sie ``New/Sql Feature Database``:
+Now right-click in the *Contents area*. In the Context menu select ``New/Sql Feature Database``:
 
 .. image:: img/create2.png 
 
-Stellen Sie hier die Verbindung zur SQL Server Instanz ein. Durch den Verbindungstyp wird
-angeben, ob die Anmeldung über Windows Authentifizierung oder über Benutzername und
-Passwort erfolgen soll. Der Datenbankname vollendet die Eigenschaften der neuen
-Datenbank.
+Set the connection to the SQL Server instance here. The connection type
+specify whether to use Windows authentication or user name and
+Password. The database name completes the properties of the new
+database.
 
-Um später über den *gView Data Explorer* die Datenbank administrieren zu können, wählen
-Sie die Option ``Verbindungs-Icon erzeugen`` aus und geben eine Bezeichnung für das Icon
-an.
+To be able to administer the database later via the *gView Data Explorer*, select
+the option ``Create connection icon`` and enter a name for the icon
+at.
 
-Nach Bestätigung mit ``OK`` wird die Datenbank mit allen notwendigen Tabellen angelegt. Ist
-das Erstellen erfolgreich, zeigt der Data Explorer das neue Datenbankicon im *Contents-Bereich* an:
+After confirmation with ''OK'', the database with all necessary tables is created. if
+the creation is successful, the Data Explorer displays the new database icon in the *Contents area*:
 
 .. image:: img/create3.png 
 
-Die Icons im *Contents-Bereich* werden immer mit einem Doppelklick geöffnet. Sie können so
-auch ein Verbindungsicon auf eine bestehende Feature Database erstellen. Doppelklicken Sie
-hierzu einfach das Icon ``Neue Verbindung erstellen…``
+The icons in the *Contents area* are always opened with a double click. You can
+also create a connection icon to an existing feature database. Double-click
+simply use the icon ``Create new connection...``
 
 .. image:: img/create4.png 
 
-Sie können so zum Beispiel noch ein Icon auf unsere Beispieldatenbank mit Administratorrechten erstellen:
+For example, you can create an icon on our sample database with administrator rights:
 
 .. image:: img/create5.png 
 
-Über das Kontextmenü (rechte Maustaste) eines Icons, kann dieses schließlich noch
-umbenannt werden:
+Via the context menu (right mouse button) of an icon, it can be renamed:
 
 .. image:: img/create6.png 
 
-Im nächsten Schritt wollen wir ein Dataset für unsere Geodaten anlegen. Datasets sind
-Sammlungen von Featureklassen, die gleiche Eigenschaften besitzen. Zum Beispiel können
-alle Klassen, die dem Kataster zugehörig sind, in ein Dataset mit der Bezeichnung
-KATASTER gelegt werden.
+In the next step, we want to create a dataset for our geodata. Datasets are
+Collections of feature classes that have the same properties. For example,
+all classes belonging to the cadastre in a dataset named CADASTRE.
 
 .. note::
-    Alle Featureklassen eines Datasets verwenden das gleiche räumlichte Bezugssystem! Wenn sich also ihre Daten in unterschiedlichen Bezugssystemen befinden, sind die
-    Featureklassen auf mehrere Datasets aufzuteilen. Dabei darf ein **Featureklassenname** in
-    einer **Datenbank** nur **einmal** vorkommen.
+    All feature classes of a dataset use the same spatial reference system! So if your data is in different reference systems, you have to 
+    split feature classes across multiple datasets. The **feature class name** must be unique in a **database**.
     
-Um ein neues Dataset anzulegen, doppelklicken sie auf das Datenbankicon
-(MY_FIRST_FDB) im *Contents-Bereich*. Da noch keine Datasets existieren, erscheint nur
-ein leerer Bereich. Klicken sie nun mit der rechten Maustaste in den leeren *Contents-Bereich*
-und wählen Sie ``New/Sql Feature Database Dataset``:
+To create a new dataset, double-click the database icon
+(MY_FIRST_FDB) in the *Contents area*. Since no datasets exist yet, only
+an empty area is shown. Now right-click in the empty *Contents area*
+and select ``New/Sql Feature Database Dataset``:
     
 .. image:: img/create7.png 
 
-Ändern Sie den Namen auf ``Dataset1``. Als Typ belassen Sie die Einstellung Feature Dataset.
-Das bedeutet, dass in diesem Dataset Vektordaten für alle Geometrietypen (Punkt, Linie,
-Fläche) abgelegt werden können. Der Typ Image Dataset ist für das Anlegen von
-Imagekatalogen gedacht und wird weiter unten behandelt.
+Change the name to ``Dataset1``. Leave the Feature Dataset setting as it is.
+This means that in this dataset, vector data for all geometry types (point, line,
+Area) can be stored. The type Image Dataset is used for creating
+Image catalogs and will be discussed later.
 
-Die zweite Registerkarte des Dialogs bestimmt das räumlichte Bezugssystem für das
-Dataset. Wie oben schon erwähnt, ist das Bezugssystem nur auf dieser Ebene bestimmbar.
-Alle Featureklassen in einem Dataset erben diese Eigenschaft.
+The second tab of the dialog determines the spatial reference system for the
+dataset. As already mentioned above, the reference system can only be determined at this level.
+All Feature classes in a dataset inherit this property.
 
-Ein räumliches Bezugssystem setzt sich immer aus zwei Teilen (Koordinatenssysten und
-geodätisches Datum) zusammen, wobei der zweite Teil theoretisch auch weggelassen werden
-kann. Bei der Projektion wird dann allerdings kein Datumsübergang angebracht. Mit dem
-Auswählen Knopf, können Sie aus vordefinierten Systemen wählen:
+A spatial reference system always consists of two parts (coordinate systems and
+geodetic datum), whereby the second part is theoretically omitted
+can. However, no date transformation is then applied during the projection. With the
+Select button, you can choose from predefined systems:
 
 .. image:: img/create8.png 
 
-Um die Liste einzuschränken, geben Sie unten einen Suchbegriff (z.B. Austria, EPSG Code) ein und
-klicken auf Suchen. Markieren Sie ihr gewünschtes System und bestätigen Sie dann den
-Dialog mit OK. Die Vorgehensweise für das geodätische Datum ist identisch. Bei einigen
-Projektionen ist das Datum auch schon inkludiert. Nach erfolgter Auswahl sieht der Dialog
-etwa wie folgt aus:
+To narrow down the list, enter a search term (e.B. Austria, EPSG code) below and
+click Search. Select your desired system and then confirm the
+Dialog with OK. The procedure for the geodetic date is the same. For some
+Projections, the date is already included. After successful selection, the dialog will see
+for example, as follows:
 
 .. image:: img/create9.png 
 
-Mit ``Bearbeiten`` können Sie einzelne Parameter der Projektion verändern. Mit ``Exportieren``
-und ``Importieren`` ist es möglich, ein räumliches Bezugssystem abzuspeichern bzw. zu laden.
-Das Importieren ist dabei auch von bestehenden Datasets möglich.
+With ``Edit`` you can change individual parameters of the projection. With ``Export``
+and ``Import`` it is possible to save or load a spatial reference system.
+Importing from existing datasets is also possible.
 
-Über die dritte Registerkarte ``Räumlicher Index`` lässt sich in Prototyp für den räumlichen
-Index des Datasets anlegen. Wenn immer eine neue Featureklasse angelegt wird, wird dieser
-Prototyp vorgeschlagen. Da später für jede Featureklasse ein eigener Index angelegt werden
-kann, ist die Angabe dieses Prototyps allerdings optional.
+The third tab ,``Spatial Index`` can be used to create a prototype for the Spatial Index. 
+If a new feature class is always created, this is
+prototype proposed. Because later a separate index is created for each feature class, the specification of this prototype is optional.
 
-Die einzige Eigenschaft in diesem Dialog, die für das gesamte Dataset und die darin enthalten
-Featureklassen gilt, ist ``Index Typ``. Das Anlegen und verwalten von räumlichen Indices
-wird im nächsten Abschnitt (Der räumliche Index der Feature Database) behandelt.
+The only property in this dialog that is included for the entire dataset and the ones it contains
+Feature classes, is ``Index Type``. Creating and managing spatial indices
+is discussed in the next section (The Spatial Index of the Feature Database).
 
 .. image:: img/create10.png 
 
-Nach der Bestätigung des Dialogs wird das neue *Dataset* erzeugt:
+After confirming the dialog, the new *Dataset* is created:
 
 .. image:: img/create11.png 
 
-Über das Kontextmenü des Dataseticons kann noch eine Namensänderung durchgeführt
-werden. Es ist ebenso möglich die Parameter für das räumliche Bezugssystem nachträglich zu
-ändern.
+A name change can be made via the context menu of the dataset icon. It is also possible to change the parameters for the spatial reference system.
 
 .. note::
-    Bei einer nachträglichen Änderung des räumlichen Bezugssystems, werden die im
-    Dataset befindlichen Featureklassen nicht projeziert. Das heißt, die Koordinaten der Features
-    bleiben gleich. Es ändern sich nur die vom Dataset geerbten Projektionsparameter.
+    With a change of the spatial reference system, the
+    Dataset feature classes are not projected. That is, the coordinates of the features
+    remain the same. Only the projection parameters inherited from the dataset change.
 
-Im nächsten Schritt wollen wir Daten aus einem ESRI Shapefile in die Sql Feature Database
-kopieren. Dazu navigieren Sie mit dem gView Data Explorer in das Verzeichnis, in dem sich
-die Shape-Daten befinden.
+In the next step we want to copy data from an ESRI shapefile into the Sql Feature Database. 
+To do this, use the gView Data Explorer to navigate to the directory where
+the shape data locatate.
 
 .. image:: img/create12.png 
 
-Grundsätzlich funktioniert das Kopieren von Daten mit dem gView Data Explorer - gleich
-wie im Windows Explorer - mittels Kopieren und Einfügen (Copy/Paste). Wählen Sie dazu
-die gewünschten Dateien aus. Mit der Umstell- (Shift) bzw. Steuerungstaste (Ctrl) können Sie
-in gewohnter Weise auch mehre Dateien markieren. Klicken Sie nun die rechte Maustaste und
-wählen Kopieren. Navigieren Sie zurück zum vorhin erstellten Dataset. 
-Der *Contents-Bereich* des Datasets ist noch leer. Nach einem Klick auf Einfügen aus dem Kontextmenü
-erscheint folgender Dialog:
+Basically, copying data with the gView Data Explorer works - the same
+as in Windows Explorer - by copying and pasting (copy/paste). To do this, choose
+the desired files. With the Shift or Control key, you can
+mark several files in the usual way. Now right-click and
+select Copy. Navigate back to the dataset you created earlier. 
+The *Contents area* of the dataset is still empty. After clicking on Insert from the context menu
+the following dialog appears:
 
 .. image:: img/create13.png 
 
-In der Liste im linken Teil des Dialogs werden die Quellfeatureklassen angeführt. Rechts
-stehen der Name der jeweiligen Zielfeatureklasse und die Felder. Mit den Kontrollkästchen
-können Sie bestimmen, welche Featureklassen und Felder migriert werden sollten.
-Nach einem Klick auf OK beginnt der Kopiervorgang. Dabei werden die Quelldaten zuerst
-analysiert und in der Datenbank ein räumlicher Index erstellt. Danach werden die einzelnen
-Features kopiert. Nach erfolgreicher Migration erscheinen die entsprechenden Icons im
-*Contents-Bereich* des Datasets. An den Symbolen können Sie erkennen welchen
-Geometrietyp die Featureklassen haben.
+The list in the left part of the dialog lists the source feature classes. right
+are the name of the target feature class and the fields. With the check boxes
+you can determine which feature classes and fields should be migrated.
+After clicking OK, the copying process begins. The source data is first
+and creates a spatial index in the database. After that, the single
+featureclasses will copied. After successful migration, the corresponding icons appear in the
+*Contents area* of the dataset. By the symbols you can see which
+Geometry type a feature classes has.
 
-Doppelklicken Sie nun auf eines der neu erstellten Featureklassen Icons. 
-In der *Contents-Ansicht* erscheinen die Felder mit den entsprechenden Feldtypen:
+Now double-click on one of the newly created feature class icons. 
+In the *Contents view* the fields with the corresponding field types appear:
 
 .. image:: img/create14.png 
 
-Außerdem erscheinen neben ``FeatureClass`` noch weitere Registerkarten: ``Preview`` und ``Data Table``. 
-Beide dienen zum Anzeigen des Inhalts der Featureklassen. ``Preview`` stellt die
-Geographie der Daten dar, ``Data Table`` zeigt die zugehörigen Sachdaten an:
+In addition to ''FeatureClass'', other tabs appear: ''Preview'' and ''Data Table''. 
+Both are used to display the content of the feature classes. ''Preview'' represents the
+Geography of the data, ''Data Table'' displays the corresponding factual data:
 
 .. image:: img/create15.png 
 
-In der geographischen Vorschau stehen einige Navigationswerkzeuge zur Verfügung, die in
-identischer Form auch im Visualisierungstool *gView Carto* vorhanden sind. Hier folgt nur
-eine kurze Einführung in die Navigation:
+In the geographic preview, some navigation tools are available, which are available in
+identical form are also available in the visualization tool *gView Carto*. Here follows only
+a short introduction to navigation:
 
 .. image:: img/create16.png 
 
-Die Lupensymbole bewirken ein „in die Karte zoomen“ bzw. „aus ein aus der Karte zoomen“.
-Dabei ist entweder in die Karte zu klicken oder mit gedrückter linker Maustaste ein Fenster
-aufzuziehen.
+The magnifying glass icons cause a "zoom into the map" or "zoom out from the map".
+Either click into the map or press down the left mouse button or raise a window.
 
 .. image:: img/create17.png 
 
-Mit dem Handsymbol kann die Karte bei gedrückter linker Maustaste verschoben werden. Der
-Maßstab bleibt dabei erhalten.
+With the hand symbol, the map can be panned while holding down the left mouse button. The
+map scale is retained.
 
 .. image:: img/create18.png 
 
-Das Lupe/Verschieben Symbol vereinigt alle drei oben beschriebenen Werkzeuge. Die linke
-Maustaste verhält sich bei diesem Werkzeug wie das Verschieben Werkzeug. Mit gedrückter
-rechter Maustaste können Sie in der Karte zoomen. Bewegen Sie die Maus nach oben (von
-sich weg) bewirken Sie ein hinauszoomen aus der Karte. In umgekehrter Richtung zoomen
-Sie wieder in der Karte hinein.
+The magnifying glass/move icon combines all three tools described above. the Left
+Mouse button behaves like the Move tool on this tool. With pressed
+with the right mouse button you can zoom in or out the map. Move the mouse up (from
+away) cause you to zoom out of the map. Zoom in the opposite direction
+Put them back into the map.
 
-Neben dem Import von Daten in eine Sql Feature Database können diese Daten auch wieder
-exportiert werden. Geben Sie dazu umgekehrt vor wie oben beschrieben. Erst die
-Featureklassen markieren und kopieren. Danach zum Zielordner navigieren und dort
-einfügen. Kopieren Sie Daten zurück in Dateisystem, muss im Kopieren-Dialog noch das
-Ausgabeformat (Outputformat) angegeben werden:
+In addition to importing data into a Sql Feature Database, this data can also be returned
+can be exported. To do this, enter the reverse as described above. Select and copy feature classes. 
+Then navigate to the destination folder and there select
+paste. If you copy data back to the file system, the copy dialog still needs the
+Output format (output format):
 
 .. image:: img/create19.png 
 
-Neben ESRI Shape File ist auch noch das Format OGC GML möglich. Beide Formate sind
-von den meisten GI System lesbar und eigenen sich somit sehr gut zum Austausch von Daten
-zwischen verschiedenen Systemen.
+In addition to ESRI Shape File, the OGC GML format is also possible. Both formats are
+readable by most GI systems and are therefore very suitable for exchanging data
+between different systems.
 

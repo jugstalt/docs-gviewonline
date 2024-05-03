@@ -1,35 +1,35 @@
-Daten(bank) Verbindungen
-========================
+Data(base) connections
+======================
 
-Mit *gView.DataExplorer* können Verbindungen zu GeoDaten Quellen verwaltet und die Daten auf einfache Weise
-visualisert werden.
+With *gView.DataExplorer*, connections to GeoData can be managed sources and the data can be easily managed
+and visualized.
 
-File basierte Datenquellen können einfach angezeigt werden, indem man zum jeweiligen Verzeichnis im Filesystem navigiert.
+File-based data sources can be easily displayed by navigating to the directory in the file system.
 
-Bei Datenbanken müssen zuerst die Verbunden erzeugt werden. Hier soll beispielhaft gezeigt werden, wie die Verbindung zu 
-einer PostsGIS Datenbank erstellt wird.
+In the case of databases, the connected must first be created. Here it will be shown by way of example how the connection to 
+of a PostsGIS database.
 
 .. note::
-   Verbindungen, die im *gView.DataExplorer* erzeugt werden, stehen auch in *gView.Carto* beim Einfügen von Daten zur Verfügung.
+   Connections created in *gView.DataExplorer* are also available in *gView.Carto* when inserting data.
 
-PostGIS Datenbank werden über den Knoten ``OGC`` eingebunden:
+PostGIS databases are integrated via the node ``Databases``:
 
 .. image:: img/connections1.png 
 
-Unter ``PostGIS`` werden alle bestehenden Verbindungen aufgelistet. Mit ``New Connection`` kann eine neue Verbindung angelegt werden:
+Under ''PostGIS'' all existing connections are listed. With ''New Connection'' a new connection can be created:
 
 .. image:: img/connections2.png 
 
-Nach Eingabe der Verbindungsparameter kann vor dem Anlegen noch mit ``Test Connection`` überprüft werden,
-ob eine Verbindung möglich ist. Nach der Bestätigung des Dialogs mit ``OK`` wird die Verbindung angelegt und erscheint in der 
-Liste. Durch einen Doppelklick wird die Verbindung geöffnet und die Layer in der Datenbank aufgelistet.
+After entering the connection parameters, you can check with ``Test Connection`` before creating,
+whether a connection is possible. After confirming the dialog with ``OK``, the connection is created and appears in the 
+list. Double-clicking opens the connection and lists the layers in the database.
 
-Klickt man mit der **rechten Maustaste** auf eine Verbindung, erscheint das Kontextmenü. Damit kann eine Verbindung umbenannt oder gelöscht 
-werden. Mit dem Menüpunkt ``Connection Properties...`` können die Verbindungsparameter nachträglich geändert werden.
+If you click on a connection with the **right mouse button**, the context menu appears. This allows a connection to be renamed or deleted. 
+With the menu item ``Connection Properties...`` the connection parameters can be changed.
 
 .. note::
-   Werden mit *gView Carto* Daten über eine Datenbank Verbindung eingebunden, werden alle Verbindungsparameter in die 
-   MXL Datei gespeichert. Ein nachträgliches Ändern der Verbindungsparameter im *gView DataExplorer* wirkt sich nicht auf 
-   bestehende, bereits erstellte *gView Carto* Karten aus.
+   If data is integrated via a database connection with *gView Carto*, all connection parameters are stored in the 
+   MXL file. Changing the connection parameters in the *gView DataExplorer* does not affect 
+   existing, already created *gView Carto* maps.
 
 
