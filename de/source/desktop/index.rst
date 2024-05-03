@@ -10,5 +10,4 @@ GI Systemen wird dabei voraus gesetzt.
    :maxdepth: 2
    :caption: Inhaltsverzeichnis:
 
-   carto/index
    dataexplorer/index

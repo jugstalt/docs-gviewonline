@@ -1,39 +1,117 @@
-Beschriftung (Labeling)
-=======================
+Label Renderer
+==============
 
-Weiters wäre es wünschenswert die Bundesländer aus diesem Beispiel zu beschriften. Auch das lässt sich über den
-``Eigenschaften`` Dialog des Layers einstellen. Die verantwortliche Registerkarte heißt ``Beschriften`` (oder ``Labeling``):
+Um die Features eines Layers zu Beschriften geht man ähnlich vor, wie beim *Rendering*. Im 
+*Settings* Dialog für den Layer findet man links den Abschnitt ``Label Renderer``. Hier muss 
+zuerst die Checkbox ``Label features for this layer`` aktiviert werden:
 
 .. image:: img/labeling1.png
 
-Hier steuert das Kontrollkästchen ``Layer beschriften``, ob ein Thema beschriftet wird. Anstelle eines einfachen Beschriftungsfeldes, dass ebenfalls in diesem Dialog angeführt werden kann,
-kann auch eine so genannte ``Expression`` über den gleichnamigen Button angeben werden. Eine *Expresson* kann sich aus mehreren Feldern und fixem Text zusammensetzen:
+Es gibt auch hier wieder unterschiedliche *Renderer* die angeboten werden.
 
-.. image:: img/labeling2.png
+Simple Text Renderer
+--------------------
 
-Die Felder innerhalb einer Expression sind dabei in eckigen Klammern anzugeben. 
-Durch einen Doppelklick auf einen Feldnamen im oberen Bereich des Dialogs wird das Feld an der aktuellen Cursorposition im Expressionfeld eingefügt.
+Mit diesem Rendere können Features nach Attributwerten beschriftet werden. Das stellt den 
+häufigsten Anwendungsfall dar.
 
-.. note::
-   Zeilenumbrüche werden ebenfalls in die Expression mit aufgenommen.
+Die Eigenschaften des *Renderers* teilen sich die folgende Kategorien auf:
 
-Weitere Einstellmöglichkeiten werden bei der  Beschriftungshäufigkeit angeboten:
+* **Feld / Ausdruck:** Es kann nach einem Feld oder nach einem Ausdruck beschriftet werden.
+  Beim Typ ``Field`` kann einfach das Feld ausgewählt werden, nach dem beschriftet werden soll:
 
-* One Label Per Name: Ein Name wird in der Karte pro Featureklasse nur einmal angezeigt.
-* One Label Per Feature: Ein Objekt wird nur einmal beschriftet, auch wenn es aus mehreren Teilen besteht.
-* One Label Per Part: Jeder Teil eines Objektes wird beschriftet. Bei den Bundesländern von Österreich stellt z. B. Tirol mit Osttirol ein mehrteiliges Feature dar.
+  .. image:: img/labeling2.png
+      :width: 400
 
-Die Beschriftung wird normalerweise so angeordnet, dass es keine Überlappungen der Texte
-gibt. Sollen die Objekte eines Layers jedoch immer beschriften werden, egal ob es dabei zu
-Überlappungen kommt, ist als Priorität ``Always (no overlay check)`` zu wählen.
+  Mit ``Expression`` kann ein Ausdruck definiert werden. Wenn man auf ``Edit Expression`` klickt, 
+  öffnet sich der **Expression Editor**. Dort kann ein Ausdruck angegeben werden, der aus freiem Text
+  und Platzhaltern (Feldname in eckigen Klammern) für die Felder zusammengesetzt ist:
 
-.. image:: img/labeling3.png 
+  .. image:: img/labeling3.png
+      :width: 400
 
-Können Texte aufgrund von Überlappungen nicht angezeigt werden, können über die Positionierung des Labels relativ zum Geo-Objekt noch weiter alternative 
-Positionen angegeben werden. Die bevorzugte Position wird über die neun Optionsbuttons (schwarte Punkte) angegeben. Daneben können über einen Klick auf 
-die Buttons alternative Positionen angeklickt werden:
+  Im oberen Bereich stehen die Feldnamen. Durch einen Doppelklick auf ein Feld wird es als 
+  Platzhalter im Ausdruck angefügt.
 
-.. image:: img/labeling4.png
+* **Verhalten:** Hier wird die Priorität des Labels angegeben:
 
-Die Zahl im Button gibt die Reichenfolge an, mit der versucht wird den Text in die Karte einzufügen, ohne eine Überlappung 
-mit bestehenden Texten zu erzeugen. Mit dem ``Reset`` Button werden alle alternativen Beschriftungspositionen rückgängig gemacht.
+  .. image:: img/labeling4.png
+       :width: 400
+
+  Werden mehrere Layer beschriftet, erfolgt dies in der Zeichenreihenfolge der Layer. Um die Labels 
+  eines Layers hervorzuheben, kann die Priorität hier angegeben werden. Der Grund dafür ist auch, 
+  dass Labels nur gezeichnet werden, wenn auch Platz auf der Karte vorhanden ist. Labels dürfen sich nicht 
+  überschneiden. Daher kann es vorkommen, dass ein Label gar nicht gezeichnet wird.
+  Label mit höherer Priorität haben eine höhere Chance, gezeichnet zu werden.
+  Gibt man als Priorität ``Always`` an, wird es immer gezeichnet, unabhängig von Überschneidungen.
+  Das kann allerdings zu unleserlichen Beschriftungen führen, wenn zu viele Texte übereinander liegen.
+
+  ``How many labels`` gibt an, wie oft ein Text vorkommen darf:
+
+   * ``One per feature``: Jedes Feature wird genau einmal beschriftet.
+   * ``One per part``: Ist das Feature ein *Multipart*-Feature, wird jeder Teil des Features beschriftet.
+   * ``One per name``: Gibt es mehrere Features, die mit demselben Text beschriftet werden, 
+     wird nur das erste beschriftet. Es kommen in der Karte dann keine doppelten Texte (für diesen Layer)
+     vor.
+
+* **Symbol / Kartografie:** Hier kann das Labeling-Symbol (Schriftart) eingestellt werden:
+
+  .. image:: img/labeling5.png
+      :width: 400
+
+  Ähnlich wie bei der Feature-Symbolik gibt es auch hier einen **Symbol Composer** für Textsymbole:
+
+  .. image:: img/labeling6.png 
+      :width: 400
+
+  Es gibt eine ``Gallery`` mit vordefinierten Symbolen. Über den ``Stack`` können unterschiedliche 
+  Symboltypen hinzugefügt werden:
+
+  * ``Simple Text``: Nur der Text, keine Umrandung
+  * ``Glowing Text``: Text mit farbiger Umrandung
+  * ``Blockout Text``: Text in farbigem Rechteck
+
+  .. note:: 
+
+     **Glowing** und **Blockout** Text erhöhen die Lesbarkeit von Text, weil sie sich besser 
+     vom Hintergrund abheben. Auf Hintergründen wie Luftbildern sind normale Texte oft nur 
+     schwer lesbar.
+
+* **Placement / Placement Priority:** Für Punkt- und Linienthemen kann es sinnvoll sein, die Position der 
+  Beschriftung festzulegen. Dies kann über ``Placement`` gesteuert werden:
+  
+  .. image:: img/labeling7.png
+      :width: 400
+
+  Der mittlere Punkt würde bedeuten, dass das Label direkt mittig auf den Punkt oder die Linie gesetzt wird.
+  Über die Priorität können alternative Positionen vergeben werden. Kann das Label aus 
+  Platzgründen nicht gezeichnet werden, werden die weiteren vorgegebenen Positionen der Reihe nach 
+  angewendet, bis ein positives Ergebnis erzielt wird.
+
+Scale Dependent/Group Layerrenderer
+-----------------------------------
+
+Hier können, wie zuvor beim **Scale Dependent (Feature) Renderer**, Gruppen von *Label Renderern*
+definiert werden. So können Layer beispielsweise in unterschiedlichen Maßstäben unterschiedlich 
+beschriftet werden. 
+
+Beispielsweise könnte man Länder in kleinen Maßstäben mit einem Länderkürzel beschriften.
+Zoomt man weiter in die Karte hinein, wird mit dem vollen Ländernamen beschriftet.
+
+Chart Renderer
+--------------
+
+Hier werden anstelle von Text Diagramme (Charts) in die Karte eingefügt:
+
+.. image:: img/labeling8.png
+
+* **Verhalten:** Hier kann der Diagrammtyp angegeben werden (Pie, Bars, Stack).
+
+* **Chart Data:** Hier können die Felder in den Bereich ``Chart Fields`` gezogen werden.
+  Aus den Feldwerten dieser Felder wird das Diagramm erstellt.
+  (Hinweis: das erste Feld muss auf die Überschrift (``Chart Fields``) gezogen werden.)
+  Möchte man ein Feld wieder entfernen, kann es einfach zurück nach links in die Liste gezogen werden.
+
+* **Size:** Charts können eine fixe Größe haben, oder die Größe kann abhängig von der Gesamtsumme sein.
+  Dazu gibt man einen (Summen-)Wert ein und eine Größe in Pixel. Die Größe der Diagramme wird dann
+  relativ zu diesen Werten berechnet.

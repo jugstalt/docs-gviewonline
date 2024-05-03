@@ -1,11 +1,11 @@
 Zeichenreihenfolge/TOC
 ======================
 
-Die Zeichenreihenfolge der einzelnen Layer ist im Inhaltsverzeichnis (Table of Contents kurz
+Die Zeichenreihenfolge der einzelnen Layer ist im Inhaltsverzeichnis (Table of Contents, kurz
 TOC) ersichtlich. Der am weitesten unten stehende Layer wird zuerst gezeichnet. Die
-Reihenfolge ist also von unten nach oben. 
+Reihenfolge ist also von unten nach oben.
 
-Um die Reihenfolge zu ändern klickt man auf den Button ``TOC Settings`` in der Werkzeugleiste:
+Um die Reihenfolge zu ändern, klickt man auf den Button ``TOC Settings`` in der Werkzeugleiste:
 
 .. image:: img/toc1.png
 
@@ -14,21 +14,21 @@ Damit öffnet sich folgender Dialog:
 .. image:: img/toc2.png
 
 Links wird der *Gruppen Bereich* angezeigt (hier: derzeit nur die Karte mit dem Namen *Base Data*).
-Rechts die Layer in der entsprechenden Reihenfolge. 
+Rechts die Layer in der entsprechenden Reihenfolge.
 
 Zeichenreihenfolge ändern
 -------------------------
 
 Möchte man die Reihenfolge ändern, zieht man
-einen Layer aus der rechten Liste mit gedrückter Maßtaste und lässt die Maustaste an der gewünschten
+einen Layer aus der rechten Liste mit gedrückter Maustaste und lässt die Maustaste an der gewünschten
 Stelle wieder los.
 
 Layer aus der Karte entfernen
 -----------------------------
 
 Das Entfernen von Layern erfolgt ebenfalls über diesen Dialog. Dazu müssen die Layer (rechter Bereich)
-zuerst über die Checkbox ausgewäht werden. Danach klickt man oben auf den ``Papierkorb`` Symbol.
-Auf diese Weise können mehrere Layer gleichzeitig gelöscht werden: 
+zuerst über die Checkbox ausgewählt werden. Danach klickt man oben auf das ``Papierkorb`` Symbol.
+Auf diese Weise können mehrere Layer gleichzeitig gelöscht werden:
 
 .. image:: img/toc3.png
 
@@ -68,8 +68,8 @@ werden (``x`` Symbol). Im TOC sollten die Änderungen sofort sichtbar werden:
 
 .. image:: img/toc5.png
 
-Abschließend können noch die angezeigten Namen der Layer geändert werden. Dazu reicht es
-im TOC mit einem Doppelklick auf den Text zu klicken. Nach Eingabe des neuen Names kann 
+Abschließend können noch die angezeigten Namen der Layer geändert werden. Dazu reicht es,
+im TOC mit einem Doppelklick auf den Text zu klicken. Nach Eingabe des neuen Namens kann 
 die Eingabe mit ``Enter`` bestätigt werden:
 
 .. image:: img/toc6.png

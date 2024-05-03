@@ -85,7 +85,7 @@ The components of the gView Framework can be divided into three categories:
    :caption: Table of contents:
 
    setup/index
-   desktop/index
+   webapps/index
    server/index
    commandline/index
    examples/index

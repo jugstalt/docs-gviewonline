@@ -34,15 +34,15 @@ die die einzelnen Apps entsprechen:
    verbrauchte Speicher angezeigt. Ein Klick auf das *Symbol* zwingt den *Garbage Collector* 
    zum Freigeben von Speicher (nur zu Diagnose)
 
-Obwohl über **gView.WebApps** jetzt alle Apps auch auf einen Server Installiert werden können,
-sollte es nicht mit einem klassischen WebGIS verwechselt werden. Die Anwendungen sollte keinem 
-großen Anwenderkreis im Internet zur Verfügung stehen, sondern dazu dienen Karten führen den 
-**gView.Server**  zu erstellen. **gView.WebApps** ist nicht *stateless*, eine Skalierung wäre 
-nur schwer Möglich.
+Obwohl über **gView.WebApps** jetzt alle Apps auch auf einem Server installiert werden können, 
+sollte es nicht mit einem klassischen WebGIS verwechselt werden. Die Anwendungen sollten keinem 
+großen Anwenderkreis im Internet zur Verfügung stehen, sondern dazu dienen, Karten mit 
+**gView.Server** zu erstellen. **gView.WebApps** ist nicht *stateless*, 
+eine Skalierung wäre nur schwer möglich.
 
-Möchte man GIS Funktionalität einem großen Anwenderkreis anbieten, sollte man eine WebGIS 
-Anwendung verwenden,  dass auf **gView.Server** Dienste zugreift. **gView.Server** ist 
-*stateless*, kann beliebig skaliert werden und ist auf auf *Performance* getrimmt.   
+Möchte man GIS-Funktionalität einem großen Anwenderkreis anbieten, sollte man eine 
+WebGIS-Anwendung verwenden, die auf **gView.Server**-Dienste zugreift. **gView.Server** 
+ist *stateless*, kann beliebig skaliert werden und ist auf Performance optimiert.
    
 .. toctree::
    :maxdepth: 2
