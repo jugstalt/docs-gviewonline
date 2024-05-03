@@ -12,7 +12,7 @@ einer PostsGIS Datenbank erstellt wird.
 .. note::
    Verbindungen, die im *gView.DataExplorer* erzeugt werden, stehen auch in *gView.Carto* beim Einfügen von Daten zur Verfügung.
 
-PostGIS Datenbank werden über den Knoten ``OGC`` eingebunden:
+PostGIS Datenbank werden über den Knoten ``Databases`` eingebunden:
 
 .. image:: img/connections1.png 
 
