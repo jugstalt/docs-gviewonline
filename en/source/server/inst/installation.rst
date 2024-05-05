@@ -10,9 +10,6 @@ via the web interface.
 
 .. toctree::
    
-   installation_iis
-   installation_docker
-   installation_standalone
    postinstallation
 
 

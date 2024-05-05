@@ -11,9 +11,6 @@ Hier werden alle möglichen Installationszenarien vorgestellt. Außerden ist nac
 
 .. toctree::
    
-   installation_iis
-   installation_docker
-   installation_standalone
    postinstallation
 
 

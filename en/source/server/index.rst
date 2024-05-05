@@ -13,6 +13,5 @@ Depending on the interface, the card services offer the following functionality:
    :maxdepth: 2
    :caption: Table of contents:
 
-   config
    inst/installation
    manual/index

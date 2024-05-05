@@ -13,6 +13,5 @@ publiziert. Die Kartendienste bieten je nach Schnittstelle folgende Funktionalit
    :maxdepth: 2
    :caption: Inhaltsverzeichnis:
 
-   config
    inst/installation
    manual/index
