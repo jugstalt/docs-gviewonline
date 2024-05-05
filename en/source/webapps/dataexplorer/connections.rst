@@ -1,35 +1,36 @@
-Data(base) connections
-======================
+Database Connections
+========================
 
-With *gView.DataExplorer*, connections to GeoData can be managed sources and the data can be easily managed
-and visualized.
+With *gView.DataExplorer*, connections to geospatial data sources can be managed and the data can be 
+visualized in a simple manner.
 
-File-based data sources can be easily displayed by navigating to the directory in the file system.
+File-based data sources can be easily displayed by navigating to the respective directory in the filesystem.
 
-In the case of databases, the connected must first be created. Here it will be shown by way of example how the connection to 
-of a PostsGIS database.
+For databases, connections must first be created. Here, an example is shown of how to establish a connection 
+to a PostGIS database.
 
 .. note::
    Connections created in *gView.DataExplorer* are also available in *gView.Carto* when inserting data.
 
-PostGIS databases are integrated via the node ``Databases``:
+PostGIS databases are integrated through the ``Databases`` node:
 
-.. image:: img/connections1.png 
+.. image:: img/connections1.png
 
-Under ''PostGIS'' all existing connections are listed. With ''New Connection'' a new connection can be created:
+Under ``PostGIS``, all existing connections are listed. With ``New Connection``, a new connection can be created:
 
 .. image:: img/connections2.png 
 
-After entering the connection parameters, you can check with ``Test Connection`` before creating,
-whether a connection is possible. After confirming the dialog with ``OK``, the connection is created and appears in the 
-list. Double-clicking opens the connection and lists the layers in the database.
+After entering the connection parameters, you can use ``Test Connection`` to verify whether a connection can be established 
+before creating it. After confirming the dialog with ``OK``, the connection is established and appears in the list. 
+A double-click on the connection opens it and lists the layers in the database.
 
-If you click on a connection with the **right mouse button**, the context menu appears. This allows a connection to be renamed or deleted. 
-With the menu item ``Connection Properties...`` the connection parameters can be changed.
+Using the tools in the context area of the toolbar, a connection can be renamed or deleted. 
+With the ``Connection String...`` button, the connection parameters can be modified afterwards.
 
 .. note::
-   If data is integrated via a database connection with *gView Carto*, all connection parameters are stored in the 
-   MXL file. Changing the connection parameters in the *gView DataExplorer* does not affect 
-   existing, already created *gView Carto* maps.
+   When data is integrated via a database connection using *gView Carto*, all connection parameters are stored in the 
+   MXL file. Changes made to the connection parameters in *gView DataExplorer* will not affect existing *gView Carto* 
+   maps that have already been created.
+
 
 

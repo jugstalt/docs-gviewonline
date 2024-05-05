@@ -1,35 +1,32 @@
 gView Feature Database
 ======================
 
-*gView Feature Database* is a data format developed directly for *gView GIS*.
-The data is stored in a database (MS SqlServer, Postgres, SQlite). For each data layer
-a table is created in which the data and the geometry are stored.
+*gView Feature Database* is a data format specifically developed for *gView GIS*. The data are stored in a database 
+(MS SQL Server, Postgres, SQLite). For each data layer, a table is created in which the attribute data and the geometry are stored. 
 The geometry is stored in a *Binary Blob*.
 
 .. note::
-   When the first version of *gView GIS* was developed, open geodatabases such as PostGIS were still 
-   not widespread. Also, standards such as WKB (Well Known Binary) were not yet established. 
-   The *gView Feature Database* is no longer absolutely necessary due to these geodatabases.
-   We recommend that you use PostGIS or SQLServer as the data source for the map services because they are also
-   can be processed by other GIS software packages.
+   When the first version of *gView GIS* was developed, open geodatabases like PostGIS were not yet widespread. 
+   Standards such as WKB (Well Known Binary) were also not yet established. The *gView Feature Database* is no longer 
+   strictly necessary due to these geodatabases. It is recommended to use PostGIS or SQLServer as the data source for 
+   mapping services, as these can also be processed by other GIS software packages.
 
 .. note::
-   If there is already an existing geodatabase (such as PostGIS), it should be used. Even if no geodatabase yet
-   is available, it is recommended to keep the data in a PostGIS database in order to remain open to other software packages.
+   If there is already an existing geodatabase (such as PostGIS), it should be used. Even if no geodatabase exists yet, 
+   it is recommended to keep the data in a PostGIS database to remain open for other software packages.
 
-The *gView Feature Database* still has the only relevance to provide an offline GIS. For this purpose, the data of a 
-gView map stored in a *gView SQLite Feature Database*. This can then be taken "offline".
-Compatibility with other GIS software packages is usually not a prior for this scenario.
+The only relevance of the *gView Feature Database* now is to provide an offline GIS. For this purpose, the data of a 
+gView map are saved in a *gView SQLite Feature Database*. This can then be taken "offline".
+Compatibility with other GIS software packages is generally not a priority.
 
-In addition, raster catalogs can also be created and easily managed in a *gView Feature Database*.
-For this reason, the description for the *gView Feature Database* was taken from the original manual 1:1 (Screenshot
-are not from the current version). 
+Furthermore, raster catalogs can also be created and easily managed in a *gView Feature Database*. For this reason, the description 
+for the *gView Feature Database* was taken directly from the original manual 1:1 (screenshots are not from the current version).
 
-If the data remains in the existing GIS database (e.g. PostGIS), this description can be skipped.
+If the data remains in the existing GIS database (e.g., PostGIS), this description can be skipped.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Table of contents:
+   :caption: Inhaltsverzeichnis:
 
    create
    raster_catalog

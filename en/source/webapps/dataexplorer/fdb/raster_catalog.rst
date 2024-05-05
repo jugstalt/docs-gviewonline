@@ -1,56 +1,47 @@
-Creating a Raster(Catalog) Dataset
-==================================
+Creating a Raster (Catalog) Dataset
+======================================
 
-In this section, creating a raster catalog dataset in a gView feature
-Database. These are datasets with only one feature class, where
-the geometry of the features corresponds to the extents of each image. In the
-property data of the feature class the references to the image files is stored.
+This section describes how to create a raster catalog dataset in a *gView Feature Database*. 
+It consists of *datasets* with only one *feature class*, where the geometry of the features 
+corresponds to the extents of the individual images. In the attribute data of the feature class, 
+references to the image files are stored.
 
-To create data, proceed in the same way as with normal datasets. Right-click
-Mouse button in the Contents area of a Sql Feature Database and select ''New/Sql Feature
-Database Dataset''. In the dialog that appears, set the type Image Dataset:
+To create it, proceed as with normal datasets. By clicking on the ``New/Sql Feature Database Dataset`` 
+button in the context area of the toolbar, the following dialog appears:
 
 .. image:: img/raster1.png 
 
-Assign a telling name for the name of the dataset, e.B.e. "Aerial Photographs".
-Currently, only the first option "Do not manage images" is possible. Not managing means
-that the images remain in the file system. In the dataset, apart from the
-Extent and location of the images no image information in the database
-is stored.
+Assign a descriptive name to the dataset, for example, ``orthophotos``.
 
-In the "Spatial Reference System" tab, you assign the projection properties
-for your data. The procedure has already been described above.
+In the ``Spatial Reference`` tab, assign the spatial reference system in which the data resides, 
+as described in the previous chapter.
 
-In contrast to the normal datasets, the tabs have been added to eu
-Spatial Index and Additional Fields.
+Unlike normal datasets, the tabs ``Spatial Index`` and ``Additional Fields`` have been added.
+In a *Feature Database*, a spatial index is created for each *feature class*. This index is 
+responsible for fast access during spatial queries. When copying data, the spatial index is 
+automatically created. This step was omitted in the method of data import described above. However, 
+for raster catalogs, the spatial extent of this index must be specified when creating the dataset. 
+The rectangular extent should be chosen so that all georeferenced images fit within it. 
+It is also possible to include images that do not lie within the index extent, but these 
+images will not be indexed. Therefore, provide a generous extent. To simplify the process, 
+there is an option to import the extent from an existing *feature class* (button ``Import...``).
 
-In a feature database, a spatial index is created for each feature class. these
-is responsible for quick access to spatial search queries. When copying
-of data, the spatial index is created automatically. This point was therefore omitted in the
-method of data import described above. However, for raster catalogs, the spatial extent shoud be defined here. 
-In doing so, the rectangular extent is specified so that all georeferenced images in the
-fits. However, it is also possible to import images that are not within the
-index extent. However, these images are not indexed. 
-
-So give a generous extension. In order to make your work easier, there is the possibility of
-Import extension from an existing feature class (button "Import...").
-The indexing of the individual features takes place hierarchically in a tree structure.
-You set the index tree to "Depth" in the Layers pane. To do this, increase the value
-Maximum layer depth until the cell size is approximately two to three times greater
-such as the geographical diagonal of a georeferenced image. Enter all values
-for example, the dialog looks like this:  
+The indexing of individual features occurs hierarchically in a tree structure. 
+The *depth* of the index tree is set in the ``Max Levels`` area. The value here should 
+be increased until the cell size is approximately two to three times the geographic diagonal of a 
+georeferenced image. Once all values are entered, the dialog looks something like this:
 
 .. image:: img/raster2.png 
 
-Under ''Additional Fields'' you can then add fields to the Image feature class
-, which are automatically calculated by the database for each image polygon. all
-these fields are optional. For example, select ''Shape Area'' if you want to save the area of each image:
+Under ``Additional Fields``, fields can be added to the image feature class, which are automatically 
+calculated by the database for each image polygon. All these fields are optional. For example, 
+choose ``Shape Area`` if you want to save the area for each polygon:
 
 .. image:: img/raster3.png 
 
-Finally, confirm the dialog with OK. The gView Data Explorer now creates the
-Raster Catalog Dataset. The icon is slightly different from a normal dataset
-Icon to make it clear that this is raster catalog dataset:
+Upon confirming the dialog with ``OK``, the ``Script`` window appears to generate the dataset. 
+If the script is successfully executed, the new dataset appears in the *Content area*. The icon 
+slightly differs from a normal dataset icon to indicate that it is a raster catalog dataset:
 
 .. image:: img/raster4.png 
 
@@ -58,37 +49,29 @@ Double-clicking on the icon opens the contents of this dataset:
 
 .. image:: img/raster5.png 
 
-As described above, the image polygons are created in a feature class. the
-Feature class name is always the same as the name of the dataset with attached
-"_IMAGE_POLYGONS". This name may not be changed! The first icon with the
-Name "Aerial images" (always the same as the dataset) is used to import the images. after
-the opening by double-clicking the following view appears:
+As described above, the image polygons are created in a *feature class*. The name of 
+the feature class is always the same as the name of the dataset appended with ``_IMAGE_POLYGONS``. 
+This name **must not** be changed! The first icon with the name ``orthophotos`` (always the same as 
+the dataset) is used to input the images. After opening by double-clicking, the following 
+view appears:
 
 .. image:: img/raster6.png 
 
-In the Images tab, the image files contained in the Raster Catalog Dataset are
-Paths are displayed. Of course, the list is still empty after creation. To add data
-two tools are available:
+In the ``Images`` tab, the paths to the image files contained in the raster catalog dataset 
+are displayed. The list is naturally empty after creation. To add data, you have two tools available:
 
-* Select image files. This opens a dialog to open
-  Files in which a multiple selection is also possible.
+* **Add single image:** Opens a dialog for opening files, where multiple selections are also possible.
 
-* Search a directory and its subdirectories for images. thereby
-  select a root directory and a filter in a dialog:
+* **Add image folder:** Searches a directory and its subdirectories for images. In a dialog, 
+  you select a root directory and a filter:
 
 .. image:: img/raster7.png 
 
-After you have selected images using one of the two methods, they are displayed in the raster catalog dataset:
+After confirming the dialog with ``OK``, a script window appears again to start the import. 
+If the import is successfully completed, the images appear as a list in the ``Images`` tab:
 
 .. image:: img/raster8.png 
 
-You can now add more images or individual images if you wish
-delete from the dataset. To do this, select the images in the list and choose via
-the context menu (right mouse button) the corresponding menu item.
-
-In the tab ''Preview'' you can view the imported images, where
-You can navigate the map using the tools described above.
+In the ``Data View`` tab, you can view the imported images:
 
 .. image:: img/raster9.png 
-
-

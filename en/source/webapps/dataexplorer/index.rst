@@ -1,18 +1,18 @@
 gView Data Explorer
 ===================
 
-The program is similar to Windows Explorer, but is specifically designed for administration 
-of geodata. After startup, the following window appears:
+The program is comparable to Windows Explorer, but it is specifically designed for managing 
+geospatial data. Upon launching, the following window appears:
 
 .. image::
    img/dataexplorer1.png
 
-On the left, the file system and the connections to various data sources are displayed in a tree structure. 
-The center part of the window (*Contents*) always displays the contents of the respective node.
+On the left, the file system and connections to various data sources are displayed in a tree structure. 
+The middle part of the window (*Contents*) always displays the content of the respective node.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Table of contents:
+   :caption: Inhaltsverzeichnis:
 
    connections
    fdb/index
