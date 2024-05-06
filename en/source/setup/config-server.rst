@@ -1,3 +1,5 @@
+.. _config-server:
+
 Configuration gView.Server
 ==========================
 

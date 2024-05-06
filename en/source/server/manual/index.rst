@@ -1,17 +1,19 @@
-Manual
-======
+User Manual
+================
 
-The *gView MapServer* is a web application and provides a simple web interface for managing and browsing the services.
-Here it is assumed that *gView MapServer* has been successfully installed (incl. post-inatallation).
+The *gView MapServer* is a web application and offers a simple web interface for managing 
+and browsing services. It is assumed here that the *gView MapServer* has been successfully installed 
+(including post-installation).
 
-In section :ref:`examples`, chapter Kapitel :ref:`publish-map-service-example` is shown how to publish services via the web interface of *gView MapServer*.
+In the section :ref:`examples`, the chapter :ref:`publish-map-service-example` demonstrates how services are 
+published via the web interface of *gView MapServer*.
+There, further concepts of *gView MapServer* are described, which cover a large part of the operation.
 
-The following points cover other topics:
-
+The following points cover additional topics:
 
 .. toctree::
     :maxdepth: 2
-    :caption: Table of contents:
+    :caption: Table of Contents:
  
     manage
     browse

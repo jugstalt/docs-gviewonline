@@ -1,17 +1,18 @@
 gView Server
 ============
 
-This section introduces the gView server. The *gView Server* is a map server
-for the maps created with *gView Carto* in different formats as a map and feature service.
-Depending on the interface, the card services offer the following functionality:
+This section introduces the gView Server. The gView Server is a map server that publishes maps,
+which were previously created with gView Carto, in various formats as a map service.
+Depending on the interface, the map services offer the following functionalities:
 
-* Export map and legend images 
-* Query geo-features
-* Edit geo-features (FeatureServer)
+* Map images
+* Query features
+* Edit features (FeatureServer)
+
 
 .. toctree::
    :maxdepth: 2
-   :caption: Table of contents:
+   :caption: Table of Contents:
 
    inst/installation
    manual/index

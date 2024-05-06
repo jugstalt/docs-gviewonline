@@ -1,13 +1,11 @@
 Installation
 ============
 
-Der gView Server ist eine .NET Core Web Anwendungen und kann auf unterschiedliche Weise installiert werden.
-Im Abschnitt Installation von *gView GIS* wurde bereits gezeigt, wie der Server über eie Batch Datei ``gView Server.bat``
-gestartet werden. Das entspricht im Prinzip der *Standalone* Variante und ist besonders geeignet für lokale Test Installation
-und Offline Lösungen.
+*gView.Server* ist eine .NET Core Anwendung, die auf verschiedenen Plattformen installiert werden kann.
+Die genauen Möglichkeiten der Installation wurden bereits im Abschnitt :ref:`deploy` erläutert.
 
-Hier werden alle möglichen Installationszenarien vorgestellt. Außerden ist nach dem ersten Start noch eine *Postinatallation*
-über die WebOberfläche notwendig.
+In diesem Kapitel werden zusätzliche *Postinstallationschritte* behandelt.
+Voraussetzung ist hier allerdings eine bereits laufende Installation von *gView.Server*.
 
 .. toctree::
    
