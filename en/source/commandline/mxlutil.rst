@@ -1,29 +1,39 @@
 gView.Cmd.MxlUtil
 =================
 
-This tool provides some methods to automate recurring tasks with map project files (MXL):
+This tool provides several methods to automate recurring tasks associated with 
+map project files (MXL):
 
-* **PublishService**: Publish a map to *gView MapServer*.
-* **MxlDataset**: View and customize connection properties of an MXL file
-* **MxlToFdb**: Copy all vector data of a map project in a *gView Feature Database*. *gView FDB* is a format for which *gView* guarantees high performance. The database is created here in *SQL Server*, *PostGre* or *Sqlite*.
-  This tool can be used to provide map projects *offline* (all data in a *Sqlite* database) 
+* **PublishService**: Publish a map on the *gView MapServer*.
+* **MxlDataset**: Display and adjust connection properties of an MXL file.
+* **MxlToFdb**: Copy all vector data of a map project into a *gView Feature Database*. 
+  The *gView FDB* format ensures high performance. The database is created in *SQL Server*, 
+  *PostGre*, or *Sqlite*.
+  This tool can be used to make map projects available *offline* 
+  (all data in a *Sqlite* database).
 
-   The general call for this tool is:
+.. note::
 
-.. code::
+    The following commands are shown in **interactive mode**. For this, ``gView.Cmd.exe -i``
+    must be called. Without the *interactive mode*, ``gView.Cmd.exe --command`` would have to be 
+    prefixed to each command shown here.
 
-   gView.Cmd.MxlUtil.exe <utiltiy-name> [parameters]
+The general call for this tool is:
 
-As a ``utility name`` you can use one of the options listed here.
+.. code-block:: batch
+
+   Command:>MxlUtil -u <utiltiy-name> [parameters]
+
+As ``utility-name``, one of the options presented here can be used.
 
 PublishService
 --------------
 
-To publish map services, the following parameters can be passed:
+The following parameters can be passed for publishing map services:
 
-.. code::
+.. code-block:: batch
 
-  .\gView.Cmd.MxlUtil.exe publishservice
+  Command:>MxlUtil -u publishservice
 
   PublishService
   --------------
@@ -45,38 +55,40 @@ To publish map services, the following parameters can be passed:
 
 Example:
 
-.. code::
+.. code-block:: batch
 
-    .\gView.Cmd.MxlUtil.exe publishservice -mxl c:\my-map.mxl -server https://localhost -service produktiv/my-service
+    Command:>MxlUtil -u publishservice -mxl c:\my-map.mxl -server https://localhost -service produktiv/my-service
 
-The optional parameters can be used to pass a *client* through which the service should be published.
-As a rule, you should not allow every user to publish services. To control this, the administrator/manager of the *gView MapServer* 
-can create clients (in the Manager Web interface under ''Security''). For these clients, rights can be granted at the service and directory level (lock symbol). 
-Clients who are given the right to ``publish`` for a directory are allowed to publish services.
+Optional parameters can include a *Client* through which the service should be published. 
+Typically, not every user should be allowed to publish services. To control this, the 
+administrator/manager of the *gView MapServer* can create clients (in the manager web interface 
+under ``Security``). Rights can be assigned to these clients at the service and directory level 
+(lock icon). Clients that are granted the right to ``publish`` for a directory are allowed to 
+publish services.
  
 .. note::
-   If no rights are set for a directory, all rights are assigned to each user.
+   If no rights are set for a directory, all rights are assigned to every user.
 
-.. code::
+.. code-block:: batch
 
-    .\gView.Cmd.MxlUtil.exe publishservice -mxl c:\my-map.mxl -server https://localhost -service produktiv/my-service -client publisher -secret pa3sw0rd
+    Command:>MxlUtil -u publishservice -mxl c:\my-map.mxl -server https://localhost -service produktiv/my-service -client publisher -secret pa3sw0rd
 
 .. note::
-   *only* a valid *client* can be specified via the command line. The administrator cannot be passed here.
-   If you want to publish services *securely* via the command line, a client must be created!
-    
+   Only a valid *Client* can be specified via the command line. The administrator cannot be passed 
+   here. If you want to publish services *securely* via the command line, a client must be created!
+
 MxlDatasets
 -----------
 
-Here the connection parameters of the datasets can be displayed or changed within an XML file. A use case
-can be when developing maps with connections to a (local) test database. Before (automated) publishing
-here the connection properties can be rewritten to a productive database.
+Here, the connection parameters of datasets within an MXL file can be displayed or modified. 
+One use case could be when maps with connections to a (local) test database are developed. Before 
+the (automated) publishing, the connection properties can be rewritten to a production database.
 
-Call:
+Invocation:
 
-.. code::
+.. code-block:: batch
   
-   .\gView.Cmd.MxlUtil.exe mxldatasets
+   Command:>MxlUtil -u mxldatasets
     
    Required arguments:
    -mxl <mxl-file>
@@ -103,19 +115,21 @@ Call:
 
 
 * ``-mxl``: Path to the MXL file
-* ``-cmd``: Further specification of the command.
- 
+* ``-cmd``: Further specification of the command to be executed for the dataset connections.
+
 Optional:
- 
-* ``-mxl-out``:  Path to an MXL that should be created (modify-connectionstring-only). If no Output XML is specified, the **original file** will **overwritten**!
+
+* ``-mxl-out``: Path to an MXL that should be created (only with ``modify-connectionstring``).
+  If no output XML is specified, the original file will be overwritten.
     
 **Command - Info**
 
-This command is the default. If this or no command is passed, the connection parameters of each Dataset will be displayed:
+This command is the default. If this or no command is specified, the connection parameters 
+of the individual datasets are displayed:
 
-.. code::
+.. code-block:: batch
 
-   .\gView.Cmd.MxlUtil.exe mxldatasets -mxl C:\gview5\mxl\my-map.mxl
+   Command:>MxlUtil -u mxldatasets -mxl C:\gview5\mxl\my-map.mxl
     
    Dataset 0
    ==============================================================================
@@ -129,48 +143,47 @@ This command is the default. If this or no command is passed, the connection par
    User Id=DB_READ
    Password=*************
 
-   In the collection of datasets, each dataset gets a number (here ``0``). If you only want one parameter for a specific 
-   To change the dataset, this must be specified with the parameter ``-dsindex`` (see below).
-   
+In the listing of datasets, each dataset is assigned a number (here ``0``). If one later wants to change a parameter for a specific 
+dataset, this must be indicated with the parameter ``-dsindex`` (see below).
+
 **Command - modify-cs|modify-connectionstring**
 
-With this command a *Connection parameters* can be changed. In addition to the parameters listed above, the following 
-Parameters are passed:
+This command can be used to change individual *Connection Parameters*. In addition to the parameters mentioned above, the following 
+parameters must be provided:
 
-* ``-parameter|-parameter-name``: name of the parameter (e.g. ``server``)
-* ``-new-value|-new-parameter-value``: the new value for the parameter
-  
-If several parameters are changed, the parameters must be repeated in the command line.
+* ``-parameter|-parameter-name``: The name of the parameter (e.g., ``server``) to be changed.
+* ``-new-value|-new-parameter-value``: The new value for the parameter.
+
+If multiple parameters are to be changed, the parameters must be repeated on the command line.
 
 Optional:
 
-* ``-dsindex|-dataset-index``: If only one specific dataset is changed, the index number of the dataset can be specified here.
-  The index number can be taken from the ``info`` command shown above. If the parameters are not specified, the parameters for 
-  all datasets changed.
+* ``-dsindex|-dataset-index``: If only a specific dataset is to be changed, the index number of the dataset can be specified here.
+  The index number can be obtained from the ``info`` command shown above. If this parameter is not specified, the parameters for 
+  all datasets will be changed.
 
 Example:
 
-.. code::
+.. code-block:: batch
 
-    .\gView.Cmd.MxlUtil.exe mxldatasets -mxl C:\gview5\mxl\my-map.mxl -cmd modify-cs -parameter Server -new-value proddbserver -parameter password -new-value ProdPa3sw0rd -out-mxl C:\gview5\mxl\my-map-produktiv.mxl
+    Command:>MxlUtil -u mxldatasets -mxl C:\gview5\mxl\my-map.mxl -cmd modify-cs -parameter Server -new-value proddbserver -parameter password -new-value ProdPa3sw0rd -out-mxl C:\gview5\mxl\my-map-produktiv.mxl
 
 
 .. note::
-   The connection parameters are checked both when opened and overwritten. If no connection is possible with the given parameters,
-   cancels the program.
+   The connection parameters are checked both when opening and when overwriting. If a connection cannot be made with the given parameters,
+   the program will terminate.
    If an MXL is damaged and a connection cannot be established with the connection parameters, this tool cannot be used.
-   In this case, the MXL file must be repaired via a text editor.
+   In this case, the MXL file must be repaired using a text editor.
 
 MxlToFdb
 --------
 
-Copy all vector data of a map project in a *gView Feature Database*. *gView FDB* is a format for which *gView* guarantees high performance. The database is created here in *SQL Server*, *PostGre* or *Sqlite*.
-This tool can be used to provide map projects *offline* (all data in a *Sqlite* database) 
+Copying all vector data from a map project into a *gView Feature Database*. *gView FDB* is a format for which *gView* guarantees high performance. The databases are set up in *SQL Server*, *PostGre*, or *Sqlite*.
+This tool can be used to provide map projects *offline* (all data in a *Sqlite* database)
 
+.. code-block:: batch
 
-.. code::
-
-   .\gView.Cmd.MxlUtil.exe mxltofdb
+   Command:>MxlUtil -u mxltofdb
 
    MxlToFdb
    --------
@@ -191,20 +204,23 @@ This tool can be used to provide map projects *offline* (all data in a *Sqlite* 
    -dont-copy-features-from <a comma seperated list of layernames, where only an empty Db-Table-Schema is created>
 
 
-* ``-mxl``: path to the MXL file
-* ``-target-connectionstring``: connection string to the target Feature Database
-* ``-target-guid``: GUID of the target database plugin or simply ``sqlserver|postgres|sqlite`` 
- 
+* ``-mxl``: Path to the XML file
+* ``-target-connectionstring``: Connection string to the target feature database
+* ``-target-guid``: GUID of the target database plugin or simply ``sqlserver|postgres|sqlite``
+
 Optional:
- 
-* ``-mxl-out``: Path to an MXL that should be created. If no Output XML is specified, the original file is overwritten!
-* ``--dont-copy-features-from``: A list of layers that should not be copied. The tool will mainly be used to make existing maps *offline* 
-  by writing the data to a SQLite database. If (large) data sets of a map *offline* not absolutely necessary, 
-  they can be specified here. Although the schema of these tables is created in the target database, no data is copied.
-  
+
+* ``-mxl-out``: Path to an MXL that should be created. If no output XML is specified, 
+  the original file will be overwritten.
+* ``--dont-copy-features-from``: A list of layers that should not be copied. The tool 
+  is mainly used to make existing maps *offline* 
+  capable by writing the data into a SQLite database. If (large) 
+  datasets of a map are not necessarily required *offline*, they can be specified here. 
+  Although the schema of these tables will be created in the target database, no data will be copied.
+
 Example:
 
-.. code::
+.. code-block:: batch
 
-   .\gView.Cmd.MxlUtil.exe mxltofdb -mxl C:\gview5\mxl\my-map.mxl -target-connectionstring: c:\offline.fdb -target-guid sqlite -out-mxl C:\gview5\mxl\my-map-offline.mxl -dont-copy-features-from bigdata-layer1,bigdata-layer2
+   Command:>MxlUtil -u mxltofdb -mxl C:\gview5\mxl\my-map.mxl -target-connectionstring: c:\offline.fdb -target-guid sqlite -out-mxl C:\gview5\mxl\my-map-offline.mxl -dont-copy-features-from bigdata-layer1,bigdata-layer2
 

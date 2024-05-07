@@ -1,85 +1,117 @@
 .. _commandline-tools-render-tile-cache:
 
-gView.Cmd.RenderTileCache
-=========================
+gView.Cmd RenderTile
+====================
 
-This tool sends the prompt to calculate *TileCache* tiles to the *gView Server*. The corresponding service must be set to deploy *Tiles* through its metadata in *gView Carto*.
-It must be possible to call the *WMTS capabilities* (for example via the gView Server interface).
+This tool sends the request to compute *TileCache* tiles to the *gView Server*. 
+The respective service must be authorized via its metadata in *gView Carto* for the provision of *Tiles*.
 
-.. code::
+A call to the *WMTS-Capabilities* (for example, through the gView Server interface) must be possible.
 
-   .\gView.Cmd.RenderTileCache.exe
+.. note::
 
-   USAGE:
-   gView.Cmd.RenderTileCache <-info|-render> -server <server> -service <service>
-          optional paramters: -epsg <epsg-code>                           [default: first]
-                              -compact ... create a compact tile cache
-                              -orientation <ul|ll|upperleft|lowerleft>    [default: upperleft]
-                              -bbox <minx,miny,maxx,maxy>                 [default: fullextent]
-                              -scales <scale1,scale2,...>                 [default: empty => all scales
-                              -threads <max-parallel-requests>            [default: 1]
+    The following commands are shown in **interactive mode**. For this, ``gView.Cmd.exe -i``
+    must be called. Without the *interactive mode*, ``gView.Cmd.exe --command`` would have to be 
+    prefixed to each command shown here.
 
-Required parameters:
+There are three ``TileCache`` commands:
 
-* ``-info``: Only information about the TileCache service is output here. This can be useful to check if a service is being usable as a *tile cache*.
+.. code-block:: batch
 
-.. code::
+  TileCache.Render:        Forces a gView Server instance to render service a tile cache
+  TileCache.Info:          Shows information about a tilecache service
+  TileCache.ClipCompact:   Clips a tile compact cache by polygon(s)
 
-   .\gView.Cmd.RenderTileCache.exe -info -server https://localhost:44331 -service cache/ortsplan
-   TileSize [Pixel]: 512 x 512
-   ImageFormats: png
-   Scales:
-     1 : 1000000
-     1 : 500000
-     1 : 250000
-     1 : 100000
-     1 : 50000
-     1 : 25000
-     1 : 10000
-     1 : 5000
-     1 : 2500
-    1 : 1000
-   Origin: upperleft
-     EPSG:31256 upperleft: -5622500, 5001000
-   BBox:
-     EPSG:31256: -226900, 163300, 0, 315500
+TileCache.Info
+--------------
+
+This only outputs information about the TileCache service. This can be useful 
+to verify if a service can be used as a *Tile Cache*.
+
+.. code-block:: batch
+
+   Command:>TileCache.Info --help
+   Help: TileCache.Info
+   Shows information about a tilecache service
+   Usage:
+      -server: gView Server Instance, eg. https://my-server/gview-server
+      -service: The service to pre-render, eg. folder@servicename
+
+   Command:>TileCache.Info -server https://localhost:44331 -service cache/ortsplan
+    TileSize [Pixel]: 512 x 512
+    ImageFormats: png
+    Scales:
+      1 : 1000000
+      1 : 500000
+      1 : 250000
+      1 : 100000
+      1 : 50000
+      1 : 25000
+      1 : 10000
+      1 : 5000
+      1 : 2500
+      1 : 1000
+    Origin: upperleft
+      EPSG:31256 upperleft: -5622500, 5001000
+    BBox:
+      EPSG:31256: -226900, 163300, 0, 315500
    
-It also returns any information that can be useful for optional parameters for rendering.
-If the service is not available as a *tiling service*, the output is similar to the following:
+Additionally, all information that can be useful for optional parameters for rendering 
+is returned here. If the service is not available as a *Tiling Service*, the output 
+would be approximately as follows:
 
-.. code::
+.. code-block:: batch
 
    Exception:
    Can't read metadata from server. Are you sure taht ervice is a gView WMTS service?
 
-* ``-render``: this command triggers the actual rendering of *Tile Cache* tiles. To further specify what should be rendered, the optional parameters are used. Only commands to the *gView Server* are displayed here
-that cause rendering. The *Rending* happens in the *gView Server*. There the tiles are created and stored in the file system.
-  
+TileCache.Render
+----------------
+
+This command triggers the actual rendering of *Tile Cache* tiles. Optional parameters are used to further specify
+what should be rendered. Only commands that prompt rendering are sent to the *gView Server*.
+The *rendering* occurs on the *gView Server*. There, the tiles are created and stored in the file system.
+
 .. note::
-  If a tile already exists, the server does not recalculate it. The server only calculates tiles that do not yet exist. This makes sense if only a few tiles of a *Tile Cache* need to be recalculated.
-  Here you first delete the affected *Tiles* on the File Sytsem (e.g. with the command ``gView.Cmd.ClipCompactTilecache``)
+   If a tile already exists, it will not be recalculated by the server.
+   The server only calculates tiles that do not yet exist. This makes sense if only some
+   tiles of a *Tile Cache* need to be recalculated.
+   Here, affected *Tiles* should first be deleted from the file system
+   (e.g., with the command ``TileCache.ClipCompact``)
 
-Optional parameters:
+Optional Parameters:
 
-* ``-epsg``: The *gView Server* can offer tilecaches in different coordinate systems for a service. Which coordinate systems are possible can be set in the metadata in *gView Carto*. Using the ``-info`` command shown above
-the possible values can be displayed.
+* ``-epsg``: The *gView Server* can offer Tile Caches in different coordinate systems for a service.
+  Which coordinate systems are possible can be set in the metadata in *gView Carto*.
+  The possible values can be displayed using the ``-info`` command shown above.
 
-* ``-compact``: This option creates a *Compact Tile Cache*. The difference to a *classic tile cache* is that not a file is created for each tile. Here, 128 x 128 tiles always combined in on 
-File. As a result, the Tile Cache takes up a little less space in the File System and can be copied more easily (since a classic Tile Cache often consists of millions of files). A large file 
-is usually easier to handle for the file system than many small individual files). However, with each later request, the single tile must be extracted from the large files (which is usually done very quickly).
+* ``-compact``: This option creates a *Compact Tile Cache*. Unlike a
+  *classic Tile Cache*, not every tile is stored in a separate file. Here, always
+  128 x 128 tiles are combined into one file in the FileSystem. This requires less space in the file
+  system and can be especially easier to copy (since a classic Tile Cache
+  often consists of millions of files. A large file is generally easier for the file system to
+  handle than many small individual files). However, each individual tile must be extracted from the large files
+  on subsequent requests (which usually happens very quickly).
 
-* ``-orientation``: Here the orientation of the *Tile Cache* (or the location of the origin) is indicated. *Tile caches* with the orientation *lowerleft* cannot be used with WMTS. Therefore, this option is only
-of completeness and can usually be omitted. 
+* ``-orientation``: This specifies the orientation of the *Tile Cache* (or the location of the origin).
+  *Tile Caches* with the orientation *lower left* cannot be used with WMTS,
+  therefore this option is only offered for completeness and can generally be omitted.
 
-* ``-bbox``: A *Bounding Box* (in the respective coordinate system) can be specified here. Only for this area the render commands are sent to the server
+* ``-bbox``: A *Bounding Box* (in the respective coordinate system) can be specified. Only for this
+  area will the rendering commands be sent to the server.
 
-* ``-scales``: A list of scales (separated by commas) for which commands are sent to the server.
+* ``-scales``: A list of scales (comma-separated) for which commands are sent to the server.
 
-* ``-threads``: To speed up tile cache creation, several commands can be sent to the *gView Server* at the same time. Otherwise, only the command for a tile is sent to the server at the same time. It doesn't make a
-  sense to specify extremely high values here. Rule of thumb: ``-threads`` = number of processors. If this does not increase the processor load, it means that most of the time during rendering is spent waiting for the database.
-  In this case, the value can also be increased here.
-  
+* ``-threads``: To speed up the creation of the Tile Cache, multiple commands can be sent simultaneously
+  to the *gView Server*. Otherwise, only the command for one tile is sent to the server at a time.
+  It does not make sense to specify extremely high values here.
+  Rule of thumb: ``-threads`` = number of processors. If the processor load does not increase significantly,
+  it means that most of the rendering time is spent waiting for the database.
+  In this case, the value here can also be increased.
 
 Example:
 
-.. code::
+.. code-block:: batch
+
+   Command:>TileCache.Render -server https://localhost:44331 -service cache/ortsplan -compact -scales 1000000,500000,250000,100000,50000,25000,10000,5000 -threads 10
+
