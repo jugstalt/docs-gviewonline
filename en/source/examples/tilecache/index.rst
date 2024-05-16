@@ -1,89 +1,154 @@
-Calculation of a *TileCache* (site map)
-=======================================
+Calculation of a *TileCache* (Site Plan)
+========================================
 
-This example shows how to calculate a TileCache from an existing *gView Server* service.
-This can be integrated into different applications via the WMTS interface. By pre-processing the tiles
-increases the performance of the service. In addition, the server load is reduced.
+This example demonstrates how to compute a TileCache from an existing *gView Server* service. 
+This TileCache can then be integrated via the WMTS interface into various applications.
+Preprocessing the tiles improves the service's performance and reduces server load.
 
-A *TileCache* consists only of single (tile) images at the end. These can also be combined as *Compact TileCache tiles*,
-which can reduce the number of single images (easier to copy, less storage space)
+Ultimately, a *TileCache* consists only of individual (tile) images. These can also be combined into 
+*Compact TileCache tiles*, reducing the number of individual images held (easier to copy, less storage space).
 
-A *gView TileCache* offers different *styles*. For example, the tiles can also be displayed in black and white via filters *on-the-fly*.
+A *gView TileCache* offers various *styles*. For example, the tiles can be displayed in black and white 
+using filters *on-the-fly*.
 
 MapService Metadata
 -------------------
 
-In order to be able to create a tilecache for a service later, this must already be defined in the map project in *gView Carto*. To this end, the corresponding
-Map the *Map Properties* page are accessed. There you will find the *tab* ``MapService``. If you click on ``Metadata`` the 
-Metadata dialog for the map service will shown. Under the metadata, for example, you can set in which projections WMS services are published.
+To use a service as a *TileCache*, the first step is to adjust the service's metadata. To do this, one must 
+log in via the **gView.Server** web interface with ``Manage`` (Sidebar) as an **Administrator**.
 
-Click on ''Tile Service Properties'' for the metadata. There you can set that tiling services for this card are allowed:
+Access the service's properties to reach its metadata:
+
+.. image:: img/manage1.png
+
+In the metadata dialog, first switch to the ``Tile Service Properties`` area:
 
 .. image:: img/metadata1.png
 
-Here the desired scales are already defined and the tile sizes are changed from 256x256 to 512x512. Since the service is a site map, only ``image/png`` is offered as the image format.
+Here, the properties of the *TileCache* can be defined in a YAML file. The changes for the service might look something like this:
 
-The next step is to specify the extent of the TileCache service and the origin:
-For a service, multiple TileCaches can be stored for different coordinate systems. Before the extent is set, a coordinate system must be selected
-(``+`` button):
+.. code-block:: yaml
 
-.. image:: img/metadata2.png
+    use: true
+    scales:
+    - 1000000
+    - 500000
+    - 250000
+    - 100000
+    - 50000
+    - 25000
+    - 10000
+    - 5000
+    - 2500
+    - 1000
+    - 500
+    epsgCodes:
+    - 31256
+    extents:
+    31256:
+        minX: -226900
+        minY: 163300
+        maxX: 0
+        maxY: 315500
+    originUpperLeft:
+    31256:
+        x: -5622500
+        y: 5001000
+    originLowerLeft:
+    31256:
+        x: -226900
+        y: 163300
+    tileWidth: 512
+    tileHeight: 512
+    useUpperLeft: true
+    useLowerLeft: false
+    cacheUpperLeftTiles: true
+    cacheLowerLeftTiles: false
+    supportPng: true
+    supportJpg: false
+    dpi: 95.9998080000121
 
-For the calculation of the tiles, an origin (Tile 0/0/0) can be specified in the upper left or lower left corner. Tilecaches with origin in the lower left corner are deprecated and 
-are offered here only for completeness. For WMTS services, settings with the origin should be created in the upper left corner.
+.. note::
 
-If the settings are also used for other services, they can also be saved or loaded with the ``Save`` / ``Load`` button.
-For WebMercator maps, for example, the settings can be loaded from ``gview5/desktop/misc/tiling/osm.xml``.
+    It is important that ``use`` is set to ``true`` to ensure that the service later offers the *TileCache*
+    interfaces.
 
-Publish Service
----------------
-
-The next step is to publish the service to *gView MapServer*. Any *gView MapServer* instance that provides access to the data can be used for this purpose.
-Since the Calculation TileCaches can be resource and time consuming, a *local gView MapServer* instance can also be used here. This can be easily via the 
-installation path can be started by script. This instance can be used to calculate the TileCache. After that, the service can also be published to a production instance 
-and the TileCache can be copied.
-
-The TileCache is created in the file system during the calculation. The path is specified in the file ``_config/mapserver.json``:
-
-.. code::
-
-    "tilecache-root": "C:\\temp\\tilecache"
-
-All TileCaches are stored under this directory. The path can be changed later. All caches must be copied and after changing the entry in the 
-``_config/mapserver.json`` and the *gView Server* has to be restarted.
-    
-For this example, the map service ``ortsplan`` (german for site map= has been published in the directory ``cache``:
+When you navigate via the ``Sidebar/Browse`` to the service and click on it, ``WMTS`` should be 
+offered as an interface:
 
 .. image:: img/service1.png
 
-If you click on the service in this view, all possible interfaces are listed with which the service can be queried.
-This should also include an interface for TileCaches (*OGC Web Map Tile Service* or *WMTS*):
+The **Capabilities** should also yield a result (click on the link):
 
 .. image:: img/service2.png
 
-The link provided here redirects to the *Capabilities* of the *WMTS* service. The result should look something like this:
+.. note::
 
-.. image:: img/service3.png
+    While the WMTS Capabilities are displayed, they do so without individual scale levels.
+    The reason is that no tiles have been computed yet.
 
-If the service is not allowed for tilecaches, you may receive the following error message:
+Computing Tiles
+-----------------
 
-.. image:: img/service4.png
+To compute the tiles, switch to the **gView.DataExplorer** app. There, under ``Tools``, there is 
+a tool for computing tiles (``TileCache.Render``):
 
-In this case, the *MapService metadata* from the first step was not transferred to the service. To fix the error, the settings from the first step must be checked again
-and the service has to republished. 
+.. image:: img/explorer1.png
 
-If you are familiar with *WMTS*, you will probably notice that no *MatrixSets* are specified in the *Capabilities* yet.
-The reason is that the *gView Server* does not list the *MatrixSets* until tiles are available for them. In the directory tree in which the TileCache is created, it must be used for the corresponding scale 
-enter a directory. Only if this directory exists, the scale is also listed in the *Capabilities*.
+When starting the tool, the URL to the server must first be specified. If the service is protected,
+a *Client* and a *Secret* may also need to be specified.
+Select the appropriate service from the list and confirm the dialog with ``Ok``:
+
+.. image:: img/explorer2.png
+
+If the service is recognized as a WMTS service, a dialog appears with the *TileCache* options 
+for the service. Here, settings can be adjusted for how the TileCache should be computed.
+
+.. image:: img/explorer3.png
+
+It is recommended to compute a 
+``Compact Tile Cache`` because it generates fewer files. TileCaches, which consist of individual tile 
+images, require a lot of storage space and are difficult to copy.
+
+To speed up the computation, the number of parallel *Threads* can be specified.
+The computation is fundamentally carried out on the **gView.Server**. The number specified here controls 
+how many *Render* commands are sent to the server simultaneously.
+
+The ``Scales`` list can be used to control which scales should be rendered.
+
+Confirming the dialog with ``Confirm`` will display a command line that can be executed with ``Start``. 
+The output looks something like this:
+
+.. image:: img/explorer4.png
 
 .. note::
-    Here it is not checked whether all tiles are also available in the (scale) directory. As a rule, an empty directory is sufficient. An empty directory makes sense if the tiles for the service should be calculated *on-the-fly*.
-    Then no tiles are created in the file system. In this case, the directories may have to be created manually. *On-the-fly* calculation should not be used in practice for performance reasons, why this 
-    process is not described here.
-   
-Render Tiles
-------------
 
-To calculate the tiles a command line tool is offered ''gView.Cmd.RenderTileCache''. This calculates the individual tiles for a TileCache by specifying the server and the service.
-The description is given in the section :ref:`commandline-tools` (:ref:`commandline-tools-render-tile-cache`).   
+    Execution via the **gView.DataExplorer** can also be done using the command line tool, 
+    see :ref:`commandline-tools` (:ref:`commandline-tools-render-tile-cache`).
+    Since TileCaches take a long time to compute, it is recommended to use the command line for 
+    production purposes. Otherwise, it must be ensured that the **gView.DataExplorer** remains open throughout the entire computation.
+
+    However, the method described here can be used to obtain the transfer parameters for the command 
+    line tool via a graphical interface. When the window with the command line call pops up, it can 
+    simply be copied and executed on the server.
+
+Switching back to the **gView.Server** and to the service's *WMTS Capabilities* after the computation,
+the computed scale levels should now also be displayed.
+ 
+.. image:: img/service3.png
+
+.. note::
+
+    Only the scale levels for which a directory has been created in the TileCache directory on the server 
+    (see file ``_config/mapserver.json``) for the respective service are displayed:
+
+    .. image:: img/service4.png
+
+    If you want certain scale levels to be computed ``on the fly``, this can be achieved by manually 
+    creating the respective directory (scale number). If the **gView.Server** later finds no tiles in 
+    the directory, 
+    the tiles will always be created and delivered ``on the fly``.
+
+    **Caution:** This should only be done with performant services. And only if the computation of the 
+    corresponding scale level is not feasible.
 
