@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Creating an MS SQL Feature Database &#8212; gView GIS 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/basic_mod.css?v=d7bb20b6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=247da48f" />
+    <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <script src="../../../_static/js/petite-vue.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Creating a Raster (Catalog) Dataset" href="raster_catalog.html" />
+    <link rel="prev" title="gView Feature Database" href="index.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../../../index.html" title="Go to homepage">gView GIS 1.0.0 documentation</a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../../../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Table of contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../setup/index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">gView WebApps</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../carto/index.html">gView Carto</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">gView Data Explorer</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../connections.html">Database Connections</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">gView Feature Database</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../server/index.html">gView Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../commandline/index.html">gView Command Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../commandline/index.html#command-line-tools-interactive-mode">Command Line Tools (Interactive Mode)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix/index.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="creating-an-ms-sql-feature-database">
+<h1>Creating an MS SQL Feature Database<a class="headerlink" href="#creating-an-ms-sql-feature-database" title="Link to this heading">¶</a></h1>
+<p>This database is a proprietary format and can only be used with gView GIS. However, the advantage is the high performance with
+large data volumes. Additionally, this format allows for the creation and management of image catalogs in a comfortable graphical
+interface. A prerequisite for creating a database is MS SQLServer 2008 or higher. If the free Express version of MS SQL is used,
+the corresponding limitations of the server apply (max. 4GB per database, etc.). However, these restrictions do not limit the
+Feature Database functionality.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The method shown here refers to a <em>gView Feature Database</em> in SQLServer.
+The creation of a <em>gView Feature Database</em> in Postgres is analogous.
+To create a <em>gView Feature Database</em> based on SQLite, first navigate to the location in the filesystem where the database
+should be created. In the <em>Context Menu</em>, you can then select <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">New:</span> <span class="pre">SQLite</span> <span class="pre">Feature</span> <span class="pre">Database</span></code>.</p>
+</div>
+<p>To create a new Feature Database, select the node <code class="docutils literal notranslate"><span class="pre">Database</span> <span class="pre">/</span> <span class="pre">gView</span> <span class="pre">Feature</span> <span class="pre">Database</span> <span class="pre">Connections</span> <span class="pre">(MS-SQL</span> <span class="pre">Server)</span></code> in the tree view:</p>
+<img alt="../../../_images/create1.png" src="../../../_images/create1.png" />
+<p>In the toolbar, in the Context Block <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">new</span></code>, the tool <code class="docutils literal notranslate"><span class="pre">SQL</span> <span class="pre">Server</span> <span class="pre">Feature</span> <span class="pre">Database</span></code> is offered. Clicking on it opens the
+following dialog:</p>
+<img alt="../../../_images/create2.png" src="../../../_images/create2.png" />
+<p>Here, set up the connection to the SQL Server instance. The connection type specifies whether to log in via Windows authentication
+or using a username and password. The database name completes the properties of the new database.</p>
+<p>After confirmation with <code class="docutils literal notranslate"><span class="pre">OK</span></code>, the database is created with all necessary tables. If the creation is successful, the Data Explorer
+shows the new database icon in the <em>Contents area</em>:</p>
+<img alt="../../../_images/create3.png" src="../../../_images/create3.png" />
+<p>The icons in the <em>Contents area</em> are always opened with a double click. You can also create a connection icon to an
+existing Feature Database this way. Simply double-click the icon <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">New</span> <span class="pre">Connection…</span></code></p>
+<img alt="../../../_images/create4.png" src="../../../_images/create4.png" />
+<p>This way, more icons for the sample database with administrator rights can be created:</p>
+<img alt="../../../_images/create5.png" src="../../../_images/create5.png" />
+<p>Using the context toolbar of an icon, it can finally be renamed:</p>
+<img alt="../../../_images/create6.png" src="../../../_images/create6.png" />
+<p>The next step is to create a dataset for geospatial data. Datasets are
+collections of feature classes that possess similar properties. For example,
+all classes belonging to the cadastral system can be placed in a dataset labeled
+CADASTRE.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All feature classes within a dataset use the same spatial reference system!
+If data is in different reference systems, the feature classes must be divided into multiple datasets.
+A <strong>feature class name</strong> can only occur <strong>once</strong> in a <strong>database</strong>.</p>
+</div>
+<p>To create a new dataset, double-click on the database icon
+(<a class="reference external" href="mailto:MY_FDB&#37;&#52;&#48;localhost">MY_FDB<span>&#64;</span>localhost</a> (admin)) in the <em>Contents area</em>. Since no datasets exist yet, only
+an empty area appears. In the Context Block <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">new</span></code> in the toolbar, a
+tool <code class="docutils literal notranslate"><span class="pre">SQL</span> <span class="pre">Feature</span> <span class="pre">Database</span> <span class="pre">Dataset</span></code> is offered, which opens the following dialog:</p>
+<img alt="../../../_images/create7.png" src="../../../_images/create7.png" />
+<p>You can name it <code class="docutils literal notranslate"><span class="pre">Dataset1</span></code>. The type remains <code class="docutils literal notranslate"><span class="pre">Feature</span> <span class="pre">Dataset</span></code>.
+This means that vector data for all geometry types (point, line,
+area) can be stored in this dataset. The type Image Dataset is intended for creating
+image catalogs and will be discussed in the next section.</p>
+<p>The second tab of the dialog specifies the spatial reference system for the
+dataset. As mentioned above, the reference system can only be determined at this level.
+All feature classes in a dataset inherit this property.</p>
+<p>A spatial reference system always consists of two parts (coordinate system and
+geodetic datum), although the second part can theoretically be omitted. However, no datum transition is applied during projection. With the
+<code class="docutils literal notranslate"><span class="pre">Select</span></code>, you can choose from predefined systems:</p>
+<img alt="../../../_images/create8.png" src="../../../_images/create8.png" />
+<p>To narrow down the list, you can enter a search term (e.g., Austria, EPSG code).
+Clicking on the desired coordinate system closes the dialog.
+The procedure for the geodetic datum is identical. In some
+projections, the datum is already included. After making a selection, the dialog
+looks approximately like this:</p>
+<img alt="../../../_images/create9.png" src="../../../_images/create9.png" />
+<p>The third tab <code class="docutils literal notranslate"><span class="pre">Spatial</span> <span class="pre">Index</span></code> allows you to create a prototype for the spatial
+index of the dataset. Whenever a new feature class is created, this
+prototype is suggested. However, since a separate index can be created for each feature class later,
+the provision of this prototype is optional.</p>
+<img alt="../../../_images/create10.png" src="../../../_images/create10.png" />
+<p>After confirming the dialog, the new <em>Dataset</em> is created:</p>
+<img alt="../../../_images/create11.png" src="../../../_images/create11.png" />
+<p>The context tools of the dataset icon can be used to rename it. It is also possible to
+change the parameters of the spatial reference system afterwards.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the spatial reference system is changed retrospectively, the feature classes in the
+dataset are not reprojected. This means that the coordinates of the features remain the same.
+Only the projection parameters inherited from the dataset are changed.</p>
+</div>
+<p>In the next step, data from an ESRI Shapefile should be copied into the SQL Feature Database.
+To do this, navigate through the tree view to the directory where the shape data is located.</p>
+<img alt="../../../_images/create12.png" src="../../../_images/create12.png" />
+<p>First, select the desired files. As usual, multiple files can be marked using the Shift or
+Control key. In the context area of the toolbar, the <code class="docutils literal notranslate"><span class="pre">Copy</span></code> button appears. Clicking on
+the button copies the data to the clipboard.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The data is not copied to the Windows clipboard but to the <strong>gView.DataExplorer</strong>
+clipboard of the current session. Data cannot be copied to other programs.
+It is also not possible to copy from one <strong>gView.DataExplorer</strong> window to another.</p>
+</div>
+<p>Navigate back to the dataset created earlier; the <em>Contents area</em> of the dataset is still empty.
+After clicking the <code class="docutils literal notranslate"><span class="pre">Paste</span></code> button in the context area of the toolbar, the following dialog appears:</p>
+<img alt="../../../_images/create13.png" src="../../../_images/create13.png" />
+<p>The copying process is started by clicking the <code class="docutils literal notranslate"><span class="pre">Start</span></code> button:</p>
+<img alt="../../../_images/create13a.png" src="../../../_images/create13a.png" />
+<p>Once the copying process is successfully completed, the dialog can be closed with <code class="docutils literal notranslate"><span class="pre">Close</span></code>,
+and the new <em>Feature Classes</em> are displayed.</p>
+<p>Now double-click on one of the newly created Feature Class icons.
+In the <em>Contents view</em>, the fields with their respective field types appear:</p>
+<img alt="../../../_images/create14.png" src="../../../_images/create14.png" />
+<p>In addition to the <code class="docutils literal notranslate"><span class="pre">FeatureClass</span></code> tab, another tab appears: <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">View</span></code>.
+This is used to display the content of the feature classes. Both geometry and data are displayed:</p>
+<img alt="../../../_images/create15.png" src="../../../_images/create15.png" />
+<p>Navigation in the map occurs as in <strong>gView.Carto</strong> by dragging with the mouse button
+(moving) or using the mouse wheel (zooming). The table area can be enlarged or reduced
+with the arrow keys.</p>
+<p>In addition to importing data into a <em>SQL Feature Database</em>, this data can also be
+exported. To do this, proceed in the opposite way as described above. First, mark and copy
+the feature classes. Then navigate to the destination folder and paste them there. When copying
+data back into the file system, the output format must be specified in the copy dialog:</p>
+<img alt="../../../_images/create19.png" src="../../../_images/create19.png" />
+<p>Besides <em>ESRI Shape</em> file, the <em>OGC GML</em> format is also possible. Both formats are
+readable by most GIS systems and are therefore very suitable for exchanging data
+between different systems.</p>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="index.html">
+                    <span class="icon">&lt;</span><span>gView Feature Database</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="raster_catalog.html"><span>Creating a Raster (Catalog) Dataset</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

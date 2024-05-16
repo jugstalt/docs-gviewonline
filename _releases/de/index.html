@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html lang="de" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Willkommen bei gView GIS &#8212; gView GIS 6.x Dokumentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="_static/basic_mod.css?v=d7bb20b6" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=247da48f" />
+    <script src="_static/documentation_options.js?v=e5fbb453"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=70a09b52"></script>
+    <script src="_static/js/theme.js"></script>
+    <script src="_static/js/petite-vue.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="Erste Schritte" href="setup/index.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="#" title="Go to homepage">gView GIS 6.x Dokumentation</a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Schnellsuche</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Los" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Inhaltsverzeichnis:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="setup/index.html">Erste Schritte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webapps/index.html">gView WebApps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server/index.html">gView Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commandline/index.html">gView Kommandozeilenwerkzeuge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commandline/index.html#kommandozeilenwerkzeuge-interaktiver-modus">Kommandozeilenwerkzeuge (Interaktiver Modus)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Anleitungen (Tutorials)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/index.html">Anhang</a></li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="willkommen-bei-gview-gis">
+<h1>Willkommen bei gView GIS<a class="headerlink" href="#willkommen-bei-gview-gis" title="Link to this heading">¶</a></h1>
+<p>gView GIS ist ein benutzerfreundliches <a class="reference external" href="https://github.com/jugstalt/gview-gis">Open Source</a> GI Framework zum Erstellen von Karten-
+und Featurediensten.</p>
+<p>Die Tools zum Erstellen der Karten werden über eine Web-Oberfläche angeboten,
+die sowohl lokal am Client
+ausgeführt als auch auf einem Server gehostet werden können.
+Die Erstellung der Karten erfolgt mit dem Programm <em>gView Carto</em>, das innerhalb der <em>gView.WebApps</em>
+Anwendung angeboten wird. Die Karten bestehen aus Layern, die auf verschiedene GeoDaten-Quellen
+basieren können. Die einzelnen Layer können beliebig eingefärbt und/oder beschriftet werden.</p>
+<p>Fertige Karten können über den <em>gView Server</em> publiziert werden. Auf die erstellten Karten- und
+<em>Feature</em>-Dienste kann über definierte Schnittstellen (WMS, WMTS, GeoServices REST…)
+zugegriffen werden.</p>
+<section id="positionierung-von-gview-gis">
+<h2>Positionierung von gView GIS<a class="headerlink" href="#positionierung-von-gview-gis" title="Link to this heading">¶</a></h2>
+<p><em>gView GIS</em> ist nicht als eigenständige GIS-Plattform zu verstehen. Es bietet lediglich ein benutzerfreundliches
+Autorentool (<em>gView Carto</em>) zum Erstellen von Karten mit ansprechender kartographischer Darstellung und einen
+performanten Kartenserver zum Veröffentlichen dieser Karten. Diese Karten stehen damit über verschiedene
+Schnittstellen zur Verfügung und können beispielsweise in ein bestehendes WebGIS eingebunden werden.</p>
+<p><em>gView GIS</em> ist nicht als Desktop-Software zu verstehen, mit der Geo-Daten zum Zwecke von Analysen visualisiert
+werden können. Für diese Aufgaben gibt es bereits leistungsfähige Open-Source-Projekte wie
+etwa <a class="reference external" href="https://www.qgis.org">https://www.qgis.org</a>.</p>
+<p>Vielmehr geht es darum, performante und kartographisch ansprechende Kartendienste über den <em>gView.Server</em>
+zu publizieren. Analyse-Werkzeuge werden in anderen/bestehenden Programmen angeboten, die <em>gView Kartendienste</em>
+einbinden können.</p>
+<p>Eine empfohlene produktive Konstellation für den Einsatz von <em>gView GIS</em> wäre beispielsweise:</p>
+<img alt="_images/gview1.png" src="_images/gview1.png" />
+<p>Die beiden Komponenten <code class="docutils literal notranslate"><span class="pre">Datenbank</span></code> und <code class="docutils literal notranslate"><span class="pre">Karten-/FeatureServer</span></code> können sich hier auf
+einem Server befinden und der <code class="docutils literal notranslate"><span class="pre">GIS</span> <span class="pre">Client</span></code> lokal auf dem Desktop oder in einem Browser laufen.
+<em>gView Carto</em> wird ebenfalls lokal auf einem Desktop installiert. Die erstellten Karten
+werden im <em>gView MapServer</em> veröffentlicht. Der <em>gView MapServer</em> besitzt zusätzlich einen
+Security Layer, mit dem bestimmt werden kann, welcher Client Karten anzeigen,
+abfragen oder die Daten bearbeiten darf.</p>
+<p>Eine weitere Einsatzmöglichkeit von <em>gView GIS</em> ist die Erstellung von Offline-GIS-Lösungen.
+Diese können auf einem beliebigen (Windows, Linux, MacOS) Gerät installiert werden und können
+als Ausfalls-/Notsystem oder Offline-System (Laptop) dienen.
+Dazu bietet <em>gView GIS</em> über die Kommandozeilen-Tools die Möglichkeit an, alle Vektordaten
+einer Karte in eine SQLite-Datenbank zu übernehmen. Damit fällt die Datenbank-Schicht weg und
+die SQLite-Datenbank kann einfach auf das Zielgerät kopiert werden. Am Zielgerät muss dann
+nur noch der <em>gView MapServer</em> und die entsprechende Client-Software installiert werden.
+Der <em>gView MapServer</em> kann auf dem Zielgerät wie in der Installationsanleitung gezeigt als
+<em>Standalone</em>-Anwendung ausgeführt werden.</p>
+</section>
+<section id="komponenten-von-gview-gis">
+<h2>Komponenten von gView GIS<a class="headerlink" href="#komponenten-von-gview-gis" title="Link to this heading">¶</a></h2>
+<p>Die Komponenten des gView Frameworks lassen sich in drei Kategorien einteilen:</p>
+<ul class="simple">
+<li><p><strong>gView WebApps:</strong> Dies umfasst die Web-Anwendungen <em>gView Carto</em> und <em>gView DataExplorer</em>.
+Beide können über eine Web-Oberfläche bedient werden.
+Mithilfe dieser Programme können Karten erstellt bzw. GeoDaten verwaltet werden.
+Die Basis für beide Programme ist .NET 8 (Microsoft.AspNetCore.App 8.0.x Runtime)
+und damit auf Windows, Linux und MacOS Betriebssystemen lauffähig.</p></li>
+<li><p><strong>gView Server:</strong> Der gView Server ist ein Karten- und Featureserver,
+mit dem die erstellten Karten als Kartendienste veröffentlicht werden können.
+Neben OGC-Standards (WMS, WFS) stehen die Dienste auch in Formaten wie GeoServices REST
+und ArcXML zur Verfügung. Damit lassen sich die Dienste in jeder gängigen GIS-Software
+anzeigen und abfragen.
+Die Basis des Programms ist .NET 8 (Microsoft.AspNetCore.App 8.0.x Runtime)
+und damit auf Windows, Linux und MacOS Betriebssystemen lauffähig.</p></li>
+<li><p><strong>gView Commandline Tools:</strong> Eine Sammlung von Kommandozeilenwerkzeugen, mit denen wiederkehrende
+Aufgaben im <em>gView GIS</em> Umfeld automatisiert werden können (z.B. eine Karte für den Server veröffentlichen).
+Die Tools befinden sich nach der Installation im gleichen Verzeichnis wie <em>gView.WebApps</em>
+und haben die gleichen Laufzeitvoraussetzungen.</p></li>
+</ul>
+<blockquote>
+<div></div></blockquote>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Inhaltsverzeichnis:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="setup/index.html">Erste Schritte</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="setup/deploy.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup/run.html">gView Anwendungen Ausführen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup/config.html">Konfiguration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="webapps/index.html">gView WebApps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="webapps/carto/index.html">gView Carto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webapps/dataexplorer/index.html">gView Data Explorer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="server/index.html">gView Server</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="server/inst/installation.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server/manual/index.html">Benutzerhandbuch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="commandline/index.html">gView Kommandozeilenwerkzeuge</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="commandline/index.html#gview-kommandozeilenwerkzeug-aufgerufen">gView Kommandozeilenwerkzeug aufgerufen</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="commandline/index.html#kommandozeilenwerkzeuge-interaktiver-modus">Kommandozeilenwerkzeuge (Interaktiver Modus)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="commandline/render_tile_cache.html">gView.Cmd RenderTile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commandline/mxlutil.html">gView.Cmd MxlUtil</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Anleitungen (Tutorials)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/mapservice/index.html">Karten als <em>gView Server Dienst</em> veröffentlichen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tilecache/index.html">Berechnung eines <em>TileCaches</em> (Ortsplan)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/index.html">Anhang</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="appendix/formats.html">Datenformate für Karten und Dienste</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">Willkommen bei gView GIS</a><ul>
+<li><a class="reference internal" href="#positionierung-von-gview-gis">Positionierung von gView GIS</a></li>
+<li><a class="reference internal" href="#komponenten-von-gview-gis">Komponenten von gView GIS</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="setup/index.html"><span>Erste Schritte</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, Jürgen Gstaltmaier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+Daten(bank) Verbindungen
+========================
+
+Mit *gView.DataExplorer* können Verbindungen zu GeoDaten Quellen verwaltet und die Daten auf einfache Weise 
+visualisiert werden.
+
+File basierte Datenquellen können einfach angezeigt werden, indem man zum jeweiligen Verzeichnis im Filesystem navigiert.
+
+Bei Datenbanken müssen zuerst die Verbindungen erzeugt werden. Hier soll beispielhaft gezeigt werden, wie die Verbindung zu 
+einer PostGIS Datenbank erstellt wird.
+
+.. note::
+   Verbindungen, die im *gView.DataExplorer* erzeugt werden, stehen auch in *gView.Carto* beim Einfügen von Daten zur Verfügung.
+
+PostGIS Datenbanken werden über den Knoten ``Databases`` eingebunden:
+
+.. image:: img/connections1.png
+
+Unter ``PostGIS`` werden alle bestehenden Verbindungen aufgelistet. Mit ``New Connection`` kann eine neue Verbindung angelegt werden:
+
+.. image:: img/connections2.png 
+
+Nach Eingabe der Verbindungsparameter kann vor dem Anlegen noch mit ``Test Connection`` überprüft werden,
+ob eine Verbindung möglich ist. Nach der Bestätigung des Dialogs mit ``OK`` wird die Verbindung angelegt und erscheint in der 
+Liste. Durch einen Doppelklick wird die Verbindung geöffnet und die Layer in der Datenbank aufgelistet.
+
+Über die Werkzeuge im Kontextbereich der Werkzeugleiste kann eine Verbindung umbenannt oder gelöscht 
+werden. Mit dem Button ``Connection String...`` können die Verbindungsparameter nachträglich geändert werden.
+
+.. note::
+   Werden mit *gView Carto* Daten über eine Datenbankverbindung eingebunden, werden alle Verbindungsparameter in die 
+   MXL Datei gespeichert. Ein nachträgliches Ändern der Verbindungsparameter im *gView DataExplorer* wirkt sich nicht auf 
+   bestehende, bereits erstellte *gView Carto* Karten aus.
+
+
+

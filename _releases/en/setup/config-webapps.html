@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Configuration of gView.WebApps &#8212; gView GIS 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=d7bb20b6" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=247da48f" />
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/petite-vue.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Configuration gView.Server" href="config-server.html" />
+    <link rel="prev" title="Configuration" href="config.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../index.html" title="Go to homepage">gView GIS 1.0.0 documentation</a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Table of contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="deploy.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">Running gView Applications</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="config.html">Configuration</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Configuration of gView.WebApps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config-server.html">Configuration gView.Server</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../webapps/index.html">gView WebApps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server/index.html">gView Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commandline/index.html">gView Command Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commandline/index.html#command-line-tools-interactive-mode">Command Line Tools (Interactive Mode)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/index.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="configuration-of-gview-webapps">
+<span id="config-webapps"></span><h1>Configuration of gView.WebApps<a class="headerlink" href="#configuration-of-gview-webapps" title="Link to this heading">¶</a></h1>
+<p>The <em>gView.WebApps</em> application can be configured via the file <code class="docutils literal notranslate"><span class="pre">_config/gview-webapps.config</span></code>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="s2">&quot;RepositoryPath&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;{repository-path}/gview-web&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Authentication&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// depends on your authentication provider</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s2">&quot;Drives&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;TILE_CACHES&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;{repository-path}/server/web/tile-caches&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;USER&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;{repository-path}/gview-web/users/{{username}}&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s2">&quot;CustomTiles&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;Title&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Local gView Server&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Description&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;gView Server in development environment&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;TargetUrl&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https://localhost:44331&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="s2">&quot;Publish&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// optional</span>
+<span class="w">        </span><span class="s2">&quot;Servers&quot;</span><span class="o">:</span>
+<span class="w">        </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="s2">&quot;Name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;Url&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https://localhost:44331&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;Client&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;carto-publish&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1">// optional</span>
+<span class="w">                </span><span class="s2">&quot;Secret&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;008bHbuWQx7JAY5lxOWnNWqm67L&quot;</span><span class="w">  </span><span class="c1">// optional: if you dont set, user is ask on publish</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="custom-drives-directories">
+<h2>Custom Drives/Directories<a class="headerlink" href="#custom-drives-directories" title="Link to this heading">¶</a></h2>
+<p>In the <code class="docutils literal notranslate"><span class="pre">Drives</span></code> section, paths can be specified that are listed under <code class="docutils literal notranslate"><span class="pre">Computer</span></code>
+in <strong>gView.DataExplorer</strong>. If this section is omitted, all available drives will be displayed.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The paths and drives refer to the computer/server on which <strong>gView.WebApps</strong> is installed.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If <strong>gView.WebApps</strong> is installed on a server, it is <strong>strongly</strong> recommended to maintain this
+section. For security reasons, access should not be allowed to the entire filesystem.
+Otherwise, a potential attacker could theoretically access all files on the server.</p>
+</div>
+<p>Within a path, a placeholder <code class="docutils literal notranslate"><span class="pre">{{username}}</span></code> can be used. This will be replaced with the
+username of the user currently logged into <strong>gView.WebApps</strong>. This allows a user, for example,
+to store MXD files in a <em>private</em> directory.</p>
+</section>
+<section id="custom-tiles">
+<h2>Custom Tiles<a class="headerlink" href="#custom-tiles" title="Link to this heading">¶</a></h2>
+<p>In the <code class="docutils literal notranslate"><span class="pre">CustomTiles</span></code> section, you can create additional tiles that are displayed on the
+homepage of <strong>gView.WebApps</strong>. This allows, for example, the creation of tiles linking to
+one or more <strong>gView.Server</strong> instances.</p>
+</section>
+<section id="publishing-maps">
+<h2>Publishing Maps<a class="headerlink" href="#publishing-maps" title="Link to this heading">¶</a></h2>
+<p>The <cite>Publish</cite> section allows you to specify which <strong>gView.Server</strong> instances
+maps can be published to directly. Multiple instances can be defined under <cite>Servers</cite>:</p>
+<ul class="simple">
+<li><p><strong>Name:</strong> Any name that describes the respective instance.</p></li>
+<li><p><strong>Url:</strong> The URL to the <strong>gView.Server</strong> instance.</p></li>
+<li><p><strong>Client:</strong> A <em>client</em> is necessary for publishing services. Here the name of the
+<em>client</em> is specified. This option can also be omitted. The user must then enter the
+<em>client</em> manually during publishing.</p></li>
+<li><p><strong>Secret:</strong> The <em>secret</em> for the <em>client</em>. This parameter is also optional. If nothing
+is specified here, the user must enter the <em>secret</em> during publishing.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If a <em>secret</em> is specified, it must be entered in plain text in the <cite>gview-webapps.config</cite>.
+To avoid this, it is good practice to only specify the <em>client</em> and omit the <em>secret</em>.
+The user must then know the <em>secret</em> and specify it during publishing.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To later publish services via <strong>gView.Carto</strong>, one must be logged in as an <strong>admin</strong> user.
+The <cite>Publish Map</cite> tool is not offered to <strong>carto</strong> users.</p>
+</div>
+<p>Further configurations of the <strong>gView.Server</strong> are necessary to be able to publish.
+It is recommended to configure this section only after the following sections have
+been read:</p>
+<p><a class="reference internal" href="../examples/mapservice/index.html#publish-map-service-example"><span class="std std-ref">Publishing Maps as gView Server Service</span></a></p>
+<p><a class="reference internal" href="config-server.html#config-server"><span class="std std-ref">Configuration gView.Server</span></a></p>
+</section>
+<section id="authentication">
+<h2>Authentication<a class="headerlink" href="#authentication" title="Link to this heading">¶</a></h2>
+<p>To determine how one can/must sign in to <strong>gView.WebApps</strong>, the <code class="docutils literal notranslate"><span class="pre">Authentication</span></code> section is used.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If this section is omitted, no authentication occurs. Every user can do everything. However, this should only be possible for local installations.
+If <strong>gView.WebApps</strong> is running on a server, it is <strong>absolutely necessary</strong> to set up an authentication method.</p>
+</div>
+<p><strong>gView.WebApps</strong> distinguishes two categories of users:</p>
+<ul class="simple">
+<li><p><strong>Admin-User:</strong> Users who are allowed to use all applications and tools.</p></li>
+<li><p><strong>Carto-User:</strong> Users who are only allowed to use the <em>Carto</em> application. These users can only create and save maps. They can access predefined database connections to incorporate geo-data into the map. However, unlike <em>Admin-Users</em>, they cannot view or modify the <em>Connection String</em>.</p></li>
+</ul>
+<p>Currently, the following authentication methods are available:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">forms</span></code>: Users can log in using a username and password via a login form.
+The list of users is set directly in the <code class="docutils literal notranslate"><span class="pre">gview-web.config</span></code>.
+This is a simple-to-maintain form of authentication that
+often suffices for small teams. This method does not provide advanced security policies
+and should be used only for applications within an intranet or confined areas.</p>
+<p>Deploying <strong>gView.WebApps</strong> over the Internet should not be considered with this method.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">oidc</span></code>: OpenID Connect is another method of authentication. In this case,
+users log in through an external authentication service. This generally offers higher security,
+including two-factor authentication, etc.</p></li>
+</ul>
+<section id="forms-authentication">
+<h3>Forms Authentication<a class="headerlink" href="#forms-authentication" title="Link to this heading">¶</a></h3>
+<p>Here, the value <code class="docutils literal notranslate"><span class="pre">forms</span></code> is specified as the <code class="docutils literal notranslate"><span class="pre">Type</span></code>. In the <code class="docutils literal notranslate"><span class="pre">Forms</span></code> section,
+multiple <code class="docutils literal notranslate"><span class="pre">AdminUsers</span></code> and <code class="docutils literal notranslate"><span class="pre">CartoUsers</span></code> can be specified, each as an array of objects
+with the properties <code class="docutils literal notranslate"><span class="pre">Username</span></code> and <code class="docutils literal notranslate"><span class="pre">PasswordHash</span></code>.
+To avoid specifying the password in plaintext, a hash value in hexadecimal format is used instead.
+This hash can be generated using the <code class="docutils literal notranslate"><span class="pre">SHA256</span></code> or <code class="docutils literal notranslate"><span class="pre">SHA512</span></code> algorithm.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are online tools available for calculating these hash values, e.g.:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://coding.tools/sha256">https://coding.tools/sha256</a></p></li>
+<li><p><a class="reference external" href="https://coding.tools/sha512">https://coding.tools/sha512</a></p></li>
+</ul>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Authentication&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;Type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;forms&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;Forms&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;AdminUsers&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="s2">&quot;Username&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;PasswordHash&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;B109F3BBBC244EB82441917ED06D6....&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="s2">&quot;CartoUsers&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="s2">&quot;Username&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;carto&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;PasswordHash&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;5E884898DA28047151D0E56F8DC629277360...&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="openid-connect-authentication">
+<h3>OpenID Connect Authentication<a class="headerlink" href="#openid-connect-authentication" title="Link to this heading">¶</a></h3>
+<p>If an <em>Identity Service</em> that supports <em>OpenID Connect</em> is available, it can be used for
+authentication.</p>
+<p>The value <code class="docutils literal notranslate"><span class="pre">oidc</span></code> must be entered as the <code class="docutils literal notranslate"><span class="pre">Type</span></code>. In the <code class="docutils literal notranslate"><span class="pre">Oidc</span></code> section,
+the <em>Identity Server</em> (<code class="docutils literal notranslate"><span class="pre">Authority</span></code>) must be specified. On the <em>Identity Server</em>,
+<em>gView.WebApps</em> must be added as a client. The respective <code class="docutils literal notranslate"><span class="pre">ClientId</span></code> and
+<code class="docutils literal notranslate"><span class="pre">ClientSecret</span></code> must also be entered here. The following values are recommended for <code class="docutils literal notranslate"><span class="pre">Scopes</span></code>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Authentication&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="s2">&quot;Type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;oidc&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="s2">&quot;RequiredUserRole&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;gview-web-user&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="s2">&quot;RequiredAdminRole&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;gview-web-admin&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="s2">&quot;Oidc&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">           </span><span class="s2">&quot;Authority&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https://my-identity-server&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="s2">&quot;ClientId&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;client-id-for-gview-web&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="s2">&quot;ClientSecret&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;passW0rd&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="s2">&quot;scopes&quot;</span><span class="o">:</span><span class="p">[</span><span class="s2">&quot;openid&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;profile&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;role&quot;</span><span class="p">]</span>
+<span class="w">       </span><span class="p">}</span>
+<span class="w">   </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Since the <em>Identity Server</em> also provides roles, a specific role for
+<strong>Admin-User</strong> and <strong>Carto-User</strong> must be specified. This is done through the parameters
+<code class="docutils literal notranslate"><span class="pre">RequiredUserRole</span></code> (for Carto-User) and <code class="docutils literal notranslate"><span class="pre">RequiredAdminRole</span></code> (for Admin-User).</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">Configuration of gView.WebApps</a><ul>
+<li><a class="reference internal" href="#custom-drives-directories">Custom Drives/Directories</a></li>
+<li><a class="reference internal" href="#custom-tiles">Custom Tiles</a></li>
+<li><a class="reference internal" href="#publishing-maps">Publishing Maps</a></li>
+<li><a class="reference internal" href="#authentication">Authentication</a><ul>
+<li><a class="reference internal" href="#forms-authentication">Forms Authentication</a></li>
+<li><a class="reference internal" href="#openid-connect-authentication">OpenID Connect Authentication</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="config.html">
+                    <span class="icon">&lt;</span><span>Configuration</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="config-server.html"><span>Configuration gView.Server</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

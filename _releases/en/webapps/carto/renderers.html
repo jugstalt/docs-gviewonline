@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Feature Renderer &#8212; gView GIS 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=d7bb20b6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=247da48f" />
+    <script src="../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <script src="../../_static/js/petite-vue.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Label Renderer" href="labeling.html" />
+    <link rel="prev" title="Representation and Symbology" href="symbology.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../../index.html" title="Go to homepage">gView GIS 1.0.0 documentation</a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Table of contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../setup/index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">gView WebApps</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">gView Carto</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="newmap.html">Creating a New Map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="adddata.html">Add Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="toc.html">Drawing Order/TOC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contexttools.html">Context-Related Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbology.html">Representation and Symbology</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Feature Renderer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="labeling.html">Label Renderer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scales.html">Scale Limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="layersettings.html">Additional Layer Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="managemaps.html">Saving and Managing Map Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dataexplorer/index.html">gView Data Explorer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../server/index.html">gView Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commandline/index.html">gView Command Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commandline/index.html#command-line-tools-interactive-mode">Command Line Tools (Interactive Mode)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix/index.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="feature-renderer">
+<h1>Feature Renderer<a class="headerlink" href="#feature-renderer" title="Link to this heading">¶</a></h1>
+<p><em>Renderers</em> dictate how layers are drawn on the map. This is not about the symbolism but about
+the logic of the display:</p>
+<ul class="simple">
+<li><p><strong>Simple:</strong> Every object (feature) has the same symbol.</p></li>
+<li><p><strong>Categorized:</strong> Objects (features) are divided into categories. This can be done based on attribute values
+or ranges of values.</p></li>
+<li><p><strong>Renderer Groups:</strong> <em>Renderers</em> can even be grouped/combined. For example, a layer can be drawn differently
+in different scale ranges.</p></li>
+</ul>
+<p>To set the <em>Renderer</em>, select the layer in the TOC and open the dialog via the context-sensitive tool
+<code class="docutils literal notranslate"><span class="pre">Layer</span> <span class="pre">Settings</span></code>. There, switch (on the left) to the section
+<code class="docutils literal notranslate"><span class="pre">Feature</span> <span class="pre">Renderer</span></code>:</p>
+<img alt="../../_images/renderers1.png" src="../../_images/renderers1.png" />
+<section id="simple-renderer">
+<h2>Simple Renderer<a class="headerlink" href="#simple-renderer" title="Link to this heading">¶</a></h2>
+<p>In this example, the <code class="docutils literal notranslate"><span class="pre">Simple</span> <span class="pre">Renderer</span></code> is preset. It assumes that the same symbolism is used for each
+<em>Feature</em>. The corresponding symbol can be edited in the right area of the dialog.</p>
+</section>
+<section id="simple-renderer-aggregated">
+<h2>Simple Renderer (Aggregated)<a class="headerlink" href="#simple-renderer-aggregated" title="Link to this heading">¶</a></h2>
+<p>Similar to the Simple Renderer. However, here the features are not immediately drawn but are first
+collected internally in a <em>GeometryAggregate</em> and then rendered.
+This renderer has an experimental character. The <code class="docutils literal notranslate"><span class="pre">Simple</span> <span class="pre">Renderer</span></code> is preferred.</p>
+</section>
+<section id="value-map-renderer">
+<h2>Value Map Renderer<a class="headerlink" href="#value-map-renderer" title="Link to this heading">¶</a></h2>
+<p>Another often-used renderer is the <code class="docutils literal notranslate"><span class="pre">Value</span> <span class="pre">Map</span> <span class="pre">Renderer</span></code>. This renderer categorizes features
+based on attribute values. An attribute of the layer can be defined for this purpose.
+Features with the same attribute value are displayed with the same symbol.</p>
+<p>In the dialog (on the right), first select the attribute. Then, using the
+buttons below the field selection, there are several options to define categories:</p>
+<ul class="simple">
+<li><p><strong>Add all values:</strong> Reads all possible categories from the layer and creates a
+random symbol for each category.</p></li>
+<li><p><strong>Add value:</strong> Manually sets a category.</p></li>
+<li><p><strong>Add “All Other”:</strong> Adds an <code class="docutils literal notranslate"><span class="pre">All</span> <span class="pre">Other</span></code> category. This allows assigning a symbol
+for all features that do not fall into any of the listed categories. Without this
+category, these features would not be drawn.</p></li>
+<li><p><strong>Remove All:</strong> Removes all categories.</p></li>
+</ul>
+<p>An example would be to display all municipalities differently based on the state they are in.
+Simply select <code class="docutils literal notranslate"><span class="pre">LAND</span></code> (=STATE) as the field and click on
+<code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">all</span> <span class="pre">values</span></code>:</p>
+<img alt="../../_images/renderers2.png" src="../../_images/renderers2.png" />
+<p>On the map, the result would look something like this:</p>
+<img alt="../../_images/renderers3.png" src="../../_images/renderers3.png" />
+<p>To change a symbol in the Renderer dialog, simply click on the symbol in the corresponding
+category. This will display the <em>Symbol Mask</em>. From there, it is possible to open the
+<strong>Symbol Composer</strong> again.
+A single category can be deleted with the <em>trash can</em> symbol.</p>
+<p>At the bottom of the list, there are additional buttons:</p>
+<ul>
+<li><p><strong>Rotation:</strong> This setting is only possible for point themes. Here, it can be specified
+whether the symbols should be rotated based on an attribute value. This button is also
+offered with the <code class="docutils literal notranslate"><span class="pre">Simple</span> <span class="pre">Renderer</span></code> if the layer is a point theme. The rotation is only
+applied if a <code class="docutils literal notranslate"><span class="pre">Field</span> <span class="pre">Name</span></code> is specified:</p>
+<a class="reference internal image-reference" href="../../_images/renderers4.png"><img alt="../../_images/renderers4.png" src="../../_images/renderers4.png" style="width: 300px;" /></a>
+</li>
+<li><p><strong>Cartography:</strong> Here, it can be more precisely determined in which order the features should be drawn.
+<code class="docutils literal notranslate"><span class="pre">Simple</span></code> draws the features in the order they come from the database. <code class="docutils literal notranslate"><span class="pre">Legend</span> <span class="pre">Ordering</span></code> draws the features
+based on the legend, meaning each category is drawn separately. This can ensure that superior
+features are always drawn over subordinate features (highways over country roads).
+<code class="docutils literal notranslate"><span class="pre">Legend</span> <span class="pre">And</span> <span class="pre">Symbol</span> <span class="pre">Ordering</span></code> additionally considers the individual symbol layers
+(<strong>Symbol Stack</strong> from the <strong>Symbol Composer</strong>):</p>
+<a class="reference internal image-reference" href="../../_images/renderers5.png"><img alt="../../_images/renderers5.png" src="../../_images/renderers5.png" style="width: 300px;" /></a>
+</li>
+</ul>
+</section>
+<section id="many-value-map-renderer">
+<h2>Many Value Map Renderer<a class="headerlink" href="#many-value-map-renderer" title="Link to this heading">¶</a></h2>
+<p>This renderer is similar to the <strong>Value Map Renderer</strong>. However, up to
+three fields can be specified here that determine the category:</p>
+<img alt="../../_images/renderers6.png" src="../../_images/renderers6.png" />
+</section>
+<section id="quantity-renderer">
+<h2>Quantity Renderer<a class="headerlink" href="#quantity-renderer" title="Link to this heading">¶</a></h2>
+<p>With this renderer, features are categorized based on numerical value ranges,
+for example, based on area. An easy way to define the categories
+is provided by the <code class="docutils literal notranslate"><span class="pre">Wizard</span></code>:</p>
+<img alt="../../_images/renderers7.png" src="../../_images/renderers7.png" />
+<p>The <em>Wizard</em> determines the maximum and minimum of the value range and assigns random
+symbols for these. These values and symbols can still be manually changed here.
+For the intermediate steps, a fixed step width or a fixed number of steps can be chosen.</p>
+<img alt="../../_images/renderers8.png" src="../../_images/renderers8.png" />
+<p>When you click on <code class="docutils literal notranslate"><span class="pre">Calc</span></code>, the intermediate steps are calculated and displayed below. If
+the categories do not meet expectations, this step can be repeated until
+the result is correct. Afterward, the <em>Wizard</em> can be closed with <code class="docutils literal notranslate"><span class="pre">Close</span></code>.</p>
+<p>The Wizard also attempts to create a smooth transition between the starting and ending symbols:</p>
+<a class="reference internal image-reference" href="../../_images/renderers9.png"><img alt="../../_images/renderers9.png" src="../../_images/renderers9.png" style="width: 300px;" /></a>
+</section>
+<section id="scale-dependent-renderer">
+<h2>Scale Dependent Renderer<a class="headerlink" href="#scale-dependent-renderer" title="Link to this heading">¶</a></h2>
+<p>This is a <em>Renderer</em> group. Here, multiple <em>Renderers</em> can be defined,
+each applied within specified scale limits.
+Renderers can be added via the <code class="docutils literal notranslate"><span class="pre">Add</span></code> menu:</p>
+<img alt="../../_images/renderers10.png" src="../../_images/renderers10.png" />
+<p>Each row corresponds to a renderer. The order can be changed by dragging with the left mouse button.
+The corresponding renderer can be edited via the <code class="docutils literal notranslate"><span class="pre">Edit</span></code> icon (pencil). A renderer can be removed from the list
+using the <code class="docutils literal notranslate"><span class="pre">Delete</span></code> icon (trash can).
+Further settings can be made via the <code class="docutils literal notranslate"><span class="pre">Settings</span></code> icon (gear). These include the scale limits
+within which the <em>Renderer</em> should be applied:</p>
+<img alt="../../_images/renderers10.png" src="../../_images/renderers10.png" />
+</section>
+<section id="group-renderer">
+<h2>Group Renderer<a class="headerlink" href="#group-renderer" title="Link to this heading">¶</a></h2>
+<p>In principle, this corresponds to the <strong>Scale Dependent Renderer</strong> but without scale limits.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">Feature Renderer</a><ul>
+<li><a class="reference internal" href="#simple-renderer">Simple Renderer</a></li>
+<li><a class="reference internal" href="#simple-renderer-aggregated">Simple Renderer (Aggregated)</a></li>
+<li><a class="reference internal" href="#value-map-renderer">Value Map Renderer</a></li>
+<li><a class="reference internal" href="#many-value-map-renderer">Many Value Map Renderer</a></li>
+<li><a class="reference internal" href="#quantity-renderer">Quantity Renderer</a></li>
+<li><a class="reference internal" href="#scale-dependent-renderer">Scale Dependent Renderer</a></li>
+<li><a class="reference internal" href="#group-renderer">Group Renderer</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="symbology.html">
+                    <span class="icon">&lt;</span><span>Representation and Symbology</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="labeling.html"><span>Label Renderer</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

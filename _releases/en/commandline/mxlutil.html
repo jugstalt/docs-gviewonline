@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>gView.Cmd MxlUtil &#8212; gView GIS 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=d7bb20b6" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=247da48f" />
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/petite-vue.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tutorials" href="../examples/index.html" />
+    <link rel="prev" title="gView.Cmd RenderTile" href="render_tile_cache.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../index.html" title="Go to homepage">gView GIS 1.0.0 documentation</a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Table of contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../setup/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webapps/index.html">gView WebApps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server/index.html">gView Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">gView Command Line Tools</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html#command-line-tools-interactive-mode">Command Line Tools (Interactive Mode)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="render_tile_cache.html">gView.Cmd RenderTile</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">gView.Cmd MxlUtil</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/index.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="gview-cmd-mxlutil">
+<span id="id1"></span><h1>gView.Cmd MxlUtil<a class="headerlink" href="#gview-cmd-mxlutil" title="Link to this heading">¶</a></h1>
+<p>This tool provides several methods to automate recurring tasks associated with
+map project files (MXL):</p>
+<ul class="simple">
+<li><p><strong>PublishService</strong>: Publish a map on the <em>gView MapServer</em>.</p></li>
+<li><p><strong>MxlDataset</strong>: Display and adjust connection properties of an MXL file.</p></li>
+<li><p><strong>MxlToFdb</strong>: Copy all vector data of a map project into a <em>gView Feature Database</em>.
+The <em>gView FDB</em> format ensures high performance. The database is created in <em>SQL Server</em>,
+<em>PostGre</em>, or <em>Sqlite</em>.
+This tool can be used to make map projects available <em>offline</em>
+(all data in a <em>Sqlite</em> database).</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following commands are shown in <strong>interactive mode</strong>. For this, <code class="docutils literal notranslate"><span class="pre">gView.Cmd.exe</span> <span class="pre">-i</span></code>
+must be called. Without the <em>interactive mode</em>, <code class="docutils literal notranslate"><span class="pre">gView.Cmd.exe</span> <span class="pre">--command</span></code> would have to be
+prefixed to each command shown here.</p>
+</div>
+<p>The general call for this tool is:</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>Command:<span class="p">&gt;</span>MxlUtil -u <span class="p">&lt;</span>utiltiy-name<span class="p">&gt;</span> [parameters]
+</pre></div>
+</div>
+<p>As <code class="docutils literal notranslate"><span class="pre">utility-name</span></code>, one of the options presented here can be used.</p>
+<section id="publishservice">
+<h2>PublishService<a class="headerlink" href="#publishservice" title="Link to this heading">¶</a></h2>
+<p>The following parameters can be passed for publishing map services:</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>Command:<span class="p">&gt;</span>MxlUtil -u publishservice
+
+PublishService
+--------------
+
+Publish Mxl as gView Map Service
+
+Required arguments:
+-mxl <span class="p">&lt;</span>mxl-file&gt;
+-server <span class="p">&lt;</span>gview-server-url&gt;
+-service <span class="p">&lt;</span>servicename incl. folder ... folder/servicename&gt;
+
+Optional arguments:
+-client <span class="p">&lt;</span>clientname&gt;
+-secret <span class="p">&lt;</span>clientsecret&gt;
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-mxl</span></code>: Pfad zum XML File</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-server</span></code>: Url der gView Instanz, über die der Dienst publiziert werden sollte</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-service</span></code>: Name des Services: <code class="docutils literal notranslate"><span class="pre">{Verzeichnis}</span></code>/<code class="docutils literal notranslate"><span class="pre">{Dienstname}</span></code></p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>Command:<span class="p">&gt;</span>MxlUtil -u publishservice -mxl c:\my-map.mxl -server https://localhost -service produktiv/my-service
+</pre></div>
+</div>
+<p>Optional parameters can include a <em>Client</em> through which the service should be published.
+Typically, not every user should be allowed to publish services. To control this, the
+administrator/manager of the <em>gView MapServer</em> can create clients (in the manager web interface
+under <code class="docutils literal notranslate"><span class="pre">Security</span></code>). Rights can be assigned to these clients at the service and directory level
+(lock icon). Clients that are granted the right to <code class="docutils literal notranslate"><span class="pre">publish</span></code> for a directory are allowed to
+publish services.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If no rights are set for a directory, all rights are assigned to every user.</p>
+</div>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>Command:<span class="p">&gt;</span>MxlUtil -u publishservice -mxl c:\my-map.mxl -server https://localhost -service produktiv/my-service -client publisher -secret pa3sw0rd
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only a valid <em>Client</em> can be specified via the command line. The administrator cannot be passed
+here. If you want to publish services <em>securely</em> via the command line, a client must be created!</p>
+</div>
+</section>
+<section id="mxldatasets">
+<h2>MxlDatasets<a class="headerlink" href="#mxldatasets" title="Link to this heading">¶</a></h2>
+<p>Here, the connection parameters of datasets within an MXL file can be displayed or modified.
+One use case could be when maps with connections to a (local) test database are developed. Before
+the (automated) publishing, the connection properties can be rewritten to a production database.</p>
+<p>Invocation:</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>Command:<span class="p">&gt;</span>MxlUtil -u mxldatasets
+
+Required arguments:
+-mxl <span class="p">&lt;</span>mxl-file&gt;
+-cmd <span class="p">&lt;</span>info<span class="p">|</span>modify-cs<span class="p">|</span>modify-connectionstring&gt;
+
+Optional arguments:
+-out-xml <span class="p">&lt;</span>name/path of the out xml&gt;
+
+Commands:
+info
+----
+Shows all dataset connections and connection string parameters in the mxl file.
+
+modify-cs<span class="p">|</span>modify-connectionstring
+---------------------------------
+Changes the value of an parameter in a connection  in the mxl file.
+
+Required arguments:
+-parameter<span class="p">|</span>-parameter-name <span class="p">&lt;</span>name of the parameter&gt;
+-new-value<span class="p">|</span>-new-parameter-value <span class="p">&lt;</span>set this value for the parameter&gt;
+
+Optional arguments:
+-dsindex<span class="p">|</span>-dataset-index <span class="p">&lt;</span>the index of the dataset you want change the parameter<span class="p">&gt;</span> default = -1 =<span class="p">&gt;</span> all datasets
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-mxl</span></code>: Path to the MXL file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-cmd</span></code>: Further specification of the command to be executed for the dataset connections.</p></li>
+</ul>
+<p>Optional:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-mxl-out</span></code>: Path to an MXL that should be created (only with <code class="docutils literal notranslate"><span class="pre">modify-connectionstring</span></code>).
+If no output XML is specified, the original file will be overwritten.</p></li>
+</ul>
+<p><strong>Command - Info</strong></p>
+<p>This command is the default. If this or no command is specified, the connection parameters
+of the individual datasets are displayed:</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>Command:<span class="p">&gt;</span>MxlUtil -u mxldatasets -mxl C:\gview5\mxl\my-map.mxl
+
+Dataset 0
+==============================================================================
+<span class="k">Type</span>: gView.DataSources.MSSqlSpatial.DataSources.Sde.SdeDataset
+
+
+ConnectionString:
+------------------------------------------------------------------------------
+Server=testdbserver
+Database=gisdb
+User Id=DB_READ
+Password=*************
+</pre></div>
+</div>
+<p>In the listing of datasets, each dataset is assigned a number (here <code class="docutils literal notranslate"><span class="pre">0</span></code>). If one later wants to change a parameter for a specific
+dataset, this must be indicated with the parameter <code class="docutils literal notranslate"><span class="pre">-dsindex</span></code> (see below).</p>
+<p><strong>Command - modify-cs|modify-connectionstring</strong></p>
+<p>This command can be used to change individual <em>Connection Parameters</em>. In addition to the parameters mentioned above, the following
+parameters must be provided:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-parameter|-parameter-name</span></code>: The name of the parameter (e.g., <code class="docutils literal notranslate"><span class="pre">server</span></code>) to be changed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-new-value|-new-parameter-value</span></code>: The new value for the parameter.</p></li>
+</ul>
+<p>If multiple parameters are to be changed, the parameters must be repeated on the command line.</p>
+<p>Optional:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-dsindex|-dataset-index</span></code>: If only a specific dataset is to be changed, the index number of the dataset can be specified here.
+The index number can be obtained from the <code class="docutils literal notranslate"><span class="pre">info</span></code> command shown above. If this parameter is not specified, the parameters for
+all datasets will be changed.</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>Command:<span class="p">&gt;</span>MxlUtil -u mxldatasets -mxl C:\gview5\mxl\my-map.mxl -cmd modify-cs -parameter Server -new-value proddbserver -parameter password -new-value ProdPa3sw0rd -out-mxl C:\gview5\mxl\my-map-produktiv.mxl
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The connection parameters are checked both when opening and when overwriting. If a connection cannot be made with the given parameters,
+the program will terminate.
+If an MXL is damaged and a connection cannot be established with the connection parameters, this tool cannot be used.
+In this case, the MXL file must be repaired using a text editor.</p>
+</div>
+</section>
+<section id="mxltofdb">
+<h2>MxlToFdb<a class="headerlink" href="#mxltofdb" title="Link to this heading">¶</a></h2>
+<p>Copying all vector data from a map project into a <em>gView Feature Database</em>. <em>gView FDB</em> is a format for which <em>gView</em> guarantees high performance. The databases are set up in <em>SQL Server</em>, <em>PostGre</em>, or <em>Sqlite</em>.
+This tool can be used to provide map projects <em>offline</em> (all data in a <em>Sqlite</em> database)</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>Command:<span class="p">&gt;</span>MxlUtil -u mxltofdb
+
+MxlToFdb
+--------
+
+Copies all vector data in an MXL file to an FeatureDatabase (fdb) [SqlServer, PostGres or Sqlite).
+The result is a new MXL file with the same symbology in changed connections to the new FeatureDatabase.
+
+Example: Use this utitiity to make an existing database driven MXL to an &#39;offline&#39; file driven (Sqlite)
+MXL.
+
+Required arguments:
+-mxl <span class="p">&lt;</span>mxl-file&gt;
+-target-connectionstring <span class="p">&lt;</span>target fdb connection string&gt;
+-target-guid <span class="p">&lt;</span>guid or sqlserver<span class="p">|</span>postgres<span class="p">|</span>sqlite&gt;
+
+Optional arguments:
+-out-xml <span class="p">&lt;</span>name/path of the out xml&gt;
+-dont-copy-features-from <span class="p">&lt;</span>a comma seperated list of layernames, where only an empty Db-Table-Schema is created&gt;
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-mxl</span></code>: Path to the XML file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-target-connectionstring</span></code>: Connection string to the target feature database</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-target-guid</span></code>: GUID of the target database plugin or simply <code class="docutils literal notranslate"><span class="pre">sqlserver|postgres|sqlite</span></code></p></li>
+</ul>
+<p>Optional:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-mxl-out</span></code>: Path to an MXL that should be created. If no output XML is specified,
+the original file will be overwritten.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--dont-copy-features-from</span></code>: A list of layers that should not be copied. The tool
+is mainly used to make existing maps <em>offline</em>
+capable by writing the data into a SQLite database. If (large)
+datasets of a map are not necessarily required <em>offline</em>, they can be specified here.
+Although the schema of these tables will be created in the target database, no data will be copied.</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>Command:<span class="p">&gt;</span>MxlUtil -u mxltofdb -mxl C:\gview5\mxl\my-map.mxl -target-connectionstring: c:\offline.fdb -target-guid sqlite -out-mxl C:\gview5\mxl\my-map-offline.mxl -dont-copy-features-from bigdata-layer1,bigdata-layer2
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">gView.Cmd MxlUtil</a><ul>
+<li><a class="reference internal" href="#publishservice">PublishService</a></li>
+<li><a class="reference internal" href="#mxldatasets">MxlDatasets</a></li>
+<li><a class="reference internal" href="#mxltofdb">MxlToFdb</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="render_tile_cache.html">
+                    <span class="icon">&lt;</span><span>gView.Cmd RenderTile</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="../examples/index.html"><span>Tutorials</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

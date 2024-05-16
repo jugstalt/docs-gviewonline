@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html lang="de" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Berechnung eines TileCaches (Ortsplan) &#8212; gView GIS 6.x Dokumentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=d7bb20b6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=247da48f" />
+    <script src="../../_static/documentation_options.js?v=e5fbb453"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/translations.js?v=70a09b52"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <script src="../../_static/js/petite-vue.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
+    <link rel="search" title="Suche" href="../../search.html" />
+    <link rel="next" title="Anhang" href="../../appendix/index.html" />
+    <link rel="prev" title="Karten als gView Server Dienst veröffentlichen" href="../mapservice/index.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../../index.html" title="Go to homepage">gView GIS 6.x Dokumentation</a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Schnellsuche</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Los" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Inhaltsverzeichnis:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../setup/index.html">Erste Schritte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../webapps/index.html">gView WebApps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../server/index.html">gView Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commandline/index.html">gView Kommandozeilenwerkzeuge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commandline/index.html#kommandozeilenwerkzeuge-interaktiver-modus">Kommandozeilenwerkzeuge (Interaktiver Modus)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Anleitungen (Tutorials)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../mapservice/index.html">Karten als <em>gView Server Dienst</em> veröffentlichen</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Berechnung eines <em>TileCaches</em> (Ortsplan)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix/index.html">Anhang</a></li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="berechnung-eines-tilecaches-ortsplan">
+<h1>Berechnung eines <em>TileCaches</em> (Ortsplan)<a class="headerlink" href="#berechnung-eines-tilecaches-ortsplan" title="Link to this heading">¶</a></h1>
+<p>In diesem Beispiel wird gezeigt, wie aus einem bestehenden <em>gView Server</em> Dienst ein TileCache gerechnet
+werden kann. Dieser kann über die WMTS Schnittstelle in unterschiedlichen Anwendungen eingebunden werden.
+Durch das Vorprozessieren der Kacheln erhöht sich die Performance des Dienstes. Außerdem vermindert
+sich die Serverlast.</p>
+<p>Ein <em>TileCache</em> besteht am Ende nur noch aus einzelnen (Kachel) Bildern. Diese können auch als
+<em>Compact TileCache Kacheln</em> zusammengefasst werden, wodurch die Anzahl der vorgehaltenen Einzelbilder
+reduziert werden kann (einfacher zu kopieren, weniger Speicherplatz).</p>
+<p>Ein <em>gView TileCache</em> bietet unterschiedliche <em>Styles</em> an. Die Kacheln können über Filter <em>on-the-fly</em>
+beispielsweise auch in Schwarz-Weiß angezeigt werden.</p>
+<section id="mapservice-metadaten">
+<h2>MapService Metadaten<a class="headerlink" href="#mapservice-metadaten" title="Link to this heading">¶</a></h2>
+<p>Um einen Dienst als <em>TileCache</em> verwenden zu können, müssen im ersten Schritt die Metadaten
+des Dienstes angepasst werden. Dazu muss man sich über die <strong>gView.Server</strong> Web-Oberfläche
+mit <code class="docutils literal notranslate"><span class="pre">Manage</span></code> (Sidebar) als <strong>Administrator</strong> anmelden.</p>
+<p>Über die Eigenschaften des Dienstes kommt man zu den Metadaten des Dienstes:</p>
+<img alt="../../_images/manage11.png" src="../../_images/manage11.png" />
+<p>Im Metadaten Dialog wechselt man zuerst in den Bereich <code class="docutils literal notranslate"><span class="pre">Tile</span> <span class="pre">Service</span> <span class="pre">Properties</span></code>:</p>
+<img alt="../../_images/metadata1.png" src="../../_images/metadata1.png" />
+<p>Hier können die Eigenschaften des <em>TileCache</em> als YAML-Datei definiert werden. Die Änderungen
+für den Dienst könnten etwa so aussehen:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">use</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">scales</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000000</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500000</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">250000</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100000</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50000</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">25000</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10000</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5000</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2500</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500</span>
+<span class="nt">epsgCodes</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">31256</span>
+<span class="nt">extents</span><span class="p">:</span>
+<span class="nt">31256</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">minX</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-226900</span>
+<span class="w">    </span><span class="nt">minY</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">163300</span>
+<span class="w">    </span><span class="nt">maxX</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">    </span><span class="nt">maxY</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">315500</span>
+<span class="nt">originUpperLeft</span><span class="p">:</span>
+<span class="nt">31256</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-5622500</span>
+<span class="w">    </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5001000</span>
+<span class="nt">originLowerLeft</span><span class="p">:</span>
+<span class="nt">31256</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-226900</span>
+<span class="w">    </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">163300</span>
+<span class="nt">tileWidth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">512</span>
+<span class="nt">tileHeight</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">512</span>
+<span class="nt">useUpperLeft</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">useLowerLeft</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">cacheUpperLeftTiles</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">cacheLowerLeftTiles</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">supportPng</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">supportJpg</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">dpi</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">95.9998080000121</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Wichtig ist, dass <code class="docutils literal notranslate"><span class="pre">use</span></code> auf <code class="docutils literal notranslate"><span class="pre">true</span></code> gesetzt wird, damit der Dienst später auch die <em>TileCache</em>
+Schnittstellen anbietet.</p>
+</div>
+<p>Navigiert man über die <code class="docutils literal notranslate"><span class="pre">Sidebar/Browse</span></code> um Dienst und klickt diesen an, sollte <code class="docutils literal notranslate"><span class="pre">WMTS</span></code> als
+Schnittstelle angeboten werden:</p>
+<img alt="../../_images/service1.png" src="../../_images/service1.png" />
+<p>Auch die <strong>Capabilities</strong> sollten ein Ergebnis liefern (klick auf den Link):</p>
+<img alt="../../_images/service2.png" src="../../_images/service2.png" />
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Es werden zwar die WMTS Capabilities angezeigt, allerdings ohne einzelnen Maßstabsebenen.
+Der Grund ist, dass bisher noch keine Kacheln berechnet wurden.</p>
+</div>
+</section>
+<section id="kacheln-berechnen">
+<h2>Kacheln berechnen<a class="headerlink" href="#kacheln-berechnen" title="Link to this heading">¶</a></h2>
+<p>Zum Berechnen der Kacheln muss in die <strong>gView.DataExplorer</strong> App gewechselt werden. Dort gibt es
+unter <code class="docutils literal notranslate"><span class="pre">Tools</span></code> ein Werkzeug, zum Berechnen der Kacheln (<code class="docutils literal notranslate"><span class="pre">TileCache.Render</span></code>):</p>
+<img alt="../../_images/explorer1.png" src="../../_images/explorer1.png" />
+<p>Startet man das Werkzeug, muss zuerst die Url zum Server angegeben werden. Ist der Dienst geschützt,
+muss noch eventuell ein <em>Client</em> und ein <em>Secret</em> angegeben werden.
+Den entsprechenden Dienst aus der Liste auswählen und den Dialog mit <code class="docutils literal notranslate"><span class="pre">Ok</span></code> bestätigen:</p>
+<img alt="../../_images/explorer2.png" src="../../_images/explorer2.png" />
+<p>Wird der Dienst als WMTS Dienst erkennt, erscheint ein Dialog mit den <em>TileCache</em> Möglichkeiten des
+Dienstes. Hier kann eingestellt wie der TileCache berechnet werden soll.</p>
+<img alt="../../_images/explorer3.png" src="../../_images/explorer3.png" />
+<p>Es wird empfohlen, einen
+<code class="docutils literal notranslate"><span class="pre">Compact</span> <span class="pre">Tile</span> <span class="pre">Cache</span></code> zu rechnen, da hier weniger Files erzeugt werden. Tilecaches, die aus den
+einzelnen Kachel-Bildern bestehen, benötigen viel Speicherplatz und sind schwer zu kopieren.</p>
+<p>Damit die Berechnung schneller funktioniert, können Anzahl der parallelen <em>Threads</em> angegeben werden.
+Die Berechnung erfolgt grundsätzlich am <strong>gView.Server</strong>. Die Zahl, die hier angegeben wird,
+steuert, wie viele <em>Render</em> Commandos gleichzeitig zum Server geschickt werden.</p>
+<p>Über die <code class="docutils literal notranslate"><span class="pre">Scales</span></code> Liste kann gesteuert werden, welche Maßstäbe gerendert werden sollten.</p>
+<p>Bestätigt man den Dialog mit <code class="docutils literal notranslate"><span class="pre">Confirm</span></code> wird eine Kommandozeile angezeigt, die man mit <code class="docutils literal notranslate"><span class="pre">Start</span></code>
+ausführen kann. Die Ausgabe sieht in etwa so aus:</p>
+<img alt="../../_images/explorer4.png" src="../../_images/explorer4.png" />
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Das Ausführen über den <strong>gView.DataExplorer</strong> kann auch über das Kommandozeilen Werkzeug
+erfolgen, siehe <a class="reference internal" href="../../commandline/index.html#commandline-tools"><span class="std std-ref">gView Kommandozeilenwerkzeuge</span></a> (<a class="reference internal" href="../../commandline/render_tile_cache.html#commandline-tools-render-tile-cache"><span class="std std-ref">gView.Cmd RenderTile</span></a>).
+Da TileCaches sehr lange zum Berechnen brauchen, wird empfohlen produktiv die Kommandozeile
+zu verwenden. Ansonsten muss garantiert werden, dass der <strong>gView.DataExplorer</strong> während
+der gesamten Berechnung geöffnet bleibt.</p>
+<p>Der hier beschriebene Weg kann allerdings dazu verwendet werden, um die Übergabeparameter
+an das Kommandozeilen Tool über deine graphische Oberfläche zu erhalten. Poppt das Fenster
+mit der Kommandozeilenaufruf auf, kann dieser Einfach kopiert und am Server ausgeführt werden.</p>
+</div>
+<p>Wechselt man der Berechnung wieder zum <strong>gView.Server</strong> und zu den <em>WMTS Capabilities</em> des Dienstes
+sollte jetzt auch die berechneten Maßstabsebenen angezeigt werden.</p>
+<img alt="../../_images/service3.png" src="../../_images/service3.png" />
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Es werden nur die Maßstabsebenen angezeigt, für die im TileCache Verzeichnis am Server
+(siehe file <code class="docutils literal notranslate"><span class="pre">_config/mapserver.json</span></code>) für den entsprechenden Dienst auch ein Verzeichnis
+angelegt wurde:</p>
+<img alt="../../_images/service4.png" src="../../_images/service4.png" />
+<p>Möchte man, das gewisse Maßsebenen <code class="docutils literal notranslate"><span class="pre">on</span> <span class="pre">the</span> <span class="pre">fly</span></code> berechnet werden sollten, kann man das
+lösen, indem man das entsprechende Verzeichnis (Maßstabszahl) manuell anlegt. Findet der
+<strong>gView.Server</strong> später keine Kacheln im Verzeichnis, werden die Kacheln immer <code class="docutils literal notranslate"><span class="pre">on</span> <span class="pre">the</span> <span class="pre">fly</span></code>
+erstellt und ausgeliefert.</p>
+<p><strong>Achtung:</strong> Das sollte nur bei performanten Dienst gemacht werden. Und nur wenn eine
+Berechnung der entsprechenden Maßstabsebene nicht möglich ist.</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">Berechnung eines <em>TileCaches</em> (Ortsplan)</a><ul>
+<li><a class="reference internal" href="#mapservice-metadaten">MapService Metadaten</a></li>
+<li><a class="reference internal" href="#kacheln-berechnen">Kacheln berechnen</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="../mapservice/index.html">
+                    <span class="icon">&lt;</span><span>Karten als <em>gView Server Dienst</em> veröffentlichen</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="../../appendix/index.html"><span>Anhang</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, Jürgen Gstaltmaier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

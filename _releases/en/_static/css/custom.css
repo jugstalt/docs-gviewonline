@@ -1,0 +1,34 @@
+.wy-table-responsive table td, 
+.wy-table-responsive table th {
+    white-space: normal !important;
+}
+
+.rst-content section ul {
+    list-style: disc;
+    line-height: 24px;
+    margin-bottom: 24px;
+}
+
+.rst-content section ul li {
+    list-style: disc;
+    margin-left: 24px;
+}
+
+.rst-content section ul li p:last-child {
+    margin-bottom: 0;
+}
+
+.footer-info {
+    margin:5px 0px;
+    padding:3px;
+    background-color:#eee;
+}
+
+div.highlight-batch div.highlight {
+    background: #333333;
+    color: #f0f0f0;
+}
+
+div.highlight-batch div.highlight span.hll {
+    color: #333333;
+}

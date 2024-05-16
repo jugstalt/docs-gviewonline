@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html lang="de" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Karten als gView Server Dienst veröffentlichen &#8212; gView GIS 6.x Dokumentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=d7bb20b6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=247da48f" />
+    <script src="../../_static/documentation_options.js?v=e5fbb453"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/translations.js?v=70a09b52"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <script src="../../_static/js/petite-vue.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
+    <link rel="search" title="Suche" href="../../search.html" />
+    <link rel="next" title="Berechnung eines TileCaches (Ortsplan)" href="../tilecache/index.html" />
+    <link rel="prev" title="Anleitungen (Tutorials)" href="../index.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../../index.html" title="Go to homepage">gView GIS 6.x Dokumentation</a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Schnellsuche</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Los" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Inhaltsverzeichnis:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../setup/index.html">Erste Schritte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../webapps/index.html">gView WebApps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../server/index.html">gView Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commandline/index.html">gView Kommandozeilenwerkzeuge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commandline/index.html#kommandozeilenwerkzeuge-interaktiver-modus">Kommandozeilenwerkzeuge (Interaktiver Modus)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Anleitungen (Tutorials)</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Karten als <em>gView Server Dienst</em> veröffentlichen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tilecache/index.html">Berechnung eines <em>TileCaches</em> (Ortsplan)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix/index.html">Anhang</a></li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="karten-als-gview-server-dienst-veroffentlichen">
+<span id="publish-map-service-example"></span><h1>Karten als <em>gView Server Dienst</em> veröffentlichen<a class="headerlink" href="#karten-als-gview-server-dienst-veroffentlichen" title="Link to this heading">¶</a></h1>
+<p>Kartenprojekte, die mit <em>gView Carto</em> erstellt wurden, können im <em>gView MapServer</em> veröffentlicht werden.
+Dadurch können diese Karten in unterschiedlichsten GIS Anwendungen eingebunden werden
+(Desktop, WebGIS, Leaflet, …).</p>
+<p>Die Kartendienste werden über den <em>gView MapServer</em> in unterschiedlichen Schnittstellen bereitgestellt, z.B:</p>
+<ul class="simple">
+<li><p><strong>OGC WMS</strong>: Eine sehr verbreitete Schnittstelle, die in alle gängigen GIS Softwarepakete eingebunden
+werden kann. Es können Kartenbilder und Legenden erzeugt und in einfacher Form auch Features abgefragt
+werden (<em>Punktidentify</em>).</p></li>
+<li><p><strong>OGC WMTS</strong>: Bereitstellen von vorprozessierten Tile-Kacheln.</p></li>
+<li><p><strong>GeoServices REST</strong>: Eine von ESRI definierte Schnittstelle auf Basis von REST/Json.
+Damit können Kartenbilder und Legendenbilder abgeholt werden, und komplexere Abfragen (Punkt, Rechteck,
+beliebige Geometrie) sowie Suche nach Attributen bereitgestellt werden.
+Neben den Kartendiensten (<em>MapServer</em>) werden hier auch <em>Feature</em> Dienste (<em>FeatureServer</em>) angeboten,
+mit denen GeoObjekte nicht nur abgeholt/abgefragt sondern auch bearbeitet und erstellt werden können (<em>Editing</em>).</p></li>
+</ul>
+<p>Zum Veröffentlichen von Kartendiensten gibt es drei Möglichkeiten:</p>
+<ul class="simple">
+<li><p><strong>Kommandozeile:</strong> Der Weg über die Kommandozeile wird im Abschnitt (<a class="reference internal" href="../../commandline/mxlutil.html#gview-cmd-mxlutil"><span class="std std-ref">gView.Cmd MxlUtil</span></a>)
+beschrieben.</p></li>
+<li><p><strong>MapServer WebUI:</strong> Über die Web-Oberfläche des <strong>gView.Servers</strong>.</p></li>
+<li><p><strong>Carto:</strong> Über die <strong>gView.Carto</strong> App.</p></li>
+</ul>
+<section id="veroffentlichen-uber-die-mapserver-webui">
+<h2>Veröffentlichen über die MapServer WebUI<a class="headerlink" href="#veroffentlichen-uber-die-mapserver-webui" title="Link to this heading">¶</a></h2>
+<p>Die hier beschriebene Vorgehensweise erfolgt über die Web-Oberfläche des Servers.
+Nach dem Aufruf des Servers wird folgende Oberfläche angezeigt:</p>
+<img alt="../../_images/mapserver1.png" src="../../_images/mapserver1.png" />
+<p>Um Kartendienste zu veröffentlichen, muss man sich entweder als Administrator oder als berechtigter
+<em>Client</em> beim Server anmelden. Um sich als Administrator anzumelden, muss auf die Kachel <code class="docutils literal notranslate"><span class="pre">Manage</span></code>
+geklickt werden. Danach muss man sich über das Login-Formular anmelden.</p>
+<p>Als <em>Client</em> kann man sich über die <em>Sidebar</em> (links) über <code class="docutils literal notranslate"><span class="pre">Login</span></code> anmelden. <em>Clients</em> haben bestimmte
+Rechte auf Dienste und Verzeichnisse mit Diensten (MapRequest, Query, Edit, Publish).
+<em>Clients</em> dürfen allerdings selber keine Verzeichnisse anlegen. Das ist nur dem Administrator erlaubt.</p>
+<p>Da für das Veröffentlichen von Diensten mittels Kommandozeile oder <strong>gView.Carto</strong> ein Client notwendig ist,
+wird hier kurz gezeigt, wie die Vorgehensweise für das Anlegen von Clients ist.</p>
+<section id="client-anlegen">
+<h3>Client anlegen<a class="headerlink" href="#client-anlegen" title="Link to this heading">¶</a></h3>
+<p>Im Administrationsbereich auf <code class="docutils literal notranslate"><span class="pre">Security</span></code> klicken:</p>
+<img alt="../../_images/manage1.png" src="../../_images/manage1.png" />
+<p>In dieser Oberfläche kann ein neuer Client angelegt werden:</p>
+<img alt="../../_images/manage2.png" src="../../_images/manage2.png" />
+<p>Im nächsten Schritt sollte ein Verzeichnis angelegt werden, in dem der neue Client Karten veröffentlichen
+darf. Dafür wechselt man zuerst über die <em>Sidebar</em> zu <code class="docutils literal notranslate"><span class="pre">Browse</span> <span class="pre">Services</span></code>.
+In dieser Ansicht kann unter <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">Folder</span></code> ein neues Verzeichnis angelegt werden. Klickt man danach
+auf <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">new</span> <span class="pre">folder</span></code>, sollte das neue Verzeichnis in der Liste erscheinen.</p>
+<img alt="../../_images/manage3.png" src="../../_images/manage3.png" />
+<p>Danach wechselt man zurück zum <code class="docutils literal notranslate"><span class="pre">Manage</span></code> Bereich. Auch dort sollte das neue Verzeichnis jetzt
+mit einem offenen Schloss erscheinen. Offen bedeutet hier, dass jeder Anwender für dieses
+Verzeichnis alle Rechte (außer <em>publish</em>) hat (für Produktionssysteme nicht empfehlenswert).
+Klickt man auf das Schloss, öffnet sich ein Fenster. Hier kann in der Auswahlliste der vorhin angelegte
+User gefunden werden. Für diesen User sollte zumindest das <code class="docutils literal notranslate"><span class="pre">publish</span></code> Recht vergeben werden.
+Für den anonymen Benutzer <code class="docutils literal notranslate"><span class="pre">_anonymous</span></code> können beispielsweise nur die <code class="docutils literal notranslate"><span class="pre">map</span></code> und <code class="docutils literal notranslate"><span class="pre">query</span></code> Rechte
+vergeben werden:</p>
+<img alt="../../_images/manage4.png" src="../../_images/manage4.png" />
+<p>Die nächsten Schritte können mit dem bereits angemeldeten Administrator User durchgeführt werden.
+Allerdings könnte man sich jetzt auch abmelden und dann über die <em>Sidebar</em> mit
+<code class="docutils literal notranslate"><span class="pre">Login</span></code> als <em>Client</em> <code class="docutils literal notranslate"><span class="pre">publish-test</span></code> anmelden.</p>
+</section>
+<section id="publish-services">
+<h3>Publish Services<a class="headerlink" href="#publish-services" title="Link to this heading">¶</a></h3>
+<p>Zum Veröffentlichen von Diensten ist in den Bereich <code class="docutils literal notranslate"><span class="pre">Browse</span> <span class="pre">Services</span></code> (<em>Sidebar</em>) zu wechseln. Hier
+muss noch in das gewünschte Verzeichnis gewechselt werden. Ist man mit dem angemeldeten Benutzer zum
+Veröffentlichen von Diensten berechtigt, erscheint die Schaltfläche <code class="docutils literal notranslate"><span class="pre">Publish</span></code>. Dort kann ein
+MXL File (Kartenprojekt) ausgewählt werden:</p>
+<img alt="../../_images/publish1.png" src="../../_images/publish1.png" />
+<p>Unter <code class="docutils literal notranslate"><span class="pre">Service</span> <span class="pre">Name</span></code> kann der Name des Dienstes angegeben werden (wenn dieser nicht automatisch dem
+Namen des MXL Files entspricht). Klickt man auf den Button <code class="docutils literal notranslate"><span class="pre">Publish</span> <span class="pre">Service</span></code>,
+wird versucht den Dienst zu veröffentlichen. Beim Veröffentlichen wird noch geprüft, ob alle Datenquellen
+vom Server aus erreichbar sind und ob alle verwendeten <em>Fonts</em> installiert sind. Ist das Veröffentlichen
+erfolgreich, erscheint der Dienst in der Liste. Besteht bereits ein Dienst mit diesem Namen,
+wird er automatisch ersetzt.</p>
+</section>
+</section>
+<section id="veroffentlichen-uber-gview-carto">
+<h2>Veröffentlichen über gView.Carto<a class="headerlink" href="#veroffentlichen-uber-gview-carto" title="Link to this heading">¶</a></h2>
+<p>Karten können auch direkt von der <strong>gView.Carto</strong> App publiziert werden. Das hat den Vorteil,
+dass nicht extra in die <strong>gView.Server</strong> Web-Oberfläche gewechselt werden muss. Hier sind allerdings
+ein paar Voraussetzungen notwendig:</p>
+<ul class="simple">
+<li><p><strong>gview-webapps.config:</strong> In der Datei <cite>_config/gview-webapps.config</cite> muss der Abschnitt <cite>Publish</cite>
+definiert werden (siehe <a class="reference internal" href="../../setup/config-webapps.html#config-webapps"><span class="std std-ref">Konfiguration gView.WebApps</span></a>). Hier werden die <strong>Server</strong> und <strong>Clients</strong> angeführt, auf die über die <strong>gView.Carto</strong>
+App veröffentlicht werden kann.</p></li>
+<li><p><strong>Publish Client:</strong> Wie oben schon beschrieben, wird zum Veröffentlichen von Diensten ein
+<em>Client</em> benötigt (Ausnahme: Veröffentlichen über die <strong>Server WebUI</strong>. Dort kann direkt über
+das Administrator-Konto veröffentlicht werden).
+Ein <em>Client</em> kann immer nur in einen <em>Folder</em> Dienste veröffentlichen. Dazu muss, wie oben schon
+beschrieben, ein <em>Client</em>, z. B. <cite>carto-publish</cite> mit einem <em>Secret</em> vom Administrator angelegt werden.
+Danach müssen, wie oben ebenfalls beschrieben, <em>Folders</em> angelegt und dem <em>Client</em> <cite>carto-publish</cite>
+das <cite>publish</cite> Recht zugewiesen werden.</p></li>
+</ul>
+<p>Sind alle Voraussetzungen erfüllt, gibt es in der <strong>gView.Carto</strong> App folgendes Werkzeug:</p>
+<img alt="../../_images/carto1.png" src="../../_images/carto1.png" />
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Das Werkzeug ist nur für <strong>admin</strong> User sichtbar.</p>
+</div>
+<p>Klickt man auf den Button, wird folgender Dialog geöffnet:</p>
+<img alt="../../_images/carto2.png" src="../../_images/carto2.png" />
+<p>Hier kann über <cite>Select Servers</cite> aus unterschiedlichen <strong>gView.Server</strong> Instanzen ausgewählt werden.
+Wurden in der Konfiguration für eine Instanz nicht bereits <cite>Client</cite> <strong>und</strong> <cite>Client Secret</cite> definiert, muss
+die notwendigen <strong>Credentials</strong> hier eingegeben werden.
+Klickt man auf <cite>Connect</cite>, wird eine Verbindung zum Server aufgebaut und die <strong>Folders</strong> aufgelistet,
+in die publiziert werden kann:</p>
+<img alt="../../_images/carto3.png" src="../../_images/carto3.png" />
+<p>Gibt es bereits <em>Services</em> in diesem <em>Folder</em>, werden diese ebenfalls aufgelistet. Klickt man auf eines
+dieser Services, wird der Name im Eingabefeld <cite>Service Name</cite> eingetragen.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Veröffentlicht man eine Karte mit dem Namen eines bereits bestehenden <em>Service</em>, wird der
+Dienst am <strong>gView.Server</strong> überschrieben.</p>
+</div>
+<p>Möchte man einen neuen Dienst publizieren, kann ein Name in <cite>Service Name</cite> eingetragen werden.
+Hier sollte nur Kleinbuchstaben, Ziffern, <cite>-</cite> und <cite>_</cite> verwendet werden!</p>
+<p>Mit dem Button <cite>Publish map as service</cite> wird die Karte veröffentlicht. Ist das Veröffentlichen
+erfolgreich, wird das im Dialog angezeigt:</p>
+<img alt="../../_images/carto4.png" src="../../_images/carto4.png" />
+<p>Treten Fehler auf, müssen diese behoben werden, damit die Karte veröffentlicht werden kann.
+Fehler können beispielsweise sein:</p>
+<ul class="simple">
+<li><p><strong>Datenquellen:</strong> Die <strong>gView.Server</strong> Instanz hat keinen Zugriff auf die Datenquellen in der
+Karte.</p></li>
+<li><p><strong>Fonts:</strong> Fonts in der Karte (Labels, TrueTypeMarker) sind nicht am Server installiert, auf dem
+der <strong>gView.Server</strong> läuft.</p></li>
+</ul>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">Karten als <em>gView Server Dienst</em> veröffentlichen</a><ul>
+<li><a class="reference internal" href="#veroffentlichen-uber-die-mapserver-webui">Veröffentlichen über die MapServer WebUI</a><ul>
+<li><a class="reference internal" href="#client-anlegen">Client anlegen</a></li>
+<li><a class="reference internal" href="#publish-services">Publish Services</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#veroffentlichen-uber-gview-carto">Veröffentlichen über gView.Carto</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="../index.html">
+                    <span class="icon">&lt;</span><span>Anleitungen (Tutorials)</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="../tilecache/index.html"><span>Berechnung eines <em>TileCaches</em> (Ortsplan)</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, Jürgen Gstaltmaier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>
