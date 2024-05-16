@@ -1,7 +1,9 @@
+.. _config_webapps:
+
 Configuration of gView.WebApps
 ==============================
 
-The *gView.WebApps* application can be configured via the file ``_config/gview-web.config``:
+The *gView.WebApps* application can be configured via the file ``_config/gview-webapps.config``:
 
 .. code-block:: javascript
 
@@ -20,7 +22,18 @@ The *gView.WebApps* application can be configured via the file ``_config/gview-w
                 "Description": "gView Server in development environment",
                 "TargetUrl": "https://localhost:44331"
             }
-        ]
+        ],
+        "Publish": {  // optional
+            "Servers":
+            [
+                {
+                    "Name": "localhost",
+                    "Url": "https://localhost:44331",
+                    "Client": "carto-publish",  // optional
+                    "Secret": "008bHbuWQx7JAY5lxOWnNWqm67L"  // optional: if you dont set, user is ask on publish 
+                }
+            ]
+        }
     }       
 
 Custom Drives/Directories
@@ -49,6 +62,42 @@ Custom Tiles
 In the ``CustomTiles`` section, you can create additional tiles that are displayed on the 
 homepage of **gView.WebApps**. This allows, for example, the creation of tiles linking to 
 one or more **gView.Server** instances.
+
+Publishing Maps
+---------------
+
+The `Publish` section allows you to specify which **gView.Server** instances
+maps can be published to directly. Multiple instances can be defined under `Servers`:
+
+* **Name:** Any name that describes the respective instance.
+
+* **Url:** The URL to the **gView.Server** instance.
+
+* **Client:** A *client* is necessary for publishing services. Here the name of the
+  *client* is specified. This option can also be omitted. The user must then enter the
+  *client* manually during publishing.
+
+* **Secret:** The *secret* for the *client*. This parameter is also optional. If nothing
+  is specified here, the user must enter the *secret* during publishing.
+
+.. note::
+
+    If a *secret* is specified, it must be entered in plain text in the `gview-webapps.config`.
+    To avoid this, it is good practice to only specify the *client* and omit the *secret*.
+    The user must then know the *secret* and specify it during publishing.
+
+.. note::
+
+    To later publish services via **gView.Carto**, one must be logged in as an **admin** user.
+    The `Publish Map` tool is not offered to **carto** users.
+
+Further configurations of the **gView.Server** are necessary to be able to publish.
+It is recommended to configure this section only after the following sections have
+been read:
+
+:ref:`publish-map-service-example`
+
+:ref:`config-server`
 
 
 Authentication

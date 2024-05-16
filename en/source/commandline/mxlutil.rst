@@ -1,4 +1,6 @@
-gView.Cmd.MxlUtil
+.. _gview_cmd_mxlutil:
+
+gView.Cmd MxlUtil
 =================
 
 This tool provides several methods to automate recurring tasks associated with 

@@ -1,4 +1,6 @@
-gView.Cmd.MxlUtil
+.. _gview_cmd_mxlutil:
+
+gView.Cmd MxlUtil
 =================
 
 Dieses Werkzeug stellt einige Methoden zur Verfügung, um wiederkehrende Aufgaben im Umfeld mit 

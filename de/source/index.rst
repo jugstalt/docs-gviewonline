@@ -94,6 +94,4 @@ Die Komponenten des gView Frameworks lassen sich in drei Kategorien einteilen:
    examples/index
    appendix/index
 
-   desktop/index
-
 

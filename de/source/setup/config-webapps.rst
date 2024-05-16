@@ -1,7 +1,9 @@
+.. _config_webapps:
+
 Konfiguration gView.WebApps
 ===========================
 
-Die *gView.WebApps* Anwendung kann über die Datei ``_config/gview-web.config`` konfiguriert werden:
+Die *gView.WebApps* Anwendung kann über die Datei ``_config/gview-webapps.config`` konfiguriert werden:
 
 .. code-block:: javascript
 
@@ -20,7 +22,18 @@ Die *gView.WebApps* Anwendung kann über die Datei ``_config/gview-web.config`` 
                 "Description": "gView Server in development environment",
                 "TargetUrl": "https://localhost:44331"
             }
-        ]
+        ],
+        "Publish": {  // optional
+            "Servers":
+            [
+                {
+                    "Name": "localhost",
+                    "Url": "https://localhost:44331",
+                    "Client": "carto-publish",  // optional
+                    "Secret": "008bHbuWQx7JAY5lxOWnNWqm67L"  // optional: if you dont set, user is ask on publish 
+                }
+            ]
+        }
     }       
 
 Benutzerdefinierte Laufwerke/Verzeichnisse
@@ -52,6 +65,43 @@ Benutzerdefinierte Kacheln
 Im Abschnitt ``CustomTiles`` können beliebige weitere Kacheln angelegt werden, die auf der 
 Startseite von **gView.WebApps** angezeigt werden. Damit können beispielsweise Kacheln zu 
 einer oder mehreren **gView.Server** Instanzen angelegt werden.
+
+Karten Veröffentlichen
+----------------------
+
+Über den Abschnitt `Publish` kann angegeben werden, auf welche **gView.Server** Instanzen
+Karten direkt publiziert werden können. Unter `Servers` können hier mehrere Instanzen definiert werden:
+
+* **Name:** Ein beliebiger Name, der die entsprechende Instanz beschreibt.
+
+* **Url:** Die URL zur **gView.Server** Instanz.
+
+* **Client:** Zum Veröffentlichen von Diensten ist ein *Client* notwendig. Hier wird der Name des 
+  *Clients* angegeben. Diese Option kann auch weggelassen werden. Der Anwender muss dann beim 
+  Veröffentlichen den *Client* manuell eintragen.
+
+* **Secret:** Das *Secret* für den *Client*. Dieser Parameter ist ebenfalls optional. Wird hier nichts 
+  angegeben, muss der Anwender das *Secret* beim Veröffentlichen eingeben.
+
+.. note::
+
+    Wird ein *Secret* angegeben, muss dieses in der `gview-webapps.config` im Klartext angegeben werden.
+    Um das zu vermeiden, ist es gute Praxis, nur den *Client* anzugeben und das *Secret* wegzulassen.
+    Der Anwender muss dann das *Secret* kennen und beim Veröffentlichen angeben.
+
+.. note::
+
+    Um später Dienste über **gView.Carto** zu veröffentlichen, muss man als **admin** User angemeldet 
+    sein. **carto** Usern wird das `Publish Map` Werkzeug nicht angeboten.  
+
+Um Veröffentlichen zu können, sind weitere Konfigurationen des **gView.Server** notwendig.
+Es wird empfohlen, diesen Abschnitt erst zu konfigurieren, wenn auch die folgenden Abschnitte 
+gelesen wurden:
+
+:ref:`publish-map-service-example`
+
+:ref:`config-server`
+
 
 Authentifizierung
 -----------------
@@ -125,6 +175,7 @@ Hashwert im Hexadezimalformat angegeben. Dieser Hash kann mit dem
                 ]
             }
         }
+
 
 OpenID Connect Authentifizierung
 ++++++++++++++++++++++++++++++++
