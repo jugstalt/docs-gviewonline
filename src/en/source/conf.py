@@ -22,7 +22,7 @@ copyright = '2024, https://github.com/jugstalt/docs-gviewonline'
 author = 'Jürgen Gstaltmaier'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0.0'
+release = '6.x'
 
 
 # -- General configuration ---------------------------------------------------
