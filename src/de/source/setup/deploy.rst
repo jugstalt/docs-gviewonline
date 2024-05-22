@@ -3,18 +3,52 @@
 Installation
 ============
 
-Die Installation erfolgt über das Kommandozeilenprogramm ``gview.deploy`` oder ``gview.deploy.exe``.
+Die Installation erfolgt über das Kommandozeilenprogramm ``gview.deploy``.
 Dieses Tool erledigt folgende Aufgaben:
 
 * Neuinstallation von *gView.WebApps* und *gView.Server*
 * Verwaltung von Deploy-Profilen (z.B. ``local``, ``test``, ``staging``, ``production``)
 * Verteilung von Änderungen an der Konfiguration (z.B. ``mapserver.json``, ``gview-web.config``)
 
+Vorbereitung
+-------------
+
+Voraussetzung ist eine Installation der .NET App Runtime 8.0.x.
+
+**Windows:**
+
+Unter Windows kann das Programm beispielsweise nach ``C:\deploy\gview-gis`` kopiert werden.
+Danach kann dann die EXE-Datei einfach ausgeführt werden. 
+
+**Linux:**
+
+Das Installationspaket kann im Verzeichnis ``/home/{user}/deploy/gview-gis`` entpackt werden.
+
+Im ersten Schritt sollten notwendige Pakete, die für **gView GIS** erforderlich sind, installiert werden.
+Diese befinden sich teilweise im Verzeichnis ``_libs`` bzw. werden einige Pakete (proj4, skia) über 
+das Script ``_libs_install.sh`` nachinstalliert:
+
+Dazu ist folgendes auszuführen:
+
+.. code-block:: bash
+
+   sudo chmod +x _libs_install.sh    # falls noch nicht als ausführbar markiert
+   ./_libs_install.sh
+
+Anschließend kann das *Deploy* Programm mit folgendem Befehl gestartet werden:
+
+.. code-block:: bash
+
+   dotnet gView.Deploy.dll
+
+.. note::
+
+   Die nachfolgende Beschreibung erfolgt auf einem Windows-System. Unter Linux sollte die Installation
+   aber aus dem Aufruf des *Deploy Tools* ähnlich erfolgen.
+
 
 Neue Version ausliefern
 -----------------------
-
-Unter Windows kann das Programm beispielsweise nach ``C:\deploy\gview-gis`` kopiert werden.
 
 Wenn man das Programm zum ersten Mal startet, muss zunächst ein Profil angelegt werden.
 Das Profil kann beispielsweise ``test``, ``staging`` oder ``production`` sein. Da wir im ersten

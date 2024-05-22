@@ -147,16 +147,41 @@
             
   <section id="installation">
 <span id="deploy"></span><h1>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h1>
-<p>Die Installation erfolgt über das Kommandozeilenprogramm <code class="docutils literal notranslate"><span class="pre">gview.deploy</span></code> oder <code class="docutils literal notranslate"><span class="pre">gview.deploy.exe</span></code>.
+<p>Die Installation erfolgt über das Kommandozeilenprogramm <code class="docutils literal notranslate"><span class="pre">gview.deploy</span></code>.
 Dieses Tool erledigt folgende Aufgaben:</p>
 <ul class="simple">
 <li><p>Neuinstallation von <em>gView.WebApps</em> und <em>gView.Server</em></p></li>
 <li><p>Verwaltung von Deploy-Profilen (z.B. <code class="docutils literal notranslate"><span class="pre">local</span></code>, <code class="docutils literal notranslate"><span class="pre">test</span></code>, <code class="docutils literal notranslate"><span class="pre">staging</span></code>, <code class="docutils literal notranslate"><span class="pre">production</span></code>)</p></li>
 <li><p>Verteilung von Änderungen an der Konfiguration (z.B. <code class="docutils literal notranslate"><span class="pre">mapserver.json</span></code>, <code class="docutils literal notranslate"><span class="pre">gview-web.config</span></code>)</p></li>
 </ul>
+<section id="vorbereitung">
+<h2>Vorbereitung<a class="headerlink" href="#vorbereitung" title="Link to this heading">¶</a></h2>
+<p>Voraussetzung ist eine Installation der .NET App Runtime 8.0.x.</p>
+<p><strong>Windows:</strong></p>
+<p>Unter Windows kann das Programm beispielsweise nach <code class="docutils literal notranslate"><span class="pre">C:\deploy\gview-gis</span></code> kopiert werden.
+Danach kann dann die EXE-Datei einfach ausgeführt werden.</p>
+<p><strong>Linux:</strong></p>
+<p>Das Installationspaket kann im Verzeichnis <code class="docutils literal notranslate"><span class="pre">/home/{user}/deploy/gview-gis</span></code> entpackt werden.</p>
+<p>Im ersten Schritt sollten notwendige Pakete, die für <strong>gView GIS</strong> erforderlich sind, installiert werden.
+Diese befinden sich teilweise im Verzeichnis <code class="docutils literal notranslate"><span class="pre">_libs</span></code> bzw. werden einige Pakete (proj4, skia) über
+das Script <code class="docutils literal notranslate"><span class="pre">_libs_install.sh</span></code> nachinstalliert:</p>
+<p>Dazu ist folgendes auszuführen:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>_libs_install.sh<span class="w">    </span><span class="c1"># falls noch nicht als ausführbar markiert</span>
+./_libs_install.sh
+</pre></div>
+</div>
+<p>Anschließend kann das <em>Deploy</em> Programm mit folgendem Befehl gestartet werden:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dotnet<span class="w"> </span>gView.Deploy.dll
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Die nachfolgende Beschreibung erfolgt auf einem Windows-System. Unter Linux sollte die Installation
+aber aus dem Aufruf des <em>Deploy Tools</em> ähnlich erfolgen.</p>
+</div>
+</section>
 <section id="neue-version-ausliefern">
 <h2>Neue Version ausliefern<a class="headerlink" href="#neue-version-ausliefern" title="Link to this heading">¶</a></h2>
-<p>Unter Windows kann das Programm beispielsweise nach <code class="docutils literal notranslate"><span class="pre">C:\deploy\gview-gis</span></code> kopiert werden.</p>
 <p>Wenn man das Programm zum ersten Mal startet, muss zunächst ein Profil angelegt werden.
 Das Profil kann beispielsweise <code class="docutils literal notranslate"><span class="pre">test</span></code>, <code class="docutils literal notranslate"><span class="pre">staging</span></code> oder <code class="docutils literal notranslate"><span class="pre">production</span></code> sein. Da wir im ersten
 Schritt <em>gView GIS</em> nur lokal testen wollen, bietet sich ein Profil mit dem Namen <code class="docutils literal notranslate"><span class="pre">local</span></code>
@@ -343,6 +368,7 @@ Daten kopiert. Durchgeführt werden nur die <em>Overrides</em>.</p>
             <div class="page_toc">
                 <ul>
 <li><a class="reference internal" href="#">Installation</a><ul>
+<li><a class="reference internal" href="#vorbereitung">Vorbereitung</a></li>
 <li><a class="reference internal" href="#neue-version-ausliefern">Neue Version ausliefern</a></li>
 <li><a class="reference internal" href="#aktuelle-konfiguration-andern">Aktuelle Konfiguration ändern</a></li>
 </ul>

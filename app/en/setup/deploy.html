@@ -153,9 +153,34 @@ This tool performs the following tasks:</p>
 <li><p>Management of deployment profiles (e.g., <code class="docutils literal notranslate"><span class="pre">local</span></code>, <code class="docutils literal notranslate"><span class="pre">test</span></code>, <code class="docutils literal notranslate"><span class="pre">staging</span></code>, <code class="docutils literal notranslate"><span class="pre">production</span></code>)</p></li>
 <li><p>Distribution of configuration changes (e.g., <code class="docutils literal notranslate"><span class="pre">mapserver.json</span></code>, <code class="docutils literal notranslate"><span class="pre">gview-web.config</span></code>)</p></li>
 </ul>
+<section id="preparation">
+<h2>Preparation<a class="headerlink" href="#preparation" title="Link to this heading">¶</a></h2>
+<p>Prerequisite: Installation of .NET App Runtime 8.0.x.</p>
+<p><strong>Windows:</strong></p>
+<p>On Windows, the program can be copied to <code class="docutils literal notranslate"><span class="pre">C:\deploy\gview-gis</span></code>.
+Then, the EXE file can simply be executed.</p>
+<p><strong>Linux:</strong></p>
+<p>The installation package can be extracted to the directory <code class="docutils literal notranslate"><span class="pre">/home/{user}/deploy/gview-gis</span></code>.</p>
+<p>First, necessary packages required for <strong>gView GIS</strong> should be installed.
+These are partially located in the <code class="docutils literal notranslate"><span class="pre">_libs</span></code> directory, while some packages (proj4, skia) are
+installed via the script <code class="docutils literal notranslate"><span class="pre">_libs_install.sh</span></code>:</p>
+<p>To do this, execute the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>_libs_install.sh<span class="w">    </span><span class="c1"># if not already marked as executable</span>
+./_libs_install.sh
+</pre></div>
+</div>
+<p>Then, the <em>Deploy</em> program can be started with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dotnet<span class="w"> </span>gView.Deploy.dll
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following description is based on a Windows system. On Linux, however, the installation
+should proceed similarly by invoking the <em>Deploy Tool</em>.</p>
+</div>
+</section>
 <section id="delivering-a-new-version">
 <h2>Delivering a New Version<a class="headerlink" href="#delivering-a-new-version" title="Link to this heading">¶</a></h2>
-<p>On Windows, the program can be copied to <code class="docutils literal notranslate"><span class="pre">C:\deploy\gview-gis</span></code>, for example.</p>
 <p>When starting the program for the first time, a profile must be created first.
 The profile could be, for example, <code class="docutils literal notranslate"><span class="pre">test</span></code>, <code class="docutils literal notranslate"><span class="pre">staging</span></code>, or <code class="docutils literal notranslate"><span class="pre">production</span></code>. Since in the first
 step we only want to test <em>gView GIS</em> locally, a profile named <code class="docutils literal notranslate"><span class="pre">local</span></code> is
@@ -332,6 +357,7 @@ Only the <em>Overrides</em> are executed.</p>
             <div class="page_toc">
                 <ul>
 <li><a class="reference internal" href="#">Installation</a><ul>
+<li><a class="reference internal" href="#preparation">Preparation</a></li>
 <li><a class="reference internal" href="#delivering-a-new-version">Delivering a New Version</a></li>
 <li><a class="reference internal" href="#modify-current-configuration">Modify Current Configuration</a></li>
 </ul>

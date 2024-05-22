@@ -10,11 +10,44 @@ This tool performs the following tasks:
 * Management of deployment profiles (e.g., ``local``, ``test``, ``staging``, ``production``)
 * Distribution of configuration changes (e.g., ``mapserver.json``, ``gview-web.config``)
 
+Preparation
+-------------
+
+Prerequisite: Installation of .NET App Runtime 8.0.x.
+
+**Windows:**
+
+On Windows, the program can be copied to ``C:\deploy\gview-gis``. 
+Then, the EXE file can simply be executed.
+
+**Linux:**
+
+The installation package can be extracted to the directory ``/home/{user}/deploy/gview-gis``.
+
+First, necessary packages required for **gView GIS** should be installed.
+These are partially located in the ``_libs`` directory, while some packages (proj4, skia) are 
+installed via the script ``_libs_install.sh``:
+
+To do this, execute the following:
+
+.. code-block:: bash
+
+   sudo chmod +x _libs_install.sh    # if not already marked as executable
+   ./_libs_install.sh
+
+Then, the *Deploy* program can be started with the following command:
+
+.. code-block:: bash
+
+   dotnet gView.Deploy.dll
+
+.. note::
+
+   The following description is based on a Windows system. On Linux, however, the installation 
+   should proceed similarly by invoking the *Deploy Tool*.
 
 Delivering a New Version
 ------------------------
-
-On Windows, the program can be copied to ``C:\deploy\gview-gis``, for example.
 
 When starting the program for the first time, a profile must be created first.
 The profile could be, for example, ``test``, ``staging``, or ``production``. Since in the first

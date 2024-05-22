@@ -9,6 +9,7 @@ After a successful deployment, the gView applications can be started in various 
 
    run-local
    run-iis
+   run-linux
    run-docker 
    run-kubernetes
 

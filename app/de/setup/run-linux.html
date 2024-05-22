@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Kubernetes &#8212; gView GIS 6.x Dokumentation</title>
+    <title>Ausführen unter Linux &#8212; gView GIS 6.x Dokumentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
     <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=d7bb20b6" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=247da48f" />
@@ -17,8 +17,8 @@
     <script src="../_static/js/petite-vue.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
-    <link rel="next" title="Konfiguration" href="config.html" />
-    <link rel="prev" title="Docker" href="run-docker.html" /> 
+    <link rel="next" title="Docker" href="run-docker.html" />
+    <link rel="prev" title="Im Internet Information Server (IIS) ausführen" href="run-iis.html" /> 
   </head><body data-dark_mode_code_blocks="true">
 
 <div id="top_nav">
@@ -127,9 +127,9 @@
 <li class="toctree-l2 current"><a class="reference internal" href="run.html">gView Anwendungen Ausführen</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="run-local.html">Lokal ausführen (Windows Desktop Modus)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="run-iis.html">Im Internet Information Server (IIS) ausführen</a></li>
-<li class="toctree-l3"><a class="reference internal" href="run-linux.html">Ausführen unter Linux</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Ausführen unter Linux</a></li>
 <li class="toctree-l3"><a class="reference internal" href="run-docker.html">Docker</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="run-kubernetes.html">Kubernetes</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="config.html">Konfiguration</a></li>
@@ -152,9 +152,41 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="kubernetes">
-<h1>Kubernetes<a class="headerlink" href="#kubernetes" title="Link to this heading">¶</a></h1>
-<p>comming soon…</p>
+  <section id="ausfuhren-unter-linux">
+<h1>Ausführen unter Linux<a class="headerlink" href="#ausfuhren-unter-linux" title="Link to this heading">¶</a></h1>
+<p>Wurde <strong>gView</strong> mit dem <em>Deploy Tool</em> installiert, muss in den entsprechenden Ordner gewechselt werden,
+z.B. <code class="docutils literal notranslate"><span class="pre">/home/{user}/apps/gview-gis/local/6.24.1801</span></code>.</p>
+<p>Darin befinden sich folgende Dateien:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>myuser@JG-SP8:~/apps/gview-gis/local/6.24.2101$<span class="w"> </span>ls<span class="w"> </span>-ls
+total<span class="w"> </span><span class="m">48</span>
+<span class="w"> </span><span class="m">4</span><span class="w"> </span>-rwxr-xr-x<span class="w">  </span><span class="m">1</span><span class="w"> </span>myuser<span class="w"> </span>myuser<span class="w">   </span><span class="m">119</span><span class="w"> </span>May<span class="w"> </span><span class="m">22</span><span class="w"> </span><span class="m">08</span>:29<span class="w"> </span>gview-server.sh
+<span class="w"> </span><span class="m">4</span><span class="w"> </span>-rwxr-xr-x<span class="w">  </span><span class="m">1</span><span class="w"> </span>myuser<span class="w"> </span>myuser<span class="w">   </span><span class="m">121</span><span class="w"> </span>May<span class="w"> </span><span class="m">22</span><span class="w"> </span><span class="m">08</span>:38<span class="w"> </span>gview-webapps.sh
+<span class="m">20</span><span class="w"> </span>drwxr-xr-x<span class="w"> </span><span class="m">55</span><span class="w"> </span>myuser<span class="w"> </span>myuser<span class="w"> </span><span class="m">20480</span><span class="w"> </span>May<span class="w"> </span><span class="m">22</span><span class="w"> </span><span class="m">10</span>:44<span class="w"> </span>server
+<span class="m">20</span><span class="w"> </span>drwxr-xr-x<span class="w">  </span><span class="m">6</span><span class="w"> </span>myuser<span class="w"> </span>myuser<span class="w"> </span><span class="m">20480</span><span class="w"> </span>May<span class="w"> </span><span class="m">22</span><span class="w"> </span><span class="m">10</span>:44<span class="w"> </span>webapps
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Falls die Shell-Scripts nicht als <em>executable</em> markiert sind, kann das über
+folgendes Kommando nachgeholt werden:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>gview-server.sh
+sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>gview-webapps.sh
+</pre></div>
+</div>
+</div>
+<p>Die beiden Scripts starten jeweils den <strong>gView.Server</strong> oder <strong>gView.WebApps</strong>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./gview-server.sh
+./gview-webapps.sh
+</pre></div>
+</div>
+<p>In der Ausgabe wird angezeigt, unter welchem Port die Anwendungen laufen, in der Regel:</p>
+<ul class="simple">
+<li><p>gView.Server: <a class="reference external" href="http://localhost:45622">http://localhost:45622</a></p></li>
+<li><p>gView.WebApps: <a class="reference external" href="http://localhost:45623">http://localhost:45623</a></p></li>
+</ul>
+<p>Die Anwendungen können jetzt über einen Browser mit der entsprechenden URL gestartet werden.</p>
+<p>Möchte man die Anwendungen über das Web zugänglich machen, kann das über einen vorgeschalteten
+<strong>NGINX</strong> als Upstream ermöglicht werden.</p>
 </section>
 
 
@@ -170,14 +202,14 @@
         <div class="button_nav">
             <div class="left">
                 
-                <a href="run-docker.html">
-                    <span class="icon">&lt;</span><span>Docker</span></a>
+                <a href="run-iis.html">
+                    <span class="icon">&lt;</span><span>Im Internet Information Server (IIS) ausführen</span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="config.html"><span>Konfiguration</span><span class="icon">&gt;</span></a>
+                    <a href="run-docker.html"><span>Docker</span><span class="icon">&gt;</span></a>
                 
             </div>
         </div>

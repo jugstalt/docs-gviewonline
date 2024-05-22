@@ -1,5 +1,5 @@
-Lokal ausführen (Desktop Modus)
-===============================
+Lokal ausführen (Windows Desktop Modus)
+=======================================
 
 Sowohl *gView.WebApps* als auch *gView.Server* können lokal auf dem Desktop gestartet werden.
 
@@ -39,7 +39,7 @@ Wenn man ``gview-web.bat`` startet, erhält man folgende Ausgabe:
 .. image:: img/run02.png
 
 Hier wird ausgegeben, unter welcher URL die Anwendung aufgerufen werden soll 
-(hier: http://localhost:5051).
+(hier: http://localhost:45623).
 
 .. note::
 
@@ -83,7 +83,7 @@ In der Ausgabe wird die URL angezeigt, unter der der *gView.Server* läuft:
 
 .. image:: img/run05.png
 
-Öffnet man die URL im Browser (hier: http://localhost:5050), sollte folgendes angezeigt werden:
+Öffnet man die URL im Browser (hier: http://localhost:45622), sollte folgendes angezeigt werden:
 
 .. image:: img/run06.png
 

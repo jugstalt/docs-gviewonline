@@ -9,6 +9,7 @@ Weise gestartet werden.
 
    run-local
    run-iis
+   run-linux
    run-docker 
    run-kubernetes
 

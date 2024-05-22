@@ -38,7 +38,7 @@ When you start ``gview-web.bat``, you will see the following output:
 .. image:: img/run02.png
 
 Here, the URL under which the application should be accessed is displayed 
-(here: http://localhost:5051).
+(here: http://localhost:45623).
 
 .. note::
 
@@ -81,7 +81,7 @@ The output will display the URL under which the *gView.Server* is running:
 
 .. image:: img/run05.png
 
-When you open the URL in the browser (here: http://localhost:5050), the following should be displayed:
+When you open the URL in the browser (here: http://localhost:45622), the following should be displayed:
 
 .. image:: img/run06.png
 

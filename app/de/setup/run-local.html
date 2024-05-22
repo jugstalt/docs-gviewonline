@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Lokal ausführen (Desktop Modus) &#8212; gView GIS 6.x Dokumentation</title>
+    <title>Lokal ausführen (Windows Desktop Modus) &#8212; gView GIS 6.x Dokumentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
     <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=d7bb20b6" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=247da48f" />
@@ -125,8 +125,9 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Erste Schritte</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="deploy.html">Installation</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="run.html">gView Anwendungen Ausführen</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Lokal ausführen (Desktop Modus)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Lokal ausführen (Windows Desktop Modus)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="run-iis.html">Im Internet Information Server (IIS) ausführen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="run-linux.html">Ausführen unter Linux</a></li>
 <li class="toctree-l3"><a class="reference internal" href="run-docker.html">Docker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="run-kubernetes.html">Kubernetes</a></li>
 </ul>
@@ -151,8 +152,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="lokal-ausfuhren-desktop-modus">
-<h1>Lokal ausführen (Desktop Modus)<a class="headerlink" href="#lokal-ausfuhren-desktop-modus" title="Link to this heading">¶</a></h1>
+  <section id="lokal-ausfuhren-windows-desktop-modus">
+<h1>Lokal ausführen (Windows Desktop Modus)<a class="headerlink" href="#lokal-ausfuhren-windows-desktop-modus" title="Link to this heading">¶</a></h1>
 <p>Sowohl <em>gView.WebApps</em> als auch <em>gView.Server</em> können lokal auf dem Desktop gestartet werden.</p>
 <p>Der Einsatz von <em>gView.Server</em> lokal macht hauptsächlich für Testzwecke Sinn.</p>
 <div class="admonition note">
@@ -183,7 +184,7 @@ erstellten <em>Deployments</em>.</p>
 <p>Wenn man <code class="docutils literal notranslate"><span class="pre">gview-web.bat</span></code> startet, erhält man folgende Ausgabe:</p>
 <img alt="../_images/run02.png" src="../_images/run02.png" />
 <p>Hier wird ausgegeben, unter welcher URL die Anwendung aufgerufen werden soll
-(hier: <a class="reference external" href="http://localhost:5051">http://localhost:5051</a>).</p>
+(hier: <a class="reference external" href="http://localhost:45623">http://localhost:45623</a>).</p>
 <div class="admonition note">
 <p class="admonition-title">Bemerkung</p>
 <p>Die URL kann über die Datei <code class="docutils literal notranslate"><span class="pre">gview-web.bat</span></code> geändert werden. Dazu muss die Datei mit einem
@@ -218,7 +219,7 @@ entsprechenden Kachel klicken.</p>
 <p>Startet man die Datei <code class="docutils literal notranslate"><span class="pre">gview-server.bat</span></code>, ist das Verhalten ähnlich wie oben beschrieben.
 In der Ausgabe wird die URL angezeigt, unter der der <em>gView.Server</em> läuft:</p>
 <img alt="../_images/run05.png" src="../_images/run05.png" />
-<p>Öffnet man die URL im Browser (hier: <a class="reference external" href="http://localhost:5050">http://localhost:5050</a>), sollte folgendes angezeigt werden:</p>
+<p>Öffnet man die URL im Browser (hier: <a class="reference external" href="http://localhost:45622">http://localhost:45622</a>), sollte folgendes angezeigt werden:</p>
 <img alt="../_images/run06.png" src="../_images/run06.png" />
 <div class="admonition note">
 <p class="admonition-title">Bemerkung</p>
