@@ -49,6 +49,7 @@ The following raster data can be used with *gview GIS*.
 | ECW,                               | GDAL: Windows only                            |
 | DEM, XPM                           |                                               |
 +------------------------------------+-----------------------------------------------+
+
 gView Server Map Services
 -------------------------
 
