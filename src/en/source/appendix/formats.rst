@@ -44,10 +44,11 @@ The following raster data can be used with *gview GIS*.
 | JPEG 2000, MrSid                   | LizardTec Lib.                                |
 +------------------------------------+-----------------------------------------------+
 | JPEG, TIF, GeoTIFF,                | GDAL                                          |
-| ESRI Grid (adf), ECW,              |                                               |
+| ESRI Grid (adf),                   |                                               |
+|                                    |                                               |
+| ECW,                               | Windows only                                  |
 | DEM, XPM                           |                                               |
 +------------------------------------+-----------------------------------------------+
-
 gView Server Map Services
 -------------------------
 
@@ -73,6 +74,6 @@ In addition to *MapServices*, the interface also offers *FeatureServices*, with 
 
 
 
-.. _`Open Web Foundation`: http://www.openwebfoundation.org/faqs/users-of-owf-agreements
+.. _`Open Web Foundation`: https://www.openwebfoundation.org/faqs/some-users-of-owf-agreements
 .. _`ESRI`: https://www.esri.com/en-us/arcgis/open-vision/overview
  

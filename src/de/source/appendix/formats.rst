@@ -44,7 +44,9 @@ Folgende Rasterdaten können mit *gview GIS* verwendet werden.
 | JPEG 2000, MrSid                   | LizardTec Lib.                                |
 +------------------------------------+-----------------------------------------------+
 | JPEG, TIF, GeoTIFF,                | GDAL                                          |
-| ESRI Grid (adf), ECW,              |                                               |
+| ESRI Grid (adf),                   |                                               |
+|                                    |                                               |
+| ECW,                               | Windows only                                  |
 | DEM, XPM                           |                                               |
 +------------------------------------+-----------------------------------------------+
 
@@ -74,6 +76,6 @@ werden können.
 
 
 
-.. _`Open Web Foundation`: http://www.openwebfoundation.org/faqs/users-of-owf-agreements
+.. _`Open Web Foundation`: https://www.openwebfoundation.org/faqs/some-users-of-owf-agreements
 .. _`ESRI`: https://www.esri.com/en-us/arcgis/open-vision/overview
  
