@@ -28,6 +28,16 @@ Der **gView.Server** kann über die Datei ``_config/mapserver.json`` konfigurier
             "max-queue-length": 1000
         },
 
+        // default value for mapserver and services
+        "mapserver-defaults": {
+            // maximum width in pixel of an map image
+            "maxImageWidth": 4096,
+            // maximum height in pixel of an map image
+            "maxImageHeight": 4096,
+            // maximum records that will be returned from a query
+            "maxRecordCount": 1000
+        },
+
         // Whether clients are allowed to log in through the web interface
         "allowFormsLogin": true,
         // It can be assumed that all calls are made over HTTPS
@@ -59,6 +69,32 @@ dass der Server Kartenbilder (Bitmaps) erzeugt, die einiges an RAM benötigen k�
 RAM-Auslastung immer wieder am Limit (aufgrund vieler Anfragen), kann der Wert auch niedriger angesetzt werden.
 Sind alle Tasks belegt, kommt ein Request in die Warteschleife. Die Länge der Warteschleife kann hier ebenfalls
 angepasst werden.
+
+Im Abschnitt ``mapserver-defaults`` können *Default-Werte* für Kartendienste angegeben werden.
+Werden für einen Dienst diese Werte nicht explizit gesetzt, wird der hier eingestellte
+*Default-Wert* verwendet. Dabei geht es um die maximale Größe eines Kartenbildes in Pixel,
+das von einem Client abgeholt werden kann. Ebenfalls kann hier angegeben werden, wie viele 
+Geo-Objekte bei einer Abfrage maximal abgeholt werden dürfen. Wird der Abschnitt oder einzelne 
+Werte nicht angeführt, gelten die oben angeführten Werte.
+
+
+.. note::
+
+    Die hier angegebenen Werte sind *Default-Werte* und können für jedes Service über die 
+    *Map Service Einstellung* in *gView.Carto* überschrieben werden. Es können dort für 
+    einzelne Dienste auch Werte angeführt werden, die höher sind als die *Default-Werte*.
+    Die Werte in dieser Konfiguration sind keine *globalen Maximalwerte*.
+
+.. note::
+
+    Ein Client kann ein Kartenbild anfordern, das größer ist als die Maximalwerte. Der Kartenserver
+    liefert dann keinen Fehler, sondern ein verkleinertes Bild, das den Maximalwerten 
+    entspricht. Das Seitenverhältnis und der geografische Ausschnitt bleiben erhalten. Allerdings 
+    wird dann automatisch die Auflösung des Bildes (DPI-Wert) angepasst, damit der Maßstab 
+    dem ursprünglich bestellten Kartenbild entspricht.
+
+    Ein Client kann überprüfen, ob das Bild skaliert wurde, indem die Größe des Ergebnisbildes 
+    geprüft wird. Die Werte stehen beim *GeoServices Response* auch im Ergebnis-JSON.
 
 Im Abschnitt ``graphics`` kann die *Graphic Engine* angegeben werden. Diese kann entweder ``skia`` oder
 ``gdiplus`` (auf Windows-Plattformen) sein. ``gdiplus`` ist allerdings ein Auslaufmodell und 

@@ -171,6 +171,16 @@
 <span class="w">         </span><span class="s2">&quot;max-queue-length&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1000</span>
 <span class="w">     </span><span class="p">},</span>
 
+<span class="w">     </span><span class="c1">// default value for mapserver and services</span>
+<span class="w">     </span><span class="s2">&quot;mapserver-defaults&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="c1">// maximum width in pixel of an map image</span>
+<span class="w">         </span><span class="s2">&quot;maxImageWidth&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">4096</span><span class="p">,</span>
+<span class="w">         </span><span class="c1">// maximum height in pixel of an map image</span>
+<span class="w">         </span><span class="s2">&quot;maxImageHeight&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">4096</span><span class="p">,</span>
+<span class="w">         </span><span class="c1">// maximum records that will be returned from a query</span>
+<span class="w">         </span><span class="s2">&quot;maxRecordCount&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1000</span>
+<span class="w">     </span><span class="p">},</span>
+
 <span class="w">     </span><span class="c1">// Whether clients are allowed to log in through the web interface</span>
 <span class="w">     </span><span class="s2">&quot;allowFormsLogin&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">     </span><span class="c1">// It can be assumed that all calls are made over HTTPS</span>
@@ -202,6 +212,27 @@ that the server generates map images (bitmaps) which can require a significant a
 consistently reaching the limit of RAM usage (due to many requests), the value can also be set lower.
 If all tasks are occupied, a request goes into the queue. The length of this queue can also be
 adjusted here.</p>
+<p>In the section <code class="docutils literal notranslate"><span class="pre">mapserver-defaults</span></code>, <em>default values</em> for map services can be specified.
+If these values are not explicitly set for a service, the <em>default value</em> configured here will be used.
+This refers to the maximum size of a map image in pixels that can be retrieved by a client.
+It can also be specified how many geo-objects can be retrieved in a query at most.
+If the section or individual values are not specified, the values mentioned above apply.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The values specified here are <em>default values</em> and can be overridden for each service via the
+<em>Map Service Setting</em> in <em>gView.Carto</em>. Higher values than the <em>default values</em> can also be
+set for individual services. The values in this configuration are not <em>global maximum values</em>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A client can request a map image larger than the maximum values. The map server
+will not return an error but instead deliver a resized image that matches the maximum values.
+The aspect ratio and geographic area remain intact. However, the resolution of the image
+(DPI value) is automatically adjusted so that the scale corresponds to the originally
+requested map image.</p>
+<p>A client can verify whether the image was scaled by checking the size of the resulting image.
+The values are also included in the <em>GeoServices Response</em> in the result JSON.</p>
+</div>
 <p>In the section <code class="docutils literal notranslate"><span class="pre">graphics</span></code>, the <em>Graphic Engine</em> can be specified. This can either be <code class="docutils literal notranslate"><span class="pre">skia</span></code> or
 <code class="docutils literal notranslate"><span class="pre">gdiplus</span></code> (on Windows platforms). However, <code class="docutils literal notranslate"><span class="pre">gdiplus</span></code> is becoming obsolete and
 only works if the application is run on a Windows system.</p>

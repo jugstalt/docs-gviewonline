@@ -172,6 +172,16 @@
 <span class="w">         </span><span class="s2">&quot;max-queue-length&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1000</span>
 <span class="w">     </span><span class="p">},</span>
 
+<span class="w">     </span><span class="c1">// default value for mapserver and services</span>
+<span class="w">     </span><span class="s2">&quot;mapserver-defaults&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="c1">// maximum width in pixel of an map image</span>
+<span class="w">         </span><span class="s2">&quot;maxImageWidth&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">4096</span><span class="p">,</span>
+<span class="w">         </span><span class="c1">// maximum height in pixel of an map image</span>
+<span class="w">         </span><span class="s2">&quot;maxImageHeight&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">4096</span><span class="p">,</span>
+<span class="w">         </span><span class="c1">// maximum records that will be returned from a query</span>
+<span class="w">         </span><span class="s2">&quot;maxRecordCount&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1000</span>
+<span class="w">     </span><span class="p">},</span>
+
 <span class="w">     </span><span class="c1">// Whether clients are allowed to log in through the web interface</span>
 <span class="w">     </span><span class="s2">&quot;allowFormsLogin&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">     </span><span class="c1">// It can be assumed that all calls are made over HTTPS</span>
@@ -203,6 +213,29 @@ dass der Server Kartenbilder (Bitmaps) erzeugt, die einiges an RAM benötigen k�
 RAM-Auslastung immer wieder am Limit (aufgrund vieler Anfragen), kann der Wert auch niedriger angesetzt werden.
 Sind alle Tasks belegt, kommt ein Request in die Warteschleife. Die Länge der Warteschleife kann hier ebenfalls
 angepasst werden.</p>
+<p>Im Abschnitt <code class="docutils literal notranslate"><span class="pre">mapserver-defaults</span></code> können <em>Default-Werte</em> für Kartendienste angegeben werden.
+Werden für einen Dienst diese Werte nicht explizit gesetzt, wird der hier eingestellte
+<em>Default-Wert</em> verwendet. Dabei geht es um die maximale Größe eines Kartenbildes in Pixel,
+das von einem Client abgeholt werden kann. Ebenfalls kann hier angegeben werden, wie viele
+Geo-Objekte bei einer Abfrage maximal abgeholt werden dürfen. Wird der Abschnitt oder einzelne
+Werte nicht angeführt, gelten die oben angeführten Werte.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Die hier angegebenen Werte sind <em>Default-Werte</em> und können für jedes Service über die
+<em>Map Service Einstellung</em> in <em>gView.Carto</em> überschrieben werden. Es können dort für
+einzelne Dienste auch Werte angeführt werden, die höher sind als die <em>Default-Werte</em>.
+Die Werte in dieser Konfiguration sind keine <em>globalen Maximalwerte</em>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Ein Client kann ein Kartenbild anfordern, das größer ist als die Maximalwerte. Der Kartenserver
+liefert dann keinen Fehler, sondern ein verkleinertes Bild, das den Maximalwerten
+entspricht. Das Seitenverhältnis und der geografische Ausschnitt bleiben erhalten. Allerdings
+wird dann automatisch die Auflösung des Bildes (DPI-Wert) angepasst, damit der Maßstab
+dem ursprünglich bestellten Kartenbild entspricht.</p>
+<p>Ein Client kann überprüfen, ob das Bild skaliert wurde, indem die Größe des Ergebnisbildes
+geprüft wird. Die Werte stehen beim <em>GeoServices Response</em> auch im Ergebnis-JSON.</p>
+</div>
 <p>Im Abschnitt <code class="docutils literal notranslate"><span class="pre">graphics</span></code> kann die <em>Graphic Engine</em> angegeben werden. Diese kann entweder <code class="docutils literal notranslate"><span class="pre">skia</span></code> oder
 <code class="docutils literal notranslate"><span class="pre">gdiplus</span></code> (auf Windows-Plattformen) sein. <code class="docutils literal notranslate"><span class="pre">gdiplus</span></code> ist allerdings ein Auslaufmodell und
 funktioniert nur, wenn die Anwendung auf einem Windows-System ausgeführt wird.</p>

@@ -27,6 +27,16 @@ The **gView.Server** can be configured via the file ``_config/mapserver.json``:
             "max-queue-length": 1000
         },
 
+        // default value for mapserver and services
+        "mapserver-defaults": {
+            // maximum width in pixel of an map image
+            "maxImageWidth": 4096,
+            // maximum height in pixel of an map image
+            "maxImageHeight": 4096,
+            // maximum records that will be returned from a query
+            "maxRecordCount": 1000
+        },
+
         // Whether clients are allowed to log in through the web interface
         "allowFormsLogin": true,
         // It can be assumed that all calls are made over HTTPS
@@ -58,6 +68,30 @@ that the server generates map images (bitmaps) which can require a significant a
 consistently reaching the limit of RAM usage (due to many requests), the value can also be set lower.
 If all tasks are occupied, a request goes into the queue. The length of this queue can also be
 adjusted here.
+
+In the section ``mapserver-defaults``, *default values* for map services can be specified.
+If these values are not explicitly set for a service, the *default value* configured here will be used. 
+This refers to the maximum size of a map image in pixels that can be retrieved by a client. 
+It can also be specified how many geo-objects can be retrieved in a query at most.
+If the section or individual values are not specified, the values mentioned above apply.
+
+.. note::
+
+    The values specified here are *default values* and can be overridden for each service via the 
+    *Map Service Setting* in *gView.Carto*. Higher values than the *default values* can also be 
+    set for individual services. The values in this configuration are not *global maximum values*.
+
+.. note::
+
+    A client can request a map image larger than the maximum values. The map server 
+    will not return an error but instead deliver a resized image that matches the maximum values. 
+    The aspect ratio and geographic area remain intact. However, the resolution of the image 
+    (DPI value) is automatically adjusted so that the scale corresponds to the originally 
+    requested map image.
+
+    A client can verify whether the image was scaled by checking the size of the resulting image. 
+    The values are also included in the *GeoServices Response* in the result JSON.
+
 
 In the section ``graphics``, the *Graphic Engine* can be specified. This can either be ``skia`` or
 ``gdiplus`` (on Windows platforms). However, ``gdiplus`` is becoming obsolete and 
