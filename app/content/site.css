@@ -1,5 +1,5 @@
 body {
-    font-family: "Lato","proxima-nova","Helvetica Neue",Arial,sans-serif;
+    font-family: "Verdana","proxima-nova","Helvetica Neue",Arial,sans-serif;
     font-weight: normal;
     color: #404040;
     min-height: 100%;
@@ -51,27 +51,26 @@ h1 {
 }
 
 .language-link {
-    width:200px;
-    height:110px;
-    background:#2980B9;
-    color:#fff;
-    padding:10px;
-    display:inline-block;
-    margin:10px 10px 0px 0px;
-    cursor:pointer;
+    width: 200px;
+    height: 38px;
+    background: #2980B9;
+    color: #fff;
+    padding: 10px 10px 10px 40px;
+    display: inline-block;
+    margin: 10px 10px 0px 0px;
+    cursor: pointer;
     position: relative;
     background-image: url(icons8-language-50.png);
     background-repeat: no-repeat;
-    background-position:center;
+    background-position: 5px;
 }
 
 .language-link .text {
-    color:#fff;
+    color: #fff;
     position: absolute;
-    bottom:0px;
-    left:0px;
-    right:0px;
-    height:30px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: 30px;
     text-align: center;
-    
 }
