@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Konfiguration &#8212; Identityserver.Nova 5.0.0 Dokumentation</title>
+    <title>Konfiguration &#8212; IdentityserverNET 5.0.0 Dokumentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=0.7.0-1" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -32,7 +32,7 @@
         <p id="toggle_sidebar">
             <a href="#" title="Toggle sidebar">|||</a>
         </p>
-        <h1><a href="../index.html" title="Go to homepage">Identityserver.Nova 5.0.0 Dokumentation</a></h1>
+        <h1><a href="../index.html" title="Go to homepage">IdentityserverNET 5.0.0 Dokumentation</a></h1>
 
         <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
     <template v-if="mode == 'light'">
@@ -158,7 +158,7 @@ Umgebungsvariable <code class="docutils literal notranslate"><span class="pre">I
 <p>Aufbau der Config Datei:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;IdentityServer&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s2">&quot;NovaAssemblyName&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1">// default: IdentityServerNET.ServerExtension.Default</span>
+<span class="w">        </span><span class="s2">&quot;AssemblyName&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1">// default: IdentityServerNET.ServerExtension.Default</span>
 <span class="w">        </span><span class="s2">&quot;ApplicationTitle&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// default &quot;IdentityServerNET&quot;,</span>
 <span class="w">        </span><span class="s2">&quot;PublicOrigin&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https://localhost:44300&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;StorageRootPath&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;c:\\apps\\identityserver-net&quot;</span><span class="p">,</span>
@@ -198,9 +198,9 @@ weiter <em>Sections</em> auf die in der Folge eingegangen wird.</p>
 <section id="root-werte">
 <h2>Root-Werte<a class="headerlink" href="#root-werte" title="Permalink to this heading">¶</a></h2>
 <ul>
-<li><p><strong>NovaAssemblyName:</strong> Die Konfiguration der Services erfolgt ein einer Assembly im Programmverzeichnis.
-In diese Assembly muss eine Klasse mit dem Attribut <code class="docutils literal notranslate"><span class="pre">[IdentityServerNovaStartup]</span></code> das vom
-Interface <code class="docutils literal notranslate"><span class="pre">IIdentityServerNovaStartup</span></code> abgeleitet wurde. Methoden dieser Klasse werden beim
+<li><p><strong>AssemblyName:</strong> Die Konfiguration der Services erfolgt ein einer Assembly im Programmverzeichnis.
+In diese Assembly muss eine Klasse mit dem Attribut <code class="docutils literal notranslate"><span class="pre">[IdentityServerStartup]</span></code> das vom
+Interface <code class="docutils literal notranslate"><span class="pre">IIdentityServerStartup</span></code> abgeleitet wurde. Methoden dieser Klasse werden beim
 Start der Applikation aufgerufen, um <em>Services</em> zu registrieren.</p>
 <p>Damit kann der <em>IdentityServerNET</em> einfach den eigenen Bedürfnissen angepasst werden, ohne
 den Source Code der ursprünglichen Anwendung zu verändern. So können beispielsweise bestehende
@@ -226,9 +226,9 @@ Wird dieser Pfad nicht angeführt, wird ein <strong>Default-Pfad</strong> verwen
 <section id="abschnitt-connectionstrings">
 <h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">ConnectionStrings</span></code><a class="headerlink" href="#abschnitt-connectionstrings" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;ConnectionStrings&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s2">&quot;LiteDb&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;c:\\apps\\identityserver-net\\is_nova.db&quot;</span>
+<span class="w">    </span><span class="s2">&quot;LiteDb&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;c:\\apps\\identityserver-net\\is_net.db&quot;</span>
 <span class="w">    </span><span class="c1">// or</span>
-<span class="w">    </span><span class="s2">&quot;LiteDb&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;is_nova.db&quot;</span><span class="w">  </span><span class="c1">// store db in StorageRootPath</span>
+<span class="w">    </span><span class="s2">&quot;LiteDb&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;is_net.db&quot;</span><span class="w">  </span><span class="c1">// store db in StorageRootPath</span>
 <span class="w">    </span><span class="c1">// or</span>
 <span class="w">    </span><span class="p">...</span>
 <span class="w">    </span><span class="s2">&quot;FilesDb&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;c:\\apps\\identityserver-net\\storage&quot;</span><span class="w">  </span><span class="c1">// any path</span>
@@ -243,13 +243,13 @@ die Daten <strong>InMemory</strong> gespeichert (Bei einem Neustart der Applikat
 <p>Als Alternative können die einzelnen Datenbanken auch in unterschiedliche Ziele abgelegt werden. Dazu
 muss für jede <em>Klasse</em> eine Datenbank Verbindung angegeben werden:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;ConnectionStrings&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s2">&quot;Users&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;LiteDb&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;is_nova.db&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="s2">&quot;Roles&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;LiteDb&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;is_nova.db&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="s2">&quot;Users&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;LiteDb&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;is_net.db&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="s2">&quot;Roles&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;LiteDb&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;is_net.db&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">    </span><span class="s2">&quot;Clients&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;AzureStorage&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;UseDevelopmentStorage=true&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">    </span><span class="s2">&quot;Resources&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;MongoDb&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;mongodb://localhost:27017&quot;</span><span class="w"> </span><span class="p">},</span>
 
 <span class="w">    </span><span class="c1">// Fallback (here not necessary)</span>
-<span class="w">    </span><span class="s2">&quot;LiteDb&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;is_nova.db&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;LiteDb&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;is_net.db&quot;</span><span class="p">,</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -303,7 +303,8 @@ dann nur von Anwendungen ausgelesen werden, die diesen Passwort kennen.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Login&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;DenyForgotPasswordChallange&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">    </span><span class="c1">// default: false</span>
 <span class="w">    </span><span class="s2">&quot;DenyRememberLogin&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">              </span><span class="c1">// default: false,</span>
-<span class="w">    </span><span class="s2">&quot;RememberLoginDefaultValue&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w">       </span><span class="c1">// default: false</span>
+<span class="w">    </span><span class="s2">&quot;RememberLoginDefaultValue&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">      </span><span class="c1">// default: false</span>
+<span class="w">    </span><span class="s2">&quot;DenyLocalLogin&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w">                  </span><span class="c1">// default: false</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -312,6 +313,8 @@ dann nur von Anwendungen ausgelesen werden, die diesen Passwort kennen.</p>
 <li><p><strong>DenyForgotPasswordChallange:</strong> wenn <code class="docutils literal notranslate"><span class="pre">true</span></code> hat ein Anwender keine Möglichkeit, sein Passwort über <code class="docutils literal notranslate"><span class="pre">Passwort</span> <span class="pre">vergessen</span></code> zu ändern.</p></li>
 <li><p><strong>DenyRememberLogin:</strong> wenn <code class="docutils literal notranslate"><span class="pre">true</span></code> wird die Option <code class="docutils literal notranslate"><span class="pre">Remember</span> <span class="pre">my</span> <span class="pre">login</span></code> beim Login nicht angeboten</p></li>
 <li><p><strong>RememberLoginDefaultValue:</strong> wenn <code class="docutils literal notranslate"><span class="pre">true</span></code> ist die Option <code class="docutils literal notranslate"><span class="pre">Remember</span> <span class="pre">my</span> <span class="pre">login</span></code> automatisch ausgewählt</p></li>
+<li><p><strong>DenyLocalLogin:</strong> wenn <code class="docutils literal notranslate"><span class="pre">true</span></code> können sich Anwender nicht mit User/Passwort anmelden.
+Das kann Sinn machen, wenn man sich nur über <em>externe Identity Provider</em> anmelden können sollte.</p></li>
 </ul>
 </section>
 <section id="abschnitt-admin">

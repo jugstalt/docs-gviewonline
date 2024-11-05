@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Installation mit Docker &#8212; Identityserver.Nova 5.0.0 Dokumentation</title>
+    <title>Installation mit Docker &#8212; IdentityserverNET 5.0.0 Dokumentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=0.7.0-1" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -32,7 +32,7 @@
         <p id="toggle_sidebar">
             <a href="#" title="Toggle sidebar">|||</a>
         </p>
-        <h1><a href="../index.html" title="Go to homepage">Identityserver.Nova 5.0.0 Dokumentation</a></h1>
+        <h1><a href="../index.html" title="Go to homepage">IdentityserverNET 5.0.0 Dokumentation</a></h1>
 
         <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
     <template v-if="mode == 'light'">
@@ -157,7 +157,7 @@ um eingen Images mit eingenen Konfigurationen oder Plugins zu erstellen</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">gstalt/identityserver-net:{tag}</span></code>:</p>
 <p>Der IdentityServer in einer <em>Default</em> Konfiguration. Die Applikation wird im Container mit
 Port 8080 gestartet.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8080</span>:8080<span class="w"> </span>--name<span class="w"> </span>is-nova<span class="w"> </span>identityserver-net:5.24.3601
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8080</span>:8080<span class="w"> </span>--name<span class="w"> </span>is-net<span class="w"> </span>identityserver-net:5.24.3601
 </pre></div>
 </div>
 <p>Die Anwendung läuft damit unter <a class="reference external" href="http://localhost:8080">http://localhost:8080</a></p>
@@ -167,7 +167,7 @@ Port 8080 gestartet.</p>
 Da für die Anmeldung von Anwendungen <em>HTTPS</em> vorausgesetzt wird, wir hier der <em>IdentityServerNET</em>
 im Container unter dem Port 8443 mit und <em>HTTPS</em> mit denen selbst signierten Developer
 Zertifikat gestartet.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8443</span>:8443<span class="w"> </span>--name<span class="w"> </span>is-nova-dev<span class="w"> </span>identityserver-net-dev:5.24.3601
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8443</span>:8443<span class="w"> </span>--name<span class="w"> </span>is-net-dev<span class="w"> </span>identityserver-net-dev:5.24.3601
 </pre></div>
 </div>
 <p>Die Anwendung läuft damit unter <a class="reference external" href="https://localhost:8443">https://localhost:8443</a></p>
