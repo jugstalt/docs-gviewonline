@@ -17,7 +17,7 @@
     <script src="../_static/js/petite-vue.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
-    <link rel="next" title="Selbst-Signierte Zertifikate erstellen" href="createcerts.html" />
+    <link rel="next" title="Selbst-signierte Zertifikate erstellen" href="createcerts.html" />
     <link rel="prev" title="Secrets Vault" href="secretsvault.html" /> 
   </head><body data-dark_mode_code_blocks="true">
 
@@ -124,10 +124,10 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Erste Schritte</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../clients/index.html">Clients verwalten</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Weitere Admin Werkzeuge</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Weitere Admin-Werkzeuge</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="secretsvault.html">Secrets Vault</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Payload Signing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="createcerts.html">Selbst-Signierte Zertifikate erstellen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="createcerts.html">Selbst-signierte Zertifikate erstellen</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../etc/index.html">Weitere Themen</a></li>
@@ -144,53 +144,53 @@
             
   <section id="payload-signing">
 <h1>Payload Signing<a class="headerlink" href="#payload-signing" title="Permalink to this heading">¶</a></h1>
-<p>Mit <strong>Payload Signing</strong> kann ein beliebiger Payload (Dictionary) in einen JWT Token verpacken.
-Das erstellen eines Token kann sowohl über die <em>Admin-Seite</em> oder durch eine API Aufruf eines
+<p>Mit <strong>Payload Signing</strong> kann ein beliebiger Payload (Dictionary) in einen JWT-Token verpackt werden.
+Das Erstellen eines Tokens kann entweder über die <em>Admin-Seite</em> oder durch einen API-Aufruf eines
 berechtigten Clients erfolgen.</p>
-<section id="jwt-token-uber-admin-seite">
-<h2>JWT Token über Admin-Seite<a class="headerlink" href="#jwt-token-uber-admin-seite" title="Permalink to this heading">¶</a></h2>
-<p>Um als Administrator einen <strong>JWT Token</strong> zu erzeugen, wechselt man über die <em>Admin-Seite</em>
+<section id="jwt-token-uber-die-admin-seite">
+<h2>JWT-Token über die Admin-Seite<a class="headerlink" href="#jwt-token-uber-die-admin-seite" title="Permalink to this heading">¶</a></h2>
+<p>Um als Administrator einen <strong>JWT-Token</strong> zu erzeugen, navigiert man auf der <em>Admin-Seite</em>
 zum Bereich <code class="docutils literal notranslate"><span class="pre">Sign</span> <span class="pre">Payload</span> <span class="pre">UI</span></code>.</p>
-<p>Dort kann ein <strong>Payload</strong> (Dictionary) als JSON angeben werden und daraus ein
-ein Token erzeugt werden:</p>
+<p>Hier kann ein <strong>Payload</strong> (Dictionary) im JSON-Format angegeben werden, aus dem
+ein Token erzeugt wird:</p>
 <a class="reference internal image-reference" href="../_images/signing1.png"><img alt="../_images/signing1.png" src="../_images/signing1.png" style="width: 300px;" /></a>
-<p>Der erzeugte Token enthält dann folgende Informationen:</p>
+<p>Der erzeugte Token enthält dann die folgenden Informationen:</p>
 <a class="reference internal image-reference" href="../_images/signing2.png"><img alt="../_images/signing2.png" src="../_images/signing2.png" style="width: 300px;" /></a>
 </section>
-<section id="jwt-token-uber-signing-api">
-<h2>JWT Token über Signing API<a class="headerlink" href="#jwt-token-uber-signing-api" title="Permalink to this heading">¶</a></h2>
-<p>Über die <strong>Signing API</strong> kann ein berechtigter Client, JWT Tokens mit benutzerdefiniertem
-Payload erstellen. Folgende Voraussetzungen sind dazu notwendig:</p>
+<section id="jwt-token-uber-die-signing-api">
+<h2>JWT-Token über die Signing API<a class="headerlink" href="#jwt-token-uber-die-signing-api" title="Permalink to this heading">¶</a></h2>
+<p>Über die <strong>Signing API</strong> kann ein berechtigter Client JWT-Tokens mit benutzerdefiniertem
+Payload erstellen. Folgende Voraussetzungen müssen dafür erfüllt sein:</p>
 <section id="api-resource-einrichten">
 <h3>API Resource einrichten<a class="headerlink" href="#api-resource-einrichten" title="Permalink to this heading">¶</a></h3>
-<p>Im ersten Schritt muss die <strong>API Resource</strong> eingerichtet werden (falls noch nicht eingerichtet).
-Dazu wechselt man von der <em>Admin-Seite</em> in den Bereich <code class="docutils literal notranslate"><span class="pre">Resources</span> <span class="pre">(Identity</span> <span class="pre">&amp;</span> <span class="pre">APIs)</span></code> und dort
-zum Menüpunkt <code class="docutils literal notranslate"><span class="pre">API</span> <span class="pre">Resources</span></code>. Dort muss eine <strong>API Resource</strong> mit dem Namen <code class="docutils literal notranslate"><span class="pre">signing-api</span></code>
-angelegt werden. Ist diese Resource noch nicht vorhanden, kann sie der einfach halber auch
-über den Bereich <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">default</span> <span class="pre">API</span> <span class="pre">Resource</span></code>:</p>
+<p>Zunächst muss die <strong>API Resource</strong> eingerichtet werden (falls noch nicht vorhanden).
+Wechseln Sie dazu auf der <em>Admin-Seite</em> in den Bereich <code class="docutils literal notranslate"><span class="pre">Resources</span> <span class="pre">(Identity</span> <span class="pre">&amp;</span> <span class="pre">APIs)</span></code> und dort
+zum Menüpunkt <code class="docutils literal notranslate"><span class="pre">API</span> <span class="pre">Resources</span></code>. Hier muss eine <strong>API Resource</strong> mit dem Namen <code class="docutils literal notranslate"><span class="pre">signing-api</span></code>
+angelegt werden. Falls diese Resource noch nicht vorhanden ist, kann sie einfach
+über den Bereich <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">default</span> <span class="pre">API</span> <span class="pre">Resource</span></code> hinzugefügt werden:</p>
 <img alt="../_images/signing3.png" src="../_images/signing3.png" />
 <div class="admonition note">
 <p class="admonition-title">Bemerkung</p>
-<p>Unter <code class="docutils literal notranslate"><span class="pre">Scopes</span></code> muss für diese <strong>API Resource</strong> ein <strong>Scope</strong> <code class="docutils literal notranslate"><span class="pre">signing-api</span></code> existieren.
-Das sollte automatisch beim Hinzufügen passiert sein. Falls nicht muss der Scope manuell
+<p>Unter <code class="docutils literal notranslate"><span class="pre">Scopes</span></code> muss für diese <strong>API Resource</strong> ein <strong>Scope</strong> <code class="docutils literal notranslate"><span class="pre">signing-api</span></code> vorhanden sein.
+Dieser Scope sollte beim Hinzufügen automatisch erstellt worden sein. Falls nicht, muss er manuell
 hinzugefügt werden.</p>
 </div>
 </section>
 <section id="api-client-erstellen">
 <h3>API Client erstellen<a class="headerlink" href="#api-client-erstellen" title="Permalink to this heading">¶</a></h3>
-<p>Als nächstes muss ein <em>Client</em> erstellt werden, der auf die <strong>Signing API</strong> zugreifen darf.
-Dazu muss von der <em>Admin-Seite</em> in den Bereich <code class="docutils literal notranslate"><span class="pre">Clients</span></code> wechseln. Dort muss ein <strong>API Client</strong>
-angelegt werden:</p>
+<p>Als Nächstes muss ein <em>Client</em> erstellt werden, der Zugriff auf die <strong>Signing API</strong> erhält.
+Dazu wechseln Sie auf der <em>Admin-Seite</em> in den Bereich <code class="docutils literal notranslate"><span class="pre">Clients</span></code> und legen dort einen <strong>API Client</strong>
+an:</p>
 <img alt="../_images/signing4.png" src="../_images/signing4.png" />
-<p>Für den Client muss unter <code class="docutils literal notranslate"><span class="pre">Client</span> <span class="pre">Secrets</span></code> ein <strong>Secret</strong> vergeben werden, dass der Client später übergeben muss,
-um einen Token abzuholen.
-Unter dem Menüpunkt <code class="docutils literal notranslate"><span class="pre">Scopes</span></code> muss für diesen Client noch der <strong>API Scope</strong> <code class="docutils literal notranslate"><span class="pre">signing-api</span></code> hinzugefügt
+<p>Für den Client muss unter <code class="docutils literal notranslate"><span class="pre">Client</span> <span class="pre">Secrets</span></code> ein <strong>Secret</strong> festgelegt werden, das der Client später übermitteln muss,
+um ein Token abzurufen.
+Unter dem Menüpunkt <code class="docutils literal notranslate"><span class="pre">Scopes</span></code> muss für diesen Client der <strong>API Scope</strong> <code class="docutils literal notranslate"><span class="pre">signing-api</span></code> hinzugefügt
 werden:</p>
 <img alt="../_images/signing5.png" src="../_images/signing5.png" />
 </section>
 <section id="token-uber-http-request-erstellen">
 <h3>Token über HTTP Request erstellen<a class="headerlink" href="#token-uber-http-request-erstellen" title="Permalink to this heading">¶</a></h3>
-<p>Zuerst muss ein gültiger <strong>Bearer Token</strong> abgeholt werden:</p>
+<p>Zuerst muss ein gültiger <strong>Bearer Token</strong> abgerufen werden:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">44300</span><span class="o">/</span><span class="n">connect</span><span class="o">/</span><span class="n">token</span>
 <span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">x</span><span class="o">-</span><span class="n">www</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">urlencoded</span>
 
@@ -200,8 +200,8 @@ werden:</p>
 <span class="o">&amp;</span><span class="n">scope</span><span class="o">=</span><span class="n">signing</span><span class="o">-</span><span class="n">api</span>
 </pre></div>
 </div>
-<p>Wird ein <strong>Access Token</strong> zurück gegeben, kann dieser für den zum Erstellen des
-<strong>Tokens</strong> verwendet werden:</p>
+<p>Wenn ein <strong>Access Token</strong> zurückgegeben wird, kann dieses Token verwendet werden, um
+den <strong>Token</strong> zu erstellen:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">44300</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">signing</span>
 <span class="n">Authorization</span><span class="p">:</span> <span class="n">Bearer</span> <span class="n">eyJhbGciOiJSUzI1N</span><span class="o">...</span>
 <span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">x</span><span class="o">-</span><span class="n">www</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">urlencoded</span>
@@ -211,9 +211,9 @@ werden:</p>
 </pre></div>
 </div>
 </section>
-<section id="token-uber-identityservernet-clients-abholen">
-<h3>Token über IdentityServerNET.Clients abholen<a class="headerlink" href="#token-uber-identityservernet-clients-abholen" title="Permalink to this heading">¶</a></h3>
-<p>Das <strong>nuget</strong> Packet <code class="docutils literal notranslate"><span class="pre">IdentityServerNET.Clients</span></code> bietet folgende Methoden,
+<section id="token-uber-identityservernet-clients-abrufen">
+<h3>Token über IdentityServerNET.Clients abrufen<a class="headerlink" href="#token-uber-identityservernet-clients-abrufen" title="Permalink to this heading">¶</a></h3>
+<p>Das <strong>NuGet</strong>-Paket <code class="docutils literal notranslate"><span class="pre">IdentityServerNET.Clients</span></code> bietet folgende Methoden,
 um auf die <strong>Signing API</strong> zuzugreifen:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dotnet<span class="w"> </span>add<span class="w"> </span>package<span class="w"> </span>IdentityServerNET.Clients
 </pre></div>
@@ -244,10 +244,10 @@ um auf die <strong>Signing API</strong> zuzugreifen:</p>
 </section>
 <section id="token-validieren">
 <h3>Token validieren<a class="headerlink" href="#token-validieren" title="Permalink to this heading">¶</a></h3>
-<p>Ein Token aus der <strong>Signing API</strong> kann einer Application übergeben werden. Diese kann
-die Gültigkeit des Tokens prüfen und einzelne Claims abfragen. Dafür bietet .NET Core
-verschiedene Möglichkeiten. Einige Methoden sind ebenfalls im <strong>nuget</strong> Packet
-<code class="docutils literal notranslate"><span class="pre">IdentityServerNET.Clients</span></code> enthalten</p>
+<p>Ein Token aus der <strong>Signing API</strong> kann an eine Anwendung übergeben werden. Diese Anwendung kann
+die Gültigkeit des Tokens prüfen und einzelne Claims abfragen. .NET Core bietet dafür
+verschiedene Möglichkeiten. Einige Methoden sind ebenfalls im <strong>NuGet</strong>-Paket
+<code class="docutils literal notranslate"><span class="pre">IdentityServerNET.Clients</span></code> enthalten.</p>
 <div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span><span class="w"> </span><span class="n">issuerAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://localhost:44300&quot;</span><span class="p">,</span>
 <span class="w">       </span><span class="n">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;...&quot;</span><span class="p">,</span>
 
@@ -285,12 +285,12 @@ verschiedene Möglichkeiten. Einige Methoden sind ebenfalls im <strong>nuget</st
             <div class="page_toc">
                 <ul>
 <li><a class="reference internal" href="#">Payload Signing</a><ul>
-<li><a class="reference internal" href="#jwt-token-uber-admin-seite">JWT Token über Admin-Seite</a></li>
-<li><a class="reference internal" href="#jwt-token-uber-signing-api">JWT Token über Signing API</a><ul>
+<li><a class="reference internal" href="#jwt-token-uber-die-admin-seite">JWT-Token über die Admin-Seite</a></li>
+<li><a class="reference internal" href="#jwt-token-uber-die-signing-api">JWT-Token über die Signing API</a><ul>
 <li><a class="reference internal" href="#api-resource-einrichten">API Resource einrichten</a></li>
 <li><a class="reference internal" href="#api-client-erstellen">API Client erstellen</a></li>
 <li><a class="reference internal" href="#token-uber-http-request-erstellen">Token über HTTP Request erstellen</a></li>
-<li><a class="reference internal" href="#token-uber-identityservernet-clients-abholen">Token über IdentityServerNET.Clients abholen</a></li>
+<li><a class="reference internal" href="#token-uber-identityservernet-clients-abrufen">Token über IdentityServerNET.Clients abrufen</a></li>
 <li><a class="reference internal" href="#token-validieren">Token validieren</a></li>
 </ul>
 </li>
@@ -315,7 +315,7 @@ verschiedene Möglichkeiten. Einige Methoden sind ebenfalls im <strong>nuget</st
 
             <div class="right">
                 
-                    <a href="createcerts.html"><span>Selbst-Signierte Zertifikate erstellen</span><span class="icon">></span></a>
+                    <a href="createcerts.html"><span>Selbst-signierte Zertifikate erstellen</span><span class="icon">></span></a>
                 
             </div>
         </div>

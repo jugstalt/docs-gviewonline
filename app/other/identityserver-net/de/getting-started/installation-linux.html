@@ -150,17 +150,17 @@
 <h1>Installation unter Linux<a class="headerlink" href="#installation-unter-linux" title="Permalink to this heading">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Bemerkung</p>
-<p>Voraussetzung ist die Installation von ASPNET.Core 8.0. Gibt man in einer <em>Shell</em>
-<code class="docutils literal notranslate"><span class="pre">dotnet</span> <span class="pre">--info</span></code> ein muss folgendes Framework in der Ausgabe vorhanden sein:</p>
+<p>Voraussetzung ist die Installation von ASP.NET Core 8.0. Gibt man in einer <em>Shell</em>
+<code class="docutils literal notranslate"><span class="pre">dotnet</span> <span class="pre">--info</span></code> ein, muss folgendes Framework in der Ausgabe vorhanden sein:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">NET</span> <span class="n">runtimes</span> <span class="n">installed</span><span class="p">:</span>
 <span class="n">Microsoft</span><span class="o">.</span><span class="n">AspNetCore</span><span class="o">.</span><span class="n">App</span> <span class="mf">8.0</span><span class="o">.</span><span class="n">x</span> <span class="p">[</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">dotnet</span><span class="o">/</span><span class="n">shared</span><span class="o">/</span><span class="n">Microsoft</span><span class="o">.</span><span class="n">AspNetCore</span><span class="o">.</span><span class="n">App</span><span class="p">]</span>
 <span class="n">Microsoft</span><span class="o">.</span><span class="n">NETCore</span><span class="o">.</span><span class="n">App</span> <span class="mf">8.0</span><span class="o">.</span><span class="n">x</span> <span class="p">[</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">dotnet</span><span class="o">/</span><span class="n">shared</span><span class="o">/</span><span class="n">Microsoft</span><span class="o">.</span><span class="n">NETCore</span><span class="o">.</span><span class="n">App</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
-<p>Für Linux liegen unter <a class="reference external" href="https://github.com/jugstalt/IdentityServerNET/releases">Releases</a>
-ZIP Dateien mit dem Namen <code class="docutils literal notranslate"><span class="pre">identityserver.net-linux-x64-{version}.zip</span></code>.</p>
-<p>Das ZIP File enthält einen Ordner, der der Versionsnummer entspricht. Dieses
+<p>Für Linux stehen unter <a class="reference external" href="https://github.com/jugstalt/IdentityServerNET/releases">Releases</a>
+ZIP-Dateien mit dem Namen <code class="docutils literal notranslate"><span class="pre">identityserver.net-linux-x64-{version}.zip</span></code> zur Verfügung.</p>
+<p>Das ZIP-File enthält einen Ordner, der der Versionsnummer entspricht. Dieses
 Verzeichnis kann beispielsweise nach <code class="docutils literal notranslate"><span class="pre">~/apps/identityserver-net</span></code> kopiert werden.
 Danach wechselt man in das Verzeichnis <code class="docutils literal notranslate"><span class="pre">~/apps/identityserver-net/{version}/app</span></code>
 und führt folgendes Kommando aus:</p>
@@ -169,11 +169,11 @@ und führt folgendes Kommando aus:</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Bemerkung</p>
-<p>Der Server wird mit <code class="docutils literal notranslate"><span class="pre">--customAppSettings=dev-https</span></code> aufgerufen. Damit wird zusätzlich
-die Konfiguration <code class="docutils literal notranslate"><span class="pre">appsettings.dev-https.json</span></code> geladen, in der die Ports und eine
-Entwicklerzertifikat für die HTTPS Verbindung geladen werden.</p>
+<p>Der Server wird mit <code class="docutils literal notranslate"><span class="pre">--customAppSettings=dev-https</span></code> aufgerufen. Dadurch wird zusätzlich
+die Konfiguration <code class="docutils literal notranslate"><span class="pre">appsettings.dev-https.json</span></code> geladen, in der die Ports und ein
+Entwicklerzertifikat für die HTTPS-Verbindung festgelegt sind.</p>
 </div>
-<p>Die Anwendung läuft danach unter <a class="reference external" href="http://localhost:8080">http://localhost:8080</a> bzw <a class="reference external" href="https://localhost:8443">https://localhost:8443</a>.</p>
+<p>Die Anwendung läuft danach unter <a class="reference external" href="http://localhost:8080">http://localhost:8080</a> bzw. <a class="reference external" href="https://localhost:8443">https://localhost:8443</a>.</p>
 </section>
 
 

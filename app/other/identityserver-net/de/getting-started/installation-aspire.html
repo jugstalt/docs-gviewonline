@@ -150,11 +150,11 @@
 <h1>Installation mit Aspire<a class="headerlink" href="#installation-mit-aspire" title="Permalink to this heading">¶</a></h1>
 <p>Bei der Entwicklung von Anwendungen kann <strong>IdentityServerNET</strong> über
 den <strong>Aspire Host</strong> als Container gestartet werden.</p>
-<p>Voraussetzung ist das Nuget Packet:</p>
+<p>Voraussetzung ist das NuGet-Paket:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dotnet</span> <span class="n">add</span> <span class="n">package</span> <span class="n">Aspire</span><span class="o">.</span><span class="n">Hosting</span><span class="o">.</span><span class="n">IdentityServer</span><span class="o">.</span><span class="n">Hosting</span>
 </pre></div>
 </div>
-<p>Im Code der <em>Aspire AppHost</em> Anwendungen kann der <em>IdentityServerNET</em> mit
+<p>Im Code der <em>Aspire AppHost</em>-Anwendung kann der <em>IdentityServerNET</em> mit
 folgendem Befehl hinzugefügt werden:</p>
 <div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span><span class="w"> </span><span class="n">builder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DistributedApplication</span><span class="p">.</span><span class="n">CreateBuilder</span><span class="p">(</span><span class="n">args</span><span class="p">);</span>
 
@@ -221,40 +221,39 @@ folgendem Befehl hinzugefügt werden:</p>
 <span class="n">builder</span><span class="p">.</span><span class="n">Build</span><span class="p">().</span><span class="n">Run</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>Mit <code class="docutils literal notranslate"><span class="pre">AddIdentityServerNET(containerName)</span></code> wird eine Container mit dem
-<code class="docutils literal notranslate"><span class="pre">identityserver-net-dev</span></code> image gestartet (<a class="reference external" href="https://hub.docker.com/r/gstalt/identityserver-net-dev">https://hub.docker.com/r/gstalt/identityserver-net-dev</a>)</p>
-<p>Dieses Image ist speziell für die Entwicklung erstellt worden. Da für viele Workflows
-bei der Anmeldung am <em>IdentityServerNET</em> eine HTTPS Verbindung notwendig ist,
-wurde diese Image mit einem <em>selbst-signiertem Dev Zertifikat</em> für die SSL Verbindungen
+<p>Mit <code class="docutils literal notranslate"><span class="pre">AddIdentityServerNET(containerName)</span></code> wird ein Container mit dem
+<code class="docutils literal notranslate"><span class="pre">identityserver-net-dev</span></code>-Image gestartet (<a class="reference external" href="https://hub.docker.com/r/gstalt/identityserver-net-dev">https://hub.docker.com/r/gstalt/identityserver-net-dev</a>).</p>
+<p>Dieses Image wurde speziell für die Entwicklung erstellt. Da für viele Workflows
+bei der Anmeldung am <em>IdentityServerNET</em> eine HTTPS-Verbindung erforderlich ist,
+wurde dieses Image mit einem <em>selbstsignierten Dev-Zertifikat</em> für die SSL-Verbindungen
 erstellt.</p>
 <div class="admonition note">
 <p class="admonition-title">Bemerkung</p>
-<p>Da die Verbindung zum <em>IdentityServerNET</em> über eine <em>selbst-signiertes Zertifikat</em>
-erfolgt, können im Browser Warnungen angezeigt. Das dieses Image nur für die
+<p>Da die Verbindung zum <em>IdentityServerNET</em> über ein <em>selbstsigniertes Zertifikat</em>
+erfolgt, können im Browser Warnungen angezeigt werden. Da dieses Image nur für die
 Entwicklung verwendet werden sollte, können diese Warnungen im Browser ignoriert werden.</p>
 </div>
-<section id="optional-methoden">
-<h2>Optional Methoden<a class="headerlink" href="#optional-methoden" title="Permalink to this heading">¶</a></h2>
-<p>Auf den <code class="docutils literal notranslate"><span class="pre">IdentityServerNETResourceBuilder</span></code> können optional noch weiter Methoden
+<section id="optionale-methoden">
+<h2>Optionale Methoden<a class="headerlink" href="#optionale-methoden" title="Permalink to this heading">¶</a></h2>
+<p>Auf den <code class="docutils literal notranslate"><span class="pre">IdentityServerNETResourceBuilder</span></code> können optional noch weitere Methoden
 angewendet werden:</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">WithMailDev()</span></code>: Started zusätzlich einen MailDev Server der zum Testen des
-Mailings verwendet werden kann, zB neu registrierter User muss seine E-Mail
-verifizieren.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WithMailDev()</span></code>: Startet zusätzlich einen MailDev-Server, der zum Testen des
+Mailversands verwendet werden kann, z. B. für die E-Mail-Bestätigung eines neu registrierten Users.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">WithBindMountPersistance()</span></code>: Damit Einstellungen in der Entwicklungsumgebung
 des <em>IdentityServerNET</em> gespeichert bleiben, kann mit dieser Methode ein Pfad
-für die Speicherung angeführt werden. Wird kein Parameter übergeben, erfolgt
-die Speicherung der Daten im <code class="docutils literal notranslate"><span class="pre">%USER%/identityserver-net-aspire</span></code> Verzeichnis.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">WithVolumePersistance()</span></code>: Ähnlich wie oben, nur das die Speicherung der
-Daten in einem Docker Volume erfolgt. <strong>Achtung:</strong> hier kann es aufgrund
-der Rechte des Container Users zu Zugriffsproblemen kommen.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">WithConfiguration(config</span> <span class="pre">=&gt;</span> <span class="pre">{})</span></code> Hier kann die Konfiguration des IdentityServerNET angepasst werden.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">WithMigrations(migrations</span> <span class="pre">=&gt;</span> <span class="pre">{})</span></code> Über Migrations könne beim Start des IdentityServerNET
-Objekte wie <code class="docutils literal notranslate"><span class="pre">Client</span></code>, <code class="docutils literal notranslate"><span class="pre">Resources</span></code>, <code class="docutils literal notranslate"><span class="pre">User</span></code>, <code class="docutils literal notranslate"><span class="pre">Rollen</span></code> angelegt werden.
-Hier kann ebenfalls ein Administrator Passwort festgelegt werden.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">WithExternalProviders(external</span> <span class="pre">=&gt;</span> <span class="pre">{})</span></code> Hier können externe IdentityProvider angeben werden.
+für die Speicherung angegeben werden. Wird kein Parameter übergeben, erfolgt
+die Speicherung der Daten im Verzeichnis <code class="docutils literal notranslate"><span class="pre">%USER%/identityserver-net-aspire</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WithVolumePersistance()</span></code>: Ähnlich wie oben, nur dass die Speicherung der
+Daten in einem Docker-Volume erfolgt. <strong>Achtung:</strong> Hier kann es aufgrund
+der Rechte des Container-Users zu Zugriffsproblemen kommen.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WithConfiguration(config</span> <span class="pre">=&gt;</span> <span class="pre">{})</span></code>: Hier kann die Konfiguration des <em>IdentityServerNET</em> angepasst werden.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WithMigrations(migrations</span> <span class="pre">=&gt;</span> <span class="pre">{})</span></code>: Über Migrations können beim Start des <em>IdentityServerNET</em>
+Objekte wie <code class="docutils literal notranslate"><span class="pre">Client</span></code>, <code class="docutils literal notranslate"><span class="pre">Resources</span></code>, <code class="docutils literal notranslate"><span class="pre">User</span></code>, <code class="docutils literal notranslate"><span class="pre">Roles</span></code> angelegt werden.
+Hier kann ebenfalls ein Administratorpasswort festgelegt werden.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WithExternalProviders(external</span> <span class="pre">=&gt;</span> <span class="pre">{})</span></code>: Hier können externe Identity-Provider angegeben werden.
 Derzeit ist <em>MicrosoftIdentityWeb</em> implementiert. Die Konfiguration für <code class="docutils literal notranslate"><span class="pre">AddMicrosoftIdentityWeb</span></code>
-wird in einer Config Section definiert:</p>
+wird in einer Konfigurationssektion definiert:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;IdentityServer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// ...</span>
 <span class="w">  </span><span class="nt">&quot;External&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -271,15 +270,15 @@ wird in einer Config Section definiert:</p>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Builder()</span></code>: Wandelt den <code class="docutils literal notranslate"><span class="pre">IdentityServerNETResourceBuilder</span></code> in einen
-<code class="docutils literal notranslate"><span class="pre">IResourceBuilder</span></code> um, auf den alle anderen Aspire Resource Methoden angewendet
+<code class="docutils literal notranslate"><span class="pre">IResourceBuilder</span></code> um, auf den alle anderen Aspire-Resource-Methoden angewendet
 werden können.</p></li>
 </ul>
 </section>
 <section id="referenzen">
 <h2>Referenzen<a class="headerlink" href="#referenzen" title="Permalink to this heading">¶</a></h2>
-<p>Eine <em>IdentityServerNET</em> Instanz kann mit <code class="docutils literal notranslate"><span class="pre">.AddReference(identityServer,</span> <span class="pre">configName)</span></code> an ein
+<p>Eine <em>IdentityServerNET</em>-Instanz kann mit <code class="docutils literal notranslate"><span class="pre">.AddReference(identityServer,</span> <span class="pre">configName)</span></code> an ein
 Projekt gebunden werden. <code class="docutils literal notranslate"><span class="pre">configName</span></code> ist dabei der Name des Wertes aus der Konfiguration
-des Projektes, in das der die (Aspire) Url von <strong>IdentityServerNET</strong> geschrieben werden soll.</p>
+des Projekts, in den die (Aspire-)URL von <strong>IdentityServerNET</strong> geschrieben werden soll.</p>
 </section>
 </section>
 
@@ -298,7 +297,7 @@ des Projektes, in das der die (Aspire) Url von <strong>IdentityServerNET</strong
             <div class="page_toc">
                 <ul>
 <li><a class="reference internal" href="#">Installation mit Aspire</a><ul>
-<li><a class="reference internal" href="#optional-methoden">Optional Methoden</a></li>
+<li><a class="reference internal" href="#optionale-methoden">Optionale Methoden</a></li>
 <li><a class="reference internal" href="#referenzen">Referenzen</a></li>
 </ul>
 </li>

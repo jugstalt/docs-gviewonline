@@ -176,7 +176,38 @@ Zertifikat gestartet.</p>
 <section id="benutzerdefinierte-images-bauen">
 <h2>Benutzerdefinierte Images bauen<a class="headerlink" href="#benutzerdefinierte-images-bauen" title="Permalink to this heading">¶</a></h2>
 <p>Mit dem Basis Image <code class="docutils literal notranslate"><span class="pre">gstalt/identityserver-net-base:{tag}</span></code> können Benutzerdefinierte
-Images gebaut werden. Ein Docker File sieht dabei in etwa wie folgt aus:</p>
+Images gebaut werden. Ein Docker File sieht dabei in etwa wie folgt aus:Installation mit Docker
+=======================</p>
+<p>Folgende Images stehen auf <em>Docker Hub</em> bereit:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">gstalt/identityserver-net-base:{tag}</span></code>:</p>
+<p>Ein Basis-Image, das alle notwendigen Assemblies enthält. Dieses kann verwendet werden,
+um eigene Images mit individuellen Konfigurationen oder Plugins zu erstellen.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gstalt/identityserver-net:{tag}</span></code>:</p>
+<p>Der IdentityServer in einer <em>Default</em>-Konfiguration. Die Applikation wird im Container
+auf Port 8080 gestartet.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8080</span>:8080<span class="w"> </span>--name<span class="w"> </span>is-net<span class="w"> </span>identityserver-net:5.24.3601
+</pre></div>
+</div>
+<p>Die Anwendung läuft damit unter <a class="reference external" href="http://localhost:8080">http://localhost:8080</a></p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gstalt/identityserver-net-dev:{tag}</span></code>:</p>
+<p>Ein Image, das als lokaler IdentityServer für die Anwendungsentwicklung genutzt werden kann.
+Da für die Anmeldung von Anwendungen <em>HTTPS</em> erforderlich ist, wird der <em>IdentityServerNET</em>
+in diesem Container unter Port 8443 und mit <em>HTTPS</em> unter Verwendung eines selbstsignierten
+Entwicklerzertifikats gestartet.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8443</span>:8443<span class="w"> </span>--name<span class="w"> </span>is-net-dev<span class="w"> </span>identityserver-net-dev:5.24.3601
+</pre></div>
+</div>
+<p>Die Anwendung läuft damit unter <a class="reference external" href="https://localhost:8443">https://localhost:8443</a></p>
+</li>
+</ul>
+</section>
+<section id="benutzerdefinierte-images-erstellen">
+<h2>Benutzerdefinierte Images erstellen<a class="headerlink" href="#benutzerdefinierte-images-erstellen" title="Permalink to this heading">¶</a></h2>
+<p>Mit dem Basis-Image <code class="docutils literal notranslate"><span class="pre">gstalt/identityserver-net-base:{tag}</span></code> können benutzerdefinierte
+Images erstellt werden. Ein Dockerfile könnte wie folgt aussehen:</p>
 <div class="highlight-docker notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">identityserver-net-base:latest</span>
 
 <span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
@@ -210,6 +241,7 @@ Images gebaut werden. Ein Docker File sieht dabei in etwa wie folgt aus:</p>
                 <ul>
 <li><a class="reference internal" href="#">Installation mit Docker</a><ul>
 <li><a class="reference internal" href="#benutzerdefinierte-images-bauen">Benutzerdefinierte Images bauen</a></li>
+<li><a class="reference internal" href="#benutzerdefinierte-images-erstellen">Benutzerdefinierte Images erstellen</a></li>
 </ul>
 </li>
 </ul>

@@ -148,14 +148,14 @@
             
   <section id="konfiguration">
 <h1>Konfiguration<a class="headerlink" href="#konfiguration" title="Permalink to this heading">¶</a></h1>
-<p>Die Konfiguration von <strong>IdentityServerNET</strong> erfolgt über JSON Dateien in Verzeichnis <code class="docutils literal notranslate"><span class="pre">_config</span></code>.
-Der Name der Konfigurationsdaten ist <code class="docutils literal notranslate"><span class="pre">default.identityserver.net.json</span></code>.</p>
+<p>Die Konfiguration von <strong>IdentityServerNET</strong> erfolgt über JSON-Dateien im Verzeichnis <code class="docutils literal notranslate"><span class="pre">_config</span></code>.
+Der Name der Konfigurationsdatei lautet <code class="docutils literal notranslate"><span class="pre">default.identityserver.net.json</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Bemerkung</p>
-<p>Theoretisch kann der Prefix <code class="docutils literal notranslate"><span class="pre">default</span></code> im Namen auch geändert werden. Setzt man die
-Umgebungsvariable <code class="docutils literal notranslate"><span class="pre">IDENTITY_SERVER_SETTINGS_PREFIX</span></code> wird als Präfix dieser Wert verwendet.</p>
+<p>Theoretisch kann der Präfix <code class="docutils literal notranslate"><span class="pre">default</span></code> im Namen auch geändert werden. Setzt man die
+Umgebungsvariable <code class="docutils literal notranslate"><span class="pre">IDENTITY_SERVER_SETTINGS_PREFIX</span></code>, wird dieser Wert als Präfix verwendet.</p>
 </div>
-<p>Aufbau der Config Datei:</p>
+<p>Aufbau der Config-Datei:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;IdentityServer&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="s2">&quot;AssemblyName&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1">// default: IdentityServerNET.ServerExtension.Default</span>
@@ -193,29 +193,29 @@ Umgebungsvariable <code class="docutils literal notranslate"><span class="pre">I
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Die gesamte Konfiguration erfolgt in der <em>Section</em> <code class="docutils literal notranslate"><span class="pre">IdentityServer</span></code>. Darum befinden sich Werte und
-weiter <em>Sections</em> auf die in der Folge eingegangen wird.</p>
+<p>Die gesamte Konfiguration erfolgt in der <em>Section</em> <code class="docutils literal notranslate"><span class="pre">IdentityServer</span></code>. Darin befinden sich Werte und
+weitere <em>Sections</em>, auf die im Folgenden eingegangen wird.</p>
 <section id="root-werte">
 <h2>Root-Werte<a class="headerlink" href="#root-werte" title="Permalink to this heading">¶</a></h2>
 <ul>
-<li><p><strong>AssemblyName:</strong> Die Konfiguration der Services erfolgt ein einer Assembly im Programmverzeichnis.
-In diese Assembly muss eine Klasse mit dem Attribut <code class="docutils literal notranslate"><span class="pre">[IdentityServerStartup]</span></code> das vom
+<li><p><strong>AssemblyName:</strong> Die Konfiguration der Services erfolgt in einer Assembly im Programmverzeichnis.
+In dieser Assembly muss eine Klasse mit dem Attribut <code class="docutils literal notranslate"><span class="pre">[IdentityServerStartup]</span></code> existieren, die vom
 Interface <code class="docutils literal notranslate"><span class="pre">IIdentityServerStartup</span></code> abgeleitet wurde. Methoden dieser Klasse werden beim
 Start der Applikation aufgerufen, um <em>Services</em> zu registrieren.</p>
-<p>Damit kann der <em>IdentityServerNET</em> einfach den eigenen Bedürfnissen angepasst werden, ohne
-den Source Code der ursprünglichen Anwendung zu verändern. So können beispielsweise bestehende
-User/Rollen Datenbanken eingebunden werden.</p>
-<p>Beispiele folgen später im Abschnitt <strong>IdentityServerNET anpassen/erweitern</strong></p>
-<p>Der Wert kann weggelassen werden. In dem Fall wird die Default Assembly
+<p>Dadurch kann <em>IdentityServerNET</em> einfach an individuelle Bedürfnisse angepasst werden, ohne
+den Source-Code der ursprünglichen Anwendung zu verändern. So können beispielsweise bestehende
+User- und Rollendatenbanken eingebunden werden.</p>
+<p>Beispiele folgen später im Abschnitt <strong>IdentityServerNET anpassen/erweitern</strong>.</p>
+<p>Der Wert kann weggelassen werden. In diesem Fall wird die Standard-Assembly
 <code class="docutils literal notranslate"><span class="pre">IdentityServerNET.ServerExtension.Default</span></code> verwendet.</p>
 </li>
-<li><p><strong>ApplicationTitle:</strong> Der Title der Applikation, wie er in der Titelzeile angezeigt wird.</p></li>
-<li><p><strong>PublicOrigin:</strong> Die Url des <em>IdentityServerNET</em>, wie er im Browser angezeigt wird.
-Dieser Wert ist erforderlich, damit diverse Tools des <em>IdentityServerNET</em> funktionieren,
-zB. <strong>Secrets Vault</strong></p></li>
-<li><p><strong>StorageRootPath:</strong> Hier kann ein Pfad angegeben werden, in dem <em>IdentityServerNET</em> diverse Information speichern kann, beispielsweise die
-die Zertifikate zum Signieren von Tokens. Unterhalb dieses Ordners werden jetzt nach Konfiguration automatisch Unterordner angelegt, zB <code class="docutils literal notranslate"><span class="pre">storage</span></code>, <code class="docutils literal notranslate"><span class="pre">secretsvault</span></code>, …
-Wird dieser Pfad nicht angeführt, wird ein <strong>Default-Pfad</strong> verwendet:</p>
+<li><p><strong>ApplicationTitle:</strong> Der Titel der Applikation, wie er in der Titelzeile angezeigt wird.</p></li>
+<li><p><strong>PublicOrigin:</strong> Die URL des <em>IdentityServerNET</em>, wie sie im Browser angezeigt wird.
+Dieser Wert ist erforderlich, damit verschiedene Tools des <em>IdentityServerNET</em> funktionieren,
+z. B. <strong>Secrets Vault</strong>.</p></li>
+<li><p><strong>StorageRootPath:</strong> Hier kann ein Pfad angegeben werden, in dem <em>IdentityServerNET</em> verschiedene Informationen speichern kann, beispielsweise die
+Zertifikate zum Signieren von Tokens. Unterhalb dieses Ordners werden automatisch Unterordner entsprechend der Konfiguration erstellt, z. B. <code class="docutils literal notranslate"><span class="pre">storage</span></code>, <code class="docutils literal notranslate"><span class="pre">secretsvault</span></code>, usw.
+Wird dieser Pfad nicht angegeben, wird ein <strong>Standardpfad</strong> verwendet:</p>
 <ul class="simple">
 <li><p>Windows: <code class="docutils literal notranslate"><span class="pre">C:\\apps\\identityserver-net</span></code></p></li>
 <li><p>Linux/OSX: <code class="docutils literal notranslate"><span class="pre">/home/app/identityserver-net</span></code></p></li>
@@ -237,11 +237,11 @@ Wird dieser Pfad nicht angeführt, wird ein <strong>Default-Pfad</strong> verwen
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Hier kann ein <em>ConnectionString</em> für eine <em>Datenbank</em> angegeben werden, in die User, Rollen, Resourcen, Clients etc gespeichert werden.</p>
-<p>Standardmäßig können die Daten ein einer <code class="docutils literal notranslate"><span class="pre">LiteDb</span></code> oder im FileSystem abgelegt werden. Wird kein <em>ConnectionString</em> angegeben, werden
-die Daten <strong>InMemory</strong> gespeichert (Bei einem Neustart der Applikation sind alle Daten weg, sollte nur zur Test oder zum Entwickeln verwendet werden!)</p>
-<p>Als Alternative können die einzelnen Datenbanken auch in unterschiedliche Ziele abgelegt werden. Dazu
-muss für jede <em>Klasse</em> eine Datenbank Verbindung angegeben werden:</p>
+<p>Hier kann ein <em>ConnectionString</em> für eine <em>Datenbank</em> angegeben werden, in die User, Rollen, Ressourcen, Clients etc. gespeichert werden.</p>
+<p>Standardmäßig können die Daten in einer <code class="docutils literal notranslate"><span class="pre">LiteDb</span></code> oder im Dateisystem abgelegt werden. Wird kein <em>ConnectionString</em> angegeben, werden
+die Daten <strong>InMemory</strong> gespeichert (bei einem Neustart der Applikation sind alle Daten verloren; dies sollte nur für Tests oder zur Entwicklung verwendet werden!).</p>
+<p>Alternativ können die einzelnen Datenbanken auch in unterschiedliche Speicherorte abgelegt werden. Dafür
+muss für jede <em>Klasse</em> eine separate Datenbankverbindung angegeben werden:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;ConnectionStrings&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;Users&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;LiteDb&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;is_net.db&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">    </span><span class="s2">&quot;Roles&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;LiteDb&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;is_net.db&quot;</span><span class="w"> </span><span class="p">},</span>
@@ -254,12 +254,12 @@ muss für jede <em>Klasse</em> eine Datenbank Verbindung angegeben werden:</p>
 </pre></div>
 </div>
 <p>Die einzelnen <em>Klassen</em> heißen <code class="docutils literal notranslate"><span class="pre">Users</span></code>, <code class="docutils literal notranslate"><span class="pre">Roles</span></code>, <code class="docutils literal notranslate"><span class="pre">Clients</span></code> und <code class="docutils literal notranslate"><span class="pre">Resources</span></code>.
-Für jede <em>Klasse</em> kann ein ConnectionString definiert werden. Werden nicht alle <em>Klassen</em>
-extra angeführt, kann ein Fallback angeben werden.</p>
+Für jede <em>Klasse</em> kann ein eigener ConnectionString definiert werden. Werden nicht alle <em>Klassen</em>
+einzeln angegeben, kann ein Fallback angegeben werden.</p>
 <div class="admonition note">
 <p class="admonition-title">Bemerkung</p>
-<p>Für die beiden Klassen <code class="docutils literal notranslate"><span class="pre">Clients</span></code> und <code class="docutils literal notranslate"><span class="pre">Resources</span></code> können auch in <strong>Azure Tables</strong>
-oder eine <strong>Mongo DB</strong> gespeichert werden.</p>
+<p>Die beiden Klassen <code class="docutils literal notranslate"><span class="pre">Clients</span></code> und <code class="docutils literal notranslate"><span class="pre">Resources</span></code> können auch in <strong>Azure Tables</strong>
+oder einer <strong>MongoDB</strong> gespeichert werden.</p>
 </div>
 </section>
 <section id="abschnitt-crypto">
@@ -270,18 +270,17 @@ oder eine <strong>Mongo DB</strong> gespeichert werden.</p>
 <span class="p">},</span>
 </pre></div>
 </div>
-<p>Element, die vom Administrator erstellt werden (<code class="docutils literal notranslate"><span class="pre">Clients</span></code>, <code class="docutils literal notranslate"><span class="pre">Resources</span></code>, …) sollten verschlüsselt abgelegt werden, weil darin beispielsweise auf
-<strong>Secrets</strong> enthalten sein können.</p>
-<p>Wie verschlüsselt wird, kann in diesem Abschnitt festgelegt werden. Folgende Methoden stehen zur Verfügung:</p>
+<p>Elemente, die vom Administrator erstellt werden (z. B. <code class="docutils literal notranslate"><span class="pre">Clients</span></code>, <code class="docutils literal notranslate"><span class="pre">Resources</span></code>, …), sollten verschlüsselt gespeichert werden, da sie möglicherweise <strong>Secrets</strong> enthalten.</p>
+<p>Die Verschlüsselungsmethode kann in diesem Abschnitt festgelegt werden. Folgende Methoden stehen zur Verfügung:</p>
 <ul class="simple">
-<li><p><strong>key:</strong> Die Daten werden mit einem Key (Passwort) verschlüsselt. Der Key muss unter <code class="docutils literal notranslate"><span class="pre">Key</span></code> angeführt werden und mindestens 24 Zeichen lang sein.
-Diese Methode ist einfach zu verwenden, auch wenn der <strong>IdentityServerNET</strong> auf mehrere Instanzen skaliert wurde. Alle Instanzen müssen dazu in
-der Konfiguration den gleichen <code class="docutils literal notranslate"><span class="pre">Key</span></code> aufweisen.</p></li>
+<li><p><strong>key:</strong> Die Daten werden mit einem Schlüssel (Passwort) verschlüsselt. Der Schlüssel muss unter <code class="docutils literal notranslate"><span class="pre">Key</span></code> angegeben werden und mindestens 24 Zeichen lang sein.
+Diese Methode ist einfach zu verwenden, auch wenn <strong>IdentityServerNET</strong> auf mehrere Instanzen skaliert wurde. Alle Instanzen müssen dazu in
+der Konfiguration den gleichen <code class="docutils literal notranslate"><span class="pre">Key</span></code> verwenden.</p></li>
 <li><p><strong>data-protection:</strong> Zum Verschlüsseln wird die <strong>Data Protection API</strong> von .NET verwendet. Ist <strong>IdentityServerNET</strong> auf mehrere Instanzen skaliert,
-muss darauf geachtet werden, dass alle Instanzen, den selben Schüsselkreis verwenden (siehe .NET Core Data Protection API).</p></li>
-<li><p><strong>base64:</strong> Wird keine der oben angeführten Methoden angegeben, werden die Daten <strong>nur Base 64</strong> konvertiert. Diese <em>Verschlüsselung</em> ist ebenfalls einfach
-umzusetzen, wenn <strong>IdentityServerNET</strong> auf mehrere Instanzen skaliert wird. Allerdings handelt es sich hier streng genommen nicht um eine <em>Verschlüsselung</em>
-sondern um eine <em>Codierung</em>. Die Daten stehen einfach nicht mehr im Klartext in der Datenbank.</p></li>
+muss sichergestellt sein, dass alle Instanzen denselben Schlüsselkreis nutzen (siehe .NET Core Data Protection API).</p></li>
+<li><p><strong>base64:</strong> Wenn keine der oben genannten Methoden angegeben wird, werden die Daten <strong>nur in Base64</strong> konvertiert. Diese <em>Verschlüsselung</em> ist ebenfalls einfach
+umzusetzen, wenn <strong>IdentityServerNET</strong> auf mehrere Instanzen skaliert wird. Allerdings ist dies technisch gesehen keine <em>Verschlüsselung</em>, sondern eine <em>Codierung</em>.
+Die Daten stehen dann nicht mehr im Klartext in der Datenbank.</p></li>
 </ul>
 </section>
 <section id="abschnitt-signingcredential">
@@ -292,11 +291,11 @@ sondern um eine <em>Codierung</em>. Die Daten stehen einfach nicht mehr im Klart
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Zum Signieren von <strong>Tokens</strong> benötigt der <strong>IdentityServerNET</strong> Zertifikate mit privaten und öffentlichen Schlüsseln. Hier kann der Speicherort für diese
-Zertifikate angegeben werden. Zusätzlich kann noch ein Passwort angegeben werden, mir denen die Zertifikate verschlüsselt werden. Der private Schlüssel kann
-dann nur von Anwendungen ausgelesen werden, die diesen Passwort kennen.</p>
-<p>Wird dieser Abschnitt nicht angegeben, werden die Zertifikate nur <strong>InMemory</strong> gespeichert
-(Bei einem Neustart der Applikation sind alle Zertifikate weg, sollte nur zur Test oder zum Entwickeln verwendet werden!).</p>
+<p>Zum Signieren von <strong>Tokens</strong> benötigt <strong>IdentityServerNET</strong> Zertifikate mit privaten und öffentlichen Schlüsseln. Hier kann der Speicherort für diese
+Zertifikate angegeben werden. Zusätzlich kann ein Passwort festgelegt werden, mit dem die Zertifikate verschlüsselt werden. Der private Schlüssel kann
+dann nur von Anwendungen ausgelesen werden, die dieses Passwort kennen.</p>
+<p>Wird dieser Abschnitt nicht angegeben, werden die Zertifikate nur <strong>InMemory</strong> gespeichert.
+(Bei einem Neustart der Applikation sind alle Zertifikate verloren; dies sollte nur für Tests oder zur Entwicklung verwendet werden!).</p>
 </section>
 <section id="abschnitt-login">
 <h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">Login</span></code><a class="headerlink" href="#abschnitt-login" title="Permalink to this heading">¶</a></h2>
@@ -310,11 +309,11 @@ dann nur von Anwendungen ausgelesen werden, die diesen Passwort kennen.</p>
 </div>
 <p>Hier kann das Verhalten und die Möglichkeiten beim Login gesteuert werden:</p>
 <ul class="simple">
-<li><p><strong>DenyForgotPasswordChallange:</strong> wenn <code class="docutils literal notranslate"><span class="pre">true</span></code> hat ein Anwender keine Möglichkeit, sein Passwort über <code class="docutils literal notranslate"><span class="pre">Passwort</span> <span class="pre">vergessen</span></code> zu ändern.</p></li>
-<li><p><strong>DenyRememberLogin:</strong> wenn <code class="docutils literal notranslate"><span class="pre">true</span></code> wird die Option <code class="docutils literal notranslate"><span class="pre">Remember</span> <span class="pre">my</span> <span class="pre">login</span></code> beim Login nicht angeboten</p></li>
-<li><p><strong>RememberLoginDefaultValue:</strong> wenn <code class="docutils literal notranslate"><span class="pre">true</span></code> ist die Option <code class="docutils literal notranslate"><span class="pre">Remember</span> <span class="pre">my</span> <span class="pre">login</span></code> automatisch ausgewählt</p></li>
-<li><p><strong>DenyLocalLogin:</strong> wenn <code class="docutils literal notranslate"><span class="pre">true</span></code> können sich Anwender nicht mit User/Passwort anmelden.
-Das kann Sinn machen, wenn man sich nur über <em>externe Identity Provider</em> anmelden können sollte.</p></li>
+<li><p><strong>DenyForgotPasswordChallange:</strong> Wenn auf <code class="docutils literal notranslate"><span class="pre">true</span></code> gesetzt, hat ein Anwender keine Möglichkeit, sein Passwort über <code class="docutils literal notranslate"><span class="pre">Passwort</span> <span class="pre">vergessen</span></code> zurückzusetzen.</p></li>
+<li><p><strong>DenyRememberLogin:</strong> Wenn auf <code class="docutils literal notranslate"><span class="pre">true</span></code> gesetzt, wird die Option <code class="docutils literal notranslate"><span class="pre">Remember</span> <span class="pre">my</span> <span class="pre">login</span></code> beim Login nicht angeboten.</p></li>
+<li><p><strong>RememberLoginDefaultValue:</strong> Wenn auf <code class="docutils literal notranslate"><span class="pre">true</span></code> gesetzt, ist die Option <code class="docutils literal notranslate"><span class="pre">Remember</span> <span class="pre">my</span> <span class="pre">login</span></code> standardmäßig ausgewählt.</p></li>
+<li><p><strong>DenyLocalLogin:</strong> Wenn auf <code class="docutils literal notranslate"><span class="pre">true</span></code> gesetzt, können sich Anwender nicht mit Benutzername/Passwort anmelden.
+Dies kann sinnvoll sein, wenn die Anmeldung ausschließlich über <em>externe Identity Provider</em> erfolgen soll.</p></li>
 </ul>
 </section>
 <section id="abschnitt-admin">
@@ -330,20 +329,20 @@ Das kann Sinn machen, wenn man sich nur über <em>externe Identity Provider</em>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Hier kann bestimmt werden, welche <em>Admin Tools</em> in der <strong>IdentityServerNET</strong> Instanz zur Verfügung stehen:</p>
+<p>Hier kann bestimmt werden, welche <em>Admin Tools</em> in der <strong>IdentityServerNET</strong>-Instanz zur Verfügung stehen:</p>
 <ul class="simple">
-<li><p><strong>DenyAdminUsers:</strong> User Accounts können von Administrator erstellt und bearbeitet werden.</p></li>
-<li><p><strong>DenyAdminRoles:</strong> User Rollen können von Administrator erstellt und bearbeitet werden.</p></li>
-<li><p><strong>DenyAdminResources:</strong> Identity und API Resourcen können von Administrator erstellt und bearbeitet werden.</p></li>
-<li><p><strong>DenyAdminClients:</strong> Clients können von Administrator erstellt und bearbeitet werden.</p></li>
-<li><p><strong>DenyAdminSecretsVault:</strong> Das <strong>Secrets Vault</strong> steht dem Administrator zur Verfügung.</p></li>
-<li><p><strong>DenySigningUI:</strong> Das <strong>Payload Signing</strong> Werkzeug steht dem Administrator zur Verfügung.</p></li>
-<li><p><strong>DenyAdminCreateCerts:</strong> Das <strong>Selbst-Signierte Zertifikate</strong> Werkzeug steht dem Administrator zur Verfügung.</p></li>
+<li><p><strong>DenyAdminUsers:</strong> Benutzerkonten können nicht von Administratoren erstellt und bearbeitet werden.</p></li>
+<li><p><strong>DenyAdminRoles:</strong> Benutzerrollen können nicht von Administratoren erstellt und bearbeitet werden.</p></li>
+<li><p><strong>DenyAdminResources:</strong> Identity- und API-Ressourcen können nicht von Administratoren erstellt und bearbeitet werden.</p></li>
+<li><p><strong>DenyAdminClients:</strong> Clients können nicht von Administratoren erstellt und bearbeitet werden.</p></li>
+<li><p><strong>DenyAdminSecretsVault:</strong> Das <strong>Secrets Vault</strong> steht dem Administrator nicht zur Verfügung.</p></li>
+<li><p><strong>DenySigningUI:</strong> Das <strong>Payload Signing</strong>-Werkzeug steht dem Administrator nicht zur Verfügung.</p></li>
+<li><p><strong>DenyAdminCreateCerts:</strong> Das <strong>Selbst-Signierte Zertifikate</strong>-Werkzeug steht dem Administrator nicht zur Verfügung.</p></li>
 </ul>
-<p>Mit diesem Abschnitt können die Administrationswerkzeuge eingeschränkt werden. Das kann Sinn machen, wenn eine <strong>IdentityServer</strong> Instanz öffentlich
-zugänglich ist. Stehen einer öffentlichen Instanz keine Administrationswerkzeuge zur Verfügung, erhöht das die Sicherheit der <strong>IdentityServer Datenbanken</strong>.
+<p>Mit diesem Abschnitt können die Administrationswerkzeuge eingeschränkt werden. Dies kann sinnvoll sein, wenn eine <strong>IdentityServer</strong>-Instanz öffentlich
+zugänglich ist. Wenn eine öffentliche Instanz keine Administrationswerkzeuge besitzt, erhöht dies die Sicherheit der <strong>IdentityServer-Datenbanken</strong>.
 Die Administration kann hier beispielsweise nur über eine Instanz erfolgen, die nicht über das Internet erreichbar ist (nur Intranet, …) und auf die gleiche
-Datenbank schreibt, wie die öffentliche Instanz.</p>
+Datenbank zugreift wie die öffentliche Instanz.</p>
 </section>
 <section id="abschnitt-account">
 <h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">Account</span></code><a class="headerlink" href="#abschnitt-account" title="Permalink to this heading">¶</a></h2>
@@ -353,11 +352,11 @@ Datenbank schreibt, wie die öffentliche Instanz.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Hier können Einschränken im Bezug auf <em>User Accounts</em> getroffen werden:</p>
+<p>Hier können Einschränkungen im Bezug auf <em>User Accounts</em> festgelegt werden:</p>
 <ul class="simple">
-<li><p><strong>DenyManageAccount:</strong> Ein angemeldeter User kann selbstständig keine Änderungen an seinem Account vornehmen. Das kann Sinn machen, wenn nur Administrator
-Die Benutzerkonten verwalten soll, bzw. wenn die Administration von Accounts bereits über eine anderer Anwendung erfolgt.</p></li>
-<li><p><strong>DenyRegisterAccount:</strong> Anwender können sich beim IdentityServer nicht selbst registrieren.</p></li>
+<li><p><strong>DenyManageAccount:</strong> Ein angemeldeter Benutzer kann keine eigenständigen Änderungen an seinem Account vornehmen. Dies kann sinnvoll sein, wenn nur Administratoren
+die Benutzerkonten verwalten sollen oder wenn die Account-Verwaltung bereits über eine andere Anwendung erfolgt.</p></li>
+<li><p><strong>DenyRegisterAccount:</strong> Benutzer können sich beim IdentityServer nicht selbst registrieren.</p></li>
 </ul>
 </section>
 <section id="abschnitt-cookie">
@@ -372,13 +371,13 @@ Die Benutzerkonten verwalten soll, bzw. wenn die Administration von Accounts ber
 </div>
 <p>Der <strong>IdentityServerNET</strong> erzeugt für einen angemeldeten Benutzer ein <em>Cookie</em>. Hier kann genauer bestimmt werden, wie dieses <em>Cookie</em> aufgebaut ist:</p>
 <ul class="simple">
-<li><p><strong>Name:</strong> der Name des <em>Cookie</em></p></li>
-<li><p><strong>Domain:</strong> gibt an, für welche <em>Domain</em> das <em>Cookie</em> gültig ist</p></li>
-<li><p><strong>Path:</strong> der Pfad, für den das <em>Cookie</em> gültig ist</p></li>
-<li><p><strong>ExpireDays:</strong> gibt an, wie lange das <em>Cookie</em> gültig ist</p></li>
+<li><p><strong>Name:</strong> Der Name des <em>Cookies</em></p></li>
+<li><p><strong>Domain:</strong> Gibt an, für welche <em>Domain</em> das <em>Cookie</em> gültig ist</p></li>
+<li><p><strong>Path:</strong> Der Pfad, für den das <em>Cookie</em> gültig ist</p></li>
+<li><p><strong>ExpireDays:</strong> Gibt an, wie lange das <em>Cookie</em> gültig ist</p></li>
 </ul>
-<p>Über <strong>Domain</strong> und <strong>Pfad</strong> kann eingeschränkt werden, wann ein <em>Cookie</em> vom Browser zum Server geschickt wird. Grundsätzlich sollte diese <em>Cookie</em> nur
-zum <strong>IdentityServerNET</strong> geschickt werden!</p>
+<p>Über <strong>Domain</strong> und <strong>Path</strong> kann eingeschränkt werden, wann ein <em>Cookie</em> vom Browser zum Server geschickt wird. Grundsätzlich sollte dieses <em>Cookie</em> nur
+an den <strong>IdentityServerNET</strong> gesendet werden!</p>
 </section>
 <section id="abschnitt-mail">
 <h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">Mail</span></code><a class="headerlink" href="#abschnitt-mail" title="Permalink to this heading">¶</a></h2>
@@ -405,13 +404,13 @@ zum <strong>IdentityServerNET</strong> geschickt werden!</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Bei <code class="docutils literal notranslate"><span class="pre">Forget</span> <span class="pre">Password</span></code> und <code class="docutils literal notranslate"><span class="pre">Register</span> <span class="pre">new</span> <span class="pre">user</span></code>, werden an den User E-Mails geschickt. In diesem Abschnitt kann festgelegt werden, wie diese Mails verschickt werden.
-Standardmäßig wird bisher <code class="docutils literal notranslate"><span class="pre">Smtp</span></code> oder <code class="docutils literal notranslate"><span class="pre">MailJet</span></code> oder <code class="docutils literal notranslate"><span class="pre">SendGrid</span></code> angeboten. Gibt man nichts an, wird die Mail nicht verschickt, sondern in <em>Logging</em> ausgegeben.
-Diese Möglichkeit sollte nur der Entwicklung verwendet werden.</p>
+<p>Bei <code class="docutils literal notranslate"><span class="pre">Forget</span> <span class="pre">Password</span></code> und <code class="docutils literal notranslate"><span class="pre">Register</span> <span class="pre">new</span> <span class="pre">user</span></code> werden E-Mails an den Benutzer gesendet. In diesem Abschnitt kann festgelegt werden, wie diese E-Mails verschickt werden.
+Standardmäßig stehen <code class="docutils literal notranslate"><span class="pre">Smtp</span></code>, <code class="docutils literal notranslate"><span class="pre">MailJet</span></code> und <code class="docutils literal notranslate"><span class="pre">SendGrid</span></code> zur Verfügung. Wird keine Option angegeben, wird die E-Mail nicht verschickt, sondern ins <em>Logging</em> ausgegeben.
+Diese Möglichkeit sollte nur für die Entwicklung verwendet werden.</p>
 </section>
 <section id="abschnitt-configure">
 <h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">Configure</span></code><a class="headerlink" href="#abschnitt-configure" title="Permalink to this heading">¶</a></h2>
-<p>Hier können das Verhalten der <strong>IdentityServerNET</strong> Anwendung über <em>Middlewares</em> gesteuert werden.</p>
+<p>Hier kann das Verhalten der <strong>IdentityServerNET</strong>-Anwendung über <em>Middlewares</em> gesteuert werden.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Configure&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;UseHttpsRedirection&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;false&quot;</span><span class="p">,</span><span class="w">         </span><span class="c1">// default: true</span>
 <span class="w">    </span><span class="s2">&quot;AddXForwardedProtoMiddleware&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;true&quot;</span><span class="w">  </span><span class="c1">// default: false</span>
@@ -419,12 +418,12 @@ Diese Möglichkeit sollte nur der Entwicklung verwendet werden.</p>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><strong>UseHttpsRedirection:</strong> Der IdentityServer leitet automatisch auf HTTPS Verbindungen um. Läuft die Anwendung in einen <em>Kubernetes</em> Cluster, ist das nicht immer
-wünschenswert. Hier läuft die Anwendung im Cluster über das HTTP Protokoll, über den <em>Ingress</em> ist sie allerdings nur über HTTP aufrufbar.</p></li>
-<li><p><strong>AddXForwardedProtoMiddleware:</strong> Für <strong>IdentityServerNET</strong> ist ein Aufruf über HTTPS erforderlich! Ändert man mit <strong>UseHttpsRedirection</strong> die automatische Umleitung,
-funktioniert der <strong>IdentityServer</strong> eventuell nicht mehr wie erwartet. Mit dir <strong>XForwardedProtoMiddleware</strong> wird gewährleistet, der <code class="docutils literal notranslate"><span class="pre">X-Forwarded-Proto</span></code> Header
-berücksichtigt wird. Wird der <strong>IdentityServer</strong> in einen <em>Kubernetes</em> Cluster über den <em>Ingress</em> mit HTTPS aufgerufen, funktioniert der Server auch noch, wenn die
-Kommunikation innerhalb des Clusters mit HTTP funktioniert.</p></li>
+<li><p><strong>UseHttpsRedirection:</strong> Der IdentityServer leitet automatisch auf HTTPS-Verbindungen um. Läuft die Anwendung in einem <em>Kubernetes</em> Cluster, ist das nicht immer
+wünschenswert. Innerhalb des Clusters läuft die Anwendung oft über das HTTP-Protokoll, ist jedoch über den <em>Ingress</em> nur über HTTPS erreichbar.</p></li>
+<li><p><strong>AddXForwardedProtoMiddleware:</strong> Für <strong>IdentityServerNET</strong> ist ein Aufruf über HTTPS erforderlich! Wenn die automatische Umleitung mit <strong>UseHttpsRedirection</strong> deaktiviert wird,
+funktioniert der <strong>IdentityServer</strong> möglicherweise nicht wie erwartet. Die <strong>XForwardedProtoMiddleware</strong> sorgt dafür, dass der <code class="docutils literal notranslate"><span class="pre">X-Forwarded-Proto</span></code> Header berücksichtigt wird.
+Wenn der <strong>IdentityServer</strong> in einem <em>Kubernetes</em> Cluster über den <em>Ingress</em> mit HTTPS aufgerufen wird, bleibt die Funktionalität des Servers auch dann bestehen,
+wenn die Kommunikation innerhalb des Clusters über HTTP erfolgt.</p></li>
 </ul>
 </section>
 </section>

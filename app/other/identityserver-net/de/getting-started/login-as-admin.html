@@ -148,7 +148,7 @@
             
   <section id="als-administrator-anmelden">
 <h1>Als Administrator anmelden<a class="headerlink" href="#als-administrator-anmelden" title="Permalink to this heading">¶</a></h1>
-<p>Nach dem ersten Start sollte die Konsolenausgabe kontrolliert werden:</p>
+<p>Nach dem ersten Start sollte die Konsolenausgabe überprüft werden:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="m">09</span>:29:58<span class="w"> </span>Information<span class="o">]</span>
 Starting<span class="w"> </span>host...
 
@@ -165,56 +165,56 @@ Password:<span class="w"> </span>Ay!ql5@r<span class="o">=</span>xc%xOvq
 <span class="o">[</span><span class="m">09</span>:29:59<span class="w"> </span>Information<span class="o">]</span><span class="w"> </span>IdentityServer4.Startup
 </pre></div>
 </div>
-<p>Hier wird angezeigt, welches Konfigurationsfile verwendet wird. Im Beispiel hier, wird der <strong>IdentityServerNET</strong> ohne existierendes
-Konfigurationsfile gestartet (<code class="docutils literal notranslate"><span class="pre">...</span> <span class="pre">not</span> <span class="pre">exist</span></code>). Das ist grundsätzlich möglich, in diesem Fall werden Standardwerte für die Konfiguration verwendet.</p>
+<p>Hier wird angezeigt, welches Konfigurationsfile verwendet wird. Im folgenden Beispiel wird der <strong>IdentityServerNET</strong> ohne ein vorhandenes
+Konfigurationsfile gestartet (<code class="docutils literal notranslate"><span class="pre">...</span> <span class="pre">not</span> <span class="pre">exist</span></code>). Das ist grundsätzlich möglich, und in diesem Fall werden Standardwerte für die Konfiguration verwendet.</p>
 <div class="admonition note">
 <p class="admonition-title">Bemerkung</p>
-<p>Das Start ohne Konfiguration ist nur für Testzwecke empfohlen. Hier werden alle Zertifikate, Benutzer, Rollen, Clients usw. nur im Speicher
-abgelegt (InMemory Datenbanken). Wird die Anwendungen neu gestartet, sind alle Einstellungen die vorgenommen wurden, weg.</p>
+<p>Der Start ohne Konfiguration ist nur für Testzwecke empfohlen. Hier werden alle Zertifikate, Benutzer, Rollen, Clients usw. nur im Speicher
+abgelegt (InMemory-Datenbanken). Wird die Anwendung neu gestartet, sind alle vorgenommenen Einstellungen verloren.</p>
 </div>
-<p>Im <em>Setup</em> Block wird angezeigt, welche Datenbank Instanzen verwendet werden. Folgende Datenbank werden hier aufgelistet:</p>
+<p>Im <em>Setup</em>-Block wird angezeigt, welche Datenbank-Instanzen verwendet werden. Folgende Datenbanken werden hier aufgelistet:</p>
 <ul class="simple">
-<li><p><strong>ISigningCredentialCertificateStorage:</strong> Hier werden die Zertifikate abgelegt. Über diese Zertifikate wird eine Anmeldung erst möglich gemacht,
-bzw. kann über diese Zertifikate (öffentlicher Schlüssel) die Gültigkeit eines (JWT-) Tokens überprüft werden. Die notwendigen Schlüssel dafür werden
-vom IdentityServer auch über diese Url angeführt: <a class="reference external" href="https://my-identity-server-url/.well-known/openid-configuration/jwks">https://my-identity-server-url/.well-known/openid-configuration/jwks</a></p></li>
-<li><p><strong>IUserDbContext:</strong> Hier werden die User gespeichert</p></li>
-<li><p><strong>IRoleDbContext:</strong> Hier werden die (User) Rollen gespeichert</p></li>
-<li><p><strong>IClientDbContext:</strong> Hier werden Client gespeichert. Client sind (Web) Anwendungen, bei denen man sich über den <strong>IdentityServer</strong> anmelden kann.</p></li>
-<li><p><strong>IResourceDbContext:</strong> Hier werden Resourcen gespeichert. Diese repräsentieren die <cite>scopes</cite>, die Anwendungen bei der Anmeldung übergeben können.</p></li>
+<li><p><strong>ISigningCredentialCertificateStorage:</strong> Hier werden die Zertifikate abgelegt. Über diese Zertifikate wird eine Anmeldung möglich gemacht,
+und über die öffentlichen Schlüssel kann die Gültigkeit eines (JWT-)Tokens überprüft werden. Die notwendigen Schlüssel dafür werden
+vom IdentityServer auch über diese URL bereitgestellt: <a class="reference external" href="https://my-identity-server-url/.well-known/openid-configuration/jwks">https://my-identity-server-url/.well-known/openid-configuration/jwks</a></p></li>
+<li><p><strong>IUserDbContext:</strong> Hier werden die Benutzer gespeichert.</p></li>
+<li><p><strong>IRoleDbContext:</strong> Hier werden die (Benutzer-)Rollen gespeichert.</p></li>
+<li><p><strong>IClientDbContext:</strong> Hier werden Clients gespeichert. Clients sind (Web-)Anwendungen, bei denen man sich über den <strong>IdentityServer</strong> anmelden kann.</p></li>
+<li><p><strong>IResourceDbContext:</strong> Hier werden Ressourcen gespeichert. Diese repräsentieren die <cite>scopes</cite>, die Anwendungen bei der Anmeldung übergeben können.</p></li>
 </ul>
-<p>Falls in der <em>User Datenbank</em> noch kein Administrator angelegt wurde, wird ein solcher User beim Start angelegt. (<code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">admin</span> <span class="pre">created</span></code>).
-Das Passwort wird hier zufällig gewählt und in der Konsolenausgabe angezeigt.</p>
+<p>Falls in der <em>User-Datenbank</em> noch kein Administrator angelegt wurde, wird ein solcher Benutzer beim Start automatisch erstellt (<code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">admin</span> <span class="pre">created</span></code>).
+Das Passwort wird zufällig gewählt und in der Konsolenausgabe angezeigt.</p>
 <div class="admonition note">
 <p class="admonition-title">Bemerkung</p>
-<p>Dieses Passwort sollte in produktiven Umgebungen nach dem ersten Start geändert werden. Siehe weiter Vorgehensweise</p>
+<p>Dieses Passwort sollte in produktiven Umgebungen nach dem ersten Start geändert werden. Weitere Schritte siehe unten.</p>
 </div>
-<p>Im Browser wird beim Ersten Start, folgendes angezeigt:</p>
+<p>Im Browser wird beim ersten Start Folgendes angezeigt:</p>
 <img alt="../_images/login-as-admin1.png" src="../_images/login-as-admin1.png" />
-<p>Klickt man auf <code class="docutils literal notranslate"><span class="pre">Login</span></code>, kann man sich mit den <code class="docutils literal notranslate"><span class="pre">admin</span></code> User mit dem in der Konsolenausgabe angezeigtem Passwort anmelden:</p>
+<p>Klickt man auf <code class="docutils literal notranslate"><span class="pre">Login</span></code>, kann man sich mit dem Benutzer <code class="docutils literal notranslate"><span class="pre">admin</span></code> und dem in der Konsolenausgabe angezeigten Passwort anmelden:</p>
 <img alt="../_images/login-as-admin2.png" src="../_images/login-as-admin2.png" />
-<p>Nach erfolgreicher Anmeldung sieht die Anzeige in etwas wie folgt aus:</p>
+<p>Nach erfolgreicher Anmeldung sieht die Anzeige in etwa wie folgt aus:</p>
 <img alt="../_images/login-as-admin3.png" src="../_images/login-as-admin3.png" />
 <section id="administrator-passwort-andern">
-<h2>Administrator Passwort ändern<a class="headerlink" href="#administrator-passwort-andern" title="Permalink to this heading">¶</a></h2>
-<p>Das automatisch erstelle Administrator Passwort sollte in produktiven Umgebungen geändert werden. Dazu klickt man <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">my</span> <span class="pre">account</span></code>.</p>
-<p>Hier können diverse Einstellungen zum Konto gemacht werden. Zum Ändern des Passwortes klickt man auf den Menüpunkt <code class="docutils literal notranslate"><span class="pre">Passwort</span></code>. Hier
-muss noch einmal das aktuelle Passwort angegeben werden (<cite>Current password</cite>). Das neue Passwort muss zweimal angegeben werden (<cite>New password</cite>, <cite>Confirm new password</cite>).</p>
+<h2>Administrator-Passwort ändern<a class="headerlink" href="#administrator-passwort-andern" title="Permalink to this heading">¶</a></h2>
+<p>Das automatisch erstellte Administratorpasswort sollte in produktiven Umgebungen geändert werden. Dazu klickt man auf <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">my</span> <span class="pre">account</span></code>.</p>
+<p>Hier können verschiedene Kontoeinstellungen vorgenommen werden. Zum Ändern des Passworts klickt man auf den Menüpunkt <code class="docutils literal notranslate"><span class="pre">Passwort</span></code>. Hier
+muss noch einmal das aktuelle Passwort angegeben werden (<cite>Current password</cite>). Das neue Passwort muss zweimal eingegeben werden (<cite>New password</cite>, <cite>Confirm new password</cite>).</p>
 <img alt="../_images/login-as-admin4.png" src="../_images/login-as-admin4.png" />
-<p>Mit <code class="docutils literal notranslate"><span class="pre">Update</span> <span class="pre">password</span></code> wird das neue Passwort für zukünftige Anmeldungen neu gesetzt.</p>
+<p>Mit <code class="docutils literal notranslate"><span class="pre">Update</span> <span class="pre">password</span></code> wird das neue Passwort für zukünftige Anmeldungen festgelegt.</p>
 </section>
 <section id="zwei-faktor-authentifizierung">
-<h2>Zwei Faktor Authentifizierung<a class="headerlink" href="#zwei-faktor-authentifizierung" title="Permalink to this heading">¶</a></h2>
-<p>Zur bessern Absicherung des Kontos ist eine Authentifizierung mit zweitem Faktor notwendig (über eine <strong>Authenticator App</strong>). Für den Administrator wird das empfohlen.
-Dazu klickt man im auf <code class="docutils literal notranslate"><span class="pre">Two-factor</span> <span class="pre">authentication</span></code> und dort auf <code class="docutils literal notranslate"><span class="pre">Setup</span> <span class="pre">authenticator</span> <span class="pre">app</span></code>:</p>
+<h2>Zwei-Faktor-Authentifizierung<a class="headerlink" href="#zwei-faktor-authentifizierung" title="Permalink to this heading">¶</a></h2>
+<p>Zur besseren Absicherung des Kontos ist eine Authentifizierung mit einem zweiten Faktor erforderlich (über eine <strong>Authenticator App</strong>). Für den Administrator wird dies empfohlen.
+Dazu klickt man auf <code class="docutils literal notranslate"><span class="pre">Two-factor</span> <span class="pre">authentication</span></code> und dort auf <code class="docutils literal notranslate"><span class="pre">Setup</span> <span class="pre">authenticator</span> <span class="pre">app</span></code>:</p>
 <img alt="../_images/login-as-admin5.png" src="../_images/login-as-admin5.png" />
-<p>Im einer <strong>Authenticator App</strong> kann der hier angezeigt QR Code gescannt werden. Danach ist der erzeugt Code im Feld <code class="docutils literal notranslate"><span class="pre">Verification</span> <span class="pre">Code</span></code> einzutragen und mir <code class="docutils literal notranslate"><span class="pre">Verify</span></code>
+<p>In einer <strong>Authenticator App</strong> kann der hier angezeigte QR-Code gescannt werden. Danach ist der erzeugte Code im Feld <code class="docutils literal notranslate"><span class="pre">Verification</span> <span class="pre">Code</span></code> einzugeben und mit <code class="docutils literal notranslate"><span class="pre">Verify</span></code>
 zu bestätigen.</p>
-<p>Wird der <code class="docutils literal notranslate"><span class="pre">Code</span></code> akzeptiert, erscheint folgende Anzeige mit möglichen <code class="docutils literal notranslate"><span class="pre">Recovery</span> <span class="pre">codes</span></code>. Diese können anstelle der <code class="docutils literal notranslate"><span class="pre">Authenticator</span> <span class="pre">App</span></code> verwendet werden. Jeder dieser
-<code class="docutils literal notranslate"><span class="pre">Recovery</span> <span class="pre">Codes</span></code> kann nur einmal für die Anmeldung verwenden:</p>
+<p>Wird der <code class="docutils literal notranslate"><span class="pre">Code</span></code> akzeptiert, erscheint eine Anzeige mit möglichen <code class="docutils literal notranslate"><span class="pre">Recovery</span> <span class="pre">codes</span></code>. Diese können anstelle der <strong>Authenticator App</strong> verwendet werden. Jeder dieser
+<code class="docutils literal notranslate"><span class="pre">Recovery</span> <span class="pre">Codes</span></code> kann nur einmal für die Anmeldung verwendet werden:</p>
 <img alt="../_images/login-as-admin6.png" src="../_images/login-as-admin6.png" />
-<p>Meldet man sich jetzt vom <strong>IdentityServerNET</strong> ab (<code class="docutils literal notranslate"><span class="pre">Logout</span></code>) und erneut an, muss neben dem neuem Passwort auch ein <code class="docutils literal notranslate"><span class="pre">Authenticator</span> <span class="pre">code</span></code> eingeben werden:</p>
+<p>Meldet man sich jetzt vom <strong>IdentityServerNET</strong> ab (<code class="docutils literal notranslate"><span class="pre">Logout</span></code>) und erneut an, muss neben dem neuen Passwort auch ein <code class="docutils literal notranslate"><span class="pre">Authenticator</span> <span class="pre">code</span></code> eingegeben werden:</p>
 <img alt="../_images/login-as-admin7.png" src="../_images/login-as-admin7.png" />
-<p>Hat man die <strong>Authenticator App</strong> nicht zur Verfügung besteht noch die Möglichkeit sich mit einem der <code class="docutils literal notranslate"><span class="pre">Recovery</span> <span class="pre">Codes</span></code> anzumelden. Dazu klickt man auf den Link <cite>log in with recovery code</cite>:</p>
+<p>Hat man die <strong>Authenticator App</strong> nicht zur Verfügung, besteht noch die Möglichkeit, sich mit einem der <code class="docutils literal notranslate"><span class="pre">Recovery</span> <span class="pre">Codes</span></code> anzumelden. Dazu klickt man auf den Link <code class="docutils literal notranslate"><span class="pre">log</span> <span class="pre">in</span> <span class="pre">with</span> <span class="pre">recovery</span> <span class="pre">code</span></code>:</p>
 <img alt="../_images/login-as-admin8.png" src="../_images/login-as-admin8.png" />
 </section>
 </section>
@@ -234,8 +234,8 @@ zu bestätigen.</p>
             <div class="page_toc">
                 <ul>
 <li><a class="reference internal" href="#">Als Administrator anmelden</a><ul>
-<li><a class="reference internal" href="#administrator-passwort-andern">Administrator Passwort ändern</a></li>
-<li><a class="reference internal" href="#zwei-faktor-authentifizierung">Zwei Faktor Authentifizierung</a></li>
+<li><a class="reference internal" href="#administrator-passwort-andern">Administrator-Passwort ändern</a></li>
+<li><a class="reference internal" href="#zwei-faktor-authentifizierung">Zwei-Faktor-Authentifizierung</a></li>
 </ul>
 </li>
 </ul>

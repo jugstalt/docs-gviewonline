@@ -17,7 +17,7 @@
     <script src="../_static/js/petite-vue.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
-    <link rel="next" title="Weitere Admin Werkzeuge" href="../accessories/index.html" />
+    <link rel="next" title="Weitere Admin-Werkzeuge" href="../accessories/index.html" />
     <link rel="prev" title="Web Anwendung" href="webapp.html" /> 
   </head><body data-dark_mode_code_blocks="true">
 
@@ -128,7 +128,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">API Client</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../accessories/index.html">Weitere Admin Werkzeuge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../accessories/index.html">Weitere Admin-Werkzeuge</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../etc/index.html">Weitere Themen</a></li>
 </ul>
 
@@ -147,54 +147,51 @@
 gültigen <strong>Bearer Token</strong> erfordert, der vom <strong>IdentityServerNET</strong> ausgestellt wurde.</p>
 <section id="api-resource">
 <h2>API Resource<a class="headerlink" href="#api-resource" title="Permalink to this heading">¶</a></h2>
-<p>Um einen <strong>Bearer Token</strong> für eine API auszustellen, muss diese API im ersten Schritt als
-<strong>API Resource</strong> angelegt werden. Dazu navigiert man über die <code class="docutils literal notranslate"><span class="pre">Admin</span></code> Seite zu
+<p>Um einen <strong>Bearer Token</strong> für eine API auszustellen, muss diese API zuerst als
+<strong>API Resource</strong> angelegt werden. Dazu navigiert man über die <code class="docutils literal notranslate"><span class="pre">Admin</span></code>-Seite zu
 <code class="docutils literal notranslate"><span class="pre">Resources</span> <span class="pre">(Identity</span> <span class="pre">&amp;</span> <span class="pre">APIs)</span></code>/<code class="docutils literal notranslate"><span class="pre">API</span> <span class="pre">Resources</span></code>.
 Dort kann eine neue <strong>API Resource</strong> angelegt werden:</p>
 <img alt="../_images/api1.png" src="../_images/api1.png" />
-<p>Im nächsten Schritt müssen für die <strong>API Resource</strong> mögliche <strong>Scopes</strong> angelegt werden:</p>
+<p>Im nächsten Schritt müssen für die <strong>API Resource</strong> mögliche <strong>Scopes</strong> erstellt werden:</p>
 <img alt="../_images/api2.png" src="../_images/api2.png" />
 <div class="admonition note">
 <p class="admonition-title">Bemerkung</p>
 <p>Die Namenskonvention für API Resource Scopes ist: <code class="docutils literal notranslate"><span class="pre">api-resource-name.scope-name</span></code>.
-Gibt man einen Scope ein, wird dieser automatisch in diese Konvention umgewandelt. Eine Ausnahme ist ein Scope,
-der den gleichen Namen hat, wie die <code class="docutils literal notranslate"><span class="pre">api-resource</span></code>. Möchte man einen Scope anlegen, der nicht diese
-Konvention entspricht, muss dieser mit vorangestelltem <code class="docutils literal notranslate"><span class="pre">&#64;&#64;</span></code> angegeben werden, zB <code class="docutils literal notranslate"><span class="pre">&#64;&#64;scope-name</span></code></p>
+Wenn ein Scope eingegeben wird, wird er automatisch in dieses Format umgewandelt. Eine Ausnahme ist ein Scope,
+der den gleichen Namen hat wie die <code class="docutils literal notranslate"><span class="pre">api-resource</span></code>. Möchte man einen Scope anlegen, der von dieser
+Konvention abweicht, muss dieser mit vorangestelltem <code class="docutils literal notranslate"><span class="pre">&#64;&#64;</span></code> angegeben werden, z. B. <code class="docutils literal notranslate"><span class="pre">&#64;&#64;scope-name</span></code>.</p>
 </div>
-<p>Für eine API werden nach dem erstellen automatisch folgende <strong>Scopes</strong> angelegt:</p>
+<p>Für eine API werden nach dem Erstellen automatisch folgende <strong>Scopes</strong> angelegt:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">{api-name}</span></code>: Allgemeiner Zugriff auf die API</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">{api-name}.query</span></code>: Lesender Zugriff auf die von der API bereitgestellten Daten</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">{api-name}.command</span></code>: Zusätzlich schreibender Zugriff auf die von der API bereitgestellten Daten</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{api-name}.query</span></code>: Lesezugriff auf die von der API bereitgestellten Daten</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{api-name}.command</span></code>: Zusätzlich Schreibzugriff auf die von der API bereitgestellten Daten</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Bemerkung</p>
-<p>Der Scope <code class="docutils literal notranslate"><span class="pre">{api-name}</span></code> sollte später bei einem Client unbedingt als Scope hinzugefügt werden. Diese entspricht dann
+<p>Der Scope <code class="docutils literal notranslate"><span class="pre">{api-name}</span></code> sollte später unbedingt als Scope bei einem Client hinzugefügt werden. Er entspricht
 der <code class="docutils literal notranslate"><span class="pre">Audience</span></code> (<code class="docutils literal notranslate"><span class="pre">aud</span></code>) des Tokens!</p>
 </div>
 </section>
 <section id="api-client-erstellen-bearbeiten">
 <h2>API Client erstellen/bearbeiten<a class="headerlink" href="#api-client-erstellen-bearbeiten" title="Permalink to this heading">¶</a></h2>
 <p>Um einen neuen <em>Client</em> zu erstellen, muss eine eindeutige <em>Client Id</em> vergeben werden.
-Optional kann auch ein sprechender Name vergeben werden.</p>
-<p>Damit nicht alles manuelle eingegeben werden muss, sollte als Template <code class="docutils literal notranslate"><span class="pre">API</span></code> eingetragen
-werden. Außerdem sollte für diesem Template
-die Url zur Web Anwendung eingetragen werden. Die Eingabe der <strong>Scopes</strong> ist optional. Diese können
-auch im nächsten Schritt noch bearbeitet werden:</p>
+Optional kann auch ein sprechender Name zugewiesen werden.</p>
+<p>Damit nicht alles manuell eingegeben werden muss, sollte als Template <code class="docutils literal notranslate"><span class="pre">API</span></code> gewählt
+werden. Außerdem sollte in diesem Template die URL zur Webanwendung eingetragen werden. Die Eingabe der <strong>Scopes</strong> ist optional und kann
+auch im nächsten Schritt bearbeitet werden:</p>
 <img alt="../_images/api3.png" src="../_images/api3.png" />
-<p>Wurde der Client erfolgreich erzeugt, kommt man zur Seite <code class="docutils literal notranslate"><span class="pre">Modify</span> <span class="pre">Client:</span> <span class="pre">...</span></code>. Hier sind die
-unterschiedlichen Eigenschaften für den Client in Menüpunkten gegliedert:</p>
+<p>Nach erfolgreicher Erstellung des Clients gelangt man zur Seite <code class="docutils literal notranslate"><span class="pre">Modify</span> <span class="pre">Client:</span> <span class="pre">...</span></code>. Hier sind die
+verschiedenen Eigenschaften des Clients in Menüpunkten gegliedert:</p>
 <section id="name">
 <h3><code class="docutils literal notranslate"><span class="pre">Name</span></code>:<a class="headerlink" href="#name" title="Permalink to this heading">¶</a></h3>
 <img alt="../_images/api4.png" src="../_images/api4.png" />
-<p>Hier kann der sprechende Name für den Client verändert werden. Außerdem kann eine Beschreibung
-für den Client eingetragen werden.</p>
+<p>Hier kann der Name des Clients geändert und eine Beschreibung hinzugefügt werden.</p>
 </section>
 <section id="client-secrets">
 <h3><code class="docutils literal notranslate"><span class="pre">Client</span> <span class="pre">Secrets</span></code><a class="headerlink" href="#client-secrets" title="Permalink to this heading">¶</a></h3>
-<p>Hier muss ein Secret angegeben werden, mit dem sich der Client am Identity Server Anmelden muss. Über den
-<strong>Random Secret Generator</strong> kann ein sicheres Secret erzeugt werden. Der Einfachheit halber verwenden wir hier
-allerdings als Secret einfach <code class="docutils literal notranslate"><span class="pre">secret</span></code>:</p>
+<p>Hier muss ein Secret angegeben werden, mit dem sich der Client am Identity Server authentifizieren muss. Über den
+<strong>Random Secret Generator</strong> kann ein sicheres Secret erzeugt werden. Für dieses Beispiel verwenden wir das einfache Secret <code class="docutils literal notranslate"><span class="pre">secret</span></code>:</p>
 <img alt="../_images/api5.png" src="../_images/api5.png" />
 </section>
 <section id="allowed-grants">
@@ -204,18 +201,18 @@ allerdings als Secret einfach <code class="docutils literal notranslate"><span c
 </section>
 <section id="allowed-scopes">
 <h3><code class="docutils literal notranslate"><span class="pre">Allowed</span> <span class="pre">Scopes</span></code><a class="headerlink" href="#allowed-scopes" title="Permalink to this heading">¶</a></h3>
-<p>Hier müssen die Scopes hinzugefügt werden, für die <code class="docutils literal notranslate"><span class="pre">API</span> <span class="pre">Resource</span></code> angelegt worden sind. Die <strong>Scopes</strong> bestimmen in der
-API später spezielle Rechte für den Zugriff auf die API. Beim <code class="docutils literal notranslate"><span class="pre">my-api-command</span></code> Client, macht es hier Sinn, den <code class="docutils literal notranslate"><span class="pre">my-api</span></code> und
-den <code class="docutils literal notranslate"><span class="pre">my-api.command</span></code> Scope aus <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">existing</span> <span class="pre">resource</span> <span class="pre">scope</span></code> Bereich zu übernehmen:</p>
+<p>Hier müssen die Scopes hinzugefügt werden, die für die <code class="docutils literal notranslate"><span class="pre">API</span> <span class="pre">Resource</span></code> erstellt wurden. Die <strong>Scopes</strong> bestimmen in der
+API später spezielle Zugriffsrechte. Beim <code class="docutils literal notranslate"><span class="pre">my-api-command</span></code> Client macht es Sinn, den <code class="docutils literal notranslate"><span class="pre">my-api</span></code> und
+den <code class="docutils literal notranslate"><span class="pre">my-api.command</span></code> Scope aus dem Bereich <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">existing</span> <span class="pre">resource</span> <span class="pre">scope</span></code> zu übernehmen:</p>
 <img alt="../_images/api7.png" src="../_images/api7.png" />
 </section>
 <section id="advanced-properties">
 <h3><code class="docutils literal notranslate"><span class="pre">Advanced</span> <span class="pre">Properties</span></code><a class="headerlink" href="#advanced-properties" title="Permalink to this heading">¶</a></h3>
-<p>Hier kann beispielsweise die lebensdauer für einen <em>AccessToken</em> definiert werden:</p>
+<p>Hier kann beispielsweise die Lebensdauer eines <em>AccessTokens</em> definiert werden:</p>
 <img alt="../_images/api8.png" src="../_images/api8.png" />
 <div class="admonition note">
 <p class="admonition-title">Bemerkung</p>
-<p>Alle weiteren Menüpunkte sind für <em>API Clients</em> weniger relevant und werden nicht im Detail aufgelistete.</p>
+<p>Alle weiteren Menüpunkte sind für <em>API Clients</em> weniger relevant und werden hier nicht im Detail aufgelistet.</p>
 </div>
 </section>
 </section>
@@ -223,8 +220,8 @@ den <code class="docutils literal notranslate"><span class="pre">my-api.command<
 <h2>Abholen eines AccessTokens<a class="headerlink" href="#abholen-eines-accesstokens" title="Permalink to this heading">¶</a></h2>
 <section id="http-request">
 <h3>HTTP Request<a class="headerlink" href="#http-request" title="Permalink to this heading">¶</a></h3>
-<p>Eine Client Anwendung kann über einen <strong>HTTP Post</strong> Request, mit den notwendigen Parametern im Body, einen AccessToken von <em>IdentityServerNET</em> abholen.
-Die Scopes werden über den Parameter <code class="docutils literal notranslate"><span class="pre">scope</span></code> mit leerzeichen als Trennzeichen übergeben:</p>
+<p>Eine Client-Anwendung kann über einen <strong>HTTP POST</strong> Request mit den notwendigen Parametern im Body ein AccessToken von <em>IdentityServerNET</em> abholen.
+Die Scopes werden über den Parameter <code class="docutils literal notranslate"><span class="pre">scope</span></code> übergeben, wobei Leerzeichen als Trennzeichen verwendet werden:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">44300</span><span class="o">/</span><span class="n">connect</span><span class="o">/</span><span class="n">token</span>
 <span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">x</span><span class="o">-</span><span class="n">www</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">urlencoded</span>
 
@@ -247,14 +244,14 @@ Die Scopes werden über den Parameter <code class="docutils literal notranslate"
 <span class="p">}</span>
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Bemerkung</p>
-<p>Der <code class="docutils literal notranslate"><span class="pre">scope</span></code> Parameter kann auch weggelassen werden. In dem Fall enthält der Token alle für den Client eingestellten Scopes.</p>
+<p>… note:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Der ``scope`` Parameter kann auch weggelassen werden. In diesem Fall enthält der Token alle für den Client eingestellten Scopes.
+</pre></div>
 </div>
 </section>
 <section id="identityservernet-clients">
 <h3>IdentityServerNET.Clients<a class="headerlink" href="#identityservernet-clients" title="Permalink to this heading">¶</a></h3>
-<p>Zum Abholen eines Tokens kann auch das <code class="docutils literal notranslate"><span class="pre">IdentityServerNET.Clients</span></code> <strong>nuget</strong> Package verwendet werden:</p>
+<p>Zum Abholen eines Tokens kann auch das <strong>NuGet</strong>-Paket <code class="docutils literal notranslate"><span class="pre">IdentityServerNET.Clients</span></code> verwendet werden:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dotnet<span class="w"> </span>add<span class="w"> </span>package<span class="w"> </span>IdentityServerNET.Clients
 </pre></div>
 </div>
@@ -267,7 +264,7 @@ Die Scopes werden über den Parameter <code class="docutils literal notranslate"
 </section>
 <section id="identitymodel">
 <h3>IdentityModel<a class="headerlink" href="#identitymodel" title="Permalink to this heading">¶</a></h3>
-<p><strong>IdentityModel</strong> bietet ebenfalls ein Möglichkeit einen Token abzuholen:</p>
+<p><strong>IdentityModel</strong> bietet ebenfalls eine Möglichkeit, einen Token abzuholen:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dotnet<span class="w"> </span>add<span class="w"> </span>package<span class="w"> </span>IdentityModel
 </pre></div>
 </div>
@@ -303,19 +300,20 @@ Die Scopes werden über den Parameter <code class="docutils literal notranslate"
 </section>
 </section>
 <section id="api-authorization">
-<h2>Api Authorization<a class="headerlink" href="#api-authorization" title="Permalink to this heading">¶</a></h2>
-<p>Möchte man eine API über einen (Bearer) Token absichern, ist die Vorgehensweise in etwas folgendermaßen:</p>
+<h2>API Authorization<a class="headerlink" href="#api-authorization" title="Permalink to this heading">¶</a></h2>
+<p>Um eine API über einen (Bearer) Token abzusichern, ist die Vorgehensweise in etwa folgendermaßen:</p>
 <section id="program-cs">
 <h3><code class="docutils literal notranslate"><span class="pre">Program.cs</span></code><a class="headerlink" href="#program-cs" title="Permalink to this heading">¶</a></h3>
-<p>In der <code class="docutils literal notranslate"><span class="pre">Programm.cs</span></code> Datei zu erst die notwendigen <em>Authentication</em> und <em>Authorization</em> Services registriert.</p>
-<p>Über die <code class="docutils literal notranslate"><span class="pre">AddAuthoriation</span></code> wird angegeben, dass die zur Authentifizierung des Clients eine <code class="docutils literal notranslate"><span class="pre">Bearer</span> <span class="pre">(JWT)</span> <span class="pre">Token</span></code> verwendet wird.
-Über die Optionen wird hier gesteuert, wer für die Authentifizierung verantwortlich ist (<code class="docutils literal notranslate"><span class="pre">Authority</span></code>). Ebenfalls kann die <code class="docutils literal notranslate"><span class="pre">Audience</span></code> vorgeben
-werden, für die dieser der Token ausgestellt werden werden muss. Über die <code class="docutils literal notranslate"><span class="pre">TokenValidationParameters</span></code> wird festgelegt, welche <strong>Claims</strong>
-überprüft werden, um einen Token als gültig anzuerkennen. <code class="docutils literal notranslate"><span class="pre">ClockSkew</span> <span class="pre">=</span> <span class="pre">TimeSpan.Zero</span></code> gibt an, der der Token sofort abgelehnt wird,
-wenn die <strong>ExpirationTime</strong> des Tokens überschritten wird.</p>
-<p>Mittels <code class="docutils literal notranslate"><span class="pre">AddAuthorization</span></code> können <strong>Policies</strong> angeführt werden. Über eine <strong>Policy</strong> wird geregelt, welche Rechte ein Client bei API Aufrufen hat.
-Hier wird <code class="docutils literal notranslate"><span class="pre">scope</span></code> als Claim vorausgesetzt und zwischen <code class="docutils literal notranslate"><span class="pre">command</span></code> und <code class="docutils literal notranslate"><span class="pre">query</span></code> Rechten unterschieden.</p>
-<p>Damit Authentifizierung und Autorisierung angewendet wird, muss die Application auch die entsprechende Middleware verwenden (<code class="docutils literal notranslate"><span class="pre">UseAuthentication</span></code>, <code class="docutils literal notranslate"><span class="pre">UseAuthorization</span></code>)-</p>
+<p>In der Datei <code class="docutils literal notranslate"><span class="pre">Program.cs</span></code> werden zuerst die notwendigen <em>Authentication</em>- und <em>Authorization</em>-Services registriert.</p>
+<p>Mit <code class="docutils literal notranslate"><span class="pre">AddAuthentication</span></code> wird festgelegt, dass zur Authentifizierung des Clients ein <code class="docutils literal notranslate"><span class="pre">Bearer</span> <span class="pre">(JWT)</span> <span class="pre">Token</span></code> verwendet wird.
+Über die Optionen wird definiert, wer für die Authentifizierung verantwortlich ist (<code class="docutils literal notranslate"><span class="pre">Authority</span></code>). Zudem kann die <code class="docutils literal notranslate"><span class="pre">Audience</span></code>
+vorgegeben werden, für die der Token ausgestellt sein muss. Über die <code class="docutils literal notranslate"><span class="pre">TokenValidationParameters</span></code> wird festgelegt, welche <strong>Claims</strong>
+überprüft werden, um einen Token als gültig anzuerkennen. <code class="docutils literal notranslate"><span class="pre">ClockSkew</span> <span class="pre">=</span> <span class="pre">TimeSpan.Zero</span></code> gibt an, dass der Token sofort abgelehnt wird,
+wenn die <strong>ExpirationTime</strong> des Tokens überschritten ist.</p>
+<p>Mit <code class="docutils literal notranslate"><span class="pre">AddAuthorization</span></code> können <strong>Policies</strong> definiert werden. Eine <strong>Policy</strong> regelt, welche Rechte ein Client bei API-Aufrufen hat.
+In diesem Beispiel wird der Claim <code class="docutils literal notranslate"><span class="pre">scope</span></code> vorausgesetzt und es wird zwischen <code class="docutils literal notranslate"><span class="pre">command</span></code>- und <code class="docutils literal notranslate"><span class="pre">query</span></code>-Rechten unterschieden.</p>
+<p>Damit Authentifizierung und Autorisierung angewendet werden, muss die Anwendung auch die entsprechende Middleware verwenden
+(<code class="docutils literal notranslate"><span class="pre">UseAuthentication</span></code>, <code class="docutils literal notranslate"><span class="pre">UseAuthorization</span></code>).</p>
 <div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span><span class="w"> </span><span class="n">builder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WebApplication</span><span class="p">.</span><span class="n">CreateBuilder</span><span class="p">(</span><span class="n">args</span><span class="p">);</span>
 
 <span class="c1">// ...</span>
@@ -364,9 +362,9 @@ Hier wird <code class="docutils literal notranslate"><span class="pre">scope</sp
 </section>
 <section id="controller">
 <h3><code class="docutils literal notranslate"><span class="pre">Controller</span></code><a class="headerlink" href="#controller" title="Permalink to this heading">¶</a></h3>
-<p>Um einzelnen <strong>Controller</strong> oder <strong>Methoden</strong> abzusichern wird das <code class="docutils literal notranslate"><span class="pre">[Authorize]</span></code> verwendet.
-Hier wird dem Attribute noch das oben festgelegte <code class="docutils literal notranslate"><span class="pre">AuthenticationScheme</span></code> (<strong>Bearer</strong>) und die notwendige <code class="docutils literal notranslate"><span class="pre">Policy</span></code>
-(<strong>query</strong>, <strong>command</strong>) übergeben. Die Methoden dieser API Controller können somit nur aufgerufen werden, wenn
+<p>Um einzelne <strong>Controller</strong> oder <strong>Methoden</strong> abzusichern, wird das Attribut <code class="docutils literal notranslate"><span class="pre">[Authorize]</span></code> verwendet.
+Dabei wird dem Attribut das oben festgelegte <code class="docutils literal notranslate"><span class="pre">AuthenticationScheme</span></code> (<strong>Bearer</strong>) und die notwendige <code class="docutils literal notranslate"><span class="pre">Policy</span></code>
+(<strong>query</strong>, <strong>command</strong>) übergeben. Die Methoden dieser API-Controller können somit nur aufgerufen werden, wenn
 ein <strong>Bearer Token</strong> übergeben wird, der den <strong>scope</strong> <code class="docutils literal notranslate"><span class="pre">my-api.query</span></code> oder <code class="docutils literal notranslate"><span class="pre">my-api.command</span></code> enthält.</p>
 <div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="na">[Route(&quot;api/[controller]</span><span class="s">&quot;)]</span>
 <span class="na">[Authorize(AuthenticationSchemes = &quot;Bearer&quot;, Policy = &quot;query&quot;)]</span>
@@ -420,7 +418,7 @@ ein <strong>Bearer Token</strong> übergeben wird, der den <strong>scope</strong
 <li><a class="reference internal" href="#identitymodel">IdentityModel</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#api-authorization">Api Authorization</a><ul>
+<li><a class="reference internal" href="#api-authorization">API Authorization</a><ul>
 <li><a class="reference internal" href="#program-cs"><code class="docutils literal notranslate"><span class="pre">Program.cs</span></code></a></li>
 <li><a class="reference internal" href="#controller"><code class="docutils literal notranslate"><span class="pre">Controller</span></code></a></li>
 </ul>
@@ -446,7 +444,7 @@ ein <strong>Bearer Token</strong> übergeben wird, der den <strong>scope</strong
 
             <div class="right">
                 
-                    <a href="../accessories/index.html"><span>Weitere Admin Werkzeuge</span><span class="icon">></span></a>
+                    <a href="../accessories/index.html"><span>Weitere Admin-Werkzeuge</span><span class="icon">></span></a>
                 
             </div>
         </div>
