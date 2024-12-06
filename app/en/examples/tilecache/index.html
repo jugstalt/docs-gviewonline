@@ -1,17 +1,18 @@
+
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../../">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Calculation of a TileCache (Site Plan) &#8212; gView GIS 6.x documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=d7bb20b6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=247da48f" />
-    <script src="../../_static/documentation_options.js?v=98846f59"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=0.7.0-1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <script src="../../_static/js/petite-vue.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -132,6 +133,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../appendix/index.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spec/geojson_service/index.html">GeoJson Service Specification</a></li>
 </ul>
 
         </div>
@@ -144,7 +146,7 @@
           <div class="body" role="main">
             
   <section id="calculation-of-a-tilecache-site-plan">
-<h1>Calculation of a <em>TileCache</em> (Site Plan)<a class="headerlink" href="#calculation-of-a-tilecache-site-plan" title="Link to this heading">¶</a></h1>
+<h1>Calculation of a <em>TileCache</em> (Site Plan)<a class="headerlink" href="#calculation-of-a-tilecache-site-plan" title="Permalink to this heading">¶</a></h1>
 <p>This example demonstrates how to compute a TileCache from an existing <em>gView Server</em> service.
 This TileCache can then be integrated via the WMTS interface into various applications.
 Preprocessing the tiles improves the service’s performance and reduces server load.</p>
@@ -153,7 +155,7 @@ Preprocessing the tiles improves the service’s performance and reduces server 
 <p>A <em>gView TileCache</em> offers various <em>styles</em>. For example, the tiles can be displayed in black and white
 using filters <em>on-the-fly</em>.</p>
 <section id="mapservice-metadata">
-<h2>MapService Metadata<a class="headerlink" href="#mapservice-metadata" title="Link to this heading">¶</a></h2>
+<h2>MapService Metadata<a class="headerlink" href="#mapservice-metadata" title="Permalink to this heading">¶</a></h2>
 <p>To use a service as a <em>TileCache</em>, the first step is to adjust the service’s metadata. To do this, one must
 log in via the <strong>gView.Server</strong> web interface with <code class="docutils literal notranslate"><span class="pre">Manage</span></code> (Sidebar) as an <strong>Administrator</strong>.</p>
 <p>Access the service’s properties to reach its metadata:</p>
@@ -218,7 +220,7 @@ The reason is that no tiles have been computed yet.</p>
 </div>
 </section>
 <section id="computing-tiles">
-<h2>Computing Tiles<a class="headerlink" href="#computing-tiles" title="Link to this heading">¶</a></h2>
+<h2>Computing Tiles<a class="headerlink" href="#computing-tiles" title="Permalink to this heading">¶</a></h2>
 <p>To compute the tiles, switch to the <strong>gView.DataExplorer</strong> app. There, under <code class="docutils literal notranslate"><span class="pre">Tools</span></code>, there is
 a tool for computing tiles (<code class="docutils literal notranslate"><span class="pre">TileCache.Render</span></code>):</p>
 <img alt="../../_images/explorer1.png" src="../../_images/explorer1.png" />
@@ -274,11 +276,11 @@ corresponding scale level is not feasible.</p>
       </div>
     
         <div id="show_right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon"><</span><span>Page contents<span></a></p>
         </div>
 
         <div id="right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">></span><span>Page contents:<span></a></p>
             <div class="page_toc">
                 <ul>
 <li><a class="reference internal" href="#">Calculation of a <em>TileCache</em> (Site Plan)</a><ul>
@@ -299,13 +301,13 @@ corresponding scale level is not feasible.</p>
             <div class="left">
                 
                 <a href="../mapservice/index.html">
-                    <span class="icon">&lt;</span><span>Publishing Maps as <em>gView Server Service</em></span></a>
+                    <span class="icon"><</span><span>Publishing Maps as <em>gView Server Service</em></span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="../../appendix/index.html"><span>Appendix</span><span class="icon">&gt;</span></a>
+                    <a href="../../appendix/index.html"><span>Appendix</span><span class="icon">></span></a>
                 
             </div>
         </div>
@@ -313,8 +315,8 @@ corresponding scale level is not feasible.</p>
 
 
     <div class="footer" role="contentinfo">
-    &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+        &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

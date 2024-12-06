@@ -1,45 +1,4 @@
-@font-face {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 400;
-  src: local("Roboto"), local("Roboto-Regular"), url(fonts/roboto/roboto.woff2) format("woff2");
-}
-@font-face {
-  font-family: Roboto;
-  font-style: italic;
-  font-weight: 400;
-  src: local("Roboto Italic"), local("Roboto-Italic"), url(fonts/roboto/roboto-italic.woff2) format("woff2");
-}
-@font-face {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 700;
-  src: local("Roboto Bold"), local("Roboto-Bold"), url(fonts/roboto/roboto-bold.woff2) format("woff2");
-}
-@font-face {
-  font-family: Roboto Mono;
-  font-style: normal;
-  font-weight: 400;
-  src: local("Roboto Mono Regular"), local("RobotoMono-Regular"), url(fonts/roboto-mono/roboto-mono.woff2) format("woff2");
-}
-@font-face {
-  font-family: Roboto Mono;
-  font-style: italic;
-  font-weight: 400;
-  src: local("Roboto Mono Italic"), local("RobotoMono-Italic"), url(fonts/roboto-mono/roboto-mono-italic.woff2) format("woff2");
-}
-@font-face {
-  font-family: Roboto Mono;
-  font-style: normal;
-  font-weight: 700;
-  src: local("Roboto Mono Bold"), local("RobotoMono-Bold"), url(fonts/roboto-mono/roboto-mono-bold.woff2) format("woff2");
-}
-@font-face {
-  font-family: Roboto Mono;
-  font-style: italic;
-  font-weight: 700;
-  src: local("Roboto Mono Bold Italic"), local("RobotoMono-BoldItalic"), url(fonts/roboto-mono/roboto-mono-bold-italic.woff2) format("woff2");
-}
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap?family=Roboto+Mono&display=swap");
 /*****************************************************************************/
 /* Typography */
 :root {
@@ -397,21 +356,6 @@ div.document li p {
 div.document ul, div.document ol {
   padding-left: 2rem;
 }
-div.document ol.loweralpha {
-  list-style: lower-alpha;
-}
-div.document ol.arabic {
-  list-style: decimal;
-}
-div.document ol.lowerroman {
-  list-style: lower-roman;
-}
-div.document ol.upperalpha {
-  list-style: upper-alpha;
-}
-div.document ol.upperroman {
-  list-style: upper-roman;
-}
 div.document dd {
   margin-left: 1.5rem;
 }
@@ -596,7 +540,6 @@ div.sphinxsidebar {
   width: 15rem;
   box-sizing: border-box;
   padding: var(--navbarHeight) 1rem 1rem;
-  z-index: 50;
 }
 @media (max-width: 50rem) {
   div.sphinxsidebar {
@@ -792,7 +735,7 @@ div.button_nav_wrapper div.button_nav div.right a span.icon {
   --torquoise: #68e9e9;
   --brown: #d48a00;
   --purple: #ce04e9;
-  --paleYellow: #454534;
+  --paleYellow: #ffffc0;
   background: var(--codeBackgroundColor);
   color: var(--fontColor);
   /* Comment */

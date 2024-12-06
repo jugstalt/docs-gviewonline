@@ -1,18 +1,19 @@
+
 <!DOCTYPE html>
 
-<html lang="de" data-content_root="../">
+<html lang="de">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>gView.Cmd MxlUtil &#8212; gView GIS 6.x Dokumentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=d7bb20b6" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=247da48f" />
-    <script src="../_static/documentation_options.js?v=e5fbb453"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/translations.js?v=70a09b52"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=0.7.0-1" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
     <script src="../_static/js/theme.js"></script>
     <script src="../_static/js/petite-vue.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
@@ -133,6 +134,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Anleitungen (Tutorials)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../appendix/index.html">Anhang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spec/geojson_service/index.html">GeoJson Service Specification</a></li>
 </ul>
 
         </div>
@@ -145,7 +147,7 @@
           <div class="body" role="main">
             
   <section id="gview-cmd-mxlutil">
-<span id="id1"></span><h1>gView.Cmd MxlUtil<a class="headerlink" href="#gview-cmd-mxlutil" title="Link to this heading">¶</a></h1>
+<span id="id1"></span><h1>gView.Cmd MxlUtil<a class="headerlink" href="#gview-cmd-mxlutil" title="Permalink to this heading">¶</a></h1>
 <p>Dieses Werkzeug stellt einige Methoden zur Verfügung, um wiederkehrende Aufgaben im Umfeld mit
 Map-Projektdateien (MXL) zu automatisieren:</p>
 <ul class="simple">
@@ -169,7 +171,7 @@ aufgerufen werden. Ohne den <em>interaktiven Modus</em> müsste jedem hier gezei
 </div>
 <p>Als <code class="docutils literal notranslate"><span class="pre">utility-name</span></code> kann eines der hier vorgestellten Optionen verwendet werden.</p>
 <section id="publishservice">
-<h2>PublishService<a class="headerlink" href="#publishservice" title="Link to this heading">¶</a></h2>
+<h2>PublishService<a class="headerlink" href="#publishservice" title="Permalink to this heading">¶</a></h2>
 <p>Zum Publizieren von Kartendiensten können folgende Parameter übergeben werden:</p>
 <div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>Command:<span class="p">&gt;</span>MxlUtil -u publishservice
 
@@ -218,7 +220,7 @@ muss ein Client angelegt werden!</p>
 </div>
 </section>
 <section id="mxldatasets">
-<h2>MxlDatasets<a class="headerlink" href="#mxldatasets" title="Link to this heading">¶</a></h2>
+<h2>MxlDatasets<a class="headerlink" href="#mxldatasets" title="Permalink to this heading">¶</a></h2>
 <p>Hier können die Verbindungsparameter der Datasets innerhalb einer MXL-Datei angezeigt oder verändert
 werden. Ein Anwendungsfall kann sein, wenn Karten mit Verbindungen zu einer (lokalen) Testdatenbank
 entwickelt werden. Vor dem (automatisierten) Veröffentlichen können hier die Verbindungseigenschaften
@@ -306,7 +308,7 @@ In diesem Fall muss das MXL-File über einen Texteditor repariert werden.</p>
 </div>
 </section>
 <section id="mxltofdb">
-<h2>MxlToFdb<a class="headerlink" href="#mxltofdb" title="Link to this heading">¶</a></h2>
+<h2>MxlToFdb<a class="headerlink" href="#mxltofdb" title="Permalink to this heading">¶</a></h2>
 <p>Kopieren aller Vektordaten eines Kartenprojektes in eine <em>gView Feature Database</em>. <em>gView FDB</em> ist ein Format, für das von <em>gView</em> eine hohe Performance garantiert wird. Die Datenbanken werden hier in <em>SQL Server</em>, <em>PostGre</em> oder <em>Sqlite</em> angelegt.
 Dieses Werkzeug kann verwendet werden, um Kartenprojekte <em>offline</em> zur Verfügung zu stellen (alle Daten in einer <em>Sqlite</em> Datenbank)</p>
 <div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>Command:<span class="p">&gt;</span>MxlUtil -u mxltofdb
@@ -359,11 +361,11 @@ In der Zieldatenbank wird zwar das Schema dieser Tabellen angelegt, jedoch werde
       </div>
     
         <div id="show_right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon"><</span><span>Page contents<span></a></p>
         </div>
 
         <div id="right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">></span><span>Page contents:<span></a></p>
             <div class="page_toc">
                 <ul>
 <li><a class="reference internal" href="#">gView.Cmd MxlUtil</a><ul>
@@ -385,13 +387,13 @@ In der Zieldatenbank wird zwar das Schema dieser Tabellen angelegt, jedoch werde
             <div class="left">
                 
                 <a href="render_tile_cache.html">
-                    <span class="icon">&lt;</span><span>gView.Cmd RenderTile</span></a>
+                    <span class="icon"><</span><span>gView.Cmd RenderTile</span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="../examples/index.html"><span>Anleitungen (Tutorials)</span><span class="icon">&gt;</span></a>
+                    <a href="../examples/index.html"><span>Anleitungen (Tutorials)</span><span class="icon">></span></a>
                 
             </div>
         </div>
@@ -399,8 +401,8 @@ In der Zieldatenbank wird zwar das Schema dieser Tabellen angelegt, jedoch werde
 
 
     <div class="footer" role="contentinfo">
-    &#169; Copyright 2024, Jürgen Gstaltmaier.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+        &#169; Copyright 2024, Jürgen Gstaltmaier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

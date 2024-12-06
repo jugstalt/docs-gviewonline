@@ -1,18 +1,19 @@
+
 <!DOCTYPE html>
 
-<html lang="de" data-content_root="../../">
+<html lang="de">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>gView Server Verwalten &#8212; gView GIS 6.x Dokumentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=d7bb20b6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=247da48f" />
-    <script src="../../_static/documentation_options.js?v=e5fbb453"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../../_static/translations.js?v=70a09b52"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=0.7.0-1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/translations.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <script src="../../_static/js/petite-vue.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
@@ -138,6 +139,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../commandline/index.html#kommandozeilenwerkzeuge-interaktiver-modus">Kommandozeilenwerkzeuge (Interaktiver Modus)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Anleitungen (Tutorials)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../appendix/index.html">Anhang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spec/geojson_service/index.html">GeoJson Service Specification</a></li>
 </ul>
 
         </div>
@@ -150,7 +152,7 @@
           <div class="body" role="main">
             
   <section id="gview-server-verwalten">
-<h1>gView Server Verwalten<a class="headerlink" href="#gview-server-verwalten" title="Link to this heading">¶</a></h1>
+<h1>gView Server Verwalten<a class="headerlink" href="#gview-server-verwalten" title="Permalink to this heading">¶</a></h1>
 <p>Zum Verwalten des <em>gView MapServer</em> wurde unter <a class="reference internal" href="../inst/postinstallation.html#server-postinstallation"><span class="std std-ref">Postinstallation</span></a> bereits ein
 Administrator Account angelegt.</p>
 <p>Mit diesem User können:</p>
@@ -162,19 +164,19 @@ Administrator Account angelegt.</p>
 <li><p>Clients angelegt werden.</p></li>
 </ul>
 <section id="anmelden-als-administrator">
-<h2>Anmelden als Administrator<a class="headerlink" href="#anmelden-als-administrator" title="Link to this heading">¶</a></h2>
+<h2>Anmelden als Administrator<a class="headerlink" href="#anmelden-als-administrator" title="Permalink to this heading">¶</a></h2>
 <p>Die Anmeldung erfolgt über den Link <code class="docutils literal notranslate"><span class="pre">Manage</span></code> aus der Sidebar:</p>
 <img alt="../../_images/manage12.png" src="../../_images/manage12.png" />
 </section>
 <section id="manager-benutzeroberflache">
-<h2>Manager Benutzeroberfläche<a class="headerlink" href="#manager-benutzeroberflache" title="Link to this heading">¶</a></h2>
+<h2>Manager Benutzeroberfläche<a class="headerlink" href="#manager-benutzeroberflache" title="Permalink to this heading">¶</a></h2>
 <p>Ist man als Administrator angemeldet, erscheint die Manager Benutzeroberfläche etwa folgendermaßen:</p>
 <img alt="../../_images/manage21.png" src="../../_images/manage21.png" />
 <p>Links werden die Verzeichnisse (Folder) angezeigt, in denen Services organisiert sind.
 Daneben werden die Services angezeigt, die sich in diesem Verzeichnis befinden.</p>
 </section>
 <section id="clients-anlegen">
-<h2>Clients Anlegen<a class="headerlink" href="#clients-anlegen" title="Link to this heading">¶</a></h2>
+<h2>Clients Anlegen<a class="headerlink" href="#clients-anlegen" title="Permalink to this heading">¶</a></h2>
 <p><strong>Clients</strong> sind bekannte <em>WebAnwendungen</em>, die auf die Dienste im <strong>gView MapServer</strong> zugreifen.
 Greift etwa eine WebGIS Anwendung auf Dienste zu, kann dafür ein <em>Client</em> erstellt werden.
 Jeder <strong>Client</strong> besitzt ein <strong>Secret</strong>, um sich bei Zugriffen am <strong>gView MapServer</strong> anzumelden.
@@ -190,7 +192,7 @@ Unter Security können neue <em>Clients</em> angelegt bzw. bestehende <em>Secret
 <img alt="../../_images/manage31.png" src="../../_images/manage31.png" />
 </section>
 <section id="dienstberechtigungen">
-<h2>Dienstberechtigungen<a class="headerlink" href="#dienstberechtigungen" title="Link to this heading">¶</a></h2>
+<h2>Dienstberechtigungen<a class="headerlink" href="#dienstberechtigungen" title="Permalink to this heading">¶</a></h2>
 <p>Grundsätzlich sollten Services mit gleichen Eigenschaften (produktiv/test, spezielle Berechtigungen)
 innerhalb von <strong>Foldern</strong> organisiert werden.
 Berechtigungen können dann auf Ebene der <em>Folder</em> gesetzt werden und gelten für alle Services
@@ -243,7 +245,7 @@ wenn ein Server vom Internet über unterschiedliche Urls erreichbar ist oder Die
 <strong>Folders</strong> über eine Proxy publiziert werden. In der Regel können diese Werte leer gelassen werden.</p>
 </section>
 <section id="status-von-diensten">
-<h2>Status von Diensten<a class="headerlink" href="#status-von-diensten" title="Link to this heading">¶</a></h2>
+<h2>Status von Diensten<a class="headerlink" href="#status-von-diensten" title="Permalink to this heading">¶</a></h2>
 <p>Dienste können zur Laufzeit einen bestimmten Status aufweisen. Dieser ist in der <em>Manage</em>
 Benutzeroberfläche in der Liste der Dienste ersichtlich (siehe oben):</p>
 <ul class="simple">
@@ -277,11 +279,11 @@ beeinflusst werden kann:</p>
       </div>
     
         <div id="show_right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon"><</span><span>Page contents<span></a></p>
         </div>
 
         <div id="right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">></span><span>Page contents:<span></a></p>
             <div class="page_toc">
                 <ul>
 <li><a class="reference internal" href="#">gView Server Verwalten</a><ul>
@@ -305,13 +307,13 @@ beeinflusst werden kann:</p>
             <div class="left">
                 
                 <a href="index.html">
-                    <span class="icon">&lt;</span><span>Benutzerhandbuch</span></a>
+                    <span class="icon"><</span><span>Benutzerhandbuch</span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="browse.html"><span>Browse Services</span><span class="icon">&gt;</span></a>
+                    <a href="browse.html"><span>Browse Services</span><span class="icon">></span></a>
                 
             </div>
         </div>
@@ -319,8 +321,8 @@ beeinflusst werden kann:</p>
 
 
     <div class="footer" role="contentinfo">
-    &#169; Copyright 2024, Jürgen Gstaltmaier.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+        &#169; Copyright 2024, Jürgen Gstaltmaier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

@@ -1,18 +1,19 @@
+
 <!DOCTYPE html>
 
-<html lang="de" data-content_root="../../">
+<html lang="de">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Berechnung eines TileCaches (Ortsplan) &#8212; gView GIS 6.x Dokumentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=d7bb20b6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=247da48f" />
-    <script src="../../_static/documentation_options.js?v=e5fbb453"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../../_static/translations.js?v=70a09b52"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=0.7.0-1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/translations.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <script src="../../_static/js/petite-vue.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
@@ -133,6 +134,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../appendix/index.html">Anhang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spec/geojson_service/index.html">GeoJson Service Specification</a></li>
 </ul>
 
         </div>
@@ -145,7 +147,7 @@
           <div class="body" role="main">
             
   <section id="berechnung-eines-tilecaches-ortsplan">
-<h1>Berechnung eines <em>TileCaches</em> (Ortsplan)<a class="headerlink" href="#berechnung-eines-tilecaches-ortsplan" title="Link to this heading">¶</a></h1>
+<h1>Berechnung eines <em>TileCaches</em> (Ortsplan)<a class="headerlink" href="#berechnung-eines-tilecaches-ortsplan" title="Permalink to this heading">¶</a></h1>
 <p>In diesem Beispiel wird gezeigt, wie aus einem bestehenden <em>gView Server</em> Dienst ein TileCache gerechnet
 werden kann. Dieser kann über die WMTS Schnittstelle in unterschiedlichen Anwendungen eingebunden werden.
 Durch das Vorprozessieren der Kacheln erhöht sich die Performance des Dienstes. Außerdem vermindert
@@ -156,7 +158,7 @@ reduziert werden kann (einfacher zu kopieren, weniger Speicherplatz).</p>
 <p>Ein <em>gView TileCache</em> bietet unterschiedliche <em>Styles</em> an. Die Kacheln können über Filter <em>on-the-fly</em>
 beispielsweise auch in Schwarz-Weiß angezeigt werden.</p>
 <section id="mapservice-metadaten">
-<h2>MapService Metadaten<a class="headerlink" href="#mapservice-metadaten" title="Link to this heading">¶</a></h2>
+<h2>MapService Metadaten<a class="headerlink" href="#mapservice-metadaten" title="Permalink to this heading">¶</a></h2>
 <p>Um einen Dienst als <em>TileCache</em> verwenden zu können, müssen im ersten Schritt die Metadaten
 des Dienstes angepasst werden. Dazu muss man sich über die <strong>gView.Server</strong> Web-Oberfläche
 mit <code class="docutils literal notranslate"><span class="pre">Manage</span></code> (Sidebar) als <strong>Administrator</strong> anmelden.</p>
@@ -223,7 +225,7 @@ Der Grund ist, dass bisher noch keine Kacheln berechnet wurden.</p>
 </div>
 </section>
 <section id="kacheln-berechnen">
-<h2>Kacheln berechnen<a class="headerlink" href="#kacheln-berechnen" title="Link to this heading">¶</a></h2>
+<h2>Kacheln berechnen<a class="headerlink" href="#kacheln-berechnen" title="Permalink to this heading">¶</a></h2>
 <p>Zum Berechnen der Kacheln muss in die <strong>gView.DataExplorer</strong> App gewechselt werden. Dort gibt es
 unter <code class="docutils literal notranslate"><span class="pre">Tools</span></code> ein Werkzeug, zum Berechnen der Kacheln (<code class="docutils literal notranslate"><span class="pre">TileCache.Render</span></code>):</p>
 <img alt="../../_images/explorer1.png" src="../../_images/explorer1.png" />
@@ -281,11 +283,11 @@ Berechnung der entsprechenden Maßstabsebene nicht möglich ist.</p>
       </div>
     
         <div id="show_right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon"><</span><span>Page contents<span></a></p>
         </div>
 
         <div id="right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">></span><span>Page contents:<span></a></p>
             <div class="page_toc">
                 <ul>
 <li><a class="reference internal" href="#">Berechnung eines <em>TileCaches</em> (Ortsplan)</a><ul>
@@ -306,13 +308,13 @@ Berechnung der entsprechenden Maßstabsebene nicht möglich ist.</p>
             <div class="left">
                 
                 <a href="../mapservice/index.html">
-                    <span class="icon">&lt;</span><span>Karten als <em>gView Server Dienst</em> veröffentlichen</span></a>
+                    <span class="icon"><</span><span>Karten als <em>gView Server Dienst</em> veröffentlichen</span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="../../appendix/index.html"><span>Anhang</span><span class="icon">&gt;</span></a>
+                    <a href="../../appendix/index.html"><span>Anhang</span><span class="icon">></span></a>
                 
             </div>
         </div>
@@ -320,8 +322,8 @@ Berechnung der entsprechenden Maßstabsebene nicht möglich ist.</p>
 
 
     <div class="footer" role="contentinfo">
-    &#169; Copyright 2024, Jürgen Gstaltmaier.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+        &#169; Copyright 2024, Jürgen Gstaltmaier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

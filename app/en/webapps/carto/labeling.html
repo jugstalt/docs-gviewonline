@@ -1,17 +1,18 @@
+
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../../">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Label Renderer &#8212; gView GIS 6.x documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=d7bb20b6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=247da48f" />
-    <script src="../../_static/documentation_options.js?v=98846f59"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=0.7.0-1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <script src="../../_static/js/petite-vue.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -144,6 +145,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../commandline/index.html#command-line-tools-interactive-mode">Command Line Tools (Interactive Mode)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../appendix/index.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spec/geojson_service/index.html">GeoJson Service Specification</a></li>
 </ul>
 
         </div>
@@ -156,14 +158,14 @@
           <div class="body" role="main">
             
   <section id="label-renderer">
-<h1>Label Renderer<a class="headerlink" href="#label-renderer" title="Link to this heading">¶</a></h1>
+<h1>Label Renderer<a class="headerlink" href="#label-renderer" title="Permalink to this heading">¶</a></h1>
 <p>To label the features of a layer, the approach is similar to that used in <em>Rendering</em>. In the
 <em>Settings</em> dialog for the layer, on the left, you will find the section <code class="docutils literal notranslate"><span class="pre">Label</span> <span class="pre">Renderer</span></code>. Here,
 the checkbox <code class="docutils literal notranslate"><span class="pre">Label</span> <span class="pre">features</span> <span class="pre">for</span> <span class="pre">this</span> <span class="pre">layer</span></code> must first be activated:</p>
 <img alt="../../_images/labeling1.png" src="../../_images/labeling1.png" />
 <p>Different <em>Renderers</em> are offered here as well.</p>
 <section id="simple-text-renderer">
-<h2>Simple Text Renderer<a class="headerlink" href="#simple-text-renderer" title="Link to this heading">¶</a></h2>
+<h2>Simple Text Renderer<a class="headerlink" href="#simple-text-renderer" title="Permalink to this heading">¶</a></h2>
 <p>With this renderer, features can be labeled based on attribute values. This represents the
 most common use case.</p>
 <p>The properties of the <em>Renderer</em> are divided into the following categories:</p>
@@ -223,14 +225,14 @@ space constraints, the subsequent specified positions are applied in order until
 </ul>
 </section>
 <section id="scale-dependent-group-layer-renderer">
-<h2>Scale Dependent/Group Layer Renderer<a class="headerlink" href="#scale-dependent-group-layer-renderer" title="Link to this heading">¶</a></h2>
+<h2>Scale Dependent/Group Layer Renderer<a class="headerlink" href="#scale-dependent-group-layer-renderer" title="Permalink to this heading">¶</a></h2>
 <p>Here, as previously with the <strong>Scale Dependent (Feature) Renderer</strong>, groups of <em>Label Renderers</em>
 can be defined. This allows layers to be labeled differently at different scales.</p>
 <p>For example, countries could be labeled with a country abbreviation at small scales.
 As you zoom further into the map, they could be labeled with the full country name.</p>
 </section>
 <section id="chart-renderer">
-<h2>Chart Renderer<a class="headerlink" href="#chart-renderer" title="Link to this heading">¶</a></h2>
+<h2>Chart Renderer<a class="headerlink" href="#chart-renderer" title="Permalink to this heading">¶</a></h2>
 <p>Here, instead of text, charts are inserted into the map:</p>
 <img alt="../../_images/labeling8.png" src="../../_images/labeling8.png" />
 <ul class="simple">
@@ -253,11 +255,11 @@ calculated relative to these values.</p></li>
       </div>
     
         <div id="show_right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon"><</span><span>Page contents<span></a></p>
         </div>
 
         <div id="right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">></span><span>Page contents:<span></a></p>
             <div class="page_toc">
                 <ul>
 <li><a class="reference internal" href="#">Label Renderer</a><ul>
@@ -279,13 +281,13 @@ calculated relative to these values.</p></li>
             <div class="left">
                 
                 <a href="renderers.html">
-                    <span class="icon">&lt;</span><span>Feature Renderer</span></a>
+                    <span class="icon"><</span><span>Feature Renderer</span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="scales.html"><span>Scale Limits</span><span class="icon">&gt;</span></a>
+                    <a href="scales.html"><span>Scale Limits</span><span class="icon">></span></a>
                 
             </div>
         </div>
@@ -293,8 +295,8 @@ calculated relative to these values.</p></li>
 
 
     <div class="footer" role="contentinfo">
-    &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+        &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

@@ -1,17 +1,18 @@
+
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Configuration of gView.WebApps &#8212; gView GIS 6.x documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=d7bb20b6" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=247da48f" />
-    <script src="../_static/documentation_options.js?v=98846f59"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=0.7.0-1" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <script src="../_static/js/petite-vue.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -137,6 +138,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../commandline/index.html#command-line-tools-interactive-mode">Command Line Tools (Interactive Mode)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../appendix/index.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spec/geojson_service/index.html">GeoJson Service Specification</a></li>
 </ul>
 
         </div>
@@ -149,7 +151,7 @@
           <div class="body" role="main">
             
   <section id="configuration-of-gview-webapps">
-<span id="config-webapps"></span><h1>Configuration of gView.WebApps<a class="headerlink" href="#configuration-of-gview-webapps" title="Link to this heading">¶</a></h1>
+<span id="config-webapps"></span><h1>Configuration of gView.WebApps<a class="headerlink" href="#configuration-of-gview-webapps" title="Permalink to this heading">¶</a></h1>
 <p>The <em>gView.WebApps</em> application can be configured via the file <code class="docutils literal notranslate"><span class="pre">_config/gview-webapps.config</span></code>:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="s2">&quot;RepositoryPath&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;{repository-path}/gview-web&quot;</span><span class="p">,</span>
@@ -182,7 +184,7 @@
 </pre></div>
 </div>
 <section id="custom-drives-directories">
-<h2>Custom Drives/Directories<a class="headerlink" href="#custom-drives-directories" title="Link to this heading">¶</a></h2>
+<h2>Custom Drives/Directories<a class="headerlink" href="#custom-drives-directories" title="Permalink to this heading">¶</a></h2>
 <p>In the <code class="docutils literal notranslate"><span class="pre">Drives</span></code> section, paths can be specified that are listed under <code class="docutils literal notranslate"><span class="pre">Computer</span></code>
 in <strong>gView.DataExplorer</strong>. If this section is omitted, all available drives will be displayed.</p>
 <div class="admonition note">
@@ -200,13 +202,13 @@ username of the user currently logged into <strong>gView.WebApps</strong>. This 
 to store MXD files in a <em>private</em> directory.</p>
 </section>
 <section id="custom-tiles">
-<h2>Custom Tiles<a class="headerlink" href="#custom-tiles" title="Link to this heading">¶</a></h2>
+<h2>Custom Tiles<a class="headerlink" href="#custom-tiles" title="Permalink to this heading">¶</a></h2>
 <p>In the <code class="docutils literal notranslate"><span class="pre">CustomTiles</span></code> section, you can create additional tiles that are displayed on the
 homepage of <strong>gView.WebApps</strong>. This allows, for example, the creation of tiles linking to
 one or more <strong>gView.Server</strong> instances.</p>
 </section>
 <section id="publishing-maps">
-<h2>Publishing Maps<a class="headerlink" href="#publishing-maps" title="Link to this heading">¶</a></h2>
+<h2>Publishing Maps<a class="headerlink" href="#publishing-maps" title="Permalink to this heading">¶</a></h2>
 <p>The <cite>Publish</cite> section allows you to specify which <strong>gView.Server</strong> instances
 maps can be published to directly. Multiple instances can be defined under <cite>Servers</cite>:</p>
 <ul class="simple">
@@ -236,7 +238,7 @@ been read:</p>
 <p><a class="reference internal" href="config-server.html#config-server"><span class="std std-ref">Configuration gView.Server</span></a></p>
 </section>
 <section id="authentication">
-<h2>Authentication<a class="headerlink" href="#authentication" title="Link to this heading">¶</a></h2>
+<h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this heading">¶</a></h2>
 <p>To determine how one can/must sign in to <strong>gView.WebApps</strong>, the <code class="docutils literal notranslate"><span class="pre">Authentication</span></code> section is used.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -262,7 +264,7 @@ users log in through an external authentication service. This generally offers h
 including two-factor authentication, etc.</p></li>
 </ul>
 <section id="forms-authentication">
-<h3>Forms Authentication<a class="headerlink" href="#forms-authentication" title="Link to this heading">¶</a></h3>
+<h3>Forms Authentication<a class="headerlink" href="#forms-authentication" title="Permalink to this heading">¶</a></h3>
 <p>Here, the value <code class="docutils literal notranslate"><span class="pre">forms</span></code> is specified as the <code class="docutils literal notranslate"><span class="pre">Type</span></code>. In the <code class="docutils literal notranslate"><span class="pre">Forms</span></code> section,
 multiple <code class="docutils literal notranslate"><span class="pre">AdminUsers</span></code> and <code class="docutils literal notranslate"><span class="pre">CartoUsers</span></code> can be specified, each as an array of objects
 with the properties <code class="docutils literal notranslate"><span class="pre">Username</span></code> and <code class="docutils literal notranslate"><span class="pre">PasswordHash</span></code>.
@@ -297,7 +299,7 @@ This hash can be generated using the <code class="docutils literal notranslate">
 </div>
 </section>
 <section id="openid-connect-authentication">
-<h3>OpenID Connect Authentication<a class="headerlink" href="#openid-connect-authentication" title="Link to this heading">¶</a></h3>
+<h3>OpenID Connect Authentication<a class="headerlink" href="#openid-connect-authentication" title="Permalink to this heading">¶</a></h3>
 <p>If an <em>Identity Service</em> that supports <em>OpenID Connect</em> is available, it can be used for
 authentication.</p>
 <p>The value <code class="docutils literal notranslate"><span class="pre">oidc</span></code> must be entered as the <code class="docutils literal notranslate"><span class="pre">Type</span></code>. In the <code class="docutils literal notranslate"><span class="pre">Oidc</span></code> section,
@@ -331,11 +333,11 @@ the <em>Identity Server</em> (<code class="docutils literal notranslate"><span c
       </div>
     
         <div id="show_right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon"><</span><span>Page contents<span></a></p>
         </div>
 
         <div id="right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">></span><span>Page contents:<span></a></p>
             <div class="page_toc">
                 <ul>
 <li><a class="reference internal" href="#">Configuration of gView.WebApps</a><ul>
@@ -362,13 +364,13 @@ the <em>Identity Server</em> (<code class="docutils literal notranslate"><span c
             <div class="left">
                 
                 <a href="config.html">
-                    <span class="icon">&lt;</span><span>Configuration</span></a>
+                    <span class="icon"><</span><span>Configuration</span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="config-server.html"><span>Configuration gView.Server</span><span class="icon">&gt;</span></a>
+                    <a href="config-server.html"><span>Configuration gView.Server</span><span class="icon">></span></a>
                 
             </div>
         </div>
@@ -376,8 +378,8 @@ the <em>Identity Server</em> (<code class="docutils literal notranslate"><span c
 
 
     <div class="footer" role="contentinfo">
-    &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+        &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
