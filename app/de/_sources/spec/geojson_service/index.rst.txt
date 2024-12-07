@@ -26,6 +26,14 @@ die gewünschten Informationen abzurufen oder Änderungen vorzunehmen.
 Im Folgenden sind die verschiedenen Endpunkte der API aufgelistet, 
 zusammen mit einer kurzen Beschreibung ihrer Funktion.
 
+**Info**
+
+- **GET**
+  
+  - ``https://{server}/geojsonservice/v1/info``
+  
+    Liefert Informationen zum GeoJson Service.
+
 **Services**
 
 - **GET**
@@ -97,25 +105,18 @@ zusammen mit einer kurzen Beschreibung ihrer Funktion.
     
    Fügt Features hinzu, aktualisiert oder löscht Features in einem bestimmten Layer eines Services innerhalb eines bestimmten Ordners.
 
-**Token**
-
-- **GET/POST**
-  
-  - ``https://{server}/geojsonservice/v1/Token``
-    
-   Liefert ein Token zur Authentifizierung oder führt die Authentifizierung durch.
-
 
 .. toctree::
    :maxdepth: 1
    :caption: Table of contents:
 
    types
-   getinfo
+   info
    services
    capabilities
    map
    legend
    query
    features
+   token
    errorhandling

@@ -132,13 +132,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../appendix/index.html">Anhang</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">GeoJson Service Specification</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="types.html">Bounding Box, Koordinatenreferenzsystem und Geometrie</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getinfo.html">GetInfo Endpoint Specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="info.html">Info Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="services.html">Services Endpunkt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="capabilities.html">(Service)Capabilities Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="map.html">Map Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="legend.html">Legend Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="query.html">Query Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="features.html">Features Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="token.html">Token Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="errorhandling.html">Error Handling</a></li>
 </ul>
 </li>
@@ -176,6 +177,16 @@ Analysen und andere Geodaten-gestützte Anwendungen auf einfache und effiziente 
 die gewünschten Informationen abzurufen oder Änderungen vorzunehmen.
 Im Folgenden sind die verschiedenen Endpunkte der API aufgelistet,
 zusammen mit einer kurzen Beschreibung ihrer Funktion.</p>
+<p><strong>Info</strong></p>
+<ul>
+<li><p><strong>GET</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/info</span></code></p>
+<p>Liefert Informationen zum GeoJson Service.</p>
+</li>
+</ul>
+</li>
+</ul>
 <p><strong>Services</strong></p>
 <ul>
 <li><p><strong>GET</strong></p>
@@ -267,28 +278,18 @@ zusammen mit einer kurzen Beschreibung ihrer Funktion.</p>
 </div></blockquote>
 </li>
 </ul>
-<p><strong>Token</strong></p>
-<ul>
-<li><p><strong>GET/POST</strong></p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/Token</span></code></p></li>
-</ul>
-<blockquote>
-<div><p>Liefert ein Token zur Authentifizierung oder führt die Authentifizierung durch.</p>
-</div></blockquote>
-</li>
-</ul>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Table of contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="types.html">Bounding Box, Koordinatenreferenzsystem und Geometrie</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getinfo.html">GetInfo Endpoint Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html">Info Endpoint</a></li>
 <li class="toctree-l1"><a class="reference internal" href="services.html">Services Endpunkt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="capabilities.html">(Service)Capabilities Endpoint</a></li>
 <li class="toctree-l1"><a class="reference internal" href="map.html">Map Endpoint</a></li>
 <li class="toctree-l1"><a class="reference internal" href="legend.html">Legend Endpoint</a></li>
 <li class="toctree-l1"><a class="reference internal" href="query.html">Query Endpoint</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">Features Endpoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="token.html">Token Endpoint</a></li>
 <li class="toctree-l1"><a class="reference internal" href="errorhandling.html">Error Handling</a></li>
 </ul>
 </div>

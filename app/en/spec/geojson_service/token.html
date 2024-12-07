@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>GeoJson Service Specification &#8212; gView GIS 6.x documentation</title>
+    <title>Token Endpoint &#8212; gView GIS 6.x documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=0.7.0-1" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
@@ -17,8 +17,8 @@
     <script src="../../_static/js/petite-vue.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Bounding Box, Koordinatenreferenzsystem und Geometrie" href="types.html" />
-    <link rel="prev" title="Data formats for maps and services" href="../../appendix/formats.html" /> 
+    <link rel="next" title="Error Handling" href="errorhandling.html" />
+    <link rel="prev" title="Features Endpoint" href="features.html" /> 
   </head><body data-dark_mode_code_blocks="true">
 
 <div id="top_nav">
@@ -129,7 +129,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../commandline/index.html#command-line-tools-interactive-mode">Command Line Tools (Interactive Mode)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../appendix/index.html">Appendix</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">GeoJson Service Specification</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">GeoJson Service Specification</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="types.html">Bounding Box, Koordinatenreferenzsystem und Geometrie</a></li>
 <li class="toctree-l2"><a class="reference internal" href="info.html">Info Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="services.html">Services Endpunkt</a></li>
@@ -138,7 +138,7 @@
 <li class="toctree-l2"><a class="reference internal" href="legend.html">Legend Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="query.html">Query Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="features.html">Features Endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="token.html">Token Endpoint</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Token Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="errorhandling.html">Error Handling</a></li>
 </ul>
 </li>
@@ -153,146 +153,54 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="geojson-service-specification">
-<h1>GeoJson Service Specification<a class="headerlink" href="#geojson-service-specification" title="Permalink to this heading">¶</a></h1>
-<section id="allgemeine-beschreibung-der-schnittstelle">
-<h2>Allgemeine Beschreibung der Schnittstelle<a class="headerlink" href="#allgemeine-beschreibung-der-schnittstelle" title="Permalink to this heading">¶</a></h2>
-<p>Der GeoJson Service bietet eine leistungsfähige und flexible API zur Bereitstellung
-von Geodaten im GeoJSON-Format.
-Das Ziel der Schnittstelle ist es, Entwicklern eine einfache Möglichkeit zu geben,
-Geodaten abzufragen, zu visualisieren und zu manipulieren.
-Die API orientiert sich an etablierten Standards und ermöglicht es, räumliche Daten
-sowohl über GET- als auch POST-, PUT- und DELETE-Anfragen zu konsumieren und zu ändern.</p>
-<p>Die Motivation hinter der Entwicklung dieser Schnittstelle liegt in der zunehmenden
-Nachfrage nach offenen und interoperablen Geodatenformaten.
-GeoJSON ist ein weit verbreitetes, leichtgewichtiges Format, das sowohl Menschen als auch
-Maschinen eine einfache Interpretation von Geodaten ermöglicht.
-Durch die Nutzung dieser API können Entwickler Kartenanwendungen,
-Analysen und andere Geodaten-gestützte Anwendungen auf einfache und effiziente Weise realisieren.</p>
-</section>
-<section id="struktur-der-api-links">
-<h2>Struktur der API-Links<a class="headerlink" href="#struktur-der-api-links" title="Permalink to this heading">¶</a></h2>
-<p>Die API folgt einer konsistenten URL-Struktur, die es einfach macht,
-die gewünschten Informationen abzurufen oder Änderungen vorzunehmen.
-Im Folgenden sind die verschiedenen Endpunkte der API aufgelistet,
-zusammen mit einer kurzen Beschreibung ihrer Funktion.</p>
-<p><strong>Services</strong></p>
+  <section id="token-endpoint">
+<h1>Token Endpoint<a class="headerlink" href="#token-endpoint" title="Permalink to this heading">¶</a></h1>
+<p>Der <strong>Token</strong> Endpunkt ermöglicht die Authentifizierung und Autorisierung für die Nutzung
+der GeoJSON-API. Ein Token kann entweder über GET oder POST angefordert werden.</p>
+<section id="request-struktur">
+<h2>Request-Struktur<a class="headerlink" href="#request-struktur" title="Permalink to this heading">¶</a></h2>
+<p>Die URL kann aus dem Info Endpoint Response entnommen werden, beispielsweise</p>
 <ul>
 <li><p><strong>GET</strong></p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services</span></code></p>
-<p>Liefert eine Liste aller verfügbaren Geodaten-Services auf dem Server.</p>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{folder}</span></code></p>
-<p>Gibt alle Services innerhalb des angegebenen Ordners zurück.</p>
-</li>
-</ul>
-</li>
-</ul>
-<p><strong>Capabilities</strong></p>
-<ul>
-<li><p><strong>GET</strong>
-- <code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{service}/capabilities</span></code></p>
-<blockquote>
-<div><p>Liefert die Eigenschaften und Informationen des spezifizierten Services.</p>
-</div></blockquote>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{folder}/{service}/capabilities</span></code></p>
-<p>Gibt die Eigenschaften und Informationen des spezifizierten Services innerhalb eines bestimmten Ordners zurück.</p>
-</li>
-</ul>
-</li>
-</ul>
-<p><strong>Map</strong></p>
-<ul>
-<li><p><strong>GET/POST</strong></p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{service}/map</span></code></p>
-<p>Generiert eine Karte basierend auf dem angegebenen Service.</p>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{folder}/{service}/map</span></code></p>
-<p>Generiert eine Karte für einen Service innerhalb eines bestimmten Ordners.</p>
-</li>
-</ul>
-</li>
-</ul>
-<p><strong>Legend</strong></p>
-<ul>
-<li><p><strong>GET/POST</strong></p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{service}/legend</span></code></p></li>
-</ul>
-<blockquote>
-<div><p>Liefert die Legende für den spezifizierten Service.</p>
-</div></blockquote>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{folder}/{service}/legend</span></code></p></li>
-</ul>
-<blockquote>
-<div><p>Liefert die Legende für einen Service innerhalb eines bestimmten Ordners.</p>
-</div></blockquote>
-</li>
-</ul>
-<p><strong>Query</strong></p>
-<ul>
-<li><p><strong>GET/POST</strong></p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{service}/query/{layerId}</span></code></p></li>
-</ul>
-<blockquote>
-<div><p>Führt eine Abfrage auf dem angegebenen Layer innerhalb des Services aus.</p>
-</div></blockquote>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{folder}/{service}/query/{layerId}</span></code></p></li>
-</ul>
-<blockquote>
-<div><p>Führt eine Abfrage auf dem Layer eines Services innerhalb eines bestimmten Ordners aus.</p>
-</div></blockquote>
-</li>
-</ul>
-<p><strong>Features</strong></p>
-<ul>
-<li><p><strong>POST/PUT/DELETE</strong></p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{service}/features/{layerId}</span></code></p></li>
-</ul>
-<blockquote>
-<div><p>Fügt Features hinzu, aktualisiert oder löscht Features in einem bestimmten Layer des Services.</p>
-</div></blockquote>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{folder}/{service}/features/{layerId}</span></code></p></li>
-</ul>
-<blockquote>
-<div><p>Fügt Features hinzu, aktualisiert oder löscht Features in einem bestimmten Layer eines Services innerhalb eines bestimmten Ordners.</p>
-</div></blockquote>
-</li>
-</ul>
-<p><strong>Token</strong></p>
-<ul>
-<li><p><strong>GET/POST</strong></p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/Token</span></code></p></li>
-</ul>
-<blockquote>
-<div><p>Liefert ein Token zur Authentifizierung oder führt die Authentifizierung durch.</p>
-</div></blockquote>
-</li>
-</ul>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Table of contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="types.html">Bounding Box, Koordinatenreferenzsystem und Geometrie</a></li>
-<li class="toctree-l1"><a class="reference internal" href="info.html">Info Endpoint</a></li>
-<li class="toctree-l1"><a class="reference internal" href="services.html">Services Endpunkt</a></li>
-<li class="toctree-l1"><a class="reference internal" href="capabilities.html">(Service)Capabilities Endpoint</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map.html">Map Endpoint</a></li>
-<li class="toctree-l1"><a class="reference internal" href="legend.html">Legend Endpoint</a></li>
-<li class="toctree-l1"><a class="reference internal" href="query.html">Query Endpoint</a></li>
-<li class="toctree-l1"><a class="reference internal" href="features.html">Features Endpoint</a></li>
-<li class="toctree-l1"><a class="reference internal" href="token.html">Token Endpoint</a></li>
-<li class="toctree-l1"><a class="reference internal" href="errorhandling.html">Error Handling</a></li>
-</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GET /geojsonservice/v1/token?clientId={client_id}&amp;clientSecret={client_secret}&amp;expireMinutes={expire_minutes}
+</pre></div>
 </div>
+<ul class="simple">
+<li><p><strong>clientId</strong>: (string) Die Client-ID zur Authentifizierung.</p></li>
+<li><p><strong>clientSecret</strong>: (string) Der Client-Secret zur Authentifizierung.</p></li>
+<li><p><strong>expireMinutes</strong> (optional): (int) Die gewünschte Gültigkeitsdauer des Tokens in Minuten (maximal gemäß Serverkonfiguration).</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="response-struktur">
+<h2>Response-Struktur<a class="headerlink" href="#response-struktur" title="Permalink to this heading">¶</a></h2>
+<p>Der Response enthält das erzeugte Token und die zugehörigen Metadaten. Die Struktur des Responses ist wie folgt definiert:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;access_token&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;expires_in&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">600</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;token_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bearer&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>access_token</strong>: (string) Das erzeugte Zugriffstoken.</p></li>
+<li><p><strong>expires_in</strong>: (int) Die verbleibende Gültigkeitsdauer des Tokens in Sekunden.</p></li>
+<li><p><strong>token_type</strong>: (string) Der Typ des Tokens, in der Regel “Bearer”.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Der <code class="docutils literal notranslate"><span class="pre">access_token</span></code> ist allen Request im <code class="docutils literal notranslate"><span class="pre">HTTP</span> <span class="pre">Header</span> <span class="pre">Authorize</span></code> als <strong>Bearer Token</strong> übergeben werden:
+(<code class="docutils literal notranslate"><span class="pre">Bearer</span> <span class="pre">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...</span></code>).</p>
+</div>
+</section>
+<section id="verwendungsmoglichkeiten">
+<h2>Verwendungsmöglichkeiten<a class="headerlink" href="#verwendungsmoglichkeiten" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Authentifizierung</strong>: Ermöglicht es Clients, Zugriff auf geschützte Endpunkte der GeoJSON-API zu erhalten.</p></li>
+<li><p><strong>Sitzungsverwaltung</strong>: Erzeugt zeitlich begrenzte Tokens, um die Sicherheit zu erhöhen.</p></li>
+<li><p><strong>Flexible Authentifizierung</strong>: Unterstützt sowohl GET- als auch POST-Methoden zur Token-Generierung.</p></li>
+</ul>
 </section>
 </section>
 
@@ -310,9 +218,10 @@ zusammen mit einer kurzen Beschreibung ihrer Funktion.</p>
             <p><a class="toggle_right_sidebar" href="#"><span class="icon">></span><span>Page contents:<span></a></p>
             <div class="page_toc">
                 <ul>
-<li><a class="reference internal" href="#">GeoJson Service Specification</a><ul>
-<li><a class="reference internal" href="#allgemeine-beschreibung-der-schnittstelle">Allgemeine Beschreibung der Schnittstelle</a></li>
-<li><a class="reference internal" href="#struktur-der-api-links">Struktur der API-Links</a></li>
+<li><a class="reference internal" href="#">Token Endpoint</a><ul>
+<li><a class="reference internal" href="#request-struktur">Request-Struktur</a></li>
+<li><a class="reference internal" href="#response-struktur">Response-Struktur</a></li>
+<li><a class="reference internal" href="#verwendungsmoglichkeiten">Verwendungsmöglichkeiten</a></li>
 </ul>
 </li>
 </ul>
@@ -327,14 +236,14 @@ zusammen mit einer kurzen Beschreibung ihrer Funktion.</p>
         <div class="button_nav">
             <div class="left">
                 
-                <a href="../../appendix/formats.html">
-                    <span class="icon"><</span><span>Data formats for maps and services</span></a>
+                <a href="features.html">
+                    <span class="icon"><</span><span>Features Endpoint</span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="types.html"><span>Bounding Box, Koordinatenreferenzsystem und Geometrie</span><span class="icon">></span></a>
+                    <a href="errorhandling.html"><span>Error Handling</span><span class="icon">></span></a>
                 
             </div>
         </div>

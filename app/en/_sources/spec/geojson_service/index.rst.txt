@@ -111,11 +111,12 @@ zusammen mit einer kurzen Beschreibung ihrer Funktion.
    :caption: Table of contents:
 
    types
-   getinfo
+   info
    services
    capabilities
    map
    legend
    query
    features
+   token
    errorhandling
