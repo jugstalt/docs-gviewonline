@@ -1,19 +1,19 @@
 Map Endpoint
-============
+============  
 
-Der **GetMap** Endpunkt ermöglicht das Abrufen einer Karte basierend auf den angegebenen Parametern 
-wie Layern, Bounding Box (BBox), Größe, Format und anderen Eigenschaften.
+The **GetMap** endpoint allows for retrieving a map based on specified parameters  
+such as layers, bounding box (BBox), size, format, and other properties.  
 
-Request-Struktur
-----------------
+Request Structure
+-----------------
 
-Der **GetMap** Endpunkt unterstützt sowohl GET- als auch POST-Anfragen. 
+The **GetMap** endpoint supports both GET and POST requests.  
 
-Beispiel für eine GET-Anfrage:
+Example of a GET request:  
 
-``https://..../map?bbox=10,10,20,20&crs=epsg:4326&laysers=0,1,2&format=png&width=800&height=600&responseFormat=image``
+``https://..../map?bbox=10,10,20,20&crs=epsg:4326&layers=0,1,2&format=png&width=800&height=600&responseFormat=image``  
 
-Die POST-Anfrage wird durch das folgende Objekt (BODY) definiert:
+The POST request is defined by the following object (BODY):  
 
 .. code-block:: json
 
@@ -41,36 +41,32 @@ Die POST-Anfrage wird durch das folgende Objekt (BODY) definiert:
       "responseFormat": "Url"
     }
 
-- **layers**: (array) Eine Liste von Layer-IDs, die auf der Karte angezeigt werden sollen.
-  
-  - Handelt es sich bei einem Layer um einen Gruppenlayer, betrifft die Sichtbarkeit alle Layer in der Gruppe.
-  
-  - Services haben eine Default-Sichtbarkeitsschaltung, die auch in den Capabilities des Services
-    ersichtlich ist. Wenn **layers** `null` ist, wird die Default-Sichtbarkeit verwendet.
-  
-  - Layer können zur Default-Sichtbarkeit hinzugefügt oder entfernt werden, indem ein Vorzeichen 
-    verwendet wird, z. B. `["+0", "-3"]`. Das Vorzeichen ``+`` fügt den Layer hinzu, 
-    das Vorzeichen ``-`` entfernt den Layer.
-  
-  - Wenn Vorzeichen verwendet werden, müssen alle Layer-IDs ein Vorzeichen haben.
-  
-  - Ohne Vorzeichen wird genau die übergebene Sichtbarkeit verwendet und die Default-Sichtbarkeit 
-    des Services wird komplett überschrieben.
+- **layers**: (array) A list of layer IDs to be displayed on the map.  
+    
+  - If a layer is a group layer, visibility applies to all layers within the group.  
+  - Services have a default visibility setting, which can also be seen in the service's capabilities.  
+    If **layers** is `null`, the default visibility is used.  
+  - Layers can be added to or removed from the default visibility by using a prefix,  
+    e.g., `["+0", "-3"]`. The ``+`` prefix adds the layer, while the ``-`` prefix removes it.  
+  - When using prefixes, all layer IDs must have a prefix.  
+  - Without prefixes, the exact visibility passed is applied, fully overriding the service's  
+    default visibility.  
 
-- **bbox**: (object) Die Bounding Box der Karte, die die geographische Ausdehnung definiert.
-- **crs** (optional): (object) Das verwendete Koordinatenreferenzsystem.
-- **width**: (int) Die Breite des angeforderten Kartenbildes in Pixeln.
-- **height**: (int) Die Höhe des angeforderten Kartenbildes in Pixeln.
-- **format**: (string) Das Format des Kartenbildes, z. B. "png" oder "jpg".
-- **transparent**: (bool) Gibt an, ob der Hintergrund transparent sein soll.
-- **rotation** (optional): (double) Die Rotation der Karte in Grad.
-- **dpi** (optional): (int) Die Auflösung des Bildes in DPI.
-- **responseFormat**: (string) Das Format des Responses, z. B. "Url", "Base64", "Image".
+- **bbox**: (object) The bounding box of the map, defining the geographical extent.  
+- **crs** (optional): (object) The coordinate reference system used.  
+- **width**: (int) The width of the requested map image in pixels.  
+- **height**: (int) The height of the requested map image in pixels.  
+- **format**: (string) The format of the map image, e.g., "png" or "jpg".  
+- **transparent**: (bool) Indicates whether the background should be transparent.  
+- **rotation** (optional): (double) The rotation of the map in degrees.  
+- **dpi** (optional): (int) The resolution of the image in DPI.  
+- **responseFormat**: (string) The format of the response, e.g., "Url", "Base64", "Image".  
 
-Response-Struktur
-------------------
+Response Structure
+------------------  
 
-Der Response enthält die angeforderte Karte oder Informationen dazu. Die Struktur des Responses ist wie folgt definiert:
+The response contains the requested map or related information.  
+The structure of the response is defined as follows:  
 
 .. code-block:: json
 
@@ -97,20 +93,20 @@ Der Response enthält die angeforderte Karte oder Informationen dazu. Die Strukt
       "contentType": "image/png"
     }
 
-- **type**: (string) Der Typ der Antwort, in diesem Fall "GetMapResponse".
-- **imageUrl** (optional): (string) URL zum abgerufenen Kartenbild, falls der Response als URL angefordert wurde.
-- **imageBase64** (optional): (string) Das Kartenbild im Base64-Format, falls dies angefordert wurde.
-- **bbox**: (object) Die Bounding Box der Karte.
-- **crs**: (object) Das verwendete Koordinatenreferenzsystem.
-- **width**: (int) Die Breite des zurückgegebenen Kartenbildes in Pixeln.
-- **height**: (int) Die Höhe des zurückgegebenen Kartenbildes in Pixeln.
-- **scaleDenominator**: (double) Der Maßstab der Karte.
-- **rotation** (optional): (double) Die Rotation der Karte in Grad.
-- **contentType**: (string) Der MIME-Typ des zurückgegebenen Kartenbildes, z. B. "image/png".
+- **type**: (string) The type of response, in this case "GetMapResponse".  
+- **imageUrl** (optional): (string) URL to the retrieved map image if the response was requested as a URL.  
+- **imageBase64** (optional): (string) The map image in Base64 format if this was requested.  
+- **bbox**: (object) The bounding box of the map.  
+- **crs**: (object) The coordinate reference system used.  
+- **width**: (int) The width of the returned map image in pixels.  
+- **height**: (int) The height of the returned map image in pixels.  
+- **scaleDenominator**: (double) The scale of the map.  
+- **rotation** (optional): (double) The rotation of the map in degrees.  
+- **contentType**: (string) The MIME type of the returned map image, e.g., "image/png".  
 
-Hinweis zum ResponseFormat
---------------------------
+Note on ResponseFormat
+----------------------  
 
-- **Url:** wird im Response die **imageUrl** zurückgegeben.
-- **Base64:** wird das Bild im Base64-Format in **imageBase64** zurückgegeben.
-- **Image:** ist der Response direkt das Bild im Binärformat.
+- **Url:** The **imageUrl** is returned in the response.  
+- **Base64:** The image is returned in Base64 format in **imageBase64**.  
+- **Image:** The response directly returns the image in binary format.  

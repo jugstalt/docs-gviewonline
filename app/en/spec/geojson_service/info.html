@@ -1,24 +1,23 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Info Endpoint &#8212; gView GIS 6.x documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=0.7.0-1" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=d7bb20b6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=247da48f" />
+    <script src="../../_static/documentation_options.js?v=98846f59"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <script src="../../_static/js/petite-vue.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Services Endpunkt" href="services.html" />
-    <link rel="prev" title="Bounding Box, Koordinatenreferenzsystem und Geometrie" href="types.html" /> 
+    <link rel="next" title="Services Endpoint" href="services.html" />
+    <link rel="prev" title="Bounding Box, Coordinate Reference System, and Geometry" href="types.html" /> 
   </head><body data-dark_mode_code_blocks="true">
 
 <div id="top_nav">
@@ -130,9 +129,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../appendix/index.html">Appendix</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">GeoJson Service Specification</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="types.html">Bounding Box, Koordinatenreferenzsystem und Geometrie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Bounding Box, Coordinate Reference System, and Geometry</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Info Endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="services.html">Services Endpunkt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="services.html">Services Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="capabilities.html">(Service)Capabilities Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="map.html">Map Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="legend.html">Legend Endpoint</a></li>
@@ -154,19 +153,19 @@
           <div class="body" role="main">
             
   <section id="info-endpoint">
-<h1>Info Endpoint<a class="headerlink" href="#info-endpoint" title="Permalink to this heading">¶</a></h1>
-<p>Der <strong>Info</strong> Endpunkt liefert grundlegende Informationen über die GeoJSON-API,
-einschließlich der unterstützten Endpunkte, der Version und der Token-Einstellungen.</p>
-<section id="request-struktur">
-<h2>Request-Struktur<a class="headerlink" href="#request-struktur" title="Permalink to this heading">¶</a></h2>
-<p>Der <strong>Info</strong> Endpunkt unterstützt ausschließlich GET-Anfragen mit der folgenden URL:</p>
+<h1>Info Endpoint<a class="headerlink" href="#info-endpoint" title="Link to this heading">¶</a></h1>
+<p>The <strong>Info</strong> endpoint provides basic information about the GeoJSON API,
+including supported endpoints, version, and token settings.</p>
+<section id="request-structure">
+<h2>Request Structure<a class="headerlink" href="#request-structure" title="Link to this heading">¶</a></h2>
+<p>The <strong>Info</strong> endpoint supports only GET requests using the following URL:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">geojsonservice</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">info</span>
 </pre></div>
 </div>
 </section>
-<section id="response-struktur">
-<h2>Response-Struktur<a class="headerlink" href="#response-struktur" title="Permalink to this heading">¶</a></h2>
-<p>Der Response enthält allgemeine Informationen über die API und ist wie folgt aufgebaut:</p>
+<section id="response-structure">
+<h2>Response Structure<a class="headerlink" href="#response-structure" title="Link to this heading">¶</a></h2>
+<p>The response contains general information about the API and is structured as follows:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GetInfoResponse&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
@@ -195,36 +194,36 @@ einschließlich der unterstützten Endpunkte, der Version und der Token-Einstell
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><strong>type</strong>: (string) Der Typ der Antwort, in diesem Fall “GetInfoResponse”.</p></li>
-<li><p><strong>version</strong>: (string) Die Version der API.</p></li>
-<li><p><strong>tokenMaxExpireMinutes</strong>: (int) Die maximale Gültigkeitsdauer eines Tokens in Minuten.</p></li>
-<li><p><strong>endPoints</strong>: (object) Eine Liste der unterstützten Endpunkte mit Details zu Methoden, URLs und optionalen Parametern.</p>
+<li><p><strong>type</strong>: (string) The type of response, in this case “GetInfoResponse”.</p></li>
+<li><p><strong>version</strong>: (string) The version of the API.</p></li>
+<li><p><strong>tokenMaxExpireMinutes</strong>: (int) The maximum validity period of a token in minutes.</p></li>
+<li><p><strong>endPoints</strong>: (object) A list of supported endpoints with details on methods, URLs, and optional parameters.</p>
 <ul>
-<li><p><strong>token</strong>: (array) Endpunkte für die Token-Generierung.</p>
+<li><p><strong>token</strong>: (array) Endpoints for token generation.</p>
 <ul>
-<li><p><strong>method</strong>: (string) Die HTTP-Methode, z. B. “GET” oder “POST”.</p></li>
-<li><p><strong>url</strong>: (string) Die URL für den Token-Endpunkt.</p></li>
-<li><p><strong>contentType</strong> (optional): (string) Der MIME-Typ des Inhalts, z. B. “application/x-www-form-urlencoded”.</p></li>
-<li><p><strong>body</strong> (optional): (string) Der Body der Anfrage, wenn POST verwendet wird.</p></li>
+<li><p><strong>method</strong>: (string) The HTTP method, e.g., “GET” or “POST”.</p></li>
+<li><p><strong>url</strong>: (string) The URL for the token endpoint.</p></li>
+<li><p><strong>contentType</strong> (optional): (string) The MIME type of the content, e.g., “application/x-www-form-urlencoded”.</p></li>
+<li><p><strong>body</strong> (optional): (string) The request body when POST is used.</p></li>
 </ul>
 </li>
-<li><p><strong>services</strong>: (array) Endpunkte für den Zugriff auf die Services.</p>
+<li><p><strong>services</strong>: (array) Endpoints for accessing services.</p>
 <ul>
-<li><p><strong>method</strong>: (string) Die HTTP-Methode, z. B. “GET”.</p></li>
-<li><p><strong>url</strong>: (string) Die URL für den Zugriff auf die Services.</p></li>
+<li><p><strong>method</strong>: (string) The HTTP method, e.g., “GET”.</p></li>
+<li><p><strong>url</strong>: (string) The URL for accessing services.</p></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </section>
-<section id="verwendungsmoglichkeiten">
-<h2>Verwendungsmöglichkeiten<a class="headerlink" href="#verwendungsmoglichkeiten" title="Permalink to this heading">¶</a></h2>
+<section id="use-cases">
+<h2>Use Cases<a class="headerlink" href="#use-cases" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><strong>API-Dokumentation</strong>: Ermöglicht es Nutzern, unterstützte Endpunkte und deren</p></li>
-<li><p>Details direkt zu entdecken.</p></li>
-<li><p><strong>Token-Verwaltung</strong>: Bietet Informationen über die maximale Gültigkeitsdauer von</p></li>
-<li><p>Tokens und die Token-Endpunkte.</p></li>
+<li><p><strong>API Documentation</strong>: Allows users to discover supported endpoints and their
+details directly.</p></li>
+<li><p><strong>Token Management</strong>: Provides information about the maximum validity period of
+tokens and the token endpoints.</p></li>
 </ul>
 </section>
 </section>
@@ -236,17 +235,17 @@ einschließlich der unterstützten Endpunkte, der Version und der Token-Einstell
       </div>
     
         <div id="show_right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon"><</span><span>Page contents<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
         </div>
 
         <div id="right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">></span><span>Page contents:<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
             <div class="page_toc">
                 <ul>
 <li><a class="reference internal" href="#">Info Endpoint</a><ul>
-<li><a class="reference internal" href="#request-struktur">Request-Struktur</a></li>
-<li><a class="reference internal" href="#response-struktur">Response-Struktur</a></li>
-<li><a class="reference internal" href="#verwendungsmoglichkeiten">Verwendungsmöglichkeiten</a></li>
+<li><a class="reference internal" href="#request-structure">Request Structure</a></li>
+<li><a class="reference internal" href="#response-structure">Response Structure</a></li>
+<li><a class="reference internal" href="#use-cases">Use Cases</a></li>
 </ul>
 </li>
 </ul>
@@ -262,13 +261,13 @@ einschließlich der unterstützten Endpunkte, der Version und der Token-Einstell
             <div class="left">
                 
                 <a href="types.html">
-                    <span class="icon"><</span><span>Bounding Box, Koordinatenreferenzsystem und Geometrie</span></a>
+                    <span class="icon">&lt;</span><span>Bounding Box, Coordinate Reference System, and Geometry</span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="services.html"><span>Services Endpunkt</span><span class="icon">></span></a>
+                    <a href="services.html"><span>Services Endpoint</span><span class="icon">&gt;</span></a>
                 
             </div>
         </div>
@@ -276,8 +275,8 @@ einschließlich der unterstützten Endpunkte, der Version und der Token-Einstell
 
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

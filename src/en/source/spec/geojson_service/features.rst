@@ -1,15 +1,15 @@
 Features Endpoint
-=================
+=================  
 
-Der **Features** Endpunkt ermöglicht das Erstellen, Aktualisieren und Löschen von Features 
-in einem bestimmten Layer. Dafür werden die HTTP-Methoden POST, PUT und DELETE verwendet.
+The **Features** endpoint allows creating, updating, and deleting features  
+in a specific layer. The HTTP methods POST, PUT, and DELETE are used for this purpose.  
 
-Request-Struktur
-----------------
+Request Structure
+-----------------  
 
-- **POST** und **PUT** (Einfügen/Update von Features)
+- **POST** and **PUT** (Insert/Update Features)  
 
-  Bei einer POST- oder PUT-Anfrage wird der folgende Body verwendet:
+  For a POST or PUT request, the following body is used:  
 
   .. code-block:: json
 
@@ -36,13 +36,13 @@ Request-Struktur
         ]
       }
 
-  - **type**: (string) Der Typ der Anfrage, in diesem Fall "EditFeatures".
-  - **crs** (optional): (object) Das verwendete Koordinatenreferenzsystem.
-  - **features**: (array) Eine Liste der Features, die hinzugefügt oder aktualisiert werden sollen.
+  - **type**: (string) The type of request, in this case "EditFeatures".  
+  - **crs** (optional): (object) The coordinate reference system used.  
+  - **features**: (array) A list of features to be added or updated.  
 
-- **DELETE** (Löschen von Features)
+- **DELETE** (Delete Features)  
 
-  Bei einer DELETE-Anfrage wird der folgende Body verwendet:
+  For a DELETE request, the following body is used:  
 
   .. code-block:: json
 
@@ -57,15 +57,15 @@ Request-Struktur
         "objectIds": [1, 2, 3]
       }
 
-  - **type**: (string) Der Typ der Anfrage, in diesem Fall "EditFeatures".
-  - **crs** (optional): (object) Das verwendete Koordinatenreferenzsystem.
-  - **objectIds**: (array) Eine Liste von Objekt-IDs, die gelöscht werden sollen.
+  - **type**: (string) The type of request, in this case "EditFeatures".  
+  - **crs** (optional): (object) The coordinate reference system used.  
+  - **objectIds**: (array) A list of object IDs to be deleted.  
 
-Response-Struktur
-------------------
+Response Structure
+------------------  
 
-Der Response enthält Informationen über den Erfolg der Operation. Die Struktur des Responses ist 
-wie folgt definiert:
+The response contains information about the success of the operation. The structure of the response is  
+defined as follows:
 
 .. code-block:: json
 
@@ -75,6 +75,6 @@ wie folgt definiert:
       "count": 3
     }
 
-- **succeeded**: (bool) Gibt an, ob die Operation erfolgreich war.
-- **statement**: (string) Das ausgeführte Datenbank Statement
-- **count**: (int) Die Anzahl der betroffenen Features
+- **succeeded**: (bool) Indicates whether the operation was successful.  
+- **statement**: (string) The executed database statement.  
+- **count**: (int) The number of affected features.  

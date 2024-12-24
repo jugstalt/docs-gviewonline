@@ -1,18 +1,17 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Map Endpoint &#8212; gView GIS 6.x documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=0.7.0-1" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=d7bb20b6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=247da48f" />
+    <script src="../../_static/documentation_options.js?v=98846f59"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <script src="../../_static/js/petite-vue.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -130,9 +129,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../appendix/index.html">Appendix</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">GeoJson Service Specification</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="types.html">Bounding Box, Koordinatenreferenzsystem und Geometrie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Bounding Box, Coordinate Reference System, and Geometry</a></li>
 <li class="toctree-l2"><a class="reference internal" href="info.html">Info Endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="services.html">Services Endpunkt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="services.html">Services Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="capabilities.html">(Service)Capabilities Endpoint</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Map Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="legend.html">Legend Endpoint</a></li>
@@ -154,15 +153,15 @@
           <div class="body" role="main">
             
   <section id="map-endpoint">
-<h1>Map Endpoint<a class="headerlink" href="#map-endpoint" title="Permalink to this heading">¶</a></h1>
-<p>Der <strong>GetMap</strong> Endpunkt ermöglicht das Abrufen einer Karte basierend auf den angegebenen Parametern
-wie Layern, Bounding Box (BBox), Größe, Format und anderen Eigenschaften.</p>
-<section id="request-struktur">
-<h2>Request-Struktur<a class="headerlink" href="#request-struktur" title="Permalink to this heading">¶</a></h2>
-<p>Der <strong>GetMap</strong> Endpunkt unterstützt sowohl GET- als auch POST-Anfragen.</p>
-<p>Beispiel für eine GET-Anfrage:</p>
-<p><code class="docutils literal notranslate"><span class="pre">https://..../map?bbox=10,10,20,20&amp;crs=epsg:4326&amp;laysers=0,1,2&amp;format=png&amp;width=800&amp;height=600&amp;responseFormat=image</span></code></p>
-<p>Die POST-Anfrage wird durch das folgende Objekt (BODY) definiert:</p>
+<h1>Map Endpoint<a class="headerlink" href="#map-endpoint" title="Link to this heading">¶</a></h1>
+<p>The <strong>GetMap</strong> endpoint allows for retrieving a map based on specified parameters
+such as layers, bounding box (BBox), size, format, and other properties.</p>
+<section id="request-structure">
+<h2>Request Structure<a class="headerlink" href="#request-structure" title="Link to this heading">¶</a></h2>
+<p>The <strong>GetMap</strong> endpoint supports both GET and POST requests.</p>
+<p>Example of a GET request:</p>
+<p><code class="docutils literal notranslate"><span class="pre">https://..../map?bbox=10,10,20,20&amp;crs=epsg:4326&amp;layers=0,1,2&amp;format=png&amp;width=800&amp;height=600&amp;responseFormat=image</span></code></p>
+<p>The POST request is defined by the following object (BODY):</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GetMap&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;layers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">],</span>
@@ -189,33 +188,33 @@ wie Layern, Bounding Box (BBox), Größe, Format und anderen Eigenschaften.</p>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><strong>layers</strong>: (array) Eine Liste von Layer-IDs, die auf der Karte angezeigt werden sollen.</p>
+<li><p><strong>layers</strong>: (array) A list of layer IDs to be displayed on the map.</p>
 <ul>
-<li><p>Handelt es sich bei einem Layer um einen Gruppenlayer, betrifft die Sichtbarkeit alle Layer in der Gruppe.</p></li>
-<li><p>Services haben eine Default-Sichtbarkeitsschaltung, die auch in den Capabilities des Services
-ersichtlich ist. Wenn <strong>layers</strong> <cite>null</cite> ist, wird die Default-Sichtbarkeit verwendet.</p></li>
-<li><p>Layer können zur Default-Sichtbarkeit hinzugefügt oder entfernt werden, indem ein Vorzeichen
-verwendet wird, z. B. <cite>[“+0”, “-3”]</cite>. Das Vorzeichen <code class="docutils literal notranslate"><span class="pre">+</span></code> fügt den Layer hinzu,
-das Vorzeichen <code class="docutils literal notranslate"><span class="pre">-</span></code> entfernt den Layer.</p></li>
-<li><p>Wenn Vorzeichen verwendet werden, müssen alle Layer-IDs ein Vorzeichen haben.</p></li>
-<li><p>Ohne Vorzeichen wird genau die übergebene Sichtbarkeit verwendet und die Default-Sichtbarkeit
-des Services wird komplett überschrieben.</p></li>
+<li><p>If a layer is a group layer, visibility applies to all layers within the group.</p></li>
+<li><p>Services have a default visibility setting, which can also be seen in the service’s capabilities.
+If <strong>layers</strong> is <cite>null</cite>, the default visibility is used.</p></li>
+<li><p>Layers can be added to or removed from the default visibility by using a prefix,
+e.g., <cite>[“+0”, “-3”]</cite>. The <code class="docutils literal notranslate"><span class="pre">+</span></code> prefix adds the layer, while the <code class="docutils literal notranslate"><span class="pre">-</span></code> prefix removes it.</p></li>
+<li><p>When using prefixes, all layer IDs must have a prefix.</p></li>
+<li><p>Without prefixes, the exact visibility passed is applied, fully overriding the service’s
+default visibility.</p></li>
 </ul>
 </li>
-<li><p><strong>bbox</strong>: (object) Die Bounding Box der Karte, die die geographische Ausdehnung definiert.</p></li>
-<li><p><strong>crs</strong> (optional): (object) Das verwendete Koordinatenreferenzsystem.</p></li>
-<li><p><strong>width</strong>: (int) Die Breite des angeforderten Kartenbildes in Pixeln.</p></li>
-<li><p><strong>height</strong>: (int) Die Höhe des angeforderten Kartenbildes in Pixeln.</p></li>
-<li><p><strong>format</strong>: (string) Das Format des Kartenbildes, z. B. “png” oder “jpg”.</p></li>
-<li><p><strong>transparent</strong>: (bool) Gibt an, ob der Hintergrund transparent sein soll.</p></li>
-<li><p><strong>rotation</strong> (optional): (double) Die Rotation der Karte in Grad.</p></li>
-<li><p><strong>dpi</strong> (optional): (int) Die Auflösung des Bildes in DPI.</p></li>
-<li><p><strong>responseFormat</strong>: (string) Das Format des Responses, z. B. “Url”, “Base64”, “Image”.</p></li>
+<li><p><strong>bbox</strong>: (object) The bounding box of the map, defining the geographical extent.</p></li>
+<li><p><strong>crs</strong> (optional): (object) The coordinate reference system used.</p></li>
+<li><p><strong>width</strong>: (int) The width of the requested map image in pixels.</p></li>
+<li><p><strong>height</strong>: (int) The height of the requested map image in pixels.</p></li>
+<li><p><strong>format</strong>: (string) The format of the map image, e.g., “png” or “jpg”.</p></li>
+<li><p><strong>transparent</strong>: (bool) Indicates whether the background should be transparent.</p></li>
+<li><p><strong>rotation</strong> (optional): (double) The rotation of the map in degrees.</p></li>
+<li><p><strong>dpi</strong> (optional): (int) The resolution of the image in DPI.</p></li>
+<li><p><strong>responseFormat</strong>: (string) The format of the response, e.g., “Url”, “Base64”, “Image”.</p></li>
 </ul>
 </section>
-<section id="response-struktur">
-<h2>Response-Struktur<a class="headerlink" href="#response-struktur" title="Permalink to this heading">¶</a></h2>
-<p>Der Response enthält die angeforderte Karte oder Informationen dazu. Die Struktur des Responses ist wie folgt definiert:</p>
+<section id="response-structure">
+<h2>Response Structure<a class="headerlink" href="#response-structure" title="Link to this heading">¶</a></h2>
+<p>The response contains the requested map or related information.
+The structure of the response is defined as follows:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GetMapResponse&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;imageUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://{server}/path/to/generated/map.png&quot;</span><span class="p">,</span>
@@ -241,24 +240,24 @@ des Services wird komplett überschrieben.</p></li>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><strong>type</strong>: (string) Der Typ der Antwort, in diesem Fall “GetMapResponse”.</p></li>
-<li><p><strong>imageUrl</strong> (optional): (string) URL zum abgerufenen Kartenbild, falls der Response als URL angefordert wurde.</p></li>
-<li><p><strong>imageBase64</strong> (optional): (string) Das Kartenbild im Base64-Format, falls dies angefordert wurde.</p></li>
-<li><p><strong>bbox</strong>: (object) Die Bounding Box der Karte.</p></li>
-<li><p><strong>crs</strong>: (object) Das verwendete Koordinatenreferenzsystem.</p></li>
-<li><p><strong>width</strong>: (int) Die Breite des zurückgegebenen Kartenbildes in Pixeln.</p></li>
-<li><p><strong>height</strong>: (int) Die Höhe des zurückgegebenen Kartenbildes in Pixeln.</p></li>
-<li><p><strong>scaleDenominator</strong>: (double) Der Maßstab der Karte.</p></li>
-<li><p><strong>rotation</strong> (optional): (double) Die Rotation der Karte in Grad.</p></li>
-<li><p><strong>contentType</strong>: (string) Der MIME-Typ des zurückgegebenen Kartenbildes, z. B. “image/png”.</p></li>
+<li><p><strong>type</strong>: (string) The type of response, in this case “GetMapResponse”.</p></li>
+<li><p><strong>imageUrl</strong> (optional): (string) URL to the retrieved map image if the response was requested as a URL.</p></li>
+<li><p><strong>imageBase64</strong> (optional): (string) The map image in Base64 format if this was requested.</p></li>
+<li><p><strong>bbox</strong>: (object) The bounding box of the map.</p></li>
+<li><p><strong>crs</strong>: (object) The coordinate reference system used.</p></li>
+<li><p><strong>width</strong>: (int) The width of the returned map image in pixels.</p></li>
+<li><p><strong>height</strong>: (int) The height of the returned map image in pixels.</p></li>
+<li><p><strong>scaleDenominator</strong>: (double) The scale of the map.</p></li>
+<li><p><strong>rotation</strong> (optional): (double) The rotation of the map in degrees.</p></li>
+<li><p><strong>contentType</strong>: (string) The MIME type of the returned map image, e.g., “image/png”.</p></li>
 </ul>
 </section>
-<section id="hinweis-zum-responseformat">
-<h2>Hinweis zum ResponseFormat<a class="headerlink" href="#hinweis-zum-responseformat" title="Permalink to this heading">¶</a></h2>
+<section id="note-on-responseformat">
+<h2>Note on ResponseFormat<a class="headerlink" href="#note-on-responseformat" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><strong>Url:</strong> wird im Response die <strong>imageUrl</strong> zurückgegeben.</p></li>
-<li><p><strong>Base64:</strong> wird das Bild im Base64-Format in <strong>imageBase64</strong> zurückgegeben.</p></li>
-<li><p><strong>Image:</strong> ist der Response direkt das Bild im Binärformat.</p></li>
+<li><p><strong>Url:</strong> The <strong>imageUrl</strong> is returned in the response.</p></li>
+<li><p><strong>Base64:</strong> The image is returned in Base64 format in <strong>imageBase64</strong>.</p></li>
+<li><p><strong>Image:</strong> The response directly returns the image in binary format.</p></li>
 </ul>
 </section>
 </section>
@@ -270,17 +269,17 @@ des Services wird komplett überschrieben.</p></li>
       </div>
     
         <div id="show_right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon"><</span><span>Page contents<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
         </div>
 
         <div id="right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">></span><span>Page contents:<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
             <div class="page_toc">
                 <ul>
 <li><a class="reference internal" href="#">Map Endpoint</a><ul>
-<li><a class="reference internal" href="#request-struktur">Request-Struktur</a></li>
-<li><a class="reference internal" href="#response-struktur">Response-Struktur</a></li>
-<li><a class="reference internal" href="#hinweis-zum-responseformat">Hinweis zum ResponseFormat</a></li>
+<li><a class="reference internal" href="#request-structure">Request Structure</a></li>
+<li><a class="reference internal" href="#response-structure">Response Structure</a></li>
+<li><a class="reference internal" href="#note-on-responseformat">Note on ResponseFormat</a></li>
 </ul>
 </li>
 </ul>
@@ -296,13 +295,13 @@ des Services wird komplett überschrieben.</p></li>
             <div class="left">
                 
                 <a href="capabilities.html">
-                    <span class="icon"><</span><span>(Service)Capabilities Endpoint</span></a>
+                    <span class="icon">&lt;</span><span>(Service)Capabilities Endpoint</span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="legend.html"><span>Legend Endpoint</span><span class="icon">></span></a>
+                    <a href="legend.html"><span>Legend Endpoint</span><span class="icon">&gt;</span></a>
                 
             </div>
         </div>
@@ -310,8 +309,8 @@ des Services wird komplett überschrieben.</p></li>
 
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

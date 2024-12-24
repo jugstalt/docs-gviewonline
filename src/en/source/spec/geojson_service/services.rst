@@ -1,35 +1,36 @@
-Services Endpunkt
-=================
+Services Endpoint
+=================  
 
-Der **Services** Endpunkt liefert eine Liste aller verfügbaren Geodaten-Services auf dem Server oder innerhalb eines bestimmten Ordners. 
-Dieser Endpunkt ermöglicht es, die vorhandenen Services zu durchsuchen und eine Übersicht über die verfügbare Struktur zu erhalten.
+The **Services** endpoint provides a list of all available geospatial data services on the server or within a specific folder.  
+This endpoint allows users to browse existing services and get an overview of the available structure.  
 
-Request-Struktur
-----------------
-
-Der **Services** Endpunkt unterstützt nur GET-Anfragen und kann mit den folgenden URLs aufgerufen werden:
-
-- **Services im Root Ordner**
-  - ``https://{server}/geojsonservice/v1/services``
-    
-    - Liefert eine Liste aller verfügbaren Services und Ordner auf dem Server.
-
-- **Services in einem bestimmten Ordner**
-  - ``https://{server}/geojsonservice/v1/services/{folder}``
-    
-    - Gibt alle Services innerhalb des angegebenen Ordners zurück.
-
-Response-Struktur
-------------------
-
-Der Response enthält Informationen über die vorhandenen Ordner und Services. Die Struktur des Responses ist wie folgt definiert:
-
-- **type**: (string) Fixed value "GetServicesResponse", das den Typ der Antwort angibt.
-- **folders**: (array) Eine Liste von Unterordnern, die auf dem Server oder innerhalb des angegebenen Ordners verfügbar sind.
-- **services**: (array) Eine Liste der Services, die im Server oder im angegebenen Ordner verfügbar sind.
-
-Beispiel Response
+Request Structure
 -----------------
+
+The **Services** endpoint supports only GET requests and can be accessed using the following URLs:  
+
+- **Services in the Root Folder**  
+  - ``https://{server}/geojsonservice/v1/services``  
+      
+    - Returns a list of all available services and folders on the server.  
+
+- **Services in a Specific Folder**  
+  - ``https://{server}/geojsonservice/v1/services/{folder}``  
+      
+    - Returns all services within the specified folder.  
+
+Response Structure
+------------------  
+
+The response contains information about existing folders and services.  
+The structure of the response is defined as follows:  
+
+- **type**: (string) Fixed value "GetServicesResponse" indicating the type of response.  
+- **folders**: (array) A list of subfolders available on the server or within the specified folder.  
+- **services**: (array) A list of services available on the server or within the specified folder.  
+
+Example Response
+----------------
 
 .. code-block:: json
 
@@ -45,15 +46,15 @@ Beispiel Response
       ]
     }
 
-Erläuterung des Beispiels
--------------------------
+Explanation of the Example
+--------------------------  
 
-- **type**: Gibt den Typ der Antwort an, in diesem Fall "GetServicesResponse".
-- **folders**: Enthält eine Liste von Ordnern, die verfügbar sind. In diesem Beispiel sind "folder1" und "folder2" zwei vorhandene Ordner.
-- **services**: Enthält eine Liste der Services, die verfügbar sind. In diesem Beispiel sind "service1" und "service2" zwei verfügbare Services.
+- **type**: Indicates the type of response, in this case "GetServicesResponse".  
+- **folders**: Contains a list of folders that are available. In this example, "Maps" and "TrafficData" are two existing folders.  
+- **services**: Contains a list of services that are available. In this example, "WeatherMaps" and "PopulationDensity" are two available services.  
 
-Verwendungsmöglichkeiten
-------------------------
+Use Cases
+---------  
 
-- **Service-Discovery**: Erhalten Sie eine Übersicht über alle auf dem Server verfügbaren Services, um zu entscheiden, welche Daten verwendet werden sollen.
-- **Katalognavigation**: Navigieren Sie durch die verfügbaren Ordner, um die gewünschte Datenstruktur zu finden.
+- **Service Discovery**: Get an overview of all services available on the server to decide which data to use.  
+- **Catalog Navigation**: Browse through the available folders to find the desired data structure.  

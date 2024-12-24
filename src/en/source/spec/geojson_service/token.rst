@@ -1,28 +1,29 @@
 Token Endpoint
-==============
+==============  
 
-Der **Token** Endpunkt ermöglicht die Authentifizierung und Autorisierung für die Nutzung 
-der GeoJSON-API. Ein Token kann entweder über GET oder POST angefordert werden.
+The **Token** endpoint enables authentication and authorization for using  
+the GeoJSON API. A token can be requested via GET or POST.  
 
-Request-Struktur
-----------------
+Request Structure
+-----------------
 
-Die URL kann aus dem Info Endpoint Response entnommen werden, beispielsweise
+The URL can be retrieved from the Info endpoint response, for example  
 
-- **GET**
+- **GET**  
 
   .. code-block::
 
       GET /geojsonservice/v1/token?clientId={client_id}&clientSecret={client_secret}&expireMinutes={expire_minutes}
 
-  - **clientId**: (string) Die Client-ID zur Authentifizierung.
-  - **clientSecret**: (string) Der Client-Secret zur Authentifizierung.
-  - **expireMinutes** (optional): (int) Die gewünschte Gültigkeitsdauer des Tokens in Minuten (maximal gemäß Serverkonfiguration).
+  - **clientId**: (string) The client ID for authentication.  
+  - **clientSecret**: (string) The client secret for authentication.  
+  - **expireMinutes** (optional): (int) The desired validity period of the token in minutes (maximum as per server configuration).  
 
-Response-Struktur
-------------------
+Response Structure
+------------------  
 
-Der Response enthält das erzeugte Token und die zugehörigen Metadaten. Die Struktur des Responses ist wie folgt definiert:
+The response contains the generated token and its associated metadata.  
+The structure of the response is defined as follows:  
 
 .. code-block:: json
 
@@ -32,18 +33,18 @@ Der Response enthält das erzeugte Token und die zugehörigen Metadaten. Die Str
       "token_type": "Bearer"
     }
 
-- **access_token**: (string) Das erzeugte Zugriffstoken.
-- **expires_in**: (int) Die verbleibende Gültigkeitsdauer des Tokens in Sekunden.
-- **token_type**: (string) Der Typ des Tokens, in der Regel "Bearer".
+- **access_token**: (string) The generated access token.  
+- **expires_in**: (int) The remaining validity period of the token in seconds.  
+- **token_type**: (string) The type of token, typically "Bearer".  
 
-.. note::
+.. note::  
    
-   Der ``access_token`` ist allen Request im ``HTTP Header Authorize`` als **Bearer Token** übergeben werden:
-   (``Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...``).
+   The ``access_token`` must be included in all requests in the ``HTTP Header Authorize`` as a **Bearer Token**:  
+   (``Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...``).  
 
-Verwendungsmöglichkeiten
-------------------------
+Use Cases
+---------  
 
-- **Authentifizierung**: Ermöglicht es Clients, Zugriff auf geschützte Endpunkte der GeoJSON-API zu erhalten.
-- **Sitzungsverwaltung**: Erzeugt zeitlich begrenzte Tokens, um die Sicherheit zu erhöhen.
-- **Flexible Authentifizierung**: Unterstützt sowohl GET- als auch POST-Methoden zur Token-Generierung.
+- **Authentication**: Allows clients to access protected endpoints of the GeoJSON API.  
+- **Session Management**: Generates time-limited tokens to enhance security.  
+- **Flexible Authentication**: Supports both GET and POST methods for token generation.  

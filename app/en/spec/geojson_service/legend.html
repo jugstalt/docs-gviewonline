@@ -1,18 +1,17 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Legend Endpoint &#8212; gView GIS 6.x documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=0.7.0-1" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=d7bb20b6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=247da48f" />
+    <script src="../../_static/documentation_options.js?v=98846f59"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <script src="../../_static/js/petite-vue.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -130,9 +129,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../appendix/index.html">Appendix</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">GeoJson Service Specification</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="types.html">Bounding Box, Koordinatenreferenzsystem und Geometrie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Bounding Box, Coordinate Reference System, and Geometry</a></li>
 <li class="toctree-l2"><a class="reference internal" href="info.html">Info Endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="services.html">Services Endpunkt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="services.html">Services Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="capabilities.html">(Service)Capabilities Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="map.html">Map Endpoint</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Legend Endpoint</a></li>
@@ -154,14 +153,14 @@
           <div class="body" role="main">
             
   <section id="legend-endpoint">
-<h1>Legend Endpoint<a class="headerlink" href="#legend-endpoint" title="Permalink to this heading">¶</a></h1>
-<p>Der <strong>Legend</strong> Endpunkt ermöglicht das Abrufen der Legende für die einzelnen Layer eines Services.
-Die Anfrage kann entweder als GET- oder POST-Anfrage erfolgen.</p>
-<section id="request-struktur">
-<h2>Request-Struktur<a class="headerlink" href="#request-struktur" title="Permalink to this heading">¶</a></h2>
-<p>Der <strong>Legend</strong> Endpunkt unterstützt GET- und POST-Anfragen:</p>
+<h1>Legend Endpoint<a class="headerlink" href="#legend-endpoint" title="Link to this heading">¶</a></h1>
+<p>The <strong>Legend</strong> endpoint allows for retrieving the legend for individual layers of a service.
+The request can be made as either a GET or POST request.</p>
+<section id="request-structure">
+<h2>Request Structure<a class="headerlink" href="#request-structure" title="Link to this heading">¶</a></h2>
+<p>The <strong>Legend</strong> endpoint supports GET and POST requests:</p>
 <p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{folder}/{service}/legend?width=20&amp;height=20</span></code></p>
-<p>Bei einer POST-Anfrage wird der folgende Body verwendet:</p>
+<p>For a POST request, the following body is used:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GetLegend&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
@@ -171,16 +170,16 @@ Die Anfrage kann entweder als GET- oder POST-Anfrage erfolgen.</p>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><strong>type</strong>: (string) Der Typ der Anfrage, in diesem Fall “GetLegend”.</p></li>
-<li><p><strong>width</strong>: (int) Die Breite eines Legendenitems in Pixeln.</p></li>
-<li><p><strong>height</strong>: (int) Die Höhe eines Legendenitems in Pixeln.</p></li>
-<li><p><strong>dpi</strong> (optional): (int) Die Auflösung der Legende in DPI.</p></li>
+<li><p><strong>type</strong>: (string) The type of request, in this case “GetLegend”.</p></li>
+<li><p><strong>width</strong>: (int) The width of a legend item in pixels.</p></li>
+<li><p><strong>height</strong>: (int) The height of a legend item in pixels.</p></li>
+<li><p><strong>dpi</strong> (optional): (int) The resolution of the legend in DPI.</p></li>
 </ul>
 </section>
-<section id="response-struktur">
-<h2>Response-Struktur<a class="headerlink" href="#response-struktur" title="Permalink to this heading">¶</a></h2>
-<p>Der Response enthält Informationen zu den einzelnen Layern und deren Legendenitems.
-Die Struktur des Responses ist wie folgt definiert:</p>
+<section id="response-structure">
+<h2>Response Structure<a class="headerlink" href="#response-structure" title="Link to this heading">¶</a></h2>
+<p>The response contains information about individual layers and their legend items.
+The structure of the response is defined as follows:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GetLegendResponse&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;layers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -205,21 +204,21 @@ Die Struktur des Responses ist wie folgt definiert:</p>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><strong>type</strong>: (string) Der Typ der Antwort, in diesem Fall “GetLegendResponse”.</p></li>
-<li><p><strong>layers</strong>: (array) Eine Liste der Layer, für die Legendeninformationen bereitgestellt werden.</p>
+<li><p><strong>type</strong>: (string) The type of response, in this case “GetLegendResponse”.</p></li>
+<li><p><strong>layers</strong>: (array) A list of layers for which legend information is provided.</p>
 <ul>
-<li><p><strong>id</strong>: (string) Die ID des Layers.</p></li>
-<li><p><strong>name</strong>: (string) Der Name des Layers.</p></li>
-<li><p><strong>layerType</strong>: (string) Der Typ des Layers, z. B. “FeatureLayer”.</p></li>
-<li><p><strong>minScaleDenominator</strong> (optional): (double) Die minimale Maßstabszahl, bei der der Layer sichtbar ist.</p></li>
-<li><p><strong>maxScaleDenominator</strong> (optional): (double) Die maximale Maßstabszahl, bei der der Layer sichtbar ist.</p></li>
-<li><p><strong>items</strong>: (array) Eine Liste der Legendenitems für diesen Layer.</p>
+<li><p><strong>id</strong>: (string) The ID of the layer.</p></li>
+<li><p><strong>name</strong>: (string) The name of the layer.</p></li>
+<li><p><strong>layerType</strong>: (string) The type of layer, e.g., “FeatureLayer”.</p></li>
+<li><p><strong>minScaleDenominator</strong> (optional): (double) The minimum scale at which the layer is visible.</p></li>
+<li><p><strong>maxScaleDenominator</strong> (optional): (double) The maximum scale at which the layer is visible.</p></li>
+<li><p><strong>items</strong>: (array) A list of legend items for this layer.</p>
 <ul>
-<li><p><strong>label</strong> (optional): (string) Die Beschriftung des Legendenitems.</p></li>
-<li><p><strong>imageBase64</strong> (optional): (string) Das Bild des Legendenitems als Base64-String.</p></li>
-<li><p><strong>imageContentType</strong> (optional): (string) Der MIME-Typ des Bildes, z. B. “image/png”.</p></li>
-<li><p><strong>width</strong>: (int) Die Breite des Legendenitems in Pixeln.</p></li>
-<li><p><strong>height</strong>: (int) Die Höhe des Legendenitems in Pixeln.</p></li>
+<li><p><strong>label</strong> (optional): (string) The label of the legend item.</p></li>
+<li><p><strong>imageBase64</strong> (optional): (string) The image of the legend item as a Base64 string.</p></li>
+<li><p><strong>imageContentType</strong> (optional): (string) The MIME type of the image, e.g., “image/png”.</p></li>
+<li><p><strong>width</strong>: (int) The width of the legend item in pixels.</p></li>
+<li><p><strong>height</strong>: (int) The height of the legend item in pixels.</p></li>
 </ul>
 </li>
 </ul>
@@ -235,16 +234,16 @@ Die Struktur des Responses ist wie folgt definiert:</p>
       </div>
     
         <div id="show_right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon"><</span><span>Page contents<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
         </div>
 
         <div id="right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">></span><span>Page contents:<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
             <div class="page_toc">
                 <ul>
 <li><a class="reference internal" href="#">Legend Endpoint</a><ul>
-<li><a class="reference internal" href="#request-struktur">Request-Struktur</a></li>
-<li><a class="reference internal" href="#response-struktur">Response-Struktur</a></li>
+<li><a class="reference internal" href="#request-structure">Request Structure</a></li>
+<li><a class="reference internal" href="#response-structure">Response Structure</a></li>
 </ul>
 </li>
 </ul>
@@ -260,13 +259,13 @@ Die Struktur des Responses ist wie folgt definiert:</p>
             <div class="left">
                 
                 <a href="map.html">
-                    <span class="icon"><</span><span>Map Endpoint</span></a>
+                    <span class="icon">&lt;</span><span>Map Endpoint</span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="query.html"><span>Query Endpoint</span><span class="icon">></span></a>
+                    <a href="query.html"><span>Query Endpoint</span><span class="icon">&gt;</span></a>
                 
             </div>
         </div>
@@ -274,8 +273,8 @@ Die Struktur des Responses ist wie folgt definiert:</p>
 
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

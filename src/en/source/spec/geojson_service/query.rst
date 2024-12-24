@@ -1,14 +1,14 @@
 Query Endpoint
-==============
+==============  
 
-Der **Query** Endpunkt ermöglicht das Abfragen von Features eines bestimmten Layers, 
-basierend auf verschiedenen räumlichen und attributiven Filtern.
+The **Query** endpoint allows querying features of a specific layer,  
+based on various spatial and attribute filters.  
 
-Request-Struktur
-----------------
+Request Structure
+-----------------
 
-Der **Query** Endpunkt unterstützt GET- und POST-Anfragen. Der Body der Anfrage wird durch das 
-folgende Objekt definiert:
+The **Query** endpoint supports GET and POST requests. The body of the request is defined by the  
+following object:  
 
 .. code-block:: json
 
@@ -64,22 +64,23 @@ folgende Objekt definiert:
       "offset": 0
     }
 
-- **type**: (string) Der Typ der Anfrage, in diesem Fall "GetFeatures".
-- **command**: (string) Der Befehl, z. B. "select", "distinct", "countOnly" oder "IdsOnly".
-- **outFields**: (array) Eine Liste der Felder, die in der Antwort zurückgegeben werden sollen.
-- **returnGeometry**: (string) Gibt an, ob und welche Geometrieinformationen zurückgegeben werden sollen: "none", "geometry", oder "bbox".
-- **outCRS** (optional): (object) Das Koordinatenreferenzsystem für die Ausgabe.
-- **orderByFields** (optional): (array) Die Felder, nach denen die Ergebnisse sortiert werden sollen.
-- **objectIds** (optional): (array) Eine Liste von Objekt-IDs, die abgefragt werden sollen.
-- **spatialFilter** (optional): (object) Ein räumlicher Filter, um die Abfrage auf einen bestimmten Bereich zu beschränken.
-- **filter** (optional): (object) Ein attributiver Filter zur Einschränkung der Ergebnisse.
-- **limit** (optional): (int) Die maximale Anzahl an Features, die zurückgegeben werden soll.
-- **offset** (optional): (int) Der Offset für die Paginierung.
+- **type**: (string) The type of request, in this case "GetFeatures".  
+- **command**: (string) The command, e.g., "select", "distinct", "countOnly", or "IdsOnly".  
+- **outFields**: (array) A list of fields to be returned in the response.  
+- **returnGeometry**: (string) Indicates whether and which geometry information should be returned: "none", "geometry", or "bbox".  
+- **outCRS** (optional): (object) The coordinate reference system for the output.  
+- **orderByFields** (optional): (array) The fields by which the results should be sorted.  
+- **objectIds** (optional): (array) A list of object IDs to be queried.  
+- **spatialFilter** (optional): (object) A spatial filter to limit the query to a specific area.  
+- **filter** (optional): (object) An attribute filter to restrict the results.  
+- **limit** (optional): (int) The maximum number of features to return.  
+- **offset** (optional): (int) The offset for pagination.  
 
-Response-Struktur
-------------------
+Response Structure
+------------------  
 
-Der Response enthält die abgefragten Features im GeoJSON-Format. Die Struktur des Responses ist wie folgt definiert:
+The response contains the queried features in GeoJSON format.  
+The structure of the response is defined as follows:  
 
 .. code-block:: json
 
@@ -106,7 +107,7 @@ Der Response enthält die abgefragten Features im GeoJSON-Format. Die Struktur d
       ]
     }
 
-- **type**: (string) Der Typ der Antwort, in diesem Fall "FeatureCollection".
-- **crs** (optional): (object) Das Koordinatenreferenzsystem der Ausgabe.
-- **features**: (array) Eine Liste der abgefragten Features, jedes Feature 
-  enthält Geometrie- und Attributinformationen.
+- **type**: (string) The type of response, in this case "FeatureCollection".  
+- **crs** (optional): (object) The coordinate reference system of the output.  
+- **features**: (array) A list of queried features, each feature  
+  contains geometry and attribute information.  

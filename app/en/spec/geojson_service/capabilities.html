@@ -1,24 +1,23 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>(Service)Capabilities Endpoint &#8212; gView GIS 6.x documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=0.7.0-1" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=d7bb20b6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=247da48f" />
+    <script src="../../_static/documentation_options.js?v=98846f59"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <script src="../../_static/js/petite-vue.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Map Endpoint" href="map.html" />
-    <link rel="prev" title="Services Endpunkt" href="services.html" /> 
+    <link rel="prev" title="Services Endpoint" href="services.html" /> 
   </head><body data-dark_mode_code_blocks="true">
 
 <div id="top_nav">
@@ -130,9 +129,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../appendix/index.html">Appendix</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">GeoJson Service Specification</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="types.html">Bounding Box, Koordinatenreferenzsystem und Geometrie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Bounding Box, Coordinate Reference System, and Geometry</a></li>
 <li class="toctree-l2"><a class="reference internal" href="info.html">Info Endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="services.html">Services Endpunkt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="services.html">Services Endpoint</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">(Service)Capabilities Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="map.html">Map Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="legend.html">Legend Endpoint</a></li>
@@ -154,22 +153,22 @@
           <div class="body" role="main">
             
   <section id="service-capabilities-endpoint">
-<h1>(Service)Capabilities Endpoint<a class="headerlink" href="#service-capabilities-endpoint" title="Permalink to this heading">¶</a></h1>
-<p>Der <strong>Capabilities</strong> Endpunkt liefert detaillierte Informationen zu einem bestimmten Geodaten-Service,
-einschließlich unterstützter Operationen, Layer und deren Eigenschaften.</p>
+<h1>(Service)Capabilities Endpoint<a class="headerlink" href="#service-capabilities-endpoint" title="Link to this heading">¶</a></h1>
+<p>The <strong>Capabilities</strong> endpoint provides detailed information about a specific geospatial service,
+including supported operations, layers, and their properties.</p>
 <ul class="simple">
-<li><p><strong>GET,POST</strong></p>
+<li><p><strong>GET, POST</strong></p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{service}/capabilities</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{folder}/{service}/capabilities</span></code></p></li>
 </ul>
 </li>
 </ul>
-<section id="request-struktur">
-<h2>Request-Struktur<a class="headerlink" href="#request-struktur" title="Permalink to this heading">¶</a></h2>
-<p>Der <strong>Capabilities</strong> Endpunkt unterstützt GET- und POST-Anfragen und hat die folgende Struktur:</p>
+<section id="request-structure">
+<h2>Request Structure<a class="headerlink" href="#request-structure" title="Link to this heading">¶</a></h2>
+<p>The <strong>Capabilities</strong> endpoint supports GET and POST requests and follows the structure below:</p>
 <p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{folder}/{service}/capabilities?crs=epsg:4326</span></code></p>
-<p>Bei POST-Anfragen muss im Body folgendes übergeben werden:</p>
+<p>For POST requests, the following must be passed in the body:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GetServiceCapabilities&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;crs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -182,14 +181,14 @@ einschließlich unterstützter Operationen, Layer und deren Eigenschaften.</p>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><strong>crs</strong> (optional): Das verwendete Koordinatenreferenzsystem. Falls nicht angegeben,</p></li>
-<li><p>wird das Standard-Koordinatensystem verwendet.</p></li>
+<li><p><strong>crs</strong> (optional): The coordinate reference system used. If not specified,
+the default coordinate system is applied.</p></li>
 </ul>
 </section>
-<section id="response-struktur">
-<h2>Response-Struktur<a class="headerlink" href="#response-struktur" title="Permalink to this heading">¶</a></h2>
-<p>Der Response enthält detaillierte Informationen zum angefragten Service. Die Struktur des Responses
-ist wie folgt definiert:</p>
+<section id="response-structure">
+<h2>Response Structure<a class="headerlink" href="#response-structure" title="Link to this heading">¶</a></h2>
+<p>The response contains detailed information about the requested service.
+The structure of the response is defined as follows:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GetServiceCapabilitiesResponse&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;mapTitle&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
@@ -286,21 +285,21 @@ ist wie folgt definiert:</p>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><strong>type</strong>: Der Typ der Antwort, in diesem Fall “GetServiceCapabilitiesResponse”.</p></li>
-<li><p><strong>mapTitle</strong>: Der Titel der Karte, die durch den Service bereitgestellt wird.</p></li>
-<li><p><strong>description</strong>: Eine Beschreibung des Services.</p></li>
-<li><p><strong>copyright</strong>: Copyright-Informationen für die Daten.</p></li>
-<li><p><strong>supportedRequests</strong>: Eine Liste der unterstützten Anfragen, die der Service ermöglicht.</p></li>
-<li><p><strong>crs</strong>: Das verwendete Koordinatenreferenzsystem.</p></li>
-<li><p><strong>fullExtent</strong>: Die maximale Ausdehnung der Daten.</p></li>
-<li><p><strong>initialExtent</strong>: Die anfängliche Ausdehnung der Daten.</p></li>
-<li><p><strong>units</strong>: Die Maßeinheit der Karte (z. B. “meters”).</p></li>
-<li><p><strong>layers</strong>: Informationen zu den Layern, die vom Service bereitgestellt werden.</p></li>
+<li><p><strong>type</strong>: The type of response, in this case “GetServiceCapabilitiesResponse”.</p></li>
+<li><p><strong>mapTitle</strong>: The title of the map provided by the service.</p></li>
+<li><p><strong>description</strong>: A description of the service.</p></li>
+<li><p><strong>copyright</strong>: Copyright information for the data.</p></li>
+<li><p><strong>supportedRequests</strong>: A list of supported requests the service allows.</p></li>
+<li><p><strong>crs</strong>: The coordinate reference system used.</p></li>
+<li><p><strong>fullExtent</strong>: The maximum extent of the data.</p></li>
+<li><p><strong>initialExtent</strong>: The initial extent of the data.</p></li>
+<li><p><strong>units</strong>: The map’s unit of measurement (e.g., “meters”).</p></li>
+<li><p><strong>layers</strong>: Information about the layers provided by the service.</p></li>
 </ul>
 </section>
 <section id="layerinfo">
-<h2><strong>LayerInfo</strong><a class="headerlink" href="#layerinfo" title="Permalink to this heading">¶</a></h2>
-<p>Das <strong>LayerInfo</strong>-Objekt beschreibt die verfügbaren Layer innerhalb eines Services:</p>
+<h2><strong>LayerInfo</strong><a class="headerlink" href="#layerinfo" title="Link to this heading">¶</a></h2>
+<p>The <strong>LayerInfo</strong> object describes the available layers within a service:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;layer1&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;parentId&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
@@ -329,21 +328,21 @@ ist wie folgt definiert:</p>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><strong>id</strong>: Eine eindeutige ID für den Layer.</p></li>
-<li><p><strong>parentId</strong>: Die ID des übergeordneten Layers, falls vorhanden.</p></li>
-<li><p><strong>name</strong>: Der Name des Layers.</p></li>
-<li><p><strong>layerType</strong>: Der Typ des Layers, z. B. “FeatureLayer”, “RasterLayer”, “GroupLayer”.</p></li>
-<li><p><strong>defaultVisibility</strong>: Gibt an, ob der Layer standardmäßig sichtbar ist.</p></li>
-<li><p><strong>geometryType</strong>: Der Geometrietyp des Layers, z. B. “Point” oder “Polygon”.</p></li>
-<li><p><strong>minScaleDenominator</strong> / <strong>maxScaleDenominator</strong>: Maßstabsbeschränkungen für die Sichtbarkeit des Layers.</p></li>
-<li><p><strong>styles</strong>: Eine Liste von Stilen, die auf den Layer angewendet werden können.</p></li>
-<li><p><strong>supportedOperations</strong>: Eine Liste der unterstützten Operationen, z. B. [“query”, “features.post”, “features.put”, “features.delete”].</p></li>
-<li><p><strong>properties</strong>: Eine Liste der Eigenschaften des Layers, einschließlich Name, Alias und Typ.</p></li>
+<li><p><strong>id</strong>: A unique ID for the layer.</p></li>
+<li><p><strong>parentId</strong>: The ID of the parent layer, if applicable.</p></li>
+<li><p><strong>name</strong>: The name of the layer.</p></li>
+<li><p><strong>layerType</strong>: The type of layer, e.g., “FeatureLayer”, “RasterLayer”, “GroupLayer”.</p></li>
+<li><p><strong>defaultVisibility</strong>: Indicates whether the layer is visible by default.</p></li>
+<li><p><strong>geometryType</strong>: The geometry type of the layer, e.g., “Point” or “Polygon”.</p></li>
+<li><p><strong>minScaleDenominator</strong> / <strong>maxScaleDenominator</strong>: Scale constraints for layer visibility.</p></li>
+<li><p><strong>styles</strong>: A list of styles that can be applied to the layer.</p></li>
+<li><p><strong>supportedOperations</strong>: A list of supported operations, e.g., [“query”, “features.post”, “features.put”, “features.delete”].</p></li>
+<li><p><strong>properties</strong>: A list of the layer’s properties, including name, alias, and type.</p></li>
 </ul>
 </section>
 <section id="layerproperty">
-<h2><strong>LayerProperty</strong><a class="headerlink" href="#layerproperty" title="Permalink to this heading">¶</a></h2>
-<p>Das <strong>LayerProperty</strong>-Objekt beschreibt eine Eigenschaft eines Layers:</p>
+<h2><strong>LayerProperty</strong><a class="headerlink" href="#layerproperty" title="Link to this heading">¶</a></h2>
+<p>The <strong>LayerProperty</strong> object describes a property of a layer:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;property1&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;aliasname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Property 1&quot;</span><span class="p">,</span>
@@ -353,10 +352,10 @@ ist wie folgt definiert:</p>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><strong>name</strong>: Der interne Name der Eigenschaft.</p></li>
-<li><p><strong>aliasname</strong>: Der Aliasname, der in der Benutzeroberfläche angezeigt wird.</p></li>
-<li><p><strong>type</strong>: Der Datentyp der Eigenschaft, z. B. “String”, “Integer”.</p></li>
-<li><p><strong>isPrimaryKey</strong>: Gibt an, ob diese Eigenschaft der Primärschlüssel des Layers ist.</p></li>
+<li><p><strong>name</strong>: The internal name of the property.</p></li>
+<li><p><strong>aliasname</strong>: The alias name displayed in the user interface.</p></li>
+<li><p><strong>type</strong>: The data type of the property, e.g., “String”, “Integer”.</p></li>
+<li><p><strong>isPrimaryKey</strong>: Indicates whether this property is the primary key of the layer.</p></li>
 </ul>
 </section>
 </section>
@@ -368,16 +367,16 @@ ist wie folgt definiert:</p>
       </div>
     
         <div id="show_right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon"><</span><span>Page contents<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
         </div>
 
         <div id="right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">></span><span>Page contents:<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
             <div class="page_toc">
                 <ul>
 <li><a class="reference internal" href="#">(Service)Capabilities Endpoint</a><ul>
-<li><a class="reference internal" href="#request-struktur">Request-Struktur</a></li>
-<li><a class="reference internal" href="#response-struktur">Response-Struktur</a></li>
+<li><a class="reference internal" href="#request-structure">Request Structure</a></li>
+<li><a class="reference internal" href="#response-structure">Response Structure</a></li>
 <li><a class="reference internal" href="#layerinfo"><strong>LayerInfo</strong></a></li>
 <li><a class="reference internal" href="#layerproperty"><strong>LayerProperty</strong></a></li>
 </ul>
@@ -395,13 +394,13 @@ ist wie folgt definiert:</p>
             <div class="left">
                 
                 <a href="services.html">
-                    <span class="icon"><</span><span>Services Endpunkt</span></a>
+                    <span class="icon">&lt;</span><span>Services Endpoint</span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="map.html"><span>Map Endpoint</span><span class="icon">></span></a>
+                    <a href="map.html"><span>Map Endpoint</span><span class="icon">&gt;</span></a>
                 
             </div>
         </div>
@@ -409,8 +408,8 @@ ist wie folgt definiert:</p>
 
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

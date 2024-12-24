@@ -1,22 +1,22 @@
 Info Endpoint
-=============
+=============  
 
-Der **Info** Endpunkt liefert grundlegende Informationen über die GeoJSON-API, 
-einschließlich der unterstützten Endpunkte, der Version und der Token-Einstellungen.
+The **Info** endpoint provides basic information about the GeoJSON API,  
+including supported endpoints, version, and token settings.  
 
-Request-Struktur
-----------------
+Request Structure
+-----------------
 
-Der **Info** Endpunkt unterstützt ausschließlich GET-Anfragen mit der folgenden URL:
+The **Info** endpoint supports only GET requests using the following URL:  
 
 .. code-block::
 
     GET /geojsonservice/v1/info
 
-Response-Struktur
-------------------
+Response Structure
+------------------  
 
-Der Response enthält allgemeine Informationen über die API und ist wie folgt aufgebaut:
+The response contains general information about the API and is structured as follows: 
 
 .. code-block:: json
 
@@ -46,31 +46,27 @@ Der Response enthält allgemeine Informationen über die API und ist wie folgt a
       }
     }
 
-- **type**: (string) Der Typ der Antwort, in diesem Fall "GetInfoResponse".
-- **version**: (string) Die Version der API.
-- **tokenMaxExpireMinutes**: (int) Die maximale Gültigkeitsdauer eines Tokens in Minuten.
-- **endPoints**: (object) Eine Liste der unterstützten Endpunkte mit Details zu Methoden, URLs und optionalen Parametern.
-  
-  - **token**: (array) Endpunkte für die Token-Generierung.
+- **type**: (string) The type of response, in this case "GetInfoResponse".  
+- **version**: (string) The version of the API.  
+- **tokenMaxExpireMinutes**: (int) The maximum validity period of a token in minutes.  
+- **endPoints**: (object) A list of supported endpoints with details on methods, URLs, and optional parameters.  
     
-    - **method**: (string) Die HTTP-Methode, z. B. "GET" oder "POST".
+  - **token**: (array) Endpoints for token generation.  
+      
+    - **method**: (string) The HTTP method, e.g., "GET" or "POST".  
+    - **url**: (string) The URL for the token endpoint.  
+    - **contentType** (optional): (string) The MIME type of the content, e.g., "application/x-www-form-urlencoded".  
+    - **body** (optional): (string) The request body when POST is used.  
     
-    - **url**: (string) Die URL für den Token-Endpunkt.
-    
-    - **contentType** (optional): (string) Der MIME-Typ des Inhalts, z. B. "application/x-www-form-urlencoded".
-    
-    - **body** (optional): (string) Der Body der Anfrage, wenn POST verwendet wird.
-  
-  - **services**: (array) Endpunkte für den Zugriff auf die Services.
-    
-    - **method**: (string) Die HTTP-Methode, z. B. "GET".
-    
-    - **url**: (string) Die URL für den Zugriff auf die Services.
+  - **services**: (array) Endpoints for accessing services.  
+      
+    - **method**: (string) The HTTP method, e.g., "GET".  
+    - **url**: (string) The URL for accessing services.  
 
-Verwendungsmöglichkeiten
-------------------------
+Use Cases
+---------  
 
-- **API-Dokumentation**: Ermöglicht es Nutzern, unterstützte Endpunkte und deren 
-- Details direkt zu entdecken.
-- **Token-Verwaltung**: Bietet Informationen über die maximale Gültigkeitsdauer von 
-- Tokens und die Token-Endpunkte.
+- **API Documentation**: Allows users to discover supported endpoints and their  
+  details directly.  
+- **Token Management**: Provides information about the maximum validity period of  
+  tokens and the token endpoints.  

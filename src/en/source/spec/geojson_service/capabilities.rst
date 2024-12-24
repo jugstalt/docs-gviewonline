@@ -1,23 +1,25 @@
 (Service)Capabilities Endpoint
-==============================
+==============================  
 
-Der **Capabilities** Endpunkt liefert detaillierte Informationen zu einem bestimmten Geodaten-Service, 
-einschließlich unterstützter Operationen, Layer und deren Eigenschaften.
+The **Capabilities** endpoint provides detailed information about a specific geospatial service,  
+including supported operations, layers, and their properties.  
 
-- **GET,POST**
-  
-  - ``https://{server}/geojsonservice/v1/services/{service}/capabilities``
-    
-  - ``https://{server}/geojsonservice/v1/services/{folder}/{service}/capabilities``
-    
-Request-Struktur
-----------------
+- **GET, POST**  
+   
+  - ``https://{server}/geojsonservice/v1/services/{service}/capabilities``  
 
-Der **Capabilities** Endpunkt unterstützt GET- und POST-Anfragen und hat die folgende Struktur:
+  - ``https://{server}/geojsonservice/v1/services/{folder}/{service}/capabilities``  
 
-``https://{server}/geojsonservice/v1/services/{folder}/{service}/capabilities?crs=epsg:4326``
+Request Structure
+-----------------
 
-Bei POST-Anfragen muss im Body folgendes übergeben werden:
+The **Capabilities** endpoint supports GET and POST requests and follows the structure below:  
+
+``https://{server}/geojsonservice/v1/services/{folder}/{service}/capabilities?crs=epsg:4326``  
+
+For POST requests, the following must be passed in the body:  
+ 
+
 
 .. code-block:: json
 
@@ -31,15 +33,14 @@ Bei POST-Anfragen muss im Body folgendes übergeben werden:
       }
     }
 
-- **crs** (optional): Das verwendete Koordinatenreferenzsystem. Falls nicht angegeben, 
-- wird das Standard-Koordinatensystem verwendet.
+- **crs** (optional): The coordinate reference system used. If not specified,  
+  the default coordinate system is applied.  
 
+Response Structure
+------------------  
 
-Response-Struktur
-------------------
-
-Der Response enthält detaillierte Informationen zum angefragten Service. Die Struktur des Responses
-ist wie folgt definiert:
+The response contains detailed information about the requested service.  
+The structure of the response is defined as follows:  
 
 .. code-block:: json
 
@@ -137,21 +138,21 @@ ist wie folgt definiert:
       ]
     }
 
-- **type**: Der Typ der Antwort, in diesem Fall "GetServiceCapabilitiesResponse".
-- **mapTitle**: Der Titel der Karte, die durch den Service bereitgestellt wird.
-- **description**: Eine Beschreibung des Services.
-- **copyright**: Copyright-Informationen für die Daten.
-- **supportedRequests**: Eine Liste der unterstützten Anfragen, die der Service ermöglicht.
-- **crs**: Das verwendete Koordinatenreferenzsystem.
-- **fullExtent**: Die maximale Ausdehnung der Daten.
-- **initialExtent**: Die anfängliche Ausdehnung der Daten.
-- **units**: Die Maßeinheit der Karte (z. B. "meters").
-- **layers**: Informationen zu den Layern, die vom Service bereitgestellt werden.
+- **type**: The type of response, in this case "GetServiceCapabilitiesResponse".  
+- **mapTitle**: The title of the map provided by the service.  
+- **description**: A description of the service.  
+- **copyright**: Copyright information for the data.  
+- **supportedRequests**: A list of supported requests the service allows.  
+- **crs**: The coordinate reference system used.  
+- **fullExtent**: The maximum extent of the data.  
+- **initialExtent**: The initial extent of the data.  
+- **units**: The map's unit of measurement (e.g., "meters").  
+- **layers**: Information about the layers provided by the service.  
 
-**LayerInfo**
--------------
+**LayerInfo**  
+-------------  
 
-Das **LayerInfo**-Objekt beschreibt die verfügbaren Layer innerhalb eines Services:
+The **LayerInfo** object describes the available layers within a service:  
 
 .. code-block:: json
 
@@ -181,21 +182,21 @@ Das **LayerInfo**-Objekt beschreibt die verfügbaren Layer innerhalb eines Servi
       ]
     }
 
-- **id**: Eine eindeutige ID für den Layer.
-- **parentId**: Die ID des übergeordneten Layers, falls vorhanden.
-- **name**: Der Name des Layers.
-- **layerType**: Der Typ des Layers, z. B. "FeatureLayer", "RasterLayer", "GroupLayer".
-- **defaultVisibility**: Gibt an, ob der Layer standardmäßig sichtbar ist.
-- **geometryType**: Der Geometrietyp des Layers, z. B. "Point" oder "Polygon".
-- **minScaleDenominator** / **maxScaleDenominator**: Maßstabsbeschränkungen für die Sichtbarkeit des Layers.
-- **styles**: Eine Liste von Stilen, die auf den Layer angewendet werden können.
-- **supportedOperations**: Eine Liste der unterstützten Operationen, z. B. ["query", "features.post", "features.put", "features.delete"].
-- **properties**: Eine Liste der Eigenschaften des Layers, einschließlich Name, Alias und Typ.
+- **id**: A unique ID for the layer.  
+- **parentId**: The ID of the parent layer, if applicable.  
+- **name**: The name of the layer.  
+- **layerType**: The type of layer, e.g., "FeatureLayer", "RasterLayer", "GroupLayer".  
+- **defaultVisibility**: Indicates whether the layer is visible by default.  
+- **geometryType**: The geometry type of the layer, e.g., "Point" or "Polygon".  
+- **minScaleDenominator** / **maxScaleDenominator**: Scale constraints for layer visibility.  
+- **styles**: A list of styles that can be applied to the layer.  
+- **supportedOperations**: A list of supported operations, e.g., ["query", "features.post", "features.put", "features.delete"].  
+- **properties**: A list of the layer’s properties, including name, alias, and type.  
 
-**LayerProperty**
------------------
+**LayerProperty**  
+-----------------  
 
-Das **LayerProperty**-Objekt beschreibt eine Eigenschaft eines Layers:
+The **LayerProperty** object describes a property of a layer:  
 
 .. code-block:: json
 
@@ -206,7 +207,7 @@ Das **LayerProperty**-Objekt beschreibt eine Eigenschaft eines Layers:
       "isPrimaryKey": true
     }
 
-- **name**: Der interne Name der Eigenschaft.
-- **aliasname**: Der Aliasname, der in der Benutzeroberfläche angezeigt wird.
-- **type**: Der Datentyp der Eigenschaft, z. B. "String", "Integer".
-- **isPrimaryKey**: Gibt an, ob diese Eigenschaft der Primärschlüssel des Layers ist.
+- **name**: The internal name of the property.  
+- **aliasname**: The alias name displayed in the user interface.  
+- **type**: The data type of the property, e.g., "String", "Integer".  
+- **isPrimaryKey**: Indicates whether this property is the primary key of the layer.  

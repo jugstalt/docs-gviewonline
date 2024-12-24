@@ -1,18 +1,17 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Services Endpunkt &#8212; gView GIS 6.x documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=0.7.0-1" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
+    <title>Services Endpoint &#8212; gView GIS 6.x documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=d7bb20b6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=247da48f" />
+    <script src="../../_static/documentation_options.js?v=98846f59"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <script src="../../_static/js/petite-vue.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -130,9 +129,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../appendix/index.html">Appendix</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">GeoJson Service Specification</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="types.html">Bounding Box, Koordinatenreferenzsystem und Geometrie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Bounding Box, Coordinate Reference System, and Geometry</a></li>
 <li class="toctree-l2"><a class="reference internal" href="info.html">Info Endpoint</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Services Endpunkt</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Services Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="capabilities.html">(Service)Capabilities Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="map.html">Map Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="legend.html">Legend Endpoint</a></li>
@@ -153,43 +152,44 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="services-endpunkt">
-<h1>Services Endpunkt<a class="headerlink" href="#services-endpunkt" title="Permalink to this heading">¶</a></h1>
-<p>Der <strong>Services</strong> Endpunkt liefert eine Liste aller verfügbaren Geodaten-Services auf dem Server oder innerhalb eines bestimmten Ordners.
-Dieser Endpunkt ermöglicht es, die vorhandenen Services zu durchsuchen und eine Übersicht über die verfügbare Struktur zu erhalten.</p>
-<section id="request-struktur">
-<h2>Request-Struktur<a class="headerlink" href="#request-struktur" title="Permalink to this heading">¶</a></h2>
-<p>Der <strong>Services</strong> Endpunkt unterstützt nur GET-Anfragen und kann mit den folgenden URLs aufgerufen werden:</p>
+  <section id="services-endpoint">
+<h1>Services Endpoint<a class="headerlink" href="#services-endpoint" title="Link to this heading">¶</a></h1>
+<p>The <strong>Services</strong> endpoint provides a list of all available geospatial data services on the server or within a specific folder.
+This endpoint allows users to browse existing services and get an overview of the available structure.</p>
+<section id="request-structure">
+<h2>Request Structure<a class="headerlink" href="#request-structure" title="Link to this heading">¶</a></h2>
+<p>The <strong>Services</strong> endpoint supports only GET requests and can be accessed using the following URLs:</p>
 <ul>
-<li><p><strong>Services im Root Ordner</strong>
+<li><p><strong>Services in the Root Folder</strong>
 - <code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services</span></code></p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Liefert eine Liste aller verfügbaren Services und Ordner auf dem Server.</p></li>
+<li><p>Returns a list of all available services and folders on the server.</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p><strong>Services in einem bestimmten Ordner</strong>
+<li><p><strong>Services in a Specific Folder</strong>
 - <code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{folder}</span></code></p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Gibt alle Services innerhalb des angegebenen Ordners zurück.</p></li>
+<li><p>Returns all services within the specified folder.</p></li>
 </ul>
 </div></blockquote>
 </li>
 </ul>
 </section>
-<section id="response-struktur">
-<h2>Response-Struktur<a class="headerlink" href="#response-struktur" title="Permalink to this heading">¶</a></h2>
-<p>Der Response enthält Informationen über die vorhandenen Ordner und Services. Die Struktur des Responses ist wie folgt definiert:</p>
+<section id="response-structure">
+<h2>Response Structure<a class="headerlink" href="#response-structure" title="Link to this heading">¶</a></h2>
+<p>The response contains information about existing folders and services.
+The structure of the response is defined as follows:</p>
 <ul class="simple">
-<li><p><strong>type</strong>: (string) Fixed value “GetServicesResponse”, das den Typ der Antwort angibt.</p></li>
-<li><p><strong>folders</strong>: (array) Eine Liste von Unterordnern, die auf dem Server oder innerhalb des angegebenen Ordners verfügbar sind.</p></li>
-<li><p><strong>services</strong>: (array) Eine Liste der Services, die im Server oder im angegebenen Ordner verfügbar sind.</p></li>
+<li><p><strong>type</strong>: (string) Fixed value “GetServicesResponse” indicating the type of response.</p></li>
+<li><p><strong>folders</strong>: (array) A list of subfolders available on the server or within the specified folder.</p></li>
+<li><p><strong>services</strong>: (array) A list of services available on the server or within the specified folder.</p></li>
 </ul>
 </section>
-<section id="beispiel-response">
-<h2>Beispiel Response<a class="headerlink" href="#beispiel-response" title="Permalink to this heading">¶</a></h2>
+<section id="example-response">
+<h2>Example Response<a class="headerlink" href="#example-response" title="Link to this heading">¶</a></h2>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GetServicesResponse&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;folders&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -204,19 +204,19 @@ Dieser Endpunkt ermöglicht es, die vorhandenen Services zu durchsuchen und eine
 </pre></div>
 </div>
 </section>
-<section id="erlauterung-des-beispiels">
-<h2>Erläuterung des Beispiels<a class="headerlink" href="#erlauterung-des-beispiels" title="Permalink to this heading">¶</a></h2>
+<section id="explanation-of-the-example">
+<h2>Explanation of the Example<a class="headerlink" href="#explanation-of-the-example" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><strong>type</strong>: Gibt den Typ der Antwort an, in diesem Fall “GetServicesResponse”.</p></li>
-<li><p><strong>folders</strong>: Enthält eine Liste von Ordnern, die verfügbar sind. In diesem Beispiel sind “folder1” und “folder2” zwei vorhandene Ordner.</p></li>
-<li><p><strong>services</strong>: Enthält eine Liste der Services, die verfügbar sind. In diesem Beispiel sind “service1” und “service2” zwei verfügbare Services.</p></li>
+<li><p><strong>type</strong>: Indicates the type of response, in this case “GetServicesResponse”.</p></li>
+<li><p><strong>folders</strong>: Contains a list of folders that are available. In this example, “Maps” and “TrafficData” are two existing folders.</p></li>
+<li><p><strong>services</strong>: Contains a list of services that are available. In this example, “WeatherMaps” and “PopulationDensity” are two available services.</p></li>
 </ul>
 </section>
-<section id="verwendungsmoglichkeiten">
-<h2>Verwendungsmöglichkeiten<a class="headerlink" href="#verwendungsmoglichkeiten" title="Permalink to this heading">¶</a></h2>
+<section id="use-cases">
+<h2>Use Cases<a class="headerlink" href="#use-cases" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><strong>Service-Discovery</strong>: Erhalten Sie eine Übersicht über alle auf dem Server verfügbaren Services, um zu entscheiden, welche Daten verwendet werden sollen.</p></li>
-<li><p><strong>Katalognavigation</strong>: Navigieren Sie durch die verfügbaren Ordner, um die gewünschte Datenstruktur zu finden.</p></li>
+<li><p><strong>Service Discovery</strong>: Get an overview of all services available on the server to decide which data to use.</p></li>
+<li><p><strong>Catalog Navigation</strong>: Browse through the available folders to find the desired data structure.</p></li>
 </ul>
 </section>
 </section>
@@ -228,19 +228,19 @@ Dieser Endpunkt ermöglicht es, die vorhandenen Services zu durchsuchen und eine
       </div>
     
         <div id="show_right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon"><</span><span>Page contents<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
         </div>
 
         <div id="right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">></span><span>Page contents:<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
             <div class="page_toc">
                 <ul>
-<li><a class="reference internal" href="#">Services Endpunkt</a><ul>
-<li><a class="reference internal" href="#request-struktur">Request-Struktur</a></li>
-<li><a class="reference internal" href="#response-struktur">Response-Struktur</a></li>
-<li><a class="reference internal" href="#beispiel-response">Beispiel Response</a></li>
-<li><a class="reference internal" href="#erlauterung-des-beispiels">Erläuterung des Beispiels</a></li>
-<li><a class="reference internal" href="#verwendungsmoglichkeiten">Verwendungsmöglichkeiten</a></li>
+<li><a class="reference internal" href="#">Services Endpoint</a><ul>
+<li><a class="reference internal" href="#request-structure">Request Structure</a></li>
+<li><a class="reference internal" href="#response-structure">Response Structure</a></li>
+<li><a class="reference internal" href="#example-response">Example Response</a></li>
+<li><a class="reference internal" href="#explanation-of-the-example">Explanation of the Example</a></li>
+<li><a class="reference internal" href="#use-cases">Use Cases</a></li>
 </ul>
 </li>
 </ul>
@@ -256,13 +256,13 @@ Dieser Endpunkt ermöglicht es, die vorhandenen Services zu durchsuchen und eine
             <div class="left">
                 
                 <a href="info.html">
-                    <span class="icon"><</span><span>Info Endpoint</span></a>
+                    <span class="icon">&lt;</span><span>Info Endpoint</span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="capabilities.html"><span>(Service)Capabilities Endpoint</span><span class="icon">></span></a>
+                    <a href="capabilities.html"><span>(Service)Capabilities Endpoint</span><span class="icon">&gt;</span></a>
                 
             </div>
         </div>
@@ -270,8 +270,8 @@ Dieser Endpunkt ermöglicht es, die vorhandenen Services zu durchsuchen und eine
 
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

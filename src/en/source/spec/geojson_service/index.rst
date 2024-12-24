@@ -1,30 +1,44 @@
 GeoJson Service Specification
 =============================
 
-Allgemeine Beschreibung der Schnittstelle
------------------------------------------
+General Description of the Interface
+------------------------------------
 
-Der GeoJson Service bietet eine leistungsfähige und flexible API zur Bereitstellung 
-von Geodaten im GeoJSON-Format. 
-Das Ziel der Schnittstelle ist es, Entwicklern eine einfache Möglichkeit zu geben, 
-Geodaten abzufragen, zu visualisieren und zu manipulieren. 
-Die API orientiert sich an etablierten Standards und ermöglicht es, räumliche Daten 
-sowohl über GET- als auch POST-, PUT- und DELETE-Anfragen zu konsumieren und zu ändern.
+The GeoJson Service offers a powerful and flexible API for providing geospatial data in GeoJSON format.  
+The goal of the interface is to provide developers with an easy way to query, visualize, and manipulate geospatial data.  
+The API adheres to established standards and allows for the consumption and modification of spatial data via GET, POST, PUT, and DELETE requests.
 
-Die Motivation hinter der Entwicklung dieser Schnittstelle liegt in der zunehmenden 
-Nachfrage nach offenen und interoperablen Geodatenformaten. 
-GeoJSON ist ein weit verbreitetes, leichtgewichtiges Format, das sowohl Menschen als auch 
-Maschinen eine einfache Interpretation von Geodaten ermöglicht. 
-Durch die Nutzung dieser API können Entwickler Kartenanwendungen, 
-Analysen und andere Geodaten-gestützte Anwendungen auf einfache und effiziente Weise realisieren.
+The motivation behind developing this interface was to enable an approach that is both simple and powerful for accessing geospatial data.  
+Existing interfaces such as **WMS** are very simple but offer limited possibilities for querying geospatial data.  
+**WFS** provides querying capabilities, but the standard is based on XML, which can be cumbersome to implement in web environments using JavaScript.  
+ESRI’s **GeoServices** interface is a REST interface that also allows easy access to geospatial data.  
+However, its syntax for *features* is somewhat proprietary.
 
-Struktur der API-Links
-----------------------
+**GeoJson Services** aims to provide a middle ground between existing interfaces, combining the simplicity of **WMS**, the power of **WFS(-T)**, and modern technologies like **ESRI GeoServices**.  
+The interface is designed as a **REST** API with *JSON requests and JSON responses*.  
+The syntax should resemble **GeoJSON**.  
+Particularly, features should be provided and transferred in **GeoJSON** format, as this standard is natively supported by many *web mapping frameworks*.
 
-Die API folgt einer konsistenten URL-Struktur, die es einfach macht, 
-die gewünschten Informationen abzurufen oder Änderungen vorzunehmen. 
-Im Folgenden sind die verschiedenen Endpunkte der API aufgelistet, 
-zusammen mit einer kurzen Beschreibung ihrer Funktion.
+The interface should provide the following functions:
+
+* **Catalog:** Lists available GeoServices.
+
+* **Capabilities:** Displays the capabilities of a GeoService.
+
+* **Mapping:** Generates map representations for a specified area and customizable layer visibility within the service.
+
+* **Query:** Queries geospatial data from the provided services by passing attribute filters and/or spatial filters.
+
+* **Edit:** Creates/Edits/Deletes geospatial data.
+
+* **Security:** GeoServices should be accessible with authentication to grant clients specific permissions (Edit/Query).  
+  Requests must include a **Bearer Token** in the **Authorization Header**.
+
+API Link Structure
+------------------
+
+The API follows a consistent URL structure, making it easy to retrieve information or make changes.  
+The following outlines the various API endpoints along with a brief description of their function.
 
 **Services**
 
@@ -32,22 +46,22 @@ zusammen mit einer kurzen Beschreibung ihrer Funktion.
   
   - ``https://{server}/geojsonservice/v1/services``
   
-    Liefert eine Liste aller verfügbaren Geodaten-Services auf dem Server.
+    Returns a list of all available geospatial data services on the server.
   
   - ``https://{server}/geojsonservice/v1/services/{folder}``
     
-    Gibt alle Services innerhalb des angegebenen Ordners zurück.
+    Returns all services within the specified folder.
 
 **Capabilities**
 
 - **GET**
   - ``https://{server}/geojsonservice/v1/services/{service}/capabilities``
     
-    Liefert die Eigenschaften und Informationen des spezifizierten Services.
+    Returns the properties and information of the specified service.
   
   - ``https://{server}/geojsonservice/v1/services/{folder}/{service}/capabilities``
     
-    Gibt die Eigenschaften und Informationen des spezifizierten Services innerhalb eines bestimmten Ordners zurück.
+    Returns the properties and information of the specified service within a specific folder.
 
 **Map**
 
@@ -55,11 +69,11 @@ zusammen mit einer kurzen Beschreibung ihrer Funktion.
   
   - ``https://{server}/geojsonservice/v1/services/{service}/map``
     
-    Generiert eine Karte basierend auf dem angegebenen Service.
+    Generates a map based on the specified service.
   
   - ``https://{server}/geojsonservice/v1/services/{folder}/{service}/map``
     
-    Generiert eine Karte für einen Service innerhalb eines bestimmten Ordners.
+    Generates a map for a service within a specific folder.
 
 **Legend**
 
@@ -67,11 +81,11 @@ zusammen mit einer kurzen Beschreibung ihrer Funktion.
   
   - ``https://{server}/geojsonservice/v1/services/{service}/legend``
     
-   Liefert die Legende für den spezifizierten Service.
+    Returns the legend for the specified service.
   
   - ``https://{server}/geojsonservice/v1/services/{folder}/{service}/legend``
     
-   Liefert die Legende für einen Service innerhalb eines bestimmten Ordners.
+    Returns the legend for a service within a specific folder.
 
 **Query**
 
@@ -79,11 +93,11 @@ zusammen mit einer kurzen Beschreibung ihrer Funktion.
   
   - ``https://{server}/geojsonservice/v1/services/{service}/query/{layerId}``
     
-   Führt eine Abfrage auf dem angegebenen Layer innerhalb des Services aus.
+    Executes a query on the specified layer within the service.
   
   - ``https://{server}/geojsonservice/v1/services/{folder}/{service}/query/{layerId}``
     
-   Führt eine Abfrage auf dem Layer eines Services innerhalb eines bestimmten Ordners aus.
+    Executes a query on the layer of a service within a specific folder.
 
 **Features**
 
@@ -91,11 +105,11 @@ zusammen mit einer kurzen Beschreibung ihrer Funktion.
   
   - ``https://{server}/geojsonservice/v1/services/{service}/features/{layerId}``
     
-   Fügt Features hinzu, aktualisiert oder löscht Features in einem bestimmten Layer des Services.
+    Adds, updates, or deletes features in a specific layer of the service.
   
   - ``https://{server}/geojsonservice/v1/services/{folder}/{service}/features/{layerId}``
     
-   Fügt Features hinzu, aktualisiert oder löscht Features in einem bestimmten Layer eines Services innerhalb eines bestimmten Ordners.
+    Adds, updates, or deletes features in a specific layer of a service within a specific folder.
 
 **Token**
 
@@ -103,8 +117,7 @@ zusammen mit einer kurzen Beschreibung ihrer Funktion.
   
   - ``https://{server}/geojsonservice/v1/Token``
     
-   Liefert ein Token zur Authentifizierung oder führt die Authentifizierung durch.
-
+    Returns a token for authentication or performs the authentication process.
 
 .. toctree::
    :maxdepth: 1

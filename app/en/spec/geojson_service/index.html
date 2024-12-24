@@ -1,23 +1,22 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>GeoJson Service Specification &#8212; gView GIS 6.x documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=0.7.0-1" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=d7bb20b6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=247da48f" />
+    <script src="../../_static/documentation_options.js?v=98846f59"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <script src="../../_static/js/petite-vue.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Bounding Box, Koordinatenreferenzsystem und Geometrie" href="types.html" />
+    <link rel="next" title="Bounding Box, Coordinate Reference System, and Geometry" href="types.html" />
     <link rel="prev" title="Data formats for maps and services" href="../../appendix/formats.html" /> 
   </head><body data-dark_mode_code_blocks="true">
 
@@ -130,9 +129,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../appendix/index.html">Appendix</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">GeoJson Service Specification</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="types.html">Bounding Box, Koordinatenreferenzsystem und Geometrie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Bounding Box, Coordinate Reference System, and Geometry</a></li>
 <li class="toctree-l2"><a class="reference internal" href="info.html">Info Endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="services.html">Services Endpunkt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="services.html">Services Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="capabilities.html">(Service)Capabilities Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="map.html">Map Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="legend.html">Legend Endpoint</a></li>
@@ -154,37 +153,45 @@
           <div class="body" role="main">
             
   <section id="geojson-service-specification">
-<h1>GeoJson Service Specification<a class="headerlink" href="#geojson-service-specification" title="Permalink to this heading">¶</a></h1>
-<section id="allgemeine-beschreibung-der-schnittstelle">
-<h2>Allgemeine Beschreibung der Schnittstelle<a class="headerlink" href="#allgemeine-beschreibung-der-schnittstelle" title="Permalink to this heading">¶</a></h2>
-<p>Der GeoJson Service bietet eine leistungsfähige und flexible API zur Bereitstellung
-von Geodaten im GeoJSON-Format.
-Das Ziel der Schnittstelle ist es, Entwicklern eine einfache Möglichkeit zu geben,
-Geodaten abzufragen, zu visualisieren und zu manipulieren.
-Die API orientiert sich an etablierten Standards und ermöglicht es, räumliche Daten
-sowohl über GET- als auch POST-, PUT- und DELETE-Anfragen zu konsumieren und zu ändern.</p>
-<p>Die Motivation hinter der Entwicklung dieser Schnittstelle liegt in der zunehmenden
-Nachfrage nach offenen und interoperablen Geodatenformaten.
-GeoJSON ist ein weit verbreitetes, leichtgewichtiges Format, das sowohl Menschen als auch
-Maschinen eine einfache Interpretation von Geodaten ermöglicht.
-Durch die Nutzung dieser API können Entwickler Kartenanwendungen,
-Analysen und andere Geodaten-gestützte Anwendungen auf einfache und effiziente Weise realisieren.</p>
+<h1>GeoJson Service Specification<a class="headerlink" href="#geojson-service-specification" title="Link to this heading">¶</a></h1>
+<section id="general-description-of-the-interface">
+<h2>General Description of the Interface<a class="headerlink" href="#general-description-of-the-interface" title="Link to this heading">¶</a></h2>
+<p>The GeoJson Service offers a powerful and flexible API for providing geospatial data in GeoJSON format.
+The goal of the interface is to provide developers with an easy way to query, visualize, and manipulate geospatial data.
+The API adheres to established standards and allows for the consumption and modification of spatial data via GET, POST, PUT, and DELETE requests.</p>
+<p>The motivation behind developing this interface was to enable an approach that is both simple and powerful for accessing geospatial data.
+Existing interfaces such as <strong>WMS</strong> are very simple but offer limited possibilities for querying geospatial data.
+<strong>WFS</strong> provides querying capabilities, but the standard is based on XML, which can be cumbersome to implement in web environments using JavaScript.
+ESRI’s <strong>GeoServices</strong> interface is a REST interface that also allows easy access to geospatial data.
+However, its syntax for <em>features</em> is somewhat proprietary.</p>
+<p><strong>GeoJson Services</strong> aims to provide a middle ground between existing interfaces, combining the simplicity of <strong>WMS</strong>, the power of <strong>WFS(-T)</strong>, and modern technologies like <strong>ESRI GeoServices</strong>.
+The interface is designed as a <strong>REST</strong> API with <em>JSON requests and JSON responses</em>.
+The syntax should resemble <strong>GeoJSON</strong>.
+Particularly, features should be provided and transferred in <strong>GeoJSON</strong> format, as this standard is natively supported by many <em>web mapping frameworks</em>.</p>
+<p>The interface should provide the following functions:</p>
+<ul class="simple">
+<li><p><strong>Catalog:</strong> Lists available GeoServices.</p></li>
+<li><p><strong>Capabilities:</strong> Displays the capabilities of a GeoService.</p></li>
+<li><p><strong>Mapping:</strong> Generates map representations for a specified area and customizable layer visibility within the service.</p></li>
+<li><p><strong>Query:</strong> Queries geospatial data from the provided services by passing attribute filters and/or spatial filters.</p></li>
+<li><p><strong>Edit:</strong> Creates/Edits/Deletes geospatial data.</p></li>
+<li><p><strong>Security:</strong> GeoServices should be accessible with authentication to grant clients specific permissions (Edit/Query).
+Requests must include a <strong>Bearer Token</strong> in the <strong>Authorization Header</strong>.</p></li>
+</ul>
 </section>
-<section id="struktur-der-api-links">
-<h2>Struktur der API-Links<a class="headerlink" href="#struktur-der-api-links" title="Permalink to this heading">¶</a></h2>
-<p>Die API folgt einer konsistenten URL-Struktur, die es einfach macht,
-die gewünschten Informationen abzurufen oder Änderungen vorzunehmen.
-Im Folgenden sind die verschiedenen Endpunkte der API aufgelistet,
-zusammen mit einer kurzen Beschreibung ihrer Funktion.</p>
+<section id="api-link-structure">
+<h2>API Link Structure<a class="headerlink" href="#api-link-structure" title="Link to this heading">¶</a></h2>
+<p>The API follows a consistent URL structure, making it easy to retrieve information or make changes.
+The following outlines the various API endpoints along with a brief description of their function.</p>
 <p><strong>Services</strong></p>
 <ul>
 <li><p><strong>GET</strong></p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services</span></code></p>
-<p>Liefert eine Liste aller verfügbaren Geodaten-Services auf dem Server.</p>
+<p>Returns a list of all available geospatial data services on the server.</p>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{folder}</span></code></p>
-<p>Gibt alle Services innerhalb des angegebenen Ordners zurück.</p>
+<p>Returns all services within the specified folder.</p>
 </li>
 </ul>
 </li>
@@ -194,11 +201,11 @@ zusammen mit einer kurzen Beschreibung ihrer Funktion.</p>
 <li><p><strong>GET</strong>
 - <code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{service}/capabilities</span></code></p>
 <blockquote>
-<div><p>Liefert die Eigenschaften und Informationen des spezifizierten Services.</p>
+<div><p>Returns the properties and information of the specified service.</p>
 </div></blockquote>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{folder}/{service}/capabilities</span></code></p>
-<p>Gibt die Eigenschaften und Informationen des spezifizierten Services innerhalb eines bestimmten Ordners zurück.</p>
+<p>Returns the properties and information of the specified service within a specific folder.</p>
 </li>
 </ul>
 </li>
@@ -208,10 +215,10 @@ zusammen mit einer kurzen Beschreibung ihrer Funktion.</p>
 <li><p><strong>GET/POST</strong></p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{service}/map</span></code></p>
-<p>Generiert eine Karte basierend auf dem angegebenen Service.</p>
+<p>Generates a map based on the specified service.</p>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{folder}/{service}/map</span></code></p>
-<p>Generiert eine Karte für einen Service innerhalb eines bestimmten Ordners.</p>
+<p>Generates a map for a service within a specific folder.</p>
 </li>
 </ul>
 </li>
@@ -219,71 +226,58 @@ zusammen mit einer kurzen Beschreibung ihrer Funktion.</p>
 <p><strong>Legend</strong></p>
 <ul>
 <li><p><strong>GET/POST</strong></p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{service}/legend</span></code></p></li>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{service}/legend</span></code></p>
+<p>Returns the legend for the specified service.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{folder}/{service}/legend</span></code></p>
+<p>Returns the legend for a service within a specific folder.</p>
+</li>
 </ul>
-<blockquote>
-<div><p>Liefert die Legende für den spezifizierten Service.</p>
-</div></blockquote>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{folder}/{service}/legend</span></code></p></li>
-</ul>
-<blockquote>
-<div><p>Liefert die Legende für einen Service innerhalb eines bestimmten Ordners.</p>
-</div></blockquote>
 </li>
 </ul>
 <p><strong>Query</strong></p>
 <ul>
 <li><p><strong>GET/POST</strong></p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{service}/query/{layerId}</span></code></p></li>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{service}/query/{layerId}</span></code></p>
+<p>Executes a query on the specified layer within the service.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{folder}/{service}/query/{layerId}</span></code></p>
+<p>Executes a query on the layer of a service within a specific folder.</p>
+</li>
 </ul>
-<blockquote>
-<div><p>Führt eine Abfrage auf dem angegebenen Layer innerhalb des Services aus.</p>
-</div></blockquote>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{folder}/{service}/query/{layerId}</span></code></p></li>
-</ul>
-<blockquote>
-<div><p>Führt eine Abfrage auf dem Layer eines Services innerhalb eines bestimmten Ordners aus.</p>
-</div></blockquote>
 </li>
 </ul>
 <p><strong>Features</strong></p>
 <ul>
 <li><p><strong>POST/PUT/DELETE</strong></p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{service}/features/{layerId}</span></code></p></li>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{service}/features/{layerId}</span></code></p>
+<p>Adds, updates, or deletes features in a specific layer of the service.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{folder}/{service}/features/{layerId}</span></code></p>
+<p>Adds, updates, or deletes features in a specific layer of a service within a specific folder.</p>
+</li>
 </ul>
-<blockquote>
-<div><p>Fügt Features hinzu, aktualisiert oder löscht Features in einem bestimmten Layer des Services.</p>
-</div></blockquote>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{folder}/{service}/features/{layerId}</span></code></p></li>
-</ul>
-<blockquote>
-<div><p>Fügt Features hinzu, aktualisiert oder löscht Features in einem bestimmten Layer eines Services innerhalb eines bestimmten Ordners.</p>
-</div></blockquote>
 </li>
 </ul>
 <p><strong>Token</strong></p>
 <ul>
 <li><p><strong>GET/POST</strong></p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/Token</span></code></p></li>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/Token</span></code></p>
+<p>Returns a token for authentication or performs the authentication process.</p>
+</li>
 </ul>
-<blockquote>
-<div><p>Liefert ein Token zur Authentifizierung oder führt die Authentifizierung durch.</p>
-</div></blockquote>
 </li>
 </ul>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Table of contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="types.html">Bounding Box, Koordinatenreferenzsystem und Geometrie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">Bounding Box, Coordinate Reference System, and Geometry</a></li>
 <li class="toctree-l1"><a class="reference internal" href="info.html">Info Endpoint</a></li>
-<li class="toctree-l1"><a class="reference internal" href="services.html">Services Endpunkt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="services.html">Services Endpoint</a></li>
 <li class="toctree-l1"><a class="reference internal" href="capabilities.html">(Service)Capabilities Endpoint</a></li>
 <li class="toctree-l1"><a class="reference internal" href="map.html">Map Endpoint</a></li>
 <li class="toctree-l1"><a class="reference internal" href="legend.html">Legend Endpoint</a></li>
@@ -303,16 +297,16 @@ zusammen mit einer kurzen Beschreibung ihrer Funktion.</p>
       </div>
     
         <div id="show_right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon"><</span><span>Page contents<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
         </div>
 
         <div id="right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">></span><span>Page contents:<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
             <div class="page_toc">
                 <ul>
 <li><a class="reference internal" href="#">GeoJson Service Specification</a><ul>
-<li><a class="reference internal" href="#allgemeine-beschreibung-der-schnittstelle">Allgemeine Beschreibung der Schnittstelle</a></li>
-<li><a class="reference internal" href="#struktur-der-api-links">Struktur der API-Links</a></li>
+<li><a class="reference internal" href="#general-description-of-the-interface">General Description of the Interface</a></li>
+<li><a class="reference internal" href="#api-link-structure">API Link Structure</a></li>
 </ul>
 </li>
 </ul>
@@ -328,13 +322,13 @@ zusammen mit einer kurzen Beschreibung ihrer Funktion.</p>
             <div class="left">
                 
                 <a href="../../appendix/formats.html">
-                    <span class="icon"><</span><span>Data formats for maps and services</span></a>
+                    <span class="icon">&lt;</span><span>Data formats for maps and services</span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="types.html"><span>Bounding Box, Koordinatenreferenzsystem und Geometrie</span><span class="icon">></span></a>
+                    <a href="types.html"><span>Bounding Box, Coordinate Reference System, and Geometry</span><span class="icon">&gt;</span></a>
                 
             </div>
         </div>
@@ -342,8 +336,8 @@ zusammen mit einer kurzen Beschreibung ihrer Funktion.</p>
 
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

@@ -1,18 +1,17 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Token Endpoint &#8212; gView GIS 6.x documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=0.7.0-1" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=d7bb20b6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=247da48f" />
+    <script src="../../_static/documentation_options.js?v=98846f59"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <script src="../../_static/js/petite-vue.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -130,9 +129,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../appendix/index.html">Appendix</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">GeoJson Service Specification</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="types.html">Bounding Box, Koordinatenreferenzsystem und Geometrie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Bounding Box, Coordinate Reference System, and Geometry</a></li>
 <li class="toctree-l2"><a class="reference internal" href="info.html">Info Endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="services.html">Services Endpunkt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="services.html">Services Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="capabilities.html">(Service)Capabilities Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="map.html">Map Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="legend.html">Legend Endpoint</a></li>
@@ -154,28 +153,29 @@
           <div class="body" role="main">
             
   <section id="token-endpoint">
-<h1>Token Endpoint<a class="headerlink" href="#token-endpoint" title="Permalink to this heading">¶</a></h1>
-<p>Der <strong>Token</strong> Endpunkt ermöglicht die Authentifizierung und Autorisierung für die Nutzung
-der GeoJSON-API. Ein Token kann entweder über GET oder POST angefordert werden.</p>
-<section id="request-struktur">
-<h2>Request-Struktur<a class="headerlink" href="#request-struktur" title="Permalink to this heading">¶</a></h2>
-<p>Die URL kann aus dem Info Endpoint Response entnommen werden, beispielsweise</p>
+<h1>Token Endpoint<a class="headerlink" href="#token-endpoint" title="Link to this heading">¶</a></h1>
+<p>The <strong>Token</strong> endpoint enables authentication and authorization for using
+the GeoJSON API. A token can be requested via GET or POST.</p>
+<section id="request-structure">
+<h2>Request Structure<a class="headerlink" href="#request-structure" title="Link to this heading">¶</a></h2>
+<p>The URL can be retrieved from the Info endpoint response, for example</p>
 <ul>
 <li><p><strong>GET</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GET /geojsonservice/v1/token?clientId={client_id}&amp;clientSecret={client_secret}&amp;expireMinutes={expire_minutes}
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><strong>clientId</strong>: (string) Die Client-ID zur Authentifizierung.</p></li>
-<li><p><strong>clientSecret</strong>: (string) Der Client-Secret zur Authentifizierung.</p></li>
-<li><p><strong>expireMinutes</strong> (optional): (int) Die gewünschte Gültigkeitsdauer des Tokens in Minuten (maximal gemäß Serverkonfiguration).</p></li>
+<li><p><strong>clientId</strong>: (string) The client ID for authentication.</p></li>
+<li><p><strong>clientSecret</strong>: (string) The client secret for authentication.</p></li>
+<li><p><strong>expireMinutes</strong> (optional): (int) The desired validity period of the token in minutes (maximum as per server configuration).</p></li>
 </ul>
 </li>
 </ul>
 </section>
-<section id="response-struktur">
-<h2>Response-Struktur<a class="headerlink" href="#response-struktur" title="Permalink to this heading">¶</a></h2>
-<p>Der Response enthält das erzeugte Token und die zugehörigen Metadaten. Die Struktur des Responses ist wie folgt definiert:</p>
+<section id="response-structure">
+<h2>Response Structure<a class="headerlink" href="#response-structure" title="Link to this heading">¶</a></h2>
+<p>The response contains the generated token and its associated metadata.
+The structure of the response is defined as follows:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;access_token&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;expires_in&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">600</span><span class="p">,</span>
@@ -184,22 +184,22 @@ der GeoJSON-API. Ein Token kann entweder über GET oder POST angefordert werden.
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><strong>access_token</strong>: (string) Das erzeugte Zugriffstoken.</p></li>
-<li><p><strong>expires_in</strong>: (int) Die verbleibende Gültigkeitsdauer des Tokens in Sekunden.</p></li>
-<li><p><strong>token_type</strong>: (string) Der Typ des Tokens, in der Regel “Bearer”.</p></li>
+<li><p><strong>access_token</strong>: (string) The generated access token.</p></li>
+<li><p><strong>expires_in</strong>: (int) The remaining validity period of the token in seconds.</p></li>
+<li><p><strong>token_type</strong>: (string) The type of token, typically “Bearer”.</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Der <code class="docutils literal notranslate"><span class="pre">access_token</span></code> ist allen Request im <code class="docutils literal notranslate"><span class="pre">HTTP</span> <span class="pre">Header</span> <span class="pre">Authorize</span></code> als <strong>Bearer Token</strong> übergeben werden:
+<p>The <code class="docutils literal notranslate"><span class="pre">access_token</span></code> must be included in all requests in the <code class="docutils literal notranslate"><span class="pre">HTTP</span> <span class="pre">Header</span> <span class="pre">Authorize</span></code> as a <strong>Bearer Token</strong>:
 (<code class="docutils literal notranslate"><span class="pre">Bearer</span> <span class="pre">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...</span></code>).</p>
 </div>
 </section>
-<section id="verwendungsmoglichkeiten">
-<h2>Verwendungsmöglichkeiten<a class="headerlink" href="#verwendungsmoglichkeiten" title="Permalink to this heading">¶</a></h2>
+<section id="use-cases">
+<h2>Use Cases<a class="headerlink" href="#use-cases" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><strong>Authentifizierung</strong>: Ermöglicht es Clients, Zugriff auf geschützte Endpunkte der GeoJSON-API zu erhalten.</p></li>
-<li><p><strong>Sitzungsverwaltung</strong>: Erzeugt zeitlich begrenzte Tokens, um die Sicherheit zu erhöhen.</p></li>
-<li><p><strong>Flexible Authentifizierung</strong>: Unterstützt sowohl GET- als auch POST-Methoden zur Token-Generierung.</p></li>
+<li><p><strong>Authentication</strong>: Allows clients to access protected endpoints of the GeoJSON API.</p></li>
+<li><p><strong>Session Management</strong>: Generates time-limited tokens to enhance security.</p></li>
+<li><p><strong>Flexible Authentication</strong>: Supports both GET and POST methods for token generation.</p></li>
 </ul>
 </section>
 </section>
@@ -211,17 +211,17 @@ der GeoJSON-API. Ein Token kann entweder über GET oder POST angefordert werden.
       </div>
     
         <div id="show_right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon"><</span><span>Page contents<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
         </div>
 
         <div id="right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">></span><span>Page contents:<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
             <div class="page_toc">
                 <ul>
 <li><a class="reference internal" href="#">Token Endpoint</a><ul>
-<li><a class="reference internal" href="#request-struktur">Request-Struktur</a></li>
-<li><a class="reference internal" href="#response-struktur">Response-Struktur</a></li>
-<li><a class="reference internal" href="#verwendungsmoglichkeiten">Verwendungsmöglichkeiten</a></li>
+<li><a class="reference internal" href="#request-structure">Request Structure</a></li>
+<li><a class="reference internal" href="#response-structure">Response Structure</a></li>
+<li><a class="reference internal" href="#use-cases">Use Cases</a></li>
 </ul>
 </li>
 </ul>
@@ -237,13 +237,13 @@ der GeoJSON-API. Ein Token kann entweder über GET oder POST angefordert werden.
             <div class="left">
                 
                 <a href="features.html">
-                    <span class="icon"><</span><span>Features Endpoint</span></a>
+                    <span class="icon">&lt;</span><span>Features Endpoint</span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="errorhandling.html"><span>Error Handling</span><span class="icon">></span></a>
+                    <a href="errorhandling.html"><span>Error Handling</span><span class="icon">&gt;</span></a>
                 
             </div>
         </div>
@@ -251,8 +251,8 @@ der GeoJSON-API. Ein Token kann entweder über GET oder POST angefordert werden.
 
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

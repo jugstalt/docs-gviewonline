@@ -1,25 +1,24 @@
-
 <!DOCTYPE html>
 
-<html lang="de">
+<html lang="de" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Bounding Box, Koordinatenreferenzsystem und Geometrie &#8212; gView GIS 6.x Dokumentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=0.7.0-1" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
-    <script src="../../_static/translations.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=d7bb20b6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=247da48f" />
+    <script src="../../_static/documentation_options.js?v=e5fbb453"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/translations.js?v=70a09b52"></script>
     <script src="../../_static/js/theme.js"></script>
     <script src="../../_static/js/petite-vue.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
     <link rel="search" title="Suche" href="../../search.html" />
     <link rel="next" title="Info Endpoint" href="info.html" />
-    <link rel="prev" title="GeoJson Service Specification" href="index.html" /> 
+    <link rel="prev" title="GeoJson Service Spezifikation" href="index.html" /> 
   </head><body data-dark_mode_code_blocks="true">
 
 <div id="top_nav">
@@ -130,7 +129,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../commandline/index.html#kommandozeilenwerkzeuge-interaktiver-modus">Kommandozeilenwerkzeuge (Interaktiver Modus)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Anleitungen (Tutorials)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../appendix/index.html">Anhang</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">GeoJson Service Specification</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">GeoJson Service Spezifikation</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Bounding Box, Koordinatenreferenzsystem und Geometrie</a></li>
 <li class="toctree-l2"><a class="reference internal" href="info.html">Info Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="services.html">Services Endpunkt</a></li>
@@ -155,7 +154,7 @@
           <div class="body" role="main">
             
   <section id="bounding-box-koordinatenreferenzsystem-und-geometrie">
-<h1>Bounding Box, Koordinatenreferenzsystem und Geometrie<a class="headerlink" href="#bounding-box-koordinatenreferenzsystem-und-geometrie" title="Permalink to this heading">¶</a></h1>
+<h1>Bounding Box, Koordinatenreferenzsystem und Geometrie<a class="headerlink" href="#bounding-box-koordinatenreferenzsystem-und-geometrie" title="Link to this heading">¶</a></h1>
 <p>Die folgenden Objekte sind grundlegende Bestandteile der REST-Schnittstelle und werden in
 verschiedenen Requests und Responses verwendet, um räumliche Begrenzungen, Koordinatenreferenzen
 und geometrische Formen zu beschreiben.</p>
@@ -179,7 +178,7 @@ von Features umschließt. Es wird verwendet, um räumliche Begrenzungen festzule
 </div>
 <div class="admonition note">
 <p class="admonition-title">Bemerkung</p>
-<p>In GET Request kann BBox auch vereinfacht als URL Parameter in folgender Art übergeben werden:</p>
+<p>In GET-Requests kann die BBox auch vereinfacht als URL-Parameter in folgender Form übergeben werden:</p>
 <p><code class="docutils literal notranslate"><span class="pre">&amp;bbox=10,50,20,60</span></code></p>
 </div>
 <p><strong>CRS (Coordinate Reference System)</strong></p>
@@ -189,7 +188,8 @@ Es enthält Informationen darüber, wie die räumlichen Daten interpretiert werd
 insbesondere hinsichtlich des verwendeten Koordinatensystems.</p>
 <ul class="simple">
 <li><p><strong>Type</strong>: (string) Der Typ des Koordinatenreferenzsystems. Standardmäßig wird „name“ verwendet.</p></li>
-<li><p><strong>Properties</strong>: (dictionary) Ein Wörterbuch mit zusätzlichen Eigenschaften des Koordinatenreferenzsystems. In der Regel wird ein EPSG-Code verwendet, wie „EPSG:4326“.</p></li>
+<li><p><strong>Properties</strong>: (dictionary) Ein Wörterbuch mit zusätzlichen Eigenschaften des Koordinatenreferenzsystems.
+In der Regel wird ein EPSG-Code verwendet, wie „EPSG:4326“.</p></li>
 </ul>
 <p>Beispiel:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
@@ -202,22 +202,22 @@ insbesondere hinsichtlich des verwendeten Koordinatensystems.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Bemerkung</p>
-<p>In GET Request kann CRS auch vereinfacht als URL Parameter in folgender Art übergeben werden:</p>
+<p>In GET-Requests kann CRS auch vereinfacht als URL-Parameter in folgender Form übergeben werden:</p>
 <p><code class="docutils literal notranslate"><span class="pre">&amp;crs=epsg:4326</span></code></p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Bemerkung</p>
-<p>CRS ist in allen Request immer ein optionaler Parameter. Wird kein Wert übergeben, wird
-immer WGS84 (EPSG:4326) als Defaultwert für GeoJson angenommen!</p>
+<p>CRS ist in allen Requests immer ein optionaler Parameter. Wird kein Wert übergeben, wird
+WGS84 (EPSG:4326) als Standardwert für GeoJson angenommen.</p>
 </div>
 <p><strong>Geometry</strong></p>
 <p>Das <strong>Geometry</strong>-Objekt beschreibt die geometrische Form eines Features und basiert
 auf dem GeoJSON-Standard. Es enthält folgende Attribute:</p>
 <ul class="simple">
-<li><p><strong>Type</strong>: (string) Der Geometrietyp, z. B. „Point“, „LineString“, „Polygon“, „MultiPoint“,</p></li>
-<li><p>„MultiLineString“, „MultiPolygon“ oder „Unknown“.</p></li>
-<li><p><strong>Coordinates</strong>: (array) Die Koordinaten, die die Geometrie definieren. Der genaue Aufbau</p></li>
-<li><p>hängt vom Geometrietyp ab und kann Punkte, Linien oder Polygone enthalten.</p></li>
+<li><p><strong>Type</strong>: (string) Der Geometrietyp, z. B. „Point“, „LineString“, „Polygon“, „MultiPoint“,
+„MultiLineString“, „MultiPolygon“ oder „Unknown“.</p></li>
+<li><p><strong>Coordinates</strong>: (array) Die Koordinaten, die die Geometrie definieren. Der genaue Aufbau
+hängt vom Geometrietyp ab und kann Punkte, Linien oder Polygone enthalten.</p></li>
 </ul>
 <p>Beispiel:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
@@ -261,13 +261,13 @@ verwendet werden können:</p>
             <div class="left">
                 
                 <a href="index.html">
-                    <span class="icon"><</span><span>GeoJson Service Specification</span></a>
+                    <span class="icon">&lt;</span><span>GeoJson Service Spezifikation</span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="info.html"><span>Info Endpoint</span><span class="icon">></span></a>
+                    <a href="info.html"><span>Info Endpoint</span><span class="icon">&gt;</span></a>
                 
             </div>
         </div>
@@ -275,8 +275,8 @@ verwendet werden können:</p>
 
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2024, Jürgen Gstaltmaier.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    &#169; Copyright 2024, Jürgen Gstaltmaier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

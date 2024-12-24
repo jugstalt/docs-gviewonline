@@ -1,19 +1,18 @@
-
 <!DOCTYPE html>
 
-<html lang="de">
+<html lang="de" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Features Endpoint &#8212; gView GIS 6.x Dokumentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=0.7.0-1" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
-    <script src="../../_static/translations.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=d7bb20b6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=247da48f" />
+    <script src="../../_static/documentation_options.js?v=e5fbb453"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/translations.js?v=70a09b52"></script>
     <script src="../../_static/js/theme.js"></script>
     <script src="../../_static/js/petite-vue.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
@@ -130,7 +129,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../commandline/index.html#kommandozeilenwerkzeuge-interaktiver-modus">Kommandozeilenwerkzeuge (Interaktiver Modus)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Anleitungen (Tutorials)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../appendix/index.html">Anhang</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">GeoJson Service Specification</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">GeoJson Service Spezifikation</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="types.html">Bounding Box, Koordinatenreferenzsystem und Geometrie</a></li>
 <li class="toctree-l2"><a class="reference internal" href="info.html">Info Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="services.html">Services Endpunkt</a></li>
@@ -155,11 +154,11 @@
           <div class="body" role="main">
             
   <section id="features-endpoint">
-<h1>Features Endpoint<a class="headerlink" href="#features-endpoint" title="Permalink to this heading">¶</a></h1>
-<p>Der <strong>Features</strong> Endpunkt ermöglicht das Erstellen, Aktualisieren und Löschen von Features
+<h1>Features Endpoint<a class="headerlink" href="#features-endpoint" title="Link to this heading">¶</a></h1>
+<p>Der <strong>Features</strong>-Endpunkt ermöglicht das Erstellen, Aktualisieren und Löschen von Features
 in einem bestimmten Layer. Dafür werden die HTTP-Methoden POST, PUT und DELETE verwendet.</p>
 <section id="request-struktur">
-<h2>Request-Struktur<a class="headerlink" href="#request-struktur" title="Permalink to this heading">¶</a></h2>
+<h2>Request-Struktur<a class="headerlink" href="#request-struktur" title="Link to this heading">¶</a></h2>
 <ul>
 <li><p><strong>POST</strong> und <strong>PUT</strong> (Einfügen/Update von Features)</p>
 <p>Bei einer POST- oder PUT-Anfrage wird der folgende Body verwendet:</p>
@@ -216,7 +215,7 @@ in einem bestimmten Layer. Dafür werden die HTTP-Methoden POST, PUT und DELETE 
 </ul>
 </section>
 <section id="response-struktur">
-<h2>Response-Struktur<a class="headerlink" href="#response-struktur" title="Permalink to this heading">¶</a></h2>
+<h2>Response-Struktur<a class="headerlink" href="#response-struktur" title="Link to this heading">¶</a></h2>
 <p>Der Response enthält Informationen über den Erfolg der Operation. Die Struktur des Responses ist
 wie folgt definiert:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
@@ -228,8 +227,8 @@ wie folgt definiert:</p>
 </div>
 <ul class="simple">
 <li><p><strong>succeeded</strong>: (bool) Gibt an, ob die Operation erfolgreich war.</p></li>
-<li><p><strong>statement</strong>: (string) Das ausgeführte Datenbank Statement</p></li>
-<li><p><strong>count</strong>: (int) Die Anzahl der betroffenen Features</p></li>
+<li><p><strong>statement</strong>: (string) Das ausgeführte Datenbank-Statement.</p></li>
+<li><p><strong>count</strong>: (int) Die Anzahl der betroffenen Features.</p></li>
 </ul>
 </section>
 </section>
@@ -241,11 +240,11 @@ wie folgt definiert:</p>
       </div>
     
         <div id="show_right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon"><</span><span>Page contents<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
         </div>
 
         <div id="right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">></span><span>Page contents:<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
             <div class="page_toc">
                 <ul>
 <li><a class="reference internal" href="#">Features Endpoint</a><ul>
@@ -266,13 +265,13 @@ wie folgt definiert:</p>
             <div class="left">
                 
                 <a href="query.html">
-                    <span class="icon"><</span><span>Query Endpoint</span></a>
+                    <span class="icon">&lt;</span><span>Query Endpoint</span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="token.html"><span>Token Endpoint</span><span class="icon">></span></a>
+                    <a href="token.html"><span>Token Endpoint</span><span class="icon">&gt;</span></a>
                 
             </div>
         </div>
@@ -280,8 +279,8 @@ wie folgt definiert:</p>
 
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2024, Jürgen Gstaltmaier.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    &#169; Copyright 2024, Jürgen Gstaltmaier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

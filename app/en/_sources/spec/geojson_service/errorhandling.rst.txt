@@ -1,14 +1,14 @@
 Error Handling
-==============
+==============  
 
-Der **Error Handling** Abschnitt beschreibt die Struktur der Fehlermeldungen, 
-die zurückgegeben werden, wenn eine Anfrage fehlschlägt. Bei einem Fehler wird 
-ein **ErrorResponse** zurückgegeben, der Details über den Fehler enthält.
+The **Error Handling** section describes the structure of error messages  
+returned when a request fails. In the event of an error,  
+an **ErrorResponse** is returned containing details about the error.  
 
-Error Response Struktur
------------------------
+Error Response Structure
+------------------------  
 
-Die Struktur des ErrorResponse ist wie folgt definiert:
+The structure of the **ErrorResponse** is defined as follows:  
 
 .. code-block:: json
 
@@ -18,30 +18,29 @@ Die Struktur des ErrorResponse ist wie folgt definiert:
       "errorMessage": "Invalid request parameters."
     }
 
-- **type**: (string) Der Typ der Antwort, in diesem Fall "ErrorResponse".
-- **errorCode**: (int) Der Fehlercode, der den Typ des Fehlers beschreibt.
-- **errorMessage**: (string) Eine Beschreibung des aufgetretenen Fehlers.
+- **type**: (string) The type of response, in this case "ErrorResponse".  
+- **errorCode**: (int) The error code describing the type of error.  
+- **errorMessage**: (string) A description of the error that occurred.  
 
-Beispiele für Fehlercodes
--------------------------
+Examples of Error Codes
+-----------------------  
 
-- **400**: Bad Request - Die Anfrageparameter sind ungültig oder unvollständig.
-  - Beispiel: "errorMessage": "Invalid request parameters."
+- **400**: Bad Request - The request parameters are invalid or incomplete.  
+  - Example: `"errorMessage": "Invalid request parameters."`  
 
+- **498**: Invalid Token - The provided token is invalid or expired.  
+  - Example: `"errorMessage": "The provided token is invalid."`  
 
-- **498**: Invalid Token - Das bereitgestellte Token ist ungültig oder abgelaufen.
-  - Beispiel: "errorMessage": "The provided token is invalid."
+- **499**: Token Required - A valid token is required for the request but was not provided.  
+  - Example: `"errorMessage": "Token is required for this request."`  
 
-- **499**: Token Required - Für die Anfrage ist ein gültiges Token erforderlich, wurde jedoch nicht bereitgestellt.
-  - Beispiel: "errorMessage": "Token is required for this request."
+- **500**: Internal Server Error - An internal error occurred on the server.  
+  - Example: `"errorMessage": "An unexpected error occurred on the server."`  
 
-- **500**: Internal Server Error - Ein interner Fehler ist auf dem Server aufgetreten.
-  - Beispiel: "errorMessage": "An unexpected error occurred on the server."
+Use Cases
+---------  
 
-Verwendungsmöglichkeiten
-------------------------
-
-- **Fehleranalyse**: Verwenden Sie den Fehlercode und die Fehlermeldung, um Probleme 
-  in der Anfrage zu identifizieren und zu beheben.
-- **Nutzerfeedback**: Geben Sie dem Nutzer spezifische Fehlermeldungen, um ihn bei 
-  der Korrektur seiner Eingaben zu unterstützen.
+- **Error Analysis**: Use the error code and message to identify and resolve issues  
+  in the request.  
+- **User Feedback**: Provide users with specific error messages to help them  
+  correct their input.  

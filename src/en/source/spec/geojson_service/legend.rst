@@ -1,17 +1,17 @@
 Legend Endpoint
-===============
+===============  
 
-Der **Legend** Endpunkt ermöglicht das Abrufen der Legende für die einzelnen Layer eines Services. 
-Die Anfrage kann entweder als GET- oder POST-Anfrage erfolgen.
+The **Legend** endpoint allows for retrieving the legend for individual layers of a service.  
+The request can be made as either a GET or POST request.  
 
-Request-Struktur
-----------------
+Request Structure
+-----------------
 
-Der **Legend** Endpunkt unterstützt GET- und POST-Anfragen:
+The **Legend** endpoint supports GET and POST requests:  
 
-``https://{server}/geojsonservice/v1/services/{folder}/{service}/legend?width=20&height=20``
+``https://{server}/geojsonservice/v1/services/{folder}/{service}/legend?width=20&height=20``  
 
-Bei einer POST-Anfrage wird der folgende Body verwendet:
+For a POST request, the following body is used:  
 
 .. code-block:: json
 
@@ -22,16 +22,16 @@ Bei einer POST-Anfrage wird der folgende Body verwendet:
       "dpi": 96
     }
 
-- **type**: (string) Der Typ der Anfrage, in diesem Fall "GetLegend".
-- **width**: (int) Die Breite eines Legendenitems in Pixeln.
-- **height**: (int) Die Höhe eines Legendenitems in Pixeln.
-- **dpi** (optional): (int) Die Auflösung der Legende in DPI.
+- **type**: (string) The type of request, in this case "GetLegend".  
+- **width**: (int) The width of a legend item in pixels.  
+- **height**: (int) The height of a legend item in pixels.  
+- **dpi** (optional): (int) The resolution of the legend in DPI.  
 
-Response-Struktur
-------------------
+Response Structure
+------------------  
 
-Der Response enthält Informationen zu den einzelnen Layern und deren Legendenitems. 
-Die Struktur des Responses ist wie folgt definiert:
+The response contains information about individual layers and their legend items.  
+The structure of the response is defined as follows:  
 
 .. code-block:: json
 
@@ -57,27 +57,18 @@ Die Struktur des Responses ist wie folgt definiert:
       ]
     }
 
-- **type**: (string) Der Typ der Antwort, in diesem Fall "GetLegendResponse".
-- **layers**: (array) Eine Liste der Layer, für die Legendeninformationen bereitgestellt werden.
-  
-  - **id**: (string) Die ID des Layers.
-  
-  - **name**: (string) Der Name des Layers.
-  
-  - **layerType**: (string) Der Typ des Layers, z. B. "FeatureLayer".
-  
-  - **minScaleDenominator** (optional): (double) Die minimale Maßstabszahl, bei der der Layer sichtbar ist.
-  
-  - **maxScaleDenominator** (optional): (double) Die maximale Maßstabszahl, bei der der Layer sichtbar ist.
-  
-  - **items**: (array) Eine Liste der Legendenitems für diesen Layer.
+- **type**: (string) The type of response, in this case "GetLegendResponse".  
+- **layers**: (array) A list of layers for which legend information is provided.  
     
-    - **label** (optional): (string) Die Beschriftung des Legendenitems.
+  - **id**: (string) The ID of the layer.  
+  - **name**: (string) The name of the layer.  
+  - **layerType**: (string) The type of layer, e.g., "FeatureLayer".  
+  - **minScaleDenominator** (optional): (double) The minimum scale at which the layer is visible.  
+  - **maxScaleDenominator** (optional): (double) The maximum scale at which the layer is visible.  
+  - **items**: (array) A list of legend items for this layer.  
     
-    - **imageBase64** (optional): (string) Das Bild des Legendenitems als Base64-String.
-    
-    - **imageContentType** (optional): (string) Der MIME-Typ des Bildes, z. B. "image/png".
-    
-    - **width**: (int) Die Breite des Legendenitems in Pixeln.
-    
-    - **height**: (int) Die Höhe des Legendenitems in Pixeln.
+    - **label** (optional): (string) The label of the legend item.  
+    - **imageBase64** (optional): (string) The image of the legend item as a Base64 string.  
+    - **imageContentType** (optional): (string) The MIME type of the image, e.g., "image/png".  
+    - **width**: (int) The width of the legend item in pixels.  
+    - **height**: (int) The height of the legend item in pixels.  

@@ -1,21 +1,21 @@
-Bounding Box, Koordinatenreferenzsystem und Geometrie
-=====================================================
+Bounding Box, Coordinate Reference System, and Geometry
+=======================================================
 
-Die folgenden Objekte sind grundlegende Bestandteile der REST-Schnittstelle und werden in 
-verschiedenen Requests und Responses verwendet, um räumliche Begrenzungen, Koordinatenreferenzen 
-und geometrische Formen zu beschreiben.
+The following objects are fundamental components of the REST interface and are used in  
+various requests and responses to describe spatial boundaries, coordinate references,  
+and geometric shapes.
 
 **BBox (Bounding Box)**
 
-Das **BBox**-Objekt beschreibt ein Rechteck, das die Ausdehnung eines Features oder einer Sammlung 
-von Features umschließt. Es wird verwendet, um räumliche Begrenzungen festzulegen.
+The **BBox** object describes a rectangle that encloses the extent of a feature or a collection  
+of features. It is used to define spatial boundaries.
 
-- **MinX**: (double) Die minimale X-Koordinate (z. B. Längengrad).
-- **MinY**: (double) Die minimale Y-Koordinate (z. B. Breitengrad).
-- **MaxX**: (double) Die maximale X-Koordinate (z. B. Längengrad).
-- **MaxY**: (double) Die maximale Y-Koordinate (z. B. Breitengrad).
+- **MinX**: (double) The minimum X-coordinate (e.g., longitude).  
+- **MinY**: (double) The minimum Y-coordinate (e.g., latitude).  
+- **MaxX**: (double) The maximum X-coordinate (e.g., longitude).  
+- **MaxY**: (double) The maximum Y-coordinate (e.g., latitude).  
 
-Beispiel:
+Example:  
 
 .. code-block:: json
 
@@ -26,23 +26,23 @@ Beispiel:
       "MaxY": 60.0
     }
 
-.. note::
+.. note::  
 
-    In GET Request kann BBox auch vereinfacht als URL Parameter in folgender Art übergeben werden:
+    In GET requests, the BBox can also be simplified as a URL parameter in the following form:  
 
     ``&bbox=10,50,20,60``
 
 **CRS (Coordinate Reference System)**
 
-Das **CRS**-Objekt beschreibt das Koordinatenreferenzsystem, das zur Interpretation der 
-Geometrie verwendet wird. 
-Es enthält Informationen darüber, wie die räumlichen Daten interpretiert werden sollen, 
-insbesondere hinsichtlich des verwendeten Koordinatensystems.
+The **CRS** object describes the coordinate reference system used to interpret the geometry.  
+It contains information about how the spatial data should be interpreted,  
+particularly regarding the coordinate system in use.
 
-- **Type**: (string) Der Typ des Koordinatenreferenzsystems. Standardmäßig wird "name" verwendet.
-- **Properties**: (dictionary) Ein Wörterbuch mit zusätzlichen Eigenschaften des Koordinatenreferenzsystems. In der Regel wird ein EPSG-Code verwendet, wie "EPSG:4326".
+- **Type**: (string) The type of coordinate reference system. By default, "name" is used.  
+- **Properties**: (dictionary) A dictionary with additional properties of the coordinate reference system.  
+  Typically, an EPSG code such as "EPSG:4326" is used.  
 
-Beispiel:
+Example:
 
 .. code-block:: json
 
@@ -53,28 +53,28 @@ Beispiel:
       }
     }
 
-.. note::
+.. note::  
 
-    In GET Request kann CRS auch vereinfacht als URL Parameter in folgender Art übergeben werden:
+    In GET requests, the CRS can also be simplified as a URL parameter in the following form:  
 
-    ``&crs=epsg:4326``
+    ``&crs=epsg:4326``  
 
-.. note::
+.. note::  
 
-    CRS ist in allen Request immer ein optionaler Parameter. Wird kein Wert übergeben, wird
-    immer WGS84 (EPSG:4326) als Defaultwert für GeoJson angenommen!
+    CRS is always an optional parameter in all requests. If no value is provided,  
+    WGS84 (EPSG:4326) is assumed as the default value for GeoJson.  
 
-**Geometry**
+**Geometry**  
 
-Das **Geometry**-Objekt beschreibt die geometrische Form eines Features und basiert 
-auf dem GeoJSON-Standard. Es enthält folgende Attribute:
+The **Geometry** object describes the geometric shape of a feature and is based  
+on the GeoJSON standard. It contains the following attributes:  
 
-- **Type**: (string) Der Geometrietyp, z. B. "Point", "LineString", "Polygon", "MultiPoint", 
-- "MultiLineString", "MultiPolygon" oder "Unknown".
-- **Coordinates**: (array) Die Koordinaten, die die Geometrie definieren. Der genaue Aufbau 
-- hängt vom Geometrietyp ab und kann Punkte, Linien oder Polygone enthalten.
+- **Type**: (string) The geometry type, e.g., "Point", "LineString", "Polygon", "MultiPoint",  
+  "MultiLineString", "MultiPolygon" or "Unknown".  
+- **Coordinates**: (array) The coordinates defining the geometry. The exact structure  
+  depends on the geometry type and can include points, lines, or polygons.  
 
-Beispiel:
+Example:  
 
 .. code-block:: json
 
@@ -91,14 +91,14 @@ Beispiel:
       ]
     }
 
-**GeometryType**
+**GeometryType**  
 
-Der **GeometryType**-Enum beschreibt die möglichen Geometrietypen, die in einem Geometry-Objekt 
-verwendet werden können:
+The **GeometryType** enum describes the possible geometry types that can be used  
+in a Geometry object:  
 
-- **Point**: Ein Punkt.
-- **LineString**: Eine Linie.
-- **Polygon**: Ein Polygon.
-- **MultiPoint**: Eine Sammlung von Punkten.
-- **MultiLineString**: Eine Sammlung von Linien.
-- **MultiPolygon**: Eine Sammlung von Polygonen.
+- **Point**: A point.  
+- **LineString**: A line.  
+- **Polygon**: A polygon.  
+- **MultiPoint**: A collection of points.  
+- **MultiLineString**: A collection of lines.  
+- **MultiPolygon**: A collection of polygons.  

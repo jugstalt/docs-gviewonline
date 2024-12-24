@@ -1,18 +1,17 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Error Handling &#8212; gView GIS 6.x documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=0.7.0-1" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=d7bb20b6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=247da48f" />
+    <script src="../../_static/documentation_options.js?v=98846f59"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <script src="../../_static/js/petite-vue.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -129,9 +128,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../appendix/index.html">Appendix</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">GeoJson Service Specification</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="types.html">Bounding Box, Koordinatenreferenzsystem und Geometrie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Bounding Box, Coordinate Reference System, and Geometry</a></li>
 <li class="toctree-l2"><a class="reference internal" href="info.html">Info Endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="services.html">Services Endpunkt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="services.html">Services Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="capabilities.html">(Service)Capabilities Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="map.html">Map Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="legend.html">Legend Endpoint</a></li>
@@ -153,13 +152,13 @@
           <div class="body" role="main">
             
   <section id="error-handling">
-<h1>Error Handling<a class="headerlink" href="#error-handling" title="Permalink to this heading">¶</a></h1>
-<p>Der <strong>Error Handling</strong> Abschnitt beschreibt die Struktur der Fehlermeldungen,
-die zurückgegeben werden, wenn eine Anfrage fehlschlägt. Bei einem Fehler wird
-ein <strong>ErrorResponse</strong> zurückgegeben, der Details über den Fehler enthält.</p>
-<section id="error-response-struktur">
-<h2>Error Response Struktur<a class="headerlink" href="#error-response-struktur" title="Permalink to this heading">¶</a></h2>
-<p>Die Struktur des ErrorResponse ist wie folgt definiert:</p>
+<h1>Error Handling<a class="headerlink" href="#error-handling" title="Link to this heading">¶</a></h1>
+<p>The <strong>Error Handling</strong> section describes the structure of error messages
+returned when a request fails. In the event of an error,
+an <strong>ErrorResponse</strong> is returned containing details about the error.</p>
+<section id="error-response-structure">
+<h2>Error Response Structure<a class="headerlink" href="#error-response-structure" title="Link to this heading">¶</a></h2>
+<p>The structure of the <strong>ErrorResponse</strong> is defined as follows:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ErrorResponse&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;errorCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span>
@@ -168,31 +167,31 @@ ein <strong>ErrorResponse</strong> zurückgegeben, der Details über den Fehler 
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><strong>type</strong>: (string) Der Typ der Antwort, in diesem Fall “ErrorResponse”.</p></li>
-<li><p><strong>errorCode</strong>: (int) Der Fehlercode, der den Typ des Fehlers beschreibt.</p></li>
-<li><p><strong>errorMessage</strong>: (string) Eine Beschreibung des aufgetretenen Fehlers.</p></li>
+<li><p><strong>type</strong>: (string) The type of response, in this case “ErrorResponse”.</p></li>
+<li><p><strong>errorCode</strong>: (int) The error code describing the type of error.</p></li>
+<li><p><strong>errorMessage</strong>: (string) A description of the error that occurred.</p></li>
 </ul>
 </section>
-<section id="beispiele-fur-fehlercodes">
-<h2>Beispiele für Fehlercodes<a class="headerlink" href="#beispiele-fur-fehlercodes" title="Permalink to this heading">¶</a></h2>
+<section id="examples-of-error-codes">
+<h2>Examples of Error Codes<a class="headerlink" href="#examples-of-error-codes" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><strong>400</strong>: Bad Request - Die Anfrageparameter sind ungültig oder unvollständig.
-- Beispiel: “errorMessage”: “Invalid request parameters.”</p></li>
-<li><p><strong>498</strong>: Invalid Token - Das bereitgestellte Token ist ungültig oder abgelaufen.
-- Beispiel: “errorMessage”: “The provided token is invalid.”</p></li>
-<li><p><strong>499</strong>: Token Required - Für die Anfrage ist ein gültiges Token erforderlich, wurde jedoch nicht bereitgestellt.
-- Beispiel: “errorMessage”: “Token is required for this request.”</p></li>
-<li><p><strong>500</strong>: Internal Server Error - Ein interner Fehler ist auf dem Server aufgetreten.
-- Beispiel: “errorMessage”: “An unexpected error occurred on the server.”</p></li>
+<li><p><strong>400</strong>: Bad Request - The request parameters are invalid or incomplete.
+- Example: <cite>“errorMessage”: “Invalid request parameters.”</cite></p></li>
+<li><p><strong>498</strong>: Invalid Token - The provided token is invalid or expired.
+- Example: <cite>“errorMessage”: “The provided token is invalid.”</cite></p></li>
+<li><p><strong>499</strong>: Token Required - A valid token is required for the request but was not provided.
+- Example: <cite>“errorMessage”: “Token is required for this request.”</cite></p></li>
+<li><p><strong>500</strong>: Internal Server Error - An internal error occurred on the server.
+- Example: <cite>“errorMessage”: “An unexpected error occurred on the server.”</cite></p></li>
 </ul>
 </section>
-<section id="verwendungsmoglichkeiten">
-<h2>Verwendungsmöglichkeiten<a class="headerlink" href="#verwendungsmoglichkeiten" title="Permalink to this heading">¶</a></h2>
+<section id="use-cases">
+<h2>Use Cases<a class="headerlink" href="#use-cases" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><strong>Fehleranalyse</strong>: Verwenden Sie den Fehlercode und die Fehlermeldung, um Probleme
-in der Anfrage zu identifizieren und zu beheben.</p></li>
-<li><p><strong>Nutzerfeedback</strong>: Geben Sie dem Nutzer spezifische Fehlermeldungen, um ihn bei
-der Korrektur seiner Eingaben zu unterstützen.</p></li>
+<li><p><strong>Error Analysis</strong>: Use the error code and message to identify and resolve issues
+in the request.</p></li>
+<li><p><strong>User Feedback</strong>: Provide users with specific error messages to help them
+correct their input.</p></li>
 </ul>
 </section>
 </section>
@@ -204,17 +203,17 @@ der Korrektur seiner Eingaben zu unterstützen.</p></li>
       </div>
     
         <div id="show_right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon"><</span><span>Page contents<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
         </div>
 
         <div id="right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">></span><span>Page contents:<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
             <div class="page_toc">
                 <ul>
 <li><a class="reference internal" href="#">Error Handling</a><ul>
-<li><a class="reference internal" href="#error-response-struktur">Error Response Struktur</a></li>
-<li><a class="reference internal" href="#beispiele-fur-fehlercodes">Beispiele für Fehlercodes</a></li>
-<li><a class="reference internal" href="#verwendungsmoglichkeiten">Verwendungsmöglichkeiten</a></li>
+<li><a class="reference internal" href="#error-response-structure">Error Response Structure</a></li>
+<li><a class="reference internal" href="#examples-of-error-codes">Examples of Error Codes</a></li>
+<li><a class="reference internal" href="#use-cases">Use Cases</a></li>
 </ul>
 </li>
 </ul>
@@ -230,7 +229,7 @@ der Korrektur seiner Eingaben zu unterstützen.</p></li>
             <div class="left">
                 
                 <a href="token.html">
-                    <span class="icon"><</span><span>Token Endpoint</span></a>
+                    <span class="icon">&lt;</span><span>Token Endpoint</span></a>
                 
             </div>
 
@@ -242,8 +241,8 @@ der Korrektur seiner Eingaben zu unterstützen.</p></li>
 
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
