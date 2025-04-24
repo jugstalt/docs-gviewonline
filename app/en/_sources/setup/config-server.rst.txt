@@ -48,6 +48,10 @@ The **gView.Server** can be configured via the file ``_config/mapserver.json``:
             "encoding": "skia"  // engine for encoding images (jpg|png): skia|gdiplus 
         },
 
+        // optional: projection engine        
+        "proj-engine": {
+            "engine": "ManageProj4Parallel" // ManagedProj4, NativeProj4
+        },
 
         // Optional Settings
         "Facilities": {
@@ -96,6 +100,23 @@ If the section or individual values are not specified, the values mentioned abov
 In the section ``graphics``, the *Graphic Engine* can be specified. This can either be ``skia`` or
 ``gdiplus`` (on Windows platforms). However, ``gdiplus`` is becoming obsolete and 
 only works if the application is run on a Windows system.
+
+In the ``graphics`` section, the *Graphic Engine* can be specified. This can either be ``skia`` or
+``gdiplus`` (on Windows platforms). However, ``gdiplus`` is considered deprecated and 
+only works when the application is running on a Windows system.
+
+The ``proj-engine`` section is optional. Here, you can specify which *Proj4 Engine* to use:
+
+- ``ManageProj4Parallel``: Uses the Proj4 port in C#, where transformations are parallelized 
+  for objects with many vertices (>100) to improve performance.
+
+- ``ManagedProj4``: Uses the Proj4 port in C#.
+
+- ``NativeProj4``: Uses the native C++ Proj4 library.
+
+One of the managed versions is recommended, as they are platform-independent and 
+no longer suffer from performance drawbacks. The native version can be used 
+if the managed version does not produce the correct results.
 
 Under ``Facilities``, further optional settings can be made.
 

@@ -26,3 +26,14 @@ additional areas. These are only briefly mentioned here:
   By double-clicking, individual fields/operations/values can be added to the query.
   Additionally, suggested values are provided for the individual fields.
 
+  An optional ``Order By`` statement can also be specified in the filter to influence the
+  sorting of objects during rendering:
+
+  .. image:: img/layersettings3.png
+     :width: 400
+
+  .. note::
+
+    The ``Order By`` value only affects the order during rendering and labeling.
+
+

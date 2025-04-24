@@ -27,4 +27,17 @@ weitere Bereiche. Diese werden hier nur ansatzweise aufgeführt:
   Durch Doppelklick können hier einzelne Felder/Operationen/Werte der Query hinzugefügt werden.
   Außerdem werden für die einzelnen Felder Werte vorgeschlagen.
 
+  Beim Filter kann ebenfalls optional ein ``Order By``-Statement angegeben werden, um die
+  Sortierung der Objekte beim Rendern zu beeinflussen:
+
+  .. image:: img/layersettings3.png
+     :width: 400
+
+  .. note::
+
+    Der ``Order By``-Wert bezieht sich nur auf die Reihenfolge beim Rendering und Labeling.
+
+
+
+
 

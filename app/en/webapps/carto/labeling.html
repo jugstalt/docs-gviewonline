@@ -178,6 +178,118 @@ and placeholders (field names in square brackets) for the fields:</p>
 <a class="reference internal image-reference" href="../../_images/labeling3.png"><img alt="../../_images/labeling3.png" src="../../_images/labeling3.png" style="width: 400px;" /></a>
 <p>Field names are listed at the top. By double-clicking on a field, it is added as
 a placeholder in the expression.</p>
+<p>Using <em>expressions</em>, field values can also be formatted. Formatting is possible for
+number and date fields. The syntax for a placeholder with formatting is as follows:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">[FieldName:Format]</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">[FieldName:0.00]</span></code> for a number with two decimal places.</p>
+</div></blockquote>
+<p>Examples:</p>
+<p><em>Standard formats for numbers:</em></p>
+<table class="docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Purpose</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Placeholder Example</p></th>
+<th class="head"><p>Result with Value = 12345.678</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Fixed decimal places</p></td>
+<td><p>F2</p></td>
+<td><p>[AMOUNT:F2]</p></td>
+<td><p>12,345.68</p></td>
+</tr>
+<tr class="row-odd"><td><p>Currency</p></td>
+<td><p>C</p></td>
+<td><p>[PRICE:C]</p></td>
+<td><p>€12,345.68</p></td>
+</tr>
+<tr class="row-even"><td><p>Thousands separator, standard</p></td>
+<td><p>N0</p></td>
+<td><p>[QUANTITY:N0]</p></td>
+<td><p>12,346</p></td>
+</tr>
+<tr class="row-odd"><td><p>Percent</p></td>
+<td><p>P1</p></td>
+<td><p>[SHARE:P1]</p></td>
+<td><p>(Value = 0.256) 25.6%</p></td>
+</tr>
+<tr class="row-even"><td><p>Exponential</p></td>
+<td><p>E3</p></td>
+<td><p>[VALUE:E3]</p></td>
+<td><p>1.235E+004</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hexadecimal (Integer)</p></td>
+<td><p>X8</p></td>
+<td><p>[ID:X8]</p></td>
+<td><p>(Value = 48879) 0000BEEF</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Custom number formats:</em></p>
+<table class="docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Purpose</p></th>
+<th class="head"><p>Format String</p></th>
+<th class="head"><p>Example</p></th>
+<th class="head"><p>Result</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Two decimals, dot as separator</p></td>
+<td><p>0.00</p></td>
+<td><p>[VALUE:0.00] (12.3456)</p></td>
+<td><p>12.35</p></td>
+</tr>
+<tr class="row-odd"><td><p>Up to two decimals</p></td>
+<td><p>#.##</p></td>
+<td><p>[VALUE:#.##] (12.3)</p></td>
+<td><p>12.3</p></td>
+</tr>
+<tr class="row-even"><td><p>Fixed width, leading zeros</p></td>
+<td><p>00000</p></td>
+<td><p>[NO:00000] (42)</p></td>
+<td><p>00042</p></td>
+</tr>
+<tr class="row-odd"><td><p>Thousands separator, two decimals</p></td>
+<td><p>#,##0.00</p></td>
+<td><p>[TOTAL:#,##0.00]</p></td>
+<td><p>12,345.68</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Standard formats for date/time:</em></p>
+<table class="docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Purpose</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Placeholder Example</p></th>
+<th class="head"><p>Result with Value = 2025-04-24 14:30</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Short date</p></td>
+<td><p>d</p></td>
+<td><p>[DATE:d]</p></td>
+<td><p>04/24/2025</p></td>
+</tr>
+<tr class="row-odd"><td><p>Long date</p></td>
+<td><p>D</p></td>
+<td><p>[DATE:D]</p></td>
+<td><p>Thursday, April 24, 2025</p></td>
+</tr>
+<tr class="row-even"><td><p>Date + short time</p></td>
+<td><p>g</p></td>
+<td><p>[DATE:g]</p></td>
+<td><p>04/24/2025 14:30</p></td>
+</tr>
+<tr class="row-odd"><td><p>ISO-8601</p></td>
+<td><p>o</p></td>
+<td><p>[DATE:o]</p></td>
+<td><p>2025-04-24T14:30:00.0000000+02:00</p></td>
+</tr>
+</tbody>
+</table>
 </li>
 <li><p><strong>Behavior:</strong> Here, the priority of the label is specified:</p>
 <a class="reference internal image-reference" href="../../_images/labeling4.png"><img alt="../../_images/labeling4.png" src="../../_images/labeling4.png" style="width: 400px;" /></a>

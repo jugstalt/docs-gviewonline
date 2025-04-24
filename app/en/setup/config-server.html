@@ -193,6 +193,10 @@
 <span class="w">         </span><span class="s2">&quot;encoding&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;skia&quot;</span><span class="w">  </span><span class="c1">// engine for encoding images (jpg|png): skia|gdiplus</span>
 <span class="w">     </span><span class="p">},</span>
 
+<span class="w">     </span><span class="c1">// optional: projection engine</span>
+<span class="w">     </span><span class="s2">&quot;proj-engine&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="s2">&quot;engine&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ManageProj4Parallel&quot;</span><span class="w"> </span><span class="c1">// ManagedProj4, NativeProj4</span>
+<span class="w">     </span><span class="p">},</span>
 
 <span class="w">     </span><span class="c1">// Optional Settings</span>
 <span class="w">     </span><span class="s2">&quot;Facilities&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
@@ -237,6 +241,19 @@ The values are also included in the <em>GeoServices Response</em> in the result 
 <p>In the section <code class="docutils literal notranslate"><span class="pre">graphics</span></code>, the <em>Graphic Engine</em> can be specified. This can either be <code class="docutils literal notranslate"><span class="pre">skia</span></code> or
 <code class="docutils literal notranslate"><span class="pre">gdiplus</span></code> (on Windows platforms). However, <code class="docutils literal notranslate"><span class="pre">gdiplus</span></code> is becoming obsolete and
 only works if the application is run on a Windows system.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">graphics</span></code> section, the <em>Graphic Engine</em> can be specified. This can either be <code class="docutils literal notranslate"><span class="pre">skia</span></code> or
+<code class="docutils literal notranslate"><span class="pre">gdiplus</span></code> (on Windows platforms). However, <code class="docutils literal notranslate"><span class="pre">gdiplus</span></code> is considered deprecated and
+only works when the application is running on a Windows system.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">proj-engine</span></code> section is optional. Here, you can specify which <em>Proj4 Engine</em> to use:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ManageProj4Parallel</span></code>: Uses the Proj4 port in C#, where transformations are parallelized
+for objects with many vertices (&gt;100) to improve performance.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ManagedProj4</span></code>: Uses the Proj4 port in C#.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NativeProj4</span></code>: Uses the native C++ Proj4 library.</p></li>
+</ul>
+<p>One of the managed versions is recommended, as they are platform-independent and
+no longer suffer from performance drawbacks. The native version can be used
+if the managed version does not produce the correct results.</p>
 <p>Under <code class="docutils literal notranslate"><span class="pre">Facilities</span></code>, further optional settings can be made.</p>
 <p>One option is <code class="docutils literal notranslate"><span class="pre">MessageQueue</span></code>. Currently, only a message queue of the
 type <code class="docutils literal notranslate"><span class="pre">messagequeue-net</span></code> can be specified (<a class="reference external" href="https://github.com/jugstalt/messagequeuenet">https://github.com/jugstalt/messagequeuenet</a>).

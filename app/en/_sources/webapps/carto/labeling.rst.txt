@@ -33,6 +33,102 @@ The properties of the *Renderer* are divided into the following categories:
   Field names are listed at the top. By double-clicking on a field, it is added as 
   a placeholder in the expression.
 
+  Using *expressions*, field values can also be formatted. Formatting is possible for 
+  number and date fields. The syntax for a placeholder with formatting is as follows:
+
+    ``[FieldName:Format]``, e.g. ``[FieldName:0.00]`` for a number with two decimal places.
+
+  Examples:
+
+  *Standard formats for numbers:* 
+
+  .. list-table::
+    :width: 100 %
+    :header-rows: 1
+
+    * - Purpose	
+      - Format
+      - Placeholder Example
+      - Result with Value = 12345.678
+    * - Fixed decimal places 
+      - F2
+      - [AMOUNT:F2]
+      - 12,345.68
+    * - Currency	
+      - C	
+      - [PRICE:C]	
+      - €12,345.68
+    * - Thousands separator, standard	
+      - N0	
+      - [QUANTITY:N0]	
+      - 12,346
+    * - Percent	
+      - P1
+      - [SHARE:P1]
+      - (Value = 0.256) 25.6%
+    * - Exponential	
+      - E3	
+      - [VALUE:E3]	
+      - 1.235E+004
+    * - Hexadecimal (Integer)	
+      - X8	
+      - [ID:X8] 
+      - (Value = 48879) 0000BEEF
+
+  *Custom number formats:*
+
+  .. list-table::
+    :width: 100 %
+    :header-rows: 1
+
+    * - Purpose 
+      - Format String 
+      - Example 
+      - Result
+    * - Two decimals, dot as separator 
+      - 0.00 
+      - [VALUE:0.00] (12.3456) 
+      - 12.35
+    * - Up to two decimals 
+      - #.## 
+      - [VALUE:#.##] (12.3) 
+      - 12.3
+    * - Fixed width, leading zeros 
+      - 00000 
+      - [NO:00000] (42) 
+      - 00042
+    * - Thousands separator, two decimals 
+      - #,##0.00 
+      - [TOTAL:#,##0.00] 
+      - 12,345.68 
+
+  *Standard formats for date/time:*
+  
+  .. list-table::
+    :width: 100 %
+    :header-rows: 1
+
+    * - Purpose 
+      - Format 
+      - Placeholder Example 
+      - Result with Value = 2025-04-24 14:30
+    * - Short date 
+      - d 
+      - [DATE:d] 
+      - 04/24/2025
+    * - Long date 
+      - D 
+      - [DATE:D] 
+      - Thursday, April 24, 2025
+    * - Date + short time 
+      - g 
+      - [DATE:g] 
+      - 04/24/2025 14:30
+    * - ISO-8601 
+      - o 
+      - [DATE:o] 
+      - 2025-04-24T14:30:00.0000000+02:00
+
 * **Behavior:** Here, the priority of the label is specified:
 
   .. image:: img/labeling4.png

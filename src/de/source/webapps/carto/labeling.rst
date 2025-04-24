@@ -33,6 +33,104 @@ Die Eigenschaften des *Renderers* teilen sich die folgende Kategorien auf:
   Im oberen Bereich stehen die Feldnamen. Durch einen Doppelklick auf ein Feld wird es als 
   Platzhalter im Ausdruck angefügt.
 
+  Über *Expressions* können die Feldwerte auch formatiert werden. Eine Formatierung ist für 
+  Nummern- und Datumsfelder möglich. Die Syntax für einen Platzhalter mit Formatierung ist dabei 
+  folgende:
+
+    ``[Feldname:Formatierung]``, z. B. ``[Feldname:0.00]`` für eine Zahl mit zwei Nachkommastellen.
+
+  Beispiele:
+
+  *Standard-Formate für Zahlen:* 
+
+  .. list-table::
+    :width: 100 %
+    :header-rows: 1
+
+    * - Zweck	
+      - Format
+      -	Platzhalter-Beispiel
+      -	Ergebnis bei Value = 12345.678
+    * - Feste Dezimalstellen 
+      -	F2
+      -	[BETRAG:F2]
+      -	12 345,68
+    * - Währung	
+      - C	
+      - [PREIS:C]	
+      - € 12 345,68
+    * - Tausendertrennzeichen, Standard	
+      - N0	
+      - [MENGE:N0]	
+      - 12 346
+    * - Prozent	
+      - P1
+      -	[ANTEIL:P1]
+      - (Value = 0.256)	25,6 %
+    * - Exponential	
+      - E3	
+      - [WERT:E3]	
+      - 1,235E+004
+    * - Hexadezimal (Integer)	
+      - X8	
+      - [ID:X8] 
+      - (Value = 48879)	0000BEEF
+
+    
+  *Benutzerdefinierte Zahlenformate:*
+
+  .. list-table::
+    :width: 100 %
+    :header-rows: 1
+
+    * - Zweck 
+      - Format-String 
+      - Beispiel 
+      - Ergebnis
+    * - Zwei Dezimalen, Punkt als Trennzeichen 
+      -  0.00 
+      - [WERT:0.00] (12.3456) 
+      -  12.35
+    * - Max. zwei Dezimalen 
+      - #.## 
+      - [WERT:#.##] (12.3) 
+      - 12.3
+    * - Feste Breite, führende Nullen 
+      - 00000 
+      - [NR:00000] (42) 
+      -  00042
+    * - Tausenderpunkt, zwei Stellen 
+      - #,##0.00 
+      - [SUMME:#,##0.00] 
+      - 12 345,68 
+
+  *Standard-Formate für Datum/Zeit:*
+
+  .. list-table::
+    :width: 100 %
+    :header-rows: 1
+
+    * - Zweck 
+      - Format -
+      - Platzhalter-Beispiel 
+      - Ergebnis bei Value = 2025-04-24 14:30
+    * - Kurzdatum 
+      - d 
+      - [DATUM:d] 
+      - 24.04.2025
+    * - Langdatum 
+      - D 
+      - [DATUM:D] 
+      - Donnerstag, 24. April 2025
+    * - Datum + kurze Zeit 
+      - g 
+      - [DATUM:g] 
+      - 24.04.2025 14:30
+    * - ISO-8601 
+      - o 
+      - [DATUM:o] 
+      - 2025-04-24T14:30:00.0000000+02:00
+
 * **Verhalten:** Hier wird die Priorität des Labels angegeben:
 
   .. image:: img/labeling4.png

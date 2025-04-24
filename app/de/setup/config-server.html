@@ -194,6 +194,10 @@
 <span class="w">         </span><span class="s2">&quot;encoding&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;skia&quot;</span><span class="w">  </span><span class="c1">// engine for encoding images (jpg|png): skia|gdiplus</span>
 <span class="w">     </span><span class="p">},</span>
 
+<span class="w">     </span><span class="c1">// optional: projection engine</span>
+<span class="w">     </span><span class="s2">&quot;proj-engine&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="s2">&quot;engine&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ManageProj4Parallel&quot;</span><span class="w"> </span><span class="c1">// ManagedProj4, NativeProj4</span>
+<span class="w">     </span><span class="p">},</span>
 
 <span class="w">     </span><span class="c1">// Optional Settings</span>
 <span class="w">     </span><span class="s2">&quot;Facilities&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
@@ -240,6 +244,16 @@ geprüft wird. Die Werte stehen beim <em>GeoServices Response</em> auch im Ergeb
 <p>Im Abschnitt <code class="docutils literal notranslate"><span class="pre">graphics</span></code> kann die <em>Graphic Engine</em> angegeben werden. Diese kann entweder <code class="docutils literal notranslate"><span class="pre">skia</span></code> oder
 <code class="docutils literal notranslate"><span class="pre">gdiplus</span></code> (auf Windows-Plattformen) sein. <code class="docutils literal notranslate"><span class="pre">gdiplus</span></code> ist allerdings ein Auslaufmodell und
 funktioniert nur, wenn die Anwendung auf einem Windows-System ausgeführt wird.</p>
+<p>Der Abschnitt <code class="docutils literal notranslate"><span class="pre">proj-engine</span></code> ist optional. Hier kann angegeben werden, ob die <em>Proj4 Engine</em></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ManageProj4Parallel</span></code>: Verwendet die Proj4-Portierung in C#, wobei bei Objekten mit vielen
+Vertices (&gt;100) die Transformation parallelisiert wird (höhere Performance).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ManagedProj4</span></code>: Verwendet die Proj4-Portierung in C#.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NativeProj4</span></code>: Verwendet die native C++ Proj4-Bibliothek.</p></li>
+</ul>
+<p>Empfohlen wird eine der Managed-Versionen, da diese plattformunabhängig sind und
+mittlerweile keine Performance-Einbußen mehr haben. Auf die native Version
+kann zurückgegriffen werden, wenn die Managed-Version nicht die richtigen Ergebnisse liefert.</p>
 <p>Unter <code class="docutils literal notranslate"><span class="pre">Facilities</span></code> können weitere optionale Einstellungen vorgenommen werden.</p>
 <p>Eine Option ist beispielsweise <code class="docutils literal notranslate"><span class="pre">MessageQueue</span></code>. Dort kann bisher nur eine MessageQueue vom
 Typ <code class="docutils literal notranslate"><span class="pre">messagequeue-net</span></code> angegeben werden (<a class="reference external" href="https://github.com/jugstalt/messagequeuenet">https://github.com/jugstalt/messagequeuenet</a>).

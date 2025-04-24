@@ -179,6 +179,119 @@ und Platzhaltern (Feldname in eckigen Klammern) für die Felder zusammengesetzt 
 <a class="reference internal image-reference" href="../../_images/labeling3.png"><img alt="../../_images/labeling3.png" src="../../_images/labeling3.png" style="width: 400px;" /></a>
 <p>Im oberen Bereich stehen die Feldnamen. Durch einen Doppelklick auf ein Feld wird es als
 Platzhalter im Ausdruck angefügt.</p>
+<p>Über <em>Expressions</em> können die Feldwerte auch formatiert werden. Eine Formatierung ist für
+Nummern- und Datumsfelder möglich. Die Syntax für einen Platzhalter mit Formatierung ist dabei
+folgende:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">[Feldname:Formatierung]</span></code>, z. B. <code class="docutils literal notranslate"><span class="pre">[Feldname:0.00]</span></code> für eine Zahl mit zwei Nachkommastellen.</p>
+</div></blockquote>
+<p>Beispiele:</p>
+<p><em>Standard-Formate für Zahlen:</em></p>
+<table class="docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Zweck</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Platzhalter-Beispiel</p></th>
+<th class="head"><p>Ergebnis bei Value = 12345.678</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Feste Dezimalstellen</p></td>
+<td><p>F2</p></td>
+<td><p>[BETRAG:F2]</p></td>
+<td><p>12 345,68</p></td>
+</tr>
+<tr class="row-odd"><td><p>Währung</p></td>
+<td><p>C</p></td>
+<td><p>[PREIS:C]</p></td>
+<td><p>€ 12 345,68</p></td>
+</tr>
+<tr class="row-even"><td><p>Tausendertrennzeichen, Standard</p></td>
+<td><p>N0</p></td>
+<td><p>[MENGE:N0]</p></td>
+<td><p>12 346</p></td>
+</tr>
+<tr class="row-odd"><td><p>Prozent</p></td>
+<td><p>P1</p></td>
+<td><p>[ANTEIL:P1]</p></td>
+<td><p>(Value = 0.256) 25,6 %</p></td>
+</tr>
+<tr class="row-even"><td><p>Exponential</p></td>
+<td><p>E3</p></td>
+<td><p>[WERT:E3]</p></td>
+<td><p>1,235E+004</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hexadezimal (Integer)</p></td>
+<td><p>X8</p></td>
+<td><p>[ID:X8]</p></td>
+<td><p>(Value = 48879) 0000BEEF</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Benutzerdefinierte Zahlenformate:</em></p>
+<table class="docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Zweck</p></th>
+<th class="head"><p>Format-String</p></th>
+<th class="head"><p>Beispiel</p></th>
+<th class="head"><p>Ergebnis</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Zwei Dezimalen, Punkt als Trennzeichen</p></td>
+<td><p>0.00</p></td>
+<td><p>[WERT:0.00] (12.3456)</p></td>
+<td><p>12.35</p></td>
+</tr>
+<tr class="row-odd"><td><p>Max. zwei Dezimalen</p></td>
+<td><p>#.##</p></td>
+<td><p>[WERT:#.##] (12.3)</p></td>
+<td><p>12.3</p></td>
+</tr>
+<tr class="row-even"><td><p>Feste Breite, führende Nullen</p></td>
+<td><p>00000</p></td>
+<td><p>[NR:00000] (42)</p></td>
+<td><p>00042</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tausenderpunkt, zwei Stellen</p></td>
+<td><p>#,##0.00</p></td>
+<td><p>[SUMME:#,##0.00]</p></td>
+<td><p>12 345,68</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Standard-Formate für Datum/Zeit:</em></p>
+<table class="docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Zweck</p></th>
+<th class="head"><p>Format -</p></th>
+<th class="head"><p>Platzhalter-Beispiel</p></th>
+<th class="head"><p>Ergebnis bei Value = 2025-04-24 14:30</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Kurzdatum</p></td>
+<td><p>d</p></td>
+<td><p>[DATUM:d]</p></td>
+<td><p>24.04.2025</p></td>
+</tr>
+<tr class="row-odd"><td><p>Langdatum</p></td>
+<td><p>D</p></td>
+<td><p>[DATUM:D]</p></td>
+<td><p>Donnerstag, 24. April 2025</p></td>
+</tr>
+<tr class="row-even"><td><p>Datum + kurze Zeit</p></td>
+<td><p>g</p></td>
+<td><p>[DATUM:g]</p></td>
+<td><p>24.04.2025 14:30</p></td>
+</tr>
+<tr class="row-odd"><td><p>ISO-8601</p></td>
+<td><p>o</p></td>
+<td><p>[DATUM:o]</p></td>
+<td><p>2025-04-24T14:30:00.0000000+02:00</p></td>
+</tr>
+</tbody>
+</table>
 </li>
 <li><p><strong>Verhalten:</strong> Hier wird die Priorität des Labels angegeben:</p>
 <a class="reference internal image-reference" href="../../_images/labeling4.png"><img alt="../../_images/labeling4.png" src="../../_images/labeling4.png" style="width: 400px;" /></a>
