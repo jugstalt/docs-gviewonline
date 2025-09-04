@@ -188,6 +188,11 @@
 <span class="w">     </span><span class="c1">// It can be assumed that all calls are made over HTTPS</span>
 <span class="w">     </span><span class="s2">&quot;force-https&quot;</span><span class="o">:</span><span class="w">  </span><span class="kc">false</span><span class="p">,</span>
 
+<span class="w">     </span><span class="c1">// the level that causes an error on load and deploy services</span>
+<span class="w">     </span><span class="s2">&quot;CriticalErrorLevel&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="s2">&quot;ErrorType&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="w">  </span><span class="c1">// any, warning, error, critical, never</span>
+<span class="w">     </span><span class="p">},</span>
+
 <span class="w">     </span><span class="c1">// optional: graphic engines. gdiplus only works on windows systems</span>
 <span class="w">     </span><span class="s2">&quot;graphics&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">         </span><span class="s2">&quot;rendering&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;skia&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1">// engine for rendering: skia|gdiplus</span>
@@ -244,6 +249,15 @@ geprüft wird. Die Werte stehen beim <em>GeoServices Response</em> auch im Ergeb
 <p>Im Abschnitt <code class="docutils literal notranslate"><span class="pre">graphics</span></code> kann die <em>Graphic Engine</em> angegeben werden. Diese kann entweder <code class="docutils literal notranslate"><span class="pre">skia</span></code> oder
 <code class="docutils literal notranslate"><span class="pre">gdiplus</span></code> (auf Windows-Plattformen) sein. <code class="docutils literal notranslate"><span class="pre">gdiplus</span></code> ist allerdings ein Auslaufmodell und
 funktioniert nur, wenn die Anwendung auf einem Windows-System ausgeführt wird.</p>
+<p>Der Abschnitt <code class="docutils literal notranslate"><span class="pre">CriticalErrorLevel</span></code> ist optionsal. Hier kann angegeben werden, ab welchem
+Fehlerlevel ein Dienst nicht geladen oder bereitgestellt werden kann. Mögliche Werte sind:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">any</span></code>: Jeder Fehler, egal ob Warnung oder kritischer Fehler, verhindert das Laden und Bereitstellen eines Dienstes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">warning</span></code>: Ab Warnungen wird ein Dienst nicht geladen oder bereitgestellt.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">error</span></code>: Ab Fehlern wird ein Dienst nicht geladen oder bereitgestellt.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">critical</span></code>: Nur bei kritischen Fehlern wird ein Dienst nicht geladen oder bereitgestellt.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">never</span></code>: Ein Dienst wird immer geladen und bereitgestellt, egal welche Fehler auftreten.</p></li>
+</ul>
 <p>Der Abschnitt <code class="docutils literal notranslate"><span class="pre">proj-engine</span></code> ist optional. Hier kann angegeben werden, ob die <em>Proj4 Engine</em></p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">ManageProj4Parallel</span></code>: Verwendet die Proj4-Portierung in C#, wobei bei Objekten mit vielen

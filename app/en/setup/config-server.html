@@ -187,6 +187,11 @@
 <span class="w">     </span><span class="c1">// It can be assumed that all calls are made over HTTPS</span>
 <span class="w">     </span><span class="s2">&quot;force-https&quot;</span><span class="o">:</span><span class="w">  </span><span class="kc">false</span><span class="p">,</span>
 
+<span class="w">     </span><span class="c1">// the level that causes an error on load and deploy services</span>
+<span class="w">     </span><span class="s2">&quot;CriticalErrorLevel&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="s2">&quot;ErrorType&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="w">  </span><span class="c1">// any, warning, error, critical, never (default: error)</span>
+<span class="w">     </span><span class="p">},</span>
+
 <span class="w">     </span><span class="c1">// optional: graphic engines. gdiplus only works on windows systems</span>
 <span class="w">     </span><span class="s2">&quot;graphics&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">         </span><span class="s2">&quot;rendering&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;skia&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1">// engine for rendering: skia|gdiplus</span>
@@ -244,6 +249,15 @@ only works if the application is run on a Windows system.</p>
 <p>In the <code class="docutils literal notranslate"><span class="pre">graphics</span></code> section, the <em>Graphic Engine</em> can be specified. This can either be <code class="docutils literal notranslate"><span class="pre">skia</span></code> or
 <code class="docutils literal notranslate"><span class="pre">gdiplus</span></code> (on Windows platforms). However, <code class="docutils literal notranslate"><span class="pre">gdiplus</span></code> is considered deprecated and
 only works when the application is running on a Windows system.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">CriticalErrorLevel</span></code> section is optional. Here, you can specify from which
+error level a service cannot be loaded or deployed. Possible values are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">any</span></code>: Any error, whether a warning or a critical error, prevents a service from being loaded and deployed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">warning</span></code>: From warnings onwards, a service will not be loaded or deployed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">error</span></code>: From errors onwards, a service will not be loaded or deployed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">critical</span></code>: Only in the case of critical errors will a service not be loaded or deployed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">never</span></code>: A service will always be loaded and deployed, regardless of any errors that occur.</p></li>
+</ul>
 <p>The <code class="docutils literal notranslate"><span class="pre">proj-engine</span></code> section is optional. Here, you can specify which <em>Proj4 Engine</em> to use:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">ManageProj4Parallel</span></code>: Uses the Proj4 port in C#, where transformations are parallelized

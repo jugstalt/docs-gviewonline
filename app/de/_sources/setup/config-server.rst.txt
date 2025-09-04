@@ -43,6 +43,11 @@ Der **gView.Server** kann über die Datei ``_config/mapserver.json`` konfigurier
         // It can be assumed that all calls are made over HTTPS
         "force-https":  false,
 
+        // the level that causes an error on load and deploy services
+        "CriticalErrorLevel": {
+             "ErrorType": "error"  // any, warning, error, critical, never
+        },
+
         // optional: graphic engines. gdiplus only works on windows systems
         "graphics": {
             "rendering": "skia",  // engine for rendering: skia|gdiplus 
@@ -103,6 +108,19 @@ Werte nicht angeführt, gelten die oben angeführten Werte.
 Im Abschnitt ``graphics`` kann die *Graphic Engine* angegeben werden. Diese kann entweder ``skia`` oder
 ``gdiplus`` (auf Windows-Plattformen) sein. ``gdiplus`` ist allerdings ein Auslaufmodell und 
 funktioniert nur, wenn die Anwendung auf einem Windows-System ausgeführt wird.
+
+Der Abschnitt ``CriticalErrorLevel`` ist optionsal. Hier kann angegeben werden, ab welchem
+Fehlerlevel ein Dienst nicht geladen oder bereitgestellt werden kann. Mögliche Werte sind:
+
+- ``any``: Jeder Fehler, egal ob Warnung oder kritischer Fehler, verhindert das Laden und Bereitstellen eines Dienstes.
+
+- ``warning``: Ab Warnungen wird ein Dienst nicht geladen oder bereitgestellt.
+
+- ``error``: Ab Fehlern wird ein Dienst nicht geladen oder bereitgestellt.
+
+- ``critical``: Nur bei kritischen Fehlern wird ein Dienst nicht geladen oder bereitgestellt.
+
+- ``never``: Ein Dienst wird immer geladen und bereitgestellt, egal welche Fehler auftreten.
 
 Der Abschnitt ``proj-engine`` ist optional. Hier kann angegeben werden, ob die *Proj4 Engine* 
 

@@ -42,6 +42,11 @@ The **gView.Server** can be configured via the file ``_config/mapserver.json``:
         // It can be assumed that all calls are made over HTTPS
         "force-https":  false,
 
+        // the level that causes an error on load and deploy services
+        "CriticalErrorLevel": {
+            "ErrorType": "error"  // any, warning, error, critical, never (default: error)
+        },
+
         // optional: graphic engines. gdiplus only works on windows systems
         "graphics": {
             "rendering": "skia",  // engine for rendering: skia|gdiplus 
@@ -104,6 +109,19 @@ only works if the application is run on a Windows system.
 In the ``graphics`` section, the *Graphic Engine* can be specified. This can either be ``skia`` or
 ``gdiplus`` (on Windows platforms). However, ``gdiplus`` is considered deprecated and 
 only works when the application is running on a Windows system.
+
+The ``CriticalErrorLevel`` section is optional. Here, you can specify from which
+error level a service cannot be loaded or deployed. Possible values are:
+
+- ``any``: Any error, whether a warning or a critical error, prevents a service from being loaded and deployed.
+
+- ``warning``: From warnings onwards, a service will not be loaded or deployed.
+
+- ``error``: From errors onwards, a service will not be loaded or deployed.
+
+- ``critical``: Only in the case of critical errors will a service not be loaded or deployed.
+
+- ``never``: A service will always be loaded and deployed, regardless of any errors that occur.
 
 The ``proj-engine`` section is optional. Here, you can specify which *Proj4 Engine* to use:
 
