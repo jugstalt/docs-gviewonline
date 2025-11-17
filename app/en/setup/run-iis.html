@@ -172,6 +172,14 @@ must be specified.</p>
 <p>If IIS applications do not start, it may be due to the <strong>.NET Core Hosting Bundle</strong> not being installed.
 If it is missing, <code class="docutils literal notranslate"><span class="pre">dotnet-hosting-8.0.x-win.exe</span></code> must be downloaded and installed from the <strong>dotnet</strong> download page.</p>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the <em>gView Server ApplicationPool</em> is not running under a system account such as <code class="docutils literal notranslate"><span class="pre">LocalSystem</span></code>,
+you must set the <strong>Load User Profile</strong> option to <code class="docutils literal notranslate"><span class="pre">True</span></code> for this ApplicationPool under
+<strong>Advanced Settings…</strong> in the <strong>Process Model</strong> section. Otherwise, the application may encounter
+issues accessing the <code class="docutils literal notranslate"><span class="pre">crypto01.pfx</span></code> certificate. In that case, the application will terminate
+with an error message upon startup.</p>
+</div>
 </section>
 
 

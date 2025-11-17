@@ -30,5 +30,11 @@ The applications can be accessed at http(s)://`{host}`/gview-web or http(s)://`{
     If IIS applications do not start, it may be due to the **.NET Core Hosting Bundle** not being installed.
     If it is missing, ``dotnet-hosting-8.0.x-win.exe`` must be downloaded and installed from the **dotnet** download page.
 
-   
+.. note::
+
+    If the *gView Server ApplicationPool* is not running under a system account such as ``LocalSystem``,
+    you must set the **Load User Profile** option to ``True`` for this ApplicationPool under 
+    **Advanced Settings...** in the **Process Model** section. Otherwise, the application may encounter 
+    issues accessing the ``crypto01.pfx`` certificate. In that case, the application will terminate 
+    with an error message upon startup.
 

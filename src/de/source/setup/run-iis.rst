@@ -35,3 +35,12 @@ aufgerufen werden:
     heruntergeladen und installiert werden.
 
 
+.. note::
+
+    Wird der *gView Server ApplicationPool* nicht unter einem Systemkonto wie ``LocalSystem``
+    ausgeführt, muss für diesen ApplicationPool unter **Erweiterte Einstellungen...** 
+    im Abschnitt **Process Model** der Wert **Benutzerprofil laden** auf ``True`` gesetzt werden.
+    Andernfalls kann es sein, dass die Anwendung Probleme beim Zugriff auf das ``crypto01.pfx`` 
+    Zertifikat hat. Die Anwendung würde dann nach dem Start mit einer Fehlermeldung beendet
+    werden.
+

@@ -177,6 +177,15 @@ Hosting Bundle</strong> nicht installiert wurde.
 Falls nicht vorhanden, muss <code class="docutils literal notranslate"><span class="pre">dotnet-hosting-8.0.x-win.exe</span></code> von der <strong>dotnet</strong> Downloadseite
 heruntergeladen und installiert werden.</p>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Wird der <em>gView Server ApplicationPool</em> nicht unter einem Systemkonto wie <code class="docutils literal notranslate"><span class="pre">LocalSystem</span></code>
+ausgeführt, muss für diesen ApplicationPool unter <strong>Erweiterte Einstellungen…</strong>
+im Abschnitt <strong>Process Model</strong> der Wert <strong>Benutzerprofil laden</strong> auf <code class="docutils literal notranslate"><span class="pre">True</span></code> gesetzt werden.
+Andernfalls kann es sein, dass die Anwendung Probleme beim Zugriff auf das <code class="docutils literal notranslate"><span class="pre">crypto01.pfx</span></code>
+Zertifikat hat. Die Anwendung würde dann nach dem Start mit einer Fehlermeldung beendet
+werden.</p>
+</div>
 </section>
 
 
