@@ -1,23 +1,22 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Web Application &#8212; IdentityserverNET 5.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=0.7.0-1" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
+    <title>Web Application &#8212; IdentityserverNET 7.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=d7bb20b6" />
+    <script src="../_static/documentation_options.js?v=efe5be6f"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <script src="../_static/js/petite-vue.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="API Client" href="api.html" />
-    <link rel="prev" title="Managing Clients" href="index.html" /> 
+    <link rel="next" title="JavaScript / SPA Client" href="spa.html" />
+    <link rel="prev" title="Grant Types and Flows" href="grants-and-flows.html" /> 
   </head><body data-dark_mode_code_blocks="true">
 
 <div id="top_nav">
@@ -31,7 +30,7 @@
         <p id="toggle_sidebar">
             <a href="#" title="Toggle sidebar">|||</a>
         </p>
-        <h1><a href="../index.html" title="Go to homepage">IdentityserverNET 5.0.0 documentation</a></h1>
+        <h1><a href="../index.html" title="Go to homepage">IdentityserverNET 7.0.0 documentation</a></h1>
 
         <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
     <template v-if="mode == 'light'">
@@ -123,8 +122,11 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Managing Clients</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="grants-and-flows.html">Grant Types and Flows</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Web Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spa.html">JavaScript / SPA Client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html">API Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced-options.html">Client Reference (Advanced Options)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../accessories/index.html">Additional Admin Tools</a></li>
@@ -141,9 +143,9 @@
           <div class="body" role="main">
             
   <section id="web-application">
-<h1>Web Application<a class="headerlink" href="#web-application" title="Permalink to this heading">¶</a></h1>
+<h1>Web Application<a class="headerlink" href="#web-application" title="Link to this heading">¶</a></h1>
 <section id="creating-editing-a-client">
-<h2>Creating/Editing a Client<a class="headerlink" href="#creating-editing-a-client" title="Permalink to this heading">¶</a></h2>
+<h2>Creating/Editing a Client<a class="headerlink" href="#creating-editing-a-client" title="Link to this heading">¶</a></h2>
 <p>To create a new <em>client</em>, a unique <em>Client Id</em> must be assigned.
 An optional display name can also be provided.</p>
 <p>To simplify input, the <code class="docutils literal notranslate"><span class="pre">WebApplication</span></code> template should be selected.
@@ -154,12 +156,12 @@ can also be done in the next step.</p>
 <p>After successfully creating the client, you will be taken to the <code class="docutils literal notranslate"><span class="pre">Modify</span> <span class="pre">Client:</span> <span class="pre">...</span></code> page.
 The various client properties are organized into menu items:</p>
 <section id="name">
-<h3><code class="docutils literal notranslate"><span class="pre">Name</span></code>:<a class="headerlink" href="#name" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">Name</span></code>:<a class="headerlink" href="#name" title="Link to this heading">¶</a></h3>
 <img alt="../_images/webapp2.png" src="../_images/webapp2.png" />
 <p>Here, you can change the client’s display name and add a description.</p>
 </section>
 <section id="client-secrets">
-<h3><code class="docutils literal notranslate"><span class="pre">Client</span> <span class="pre">Secrets</span></code>:<a class="headerlink" href="#client-secrets" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">Client</span> <span class="pre">Secrets</span></code>:<a class="headerlink" href="#client-secrets" title="Link to this heading">¶</a></h3>
 <p>A client should also have a <strong>secret</strong>. The client application must send this <strong>secret</strong> when logging in. A <strong>secret</strong> can be either
 a text-based <strong>Shared Secret</strong> or a <strong>certificate</strong> (<strong>X509 Certificate *.crt</strong>). A <strong>shared secret</strong> can also be stored in the <strong>Secrets Vault</strong> (see later).</p>
 <p>The <strong>shared secret</strong> can be any text, like a password. If you want a secure <strong>secret</strong>, you can use the <code class="docutils literal notranslate"><span class="pre">Random</span> <span class="pre">Secret</span> <span class="pre">Generator</span></code> on this page.</p>
@@ -176,43 +178,47 @@ The new <strong>secret</strong> can coexist with the old <strong>secret</strong>
 </div>
 </section>
 <section id="allowed-grants">
-<h3><code class="docutils literal notranslate"><span class="pre">Allowed</span> <span class="pre">Grants</span></code>:<a class="headerlink" href="#allowed-grants" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">Allowed</span> <span class="pre">Grants</span></code>:<a class="headerlink" href="#allowed-grants" title="Link to this heading">¶</a></h3>
 <p>This section allows you to set the <strong>grants</strong> permitted for login. Each login method uses different <strong>grants</strong>. Since the <code class="docutils literal notranslate"><span class="pre">WebApplication</span></code>
 template was selected when creating the client, the appropriate <strong>grants</strong> should already be set here:</p>
 <img alt="../_images/webapp4.png" src="../_images/webapp4.png" />
+<p>For an explanation of every grant type and the flows behind them (with sequence diagrams and example
+HTTP requests), see <a class="reference internal" href="grants-and-flows.html"><span class="doc">Grant Types and Flows</span></a>.</p>
 </section>
 <section id="allowed-scopes">
-<h3><code class="docutils literal notranslate"><span class="pre">Allowed</span> <span class="pre">Scopes</span></code>:<a class="headerlink" href="#allowed-scopes" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">Allowed</span> <span class="pre">Scopes</span></code>:<a class="headerlink" href="#allowed-scopes" title="Link to this heading">¶</a></h3>
 <p><strong>Scopes</strong> specify which <strong>identity resources</strong> the web application can request for a logged-in user. Only <strong>scopes</strong> configured
 as <strong>identity resources</strong> in <strong>IdentityServerNET</strong> should be listed here (see section Getting Started).</p>
 <p>For web applications, <code class="docutils literal notranslate"><span class="pre">openid</span></code> and <code class="docutils literal notranslate"><span class="pre">profile</span></code> are entered by default:</p>
 <img alt="../_images/webapp5.png" src="../_images/webapp5.png" />
 </section>
-<section id="advanced-settings">
-<h3><code class="docutils literal notranslate"><span class="pre">Advanced</span> <span class="pre">Settings</span></code>:<a class="headerlink" href="#advanced-settings" title="Permalink to this heading">¶</a></h3>
+<section id="advanced-options">
+<h3><code class="docutils literal notranslate"><span class="pre">Advanced</span> <span class="pre">Options</span></code>:<a class="headerlink" href="#advanced-options" title="Link to this heading">¶</a></h3>
 <p>Here, you can specify additional options for authentication. For example, you can specify whether a <strong>secret</strong> must always be provided by the client
 (<code class="docutils literal notranslate"><span class="pre">RequireClientSecret</span></code>).
 The <code class="docutils literal notranslate"><span class="pre">RequireConsent</span></code> option controls whether a user must consent after logging in to allow the web application access to the requested <strong>scopes</strong> (claims):</p>
 <img alt="../_images/webapp6.png" src="../_images/webapp6.png" />
+<p>All available options are documented in <a class="reference internal" href="advanced-options.html"><span class="doc">Client Reference (Advanced Options)</span></a>.</p>
 </section>
 <section id="advanced-collections">
-<h3><code class="docutils literal notranslate"><span class="pre">Advanced</span> <span class="pre">Collections</span></code>:<a class="headerlink" href="#advanced-collections" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">Advanced</span> <span class="pre">Collections</span></code>:<a class="headerlink" href="#advanced-collections" title="Link to this heading">¶</a></h3>
 <p>Here, collections necessary for login can be specified. For web applications, it is essential to specify the URL to which a user is redirected after a successful login (<code class="docutils literal notranslate"><span class="pre">RedirectUri</span></code>).
 To specify multiple URLs, enter each URL on a new line:</p>
 <img alt="../_images/webapp7.png" src="../_images/webapp7.png" />
 <p>If a login request later comes from a page not listed here, <strong>IdentityServerNET</strong> will reject it.</p>
 </section>
 <section id="advanced-properties">
-<h3><code class="docutils literal notranslate"><span class="pre">Advanced</span> <span class="pre">Properties</span></code>:<a class="headerlink" href="#advanced-properties" title="Permalink to this heading">¶</a></h3>
-<p>Advanced settings for the client, such as <code class="docutils literal notranslate"><span class="pre">IdentityTokenLifetime</span></code> and <code class="docutils literal notranslate"><span class="pre">AccessTokenLifetime</span></code>. These values generally do not need to be changed.</p>
+<h3><code class="docutils literal notranslate"><span class="pre">Advanced</span> <span class="pre">Properties</span></code>:<a class="headerlink" href="#advanced-properties" title="Link to this heading">¶</a></h3>
+<p>Advanced settings for the client, such as <code class="docutils literal notranslate"><span class="pre">IdentityTokenLifetime</span></code> and <code class="docutils literal notranslate"><span class="pre">AccessTokenLifetime</span></code>. These values generally do not need to be changed.
+A full reference of all properties is available in <a class="reference internal" href="advanced-options.html"><span class="doc">Client Reference (Advanced Options)</span></a>.</p>
 </section>
 <section id="delete">
-<h3><code class="docutils literal notranslate"><span class="pre">Delete</span></code>:<a class="headerlink" href="#delete" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">Delete</span></code>:<a class="headerlink" href="#delete" title="Link to this heading">¶</a></h3>
 <p>Here, you can delete a client.</p>
 </section>
 </section>
 <section id="adjusting-a-client-web-application">
-<h2>Adjusting a Client Web Application<a class="headerlink" href="#adjusting-a-client-web-application" title="Permalink to this heading">¶</a></h2>
+<h2>Adjusting a Client Web Application<a class="headerlink" href="#adjusting-a-client-web-application" title="Link to this heading">¶</a></h2>
 <p>A client must support <strong>OpenId Connect</strong>. In the ASP.NET Core environment, the necessary methods are available.</p>
 <p><strong>IdentityServerNET</strong> provides a straightforward approach via extension methods for the <code class="docutils literal notranslate"><span class="pre">IServiceCollection</span></code> object. The following <strong>NuGet</strong> package must be installed:</p>
 <div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">dotnet</span> <span class="n">add</span> <span class="n">package</span> <span class="n">IdentityServerNET</span><span class="p">.</span><span class="n">Extensions</span><span class="p">.</span><span class="n">DependencyInjection</span>
@@ -255,11 +261,11 @@ section <code class="docutils literal notranslate"><span class="pre">OpenIdConne
       </div>
     
         <div id="show_right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon"><</span><span>Page contents<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
         </div>
 
         <div id="right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">></span><span>Page contents:<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
             <div class="page_toc">
                 <ul>
 <li><a class="reference internal" href="#">Web Application</a><ul>
@@ -268,7 +274,7 @@ section <code class="docutils literal notranslate"><span class="pre">OpenIdConne
 <li><a class="reference internal" href="#client-secrets"><code class="docutils literal notranslate"><span class="pre">Client</span> <span class="pre">Secrets</span></code>:</a></li>
 <li><a class="reference internal" href="#allowed-grants"><code class="docutils literal notranslate"><span class="pre">Allowed</span> <span class="pre">Grants</span></code>:</a></li>
 <li><a class="reference internal" href="#allowed-scopes"><code class="docutils literal notranslate"><span class="pre">Allowed</span> <span class="pre">Scopes</span></code>:</a></li>
-<li><a class="reference internal" href="#advanced-settings"><code class="docutils literal notranslate"><span class="pre">Advanced</span> <span class="pre">Settings</span></code>:</a></li>
+<li><a class="reference internal" href="#advanced-options"><code class="docutils literal notranslate"><span class="pre">Advanced</span> <span class="pre">Options</span></code>:</a></li>
 <li><a class="reference internal" href="#advanced-collections"><code class="docutils literal notranslate"><span class="pre">Advanced</span> <span class="pre">Collections</span></code>:</a></li>
 <li><a class="reference internal" href="#advanced-properties"><code class="docutils literal notranslate"><span class="pre">Advanced</span> <span class="pre">Properties</span></code>:</a></li>
 <li><a class="reference internal" href="#delete"><code class="docutils literal notranslate"><span class="pre">Delete</span></code>:</a></li>
@@ -289,14 +295,14 @@ section <code class="docutils literal notranslate"><span class="pre">OpenIdConne
         <div class="button_nav">
             <div class="left">
                 
-                <a href="index.html">
-                    <span class="icon"><</span><span>Managing Clients</span></a>
+                <a href="grants-and-flows.html">
+                    <span class="icon">&lt;</span><span>Grant Types and Flows</span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="api.html"><span>API Client</span><span class="icon">></span></a>
+                    <a href="spa.html"><span>JavaScript / SPA Client</span><span class="icon">&gt;</span></a>
                 
             </div>
         </div>
@@ -304,8 +310,8 @@ section <code class="docutils literal notranslate"><span class="pre">OpenIdConne
 
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2024, Jürgen Gstaltmaier.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    &#169; Copyright 2026, Jürgen Gstaltmaier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

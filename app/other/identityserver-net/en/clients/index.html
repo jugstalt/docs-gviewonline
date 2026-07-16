@@ -1,22 +1,21 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Managing Clients &#8212; IdentityserverNET 5.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=0.7.0-1" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
+    <title>Managing Clients &#8212; IdentityserverNET 7.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=d7bb20b6" />
+    <script src="../_static/documentation_options.js?v=efe5be6f"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <script src="../_static/js/petite-vue.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Web Application" href="webapp.html" />
+    <link rel="next" title="Grant Types and Flows" href="grants-and-flows.html" />
     <link rel="prev" title="Server Administration" href="../getting-started/admin-server.html" /> 
   </head><body data-dark_mode_code_blocks="true">
 
@@ -31,7 +30,7 @@
         <p id="toggle_sidebar">
             <a href="#" title="Toggle sidebar">|||</a>
         </p>
-        <h1><a href="../index.html" title="Go to homepage">IdentityserverNET 5.0.0 documentation</a></h1>
+        <h1><a href="../index.html" title="Go to homepage">IdentityserverNET 7.0.0 documentation</a></h1>
 
         <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
     <template v-if="mode == 'light'">
@@ -123,11 +122,16 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Managing Clients</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="grants-and-flows.html">Grant Types and Flows</a></li>
 <li class="toctree-l2"><a class="reference internal" href="webapp.html">Web Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spa.html">JavaScript / SPA Client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html">API Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced-options.html">Client Reference (Advanced Options)</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../realms/index.html">Realms (Multi-Tenancy)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../accessories/index.html">Additional Admin Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">How IdentityServerNET Works</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../etc/index.html">Additional Topics</a></li>
 </ul>
 
@@ -141,7 +145,7 @@
           <div class="body" role="main">
             
   <section id="managing-clients">
-<h1>Managing Clients<a class="headerlink" href="#managing-clients" title="Permalink to this heading">¶</a></h1>
+<h1>Managing Clients<a class="headerlink" href="#managing-clients" title="Link to this heading">¶</a></h1>
 <p>Clients are applications that can log in through the IdentityServer. The following application types can be distinguished:</p>
 <ul class="simple">
 <li><p><strong>Web Application:</strong> A web application where users must log in with a username and password.</p></li>
@@ -155,9 +159,24 @@ leads to the <code class="docutils literal notranslate"><span class="pre">Add</s
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="grants-and-flows.html">Grant Types and Flows</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="grants-and-flows.html#grant-types-overview">Grant Types Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grants-and-flows.html#authorization-code-pkce">Authorization Code + PKCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grants-and-flows.html#pushed-authorization-request-par">Pushed Authorization Request (PAR)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grants-and-flows.html#client-credentials">Client Credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grants-and-flows.html#device-flow">Device Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grants-and-flows.html#refresh-token">Refresh Token</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="webapp.html">Web Application</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="webapp.html#creating-editing-a-client">Creating/Editing a Client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="webapp.html#adjusting-a-client-web-application">Adjusting a Client Web Application</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spa.html">JavaScript / SPA Client</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spa.html#creating-a-javascript-client">Creating a JavaScript Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spa.html#flow">Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spa.html#client-library">Client Library</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Client</a><ul>
@@ -165,6 +184,12 @@ leads to the <code class="docutils literal notranslate"><span class="pre">Add</s
 <li class="toctree-l2"><a class="reference internal" href="api.html#creating-editing-an-api-client">Creating/Editing an API Client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#retrieving-an-accesstoken">Retrieving an AccessToken</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#api-authorization">API Authorization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="advanced-options.html">Client Reference (Advanced Options)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="advanced-options.html#advanced-options">Advanced Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced-options.html#advanced-collections">Advanced Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced-options.html#advanced-properties">Advanced Properties</a></li>
 </ul>
 </li>
 </ul>
@@ -185,13 +210,13 @@ leads to the <code class="docutils literal notranslate"><span class="pre">Add</s
             <div class="left">
                 
                 <a href="../getting-started/admin-server.html">
-                    <span class="icon"><</span><span>Server Administration</span></a>
+                    <span class="icon">&lt;</span><span>Server Administration</span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="webapp.html"><span>Web Application</span><span class="icon">></span></a>
+                    <a href="grants-and-flows.html"><span>Grant Types and Flows</span><span class="icon">&gt;</span></a>
                 
             </div>
         </div>
@@ -199,8 +224,8 @@ leads to the <code class="docutils literal notranslate"><span class="pre">Add</s
 
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2024, Jürgen Gstaltmaier.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    &#169; Copyright 2026, Jürgen Gstaltmaier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

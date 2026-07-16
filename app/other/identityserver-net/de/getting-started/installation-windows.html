@@ -1,18 +1,17 @@
-
 <!DOCTYPE html>
 
-<html lang="de">
+<html lang="de" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Installation unter Windows &#8212; IdentityserverNET 5.0.0 Dokumentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=0.7.0-1" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/translations.js"></script>
+    <title>Installation unter Windows &#8212; IdentityserverNET 7.0.0 Dokumentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=d7bb20b6" />
+    <script src="../_static/documentation_options.js?v=929a6565"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/translations.js?v=70a09b52"></script>
     <script src="../_static/js/theme.js"></script>
     <script src="../_static/js/petite-vue.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
@@ -32,7 +31,7 @@
         <p id="toggle_sidebar">
             <a href="#" title="Toggle sidebar">|||</a>
         </p>
-        <h1><a href="../index.html" title="Go to homepage">IdentityserverNET 5.0.0 Dokumentation</a></h1>
+        <h1><a href="../index.html" title="Go to homepage">IdentityserverNET 7.0.0 Dokumentation</a></h1>
 
         <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
     <template v-if="mode == 'light'">
@@ -126,6 +125,8 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Installation unter Windows</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation-linux.html">Installation unter Linux</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation-docker.html">Installation mit Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-docker-compose.html">Installation mit Docker Compose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-kubernetes.html">Installation mit Kubernetes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation-aspire.html">Installation mit Aspire</a></li>
 <li class="toctree-l2"><a class="reference internal" href="configuration.html">Konfiguration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="login-as-admin.html">Als Administrator anmelden</a></li>
@@ -133,7 +134,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../clients/index.html">Clients verwalten</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../accessories/index.html">Weitere Admin Werkzeuge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../accessories/index.html">Weitere Admin-Werkzeuge</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../etc/index.html">Weitere Themen</a></li>
 </ul>
 
@@ -147,7 +148,7 @@
           <div class="body" role="main">
             
   <section id="installation-unter-windows">
-<h1>Installation unter Windows<a class="headerlink" href="#installation-unter-windows" title="Permalink to this heading">¶</a></h1>
+<h1>Installation unter Windows<a class="headerlink" href="#installation-unter-windows" title="Link to this heading">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Bemerkung</p>
 <p>Voraussetzung ist die Installation von ASP.NET Core 8.0. Gibt man in einer <em>Eingabeaufforderung</em>
@@ -167,7 +168,7 @@ ZIP-Dateien mit dem Namen <code class="docutils literal notranslate"><span class
 (im Verzeichnis <code class="docutils literal notranslate"><span class="pre">app</span></code>) sowie eine <strong>Bat-Datei</strong> zum Starten der Anwendung:</p>
 <a class="reference internal image-reference" href="../_images/install-windows2.png"><img alt="../_images/install-windows2.png" src="../_images/install-windows2.png" style="width: 400px;" /></a>
 <section id="anwendung-lokal-starten">
-<h2>Anwendung lokal starten<a class="headerlink" href="#anwendung-lokal-starten" title="Permalink to this heading">¶</a></h2>
+<h2>Anwendung lokal starten<a class="headerlink" href="#anwendung-lokal-starten" title="Link to this heading">¶</a></h2>
 <p>Mit der <strong>Bat-Datei</strong> <code class="docutils literal notranslate"><span class="pre">start-with-dev-https.bat</span></code> kann die Anwendung lokal gestartet werden.
 Die Anwendung läuft danach unter <a class="reference external" href="http://localhost:8080">http://localhost:8080</a> bzw. <a class="reference external" href="https://localhost:8443">https://localhost:8443</a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">.</span>\<span class="n">app</span>
@@ -185,7 +186,7 @@ von einer vertrauenswürdigen Quelle signiert ist, kann der Browser eine Warnung
 („nicht sicher …“) anzeigen, die jedoch ignoriert werden kann.</p>
 </section>
 <section id="anwendung-im-iis-einbinden">
-<h2>Anwendung im IIS einbinden<a class="headerlink" href="#anwendung-im-iis-einbinden" title="Permalink to this heading">¶</a></h2>
+<h2>Anwendung im IIS einbinden<a class="headerlink" href="#anwendung-im-iis-einbinden" title="Link to this heading">¶</a></h2>
 <p>Um die Anwendung im IIS einzubinden, muss zuerst ein <code class="docutils literal notranslate"><span class="pre">ApplicationPool</span></code> erstellt werden:</p>
 <a class="reference internal image-reference" href="../_images/install-windows3.png"><img alt="../_images/install-windows3.png" src="../_images/install-windows3.png" style="width: 320px;" /></a>
 <p>Mit diesem <strong>Application Pool</strong> kann jetzt eine neue <strong>Webanwendung</strong> erstellt werden.
@@ -201,11 +202,11 @@ Der physische Pfad ist das <code class="docutils literal notranslate"><span clas
       </div>
     
         <div id="show_right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon"><</span><span>Page contents<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
         </div>
 
         <div id="right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">></span><span>Page contents:<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
             <div class="page_toc">
                 <ul>
 <li><a class="reference internal" href="#">Installation unter Windows</a><ul>
@@ -226,13 +227,13 @@ Der physische Pfad ist das <code class="docutils literal notranslate"><span clas
             <div class="left">
                 
                 <a href="index.html">
-                    <span class="icon"><</span><span>Erste Schritte</span></a>
+                    <span class="icon">&lt;</span><span>Erste Schritte</span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="installation-linux.html"><span>Installation unter Linux</span><span class="icon">></span></a>
+                    <a href="installation-linux.html"><span>Installation unter Linux</span><span class="icon">&gt;</span></a>
                 
             </div>
         </div>
@@ -240,8 +241,8 @@ Der physische Pfad ist das <code class="docutils literal notranslate"><span clas
 
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2024, Jürgen Gstaltmaier.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    &#169; Copyright 2026, Jürgen Gstaltmaier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

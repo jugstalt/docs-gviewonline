@@ -1,23 +1,22 @@
-
 <!DOCTYPE html>
 
-<html lang="de">
+<html lang="de" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Clients verwalten &#8212; IdentityserverNET 5.0.0 Dokumentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=0.7.0-1" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/translations.js"></script>
+    <title>Clients verwalten &#8212; IdentityserverNET 7.0.0 Dokumentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=d7bb20b6" />
+    <script src="../_static/documentation_options.js?v=929a6565"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/translations.js?v=70a09b52"></script>
     <script src="../_static/js/theme.js"></script>
     <script src="../_static/js/petite-vue.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
-    <link rel="next" title="Web Anwendung" href="webapp.html" />
+    <link rel="next" title="Grant Types und Flows" href="grants-and-flows.html" />
     <link rel="prev" title="Administration des Servers" href="../getting-started/admin-server.html" /> 
   </head><body data-dark_mode_code_blocks="true">
 
@@ -32,7 +31,7 @@
         <p id="toggle_sidebar">
             <a href="#" title="Toggle sidebar">|||</a>
         </p>
-        <h1><a href="../index.html" title="Go to homepage">IdentityserverNET 5.0.0 Dokumentation</a></h1>
+        <h1><a href="../index.html" title="Go to homepage">IdentityserverNET 7.0.0 Dokumentation</a></h1>
 
         <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
     <template v-if="mode == 'light'">
@@ -124,11 +123,16 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Erste Schritte</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Clients verwalten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="grants-and-flows.html">Grant Types und Flows</a></li>
 <li class="toctree-l2"><a class="reference internal" href="webapp.html">Web Anwendung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spa.html">JavaScript- / SPA-Client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html">API Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced-options.html">Client-Referenz (Advanced Options)</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../realms/index.html">Realms (Multi-Tenancy)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../accessories/index.html">Weitere Admin-Werkzeuge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">Funktionsweise von IdentityServerNET</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../etc/index.html">Weitere Themen</a></li>
 </ul>
 
@@ -142,7 +146,7 @@
           <div class="body" role="main">
             
   <section id="clients-verwalten">
-<h1>Clients verwalten<a class="headerlink" href="#clients-verwalten" title="Permalink to this heading">¶</a></h1>
+<h1>Clients verwalten<a class="headerlink" href="#clients-verwalten" title="Link to this heading">¶</a></h1>
 <p>Clients sind Anwendungen, die sich über den IdentityServer anmelden können. Folgende Anwendungstypen können dabei unterschieden werden:</p>
 <ul class="simple">
 <li><p><strong>Web-Anwendung:</strong> Eine Web-Anwendung, bei der sich Anwender mit Benutzername und Passwort anmelden müssen.</p></li>
@@ -157,9 +161,24 @@ Ansicht <code class="docutils literal notranslate"><span class="pre">Add</span> 
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="grants-and-flows.html">Grant Types und Flows</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="grants-and-flows.html#ubersicht-der-grant-types">Übersicht der Grant Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grants-and-flows.html#authorization-code-pkce">Authorization Code + PKCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grants-and-flows.html#pushed-authorization-request-par">Pushed Authorization Request (PAR)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grants-and-flows.html#client-credentials">Client Credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grants-and-flows.html#device-flow">Device Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grants-and-flows.html#refresh-token">Refresh Token</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="webapp.html">Web Anwendung</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="webapp.html#client-erstellen-bearbeiten">Client erstellen/bearbeiten</a></li>
 <li class="toctree-l2"><a class="reference internal" href="webapp.html#client-web-anwendung-anpassen">Client Web-Anwendung anpassen</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spa.html">JavaScript- / SPA-Client</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spa.html#einen-javascript-client-erstellen">Einen JavaScript-Client erstellen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spa.html#flow">Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spa.html#client-bibliothek">Client-Bibliothek</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Client</a><ul>
@@ -167,6 +186,12 @@ Ansicht <code class="docutils literal notranslate"><span class="pre">Add</span> 
 <li class="toctree-l2"><a class="reference internal" href="api.html#api-client-erstellen-bearbeiten">API Client erstellen/bearbeiten</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#abholen-eines-accesstokens">Abholen eines AccessTokens</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#api-authorization">API Authorization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="advanced-options.html">Client-Referenz (Advanced Options)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="advanced-options.html#advanced-options">Advanced Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced-options.html#advanced-collections">Advanced Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced-options.html#advanced-properties">Advanced Properties</a></li>
 </ul>
 </li>
 </ul>
@@ -187,13 +212,13 @@ Ansicht <code class="docutils literal notranslate"><span class="pre">Add</span> 
             <div class="left">
                 
                 <a href="../getting-started/admin-server.html">
-                    <span class="icon"><</span><span>Administration des Servers</span></a>
+                    <span class="icon">&lt;</span><span>Administration des Servers</span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="webapp.html"><span>Web Anwendung</span><span class="icon">></span></a>
+                    <a href="grants-and-flows.html"><span>Grant Types und Flows</span><span class="icon">&gt;</span></a>
                 
             </div>
         </div>
@@ -201,8 +226,8 @@ Ansicht <code class="docutils literal notranslate"><span class="pre">Add</span> 
 
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2024, Jürgen Gstaltmaier.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    &#169; Copyright 2026, Jürgen Gstaltmaier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

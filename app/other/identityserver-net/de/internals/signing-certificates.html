@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html lang="de" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Signing-Zertifikate &#8212; IdentityserverNET 7.0.0 Dokumentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=d7bb20b6" />
+    <script src="../_static/documentation_options.js?v=929a6565"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/translations.js?v=70a09b52"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/petite-vue.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Weitere Themen" href="../etc/index.html" />
+    <link rel="prev" title="Funktionsweise von IdentityServerNET" href="index.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../index.html" title="Go to homepage">IdentityserverNET 7.0.0 Dokumentation</a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Schnellsuche</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Los" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Erste Schritte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clients/index.html">Clients verwalten</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../realms/index.html">Realms (Multi-Tenancy)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../accessories/index.html">Weitere Admin-Werkzeuge</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Funktionsweise von IdentityServerNET</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Signing-Zertifikate</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../etc/index.html">Weitere Themen</a></li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="signing-zertifikate">
+<h1>Signing-Zertifikate<a class="headerlink" href="#signing-zertifikate" title="Link to this heading">¶</a></h1>
+<p><strong>IdentityServerNET</strong> signiert jedes ausgestellte Token (ID-Token, Access-Token, …) mit einem
+asymmetrischen X.509-Zertifikat und veröffentlicht die zugehörigen öffentlichen Schlüssel über die
+<code class="docutils literal notranslate"><span class="pre">jwks_uri</span></code> aus dem Discovery-Dokument, damit Clients und APIs Tokens verifizieren können. Diese Seite
+beschreibt, wie diese Zertifikate erzeugt, gespeichert, rotiert und aufgeräumt werden.</p>
+<section id="speicherung">
+<h2>Speicherung<a class="headerlink" href="#speicherung" title="Link to this heading">¶</a></h2>
+<p>Standardmäßig werden Zertifikate als passwortgeschützte <code class="docutils literal notranslate"><span class="pre">.pfx</span></code>-Dateien unter
+<code class="docutils literal notranslate"><span class="pre">&lt;StorageRootPath&gt;/storage/validation</span></code> gespeichert (siehe <a class="reference internal" href="../getting-started/configuration.html"><span class="doc">Konfiguration</span></a>).
+Das ist der Standard, selbst ohne jede explizite <code class="docutils literal notranslate"><span class="pre">SigningCredential</span></code>-Konfiguration.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;SigningCredential&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="s2">&quot;Storage&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;c:\\apps\\identityserver-net\\storage\\validation&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1">// optionaler Override</span>
+<span class="w">  </span><span class="s2">&quot;CertPassword&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span><span class="w">                                          </span><span class="c1">// optional</span>
+<span class="w">  </span><span class="s2">&quot;InMemoryOnly&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w">                                            </span><span class="c1">// optional, default: false</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Storage</strong> überschreibt den Standard-Speicherort.</p></li>
+<li><p><strong>InMemoryOnly</strong> hält die Zertifikate nur im Speicher statt auf der Festplatte — bei jedem Neustart
+gehen dann alle Zertifikate verloren. Nur für Tests oder Entwicklung verwenden, niemals in Produktion,
+und niemals mit mehr als einer Instanz (jede Instanz würde sonst ihren eigenen, unterschiedlichen
+Signing-Key bekommen).</p></li>
+</ul>
+</section>
+<section id="passwortschutz">
+<h2>Passwortschutz<a class="headerlink" href="#passwortschutz" title="Link to this heading">¶</a></h2>
+<p>Die Zertifikatsdateien werden mit einem Passwort geschützt, damit der private Schlüssel nicht einfach
+durch Kopieren der <code class="docutils literal notranslate"><span class="pre">.pfx</span></code>-Datei von der Festplatte nutzbar wird.</p>
+<ul class="simple">
+<li><p>Ist <strong>CertPassword</strong> explizit gesetzt, wird dieses Passwort verwendet.</p></li>
+<li><p>Ist es <strong>nicht</strong> gesetzt, wird beim ersten Start der Anwendung ein zufälliges Passwort erzeugt und
+neben den Zertifikaten als verschlüsselte <code class="docutils literal notranslate"><span class="pre">.certpassword.protected</span></code>-Datei gespeichert (geschützt
+über die Standard-.NET-<strong>Data Protection API</strong> — denselben Schlüsselkreis, der auch über
+<code class="docutils literal notranslate"><span class="pre">DataProtectionKeysPath</span></code> konfiguriert wird). Jeder weitere Start verwendet dasselbe Passwort wieder.
+Jede Installation erhält damit automatisch ihr eigenes, einzigartiges Passwort, ohne manuelle
+Konfiguration.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Werden mehrere Instanzen gegen denselben, geteilten Speicherpfad betrieben, müssen alle Instanzen
+denselben Data-Protection-Schlüsselkreis verwenden (siehe die Methode <code class="docutils literal notranslate"><span class="pre">data-protection</span></code> im
+<code class="docutils literal notranslate"><span class="pre">Crypto</span></code>-Abschnitt unter <a class="reference internal" href="../getting-started/configuration.html"><span class="doc">Konfiguration</span></a>) — sonst kann es passieren, dass
+eine Instanz ein Passwort erzeugt, das eine andere Instanz nicht entschlüsseln kann.</p>
+</div>
+</section>
+<section id="lebenszyklus-der-zertifikate">
+<h2>Lebenszyklus der Zertifikate<a class="headerlink" href="#lebenszyklus-der-zertifikate" title="Link to this heading">¶</a></h2>
+<p>Ein neu erzeugtes Zertifikat ist technisch sehr lange gültig, aber <strong>IdentityServerNET</strong> behandelt nur
+Zertifikate, die innerhalb der letzten <strong>60 Tage</strong> erzeugt wurden, als <em>aktiv</em> — nur diese werden über
+die <code class="docutils literal notranslate"><span class="pre">jwks_uri</span></code> veröffentlicht und können neue Tokens signieren. Dieses 60-Tage-Fenster ist es, was
+automatische Rotation überhaupt sinnvoll macht: ein Fenster, das sich nie ändert, würde keinerlei
+Rotation bedeuten.</p>
+<p><strong>Signing-Key vs. Validation-Keys</strong></p>
+<ul class="simple">
+<li><p>Das <strong>zuletzt erzeugte</strong> Zertifikat innerhalb des aktiven Fensters wird zum <em>Signieren</em> neu
+ausgestellter Tokens verwendet.</p></li>
+<li><p><strong>Alle</strong> Zertifikate innerhalb des aktiven Fensters werden als <em>Validation-Keys</em> veröffentlicht — ein
+Token, das kurz vor einer Rotation signiert wurde, bleibt damit danach weiterhin verifizierbar, statt
+plötzlich die Validierung zu verlieren.</p></li>
+</ul>
+<p><strong>Automatische Rotation, ohne Neustart</strong></p>
+<p>Ein Hintergrunddienst prüft periodisch, ob das neueste Zertifikat einen konfigurierbaren
+Schwellenwert überschritten hat, und erzeugt gegebenenfalls ein neues — ganz ohne dass die Anwendung
+neu gestartet werden muss. Das lässt sich über denselben <code class="docutils literal notranslate"><span class="pre">SigningCredential</span></code>-Konfigurationsabschnitt
+einstellen:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;SigningCredential&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="s2">&quot;CheckInterval&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;06:00:00&quot;</span><span class="p">,</span><span class="w">     </span><span class="c1">// optional, default: 6 Stunden</span>
+<span class="w">  </span><span class="s2">&quot;RenewIfOlderThanDays&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">60</span><span class="p">,</span><span class="w">      </span><span class="c1">// optional, default: 60</span>
+<span class="w">  </span><span class="s2">&quot;CacheDuration&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;00:15:00&quot;</span><span class="w">      </span><span class="c1">// optional, default: 15 Minuten</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>CheckInterval:</strong> Wie oft der Hintergrunddienst prüft, ob ein neues Zertifikat benötigt wird.</p></li>
+<li><p><strong>RenewIfOlderThanDays:</strong> Ein neues Zertifikat wird erzeugt, sobald das aktuell neueste älter als
+diese Anzahl Tage ist.</p></li>
+<li><p><strong>CacheDuration:</strong> Die laufende Anwendung liest die Zertifikatsliste nicht bei jeder einzelnen
+Token-Anfrage neu aus dem Speicher — die aktuell aktiven Signing-/Validation-Keys werden für diese
+Dauer zwischengespeichert, bevor erneut nachgesehen wird. Ein neu erzeugtes Zertifikat wird also
+innerhalb dieses Cache-Fensters zum aktiven Signing-Key, nicht sofort.</p></li>
+</ul>
+<p><strong>Aufräumen alter Zertifikatsdateien</strong></p>
+<p>Zertifikatsdateien (bzw. bei <code class="docutils literal notranslate"><span class="pre">InMemoryOnly</span></code> die entsprechenden Einträge im Speicher), die schon eine
+Weile außerhalb des aktiven Fensters liegen, werden nicht mehr benötigt und automatisch gelöscht — genauer
+gesagt, sobald sie älter sind als das Dreifache der Aktiv-Schwelle (Standard: <code class="docutils literal notranslate"><span class="pre">60</span> <span class="pre">*</span> <span class="pre">3</span> <span class="pre">=</span> <span class="pre">180</span></code> Tage).
+Diese Karenzzeit über das 60-Tage-Fenster hinaus existiert, damit ein langlebiges Token, das kurz vor
+dem Verlassen des aktiven Fensters ausgestellt wurde, noch eine Weile validiert werden kann. Das
+Aufräumen läuft als Teil derselben periodischen Hintergrundprüfung, die oben beschrieben ist — altes
+Schlüsselmaterial sammelt sich damit nicht unbegrenzt auf der Festplatte an.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Zertifikate werden nie unmittelbar gelöscht, sobald sie nicht mehr aktiv sind — sondern erst, wenn
+sie deutlich über den Punkt hinaus sind, an dem ein realistisch langlebiges Token sie noch
+referenzieren könnte.</p>
+</div>
+</section>
+<section id="zusammenfassung">
+<h2>Zusammenfassung<a class="headerlink" href="#zusammenfassung" title="Link to this heading">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Einstellung</p></th>
+<th class="head"><p>Wirkung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Storage</span></code></p></td>
+<td><p>Wo die Zertifikatsdateien gespeichert werden. Standard: <code class="docutils literal notranslate"><span class="pre">&lt;StorageRootPath&gt;/storage/validation</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">InMemoryOnly</span></code></p></td>
+<td><p>Zertifikate nur im Speicher halten (Entwicklung/Test, nur eine einzelne Instanz).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CertPassword</span></code></p></td>
+<td><p>Passwort, das die Zertifikatsdateien schützt. Standard: ein einmal pro Installation zufällig
+erzeugtes Passwort.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CheckInterval</span></code></p></td>
+<td><p>Wie oft der Hintergrunddienst prüft, ob eine Rotation nötig ist. Standard: 6 Stunden.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RenewIfOlderThanDays</span></code></p></td>
+<td><p>Alters-Schwellenwert (in Tagen), der die Erzeugung eines neuen Zertifikats auslöst. Standard: 60.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CacheDuration</span></code></p></td>
+<td><p>Wie lange eine laufende Instanz die aktiven Signing-/Validation-Keys zwischenspeichert, bevor
+erneut aus dem Speicher gelesen wird. Standard: 15 Minuten.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">Signing-Zertifikate</a><ul>
+<li><a class="reference internal" href="#speicherung">Speicherung</a></li>
+<li><a class="reference internal" href="#passwortschutz">Passwortschutz</a></li>
+<li><a class="reference internal" href="#lebenszyklus-der-zertifikate">Lebenszyklus der Zertifikate</a></li>
+<li><a class="reference internal" href="#zusammenfassung">Zusammenfassung</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="index.html">
+                    <span class="icon">&lt;</span><span>Funktionsweise von IdentityServerNET</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="../etc/index.html"><span>Weitere Themen</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026, Jürgen Gstaltmaier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

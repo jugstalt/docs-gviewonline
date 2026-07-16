@@ -1,18 +1,17 @@
-
 <!DOCTYPE html>
 
-<html lang="de">
+<html lang="de" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Konfiguration &#8212; IdentityserverNET 5.0.0 Dokumentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=0.7.0-1" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/translations.js"></script>
+    <title>Konfiguration &#8212; IdentityserverNET 7.0.0 Dokumentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=d7bb20b6" />
+    <script src="../_static/documentation_options.js?v=929a6565"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/translations.js?v=70a09b52"></script>
     <script src="../_static/js/theme.js"></script>
     <script src="../_static/js/petite-vue.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
@@ -32,7 +31,7 @@
         <p id="toggle_sidebar">
             <a href="#" title="Toggle sidebar">|||</a>
         </p>
-        <h1><a href="../index.html" title="Go to homepage">IdentityserverNET 5.0.0 Dokumentation</a></h1>
+        <h1><a href="../index.html" title="Go to homepage">IdentityserverNET 7.0.0 Dokumentation</a></h1>
 
         <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
     <template v-if="mode == 'light'">
@@ -126,6 +125,8 @@
 <li class="toctree-l2"><a class="reference internal" href="installation-windows.html">Installation unter Windows</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation-linux.html">Installation unter Linux</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation-docker.html">Installation mit Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-docker-compose.html">Installation mit Docker Compose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-kubernetes.html">Installation mit Kubernetes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation-aspire.html">Installation mit Aspire</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Konfiguration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="login-as-admin.html">Als Administrator anmelden</a></li>
@@ -133,7 +134,9 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../clients/index.html">Clients verwalten</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../accessories/index.html">Weitere Admin Werkzeuge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../realms/index.html">Realms (Multi-Tenancy)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../accessories/index.html">Weitere Admin-Werkzeuge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">Funktionsweise von IdentityServerNET</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../etc/index.html">Weitere Themen</a></li>
 </ul>
 
@@ -147,7 +150,7 @@
           <div class="body" role="main">
             
   <section id="konfiguration">
-<h1>Konfiguration<a class="headerlink" href="#konfiguration" title="Permalink to this heading">¶</a></h1>
+<h1>Konfiguration<a class="headerlink" href="#konfiguration" title="Link to this heading">¶</a></h1>
 <p>Die Konfiguration von <strong>IdentityServerNET</strong> erfolgt über JSON-Dateien im Verzeichnis <code class="docutils literal notranslate"><span class="pre">_config</span></code>.
 Der Name der Konfigurationsdatei lautet <code class="docutils literal notranslate"><span class="pre">default.identityserver.net.json</span></code>.</p>
 <div class="admonition note">
@@ -168,7 +171,7 @@ Umgebungsvariable <code class="docutils literal notranslate"><span class="pre">I
 <span class="w">        </span><span class="s2">&quot;Crypto&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="c1">// ...</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="s2">&quot;SigningCredential&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// default: null =&gt; certs only in memory</span>
+<span class="w">        </span><span class="s2">&quot;SigningCredential&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// default: dateibasierte Speicherung unter &lt;StorageRootPath&gt;/storage/validation</span>
 <span class="w">            </span><span class="c1">// ...</span>
 <span class="w">        </span><span class="p">},</span>
 <span class="w">        </span><span class="s2">&quot;Login&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
@@ -186,6 +189,9 @@ Umgebungsvariable <code class="docutils literal notranslate"><span class="pre">I
 <span class="w">        </span><span class="s2">&quot;Mail&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="c1">// ...</span>
 <span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="s2">&quot;Stores&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// ...</span>
+<span class="w">        </span><span class="p">},</span>
 <span class="w">        </span><span class="s2">&quot;Configure&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="c1">// ...</span>
 <span class="w">        </span><span class="p">}</span>
@@ -196,7 +202,7 @@ Umgebungsvariable <code class="docutils literal notranslate"><span class="pre">I
 <p>Die gesamte Konfiguration erfolgt in der <em>Section</em> <code class="docutils literal notranslate"><span class="pre">IdentityServer</span></code>. Darin befinden sich Werte und
 weitere <em>Sections</em>, auf die im Folgenden eingegangen wird.</p>
 <section id="root-werte">
-<h2>Root-Werte<a class="headerlink" href="#root-werte" title="Permalink to this heading">¶</a></h2>
+<h2>Root-Werte<a class="headerlink" href="#root-werte" title="Link to this heading">¶</a></h2>
 <ul>
 <li><p><strong>AssemblyName:</strong> Die Konfiguration der Services erfolgt in einer Assembly im Programmverzeichnis.
 In dieser Assembly muss eine Klasse mit dem Attribut <code class="docutils literal notranslate"><span class="pre">[IdentityServerStartup]</span></code> existieren, die vom
@@ -224,7 +230,7 @@ Wird dieser Pfad nicht angegeben, wird ein <strong>Standardpfad</strong> verwend
 </ul>
 </section>
 <section id="abschnitt-connectionstrings">
-<h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">ConnectionStrings</span></code><a class="headerlink" href="#abschnitt-connectionstrings" title="Permalink to this heading">¶</a></h2>
+<h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">ConnectionStrings</span></code><a class="headerlink" href="#abschnitt-connectionstrings" title="Link to this heading">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;ConnectionStrings&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;LiteDb&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;c:\\apps\\identityserver-net\\is_net.db&quot;</span>
 <span class="w">    </span><span class="c1">// or</span>
@@ -261,9 +267,46 @@ einzeln angegeben, kann ein Fallback angegeben werden.</p>
 <p>Die beiden Klassen <code class="docutils literal notranslate"><span class="pre">Clients</span></code> und <code class="docutils literal notranslate"><span class="pre">Resources</span></code> können auch in <strong>Azure Tables</strong>
 oder einer <strong>MongoDB</strong> gespeichert werden.</p>
 </div>
+<p>Seit Version 7 stehen zusätzlich <strong>relationale Datenbanken</strong> als Backend zur Verfügung:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;ConnectionStrings&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Microsoft SQL Server</span>
+<span class="w">    </span><span class="s2">&quot;SqlServer&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Server=localhost,1433;Database=identityserver;User Id=sa;Password=...;TrustServerCertificate=True&quot;</span>
+
+<span class="w">    </span><span class="c1">// PostgreSQL</span>
+<span class="w">    </span><span class="s2">&quot;Postgres&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Host=localhost;Port=5432;Database=identityserver;Username=postgres;Password=postgres&quot;</span>
+
+<span class="w">    </span><span class="c1">// SQLite</span>
+<span class="w">    </span><span class="s2">&quot;Sqlite&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Data Source=identityserver.db&quot;</span>
+<span class="w">    </span><span class="c1">// or with explicit path</span>
+<span class="w">    </span><span class="s2">&quot;Sqlite&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Data Source=c:\\apps\\identityserver-net\\identityserver.db&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>SqlServer:</strong> Verbindungsstring für eine <strong>Microsoft SQL Server</strong>-Datenbank. Tabellen werden beim ersten Start automatisch erstellt.</p></li>
+<li><p><strong>Postgres:</strong> Verbindungsstring für eine <strong>PostgreSQL</strong>-Datenbank. Tabellen werden beim ersten Start automatisch erstellt.</p></li>
+<li><p><strong>Sqlite:</strong> Verbindungsstring für eine <strong>SQLite</strong>-Datenbankdatei. Die Datei und alle notwendigen Verzeichnisse werden automatisch angelegt.</p></li>
+</ul>
+<p>Auch für SQL-Backends können einzelne <em>Klassen</em> auf unterschiedliche Backends aufgeteilt werden:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;ConnectionStrings&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;Users&quot;</span><span class="o">:</span><span class="w">     </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;SqlServer&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Server=...;Database=identityserver;...&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="s2">&quot;Roles&quot;</span><span class="o">:</span><span class="w">     </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;SqlServer&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Server=...;Database=identityserver;...&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="s2">&quot;Clients&quot;</span><span class="o">:</span><span class="w">   </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;Postgres&quot;</span><span class="o">:</span><span class="w">  </span><span class="s2">&quot;Host=...;Database=identityserver;...&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="s2">&quot;Resources&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;Sqlite&quot;</span><span class="o">:</span><span class="w">    </span><span class="s2">&quot;Data Source=identityserver.db&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Alle SQL-Backends speichern Objekte (Benutzer, Rollen, Clients, Ressourcen) als
+verschlüsseltes JSON in einer <code class="docutils literal notranslate"><span class="pre">BlobData</span></code>-Spalte – dasselbe Prinzip wie bei LiteDb.
+Die Tabellen werden beim ersten Verbindungsaufbau automatisch erstellt, sofern sie noch
+nicht existieren. Bei <strong>PostgreSQL</strong> und <strong>SQLite</strong> werden Benutzernamen und E-Mail-Adressen
+intern immer in Kleinschreibung gespeichert und verglichen.</p>
+</div>
 </section>
 <section id="abschnitt-crypto">
-<h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">Crypto</span></code><a class="headerlink" href="#abschnitt-crypto" title="Permalink to this heading">¶</a></h2>
+<h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">Crypto</span></code><a class="headerlink" href="#abschnitt-crypto" title="Link to this heading">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Crypto&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;Method&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;key&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1">// key|data-protection|base64</span>
 <span class="w">    </span><span class="s2">&quot;Key&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w">      </span><span class="c1">// protection key, if method=key</span>
@@ -284,26 +327,47 @@ Die Daten stehen dann nicht mehr im Klartext in der Datenbank.</p></li>
 </ul>
 </section>
 <section id="abschnitt-signingcredential">
-<h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">SigningCredential</span></code><a class="headerlink" href="#abschnitt-signingcredential" title="Permalink to this heading">¶</a></h2>
+<h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">SigningCredential</span></code><a class="headerlink" href="#abschnitt-signingcredential" title="Link to this heading">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;SigningCredential&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="s2">&quot;Storage&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;c:\\apps\\identityserver-net\\storage\\validation&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1">// any path</span>
-<span class="w">  </span><span class="s2">&quot;CertPassword&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span>
+<span class="w">  </span><span class="s2">&quot;Storage&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;c:\\apps\\identityserver-net\\storage\\validation&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1">// optional, default: &lt;StorageRootPath&gt;/storage/validation</span>
+<span class="w">  </span><span class="s2">&quot;CertPassword&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span><span class="w">                                          </span><span class="c1">// optional, default: zufälliges Passwort pro Installation</span>
+<span class="w">  </span><span class="s2">&quot;InMemoryOnly&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w">                                            </span><span class="c1">// optional, default: false</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Zum Signieren von <strong>Tokens</strong> benötigt <strong>IdentityServerNET</strong> Zertifikate mit privaten und öffentlichen Schlüsseln. Hier kann der Speicherort für diese
-Zertifikate angegeben werden. Zusätzlich kann ein Passwort festgelegt werden, mit dem die Zertifikate verschlüsselt werden. Der private Schlüssel kann
-dann nur von Anwendungen ausgelesen werden, die dieses Passwort kennen.</p>
-<p>Wird dieser Abschnitt nicht angegeben, werden die Zertifikate nur <strong>InMemory</strong> gespeichert.
-(Bei einem Neustart der Applikation sind alle Zertifikate verloren; dies sollte nur für Tests oder zur Entwicklung verwendet werden!).</p>
+<p>Zum Signieren von <strong>Tokens</strong> benötigt <strong>IdentityServerNET</strong> Zertifikate mit privaten und öffentlichen Schlüsseln.</p>
+<p>Standardmäßig werden diese Zertifikate als passwortgeschützte Dateien unter <code class="docutils literal notranslate"><span class="pre">&lt;StorageRootPath&gt;/storage/validation</span></code>
+gespeichert (siehe <code class="docutils literal notranslate"><span class="pre">StorageRootPath</span></code> oben) — das ist der Standard, selbst wenn der Abschnitt <code class="docutils literal notranslate"><span class="pre">SigningCredential</span></code>
+komplett weggelassen wird. Zertifikate werden automatisch im Hintergrund erneuert, alte, nicht mehr aktive
+Zertifikate werden nach einer Aufbewahrungsfrist automatisch gelöscht. Die vollständige Funktionsweise
+(Rotation, aktives Fenster, Aufräumen) sowie die erweiterten Einstellungen <code class="docutils literal notranslate"><span class="pre">CheckInterval</span></code>/
+<code class="docutils literal notranslate"><span class="pre">RenewIfOlderThanDays</span></code>/<code class="docutils literal notranslate"><span class="pre">CacheDuration</span></code> sind unter <a class="reference internal" href="../internals/signing-certificates.html"><span class="doc">Signing-Zertifikate</span></a>
+beschrieben.</p>
+<ul class="simple">
+<li><p><strong>Storage:</strong> Überschreibt den Speicherort für die Zertifikate. Optional — Standard ist
+<code class="docutils literal notranslate"><span class="pre">&lt;StorageRootPath&gt;/storage/validation</span></code>.</p></li>
+<li><p><strong>CertPassword:</strong> Das Passwort, mit dem die exportierten Zertifikatsdateien verschlüsselt werden. Optional —
+wenn nicht gesetzt, wird einmal pro Installation ein zufälliges Passwort erzeugt und (verschlüsselt über die
+.NET Data Protection API) zusammen mit den Zertifikaten gespeichert, statt sich auf ein festes, geteiltes
+Standardpasswort zu verlassen.</p></li>
+<li><p><strong>InMemoryOnly:</strong> Wenn auf <code class="docutils literal notranslate"><span class="pre">true</span></code> gesetzt, werden die Zertifikate nur im Speicher gehalten statt auf der
+Festplatte persistiert. Bei jedem Neustart der Applikation gehen dann alle Zertifikate verloren — nur für
+Tests oder zur Entwicklung verwenden, niemals in Produktion.</p></li>
+</ul>
 </section>
 <section id="abschnitt-login">
-<h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">Login</span></code><a class="headerlink" href="#abschnitt-login" title="Permalink to this heading">¶</a></h2>
+<h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">Login</span></code><a class="headerlink" href="#abschnitt-login" title="Link to this heading">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Login&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;DenyForgotPasswordChallange&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">    </span><span class="c1">// default: false</span>
 <span class="w">    </span><span class="s2">&quot;DenyRememberLogin&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">              </span><span class="c1">// default: false,</span>
 <span class="w">    </span><span class="s2">&quot;RememberLoginDefaultValue&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">      </span><span class="c1">// default: false</span>
-<span class="w">    </span><span class="s2">&quot;DenyLocalLogin&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w">                  </span><span class="c1">// default: false</span>
+<span class="w">    </span><span class="s2">&quot;DenyLocalLogin&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">                 </span><span class="c1">// default: false</span>
+<span class="w">    </span><span class="s2">&quot;Passkey&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;AllowPasswordless&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">          </span><span class="c1">// default: false</span>
+<span class="w">        </span><span class="s2">&quot;AllowSecondFactor&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">          </span><span class="c1">// default: false</span>
+<span class="w">        </span><span class="s2">&quot;ServerDomain&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;identity.mein-server.com&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;RelyingPartyName&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Meine App&quot;</span><span class="w">     </span><span class="c1">// default: &quot;IdentityServer&quot;</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -315,9 +379,34 @@ dann nur von Anwendungen ausgelesen werden, die dieses Passwort kennen.</p>
 <li><p><strong>DenyLocalLogin:</strong> Wenn auf <code class="docutils literal notranslate"><span class="pre">true</span></code> gesetzt, können sich Anwender nicht mit Benutzername/Passwort anmelden.
 Dies kann sinnvoll sein, wenn die Anmeldung ausschließlich über <em>externe Identity Provider</em> erfolgen soll.</p></li>
 </ul>
+<section id="unterabschnitt-passkey">
+<h3>Unterabschnitt <code class="docutils literal notranslate"><span class="pre">Passkey</span></code><a class="headerlink" href="#unterabschnitt-passkey" title="Link to this heading">¶</a></h3>
+<p>Mit diesem Unterabschnitt wird die <strong>Passkey</strong>-Unterstützung (WebAuthn) konfiguriert. Passkeys ermöglichen eine
+sichere Anmeldung über Hardware-Sicherheitsschlüssel, biometrische Sensoren (Fingerabdruck, Gesichtserkennung)
+oder den Geräte-PIN – ohne herkömmliches Passwort.</p>
+<ul class="simple">
+<li><p><strong>AllowPasswordless:</strong> Wenn auf <code class="docutils literal notranslate"><span class="pre">true</span></code> gesetzt, können sich Benutzer direkt mit einem Passkey anmelden –
+ohne Benutzername und Passwort. Auf der Login-Seite erscheint eine <code class="docutils literal notranslate"><span class="pre">Sign</span> <span class="pre">in</span> <span class="pre">with</span> <span class="pre">passkey</span></code>-Schaltfläche.
+Benutzer können Passkeys unter <em>Manage Account → Passkeys</em> registrieren.</p></li>
+<li><p><strong>AllowSecondFactor:</strong> Wenn auf <code class="docutils literal notranslate"><span class="pre">true</span></code> gesetzt, wird nach erfolgreicher Passworteingabe eine zusätzliche
+Passkey-Verifizierung verlangt – sofern der Benutzer mindestens einen Passkey registriert hat. Dies bietet
+starke Zwei-Faktor-Authentifizierung (2FA) ohne separaten Authenticator.</p></li>
+<li><p><strong>ServerDomain:</strong> Die Domain des <em>Relying Party</em>, also der Hostname, unter dem <strong>IdentityServerNET</strong>
+erreichbar ist (z. B. <code class="docutils literal notranslate"><span class="pre">identity.mein-server.com</span></code>). Dieser Wert muss dem Hostnamen der <code class="docutils literal notranslate"><span class="pre">PublicOrigin</span></code>-URL
+entsprechen – Browser speichern Passkeys domaingebunden und verweigern die Verwendung auf anderen Domains.</p></li>
+<li><p><strong>RelyingPartyName:</strong> Der Anzeigename, der beim Registrieren eines Passkeys im Browser-Dialog erscheint.
+Standardwert: <code class="docutils literal notranslate"><span class="pre">IdentityServer</span></code>.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Passkeys sind an die Domain gebunden. Ein Passkey, der für <code class="docutils literal notranslate"><span class="pre">identity.mein-server.com</span></code> registriert wurde,
+kann nicht auf einer anderen Domain verwendet werden. <code class="docutils literal notranslate"><span class="pre">ServerDomain</span></code> muss daher der tatsächlichen
+öffentlichen Domain des Servers entsprechen.</p>
+</div>
+</section>
 </section>
 <section id="abschnitt-admin">
-<h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">Admin</span></code><a class="headerlink" href="#abschnitt-admin" title="Permalink to this heading">¶</a></h2>
+<h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">Admin</span></code><a class="headerlink" href="#abschnitt-admin" title="Link to this heading">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Admin&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;DenyAdminUsers&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">             </span><span class="c1">// default: false</span>
 <span class="w">    </span><span class="s2">&quot;DenyAdminRoles&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">             </span><span class="c1">// default: false</span>
@@ -325,12 +414,13 @@ Dies kann sinnvoll sein, wenn die Anmeldung ausschließlich über <em>externe Id
 <span class="w">    </span><span class="s2">&quot;DenyAdminClients&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">           </span><span class="c1">// default: false</span>
 <span class="w">    </span><span class="s2">&quot;DenyAdminSecretsVault&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">      </span><span class="c1">// default: false</span>
 <span class="w">    </span><span class="s2">&quot;DenySigningUI&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">              </span><span class="c1">// default: false</span>
-<span class="w">    </span><span class="s2">&quot;DenyAdminCreateCerts&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w">        </span><span class="c1">// default: false</span>
+<span class="w">    </span><span class="s2">&quot;DenyAdminCreateCerts&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">       </span><span class="c1">// default: false</span>
+<span class="w">    </span><span class="s2">&quot;AllowDataTransfer&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w">           </span><span class="c1">// default: false</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>Hier kann bestimmt werden, welche <em>Admin Tools</em> in der <strong>IdentityServerNET</strong>-Instanz zur Verfügung stehen:</p>
-<ul class="simple">
+<ul>
 <li><p><strong>DenyAdminUsers:</strong> Benutzerkonten können nicht von Administratoren erstellt und bearbeitet werden.</p></li>
 <li><p><strong>DenyAdminRoles:</strong> Benutzerrollen können nicht von Administratoren erstellt und bearbeitet werden.</p></li>
 <li><p><strong>DenyAdminResources:</strong> Identity- und API-Ressourcen können nicht von Administratoren erstellt und bearbeitet werden.</p></li>
@@ -338,14 +428,56 @@ Dies kann sinnvoll sein, wenn die Anmeldung ausschließlich über <em>externe Id
 <li><p><strong>DenyAdminSecretsVault:</strong> Das <strong>Secrets Vault</strong> steht dem Administrator nicht zur Verfügung.</p></li>
 <li><p><strong>DenySigningUI:</strong> Das <strong>Payload Signing</strong>-Werkzeug steht dem Administrator nicht zur Verfügung.</p></li>
 <li><p><strong>DenyAdminCreateCerts:</strong> Das <strong>Selbst-Signierte Zertifikate</strong>-Werkzeug steht dem Administrator nicht zur Verfügung.</p></li>
+<li><p><strong>DenyAdminCreateCerts:</strong> Das <strong>Selbst-Signierte Zertifikate</strong>-Werkzeug steht dem Administrator nicht zur Verfügung.</p></li>
+<li><p><strong>AllowDataTransfer:</strong> Wenn auf <code class="docutils literal notranslate"><span class="pre">true</span></code> gesetzt, erscheint im Admin-Bereich die Kachel <strong>Data Transfer</strong>.
+Administratoren können damit alle Benutzer, Rollen, Clients und Ressourcen als JSON-Datei exportieren
+und in eine andere Instanz importieren. Bestehende Einträge werden beim Import übersprungen, nie überschrieben.
+Diese Option sollte nur während der Installations-/Migrationsphase aktiviert sein und danach wieder deaktiviert werden.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Passwort-Hashes werden mit exportiert – sie sind kompatibel, solange Quell- und Zielinstanz denselben
+ASP.NET Identity-Hashing-Algorithmus verwenden. Passkeys sind im Export enthalten, funktionieren jedoch
+auf einer anderen Domain nicht (WebAuthn ist domain-gebunden).</p>
+</div>
+</li>
 </ul>
 <p>Mit diesem Abschnitt können die Administrationswerkzeuge eingeschränkt werden. Dies kann sinnvoll sein, wenn eine <strong>IdentityServer</strong>-Instanz öffentlich
 zugänglich ist. Wenn eine öffentliche Instanz keine Administrationswerkzeuge besitzt, erhöht dies die Sicherheit der <strong>IdentityServer-Datenbanken</strong>.
 Die Administration kann hier beispielsweise nur über eine Instanz erfolgen, die nicht über das Internet erreichbar ist (nur Intranet, …) und auf die gleiche
 Datenbank zugreift wie die öffentliche Instanz.</p>
 </section>
+<section id="abschnitt-security">
+<h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">Security</span></code><a class="headerlink" href="#abschnitt-security" title="Link to this heading">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Security&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;PasswordHashing&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;Template&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;{password}{username}&quot;</span><span class="w">   </span><span class="c1">// default: &quot;{password}&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Über diesen optionalen Abschnitt kann das Eingabe-Format für den Passwort-Hasher konfiguriert werden.
+Standardmäßig wird nur das Passwort gehasht. Für Migrationen von Legacy-Systemen, die dem Passwort
+zusätzliche Benutzerdaten als Salz beigefügt haben, kann das Template entsprechend angepasst werden.</p>
+<p>Unterstützte Platzhalter (werden immer durch Kleinschreibung ersetzt):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{password}</span></code> — das eingegebene Klartext-Passwort (immer erforderlich)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{email}</span></code> — die E-Mail-Adresse des Benutzers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{username}</span></code> — der Benutzername</p></li>
+</ul>
+<p>Beispiel für ein Legacy-System, das <code class="docutils literal notranslate"><span class="pre">password</span> <span class="pre">+</span> <span class="pre">username</span></code> zusammengehasht hat:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Template&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{password}{username}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Dieses Template betrifft sowohl das <strong>Erstellen neuer Hashes</strong> als auch die <strong>Verifikation</strong> bestehender.
+Nach einer erfolgreichen Migration kann das Template wieder auf <code class="docutils literal notranslate"><span class="pre">&quot;{password}&quot;</span></code> (Standard) zurückgesetzt
+werden — bereits auf PBKDF2 aktualisierte Hashes bleiben gültig, da der <code class="docutils literal notranslate"><span class="pre">SecurePasswordHasher</span></code> auch
+bei aktiviertem Rehashing korrekt verfährt.</p>
+</div>
+</section>
 <section id="abschnitt-account">
-<h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">Account</span></code><a class="headerlink" href="#abschnitt-account" title="Permalink to this heading">¶</a></h2>
+<h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">Account</span></code><a class="headerlink" href="#abschnitt-account" title="Link to this heading">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Account&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">     </span><span class="s2">&quot;DenyManageAccount&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">   </span><span class="c1">// default: false</span>
 <span class="w">     </span><span class="s2">&quot;DenyRegisterAccount&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="c1">// default: false</span>
@@ -360,7 +492,7 @@ die Benutzerkonten verwalten sollen oder wenn die Account-Verwaltung bereits üb
 </ul>
 </section>
 <section id="abschnitt-cookie">
-<h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">Cookie</span></code><a class="headerlink" href="#abschnitt-cookie" title="Permalink to this heading">¶</a></h2>
+<h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">Cookie</span></code><a class="headerlink" href="#abschnitt-cookie" title="Link to this heading">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Cookie&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;Name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;identityserver-net-identity&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="s2">&quot;Domain&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;identity.my-server.com&quot;</span><span class="p">,</span>
@@ -380,36 +512,248 @@ die Benutzerkonten verwalten sollen oder wenn die Account-Verwaltung bereits üb
 an den <strong>IdentityServerNET</strong> gesendet werden!</p>
 </section>
 <section id="abschnitt-mail">
-<h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">Mail</span></code><a class="headerlink" href="#abschnitt-mail" title="Permalink to this heading">¶</a></h2>
+<h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">Mail</span></code><a class="headerlink" href="#abschnitt-mail" title="Link to this heading">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Mail&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;Smtp&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="s2">&quot;FromEmail&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;no-reply@identityserver.net&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;FromName&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;IdentityServer NET&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;SmtpServer&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;SmtpPort&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1025</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="c1">// or</span>
 <span class="w">    </span><span class="s2">&quot;MailJet&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="s2">&quot;FromEmail&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;no-reply@identityserver.net&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;FromName&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;IdentityServer NET&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;ApiKey&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;ApiKey&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;ApiSecret&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="c1">// or</span>
 <span class="w">    </span><span class="s2">&quot;SendGrid&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="s2">&quot;FromEmail&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;no-reply@identityserver.net&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;FromName&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;IdentityServer NET&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;ApiKey&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;ApiKey&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s2">&quot;TemplatesPath&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;custom/mails&quot;</span><span class="w">   </span><span class="c1">// optional, default: custom/mails</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Bei <code class="docutils literal notranslate"><span class="pre">Forget</span> <span class="pre">Password</span></code> und <code class="docutils literal notranslate"><span class="pre">Register</span> <span class="pre">new</span> <span class="pre">user</span></code> werden E-Mails an den Benutzer gesendet. In diesem Abschnitt
+kann festgelegt werden, wie diese E-Mails verschickt werden. Standardmäßig stehen <code class="docutils literal notranslate"><span class="pre">Smtp</span></code>, <code class="docutils literal notranslate"><span class="pre">MailJet</span></code> und
+<code class="docutils literal notranslate"><span class="pre">SendGrid</span></code> zur Verfügung. Wird keine Option angegeben, wird die E-Mail nicht verschickt, sondern ins
+<em>Logging</em> ausgegeben – diese Möglichkeit sollte nur für die Entwicklung verwendet werden.</p>
+<section id="e-mail-templates">
+<h3>E-Mail-Templates<a class="headerlink" href="#e-mail-templates" title="Link to this heading">¶</a></h3>
+<p><strong>IdentityServerNET</strong> verwendet anpassbare HTML-Templates für den E-Mail-Versand. Beim Start werden Templates
+aus dem Verzeichnis <code class="docutils literal notranslate"><span class="pre">TemplatesPath</span></code> geladen (Standard: <code class="docutils literal notranslate"><span class="pre">custom/mails</span></code> relativ zum Programmverzeichnis).
+Wird für ein Template keine Datei gefunden, greift ein eingebautes Standard-Template.</p>
+<p>Folgende Template-Dateien werden unterstützt:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">confirm-email.html</span></code> – Bestätigungsmail nach der Registrierung eines neuen Benutzers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reset-password.html</span></code> – Mail zum Zurücksetzen des Passworts</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">generic.html</span></code> – Standardtemplate für alle anderen E-Mails</p></li>
+</ul>
+<p>In den Templates können folgende Platzhalter verwendet werden:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Platzhalter</p></th>
+<th class="head"><p>Bedeutung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">{{applicationName}}</span></code></p></td>
+<td><p>Name der Anwendung (aus <code class="docutils literal notranslate"><span class="pre">ApplicationTitle</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">{{subject}}</span></code></p></td>
+<td><p>Betreff der E-Mail</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">{{email}}</span></code></p></td>
+<td><p>E-Mail-Adresse des Empfängers</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">{{link}}</span></code></p></td>
+<td><p>Aktions-URL (z. B. Bestätigungs- oder Reset-Link)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">{{content}}</span></code></p></td>
+<td><p>Originaler HTML-Nachrichteninhalt (nur im <code class="docutils literal notranslate"><span class="pre">generic</span></code>-Template sinnvoll)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">{{year}}</span></code></p></td>
+<td><p>Aktuelles Jahr (für Copyright-Zeilen im Footer)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Ein absoluter Pfad bei <code class="docutils literal notranslate"><span class="pre">TemplatesPath</span></code> wird direkt verwendet. Ein relativer Pfad wird relativ zum
+Programmverzeichnis aufgelöst. Wird der Ordner oder eine Datei nicht gefunden, wird ohne Fehler auf das
+eingebaute Template zurückgegriffen.</p>
+</div>
+</section>
+</section>
+<section id="abschnitt-stores">
+<h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">Stores</span></code><a class="headerlink" href="#abschnitt-stores" title="Link to this heading">¶</a></h2>
+<p>Dieser optionale Abschnitt steuert serverseitige Stores, die während des Autorisierungsflows verwendet werden.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Stores&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Autorisierungsparameter-Store (Login ReturnUrl)</span>
+<span class="w">    </span><span class="s2">&quot;ParameterMessageStore&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;DistributedMemoryCache&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="c1">// oder</span>
+<span class="w">    </span><span class="s2">&quot;ParameterMessageStore&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;DistributedRedisCache&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;ParameterMessageStoreConnectionString&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;localhost:6379&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="c1">// PAR request_uri Store</span>
+<span class="w">    </span><span class="s2">&quot;PushedAuthorizationStore&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;DistributedMemoryCache&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="c1">// oder</span>
+<span class="w">    </span><span class="s2">&quot;PushedAuthorizationStore&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;DistributedRedisCache&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;PushedAuthorizationStoreConnectionString&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;localhost:6379&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Wird kein Store konfiguriert, greift jeweils der eingebaute Fallback:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 30.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Einstellung</p></th>
+<th class="head"><p>Standard (keine Konfiguration)</p></th>
+<th class="head"><p>Hinweis</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ParameterMessageStore</span></code></p></td>
+<td><p>Parameter in <code class="docutils literal notranslate"><span class="pre">ReturnUrl</span></code></p></td>
+<td><p>Lange Login-URL, aber keine Secrets exponiert</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PushedAuthorizationStore</span></code></p></td>
+<td><p>In-Process <code class="docutils literal notranslate"><span class="pre">ConcurrentDictionary</span></code></p></td>
+<td><p>Lazy Expiry, nur Einzelinstanz</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Hintergrund — Pushed Authorization Requests (PAR)</strong></p>
+<p><strong>IdentityServerNET</strong> unterstützt <a class="reference external" href="https://www.rfc-editor.org/rfc/rfc9126">Pushed Authorization Requests (PAR)</a>
+(RFC 9126). Bei PAR schickt ein OIDC-Client zuerst alle Autorisierungsparameter per POST an den
+<code class="docutils literal notranslate"><span class="pre">/connect/par</span></code>-Endpoint (Server-zu-Server, Backchannel). Der Server liefert eine kurzlebige
+<code class="docutils literal notranslate"><span class="pre">request_uri</span></code> zurück. Der Browser folgt anschließend nur einem Redirect mit <code class="docutils literal notranslate"><span class="pre">client_id</span></code> und
+<code class="docutils literal notranslate"><span class="pre">request_uri</span></code> – sensible Parameter (<code class="docutils literal notranslate"><span class="pre">client_secret</span></code>, <code class="docutils literal notranslate"><span class="pre">scope</span></code>, <code class="docutils literal notranslate"><span class="pre">code_challenge</span></code> usw.) sind
+damit weder in der Browser-URL noch in Server-Access-Logs sichtbar.</p>
+<p>Die ASP.NET Core OIDC-Middleware (<code class="docutils literal notranslate"><span class="pre">Microsoft.AspNetCore.Authentication.OpenIdConnect</span></code>, ab .NET 9)
+nutzt PAR automatisch, sobald der Server es im Discovery-Dokument ankündigt. Das Verhalten wird über
+<code class="docutils literal notranslate"><span class="pre">PushedAuthorizationBehavior</span></code> gesteuert:</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="n">options</span><span class="p">.</span><span class="n">PushedAuthorizationBehavior</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PushedAuthorizationBehavior</span><span class="p">.</span><span class="n">UseIfAvailable</span><span class="p">;</span><span class="w"> </span><span class="c1">// Standard</span>
+</pre></div>
+</div>
+<p><strong>ParameterMessageStore — Autorisierungsparameter serverseitig halten</strong></p>
+<p>Beim interaktiven Login-Flow muss IdentityServer die Autorisierungsparameter über den
+Login-Seiten-Redirect hinweg mitführen. Standardmäßig werden sie in den <code class="docutils literal notranslate"><span class="pre">ReturnUrl</span></code>-Querystring
+kodiert, was die Login-URL lang aber nicht unsicher macht. Um die URL kurz zu halten und die Parameter
+vollständig serverseitig zu speichern, kann ein <code class="docutils literal notranslate"><span class="pre">ParameterMessageStore</span></code> konfiguriert werden:</p>
+<ul class="simple">
+<li><p><strong>DistributedMemoryCache</strong> — Parameter werden im In-Process-Memory-Cache gespeichert. Einfach,
+ohne zusätzliche Infrastruktur – aber <strong>nicht geeignet für Multi-Instanz-Deployments</strong> (jede
+Instanz hat ihren eigenen Speicher).</p></li>
+<li><p><strong>DistributedRedisCache</strong> — Parameter werden in einem Redis-Cache gespeichert. Für Produktion und
+Multi-Instanz-Deployments geeignet. Erfordert <code class="docutils literal notranslate"><span class="pre">ParameterMessageStoreConnectionString</span></code>.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// In-Process-Memory (Einzelinstanz / Entwicklung)</span>
+<span class="s2">&quot;Stores&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;ParameterMessageStore&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;DistributedMemoryCache&quot;</span>
+<span class="p">}</span>
+
+<span class="c1">// Redis (Produktion, Multi-Instanz)</span>
+<span class="s2">&quot;Stores&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;ParameterMessageStore&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;DistributedRedisCache&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;ParameterMessageStoreConnectionString&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;redis-host:6379&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Mit einem konfigurierten <code class="docutils literal notranslate"><span class="pre">ParameterMessageStore</span></code> ändert sich die Login-URL von:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/Account/Login?ReturnUrl=/connect/authorize/callback?client_id=...&amp;scope=...&amp;code_challenge=...
+</pre></div>
+</div>
+<p>zu:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/Account/Login?ReturnUrl=/connect/authorize/callback?authzId=&lt;kurze-opake-ID&gt;
+</pre></div>
+</div>
+<p><strong>PushedAuthorizationStore — Verteilter Store für PAR request_uri</strong></p>
+<p>Die PAR-<code class="docutils literal notranslate"><span class="pre">request_uri</span></code> wird serverseitig mit einer TTL von 60 Sekunden gespeichert. Standardmäßig
+wird ein In-Process-<code class="docutils literal notranslate"><span class="pre">ConcurrentDictionary</span></code> verwendet. Abgelaufene Einträge werden nur lazy
+(beim nächsten Zugriff) entfernt, was bei hoher Last zu unbegrenztem Speicherwachstum führen kann.
+Außerdem ist der Store nicht instanzübergreifend geteilt. Ein verteilter Store behebt beides:</p>
+<ul class="simple">
+<li><p><strong>DistributedMemoryCache</strong> — In-Process-Memory mit automatischer TTL-Ablaufsteuerung. Geeignet
+für Einzelinstanz-Deployments.</p></li>
+<li><p><strong>DistributedRedisCache</strong> — Redis-basiert, von allen Instanzen geteilt. Erforderlich für
+Multi-Instanz-Deployments.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Einzelinstanz / Entwicklung</span>
+<span class="s2">&quot;Stores&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;PushedAuthorizationStore&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;DistributedMemoryCache&quot;</span>
+<span class="p">}</span>
+
+<span class="c1">// Produktion, Multi-Instanz</span>
+<span class="s2">&quot;Stores&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;PushedAuthorizationStore&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;DistributedRedisCache&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;PushedAuthorizationStoreConnectionString&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;redis-host:6379&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p><strong>Aspire:</strong> Wenn das Präprozessorsymbol <code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">USE_REDIS</span></code> in
+<code class="docutils literal notranslate"><span class="pre">IdentityServerNET.AppHost/Program.cs</span></code> aktiv ist, wird automatisch ein Redis-Container
+gestartet und <strong>beide</strong> Stores – <code class="docutils literal notranslate"><span class="pre">ParameterMessageStore</span></code> und <code class="docutils literal notranslate"><span class="pre">PushedAuthorizationStore</span></code> –
+werden über Umgebungsvariablen konfiguriert. Ein manueller Connection String ist nicht
+erforderlich.</p>
+</div>
+</section>
+<section id="abschnitt-endpoints">
+<h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">Endpoints</span></code><a class="headerlink" href="#abschnitt-endpoints" title="Link to this heading">¶</a></h2>
+<p>Dieser optionale Abschnitt steuert, welche IdentityServer-Protokoll-Endpoints aktiv sind.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Endpoints&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;EnablePushedAuthorization&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;false&quot;</span><span class="w">   </span><span class="c1">// Standard: true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>EnablePushedAuthorization:</strong> Wird auf <code class="docutils literal notranslate"><span class="pre">false</span></code> gesetzt, wird der <code class="docutils literal notranslate"><span class="pre">/connect/par</span></code>-Endpoint
+deaktiviert und <code class="docutils literal notranslate"><span class="pre">pushed_authorization_request_endpoint</span></code> verschwindet aus dem Discovery-Dokument.
+Die ASP.NET Core OIDC-Middleware fällt dann automatisch auf den normalen Authorization Code Flow
+ohne PAR zurück. Nützlich zum Testen des reinen PKCE-Flows oder in Deployments, bei denen PAR
+nicht gewünscht ist.</p></li>
+</ul>
+<p><strong>RequirePushedAuthorization bei Clients</strong></p>
+<p>Einzelne Clients können so konfiguriert werden, dass PAR zwingend erforderlich ist. Im Admin-UI
+unter <em>Clients → Options</em> wird dazu <code class="docutils literal notranslate"><span class="pre">RequirePushedAuthorization</span> <span class="pre">=</span> <span class="pre">true</span></code> gesetzt. Ein direkter
+Aufruf von <code class="docutils literal notranslate"><span class="pre">/connect/authorize</span></code> ohne vorherigen PAR-Request wird dann mit <code class="docutils literal notranslate"><span class="pre">invalid_request</span></code>
+abgewiesen.</p>
+</section>
+<section id="abschnitt-ratelimiting">
+<h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">RateLimiting</span></code><a class="headerlink" href="#abschnitt-ratelimiting" title="Link to this heading">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;RateLimiting&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;TokenEndpoint&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;PermitLimit&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span><span class="w">      </span><span class="c1">// optional, Standard: 30</span>
+<span class="w">        </span><span class="s2">&quot;WindowSeconds&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">60</span><span class="w">     </span><span class="c1">// optional, Standard: 60</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Bei <code class="docutils literal notranslate"><span class="pre">Forget</span> <span class="pre">Password</span></code> und <code class="docutils literal notranslate"><span class="pre">Register</span> <span class="pre">new</span> <span class="pre">user</span></code> werden E-Mails an den Benutzer gesendet. In diesem Abschnitt kann festgelegt werden, wie diese E-Mails verschickt werden.
-Standardmäßig stehen <code class="docutils literal notranslate"><span class="pre">Smtp</span></code>, <code class="docutils literal notranslate"><span class="pre">MailJet</span></code> und <code class="docutils literal notranslate"><span class="pre">SendGrid</span></code> zur Verfügung. Wird keine Option angegeben, wird die E-Mail nicht verschickt, sondern ins <em>Logging</em> ausgegeben.
-Diese Möglichkeit sollte nur für die Entwicklung verwendet werden.</p>
+<p>Die interaktive Login-Seite hat eine eigene Bot-Erkennung/CAPTCHA, aber der OAuth-Token-Endpoint
+(<code class="docutils literal notranslate"><span class="pre">/connect/token</span></code> — Password Grant, Client Credentials, …) ist eine eigene Angriffsfläche, die
+davon komplett unberührt bleibt. Anfragen an <code class="docutils literal notranslate"><span class="pre">/connect/token</span></code> werden pro Client-IP-Adresse über ein
+gleitendes Zeitfenster begrenzt; alle anderen Endpoints sind davon nicht betroffen.</p>
+<ul class="simple">
+<li><p><strong>PermitLimit:</strong> Maximale Anzahl an Anfragen an <code class="docutils literal notranslate"><span class="pre">/connect/token</span></code> pro IP-Adresse innerhalb von
+<code class="docutils literal notranslate"><span class="pre">WindowSeconds</span></code>. Weitere Anfragen erhalten <code class="docutils literal notranslate"><span class="pre">429</span> <span class="pre">Too</span> <span class="pre">Many</span> <span class="pre">Requests</span></code>.</p></li>
+<li><p><strong>WindowSeconds:</strong> Länge des gleitenden Zeitfensters in Sekunden.</p></li>
+</ul>
 </section>
 <section id="abschnitt-configure">
-<h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">Configure</span></code><a class="headerlink" href="#abschnitt-configure" title="Permalink to this heading">¶</a></h2>
+<h2>Abschnitt <code class="docutils literal notranslate"><span class="pre">Configure</span></code><a class="headerlink" href="#abschnitt-configure" title="Link to this heading">¶</a></h2>
 <p>Hier kann das Verhalten der <strong>IdentityServerNET</strong>-Anwendung über <em>Middlewares</em> gesteuert werden.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Configure&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;UseHttpsRedirection&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;false&quot;</span><span class="p">,</span><span class="w">         </span><span class="c1">// default: true</span>
@@ -435,11 +779,11 @@ wenn die Kommunikation innerhalb des Clusters über HTTP erfolgt.</p></li>
       </div>
     
         <div id="show_right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon"><</span><span>Page contents<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
         </div>
 
         <div id="right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">></span><span>Page contents:<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
             <div class="page_toc">
                 <ul>
 <li><a class="reference internal" href="#">Konfiguration</a><ul>
@@ -447,11 +791,21 @@ wenn die Kommunikation innerhalb des Clusters über HTTP erfolgt.</p></li>
 <li><a class="reference internal" href="#abschnitt-connectionstrings">Abschnitt <code class="docutils literal notranslate"><span class="pre">ConnectionStrings</span></code></a></li>
 <li><a class="reference internal" href="#abschnitt-crypto">Abschnitt <code class="docutils literal notranslate"><span class="pre">Crypto</span></code></a></li>
 <li><a class="reference internal" href="#abschnitt-signingcredential">Abschnitt <code class="docutils literal notranslate"><span class="pre">SigningCredential</span></code></a></li>
-<li><a class="reference internal" href="#abschnitt-login">Abschnitt <code class="docutils literal notranslate"><span class="pre">Login</span></code></a></li>
+<li><a class="reference internal" href="#abschnitt-login">Abschnitt <code class="docutils literal notranslate"><span class="pre">Login</span></code></a><ul>
+<li><a class="reference internal" href="#unterabschnitt-passkey">Unterabschnitt <code class="docutils literal notranslate"><span class="pre">Passkey</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#abschnitt-admin">Abschnitt <code class="docutils literal notranslate"><span class="pre">Admin</span></code></a></li>
+<li><a class="reference internal" href="#abschnitt-security">Abschnitt <code class="docutils literal notranslate"><span class="pre">Security</span></code></a></li>
 <li><a class="reference internal" href="#abschnitt-account">Abschnitt <code class="docutils literal notranslate"><span class="pre">Account</span></code></a></li>
 <li><a class="reference internal" href="#abschnitt-cookie">Abschnitt <code class="docutils literal notranslate"><span class="pre">Cookie</span></code></a></li>
-<li><a class="reference internal" href="#abschnitt-mail">Abschnitt <code class="docutils literal notranslate"><span class="pre">Mail</span></code></a></li>
+<li><a class="reference internal" href="#abschnitt-mail">Abschnitt <code class="docutils literal notranslate"><span class="pre">Mail</span></code></a><ul>
+<li><a class="reference internal" href="#e-mail-templates">E-Mail-Templates</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#abschnitt-stores">Abschnitt <code class="docutils literal notranslate"><span class="pre">Stores</span></code></a></li>
+<li><a class="reference internal" href="#abschnitt-endpoints">Abschnitt <code class="docutils literal notranslate"><span class="pre">Endpoints</span></code></a></li>
+<li><a class="reference internal" href="#abschnitt-ratelimiting">Abschnitt <code class="docutils literal notranslate"><span class="pre">RateLimiting</span></code></a></li>
 <li><a class="reference internal" href="#abschnitt-configure">Abschnitt <code class="docutils literal notranslate"><span class="pre">Configure</span></code></a></li>
 </ul>
 </li>
@@ -468,13 +822,13 @@ wenn die Kommunikation innerhalb des Clusters über HTTP erfolgt.</p></li>
             <div class="left">
                 
                 <a href="installation-aspire.html">
-                    <span class="icon"><</span><span>Installation mit Aspire</span></a>
+                    <span class="icon">&lt;</span><span>Installation mit Aspire</span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="login-as-admin.html"><span>Als Administrator anmelden</span><span class="icon">></span></a>
+                    <a href="login-as-admin.html"><span>Als Administrator anmelden</span><span class="icon">&gt;</span></a>
                 
             </div>
         </div>
@@ -482,8 +836,8 @@ wenn die Kommunikation innerhalb des Clusters über HTTP erfolgt.</p></li>
 
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2024, Jürgen Gstaltmaier.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    &#169; Copyright 2026, Jürgen Gstaltmaier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

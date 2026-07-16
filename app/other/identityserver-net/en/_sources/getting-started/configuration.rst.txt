@@ -26,7 +26,7 @@ Structure of the config file:
             "Crypto": {
                 // ...
             },
-            "SigningCredential": {  // default: null => certs only in memory
+            "SigningCredential": {  // default: file-based storage under <StorageRootPath>/storage/validation
                 // ...
             },
             "Login": {
@@ -42,6 +42,9 @@ Structure of the config file:
                 // ...
             },
             "Mail": {
+                // ...
+            },
+            "Stores": {
                 // ...
             },
             "Configure": {
@@ -124,8 +127,47 @@ A connection string can be defined for each *class*. If not all *classes* are sp
 
 .. note::
 
-    The ``Clients`` and ``Resources`` classes can also be stored in **Azure Tables** 
+    The ``Clients`` and ``Resources`` classes can also be stored in **Azure Tables**
     or a **MongoDB**.
+
+Starting with version 7, **relational databases** are also available as storage backends:
+
+.. code:: javascript
+
+    "ConnectionStrings": {
+        // Microsoft SQL Server
+        "SqlServer": "Server=localhost,1433;Database=identityserver;User Id=sa;Password=...;TrustServerCertificate=True"
+
+        // PostgreSQL
+        "Postgres": "Host=localhost;Port=5432;Database=identityserver;Username=postgres;Password=postgres"
+
+        // SQLite
+        "Sqlite": "Data Source=identityserver.db"
+        // or with explicit path
+        "Sqlite": "Data Source=c:\\apps\\identityserver-net\\identityserver.db"
+    }
+
+* **SqlServer:** Connection string for a **Microsoft SQL Server** database. Tables are created automatically on first startup.
+* **Postgres:** Connection string for a **PostgreSQL** database. Tables are created automatically on first startup.
+* **Sqlite:** Connection string for a **SQLite** database file. The file and all required directories are created automatically.
+
+SQL backends also support per-class routing to different databases:
+
+.. code:: javascript
+
+    "ConnectionStrings": {
+        "Users":     { "SqlServer": "Server=...;Database=identityserver;..." },
+        "Roles":     { "SqlServer": "Server=...;Database=identityserver;..." },
+        "Clients":   { "Postgres":  "Host=...;Database=identityserver;..." },
+        "Resources": { "Sqlite":    "Data Source=identityserver.db" }
+    }
+
+.. note::
+
+    All SQL backends store objects (users, roles, clients, resources) as encrypted JSON
+    in a ``BlobData`` column — the same pattern as LiteDb. Tables are created automatically
+    on the first connection if they do not yet exist. For **PostgreSQL** and **SQLite**,
+    usernames and email addresses are always stored and compared in lowercase.
 
 Section ``Crypto``
 ------------------
@@ -158,15 +200,30 @@ Section ``SigningCredential``
 .. code:: javascript
 
     "SigningCredential": {
-      "Storage": "c:\\apps\\identityserver-net\\storage\\validation",  // any path
-      "CertPassword": "..."
+      "Storage": "c:\\apps\\identityserver-net\\storage\\validation",  // optional, default: <StorageRootPath>/storage/validation
+      "CertPassword": "...",                                          // optional, default: random per-installation password
+      "InMemoryOnly": true                                            // optional, default: false
     }
 
-To sign **tokens**, **IdentityServerNET** requires certificates with private and public keys. Here, you can specify the storage location for these 
-certificates. Additionally, a password can be provided to encrypt the certificates. The private key can then only be accessed by applications that know this password.
+To sign **tokens**, **IdentityServerNET** requires certificates with private and public keys.
 
-If this section is not specified, the certificates will be stored **in memory** only.
-(All certificates will be lost upon application restart; this should only be used for testing or development!).
+By default, these certificates are stored as password-protected files under ``<StorageRootPath>/storage/validation``
+(see ``StorageRootPath`` above) — this is the default even if the ``SigningCredential`` section is omitted entirely.
+Certificates are renewed automatically in the background and old, no-longer-active certificates are deleted
+automatically after a retention period. See :doc:`../internals/signing-certificates` for the full
+mechanism (rotation, active window, cleanup) and the advanced ``CheckInterval``/``RenewIfOlderThanDays``/
+``CacheDuration`` tuning options.
+
+* **Storage:** Overrides the storage location for the certificates. Optional — defaults to
+  ``<StorageRootPath>/storage/validation``.
+
+* **CertPassword:** The password used to encrypt the exported certificate files. Optional — if not set,
+  a random password is generated once per installation and persisted (encrypted via the .NET Data
+  Protection API) alongside the certificates, instead of relying on a fixed, shared default.
+
+* **InMemoryOnly:** If set to ``true``, certificates are kept in memory only instead of being persisted
+  to disk. All certificates are lost on every application restart — only use this for testing or
+  development, never in production.
 
 Section ``Login``
 -----------------
@@ -177,7 +234,13 @@ Section ``Login``
         "DenyForgotPasswordChallange": true,    // default: false
         "DenyRememberLogin": true,              // default: false,
         "RememberLoginDefaultValue": true,      // default: false
-        "DenyLocalLogin": true                  // default: false  
+        "DenyLocalLogin": true,                 // default: false
+        "Passkey": {
+            "AllowPasswordless": true,          // default: false
+            "AllowSecondFactor": true,          // default: false
+            "ServerDomain": "identity.my-server.com",
+            "RelyingPartyName": "My App"        // default: "IdentityServer"
+        }
     }
 
 This section allows control over login behavior and options:
@@ -185,8 +248,35 @@ This section allows control over login behavior and options:
 * **DenyForgotPasswordChallange:** If set to ``true``, users will not have the option to reset their password via ``Forgot password``.
 * **DenyRememberLogin:** If set to ``true``, the ``Remember my login`` option will not be offered at login.
 * **RememberLoginDefaultValue:** If set to ``true``, the ``Remember my login`` option will be selected by default.
-* **DenyLocalLogin:** If set to ``true``, users cannot log in with a username/password. 
+* **DenyLocalLogin:** If set to ``true``, users cannot log in with a username/password.
   This can be useful if login should only be possible via *external identity providers*.
+
+Subsection ``Passkey``
+~~~~~~~~~~~~~~~~~~~~~~
+
+This subsection configures **Passkey** support (WebAuthn). Passkeys enable secure authentication using
+hardware security keys, biometric sensors (fingerprint, face recognition), or a device PIN — without a
+traditional password.
+
+* **AllowPasswordless:** If set to ``true``, users can sign in directly with a passkey — no username or
+  password required. A ``Sign in with passkey`` button appears on the login page. Users can register
+  passkeys under *Manage Account → Passkeys*.
+
+* **AllowSecondFactor:** If set to ``true``, a passkey verification is required after successful password
+  entry — provided the user has at least one passkey registered. This provides strong two-factor
+  authentication (2FA) without a separate authenticator app.
+
+* **ServerDomain:** The *Relying Party* domain — the hostname under which **IdentityServerNET** is
+  accessible (e.g. ``identity.my-server.com``). This value must match the hostname in the ``PublicOrigin``
+  URL, since browsers bind passkeys to their registration domain and refuse to use them on other domains.
+
+* **RelyingPartyName:** The display name shown in the browser dialog when registering a new passkey.
+  Default: ``IdentityServer``.
+
+.. note::
+
+    Passkeys are domain-bound. A passkey registered for ``identity.my-server.com`` cannot be used on a
+    different domain. Ensure ``ServerDomain`` matches the actual public hostname of the server.
 
 Section ``Admin``
 -----------------
@@ -200,7 +290,8 @@ Section ``Admin``
         "DenyAdminClients": true,           // default: false
         "DenyAdminSecretsVault": true,      // default: false
         "DenySigningUI": true,              // default: false
-        "DenyAdminCreateCerts": true        // default: false
+        "DenyAdminCreateCerts": true,       // default: false
+        "AllowDataTransfer": true           // default: false
     }
 
 This section allows you to control which *admin tools* are available in the **IdentityServerNET** instance:
@@ -213,9 +304,54 @@ This section allows you to control which *admin tools* are available in the **Id
 * **DenySigningUI:** The **Payload Signing** tool is not available to the administrator.
 * **DenyAdminCreateCerts:** The **Self-Signed Certificates** tool is not available to the administrator.
 
+* **DenyAdminCreateCerts:** The **Self-Signed Certificates** tool is not available to the administrator.
+
+* **AllowDataTransfer:** If set to ``true``, a **Data Transfer** tile appears in the admin area.
+  Administrators can export all users, roles, clients, and resources as a JSON file and import them into
+  another instance. Existing entries are skipped during import — nothing is ever overwritten.
+  This option should only be enabled during the installation or migration phase and disabled afterwards.
+
+  .. note::
+
+      Password hashes are included in the export and remain compatible as long as the source and target
+      instance use the same ASP.NET Identity hashing algorithm. Passkeys are exported but will not work
+      on a different domain (WebAuthn is domain-bound).
+
 This section can be used to restrict the administrative tools. This can be useful if an **IdentityServer** instance is publicly accessible. If a public instance has no admin tools available, it enhances the security of the **IdentityServer databases**.
-Administration can, for example, be restricted to an instance that is not accessible over the internet (only intranet, etc.) and that shares the same 
+Administration can, for example, be restricted to an instance that is not accessible over the internet (only intranet, etc.) and that shares the same
 database as the public instance.
+
+Section ``Security``
+--------------------
+
+.. code:: javascript
+
+    "Security": {
+        "PasswordHashing": {
+            "Template": "{password}{username}"   // default: "{password}"
+        }
+    }
+
+This optional section configures the input format used by the password hasher.
+By default, only the password itself is hashed. For migrations from legacy systems that appended
+additional user data as a salt, the template can be adjusted accordingly.
+
+Supported placeholders (always replaced with lowercase values from the user profile):
+
+* ``{password}`` — the plain-text password provided by the user (always required)
+* ``{email}`` — the user's email address
+* ``{username}`` — the user's username
+
+Example for a legacy system that hashed ``password + username``::
+
+    "Template": "{password}{username}"
+
+.. note::
+
+    The template affects both **new hash creation** and **verification** of existing hashes.
+    After a completed migration, the template can be reset to the default ``"{password}"`` —
+    hashes that have already been upgraded to PBKDF2 remain valid because the ``SecurePasswordHasher``
+    handles the rehash signal correctly.
 
 Section ``Account``
 -------------------
@@ -267,25 +403,236 @@ Section ``Mail``
             "FromName": "IdentityServer NET",
             "SmtpServer": "localhost",
             "SmtpPort": 1025
-        }
+        },
         // or
         "MailJet": {
             "FromEmail": "no-reply@identityserver.net",
             "FromName": "IdentityServer NET",
-        	"ApiKey": "...",
+            "ApiKey": "...",
             "ApiSecret": "..."
-        }
+        },
         // or
         "SendGrid": {
             "FromEmail": "no-reply@identityserver.net",
             "FromName": "IdentityServer NET",
-        	"ApiKey": "...",
+            "ApiKey": "..."
+        },
+        "TemplatesPath": "custom/mails"   // optional, default: custom/mails
+    }
+
+For ``Forget Password`` and ``Register new user`` actions, emails are sent to the user. This section allows
+you to specify how these emails are sent. By default, ``Smtp``, ``MailJet``, and ``SendGrid`` are available.
+If no option is specified, the email will not be sent but will be output to *logging* instead — this should
+only be used during development.
+
+Email Templates
+~~~~~~~~~~~~~~~
+
+**IdentityServerNET** supports customizable HTML templates for outgoing emails. On startup, templates are
+loaded from the directory specified by ``TemplatesPath`` (default: ``custom/mails`` relative to the
+application directory). If a template file is not found, a built-in default template is used as a fallback.
+
+The following template files are supported:
+
+* ``confirm-email.html`` – Sent when a user registers and needs to confirm their email address
+* ``reset-password.html`` – Sent when a user requests a password reset
+* ``generic.html`` – Default template for any other emails
+
+The following placeholders are available inside templates:
+
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
+
+   * - Placeholder
+     - Description
+   * - ``{{applicationName}}``
+     - Application name (from ``ApplicationTitle``)
+   * - ``{{subject}}``
+     - Email subject line
+   * - ``{{email}}``
+     - Recipient email address
+   * - ``{{link}}``
+     - Action URL (e.g. confirmation or password reset link)
+   * - ``{{content}}``
+     - Original HTML message content (most useful in the ``generic`` template)
+   * - ``{{year}}``
+     - Current year (for copyright lines in the footer)
+
+.. note::
+
+    An absolute path for ``TemplatesPath`` is used as-is. A relative path is resolved relative to the
+    application base directory. If the folder or a specific template file is not found, the built-in
+    fallback template is used silently — no error is raised.
+
+Section ``Stores``
+------------------
+
+This optional section controls server-side stores used during the authorization flow.
+
+.. code:: javascript
+
+    "Stores": {
+        // Authorization parameters store (login ReturnUrl)
+        "ParameterMessageStore": "DistributedMemoryCache",
+        // or
+        "ParameterMessageStore": "DistributedRedisCache",
+        "ParameterMessageStoreConnectionString": "localhost:6379",
+
+        // PAR request_uri store
+        "PushedAuthorizationStore": "DistributedMemoryCache",
+        // or
+        "PushedAuthorizationStore": "DistributedRedisCache",
+        "PushedAuthorizationStoreConnectionString": "localhost:6379"
+    }
+
+If a store is not configured, the built-in fallback is used:
+
+.. list-table::
+   :widths: 30 25 45
+   :header-rows: 1
+
+   * - Setting
+     - Default (no config)
+     - Notes
+   * - ``ParameterMessageStore``
+     - Parameters in ``ReturnUrl``
+     - Long login URL, but no secrets exposed
+   * - ``PushedAuthorizationStore``
+     - In-process ``ConcurrentDictionary``
+     - Lazy expiry, single-instance only
+
+**Background — Pushed Authorization Requests (PAR)**
+
+By default, **IdentityServerNET** supports `Pushed Authorization Requests (PAR) <https://www.rfc-editor.org/rfc/rfc9126>`_
+(RFC 9126). With PAR, an OIDC client first POSTs all authorization parameters to the ``/connect/par``
+endpoint (server-to-server, backchannel). The server returns a short-lived ``request_uri``. The browser
+then only follows a redirect containing ``client_id`` and ``request_uri`` — no sensitive parameters
+(``client_secret``, ``scope``, ``code_challenge``, etc.) are ever visible in the browser URL or server
+access logs.
+
+The ASP.NET Core OIDC middleware (``Microsoft.AspNetCore.Authentication.OpenIdConnect``, .NET 9+)
+automatically uses PAR when the server advertises it in the discovery document. The ``PushedAuthorizationBehavior``
+option controls this behavior:
+
+.. code:: csharp
+
+    options.PushedAuthorizationBehavior = PushedAuthorizationBehavior.UseIfAvailable; // default
+
+**ParameterMessageStore — Keeping authorize parameters server-side**
+
+During an interactive login flow, IdentityServer must carry the authorization parameters across the
+login-page redirect. By default it encodes them into the ``ReturnUrl`` query string, which makes the
+login URL long but contains no secrets. To keep the URL short and the parameters entirely server-side,
+configure a ``ParameterMessageStore``:
+
+* **DistributedMemoryCache** — parameters are stored in an in-process memory cache. Simple, no
+  additional infrastructure required, but **not suitable for multi-instance deployments** (each
+  instance has its own memory).
+
+* **DistributedRedisCache** — parameters are stored in a Redis cache. Suitable for production and
+  multi-instance deployments. Requires ``ParameterMessageStoreConnectionString``.
+
+.. code:: javascript
+
+    // In-process memory (single instance / development)
+    "Stores": {
+        "ParameterMessageStore": "DistributedMemoryCache"
+    }
+
+    // Redis (production, multi-instance)
+    "Stores": {
+        "ParameterMessageStore": "DistributedRedisCache",
+        "ParameterMessageStoreConnectionString": "redis-host:6379"
+    }
+
+When a ``ParameterMessageStore`` is configured, the login-page URL changes from:
+
+.. code::
+
+    /Account/Login?ReturnUrl=/connect/authorize/callback?client_id=...&scope=...&code_challenge=...
+
+to:
+
+.. code::
+
+    /Account/Login?ReturnUrl=/connect/authorize/callback?authzId=<short-opaque-id>
+
+**PushedAuthorizationStore — Distributed store for PAR request_uri**
+
+The PAR ``request_uri`` is stored server-side with a 60-second TTL. By default an in-process
+``ConcurrentDictionary`` is used. Expired entries are evicted lazily (on next access), which can
+cause unbounded memory growth under heavy load, and the store is not shared across instances.
+Configure a distributed store to fix both:
+
+* **DistributedMemoryCache** — in-process memory with automatic TTL eviction. Suitable for
+  single-instance deployments.
+* **DistributedRedisCache** — Redis-backed, shared across all instances. Required for
+  multi-instance deployments.
+
+.. code:: javascript
+
+    // Single instance / development
+    "Stores": {
+        "PushedAuthorizationStore": "DistributedMemoryCache"
+    }
+
+    // Production, multi-instance
+    "Stores": {
+        "PushedAuthorizationStore": "DistributedRedisCache",
+        "PushedAuthorizationStoreConnectionString": "redis-host:6379"
+    }
+
+.. note::
+
+    **Aspire:** When the ``#define USE_REDIS`` preprocessor symbol is active in
+    ``IdentityServerNET.AppHost/Program.cs``, a Redis container is started automatically and
+    **both** the ``ParameterMessageStore`` and the ``PushedAuthorizationStore`` are configured
+    via environment variables — no manual connection string setup is needed.
+
+Section ``Endpoints``
+---------------------
+
+This optional section controls which IdentityServer protocol endpoints are active.
+
+.. code:: javascript
+
+    "Endpoints": {
+        "EnablePushedAuthorization": "false"   // default: true
+    }
+
+* **EnablePushedAuthorization:** If set to ``false``, the ``/connect/par`` endpoint is disabled and
+  ``pushed_authorization_request_endpoint`` is removed from the discovery document. The ASP.NET Core
+  OIDC middleware then falls back to the standard authorization code flow without PAR. Useful for
+  testing the plain PKCE flow or for deployments where PAR is not desired.
+
+**RequirePushedAuthorization on Clients**
+
+Individual clients can be required to use PAR exclusively. In the Admin UI under
+*Clients → Options*, set ``RequirePushedAuthorization = true``. Any direct call to
+``/connect/authorize`` without a prior PAR request will then be rejected with
+``invalid_request``.
+
+Section ``RateLimiting``
+-------------------------
+
+.. code:: javascript
+
+    "RateLimiting": {
+        "TokenEndpoint": {
+            "PermitLimit": 30,      // optional, default: 30
+            "WindowSeconds": 60     // optional, default: 60
         }
     }
 
-For ``Forget Password`` and ``Register new user`` actions, emails are sent to the user. This section allows you to specify how these emails are sent.
-By default, ``Smtp``, ``MailJet``, and ``SendGrid`` are available. If no option is specified, the email will not be sent but will be output to *logging* instead.
-This option should only be used during development.
+The interactive login page has its own bot-detection/CAPTCHA, but the OAuth token endpoint
+(``/connect/token`` — password grant, client credentials, ...) is a separate attack surface that
+bypasses it entirely. Requests to ``/connect/token`` are rate limited per client IP address using a
+sliding window; every other endpoint is unaffected.
+
+* **PermitLimit:** Maximum number of requests to ``/connect/token`` allowed per IP address within
+  ``WindowSeconds``. Additional requests receive ``429 Too Many Requests``.
+* **WindowSeconds:** Length of the sliding window, in seconds.
 
 Section ``Configure``
 ---------------------

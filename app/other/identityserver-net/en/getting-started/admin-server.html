@@ -1,17 +1,16 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Server Administration &#8212; IdentityserverNET 5.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=0.7.0-1" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
+    <title>Server Administration &#8212; IdentityserverNET 7.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=d7bb20b6" />
+    <script src="../_static/documentation_options.js?v=efe5be6f"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <script src="../_static/js/petite-vue.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -31,7 +30,7 @@
         <p id="toggle_sidebar">
             <a href="#" title="Toggle sidebar">|||</a>
         </p>
-        <h1><a href="../index.html" title="Go to homepage">IdentityserverNET 5.0.0 documentation</a></h1>
+        <h1><a href="../index.html" title="Go to homepage">IdentityserverNET 7.0.0 documentation</a></h1>
 
         <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
     <template v-if="mode == 'light'">
@@ -125,6 +124,8 @@
 <li class="toctree-l2"><a class="reference internal" href="installation-windows.html">Installation on Windows</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation-linux.html">Installation on Linux</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation-docker.html">Installation with Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-docker-compose.html">Installation with Docker Compose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-kubernetes.html">Installation with Kubernetes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation-aspire.html">Installation with Aspire</a></li>
 <li class="toctree-l2"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="login-as-admin.html">Log in as Administrator</a></li>
@@ -132,7 +133,9 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../clients/index.html">Managing Clients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../realms/index.html">Realms (Multi-Tenancy)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../accessories/index.html">Additional Admin Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">How IdentityServerNET Works</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../etc/index.html">Additional Topics</a></li>
 </ul>
 
@@ -146,7 +149,7 @@
           <div class="body" role="main">
             
   <section id="server-administration">
-<h1>Server Administration<a class="headerlink" href="#server-administration" title="Permalink to this heading">¶</a></h1>
+<h1>Server Administration<a class="headerlink" href="#server-administration" title="Link to this heading">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This section only explains basic administration; specific topics (such as registering a web application as a client, etc.) will be discussed in more detail later.
@@ -155,7 +158,7 @@ Additionally, not every administration page is covered here (e.g., <code class="
 <p>When logged in as an administrator, click on the <code class="docutils literal notranslate"><span class="pre">Admin</span></code> tile on the homepage to access the following view:</p>
 <img alt="../_images/admin-server1.png" src="../_images/admin-server1.png" />
 <section id="user">
-<h2>User<a class="headerlink" href="#user" title="Permalink to this heading">¶</a></h2>
+<h2>User<a class="headerlink" href="#user" title="Link to this heading">¶</a></h2>
 <p>Clicking on the <code class="docutils literal notranslate"><span class="pre">User</span></code> tile displays the following view:</p>
 <img alt="../_images/admin-server2.png" src="../_images/admin-server2.png" />
 <div class="admonition note">
@@ -176,9 +179,21 @@ the administrator can bypass this step and mark the email address as confirmed:<
 <img alt="../_images/admin-server3.png" src="../_images/admin-server3.png" />
 <p>A future login with this user is possible once the email address is marked as <code class="docutils literal notranslate"><span class="pre">confirmed</span></code>!</p>
 </div>
+<section id="one-time-passwords">
+<h3>One-time Passwords<a class="headerlink" href="#one-time-passwords" title="Link to this heading">¶</a></h3>
+<p>Both <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">new</span> <span class="pre">user</span></code> and a user’s <code class="docutils literal notranslate"><span class="pre">Set</span> <span class="pre">Password</span></code> page offer a checkbox <strong>This is a one-time
+password — user must change it at next login</strong>. When checked, the user signs in normally with the
+password you set, but is immediately redirected to a forced <em>Change your password</em> page and cannot
+access anything else — including the admin area — until a new password is chosen.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This mechanism is used automatically whenever a <a class="reference internal" href="../realms/managing-realms.html"><span class="doc">realm</span></a> is created:
+the auto-generated realm admin password is always a one-time password.</p>
+</div>
+</section>
 </section>
 <section id="roles">
-<h2>Roles<a class="headerlink" href="#roles" title="Permalink to this heading">¶</a></h2>
+<h2>Roles<a class="headerlink" href="#roles" title="Link to this heading">¶</a></h2>
 <p>Clicking on the <code class="docutils literal notranslate"><span class="pre">Roles</span></code> tile takes you to the following view:</p>
 <img alt="../_images/admin-server4.png" src="../_images/admin-server4.png" />
 <p>Here, you can manage roles that can be assigned to users. By default, roles from <strong>IdentityServerNET</strong> are listed here, indicating whether a user
@@ -188,7 +203,7 @@ is authorized to perform certain administrative tasks. Custom roles can be creat
 <img alt="../_images/admin-server5.png" src="../_images/admin-server5.png" />
 </section>
 <section id="resources-identities-apis">
-<h2>Resources (Identities &amp; APIs)<a class="headerlink" href="#resources-identities-apis" title="Permalink to this heading">¶</a></h2>
+<h2>Resources (Identities &amp; APIs)<a class="headerlink" href="#resources-identities-apis" title="Link to this heading">¶</a></h2>
 <p>Clicking on the <code class="docutils literal notranslate"><span class="pre">Resources</span> <span class="pre">(Identities</span> <span class="pre">&amp;</span> <span class="pre">APIs)</span></code> tile brings you to a view explaining <code class="docutils literal notranslate"><span class="pre">Identity</span> <span class="pre">Resources</span></code> and <code class="docutils literal notranslate"><span class="pre">Api</span> <span class="pre">Resources</span></code>.</p>
 <p>Initially, the focus is on <code class="docutils literal notranslate"><span class="pre">Identity</span> <span class="pre">Resources</span></code>, which specify the <code class="docutils literal notranslate"><span class="pre">Claims</span></code> a client (web) application can request during login.
 The settings here apply to the entire server and specify what may be available. Later, when setting up a client, you will specify
@@ -215,15 +230,18 @@ a custom <em>Identity Resource</em> <code class="docutils literal notranslate"><
       </div>
     
         <div id="show_right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon"><</span><span>Page contents<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
         </div>
 
         <div id="right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">></span><span>Page contents:<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
             <div class="page_toc">
                 <ul>
 <li><a class="reference internal" href="#">Server Administration</a><ul>
-<li><a class="reference internal" href="#user">User</a></li>
+<li><a class="reference internal" href="#user">User</a><ul>
+<li><a class="reference internal" href="#one-time-passwords">One-time Passwords</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#roles">Roles</a></li>
 <li><a class="reference internal" href="#resources-identities-apis">Resources (Identities &amp; APIs)</a></li>
 </ul>
@@ -241,13 +259,13 @@ a custom <em>Identity Resource</em> <code class="docutils literal notranslate"><
             <div class="left">
                 
                 <a href="login-as-admin.html">
-                    <span class="icon"><</span><span>Log in as Administrator</span></a>
+                    <span class="icon">&lt;</span><span>Log in as Administrator</span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="../clients/index.html"><span>Managing Clients</span><span class="icon">></span></a>
+                    <a href="../clients/index.html"><span>Managing Clients</span><span class="icon">&gt;</span></a>
                 
             </div>
         </div>
@@ -255,8 +273,8 @@ a custom <em>Identity Resource</em> <code class="docutils literal notranslate"><
 
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2024, Jürgen Gstaltmaier.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    &#169; Copyright 2026, Jürgen Gstaltmaier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

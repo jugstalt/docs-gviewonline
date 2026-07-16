@@ -1,18 +1,17 @@
-
 <!DOCTYPE html>
 
-<html lang="de">
+<html lang="de" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Payload Signing &#8212; IdentityserverNET 5.0.0 Dokumentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=0.7.0-1" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/translations.js"></script>
+    <title>Payload Signing &#8212; IdentityserverNET 7.0.0 Dokumentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=d7bb20b6" />
+    <script src="../_static/documentation_options.js?v=929a6565"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/translations.js?v=70a09b52"></script>
     <script src="../_static/js/theme.js"></script>
     <script src="../_static/js/petite-vue.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
@@ -32,7 +31,7 @@
         <p id="toggle_sidebar">
             <a href="#" title="Toggle sidebar">|||</a>
         </p>
-        <h1><a href="../index.html" title="Go to homepage">IdentityserverNET 5.0.0 Dokumentation</a></h1>
+        <h1><a href="../index.html" title="Go to homepage">IdentityserverNET 7.0.0 Dokumentation</a></h1>
 
         <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
     <template v-if="mode == 'light'">
@@ -143,12 +142,12 @@
           <div class="body" role="main">
             
   <section id="payload-signing">
-<h1>Payload Signing<a class="headerlink" href="#payload-signing" title="Permalink to this heading">¶</a></h1>
+<h1>Payload Signing<a class="headerlink" href="#payload-signing" title="Link to this heading">¶</a></h1>
 <p>Mit <strong>Payload Signing</strong> kann ein beliebiger Payload (Dictionary) in einen JWT-Token verpackt werden.
 Das Erstellen eines Tokens kann entweder über die <em>Admin-Seite</em> oder durch einen API-Aufruf eines
 berechtigten Clients erfolgen.</p>
 <section id="jwt-token-uber-die-admin-seite">
-<h2>JWT-Token über die Admin-Seite<a class="headerlink" href="#jwt-token-uber-die-admin-seite" title="Permalink to this heading">¶</a></h2>
+<h2>JWT-Token über die Admin-Seite<a class="headerlink" href="#jwt-token-uber-die-admin-seite" title="Link to this heading">¶</a></h2>
 <p>Um als Administrator einen <strong>JWT-Token</strong> zu erzeugen, navigiert man auf der <em>Admin-Seite</em>
 zum Bereich <code class="docutils literal notranslate"><span class="pre">Sign</span> <span class="pre">Payload</span> <span class="pre">UI</span></code>.</p>
 <p>Hier kann ein <strong>Payload</strong> (Dictionary) im JSON-Format angegeben werden, aus dem
@@ -158,11 +157,11 @@ ein Token erzeugt wird:</p>
 <a class="reference internal image-reference" href="../_images/signing2.png"><img alt="../_images/signing2.png" src="../_images/signing2.png" style="width: 300px;" /></a>
 </section>
 <section id="jwt-token-uber-die-signing-api">
-<h2>JWT-Token über die Signing API<a class="headerlink" href="#jwt-token-uber-die-signing-api" title="Permalink to this heading">¶</a></h2>
+<h2>JWT-Token über die Signing API<a class="headerlink" href="#jwt-token-uber-die-signing-api" title="Link to this heading">¶</a></h2>
 <p>Über die <strong>Signing API</strong> kann ein berechtigter Client JWT-Tokens mit benutzerdefiniertem
 Payload erstellen. Folgende Voraussetzungen müssen dafür erfüllt sein:</p>
 <section id="api-resource-einrichten">
-<h3>API Resource einrichten<a class="headerlink" href="#api-resource-einrichten" title="Permalink to this heading">¶</a></h3>
+<h3>API Resource einrichten<a class="headerlink" href="#api-resource-einrichten" title="Link to this heading">¶</a></h3>
 <p>Zunächst muss die <strong>API Resource</strong> eingerichtet werden (falls noch nicht vorhanden).
 Wechseln Sie dazu auf der <em>Admin-Seite</em> in den Bereich <code class="docutils literal notranslate"><span class="pre">Resources</span> <span class="pre">(Identity</span> <span class="pre">&amp;</span> <span class="pre">APIs)</span></code> und dort
 zum Menüpunkt <code class="docutils literal notranslate"><span class="pre">API</span> <span class="pre">Resources</span></code>. Hier muss eine <strong>API Resource</strong> mit dem Namen <code class="docutils literal notranslate"><span class="pre">signing-api</span></code>
@@ -177,7 +176,7 @@ hinzugefügt werden.</p>
 </div>
 </section>
 <section id="api-client-erstellen">
-<h3>API Client erstellen<a class="headerlink" href="#api-client-erstellen" title="Permalink to this heading">¶</a></h3>
+<h3>API Client erstellen<a class="headerlink" href="#api-client-erstellen" title="Link to this heading">¶</a></h3>
 <p>Als Nächstes muss ein <em>Client</em> erstellt werden, der Zugriff auf die <strong>Signing API</strong> erhält.
 Dazu wechseln Sie auf der <em>Admin-Seite</em> in den Bereich <code class="docutils literal notranslate"><span class="pre">Clients</span></code> und legen dort einen <strong>API Client</strong>
 an:</p>
@@ -189,7 +188,7 @@ werden:</p>
 <img alt="../_images/signing5.png" src="../_images/signing5.png" />
 </section>
 <section id="token-uber-http-request-erstellen">
-<h3>Token über HTTP Request erstellen<a class="headerlink" href="#token-uber-http-request-erstellen" title="Permalink to this heading">¶</a></h3>
+<h3>Token über HTTP Request erstellen<a class="headerlink" href="#token-uber-http-request-erstellen" title="Link to this heading">¶</a></h3>
 <p>Zuerst muss ein gültiger <strong>Bearer Token</strong> abgerufen werden:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">44300</span><span class="o">/</span><span class="n">connect</span><span class="o">/</span><span class="n">token</span>
 <span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">x</span><span class="o">-</span><span class="n">www</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">urlencoded</span>
@@ -212,7 +211,7 @@ den <strong>Token</strong> zu erstellen:</p>
 </div>
 </section>
 <section id="token-uber-identityservernet-clients-abrufen">
-<h3>Token über IdentityServerNET.Clients abrufen<a class="headerlink" href="#token-uber-identityservernet-clients-abrufen" title="Permalink to this heading">¶</a></h3>
+<h3>Token über IdentityServerNET.Clients abrufen<a class="headerlink" href="#token-uber-identityservernet-clients-abrufen" title="Link to this heading">¶</a></h3>
 <p>Das <strong>NuGet</strong>-Paket <code class="docutils literal notranslate"><span class="pre">IdentityServerNET.Clients</span></code> bietet folgende Methoden,
 um auf die <strong>Signing API</strong> zuzugreifen:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dotnet<span class="w"> </span>add<span class="w"> </span>package<span class="w"> </span>IdentityServerNET.Clients
@@ -243,7 +242,7 @@ um auf die <strong>Signing API</strong> zuzugreifen:</p>
 </div>
 </section>
 <section id="token-validieren">
-<h3>Token validieren<a class="headerlink" href="#token-validieren" title="Permalink to this heading">¶</a></h3>
+<h3>Token validieren<a class="headerlink" href="#token-validieren" title="Link to this heading">¶</a></h3>
 <p>Ein Token aus der <strong>Signing API</strong> kann an eine Anwendung übergeben werden. Diese Anwendung kann
 die Gültigkeit des Tokens prüfen und einzelne Claims abfragen. .NET Core bietet dafür
 verschiedene Möglichkeiten. Einige Methoden sind ebenfalls im <strong>NuGet</strong>-Paket
@@ -277,11 +276,11 @@ verschiedene Möglichkeiten. Einige Methoden sind ebenfalls im <strong>NuGet</st
       </div>
     
         <div id="show_right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon"><</span><span>Page contents<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
         </div>
 
         <div id="right_sidebar">
-            <p><a class="toggle_right_sidebar" href="#"><span class="icon">></span><span>Page contents:<span></a></p>
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
             <div class="page_toc">
                 <ul>
 <li><a class="reference internal" href="#">Payload Signing</a><ul>
@@ -309,13 +308,13 @@ verschiedene Möglichkeiten. Einige Methoden sind ebenfalls im <strong>NuGet</st
             <div class="left">
                 
                 <a href="secretsvault.html">
-                    <span class="icon"><</span><span>Secrets Vault</span></a>
+                    <span class="icon">&lt;</span><span>Secrets Vault</span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="createcerts.html"><span>Selbst-signierte Zertifikate erstellen</span><span class="icon">></span></a>
+                    <a href="createcerts.html"><span>Selbst-signierte Zertifikate erstellen</span><span class="icon">&gt;</span></a>
                 
             </div>
         </div>
@@ -323,8 +322,8 @@ verschiedene Möglichkeiten. Einige Methoden sind ebenfalls im <strong>NuGet</st
 
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2024, Jürgen Gstaltmaier.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    &#169; Copyright 2026, Jürgen Gstaltmaier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

@@ -1,18 +1,17 @@
-
 <!DOCTYPE html>
 
-<html lang="de">
+<html lang="de" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Erste Schritte &#8212; IdentityserverNET 5.0.0 Dokumentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=0.7.0-1" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/translations.js"></script>
+    <title>Erste Schritte &#8212; IdentityserverNET 7.0.0 Dokumentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=d7bb20b6" />
+    <script src="../_static/documentation_options.js?v=929a6565"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/translations.js?v=70a09b52"></script>
     <script src="../_static/js/theme.js"></script>
     <script src="../_static/js/petite-vue.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
@@ -32,7 +31,7 @@
         <p id="toggle_sidebar">
             <a href="#" title="Toggle sidebar">|||</a>
         </p>
-        <h1><a href="../index.html" title="Go to homepage">IdentityserverNET 5.0.0 Dokumentation</a></h1>
+        <h1><a href="../index.html" title="Go to homepage">IdentityserverNET 7.0.0 Dokumentation</a></h1>
 
         <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
     <template v-if="mode == 'light'">
@@ -126,6 +125,8 @@
 <li class="toctree-l2"><a class="reference internal" href="installation-windows.html">Installation unter Windows</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation-linux.html">Installation unter Linux</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation-docker.html">Installation mit Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-docker-compose.html">Installation mit Docker Compose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-kubernetes.html">Installation mit Kubernetes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation-aspire.html">Installation mit Aspire</a></li>
 <li class="toctree-l2"><a class="reference internal" href="configuration.html">Konfiguration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="login-as-admin.html">Als Administrator anmelden</a></li>
@@ -133,7 +134,9 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../clients/index.html">Clients verwalten</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../accessories/index.html">Weitere Admin Werkzeuge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../realms/index.html">Realms (Multi-Tenancy)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../accessories/index.html">Weitere Admin-Werkzeuge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">Funktionsweise von IdentityServerNET</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../etc/index.html">Weitere Themen</a></li>
 </ul>
 
@@ -147,7 +150,7 @@
           <div class="body" role="main">
             
   <section id="erste-schritte">
-<h1>Erste Schritte<a class="headerlink" href="#erste-schritte" title="Permalink to this heading">¶</a></h1>
+<h1>Erste Schritte<a class="headerlink" href="#erste-schritte" title="Link to this heading">¶</a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
@@ -162,9 +165,43 @@
 <li class="toctree-l2"><a class="reference internal" href="installation-docker.html#benutzerdefinierte-images-erstellen">Benutzerdefinierte Images erstellen</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="installation-docker-compose.html">Installation mit Docker Compose</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation-docker-compose.html#schnellstart">Schnellstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-docker-compose.html#dateien">Dateien</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-docker-compose.html#wichtige-grundeinstellungen">Wichtige Grundeinstellungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-docker-compose.html#datenbank-speicher">Datenbank / Speicher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-docker-compose.html#passkey-webauthn-fido2">Passkey (WebAuthn / FIDO2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-docker-compose.html#migrationen-seeding">Migrationen (Seeding)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-docker-compose.html#hinter-einem-reverse-proxy">Hinter einem Reverse Proxy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation-kubernetes.html">Installation mit Kubernetes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation-kubernetes.html#dateien-im-uberblick">Dateien im Überblick</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-kubernetes.html#schnellstart">Schnellstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-kubernetes.html#namespace">Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-kubernetes.html#secret-secret-yaml">Secret (<code class="docutils literal notranslate"><span class="pre">secret.yaml</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-kubernetes.html#configmap-configmap-yaml">ConfigMap (<code class="docutils literal notranslate"><span class="pre">configmap.yaml</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-kubernetes.html#persistentvolumeclaim-pvc-yaml">PersistentVolumeClaim (<code class="docutils literal notranslate"><span class="pre">pvc.yaml</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-kubernetes.html#deployment-deployment-yaml">Deployment (<code class="docutils literal notranslate"><span class="pre">deployment.yaml</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-kubernetes.html#service-service-yaml">Service (<code class="docutils literal notranslate"><span class="pre">service.yaml</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-kubernetes.html#ingress-tls-ingress-yaml">Ingress / TLS (<code class="docutils literal notranslate"><span class="pre">ingress.yaml</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-kubernetes.html#migrationen-seeding">Migrationen (Seeding)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-kubernetes.html#passkey-webauthn-fido2">Passkey (WebAuthn / FIDO2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-kubernetes.html#erstes-login">Erstes Login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-kubernetes.html#update">Update</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-kubernetes.html#konfiguration-andern">Konfiguration ändern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-kubernetes.html#horizontale-skalierung">Horizontale Skalierung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-kubernetes.html#fehlerbehebung">Fehlerbehebung</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="installation-aspire.html">Installation mit Aspire</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="installation-aspire.html#optionale-methoden">Optionale Methoden</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-aspire.html#schnellstart">Schnellstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-aspire.html#container-optionen">Container-Optionen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-aspire.html#withconfiguration"><code class="docutils literal notranslate"><span class="pre">WithConfiguration()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-aspire.html#withmigrations"><code class="docutils literal notranslate"><span class="pre">WithMigrations()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-aspire.html#withexternalproviders"><code class="docutils literal notranslate"><span class="pre">WithExternalProviders()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation-aspire.html#referenzen">Referenzen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-aspire.html#dev-seeding-direkt-im-projekt-ohne-container">Dev-Seeding direkt im Projekt (ohne Container)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Konfiguration</a><ul>
@@ -174,9 +211,13 @@
 <li class="toctree-l2"><a class="reference internal" href="configuration.html#abschnitt-signingcredential">Abschnitt <code class="docutils literal notranslate"><span class="pre">SigningCredential</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="configuration.html#abschnitt-login">Abschnitt <code class="docutils literal notranslate"><span class="pre">Login</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="configuration.html#abschnitt-admin">Abschnitt <code class="docutils literal notranslate"><span class="pre">Admin</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#abschnitt-security">Abschnitt <code class="docutils literal notranslate"><span class="pre">Security</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="configuration.html#abschnitt-account">Abschnitt <code class="docutils literal notranslate"><span class="pre">Account</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="configuration.html#abschnitt-cookie">Abschnitt <code class="docutils literal notranslate"><span class="pre">Cookie</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="configuration.html#abschnitt-mail">Abschnitt <code class="docutils literal notranslate"><span class="pre">Mail</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#abschnitt-stores">Abschnitt <code class="docutils literal notranslate"><span class="pre">Stores</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#abschnitt-endpoints">Abschnitt <code class="docutils literal notranslate"><span class="pre">Endpoints</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#abschnitt-ratelimiting">Abschnitt <code class="docutils literal notranslate"><span class="pre">RateLimiting</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="configuration.html#abschnitt-configure">Abschnitt <code class="docutils literal notranslate"><span class="pre">Configure</span></code></a></li>
 </ul>
 </li>
@@ -209,13 +250,13 @@
             <div class="left">
                 
                 <a href="../index.html">
-                    <span class="icon"><</span><span>IdentityServerNET</span></a>
+                    <span class="icon">&lt;</span><span>IdentityServerNET</span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="installation-windows.html"><span>Installation unter Windows</span><span class="icon">></span></a>
+                    <a href="installation-windows.html"><span>Installation unter Windows</span><span class="icon">&gt;</span></a>
                 
             </div>
         </div>
@@ -223,8 +264,8 @@
 
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2024, Jürgen Gstaltmaier.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    &#169; Copyright 2026, Jürgen Gstaltmaier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
