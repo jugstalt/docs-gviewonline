@@ -155,7 +155,80 @@
             
   <section id="docker">
 <h1>Docker<a class="headerlink" href="#docker" title="Link to this heading">¶</a></h1>
-<p>comming soon…</p>
+<p>Sowohl <em>gView.Server</em> als auch <em>gView.WebApps</em> stehen als fertige Docker-Images zur Verfügung.
+Damit lassen sich die Anwendungen containerisiert betreiben, z. B. in Docker Compose oder
+Kubernetes.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Die Images werden nicht mehr auf Docker Hub (<code class="docutils literal notranslate"><span class="pre">docker.io/gstalt/...</span></code>) veröffentlicht,
+sondern auf der GitHub Container Registry unter <code class="docutils literal notranslate"><span class="pre">ghcr.io/jugstalt/...</span></code>. Verweise auf
+<code class="docutils literal notranslate"><span class="pre">docker.io/gstalt/...</span></code> sind veraltet und sollten nicht mehr verwendet werden.</p>
+</div>
+<section id="gview-server-image">
+<h2>gView.Server Image<a class="headerlink" href="#gview-server-image" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>ghcr.io/jugstalt/gview-server:latest
+</pre></div>
+</div>
+<p>Der Container kann direkt gestartet werden:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">45622</span>:8080<span class="w"> </span>--name<span class="o">=</span>gview-server<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-e<span class="w"> </span><span class="nv">GV_REPOSITORY_PATH</span><span class="o">=</span>/etc/gview-repository<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-e<span class="w"> </span><span class="nv">GV_ONLINERESOURCE_URL</span><span class="o">=</span>http://localhost:45622<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ghcr.io/jugstalt/gview-server:latest
+</pre></div>
+</div>
+<p>Über die beiden Umgebungsvariablen lassen sich die wichtigsten Werte der <code class="docutils literal notranslate"><span class="pre">_config/mapserver.json</span></code>
+überschreiben, ohne die Datei selbst anzupassen:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">GV_REPOSITORY_PATH</span></code>: Verzeichnis, in dem Services, Client-Daten, Output-Dateien usw.
+abgelegt werden. Für den produktiven Einsatz sollte dieses Verzeichnis über ein Volume
+außerhalb des Containers gemountet werden, damit die Einstellungen einen Neustart des
+Containers überstehen.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GV_ONLINERESOURCE_URL</span></code>: Die URL, unter der der Server von außen erreichbar ist. Diese wird
+z. B. verwendet, um Kartenbilder über das Output-Verzeichnis an Clients auszuliefern.</p></li>
+</ul>
+<p>Nach dem Start ist die Verwaltungsoberfläche unter <a class="reference external" href="http://localhost:45622">http://localhost:45622</a> erreichbar (im Beispiel
+oben). Der erste Login-Vorgang entspricht dem unter <a class="reference internal" href="run-local.html"><span class="doc">Lokal ausführen (Windows Desktop Modus)</span></a> beschriebenen Ablauf: Der
+erste angelegte Benutzer wird automatisch zum Administrator.</p>
+</section>
+<section id="gview-webapps-image">
+<h2>gView.WebApps Image<a class="headerlink" href="#gview-webapps-image" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>ghcr.io/jugstalt/gview-webapps:latest
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">45623</span>:8080<span class="w"> </span>--name<span class="o">=</span>gview-webapps<span class="w"> </span>ghcr.io/jugstalt/gview-webapps:latest
+</pre></div>
+</div>
+<p>Die Anwendung ist danach unter <a class="reference external" href="http://localhost:45623">http://localhost:45623</a> erreichbar.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Für das <em>gView.WebApps</em> Image sind aktuell keine speziellen Umgebungsvariablen dokumentiert.
+Die Konfiguration erfolgt wie bei den anderen Betriebsarten über <code class="docutils literal notranslate"><span class="pre">_config/gview-web.config</span></code>
+(siehe <a class="reference internal" href="config-webapps.html"><span class="doc">Konfiguration gView.WebApps</span></a>). Muss diese Datei angepasst werden, kann eine eigene Version
+per Volume in das Verzeichnis <code class="docutils literal notranslate"><span class="pre">/app/_config</span></code> des Containers gemountet werden.</p>
+</div>
+</section>
+<section id="eigene-konfiguration-einbinden">
+<h2>Eigene Konfiguration einbinden<a class="headerlink" href="#eigene-konfiguration-einbinden" title="Link to this heading">¶</a></h2>
+<p>Statt die Konfigurationsdateien im laufenden Container zu ändern, sollte eine angepasste
+<code class="docutils literal notranslate"><span class="pre">mapserver.json</span></code> bzw. <code class="docutils literal notranslate"><span class="pre">gview-web.config</span></code> als Volume in den Container gemountet werden — das
+entspricht dem gleichen <em>Override</em>-Prinzip, das auch beim klassischen Deploy verwendet wird
+(siehe <a class="reference internal" href="config.html"><span class="doc">Konfiguration</span></a>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">45622</span>:8080<span class="w"> </span>--name<span class="o">=</span>gview-server<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-v<span class="w"> </span>/pfad/zu/meiner/mapserver.json:/app/_config/mapserver.json:ro<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-e<span class="w"> </span><span class="nv">GV_REPOSITORY_PATH</span><span class="o">=</span>/etc/gview-repository<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-e<span class="w"> </span><span class="nv">GV_ONLINERESOURCE_URL</span><span class="o">=</span>http://localhost:45622<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ghcr.io/jugstalt/gview-server:latest
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Früher gab es dafür zusätzlich ein eigenes Basis-Image (<code class="docutils literal notranslate"><span class="pre">gview-server-base</span></code>), das als
+<code class="docutils literal notranslate"><span class="pre">FROM</span></code>-Basis für ein eigenes Dockerfile diente, um Konfiguration und Fonts direkt in ein
+eigenes Image einzubacken. Dieses Basis-Image ist aktuell nicht unter <code class="docutils literal notranslate"><span class="pre">ghcr.io/jugstalt</span></code>
+veröffentlicht. Für individuelle Konfiguration ist das Mounten eigener Dateien (siehe oben)
+der empfohlene Weg.</p>
+</div>
+</section>
 </section>
 
 
@@ -163,6 +236,25 @@
           </div>
         </div>
       </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">Docker</a><ul>
+<li><a class="reference internal" href="#gview-server-image">gView.Server Image</a></li>
+<li><a class="reference internal" href="#gview-webapps-image">gView.WebApps Image</a></li>
+<li><a class="reference internal" href="#eigene-konfiguration-einbinden">Eigene Konfiguration einbinden</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
     
 
       <div class="clearer"></div>

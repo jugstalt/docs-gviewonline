@@ -154,7 +154,77 @@
             
   <section id="docker">
 <h1>Docker<a class="headerlink" href="#docker" title="Link to this heading">¶</a></h1>
-<p>comming soon…</p>
+<p>Both <em>gView.Server</em> and <em>gView.WebApps</em> are available as ready-to-use Docker images. This allows
+the applications to be run containerized, e.g. with Docker Compose or Kubernetes.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The images are no longer published on Docker Hub (<code class="docutils literal notranslate"><span class="pre">docker.io/gstalt/...</span></code>), but on the
+GitHub Container Registry under <code class="docutils literal notranslate"><span class="pre">ghcr.io/jugstalt/...</span></code>. References to
+<code class="docutils literal notranslate"><span class="pre">docker.io/gstalt/...</span></code> are outdated and should no longer be used.</p>
+</div>
+<section id="gview-server-image">
+<h2>gView.Server Image<a class="headerlink" href="#gview-server-image" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>ghcr.io/jugstalt/gview-server:latest
+</pre></div>
+</div>
+<p>The container can be started directly:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">45622</span>:8080<span class="w"> </span>--name<span class="o">=</span>gview-server<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-e<span class="w"> </span><span class="nv">GV_REPOSITORY_PATH</span><span class="o">=</span>/etc/gview-repository<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-e<span class="w"> </span><span class="nv">GV_ONLINERESOURCE_URL</span><span class="o">=</span>http://localhost:45622<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ghcr.io/jugstalt/gview-server:latest
+</pre></div>
+</div>
+<p>The two environment variables let you override the most important values of
+<code class="docutils literal notranslate"><span class="pre">_config/mapserver.json</span></code> without editing the file itself:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">GV_REPOSITORY_PATH</span></code>: Directory in which services, client data, output files, etc. are
+stored. For production use, this directory should be mounted as a volume outside the
+container so that the settings survive a container restart.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GV_ONLINERESOURCE_URL</span></code>: The URL under which the server is reachable from the outside. This
+is used, for example, to deliver map images to clients via the output directory.</p></li>
+</ul>
+<p>After startup, the management interface is available at <a class="reference external" href="http://localhost:45622">http://localhost:45622</a> (in the example
+above). The first login follows the same flow described in <a class="reference internal" href="run-local.html"><span class="doc">Run Locally (Desktop Mode)</span></a>: the first user
+created automatically becomes the administrator.</p>
+</section>
+<section id="gview-webapps-image">
+<h2>gView.WebApps Image<a class="headerlink" href="#gview-webapps-image" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>ghcr.io/jugstalt/gview-webapps:latest
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">45623</span>:8080<span class="w"> </span>--name<span class="o">=</span>gview-webapps<span class="w"> </span>ghcr.io/jugstalt/gview-webapps:latest
+</pre></div>
+</div>
+<p>The application is then reachable at <a class="reference external" href="http://localhost:45623">http://localhost:45623</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>No special environment variables are currently documented for the <em>gView.WebApps</em> image.
+Configuration works the same way as in the other run modes, via <code class="docutils literal notranslate"><span class="pre">_config/gview-web.config</span></code>
+(see <a class="reference internal" href="config-webapps.html"><span class="doc">Configuration of gView.WebApps</span></a>). If this file needs to be adjusted, a customized version can be
+mounted into the container’s <code class="docutils literal notranslate"><span class="pre">/app/_config</span></code> directory as a volume.</p>
+</div>
+</section>
+<section id="using-a-custom-configuration">
+<h2>Using a custom configuration<a class="headerlink" href="#using-a-custom-configuration" title="Link to this heading">¶</a></h2>
+<p>Instead of changing configuration files inside a running container, a customized
+<code class="docutils literal notranslate"><span class="pre">mapserver.json</span></code> or <code class="docutils literal notranslate"><span class="pre">gview-web.config</span></code> should be mounted into the container as a volume —
+following the same <em>override</em> principle used for the classic deployment (see <a class="reference internal" href="config.html"><span class="doc">Configuration</span></a>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">45622</span>:8080<span class="w"> </span>--name<span class="o">=</span>gview-server<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-v<span class="w"> </span>/path/to/my/mapserver.json:/app/_config/mapserver.json:ro<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-e<span class="w"> </span><span class="nv">GV_REPOSITORY_PATH</span><span class="o">=</span>/etc/gview-repository<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-e<span class="w"> </span><span class="nv">GV_ONLINERESOURCE_URL</span><span class="o">=</span>http://localhost:45622<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ghcr.io/jugstalt/gview-server:latest
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the past there was also a dedicated base image (<code class="docutils literal notranslate"><span class="pre">gview-server-base</span></code>) meant as a
+<code class="docutils literal notranslate"><span class="pre">FROM</span></code> base for your own Dockerfile, to bake configuration and fonts directly into a
+custom image. This base image is currently not published under <code class="docutils literal notranslate"><span class="pre">ghcr.io/jugstalt</span></code>.
+For custom configuration, mounting your own files (as shown above) is the recommended
+approach.</p>
+</div>
+</section>
 </section>
 
 
@@ -162,6 +232,25 @@
           </div>
         </div>
       </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">Docker</a><ul>
+<li><a class="reference internal" href="#gview-server-image">gView.Server Image</a></li>
+<li><a class="reference internal" href="#gview-webapps-image">gView.WebApps Image</a></li>
+<li><a class="reference internal" href="#using-a-custom-configuration">Using a custom configuration</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
     
 
       <div class="clearer"></div>

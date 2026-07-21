@@ -155,7 +155,98 @@
             
   <section id="kubernetes">
 <h1>Kubernetes<a class="headerlink" href="#kubernetes" title="Link to this heading">¶</a></h1>
-<p>comming soon…</p>
+<p>Für den Betrieb in einem Kubernetes-Cluster steht das <em>gView.Server</em> Image zur Verfügung
+(<code class="docutils literal notranslate"><span class="pre">ghcr.io/jugstalt/gview-server</span></code>). <em>gView.WebApps</em> wird hier bewusst nicht behandelt — für
+Web-Anwendungen ist ein Kubernetes-Deployment in der Regel nicht der typische Betriebsfall.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Wie unter <a class="reference internal" href="run-docker.html"><span class="doc">Docker</span></a> beschrieben, werden die Images seit Kurzem nicht mehr auf
+Docker Hub (<code class="docutils literal notranslate"><span class="pre">docker.io/gstalt/...</span></code>), sondern auf der GitHub Container Registry unter
+<code class="docutils literal notranslate"><span class="pre">ghcr.io/jugstalt/...</span></code> veröffentlicht.</p>
+</div>
+<p>Ein einfaches Deployment mit zugehörigem Service kann etwa so aussehen:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gview-server</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gview</span>
+<span class="w">  </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gview-server</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gview-server</span>
+<span class="w">  </span><span class="nt">strategy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RollingUpdate</span>
+<span class="w">    </span><span class="nt">rollingUpdate</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">maxSurge</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50%</span>
+<span class="w">      </span><span class="nt">maxUnavailable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50%</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gview-server</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gview-server</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/jugstalt/gview-server:latest</span>
+<span class="w">        </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gview-storage</span>
+<span class="w">          </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/storage</span>
+<span class="w">          </span><span class="nt">readOnly</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">        </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
+<span class="w">          </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">        </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GV_REPOSITORY_PATH</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/storage/gview</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GV_ONLINERESOURCE_URL</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://gview.example.com</span>
+<span class="w">      </span><span class="c1">#</span>
+<span class="w">      </span><span class="c1"># Persistenten Storage verwenden (empfohlen)</span>
+<span class="w">      </span><span class="c1">#</span>
+<span class="w">      </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gview-storage</span>
+<span class="w">        </span><span class="nt">persistentVolumeClaim</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gview-premium-storage</span>
+<span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gview-server-svc</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gview</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
+<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gview-server</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Der Container lauscht intern auf Port <code class="docutils literal notranslate"><span class="pre">8080</span></code> (nicht <code class="docutils literal notranslate"><span class="pre">80</span></code>) — <code class="docutils literal notranslate"><span class="pre">containerPort</span></code> und
+<code class="docutils literal notranslate"><span class="pre">targetPort</span></code> müssen entsprechend gesetzt werden.</p>
+</div>
+<p>Die beiden Umgebungsvariablen <code class="docutils literal notranslate"><span class="pre">GV_REPOSITORY_PATH</span></code> und <code class="docutils literal notranslate"><span class="pre">GV_ONLINERESOURCE_URL</span></code> entsprechen
+denen, die auch beim einfachen <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> verwendet werden (siehe <a class="reference internal" href="run-docker.html"><span class="doc">Docker</span></a>):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">GV_REPOSITORY_PATH</span></code> sollte auf ein Verzeichnis innerhalb eines gemounteten Volumes zeigen,
+damit Services, Client-Daten und Output-Dateien einen Pod-Neustart überstehen.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GV_ONLINERESOURCE_URL</span></code> muss auf die von außen erreichbare URL des Dienstes zeigen (z. B. die
+URL eines vorgeschalteten Ingress).</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Es wird dringend empfohlen, für <code class="docutils literal notranslate"><span class="pre">GV_REPOSITORY_PATH</span></code> einen <em>persistenten</em> Storage
+(<code class="docutils literal notranslate"><span class="pre">PersistentVolumeClaim</span></code>) zu verwenden. Ohne persistenten Storage gehen alle publizierten
+Dienste und Einstellungen bei jedem Neustart des Pods verloren.</p>
+</div>
+<p>Ein Ingress (bzw. ein entsprechender LoadBalancer-Service) wird je nach Cluster-Umgebung
+zusätzlich benötigt, um den Service unter der in <code class="docutils literal notranslate"><span class="pre">GV_ONLINERESOURCE_URL</span></code> angegebenen URL von
+außen erreichbar zu machen.</p>
 </section>
 
 
