@@ -63,7 +63,7 @@ Die Komponenten des gView Frameworks lassen sich in drei Kategorien einteilen:
 * **gView WebApps:** Dies umfasst die Web-Anwendungen *gView Carto* und *gView DataExplorer*. 
   Beide können über eine Web-Oberfläche bedient werden.
   Mithilfe dieser Programme können Karten erstellt bzw. GeoDaten verwaltet werden.
-  Die Basis für beide Programme ist .NET 8 (Microsoft.AspNetCore.App 8.0.x Runtime)
+  Die Basis für beide Programme ist .NET 10 (Microsoft.AspNetCore.App 10.0.x Runtime)
   und damit auf Windows, Linux und MacOS Betriebssystemen lauffähig.
 
 * **gView Server:** Der gView Server ist ein Karten- und Featureserver, 
@@ -71,7 +71,7 @@ Die Komponenten des gView Frameworks lassen sich in drei Kategorien einteilen:
   Neben OGC-Standards (WMS, WFS) stehen die Dienste auch in Formaten wie GeoServices REST 
   und ArcXML zur Verfügung. Damit lassen sich die Dienste in jeder gängigen GIS-Software 
   anzeigen und abfragen.
-  Die Basis des Programms ist .NET 8 (Microsoft.AspNetCore.App 8.0.x Runtime)
+  Die Basis des Programms ist .NET 10 (Microsoft.AspNetCore.App 10.0.x Runtime)
   und damit auf Windows, Linux und MacOS Betriebssystemen lauffähig.
 
 * **gView Commandline Tools:** Eine Sammlung von Kommandozeilenwerkzeugen, mit denen wiederkehrende 

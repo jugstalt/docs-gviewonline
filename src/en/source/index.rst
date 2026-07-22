@@ -61,14 +61,14 @@ The components of the gView Framework can be divided into three categories:
 * **gView WebApps:** This includes the web applications *gView Carto* and *gView DataExplorer*. 
   Both can be operated via a web interface.
   Using these programs, maps can be created or geo-data can be managed.
-  The basis for both programs is .NET 8 (Microsoft.AspNetCore.App 8.0.x Runtime)
+  The basis for both programs is .NET 10 (Microsoft.AspNetCore.App 10.0.x Runtime)
   and thus runnable on Windows, Linux, and MacOS operating systems.
 
 * **gView Server:** The gView Server is a map and feature server, 
   which can publish the created maps as map services.
   In addition to OGC standards (WMS, WFS), the services are also available in formats such as GeoServices REST 
   and ArcXML. This allows the services to be displayed and queried in any common GIS software.
-  The basis of the program is .NET 8 (Microsoft.AspNetCore.App 8.0.x Runtime)
+  The basis of the program is .NET 10 (Microsoft.AspNetCore.App 10.0.x Runtime)
   and thus runnable on Windows, Linux, and MacOS operating systems.
 
 * **gView Commandline Tools:** A collection of command-line tools that automate recurring 
