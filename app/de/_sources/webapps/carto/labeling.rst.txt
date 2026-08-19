@@ -126,10 +126,81 @@ Die Eigenschaften des *Renderers* teilen sich die folgende Kategorien auf:
       - g 
       - [DATUM:g] 
       - 24.04.2025 14:30
-    * - ISO-8601 
-      - o 
-      - [DATUM:o] 
+    * - ISO-8601
+      - o
+      - [DATUM:o]
       - 2025-04-24T14:30:00.0000000+02:00
+
+  **SimpleScript-Ausdrücke:**
+
+  Neben einfachen Platzhalter-Ausdrücken unterstützt der **Expression Editor** auch sogenannte
+  ``SimpleScript``-Ausdrücke. Ein solcher Ausdruck muss mit ``@@start`` beginnen und mit
+  ``@@end`` enden. Dazwischen können bedingte Textblöcke mit ``@@if`` / ``@@endif`` definiert
+  werden.
+
+  Mit ``@@if(...)`` wird der Text zwischen ``@@if`` und ``@@endif`` an eine Bedingung geknüpft.
+  Die Bedingung bezieht sich dabei immer auf ein Feld (in eckigen Klammern). Folgende Formen
+  sind möglich (zum Vergleich die äquivalente VB-Bedingung):
+
+  .. list-table::
+    :width: 100 %
+    :header-rows: 1
+
+    * - VB
+      - Bedeutung
+      - ``@@if(...)``-Form
+    * - ``[FELD] <> ""``
+      - Feld ist nicht leer
+      - ``@@if([FELD])``
+    * - ``[FELD] = ""``
+      - Feld ist leer
+      - ``@@if([FELD],)``
+    * - ``[FELD] = "Wert"``
+      - Feld entspricht "Wert"
+      - ``@@if([FELD],Wert)``
+    * - ``[FELD] <> "Wert"``
+      - Feld entspricht nicht "Wert"
+      - ``@@if([FELD],not,Wert)``
+
+  ``@@if``-Blöcke können auch verschachtelt werden, um mehrere Bedingungen zu kombinieren, wie
+  im folgenden Beispiel (Beschriftung nach Typ, mit Präfix ``S:`` für ``Schieber`` und ``V:``
+  für ``Ventil``):
+
+  .. code-block:: text
+
+    @@start
+    @@if([TYP],Schieber)
+    S: [NAME]
+    @@endif
+    @@if([TYP],Ventil)
+    @@if([TYP],not,Schieber)
+    V: [NAME]
+    @@endif
+    @@endif
+    @@if([TYP],not,Schieber)
+    @@if([TYP],not,Ventil)
+    [NAME]
+    @@endif
+    @@endif
+    @@end
+
+  Zusätzlich können nach dem ``@@end`` beliebig viele ``@@replace(Suchtext,Ersatztext)``-Anweisungen
+  folgen. Sie werden nacheinander auf den vom Skript erzeugten Text angewendet und ersetzen
+  jeweils den Suchtext durch den Ersatztext. Lässt man den Ersatztext leer
+  (``@@replace(Suchtext,)``), wird der Suchtext einfach entfernt. Das ist z. B. praktisch, um
+  lange Standardwerte abzukürzen oder ganz auszublenden:
+
+  .. code-block:: text
+
+    @@start
+    [TYP]
+    @@end
+    @@replace(Hausanschluß,HA)
+    @@replace(Hausanschluss,HA)
+    @@replace(Sonstiger Endpunkt,)
+    @@replace(Sonstiger Punkt,)
+    @@replace(Sonstiges Punktobjekt,)
+    @@replace(Reserve,Res.)
 
 * **Verhalten:** Hier wird die Priorität des Labels angegeben:
 

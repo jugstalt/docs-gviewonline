@@ -292,6 +292,76 @@ folgende:</p>
 </tr>
 </tbody>
 </table>
+<p><strong>SimpleScript-Ausdrücke:</strong></p>
+<p>Neben einfachen Platzhalter-Ausdrücken unterstützt der <strong>Expression Editor</strong> auch sogenannte
+<code class="docutils literal notranslate"><span class="pre">SimpleScript</span></code>-Ausdrücke. Ein solcher Ausdruck muss mit <code class="docutils literal notranslate"><span class="pre">&#64;&#64;start</span></code> beginnen und mit
+<code class="docutils literal notranslate"><span class="pre">&#64;&#64;end</span></code> enden. Dazwischen können bedingte Textblöcke mit <code class="docutils literal notranslate"><span class="pre">&#64;&#64;if</span></code> / <code class="docutils literal notranslate"><span class="pre">&#64;&#64;endif</span></code> definiert
+werden.</p>
+<p>Mit <code class="docutils literal notranslate"><span class="pre">&#64;&#64;if(...)</span></code> wird der Text zwischen <code class="docutils literal notranslate"><span class="pre">&#64;&#64;if</span></code> und <code class="docutils literal notranslate"><span class="pre">&#64;&#64;endif</span></code> an eine Bedingung geknüpft.
+Die Bedingung bezieht sich dabei immer auf ein Feld (in eckigen Klammern). Folgende Formen
+sind möglich (zum Vergleich die äquivalente VB-Bedingung):</p>
+<table class="docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>VB</p></th>
+<th class="head"><p>Bedeutung</p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if(...)</span></code>-Form</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">[FELD]</span> <span class="pre">&lt;&gt;</span> <span class="pre">&quot;&quot;</span></code></p></td>
+<td><p>Feld ist nicht leer</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if([FELD])</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">[FELD]</span> <span class="pre">=</span> <span class="pre">&quot;&quot;</span></code></p></td>
+<td><p>Feld ist leer</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if([FELD],)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">[FELD]</span> <span class="pre">=</span> <span class="pre">&quot;Wert&quot;</span></code></p></td>
+<td><p>Feld entspricht „Wert“</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if([FELD],Wert)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">[FELD]</span> <span class="pre">&lt;&gt;</span> <span class="pre">&quot;Wert&quot;</span></code></p></td>
+<td><p>Feld entspricht nicht „Wert“</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if([FELD],not,Wert)</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if</span></code>-Blöcke können auch verschachtelt werden, um mehrere Bedingungen zu kombinieren, wie
+im folgenden Beispiel (Beschriftung nach Typ, mit Präfix <code class="docutils literal notranslate"><span class="pre">S:</span></code> für <code class="docutils literal notranslate"><span class="pre">Schieber</span></code> und <code class="docutils literal notranslate"><span class="pre">V:</span></code>
+für <code class="docutils literal notranslate"><span class="pre">Ventil</span></code>):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>@@start
+@@if([TYP],Schieber)
+S: [NAME]
+@@endif
+@@if([TYP],Ventil)
+@@if([TYP],not,Schieber)
+V: [NAME]
+@@endif
+@@endif
+@@if([TYP],not,Schieber)
+@@if([TYP],not,Ventil)
+[NAME]
+@@endif
+@@endif
+@@end
+</pre></div>
+</div>
+<p>Zusätzlich können nach dem <code class="docutils literal notranslate"><span class="pre">&#64;&#64;end</span></code> beliebig viele <code class="docutils literal notranslate"><span class="pre">&#64;&#64;replace(Suchtext,Ersatztext)</span></code>-Anweisungen
+folgen. Sie werden nacheinander auf den vom Skript erzeugten Text angewendet und ersetzen
+jeweils den Suchtext durch den Ersatztext. Lässt man den Ersatztext leer
+(<code class="docutils literal notranslate"><span class="pre">&#64;&#64;replace(Suchtext,)</span></code>), wird der Suchtext einfach entfernt. Das ist z. B. praktisch, um
+lange Standardwerte abzukürzen oder ganz auszublenden:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>@@start
+[TYP]
+@@end
+@@replace(Hausanschluß,HA)
+@@replace(Hausanschluss,HA)
+@@replace(Sonstiger Endpunkt,)
+@@replace(Sonstiger Punkt,)
+@@replace(Sonstiges Punktobjekt,)
+@@replace(Reserve,Res.)
+</pre></div>
+</div>
 </li>
 <li><p><strong>Verhalten:</strong> Hier wird die Priorität des Labels angegeben:</p>
 <a class="reference internal image-reference" href="../../_images/labeling4.png"><img alt="../../_images/labeling4.png" src="../../_images/labeling4.png" style="width: 400px;" /></a>

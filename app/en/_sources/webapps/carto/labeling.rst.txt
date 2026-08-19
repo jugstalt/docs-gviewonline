@@ -124,10 +124,80 @@ The properties of the *Renderer* are divided into the following categories:
       - g 
       - [DATE:g] 
       - 04/24/2025 14:30
-    * - ISO-8601 
-      - o 
-      - [DATE:o] 
+    * - ISO-8601
+      - o
+      - [DATE:o]
       - 2025-04-24T14:30:00.0000000+02:00
+
+  **SimpleScript expressions:**
+
+  In addition to simple placeholder expressions, the **Expression Editor** also supports
+  so-called ``SimpleScript`` expressions. Such an expression must start with ``@@start`` and
+  end with ``@@end``. In between, conditional text blocks can be defined using ``@@if`` /
+  ``@@endif``.
+
+  With ``@@if(...)``, the text between ``@@if`` and ``@@endif`` is tied to a condition. The
+  condition always refers to a field (in square brackets). The following forms are possible
+  (compared to the equivalent VB condition):
+
+  .. list-table::
+    :width: 100 %
+    :header-rows: 1
+
+    * - VB
+      - Meaning
+      - ``@@if(...)`` form
+    * - ``[FIELD] <> ""``
+      - Field is not empty
+      - ``@@if([FIELD])``
+    * - ``[FIELD] = ""``
+      - Field is empty
+      - ``@@if([FIELD],)``
+    * - ``[FIELD] = "Value"``
+      - Field equals "Value"
+      - ``@@if([FIELD],Value)``
+    * - ``[FIELD] <> "Value"``
+      - Field does not equal "Value"
+      - ``@@if([FIELD],not,Value)``
+
+  ``@@if`` blocks can also be nested to combine multiple conditions, as in the following example
+  (labeling by type, with the prefix ``S:`` for ``Schieber`` and ``V:`` for ``Ventil``):
+
+  .. code-block:: text
+
+    @@start
+    @@if([TYP],Schieber)
+    S: [NAME]
+    @@endif
+    @@if([TYP],Ventil)
+    @@if([TYP],not,Schieber)
+    V: [NAME]
+    @@endif
+    @@endif
+    @@if([TYP],not,Schieber)
+    @@if([TYP],not,Ventil)
+    [NAME]
+    @@endif
+    @@endif
+    @@end
+
+  In addition, any number of ``@@replace(SearchText,ReplaceText)`` statements can follow after
+  ``@@end``. They are applied one after another to the text produced by the script, each
+  replacing the search text with the replacement text. Leaving the replacement text empty
+  (``@@replace(SearchText,)``) simply removes the search text. This is useful, for example, to
+  abbreviate long default values or hide them entirely:
+
+  .. code-block:: text
+
+    @@start
+    [TYP]
+    @@end
+    @@replace(Hausanschluß,HA)
+    @@replace(Hausanschluss,HA)
+    @@replace(Sonstiger Endpunkt,)
+    @@replace(Sonstiger Punkt,)
+    @@replace(Sonstiges Punktobjekt,)
+    @@replace(Reserve,Res.)
 
 * **Behavior:** Here, the priority of the label is specified:
 

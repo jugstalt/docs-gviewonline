@@ -290,6 +290,75 @@ number and date fields. The syntax for a placeholder with formatting is as follo
 </tr>
 </tbody>
 </table>
+<p><strong>SimpleScript expressions:</strong></p>
+<p>In addition to simple placeholder expressions, the <strong>Expression Editor</strong> also supports
+so-called <code class="docutils literal notranslate"><span class="pre">SimpleScript</span></code> expressions. Such an expression must start with <code class="docutils literal notranslate"><span class="pre">&#64;&#64;start</span></code> and
+end with <code class="docutils literal notranslate"><span class="pre">&#64;&#64;end</span></code>. In between, conditional text blocks can be defined using <code class="docutils literal notranslate"><span class="pre">&#64;&#64;if</span></code> /
+<code class="docutils literal notranslate"><span class="pre">&#64;&#64;endif</span></code>.</p>
+<p>With <code class="docutils literal notranslate"><span class="pre">&#64;&#64;if(...)</span></code>, the text between <code class="docutils literal notranslate"><span class="pre">&#64;&#64;if</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;&#64;endif</span></code> is tied to a condition. The
+condition always refers to a field (in square brackets). The following forms are possible
+(compared to the equivalent VB condition):</p>
+<table class="docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>VB</p></th>
+<th class="head"><p>Meaning</p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if(...)</span></code> form</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">[FIELD]</span> <span class="pre">&lt;&gt;</span> <span class="pre">&quot;&quot;</span></code></p></td>
+<td><p>Field is not empty</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if([FIELD])</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">[FIELD]</span> <span class="pre">=</span> <span class="pre">&quot;&quot;</span></code></p></td>
+<td><p>Field is empty</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if([FIELD],)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">[FIELD]</span> <span class="pre">=</span> <span class="pre">&quot;Value&quot;</span></code></p></td>
+<td><p>Field equals “Value”</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if([FIELD],Value)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">[FIELD]</span> <span class="pre">&lt;&gt;</span> <span class="pre">&quot;Value&quot;</span></code></p></td>
+<td><p>Field does not equal “Value”</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if([FIELD],not,Value)</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if</span></code> blocks can also be nested to combine multiple conditions, as in the following example
+(labeling by type, with the prefix <code class="docutils literal notranslate"><span class="pre">S:</span></code> for <code class="docutils literal notranslate"><span class="pre">Schieber</span></code> and <code class="docutils literal notranslate"><span class="pre">V:</span></code> for <code class="docutils literal notranslate"><span class="pre">Ventil</span></code>):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>@@start
+@@if([TYP],Schieber)
+S: [NAME]
+@@endif
+@@if([TYP],Ventil)
+@@if([TYP],not,Schieber)
+V: [NAME]
+@@endif
+@@endif
+@@if([TYP],not,Schieber)
+@@if([TYP],not,Ventil)
+[NAME]
+@@endif
+@@endif
+@@end
+</pre></div>
+</div>
+<p>In addition, any number of <code class="docutils literal notranslate"><span class="pre">&#64;&#64;replace(SearchText,ReplaceText)</span></code> statements can follow after
+<code class="docutils literal notranslate"><span class="pre">&#64;&#64;end</span></code>. They are applied one after another to the text produced by the script, each
+replacing the search text with the replacement text. Leaving the replacement text empty
+(<code class="docutils literal notranslate"><span class="pre">&#64;&#64;replace(SearchText,)</span></code>) simply removes the search text. This is useful, for example, to
+abbreviate long default values or hide them entirely:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>@@start
+[TYP]
+@@end
+@@replace(Hausanschluß,HA)
+@@replace(Hausanschluss,HA)
+@@replace(Sonstiger Endpunkt,)
+@@replace(Sonstiger Punkt,)
+@@replace(Sonstiges Punktobjekt,)
+@@replace(Reserve,Res.)
+</pre></div>
+</div>
 </li>
 <li><p><strong>Behavior:</strong> Here, the priority of the label is specified:</p>
 <a class="reference internal image-reference" href="../../_images/labeling4.png"><img alt="../../_images/labeling4.png" src="../../_images/labeling4.png" style="width: 400px;" /></a>
