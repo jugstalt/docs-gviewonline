@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 
-<html lang="de" data-content_root="../">
+<html lang="de" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>gView Server &#8212; gView GIS 8.x Dokumentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=d7bb20b6" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=247da48f" />
-    <script src="../_static/documentation_options.js?v=223d518e"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/translations.js?v=70a09b52"></script>
-    <script src="../_static/js/theme.js"></script>
-    <script src="../_static/js/petite-vue.js"></script>
-    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
-    <link rel="search" title="Suche" href="../search.html" />
-    <link rel="next" title="Installation" href="inst/installation.html" />
-    <link rel="prev" title="Anlegen eines Raster(katalog) Datasets" href="../webapps/dataexplorer/fdb/raster_catalog.html" /> 
+    <title>gView.Server Kommandozeile (Offline-Modus) &#8212; gView GIS 8.x Dokumentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=d7bb20b6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=247da48f" />
+    <script src="../../_static/documentation_options.js?v=223d518e"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/translations.js?v=70a09b52"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <script src="../../_static/js/petite-vue.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
+    <link rel="search" title="Suche" href="../../search.html" />
+    <link rel="next" title="Browse Services" href="browse.html" />
+    <link rel="prev" title="gView Server Verwalten" href="manage.html" /> 
   </head><body data-dark_mode_code_blocks="true">
 
 <div id="top_nav">
@@ -32,7 +32,7 @@
         <p id="toggle_sidebar">
             <a href="#" title="Toggle sidebar">|||</a>
         </p>
-        <h1><a href="../index.html" title="Go to homepage">gView GIS 8.x Dokumentation</a></h1>
+        <h1><a href="../../index.html" title="Go to homepage">gView GIS 8.x Dokumentation</a></h1>
 
         <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
     <template v-if="mode == 'light'">
@@ -94,7 +94,7 @@
 })()
 </script>
             <p class="mobile_search_link">
-                <a href="../search.html" title="Search">
+                <a href="../../search.html" title="Search">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
                         <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
                     </svg>
@@ -107,7 +107,7 @@
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
+    <form class="search" action="../../search.html" method="get">
       <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
@@ -122,18 +122,24 @@
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Inhaltsverzeichnis:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../setup/index.html">Erste Schritte</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webapps/index.html">gView WebApps</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">gView Server</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="inst/installation.html">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="manual/index.html">Benutzerhandbuch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../setup/index.html">Erste Schritte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../webapps/index.html">gView WebApps</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">gView Server</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../inst/installation.html">Installation</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Benutzerhandbuch</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="manage.html">gView Server Verwalten</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">gView.Server Kommandozeile (Offline-Modus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="browse.html">Browse Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geoservices-rest.html">GeoServices REST Schnittstelle</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../commandline/index.html">gView Kommandozeilenwerkzeuge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../commandline/index.html#kommandozeilenwerkzeuge-interaktiver-modus">Kommandozeilenwerkzeuge (Interaktiver Modus)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Anleitungen (Tutorials)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../appendix/index.html">Anhang</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../spec/geojson_service/index.html">GeoJson Service Spezifikation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../commandline/index.html">gView Kommandozeilenwerkzeuge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commandline/index.html#kommandozeilenwerkzeuge-interaktiver-modus">Kommandozeilenwerkzeuge (Interaktiver Modus)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Anleitungen (Tutorials)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix/index.html">Anhang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spec/geojson_service/index.html">GeoJson Service Spezifikation</a></li>
 </ul>
 
         </div>
@@ -145,32 +151,65 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="gview-server">
-<h1>gView Server<a class="headerlink" href="#gview-server" title="Link to this heading">¶</a></h1>
-<p>In diesem Abschnitt wird der gView Server vorgestellt. Der gView Server ist ein Kartenserver,
-der Karten, die zuvor mit gView Carto erstellt wurden, in verschiedenen Formaten als Kartendienst
-publiziert. Die Kartendienste bieten je nach Schnittstelle folgende Funktionalitäten:</p>
-<ul class="simple">
-<li><p>Kartenbilder</p></li>
-<li><p>Features abfragen</p></li>
-<li><p>Features bearbeiten (FeatureServer)</p></li>
-</ul>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Inhaltsverzeichnis:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="inst/installation.html">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="inst/postinstallation.html">Postinstallation</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="manual/index.html">Benutzerhandbuch</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="manual/manage.html">gView Server Verwalten</a></li>
-<li class="toctree-l2"><a class="reference internal" href="manual/cli.html">gView.Server Kommandozeile (Offline-Modus)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="manual/browse.html">Browse Services</a></li>
-<li class="toctree-l2"><a class="reference internal" href="manual/geoservices-rest.html">GeoServices REST Schnittstelle</a></li>
-</ul>
-</li>
-</ul>
+  <section id="gview-server-kommandozeile-offline-modus">
+<span id="gview-server-cli"></span><h1>gView.Server Kommandozeile (Offline-Modus)<a class="headerlink" href="#gview-server-kommandozeile-offline-modus" title="Link to this heading">¶</a></h1>
+<p>Neben dem normalen Serverbetrieb kann <strong>gView.Server.exe</strong> auch direkt mit Kommandozeilenparametern
+aufgerufen werden, um Dienste zu verwalten, ohne dass der HTTP-Server gestartet wird. Das ist
+insbesondere für <em>Offline</em>-Szenarien nützlich, etwa wenn Dienste im Rahmen eines Deployments oder
+Skripts automatisiert veröffentlicht, entfernt oder abgefragt werden sollen.</p>
+<p>Alle im Folgenden beschriebenen Aufrufe lesen die komplette Serverkonfiguration
+(<code class="docutils literal notranslate"><span class="pre">_config/mapserver.json</span></code>, Plugins, Services-Pfad, siehe <a class="reference internal" href="../../setup/config-server.html#config-server"><span class="std std-ref">Konfiguration gView.Server</span></a>) genauso ein wie
+der normale Serverstart. Es wird dabei jedoch <strong>kein</strong> HTTP-Listener gestartet, d. h. es wird kein
+Port gebunden. Der Prozess beendet sich nach der Aktion mit dem Exitcode <code class="docutils literal notranslate"><span class="pre">0</span></code> (Erfolg) bzw.
+<code class="docutils literal notranslate"><span class="pre">!=</span> <span class="pre">0</span></code> (Fehler, die Meldung wird dabei auf <code class="docutils literal notranslate"><span class="pre">stderr</span></code> ausgegeben).</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p><code class="docutils literal notranslate"><span class="pre">--service</span></code> wird bei allen Befehlen im Format <code class="docutils literal notranslate"><span class="pre">folder/servicename</span></code> angegeben (bzw. nur
+<code class="docutils literal notranslate"><span class="pre">servicename</span></code> für einen Dienst im Root-Verzeichnis). Bei <code class="docutils literal notranslate"><span class="pre">--remove</span></code>, <code class="docutils literal notranslate"><span class="pre">--set-metadata</span></code> und
+<code class="docutils literal notranslate"><span class="pre">--get-metadata</span></code> muss der angegebene <code class="docutils literal notranslate"><span class="pre">folder</span></code> bereits als existierendes Verzeichnis unter
+dem konfigurierten Services-Pfad vorhanden sein – dieselbe Regel gilt auch beim Publizieren
+über die Web-Oberfläche bzw. per HTTP.</p>
 </div>
+<section id="publish-dienst-veroffentlichen">
+<h2>–publish – Dienst veröffentlichen<a class="headerlink" href="#publish-dienst-veroffentlichen" title="Link to this heading">¶</a></h2>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>gView.Server.exe --publish --mxl <span class="p">&lt;</span>pfad-zur-mxl<span class="p">&gt;</span> --service <span class="p">&lt;</span>folder/servicename&gt;
+</pre></div>
+</div>
+<p>Validiert die angegebene MXL, benennt die erste darin enthaltene Karte auf
+<code class="docutils literal notranslate"><span class="pre">folder/servicename</span></code> um und schreibt <code class="docutils literal notranslate"><span class="pre">.mxl</span></code> und <code class="docutils literal notranslate"><span class="pre">.meta</span></code> in den konfigurierten Services-Pfad.</p>
+</section>
+<section id="remove-dienst-entfernen">
+<h2>–remove – Dienst entfernen<a class="headerlink" href="#remove-dienst-entfernen" title="Link to this heading">¶</a></h2>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>gView.Server.exe --remove --service <span class="p">&lt;</span>folder/servicename&gt;
+</pre></div>
+</div>
+<p>Löscht <code class="docutils literal notranslate"><span class="pre">.mxl</span></code>, <code class="docutils literal notranslate"><span class="pre">.svc</span></code> und <code class="docutils literal notranslate"><span class="pre">.meta</span></code> des angegebenen Dienstes aus dem Services-Pfad.</p>
+</section>
+<section id="catalog-dienste-auflisten">
+<h2>–catalog – Dienste auflisten<a class="headerlink" href="#catalog-dienste-auflisten" title="Link to this heading">¶</a></h2>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>gView.Server.exe --catalog [--format text<span class="p">|</span>xml<span class="p">|</span>json]
+</pre></div>
+</div>
+<p>Listet alle registrierten Dienste auf (Root-Ebene sowie eine Ordnerebene darunter). Ohne
+<code class="docutils literal notranslate"><span class="pre">--format</span></code> wird die Ausgabe als Text erzeugt (<code class="docutils literal notranslate"><span class="pre">folder/name</span> <span class="pre">(Type)</span></code> je Zeile).</p>
+</section>
+<section id="get-metadata-metadaten-auslesen">
+<h2>–get-metadata – Metadaten auslesen<a class="headerlink" href="#get-metadata-metadaten-auslesen" title="Link to this heading">¶</a></h2>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>gView.Server.exe --get-metadata --service <span class="p">&lt;</span>folder/servicename<span class="p">&gt;</span> [--out <span class="p">&lt;</span>pfad<span class="p">&gt;</span>]
+</pre></div>
+</div>
+<p>Gibt die <code class="docutils literal notranslate"><span class="pre">.meta</span></code>-XML des Dienstes aus. Mit <code class="docutils literal notranslate"><span class="pre">--out</span></code> wird die Ausgabe stattdessen in eine Datei
+geschrieben. Ein leeres Ergebnis bedeutet, dass kein Dienst bzw. keine Metadaten vorhanden sind
+(kein Fehler, Exitcode <code class="docutils literal notranslate"><span class="pre">0</span></code>).</p>
+</section>
+<section id="set-metadata-metadaten-setzen">
+<h2>–set-metadata – Metadaten setzen<a class="headerlink" href="#set-metadata-metadaten-setzen" title="Link to this heading">¶</a></h2>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>gView.Server.exe --set-metadata --service <span class="p">&lt;</span>folder/servicename<span class="p">&gt;</span> --metadata <span class="p">&lt;</span>pfad-zur-xml&gt;
+</pre></div>
+</div>
+<p>Schreibt die angegebene XML-Datei als <code class="docutils literal notranslate"><span class="pre">.meta</span></code> für den Dienst und lädt den Dienst anschließend
+neu.</p>
+</section>
 </section>
 
 
@@ -179,6 +218,27 @@ publiziert. Die Kartendienste bieten je nach Schnittstelle folgende Funktionalit
         </div>
       </div>
     
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">gView.Server Kommandozeile (Offline-Modus)</a><ul>
+<li><a class="reference internal" href="#publish-dienst-veroffentlichen">–publish – Dienst veröffentlichen</a></li>
+<li><a class="reference internal" href="#remove-dienst-entfernen">–remove – Dienst entfernen</a></li>
+<li><a class="reference internal" href="#catalog-dienste-auflisten">–catalog – Dienste auflisten</a></li>
+<li><a class="reference internal" href="#get-metadata-metadaten-auslesen">–get-metadata – Metadaten auslesen</a></li>
+<li><a class="reference internal" href="#set-metadata-metadaten-setzen">–set-metadata – Metadaten setzen</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
 
       <div class="clearer"></div>
     </div>
@@ -186,14 +246,14 @@ publiziert. Die Kartendienste bieten je nach Schnittstelle folgende Funktionalit
         <div class="button_nav">
             <div class="left">
                 
-                <a href="../webapps/dataexplorer/fdb/raster_catalog.html">
-                    <span class="icon">&lt;</span><span>Anlegen eines Raster(katalog) Datasets</span></a>
+                <a href="manage.html">
+                    <span class="icon">&lt;</span><span>gView Server Verwalten</span></a>
                 
             </div>
 
             <div class="right">
                 
-                    <a href="inst/installation.html"><span>Installation</span><span class="icon">&gt;</span></a>
+                    <a href="browse.html"><span>Browse Services</span><span class="icon">&gt;</span></a>
                 
             </div>
         </div>

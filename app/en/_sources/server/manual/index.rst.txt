@@ -16,5 +16,6 @@ The following points cover additional topics:
     :caption: Table of Contents:
  
     manage
+    cli
     browse
     geoservices-rest

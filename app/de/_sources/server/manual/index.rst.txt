@@ -17,5 +17,6 @@ Die folgenden Punkte decken noch weitere Themen ab:
     :caption: Inhaltsverzeichnis:
  
     manage
+    cli
     browse
     geoservices-rest
