@@ -352,6 +352,66 @@ Overrides
 <p>Es erscheint die Warnung, dass diese Version bereits deployed wurde. Aus den ZIP-Dateien werden keine
 Daten kopiert. Durchgeführt werden nur die <em>Overrides</em>.</p>
 </section>
+<section id="kommandozeilenparameter-unbeaufsichtigter-modus">
+<span id="deploy-cli"></span><h2>Kommandozeilenparameter (Unbeaufsichtigter Modus)<a class="headerlink" href="#kommandozeilenparameter-unbeaufsichtigter-modus" title="Link to this heading">¶</a></h2>
+<p>Zusätzlich zum oben beschriebenen interaktiven Modus kann <code class="docutils literal notranslate"><span class="pre">gview.deploy.exe</span></code> auch mit
+Kommandozeilenparametern aufgerufen werden, um Deployments zu automatisieren. Jeder Wert, der
+normalerweise interaktiv abgefragt wird, kann auch als Parameter übergeben werden. Sind alle
+erforderlichen Werte angegeben, läuft <code class="docutils literal notranslate"><span class="pre">gview.deploy</span></code> ohne Rückfragen durch.</p>
+<p><strong>Grundlegende Parameter:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-h</span></code>, <code class="docutils literal notranslate"><span class="pre">--help</span></code>, <code class="docutils literal notranslate"><span class="pre">-?</span></code>
+Zeigt die Hilfe an und beendet das Programm.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-p</span></code>, <code class="docutils literal notranslate"><span class="pre">--profile</span> <span class="pre">&lt;name&gt;</span></code>
+Deploy-Profil (z. B. <code class="docutils literal notranslate"><span class="pre">development</span></code>, <code class="docutils literal notranslate"><span class="pre">test</span></code>, <code class="docutils literal notranslate"><span class="pre">staging</span></code>, <code class="docutils literal notranslate"><span class="pre">production</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-v</span></code>, <code class="docutils literal notranslate"><span class="pre">--version</span> <span class="pre">&lt;version&gt;</span></code>
+Zu deployende Version (z. B. <code class="docutils literal notranslate"><span class="pre">1.2.3.4</span></code>), oder <code class="docutils literal notranslate"><span class="pre">latest</span></code> für die neueste lokal gefundene
+Version (in Kombination mit <code class="docutils literal notranslate"><span class="pre">--download</span></code>, um sie zuerst von GitHub zu laden).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--product</span> <span class="pre">&lt;Everything|Server|WebApps&gt;</span></code>
+Was deployed werden soll (Standard im unbeaufsichtigten Modus: <code class="docutils literal notranslate"><span class="pre">Everything</span></code>).</p></li>
+</ul>
+<p><strong>Steuerung des unbeaufsichtigten Modus:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-y</span></code>, <code class="docutils literal notranslate"><span class="pre">--yes</span></code>
+Übernimmt bei jeder Y/N-Abfrage die Standardantwort (<code class="docutils literal notranslate"><span class="pre">Y</span></code>) und setzt <code class="docutils literal notranslate"><span class="pre">--product</span></code> standardmäßig
+auf <code class="docutils literal notranslate"><span class="pre">Everything</span></code>, falls nicht angegeben.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--download</span></code> / <code class="docutils literal notranslate"><span class="pre">--skip-download</span></code> (bzw. <code class="docutils literal notranslate"><span class="pre">--no-download</span></code>)
+Beantwortet explizit die Frage, ob die neueste Version von GitHub heruntergeladen werden soll,
+und überschreibt dabei <code class="docutils literal notranslate"><span class="pre">-y</span></code>/<code class="docutils literal notranslate"><span class="pre">--yes</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--confirm</span></code> / <code class="docutils literal notranslate"><span class="pre">--no-confirm</span></code>
+Beantwortet explizit die Frage „do you want to continue“ und überschreibt dabei <code class="docutils literal notranslate"><span class="pre">-y</span></code>/<code class="docutils literal notranslate"><span class="pre">--yes</span></code>.</p></li>
+</ul>
+<p><strong>Deploy-Profil-Parameter</strong> (nur einmal pro Profil nötig, werden danach gespeichert):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--target-installation-path</span> <span class="pre">&lt;pfad&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--repository-path</span> <span class="pre">&lt;pfad&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--server-url</span> <span class="pre">&lt;url&gt;</span></code> (z. B. <code class="docutils literal notranslate"><span class="pre">http://localhost:45622</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--admin-username</span> <span class="pre">&lt;name&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--admin-password</span> <span class="pre">&lt;passwort&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--carto-username</span> <span class="pre">&lt;name&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--carto-password</span> <span class="pre">&lt;passwort&gt;</span></code></p></li>
+</ul>
+<p>Beispiel: vollständig unbeaufsichtigt, erster Aufruf mit neuem Profil:</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>gview.deploy.exe -p production -v 1.2.3.4 --product Everything -y <span class="se">^</span>
+<span class="se"> </span> --repository-path C:\apps\gview-gis\production\gview-repository <span class="se">^</span>
+<span class="se"> </span> --server-url http://localhost:45622 <span class="se">^</span>
+<span class="se"> </span> --admin-username admin --admin-password <span class="s2">&quot;Str0ng!Pass&quot;</span> <span class="se">^</span>
+<span class="se"> </span> --carto-username carto --carto-password <span class="s2">&quot;Str0ng!Pass&quot;</span>
+</pre></div>
+</div>
+<p>Beispiel: bestehendes Profil aktualisieren, unbeaufsichtigt (die Profil-Parameter oben wurden
+beim ersten Aufruf bereits gespeichert und müssen nicht erneut angegeben werden):</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>gview.deploy.exe -p production -v latest --download -y
+gview.deploy.exe -p production -v latest --skip-download -y
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Über die Kommandozeile übergebene Passwörter werden im Profil genauso gespeichert wie bei
+interaktiver Eingabe. Deployment-Skripte und die Maschine, auf der sie laufen, sollten daher
+entsprechend abgesichert werden.</p>
+</div>
+</section>
 </section>
 
 
@@ -372,6 +432,7 @@ Daten kopiert. Durchgeführt werden nur die <em>Overrides</em>.</p>
 <li><a class="reference internal" href="#vorbereitung">Vorbereitung</a></li>
 <li><a class="reference internal" href="#neue-version-ausliefern">Neue Version ausliefern</a></li>
 <li><a class="reference internal" href="#aktuelle-konfiguration-andern">Aktuelle Konfiguration ändern</a></li>
+<li><a class="reference internal" href="#kommandozeilenparameter-unbeaufsichtigter-modus">Kommandozeilenparameter (Unbeaufsichtigter Modus)</a></li>
 </ul>
 </li>
 </ul>

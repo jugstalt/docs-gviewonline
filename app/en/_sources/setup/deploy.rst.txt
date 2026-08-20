@@ -235,7 +235,73 @@ directory. Afterward, when you run ``gview.deploy`` again, you receive the follo
    ...succeeded 1 items created/overridden
 
 
-A warning appears that this version has already been deployed. No data are copied from the ZIP files. 
+A warning appears that this version has already been deployed. No data are copied from the ZIP files.
 Only the *Overrides* are executed.
+
+.. _deploy_cli:
+
+Command Line Parameters (Unattended Mode)
+------------------------------------------
+
+In addition to the interactive mode described above, ``gview.deploy.exe`` can be called with
+command line parameters to automate deployments. Every value that is normally requested
+interactively can also be passed as a parameter. If all required values are given, ``gview.deploy``
+runs without any prompts.
+
+**Basic parameters:**
+
+- ``-h``, ``--help``, ``-?``
+  Show the help and exit.
+- ``-p``, ``--profile <name>``
+  Deployment profile (e.g. ``development``, ``test``, ``staging``, ``production``).
+- ``-v``, ``--version <version>``
+  Version to deploy (e.g. ``1.2.3.4``), or ``latest`` to use the newest version found locally
+  (combine with ``--download`` to fetch it from GitHub first).
+- ``--product <Everything|Server|WebApps>``
+  What to deploy (default when unattended: ``Everything``).
+
+**Non-interactive control:**
+
+- ``-y``, ``--yes``
+  Accept the default answer (``Y``) for every Y/N confirmation and default ``--product`` to
+  ``Everything`` if not given.
+- ``--download`` / ``--skip-download`` (or ``--no-download``)
+  Explicitly answer the "download latest version from GitHub" question, overrides ``-y``/``--yes``.
+- ``--confirm`` / ``--no-confirm``
+  Explicitly answer the "do you want to continue" question, overrides ``-y``/``--yes``.
+
+**Deploy profile parameters** (only needed once per profile, then stored):
+
+- ``--target-installation-path <path>``
+- ``--repository-path <path>``
+- ``--server-url <url>`` (e.g. ``http://localhost:45622``)
+- ``--admin-username <name>``
+- ``--admin-password <password>``
+- ``--carto-username <name>``
+- ``--carto-password <password>``
+
+Example: fully unattended, first run of a new profile:
+
+.. code-block:: batch
+
+   gview.deploy.exe -p production -v 1.2.3.4 --product Everything -y ^
+     --repository-path C:\apps\gview-gis\production\gview-repository ^
+     --server-url http://localhost:45622 ^
+     --admin-username admin --admin-password "Str0ng!Pass" ^
+     --carto-username carto --carto-password "Str0ng!Pass"
+
+Example: update an existing profile, unattended (the profile parameters above are already
+stored from the first run and don't need to be repeated):
+
+.. code-block:: batch
+
+   gview.deploy.exe -p production -v latest --download -y
+   gview.deploy.exe -p production -v latest --skip-download -y
+
+.. note::
+
+   Passwords passed on the command line are stored in the profile the same way as when entered
+   interactively. Make sure the deployment scripts and the machine they run on are appropriately
+   secured.
 
 

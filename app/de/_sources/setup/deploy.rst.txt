@@ -247,7 +247,74 @@ Verzeichnis. Danach führt man erneut ``gview.deploy`` aus und erhält folgende 
    ...succeeded 1 items created/overridden
 
 
-Es erscheint die Warnung, dass diese Version bereits deployed wurde. Aus den ZIP-Dateien werden keine 
+Es erscheint die Warnung, dass diese Version bereits deployed wurde. Aus den ZIP-Dateien werden keine
 Daten kopiert. Durchgeführt werden nur die *Overrides*.
+
+.. _deploy_cli:
+
+Kommandozeilenparameter (Unbeaufsichtigter Modus)
+--------------------------------------------------
+
+Zusätzlich zum oben beschriebenen interaktiven Modus kann ``gview.deploy.exe`` auch mit
+Kommandozeilenparametern aufgerufen werden, um Deployments zu automatisieren. Jeder Wert, der
+normalerweise interaktiv abgefragt wird, kann auch als Parameter übergeben werden. Sind alle
+erforderlichen Werte angegeben, läuft ``gview.deploy`` ohne Rückfragen durch.
+
+**Grundlegende Parameter:**
+
+- ``-h``, ``--help``, ``-?``
+  Zeigt die Hilfe an und beendet das Programm.
+- ``-p``, ``--profile <name>``
+  Deploy-Profil (z. B. ``development``, ``test``, ``staging``, ``production``).
+- ``-v``, ``--version <version>``
+  Zu deployende Version (z. B. ``1.2.3.4``), oder ``latest`` für die neueste lokal gefundene
+  Version (in Kombination mit ``--download``, um sie zuerst von GitHub zu laden).
+- ``--product <Everything|Server|WebApps>``
+  Was deployed werden soll (Standard im unbeaufsichtigten Modus: ``Everything``).
+
+**Steuerung des unbeaufsichtigten Modus:**
+
+- ``-y``, ``--yes``
+  Übernimmt bei jeder Y/N-Abfrage die Standardantwort (``Y``) und setzt ``--product`` standardmäßig
+  auf ``Everything``, falls nicht angegeben.
+- ``--download`` / ``--skip-download`` (bzw. ``--no-download``)
+  Beantwortet explizit die Frage, ob die neueste Version von GitHub heruntergeladen werden soll,
+  und überschreibt dabei ``-y``/``--yes``.
+- ``--confirm`` / ``--no-confirm``
+  Beantwortet explizit die Frage "do you want to continue" und überschreibt dabei ``-y``/``--yes``.
+
+**Deploy-Profil-Parameter** (nur einmal pro Profil nötig, werden danach gespeichert):
+
+- ``--target-installation-path <pfad>``
+- ``--repository-path <pfad>``
+- ``--server-url <url>`` (z. B. ``http://localhost:45622``)
+- ``--admin-username <name>``
+- ``--admin-password <passwort>``
+- ``--carto-username <name>``
+- ``--carto-password <passwort>``
+
+Beispiel: vollständig unbeaufsichtigt, erster Aufruf mit neuem Profil:
+
+.. code-block:: batch
+
+   gview.deploy.exe -p production -v 1.2.3.4 --product Everything -y ^
+     --repository-path C:\apps\gview-gis\production\gview-repository ^
+     --server-url http://localhost:45622 ^
+     --admin-username admin --admin-password "Str0ng!Pass" ^
+     --carto-username carto --carto-password "Str0ng!Pass"
+
+Beispiel: bestehendes Profil aktualisieren, unbeaufsichtigt (die Profil-Parameter oben wurden
+beim ersten Aufruf bereits gespeichert und müssen nicht erneut angegeben werden):
+
+.. code-block:: batch
+
+   gview.deploy.exe -p production -v latest --download -y
+   gview.deploy.exe -p production -v latest --skip-download -y
+
+.. note::
+
+   Über die Kommandozeile übergebene Passwörter werden im Profil genauso gespeichert wie bei
+   interaktiver Eingabe. Deployment-Skripte und die Maschine, auf der sie laufen, sollten daher
+   entsprechend abgesichert werden.
 
 
