@@ -134,37 +134,93 @@ Die Eigenschaften des *Renderers* teilen sich die folgende Kategorien auf:
   **SimpleScript-Ausdrücke:**
 
   Neben einfachen Platzhalter-Ausdrücken unterstützt der **Expression Editor** auch sogenannte
-  ``SimpleScript``-Ausdrücke. Ein solcher Ausdruck muss mit ``@@start`` beginnen und mit
-  ``@@end`` enden. Dazwischen können bedingte Textblöcke mit ``@@if`` / ``@@endif`` definiert
-  werden.
+  ``SimpleScript``-Ausdrücke. Sie erlauben bedingte Textblöcke und Textersetzungen, die weit über
+  eine reine Platzhalter-Substitution hinausgehen.
 
-  Mit ``@@if(...)`` wird der Text zwischen ``@@if`` und ``@@endif`` an eine Bedingung geknüpft.
-  Die Bedingung bezieht sich dabei immer auf ein Feld (in eckigen Klammern). Folgende Formen
-  sind möglich (zum Vergleich die äquivalente VB-Bedingung):
+  *Grundstruktur:*
+
+  .. code-block:: text
+
+    @@start
+    <Zeile 1>
+    <Zeile 2>
+    ...
+    @@end
+    [@@replace(Suche,Ersetzung)]
+    [@@replace(Suche,Ersetzung)]
+
+  Ein Wert wird nur dann als SimpleScript interpretiert, wenn er buchstäblich mit ``@@start``
+  gefolgt von einem Zeilenumbruch beginnt. Andernfalls bleibt der Text unverändert – das ist
+  nützlich, falls ein Feldwert zufällig mit dem Text "@@start" beginnt.
+
+  Zwischen ``@@start`` und ``@@end`` steht pro Zeile entweder eine Steuerzeile (``@@if(...)``,
+  ``@@endif``) oder eine Inhaltszeile (normaler Text, üblicherweise mit ``[Feld]``- bzw.
+  ``[Feld:Format]``-Platzhaltern). Die enthaltenen Inhaltszeilen werden mit Zeilenumbruch wieder
+  zusammengefügt – aber nur zwischen tatsächlich enthaltenen Zeilen: Fällt z. B. die erste Zeile
+  wegen einer falschen Bedingung weg, entsteht keine führende Leerzeile. Fehlt ``@@end`` ganz,
+  bleibt der komplette Originaltext unverändert (kein Fehler, einfach keine Interpretation).
+
+  *Bedingte Blöcke: @@if(...) / @@endif*
+
+  Eine Inhaltszeile erscheint nur, wenn jede sie umschließende ``@@if(...)``-Bedingung wahr ist –
+  Verschachtelung wirkt als UND-Verknüpfung, beliebig tief. Es gibt vier Argumentformen
+  (kommagetrennt in der Klammer):
 
   .. list-table::
     :width: 100 %
     :header-rows: 1
 
-    * - VB
+    * - Form
+      - Beispiel
       - Bedeutung
-      - ``@@if(...)``-Form
-    * - ``[FELD] <> ""``
-      - Feld ist nicht leer
+    * - 1 Argument
       - ``@@if([FELD])``
-    * - ``[FELD] = ""``
-      - Feld ist leer
-      - ``@@if([FELD],)``
-    * - ``[FELD] = "Wert"``
-      - Feld entspricht "Wert"
+      - wahr, wenn der Wert nicht leer/nicht nur Leerzeichen ist
+    * - 2 Argumente
       - ``@@if([FELD],Wert)``
-    * - ``[FELD] <> "Wert"``
-      - Feld entspricht nicht "Wert"
-      - ``@@if([FELD],not,Wert)``
+      - wahr, wenn exakt (case-sensitive) gleich "Wert"
+    * - 2 Argumente, leer
+      - ``@@if([FELD],)``
+      - Trick für "Feld ist leer"
+    * - 3 Argumente
+      - ``@@if([FELD],op,Wert)``
+      - ``op`` ∈ ``eq``/``not``/``lt``/``le``/``gt``/``ge``
+    * - variabel
+      - ``@@if([FELD],in,W1,W2,W3,...)``
+      - wahr, wenn der Wert einem der aufgezählten entspricht
 
-  ``@@if``-Blöcke können auch verschachtelt werden, um mehrere Bedingungen zu kombinieren, wie
-  im folgenden Beispiel (Beschriftung nach Typ, mit Präfix ``S:`` für ``Schieber`` und ``V:``
-  für ``Ventil``):
+  - ``eq``/``not`` sind Gleichheit/Ungleichheit (case-sensitiver Textvergleich).
+  - ``lt``/``le``/``gt``/``ge`` sind numerische Vergleiche. Beide Seiten werden als Zahl geparst
+    (zuerst mit Punkt als Dezimaltrennzeichen, dann mit der aktuellen Kultur, z. B. deutschem
+    Komma "123,4"); ist eine Seite keine Zahl, ist die Bedingung falsch. Unbekannte Operatoren
+    ergeben immer "falsch".
+  - ``in`` fasst mehrere gleichwertige Alternativen in einer einzigen Bedingung zusammen, statt
+    mehrere fast identische ``@@if``-Blöcke zu benötigen.
+
+  .. note::
+
+     Argumente werden einfach an Kommas getrennt. Ein Feldwert, der selbst ein Komma enthält
+     (z. B. ein Dezimalkomma wie "125,4"), verschiebt daher die Argumentzählung. Für die
+     Operator-Formen (``eq``/``not``/``lt``/``le``/``gt``/``ge``) gibt es dafür eine
+     automatische Rettung: Enthält der erste (Feld-)Wert ein Dezimalkomma, wird das wieder
+     korrekt zusammengesetzt – vorausgesetzt, das vorletzte Element ist ein bekanntes
+     Operator-Schlüsselwort.
+
+  *Nachbearbeitung: @@replace(Suche,Ersetzung)*
+
+  Nach ``@@end`` können beliebig viele ``@@replace(...)``-Zeilen folgen. Sie werden der Reihe
+  nach auf das fertig zusammengebaute Ergebnis angewendet (nicht auf einzelne Zeilen), sodass
+  Verkettungen möglich sind – jede Ersetzung arbeitet auf dem Ergebnis der vorherigen.
+
+  - Exakter, case-sensitiver Teilstring-Ersatz (kein Pattern/Regex).
+  - Eine leere Ersetzung (``@@replace(Suche,)``) entfernt den gefundenen Text.
+  - Kein Treffer → der Text bleibt unverändert.
+  - Eine Argumentanzahl ungleich 2 → die Zeile wird ignoriert.
+
+  *Beispiele:*
+
+  Beschriftung nach Typ, mit Präfix ``S:`` für ``Schieber`` und ``V:`` für ``Ventil``
+  (Verschachtelung als UND-Verknüpfung):
 
   .. code-block:: text
 
@@ -184,11 +240,25 @@ Die Eigenschaften des *Renderers* teilen sich die folgende Kategorien auf:
     @@endif
     @@end
 
-  Zusätzlich können nach dem ``@@end`` beliebig viele ``@@replace(Suchtext,Ersatztext)``-Anweisungen
-  folgen. Sie werden nacheinander auf den vom Skript erzeugten Text angewendet und ersetzen
-  jeweils den Suchtext durch den Ersatztext. Lässt man den Ersatztext leer
-  (``@@replace(Suchtext,)``), wird der Suchtext einfach entfernt. Das ist z. B. praktisch, um
-  lange Standardwerte abzukürzen oder ganz auszublenden:
+  Bedingung auf "Feld ist leer" (``@@if([FELD],)``) und Nachbearbeitung mit ``@@replace``:
+
+  .. code-block:: text
+
+    @@start
+    @@if([STPKT_NR],)
+    [NORMBEZEICHNUNG]
+    @@endif
+    @@if([STPKT_NR])
+    Nr [STPKT_NR] [NORMBEZEICHNUNG]
+    @@endif
+    @@end
+    @@replace(Hausanschluss,HA)
+
+  Ist ``[STPKT_NR]`` leer, wird nur ``[NORMBEZEICHNUNG]`` ausgegeben, sonst
+  ``Nr <STPKT_NR> <NORMBEZEICHNUNG>``. Am Ende wird überall "Hausanschluss" durch "HA" ersetzt.
+
+  Mehrere ``@@replace``-Anweisungen, um lange Standardwerte abzukürzen oder ganz auszublenden
+  (leere Ersetzung entfernt den Suchtext):
 
   .. code-block:: text
 
@@ -201,6 +271,14 @@ Die Eigenschaften des *Renderers* teilen sich die folgende Kategorien auf:
     @@replace(Sonstiger Punkt,)
     @@replace(Sonstiges Punktobjekt,)
     @@replace(Reserve,Res.)
+
+  *Sonstiges:*
+
+  - Zeilenumbrüche im Skript-Quelltext (``\r\n``, ``\r``, ``\n``) werden alle gleich behandelt,
+    unabhängig vom Server-Betriebssystem.
+  - Alle Vergleiche außer ``lt``/``le``/``gt``/``ge`` sind exakte, case-sensitive
+    Zeichenvergleiche (keine Groß-/Kleinschreibungstoleranz beim Wert selbst – nur die
+    Operator-Schlüsselwörter wie ``eq``/``in`` sind case-insensitiv).
 
 * **Verhalten:** Hier wird die Priorität des Labels angegeben:
 

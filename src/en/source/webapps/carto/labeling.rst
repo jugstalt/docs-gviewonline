@@ -132,36 +132,93 @@ The properties of the *Renderer* are divided into the following categories:
   **SimpleScript expressions:**
 
   In addition to simple placeholder expressions, the **Expression Editor** also supports
-  so-called ``SimpleScript`` expressions. Such an expression must start with ``@@start`` and
-  end with ``@@end``. In between, conditional text blocks can be defined using ``@@if`` /
-  ``@@endif``.
+  so-called ``SimpleScript`` expressions. They allow conditional text blocks and text
+  replacements that go well beyond plain placeholder substitution.
 
-  With ``@@if(...)``, the text between ``@@if`` and ``@@endif`` is tied to a condition. The
-  condition always refers to a field (in square brackets). The following forms are possible
-  (compared to the equivalent VB condition):
+  *Basic structure:*
+
+  .. code-block:: text
+
+    @@start
+    <line 1>
+    <line 2>
+    ...
+    @@end
+    [@@replace(Search,Replacement)]
+    [@@replace(Search,Replacement)]
+
+  A value is only interpreted as SimpleScript if it literally starts with ``@@start`` followed
+  by a line break. Otherwise the text is left unchanged — useful in case a field value happens
+  to start with the text "@@start".
+
+  Between ``@@start`` and ``@@end``, each line is either a control line (``@@if(...)``,
+  ``@@endif``) or a content line (plain text, usually with ``[Field]`` or
+  ``[Field:Format]`` placeholders). The included content lines are joined back together with a
+  line break — but only between lines that are actually included: if, for example, the first
+  line is dropped due to a false condition, no leading blank line is produced. If ``@@end`` is
+  missing entirely, the whole original text is left unchanged (no error, simply no
+  interpretation).
+
+  *Conditional blocks: @@if(...) / @@endif*
+
+  A content line only appears if every ``@@if(...)`` condition enclosing it is true — nesting
+  acts as an AND combination, to any depth. There are four argument forms (comma-separated
+  inside the parentheses):
 
   .. list-table::
     :width: 100 %
     :header-rows: 1
 
-    * - VB
+    * - Form
+      - Example
       - Meaning
-      - ``@@if(...)`` form
-    * - ``[FIELD] <> ""``
-      - Field is not empty
+    * - 1 argument
       - ``@@if([FIELD])``
-    * - ``[FIELD] = ""``
-      - Field is empty
-      - ``@@if([FIELD],)``
-    * - ``[FIELD] = "Value"``
-      - Field equals "Value"
+      - true if the value is not empty/not just whitespace
+    * - 2 arguments
       - ``@@if([FIELD],Value)``
-    * - ``[FIELD] <> "Value"``
-      - Field does not equal "Value"
-      - ``@@if([FIELD],not,Value)``
+      - true if it equals "Value" exactly (case-sensitive)
+    * - 2 arguments, empty
+      - ``@@if([FIELD],)``
+      - trick for "field is empty"
+    * - 3 arguments
+      - ``@@if([FIELD],op,Value)``
+      - ``op`` ∈ ``eq``/``not``/``lt``/``le``/``gt``/``ge``
+    * - variable
+      - ``@@if([FIELD],in,V1,V2,V3,...)``
+      - true if the value matches one of the listed values
 
-  ``@@if`` blocks can also be nested to combine multiple conditions, as in the following example
-  (labeling by type, with the prefix ``S:`` for ``Schieber`` and ``V:`` for ``Ventil``):
+  - ``eq``/``not`` are equality/inequality (case-sensitive text comparison).
+  - ``lt``/``le``/``gt``/``ge`` are numeric comparisons. Both sides are parsed as a number
+    (first with a dot as the decimal separator, then with the current culture, e.g. a German
+    comma "123,4"); if either side is not a number, the condition is false. Unknown operators
+    always evaluate to false.
+  - ``in`` combines several equivalent alternatives into a single condition, instead of
+    requiring several near-identical ``@@if`` blocks.
+
+  .. note::
+
+     Arguments are simply split on commas. A field value that itself contains a comma
+     (e.g. a decimal comma like "125,4") therefore shifts the argument count. For the operator
+     forms (``eq``/``not``/``lt``/``le``/``gt``/``ge``) there is an automatic rescue for this:
+     if the first (field) value contains a decimal comma, it is reassembled correctly —
+     provided the second-to-last element is a recognized operator keyword.
+
+  *Post-processing: @@replace(Search,Replacement)*
+
+  Any number of ``@@replace(...)`` lines can follow after ``@@end``. They are applied one after
+  another to the fully assembled result (not to individual lines), so chaining is possible —
+  each replacement operates on the result of the previous one.
+
+  - Exact, case-sensitive substring replacement (no pattern/regex).
+  - An empty replacement (``@@replace(Search,)``) removes the found text.
+  - No match → the text is left unchanged.
+  - An argument count other than 2 → the line is ignored.
+
+  *Examples:*
+
+  Labeling by type, with the prefix ``S:`` for ``Schieber`` and ``V:`` for ``Ventil``
+  (nesting acting as an AND combination):
 
   .. code-block:: text
 
@@ -181,11 +238,27 @@ The properties of the *Renderer* are divided into the following categories:
     @@endif
     @@end
 
-  In addition, any number of ``@@replace(SearchText,ReplaceText)`` statements can follow after
-  ``@@end``. They are applied one after another to the text produced by the script, each
-  replacing the search text with the replacement text. Leaving the replacement text empty
-  (``@@replace(SearchText,)``) simply removes the search text. This is useful, for example, to
-  abbreviate long default values or hide them entirely:
+  A "field is empty" condition (``@@if([FIELD],)``) combined with post-processing via
+  ``@@replace``:
+
+  .. code-block:: text
+
+    @@start
+    @@if([STPKT_NR],)
+    [NORMBEZEICHNUNG]
+    @@endif
+    @@if([STPKT_NR])
+    Nr [STPKT_NR] [NORMBEZEICHNUNG]
+    @@endif
+    @@end
+    @@replace(Hausanschluss,HA)
+
+  If ``[STPKT_NR]`` is empty, only ``[NORMBEZEICHNUNG]`` is output; otherwise
+  ``Nr <STPKT_NR> <NORMBEZEICHNUNG>``. At the end, every occurrence of "Hausanschluss" is
+  replaced with "HA".
+
+  Multiple ``@@replace`` statements to abbreviate long default values or hide them entirely
+  (an empty replacement removes the search text):
 
   .. code-block:: text
 
@@ -198,6 +271,14 @@ The properties of the *Renderer* are divided into the following categories:
     @@replace(Sonstiger Punkt,)
     @@replace(Sonstiges Punktobjekt,)
     @@replace(Reserve,Res.)
+
+  *Other notes:*
+
+  - Line breaks in the script source (``\r\n``, ``\r``, ``\n``) are all handled the same way,
+    regardless of the server operating system.
+  - All comparisons except ``lt``/``le``/``gt``/``ge`` are exact, case-sensitive character
+    comparisons (no case tolerance for the value itself — only the operator keywords such as
+    ``eq``/``in`` are case-insensitive).
 
 * **Behavior:** Here, the priority of the label is specified:
 

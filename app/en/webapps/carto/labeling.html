@@ -292,40 +292,92 @@ number and date fields. The syntax for a placeholder with formatting is as follo
 </table>
 <p><strong>SimpleScript expressions:</strong></p>
 <p>In addition to simple placeholder expressions, the <strong>Expression Editor</strong> also supports
-so-called <code class="docutils literal notranslate"><span class="pre">SimpleScript</span></code> expressions. Such an expression must start with <code class="docutils literal notranslate"><span class="pre">&#64;&#64;start</span></code> and
-end with <code class="docutils literal notranslate"><span class="pre">&#64;&#64;end</span></code>. In between, conditional text blocks can be defined using <code class="docutils literal notranslate"><span class="pre">&#64;&#64;if</span></code> /
-<code class="docutils literal notranslate"><span class="pre">&#64;&#64;endif</span></code>.</p>
-<p>With <code class="docutils literal notranslate"><span class="pre">&#64;&#64;if(...)</span></code>, the text between <code class="docutils literal notranslate"><span class="pre">&#64;&#64;if</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;&#64;endif</span></code> is tied to a condition. The
-condition always refers to a field (in square brackets). The following forms are possible
-(compared to the equivalent VB condition):</p>
+so-called <code class="docutils literal notranslate"><span class="pre">SimpleScript</span></code> expressions. They allow conditional text blocks and text
+replacements that go well beyond plain placeholder substitution.</p>
+<p><em>Basic structure:</em></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>@@start
+&lt;line 1&gt;
+&lt;line 2&gt;
+...
+@@end
+[@@replace(Search,Replacement)]
+[@@replace(Search,Replacement)]
+</pre></div>
+</div>
+<p>A value is only interpreted as SimpleScript if it literally starts with <code class="docutils literal notranslate"><span class="pre">&#64;&#64;start</span></code> followed
+by a line break. Otherwise the text is left unchanged — useful in case a field value happens
+to start with the text “&#64;&#64;start”.</p>
+<p>Between <code class="docutils literal notranslate"><span class="pre">&#64;&#64;start</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;&#64;end</span></code>, each line is either a control line (<code class="docutils literal notranslate"><span class="pre">&#64;&#64;if(...)</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&#64;&#64;endif</span></code>) or a content line (plain text, usually with <code class="docutils literal notranslate"><span class="pre">[Field]</span></code> or
+<code class="docutils literal notranslate"><span class="pre">[Field:Format]</span></code> placeholders). The included content lines are joined back together with a
+line break — but only between lines that are actually included: if, for example, the first
+line is dropped due to a false condition, no leading blank line is produced. If <code class="docutils literal notranslate"><span class="pre">&#64;&#64;end</span></code> is
+missing entirely, the whole original text is left unchanged (no error, simply no
+interpretation).</p>
+<p><em>Conditional blocks: &#64;&#64;if(…) / &#64;&#64;endif</em></p>
+<p>A content line only appears if every <code class="docutils literal notranslate"><span class="pre">&#64;&#64;if(...)</span></code> condition enclosing it is true — nesting
+acts as an AND combination, to any depth. There are four argument forms (comma-separated
+inside the parentheses):</p>
 <table class="docutils align-default" style="width: 100%">
 <thead>
-<tr class="row-odd"><th class="head"><p>VB</p></th>
+<tr class="row-odd"><th class="head"><p>Form</p></th>
+<th class="head"><p>Example</p></th>
 <th class="head"><p>Meaning</p></th>
-<th class="head"><p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if(...)</span></code> form</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">[FIELD]</span> <span class="pre">&lt;&gt;</span> <span class="pre">&quot;&quot;</span></code></p></td>
-<td><p>Field is not empty</p></td>
+<tr class="row-even"><td><p>1 argument</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if([FIELD])</span></code></p></td>
+<td><p>true if the value is not empty/not just whitespace</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">[FIELD]</span> <span class="pre">=</span> <span class="pre">&quot;&quot;</span></code></p></td>
-<td><p>Field is empty</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if([FIELD],)</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">[FIELD]</span> <span class="pre">=</span> <span class="pre">&quot;Value&quot;</span></code></p></td>
-<td><p>Field equals “Value”</p></td>
+<tr class="row-odd"><td><p>2 arguments</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if([FIELD],Value)</span></code></p></td>
+<td><p>true if it equals “Value” exactly (case-sensitive)</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">[FIELD]</span> <span class="pre">&lt;&gt;</span> <span class="pre">&quot;Value&quot;</span></code></p></td>
-<td><p>Field does not equal “Value”</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if([FIELD],not,Value)</span></code></p></td>
+<tr class="row-even"><td><p>2 arguments, empty</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if([FIELD],)</span></code></p></td>
+<td><p>trick for “field is empty”</p></td>
+</tr>
+<tr class="row-odd"><td><p>3 arguments</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if([FIELD],op,Value)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">op</span></code> ∈ <code class="docutils literal notranslate"><span class="pre">eq</span></code>/<code class="docutils literal notranslate"><span class="pre">not</span></code>/<code class="docutils literal notranslate"><span class="pre">lt</span></code>/<code class="docutils literal notranslate"><span class="pre">le</span></code>/<code class="docutils literal notranslate"><span class="pre">gt</span></code>/<code class="docutils literal notranslate"><span class="pre">ge</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>variable</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if([FIELD],in,V1,V2,V3,...)</span></code></p></td>
+<td><p>true if the value matches one of the listed values</p></td>
 </tr>
 </tbody>
 </table>
-<p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if</span></code> blocks can also be nested to combine multiple conditions, as in the following example
-(labeling by type, with the prefix <code class="docutils literal notranslate"><span class="pre">S:</span></code> for <code class="docutils literal notranslate"><span class="pre">Schieber</span></code> and <code class="docutils literal notranslate"><span class="pre">V:</span></code> for <code class="docutils literal notranslate"><span class="pre">Ventil</span></code>):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">eq</span></code>/<code class="docutils literal notranslate"><span class="pre">not</span></code> are equality/inequality (case-sensitive text comparison).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lt</span></code>/<code class="docutils literal notranslate"><span class="pre">le</span></code>/<code class="docutils literal notranslate"><span class="pre">gt</span></code>/<code class="docutils literal notranslate"><span class="pre">ge</span></code> are numeric comparisons. Both sides are parsed as a number
+(first with a dot as the decimal separator, then with the current culture, e.g. a German
+comma “123,4”); if either side is not a number, the condition is false. Unknown operators
+always evaluate to false.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">in</span></code> combines several equivalent alternatives into a single condition, instead of
+requiring several near-identical <code class="docutils literal notranslate"><span class="pre">&#64;&#64;if</span></code> blocks.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Arguments are simply split on commas. A field value that itself contains a comma
+(e.g. a decimal comma like “125,4”) therefore shifts the argument count. For the operator
+forms (<code class="docutils literal notranslate"><span class="pre">eq</span></code>/<code class="docutils literal notranslate"><span class="pre">not</span></code>/<code class="docutils literal notranslate"><span class="pre">lt</span></code>/<code class="docutils literal notranslate"><span class="pre">le</span></code>/<code class="docutils literal notranslate"><span class="pre">gt</span></code>/<code class="docutils literal notranslate"><span class="pre">ge</span></code>) there is an automatic rescue for this:
+if the first (field) value contains a decimal comma, it is reassembled correctly —
+provided the second-to-last element is a recognized operator keyword.</p>
+</div>
+<p><em>Post-processing: &#64;&#64;replace(Search,Replacement)</em></p>
+<p>Any number of <code class="docutils literal notranslate"><span class="pre">&#64;&#64;replace(...)</span></code> lines can follow after <code class="docutils literal notranslate"><span class="pre">&#64;&#64;end</span></code>. They are applied one after
+another to the fully assembled result (not to individual lines), so chaining is possible —
+each replacement operates on the result of the previous one.</p>
+<ul class="simple">
+<li><p>Exact, case-sensitive substring replacement (no pattern/regex).</p></li>
+<li><p>An empty replacement (<code class="docutils literal notranslate"><span class="pre">&#64;&#64;replace(Search,)</span></code>) removes the found text.</p></li>
+<li><p>No match → the text is left unchanged.</p></li>
+<li><p>An argument count other than 2 → the line is ignored.</p></li>
+</ul>
+<p><em>Examples:</em></p>
+<p>Labeling by type, with the prefix <code class="docutils literal notranslate"><span class="pre">S:</span></code> for <code class="docutils literal notranslate"><span class="pre">Schieber</span></code> and <code class="docutils literal notranslate"><span class="pre">V:</span></code> for <code class="docutils literal notranslate"><span class="pre">Ventil</span></code>
+(nesting acting as an AND combination):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>@@start
 @@if([TYP],Schieber)
 S: [NAME]
@@ -343,11 +395,24 @@ V: [NAME]
 @@end
 </pre></div>
 </div>
-<p>In addition, any number of <code class="docutils literal notranslate"><span class="pre">&#64;&#64;replace(SearchText,ReplaceText)</span></code> statements can follow after
-<code class="docutils literal notranslate"><span class="pre">&#64;&#64;end</span></code>. They are applied one after another to the text produced by the script, each
-replacing the search text with the replacement text. Leaving the replacement text empty
-(<code class="docutils literal notranslate"><span class="pre">&#64;&#64;replace(SearchText,)</span></code>) simply removes the search text. This is useful, for example, to
-abbreviate long default values or hide them entirely:</p>
+<p>A “field is empty” condition (<code class="docutils literal notranslate"><span class="pre">&#64;&#64;if([FIELD],)</span></code>) combined with post-processing via
+<code class="docutils literal notranslate"><span class="pre">&#64;&#64;replace</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>@@start
+@@if([STPKT_NR],)
+[NORMBEZEICHNUNG]
+@@endif
+@@if([STPKT_NR])
+Nr [STPKT_NR] [NORMBEZEICHNUNG]
+@@endif
+@@end
+@@replace(Hausanschluss,HA)
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">[STPKT_NR]</span></code> is empty, only <code class="docutils literal notranslate"><span class="pre">[NORMBEZEICHNUNG]</span></code> is output; otherwise
+<code class="docutils literal notranslate"><span class="pre">Nr</span> <span class="pre">&lt;STPKT_NR&gt;</span> <span class="pre">&lt;NORMBEZEICHNUNG&gt;</span></code>. At the end, every occurrence of “Hausanschluss” is
+replaced with “HA”.</p>
+<p>Multiple <code class="docutils literal notranslate"><span class="pre">&#64;&#64;replace</span></code> statements to abbreviate long default values or hide them entirely
+(an empty replacement removes the search text):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>@@start
 [TYP]
 @@end
@@ -359,6 +424,14 @@ abbreviate long default values or hide them entirely:</p>
 @@replace(Reserve,Res.)
 </pre></div>
 </div>
+<p><em>Other notes:</em></p>
+<ul class="simple">
+<li><p>Line breaks in the script source (<code class="docutils literal notranslate"><span class="pre">\r\n</span></code>, <code class="docutils literal notranslate"><span class="pre">\r</span></code>, <code class="docutils literal notranslate"><span class="pre">\n</span></code>) are all handled the same way,
+regardless of the server operating system.</p></li>
+<li><p>All comparisons except <code class="docutils literal notranslate"><span class="pre">lt</span></code>/<code class="docutils literal notranslate"><span class="pre">le</span></code>/<code class="docutils literal notranslate"><span class="pre">gt</span></code>/<code class="docutils literal notranslate"><span class="pre">ge</span></code> are exact, case-sensitive character
+comparisons (no case tolerance for the value itself — only the operator keywords such as
+<code class="docutils literal notranslate"><span class="pre">eq</span></code>/<code class="docutils literal notranslate"><span class="pre">in</span></code> are case-insensitive).</p></li>
+</ul>
 </li>
 <li><p><strong>Behavior:</strong> Here, the priority of the label is specified:</p>
 <a class="reference internal image-reference" href="../../_images/labeling4.png"><img alt="../../_images/labeling4.png" src="../../_images/labeling4.png" style="width: 400px;" /></a>
