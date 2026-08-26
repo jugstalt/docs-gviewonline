@@ -19,6 +19,12 @@ The **gView.Server** can be configured via the file ``_config/mapserver.json``:
         // Path, where gView Server stores Tiles
         "tilecache-root": "{repository-path}/server/web/tile-caches",
 
+        // Service names (wildcards "*"/"?" allowed) that should be loaded into memory
+        // right after server start, instead of on the first incoming request.
+        // Loading happens in the background and does not delay the server start.
+        // Examples: "*" (all services), "myfolder/*" (all services in a folder), "myfolder/myservice"
+        "preload-services": [ "myfolder/*" ],
+
         // The Task Queue
         "task-queue": {
             // Indicates how many requests can be processed at the same time
@@ -77,6 +83,13 @@ that the server generates map images (bitmaps) which can require a significant a
 consistently reaching the limit of RAM usage (due to many requests), the value can also be set lower.
 If all tasks are occupied, a request goes into the queue. The length of this queue can also be
 adjusted here.
+
+Under ``preload-services``, service names (wildcards ``*`` and ``?`` are allowed) can be specified
+that should be loaded into memory right after the server starts, instead of on the first incoming
+request. Loading happens in the background and does not delay the server start. This way, these
+services are already loaded by the time the first client request arrives, improving the first
+response time. Possible values are, for example, ``*`` (all services), ``myfolder/*`` (all services
+in a folder), or ``myfolder/myservice`` (a single service).
 
 In the section ``mapserver-defaults``, *default values* for map services can be specified.
 If these values are not explicitly set for a service, the *default value* configured here will be used. 

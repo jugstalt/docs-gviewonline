@@ -164,6 +164,12 @@
 <span class="w">     </span><span class="c1">// Path, where gView Server stores Tiles</span>
 <span class="w">     </span><span class="s2">&quot;tilecache-root&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;{repository-path}/server/web/tile-caches&quot;</span><span class="p">,</span>
 
+<span class="w">     </span><span class="c1">// Service names (wildcards &quot;*&quot;/&quot;?&quot; allowed) that should be loaded into memory</span>
+<span class="w">     </span><span class="c1">// right after server start, instead of on the first incoming request.</span>
+<span class="w">     </span><span class="c1">// Loading happens in the background and does not delay the server start.</span>
+<span class="w">     </span><span class="c1">// Examples: &quot;*&quot; (all services), &quot;myfolder/*&quot; (all services in a folder), &quot;myfolder/myservice&quot;</span>
+<span class="w">     </span><span class="s2">&quot;preload-services&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;myfolder/*&quot;</span><span class="w"> </span><span class="p">],</span>
+
 <span class="w">     </span><span class="c1">// The Task Queue</span>
 <span class="w">     </span><span class="s2">&quot;task-queue&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">         </span><span class="c1">// Indicates how many requests can be processed at the same time</span>
@@ -222,6 +228,12 @@ that the server generates map images (bitmaps) which can require a significant a
 consistently reaching the limit of RAM usage (due to many requests), the value can also be set lower.
 If all tasks are occupied, a request goes into the queue. The length of this queue can also be
 adjusted here.</p>
+<p>Under <code class="docutils literal notranslate"><span class="pre">preload-services</span></code>, service names (wildcards <code class="docutils literal notranslate"><span class="pre">*</span></code> and <code class="docutils literal notranslate"><span class="pre">?</span></code> are allowed) can be specified
+that should be loaded into memory right after the server starts, instead of on the first incoming
+request. Loading happens in the background and does not delay the server start. This way, these
+services are already loaded by the time the first client request arrives, improving the first
+response time. Possible values are, for example, <code class="docutils literal notranslate"><span class="pre">*</span></code> (all services), <code class="docutils literal notranslate"><span class="pre">myfolder/*</span></code> (all services
+in a folder), or <code class="docutils literal notranslate"><span class="pre">myfolder/myservice</span></code> (a single service).</p>
 <p>In the section <code class="docutils literal notranslate"><span class="pre">mapserver-defaults</span></code>, <em>default values</em> for map services can be specified.
 If these values are not explicitly set for a service, the <em>default value</em> configured here will be used.
 This refers to the maximum size of a map image in pixels that can be retrieved by a client.
