@@ -129,6 +129,25 @@ The properties of the *Renderer* are divided into the following categories:
       - [DATE:o]
       - 2025-04-24T14:30:00.0000000+02:00
 
+  **Geometry placeholders: [$feature.length] / [$feature.area]:**
+
+  In addition to field names, an expression can also use the special placeholders
+  ``[$feature.length]`` (length) and ``[$feature.area]`` (area). Formatting works here as well,
+  just like with number fields, e.g. ``[$feature.length:F2]`` for the length rounded to two
+  decimal places.
+
+  .. note::
+
+     ``[$feature.length]`` / ``[$feature.area]`` differ from a field like ``[SHAPE_LENGTH]``:
+     such a field comes from the database (e.g. an SDE) and holds a value stored there, which
+     may not have been updated in a while. ``[$feature.length]`` and ``[$feature.area]``, on
+     the other hand, are always computed live from the current geometry.
+
+     This also means: with projected coordinate systems that are not length- or area-preserving
+     (e.g. **WebMercator** or **WGS84**), the computed value does **not** correspond to the
+     geodetic length or area! For accurate measurements, the geometry should be in a
+     length-/area-preserving coordinate system suitable for the area in question.
+
   **SimpleScript expressions:**
 
   In addition to simple placeholder expressions, the **Expression Editor** also supports

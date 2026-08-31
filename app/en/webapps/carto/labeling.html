@@ -290,6 +290,22 @@ number and date fields. The syntax for a placeholder with formatting is as follo
 </tr>
 </tbody>
 </table>
+<p><strong>Geometry placeholders: [$feature.length] / [$feature.area]:</strong></p>
+<p>In addition to field names, an expression can also use the special placeholders
+<code class="docutils literal notranslate"><span class="pre">[$feature.length]</span></code> (length) and <code class="docutils literal notranslate"><span class="pre">[$feature.area]</span></code> (area). Formatting works here as well,
+just like with number fields, e.g. <code class="docutils literal notranslate"><span class="pre">[$feature.length:F2]</span></code> for the length rounded to two
+decimal places.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">[$feature.length]</span></code> / <code class="docutils literal notranslate"><span class="pre">[$feature.area]</span></code> differ from a field like <code class="docutils literal notranslate"><span class="pre">[SHAPE_LENGTH]</span></code>:
+such a field comes from the database (e.g. an SDE) and holds a value stored there, which
+may not have been updated in a while. <code class="docutils literal notranslate"><span class="pre">[$feature.length]</span></code> and <code class="docutils literal notranslate"><span class="pre">[$feature.area]</span></code>, on
+the other hand, are always computed live from the current geometry.</p>
+<p>This also means: with projected coordinate systems that are not length- or area-preserving
+(e.g. <strong>WebMercator</strong> or <strong>WGS84</strong>), the computed value does <strong>not</strong> correspond to the
+geodetic length or area! For accurate measurements, the geometry should be in a
+length-/area-preserving coordinate system suitable for the area in question.</p>
+</div>
 <p><strong>SimpleScript expressions:</strong></p>
 <p>In addition to simple placeholder expressions, the <strong>Expression Editor</strong> also supports
 so-called <code class="docutils literal notranslate"><span class="pre">SimpleScript</span></code> expressions. They allow conditional text blocks and text

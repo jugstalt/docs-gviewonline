@@ -131,6 +131,27 @@ Die Eigenschaften des *Renderers* teilen sich die folgende Kategorien auf:
       - [DATUM:o]
       - 2025-04-24T14:30:00.0000000+02:00
 
+  **Geometrie-Platzhalter: [$feature.length] / [$feature.area]:**
+
+  Neben Feldnamen können in einem Ausdruck auch die speziellen Platzhalter ``[$feature.length]``
+  (Länge) und ``[$feature.area]`` (Fläche) verwendet werden. Auch hier ist eine Formatierung wie
+  bei Zahlenfeldern möglich, z. B. ``[$feature.length:F2]`` für die Länge gerundet auf zwei
+  Nachkommastellen.
+
+  .. note::
+
+     ``[$feature.length]`` / ``[$feature.area]`` unterscheiden sich von einem Feld wie
+     ``[SHAPE_LENGTH]``: Ein solches Feld kommt aus der Datenbank (z. B. einer SDE) und enthält
+     einen dort gespeicherten, ggf. schon länger nicht mehr aktualisierten Wert.
+     ``[$feature.length]`` und ``[$feature.area]`` werden dagegen immer live aus der aktuellen
+     Geometrie berechnet.
+
+     Das bedeutet aber auch: Bei projizierten Koordinatensystemen, die keine flächen- bzw.
+     längentreue Abbildung liefern (z. B. **WebMercator** oder **WGS84**), entspricht der
+     berechnete Wert **nicht** der geodätischen Länge bzw. Fläche! Für exakte Maße sollte die
+     Geometrie in einem längen-/flächentreuen (bzw. für den jeweiligen Bereich geeigneten)
+     Koordinatensystem vorliegen.
+
   **SimpleScript-Ausdrücke:**
 
   Neben einfachen Platzhalter-Ausdrücken unterstützt der **Expression Editor** auch sogenannte
