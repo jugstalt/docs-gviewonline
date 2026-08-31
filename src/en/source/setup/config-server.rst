@@ -55,11 +55,22 @@ The **gView.Server** can be configured via the file ``_config/mapserver.json``:
 
         // optional: graphic engines. gdiplus only works on windows systems
         "graphics": {
-            "rendering": "skia",  // engine for rendering: skia|gdiplus 
-            "encoding": "skia"  // engine for encoding images (jpg|png): skia|gdiplus 
+            "rendering": "skia",  // engine for rendering: skia|gdiplus
+            "encoding": "skia"  // engine for encoding images (jpg|png): skia|gdiplus
         },
 
-        // optional: projection engine        
+        // Font files (*.ttf, *.otf, *.ttc) in these directories are made available
+        // for rendering at server start - the fonts do NOT need to be installed in
+        // the operating system. Works the same way on Windows and Linux. New font
+        // files require a server restart.
+        "fonts": {
+            "directories": [ "C:\\gView5\\Server\\Fonts" ],
+            // optional, default false: additionally copy the fonts into the
+            // operating system's user-level font store (best effort)
+            "install-to-system": false
+        },
+
+        // optional: projection engine
         "proj-engine": {
             "engine": "ManageProj4Parallel" // ManagedProj4, NativeProj4
         },
@@ -120,8 +131,15 @@ In the section ``graphics``, the *Graphic Engine* can be specified. This can eit
 only works if the application is run on a Windows system.
 
 In the ``graphics`` section, the *Graphic Engine* can be specified. This can either be ``skia`` or
-``gdiplus`` (on Windows platforms). However, ``gdiplus`` is considered deprecated and 
+``gdiplus`` (on Windows platforms). However, ``gdiplus`` is considered deprecated and
 only works when the application is running on a Windows system.
+
+In the optional ``fonts`` section, ``directories`` can specify directories containing font
+files (``*.ttf``, ``*.otf``, ``*.ttc``). These fonts are made available for rendering at server
+start, without needing to be installed in the operating system. This works the same way on
+Windows and Linux. New font files placed in these directories require a server restart to be
+picked up. With ``install-to-system`` (optional, default ``false``), the fonts can additionally
+be copied into the operating system's user-level font store (*best effort*).
 
 The ``CriticalErrorLevel`` section is optional. Here, you can specify from which
 error level a service cannot be loaded or deployed. Possible values are:

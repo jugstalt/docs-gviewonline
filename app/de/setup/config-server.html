@@ -205,6 +205,17 @@
 <span class="w">         </span><span class="s2">&quot;encoding&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;skia&quot;</span><span class="w">  </span><span class="c1">// engine for encoding images (jpg|png): skia|gdiplus</span>
 <span class="w">     </span><span class="p">},</span>
 
+<span class="w">     </span><span class="c1">// Schriftdateien (*.ttf, *.otf, *.ttc) in diesen Verzeichnissen werden beim</span>
+<span class="w">     </span><span class="c1">// Serverstart für das Rendering verfügbar gemacht - die Schriften müssen</span>
+<span class="w">     </span><span class="c1">// NICHT im Betriebssystem installiert sein. Funktioniert unter Windows und</span>
+<span class="w">     </span><span class="c1">// Linux gleich. Neue Schriftdateien erfordern einen Server-Neustart.</span>
+<span class="w">     </span><span class="s2">&quot;fonts&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="s2">&quot;directories&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;C:\\gView5\\Server\\Fonts&quot;</span><span class="w"> </span><span class="p">],</span>
+<span class="w">         </span><span class="c1">// optional, Standard false: Schriften zusätzlich in den benutzerbezogenen</span>
+<span class="w">         </span><span class="c1">// Schriftspeicher des Betriebssystems kopieren (best effort)</span>
+<span class="w">         </span><span class="s2">&quot;install-to-system&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">     </span><span class="p">},</span>
+
 <span class="w">     </span><span class="c1">// optional: projection engine</span>
 <span class="w">     </span><span class="s2">&quot;proj-engine&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">         </span><span class="s2">&quot;engine&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ManageProj4Parallel&quot;</span><span class="w"> </span><span class="c1">// ManagedProj4, NativeProj4</span>
@@ -261,6 +272,13 @@ geprüft wird. Die Werte stehen beim <em>GeoServices Response</em> auch im Ergeb
 <p>Im Abschnitt <code class="docutils literal notranslate"><span class="pre">graphics</span></code> kann die <em>Graphic Engine</em> angegeben werden. Diese kann entweder <code class="docutils literal notranslate"><span class="pre">skia</span></code> oder
 <code class="docutils literal notranslate"><span class="pre">gdiplus</span></code> (auf Windows-Plattformen) sein. <code class="docutils literal notranslate"><span class="pre">gdiplus</span></code> ist allerdings ein Auslaufmodell und
 funktioniert nur, wenn die Anwendung auf einem Windows-System ausgeführt wird.</p>
+<p>Im optionalen Abschnitt <code class="docutils literal notranslate"><span class="pre">fonts</span></code> können unter <code class="docutils literal notranslate"><span class="pre">directories</span></code> Verzeichnisse angegeben werden, in
+denen Schriftdateien (<code class="docutils literal notranslate"><span class="pre">*.ttf</span></code>, <code class="docutils literal notranslate"><span class="pre">*.otf</span></code>, <code class="docutils literal notranslate"><span class="pre">*.ttc</span></code>) liegen. Diese Schriften werden beim
+Serverstart für das Rendering verfügbar gemacht, ohne dass sie im Betriebssystem installiert sein
+müssen. Das funktioniert unter Windows und Linux gleich. Neue Schriftdateien in diesen
+Verzeichnissen erfordern einen Server-Neustart, damit sie berücksichtigt werden. Mit
+<code class="docutils literal notranslate"><span class="pre">install-to-system</span></code> (optional, Standard <code class="docutils literal notranslate"><span class="pre">false</span></code>) können die Schriften zusätzlich in den
+benutzerbezogenen Schriftspeicher des Betriebssystems kopiert werden (<em>best effort</em>).</p>
 <p>Der Abschnitt <code class="docutils literal notranslate"><span class="pre">CriticalErrorLevel</span></code> ist optionsal. Hier kann angegeben werden, ab welchem
 Fehlerlevel ein Dienst nicht geladen oder bereitgestellt werden kann. Mögliche Werte sind:</p>
 <ul class="simple">

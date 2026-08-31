@@ -204,6 +204,17 @@
 <span class="w">         </span><span class="s2">&quot;encoding&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;skia&quot;</span><span class="w">  </span><span class="c1">// engine for encoding images (jpg|png): skia|gdiplus</span>
 <span class="w">     </span><span class="p">},</span>
 
+<span class="w">     </span><span class="c1">// Font files (*.ttf, *.otf, *.ttc) in these directories are made available</span>
+<span class="w">     </span><span class="c1">// for rendering at server start - the fonts do NOT need to be installed in</span>
+<span class="w">     </span><span class="c1">// the operating system. Works the same way on Windows and Linux. New font</span>
+<span class="w">     </span><span class="c1">// files require a server restart.</span>
+<span class="w">     </span><span class="s2">&quot;fonts&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="s2">&quot;directories&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;C:\\gView5\\Server\\Fonts&quot;</span><span class="w"> </span><span class="p">],</span>
+<span class="w">         </span><span class="c1">// optional, default false: additionally copy the fonts into the</span>
+<span class="w">         </span><span class="c1">// operating system&#39;s user-level font store (best effort)</span>
+<span class="w">         </span><span class="s2">&quot;install-to-system&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">     </span><span class="p">},</span>
+
 <span class="w">     </span><span class="c1">// optional: projection engine</span>
 <span class="w">     </span><span class="s2">&quot;proj-engine&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">         </span><span class="s2">&quot;engine&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ManageProj4Parallel&quot;</span><span class="w"> </span><span class="c1">// ManagedProj4, NativeProj4</span>
@@ -261,6 +272,12 @@ only works if the application is run on a Windows system.</p>
 <p>In the <code class="docutils literal notranslate"><span class="pre">graphics</span></code> section, the <em>Graphic Engine</em> can be specified. This can either be <code class="docutils literal notranslate"><span class="pre">skia</span></code> or
 <code class="docutils literal notranslate"><span class="pre">gdiplus</span></code> (on Windows platforms). However, <code class="docutils literal notranslate"><span class="pre">gdiplus</span></code> is considered deprecated and
 only works when the application is running on a Windows system.</p>
+<p>In the optional <code class="docutils literal notranslate"><span class="pre">fonts</span></code> section, <code class="docutils literal notranslate"><span class="pre">directories</span></code> can specify directories containing font
+files (<code class="docutils literal notranslate"><span class="pre">*.ttf</span></code>, <code class="docutils literal notranslate"><span class="pre">*.otf</span></code>, <code class="docutils literal notranslate"><span class="pre">*.ttc</span></code>). These fonts are made available for rendering at server
+start, without needing to be installed in the operating system. This works the same way on
+Windows and Linux. New font files placed in these directories require a server restart to be
+picked up. With <code class="docutils literal notranslate"><span class="pre">install-to-system</span></code> (optional, default <code class="docutils literal notranslate"><span class="pre">false</span></code>), the fonts can additionally
+be copied into the operating system’s user-level font store (<em>best effort</em>).</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">CriticalErrorLevel</span></code> section is optional. Here, you can specify from which
 error level a service cannot be loaded or deployed. Possible values are:</p>
 <ul class="simple">

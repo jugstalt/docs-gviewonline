@@ -56,11 +56,22 @@ Der **gView.Server** kann über die Datei ``_config/mapserver.json`` konfigurier
 
         // optional: graphic engines. gdiplus only works on windows systems
         "graphics": {
-            "rendering": "skia",  // engine for rendering: skia|gdiplus 
-            "encoding": "skia"  // engine for encoding images (jpg|png): skia|gdiplus 
+            "rendering": "skia",  // engine for rendering: skia|gdiplus
+            "encoding": "skia"  // engine for encoding images (jpg|png): skia|gdiplus
         },
 
-        // optional: projection engine        
+        // Schriftdateien (*.ttf, *.otf, *.ttc) in diesen Verzeichnissen werden beim
+        // Serverstart für das Rendering verfügbar gemacht - die Schriften müssen
+        // NICHT im Betriebssystem installiert sein. Funktioniert unter Windows und
+        // Linux gleich. Neue Schriftdateien erfordern einen Server-Neustart.
+        "fonts": {
+            "directories": [ "C:\\gView5\\Server\\Fonts" ],
+            // optional, Standard false: Schriften zusätzlich in den benutzerbezogenen
+            // Schriftspeicher des Betriebssystems kopieren (best effort)
+            "install-to-system": false
+        },
+
+        // optional: projection engine
         "proj-engine": {
             "engine": "ManageProj4Parallel" // ManagedProj4, NativeProj4
         },
@@ -119,8 +130,16 @@ Werte nicht angeführt, gelten die oben angeführten Werte.
     geprüft wird. Die Werte stehen beim *GeoServices Response* auch im Ergebnis-JSON.
 
 Im Abschnitt ``graphics`` kann die *Graphic Engine* angegeben werden. Diese kann entweder ``skia`` oder
-``gdiplus`` (auf Windows-Plattformen) sein. ``gdiplus`` ist allerdings ein Auslaufmodell und 
+``gdiplus`` (auf Windows-Plattformen) sein. ``gdiplus`` ist allerdings ein Auslaufmodell und
 funktioniert nur, wenn die Anwendung auf einem Windows-System ausgeführt wird.
+
+Im optionalen Abschnitt ``fonts`` können unter ``directories`` Verzeichnisse angegeben werden, in
+denen Schriftdateien (``*.ttf``, ``*.otf``, ``*.ttc``) liegen. Diese Schriften werden beim
+Serverstart für das Rendering verfügbar gemacht, ohne dass sie im Betriebssystem installiert sein
+müssen. Das funktioniert unter Windows und Linux gleich. Neue Schriftdateien in diesen
+Verzeichnissen erfordern einen Server-Neustart, damit sie berücksichtigt werden. Mit
+``install-to-system`` (optional, Standard ``false``) können die Schriften zusätzlich in den
+benutzerbezogenen Schriftspeicher des Betriebssystems kopiert werden (*best effort*).
 
 Der Abschnitt ``CriticalErrorLevel`` ist optionsal. Hier kann angegeben werden, ab welchem
 Fehlerlevel ein Dienst nicht geladen oder bereitgestellt werden kann. Mögliche Werte sind:
