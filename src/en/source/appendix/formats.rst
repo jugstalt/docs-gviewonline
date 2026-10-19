@@ -31,6 +31,8 @@ The following vector data can be used with *gView GIS*:
 | Feature Database         |          |             |                               |
 +--------------------------+----------+-------------+-------------------------------+
 
+.. _formats-raster:
+
 Rasterdata
 ----------
 
@@ -42,6 +44,12 @@ The following raster data can be used with *gview GIS*.
 | JPEG, PNG                          | GDI+ (.NET)                                   |
 +------------------------------------+-----------------------------------------------+
 | JPEG 2000, MrSid                   | LizardTec Lib.                                |
++------------------------------------+-----------------------------------------------+
+| GeoTIFF/COG (also over HTTP),      | RasterNet (.NET, used before GDAL)            |
+| JPEG 2000 (incl. HTJ2K),           |                                               |
+| ESRI Grid (adf), JPEG, PNG, GIF,   |                                               |
+| BMP, WebP, ESRI BIL/BIP/BSQ/FLT,   |                                               |
+| ASCII Grid, XYZ, SRTM HGT          |                                               |
 +------------------------------------+-----------------------------------------------+
 | JPEG 2000, TIF, GeoTIFF,           | GDAL                                          |
 | ESRI Grid (adf),                   |                                               |

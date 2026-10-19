@@ -215,6 +215,17 @@
 <span class="w">         </span><span class="s2">&quot;install-to-system&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="w">     </span><span class="p">},</span>
 
+<span class="w">     </span><span class="c1">// RasterNet raster data source (GeoTIFF/COG, JPEG2000, Arc/Info grids, images, ...)</span>
+<span class="w">     </span><span class="s2">&quot;rasternet&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="s2">&quot;blockcache-mb&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">256</span><span class="p">,</span><span class="w">               </span><span class="c1">// cache of decoded blocks; 0 disables it</span>
+<span class="w">         </span><span class="s2">&quot;blockcache-maxidle-minutes&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w">   </span><span class="c1">// release blocks not used for this long; 0 keeps them until the budget is needed</span>
+<span class="w">         </span><span class="s2">&quot;max-threads&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w">                   </span><span class="c1">// decoding threads per request; 0 = half of the cores, at most 8</span>
+<span class="w">         </span><span class="s2">&quot;http-timeout-seconds&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span><span class="w">         </span><span class="c1">// rasters given as http(s) URL (GeoTIFF/COG only): timeout of one range request</span>
+<span class="w">         </span><span class="s2">&quot;http-retries&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w">                  </span><span class="c1">// retries after network errors, timeouts and HTTP 408/429/5xx</span>
+<span class="w">         </span><span class="s2">&quot;http-headers&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w">                 </span><span class="c1">// headers for every request, e.g. &quot;X-Api-Key=...;X-Other=...&quot;</span>
+<span class="w">         </span><span class="s2">&quot;http-probe-sidecars&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="w">        </span><span class="c1">// look for .ovr and .aux.xml next to the URL</span>
+<span class="w">     </span><span class="p">},</span>
+
 <span class="w">     </span><span class="c1">// optional: projection engine</span>
 <span class="w">     </span><span class="s2">&quot;proj-engine&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">         </span><span class="s2">&quot;engine&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ManageProj4Parallel&quot;</span><span class="w"> </span><span class="c1">// ManagedProj4, NativeProj4</span>
@@ -278,6 +289,33 @@ start, without needing to be installed in the operating system. This works the s
 Windows and Linux. New font files placed in these directories require a server restart to be
 picked up. With <code class="docutils literal notranslate"><span class="pre">install-to-system</span></code> (optional, default <code class="docutils literal notranslate"><span class="pre">false</span></code>), the fonts can additionally
 be copied into the operating system’s user-level font store (<em>best effort</em>).</p>
+<p id="config-rasternet">The optional <code class="docutils literal notranslate"><span class="pre">rasternet</span></code> section configures the <em>RasterNet</em> raster data source. <em>RasterNet</em> is a raster reader
+written entirely in .NET that takes precedence over GDAL for the formats it supports (see <a class="reference internal" href="../appendix/formats.html#formats-raster"><span class="std std-ref">Rasterdata</span></a>);
+formats <em>RasterNet</em> cannot read are still read through GDAL. Without the section, the defaults shown apply:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">blockcache-mb</span></code>: size of the shared cache of decoded blocks in MB (default <code class="docutils literal notranslate"><span class="pre">256</span></code>, <code class="docutils literal notranslate"><span class="pre">0</span></code> disables it).
+Neighboring and overlapping map requests reuse blocks that are already decoded; for JPEG2000 orthophotos this
+roughly doubles the throughput.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">blockcache-maxidle-minutes</span></code>: blocks not used for this long are released (default <code class="docutils literal notranslate"><span class="pre">10</span></code>; <code class="docutils literal notranslate"><span class="pre">0</span></code> keeps them
+until the space is needed).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max-threads</span></code>: threads one request decodes with (default and <code class="docutils literal notranslate"><span class="pre">0</span></code>: half of the cores, at most 8).</p></li>
+</ul>
+<p>Rasters can also be given as <code class="docutils literal notranslate"><span class="pre">http://</span></code> or <code class="docutils literal notranslate"><span class="pre">https://</span></code> URL (GeoTIFF/COG only, see <a class="reference internal" href="../webapps/dataexplorer/connections.html#dataexplorer-cog"><span class="std std-ref">Cloud Optimized GeoTIFF (COG) over HTTP</span></a>).
+They are read with range requests, without downloading the file. These settings apply:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">http-timeout-seconds</span></code>: timeout of a single request in seconds (default <code class="docutils literal notranslate"><span class="pre">30</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">http-retries</span></code>: retries after network errors, timeouts and HTTP 408, 429 and 5xx (default <code class="docutils literal notranslate"><span class="pre">3</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">http-headers</span></code>: headers for every request, as <code class="docutils literal notranslate"><span class="pre">Name=Value;Name2=Value2</span></code> (e.g. an API key).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">http-probe-sidecars</span></code>: <code class="docutils literal notranslate"><span class="pre">true</span></code> to look for <code class="docutils literal notranslate"><span class="pre">.ovr</span></code> (external overviews) and <code class="docutils literal notranslate"><span class="pre">.aux.xml</span></code> (georeferencing)
+next to the URL (default <code class="docutils literal notranslate"><span class="pre">false</span></code>; a COG contains both itself).</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The server must support range requests (response <code class="docutils literal notranslate"><span class="pre">206</span> <span class="pre">Partial</span> <span class="pre">Content</span></code>), as web servers and object stores
+(S3, Azure Blob Storage) do. Protected files are added with presigned or SAS URLs or with <code class="docutils literal notranslate"><span class="pre">http-headers</span></code>.
+If a file is replaced on the server while the service runs, reading it fails instead of mixing two versions;
+the service must then be reloaded.</p>
+</div>
 <p>The <code class="docutils literal notranslate"><span class="pre">CriticalErrorLevel</span></code> section is optional. Here, you can specify from which
 error level a service cannot be loaded or deployed. Possible values are:</p>
 <ul class="simple">

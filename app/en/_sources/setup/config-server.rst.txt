@@ -70,6 +70,17 @@ The **gView.Server** can be configured via the file ``_config/mapserver.json``:
             "install-to-system": false
         },
 
+        // RasterNet raster data source (GeoTIFF/COG, JPEG2000, Arc/Info grids, images, ...)
+        "rasternet": {
+            "blockcache-mb": 256,               // cache of decoded blocks; 0 disables it
+            "blockcache-maxidle-minutes": 10,   // release blocks not used for this long; 0 keeps them until the budget is needed
+            "max-threads": 4,                   // decoding threads per request; 0 = half of the cores, at most 8
+            "http-timeout-seconds": 30,         // rasters given as http(s) URL (GeoTIFF/COG only): timeout of one range request
+            "http-retries": 3,                  // retries after network errors, timeouts and HTTP 408/429/5xx
+            "http-headers": "",                 // headers for every request, e.g. "X-Api-Key=...;X-Other=..."
+            "http-probe-sidecars": false        // look for .ovr and .aux.xml next to the URL
+        },
+
         // optional: projection engine
         "proj-engine": {
             "engine": "ManageProj4Parallel" // ManagedProj4, NativeProj4
@@ -140,6 +151,34 @@ start, without needing to be installed in the operating system. This works the s
 Windows and Linux. New font files placed in these directories require a server restart to be
 picked up. With ``install-to-system`` (optional, default ``false``), the fonts can additionally
 be copied into the operating system's user-level font store (*best effort*).
+
+.. _config-rasternet:
+
+The optional ``rasternet`` section configures the *RasterNet* raster data source. *RasterNet* is a raster reader
+written entirely in .NET that takes precedence over GDAL for the formats it supports (see :ref:`formats-raster`);
+formats *RasterNet* cannot read are still read through GDAL. Without the section, the defaults shown apply:
+
+- ``blockcache-mb``: size of the shared cache of decoded blocks in MB (default ``256``, ``0`` disables it).
+  Neighboring and overlapping map requests reuse blocks that are already decoded; for JPEG2000 orthophotos this
+  roughly doubles the throughput.
+- ``blockcache-maxidle-minutes``: blocks not used for this long are released (default ``10``; ``0`` keeps them
+  until the space is needed).
+- ``max-threads``: threads one request decodes with (default and ``0``: half of the cores, at most 8).
+
+Rasters can also be given as ``http://`` or ``https://`` URL (GeoTIFF/COG only, see :ref:`dataexplorer-cog`).
+They are read with range requests, without downloading the file. These settings apply:
+
+- ``http-timeout-seconds``: timeout of a single request in seconds (default ``30``).
+- ``http-retries``: retries after network errors, timeouts and HTTP 408, 429 and 5xx (default ``3``).
+- ``http-headers``: headers for every request, as ``Name=Value;Name2=Value2`` (e.g. an API key).
+- ``http-probe-sidecars``: ``true`` to look for ``.ovr`` (external overviews) and ``.aux.xml`` (georeferencing)
+  next to the URL (default ``false``; a COG contains both itself).
+
+.. note::
+   The server must support range requests (response ``206 Partial Content``), as web servers and object stores
+   (S3, Azure Blob Storage) do. Protected files are added with presigned or SAS URLs or with ``http-headers``.
+   If a file is replaced on the server while the service runs, reading it fails instead of mixing two versions;
+   the service must then be reloaded.
 
 The ``CriticalErrorLevel`` section is optional. Here, you can specify from which
 error level a service cannot be loaded or deployed. Possible values are:

@@ -323,6 +323,22 @@ the <em>Identity Server</em> (<code class="docutils literal notranslate"><span c
 <code class="docutils literal notranslate"><span class="pre">RequiredUserRole</span></code> (for Carto-User) and <code class="docutils literal notranslate"><span class="pre">RequiredAdminRole</span></code> (for Admin-User).</p>
 </section>
 </section>
+<section id="rasternet-raster-data-source">
+<h2>RasterNet raster data source<a class="headerlink" href="#rasternet-raster-data-source" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">_config/gview-webapps.config</span></code> can contain a <code class="docutils literal notranslate"><span class="pre">rasternet</span></code> section as well. It applies to <em>gView.DataExplorer</em>
+and <em>gView.Carto</em> and has the same entries as for <em>gView.Server</em> (see <a class="reference internal" href="config-server.html#config-rasternet"><span class="std std-ref">gView.Server configuration, rasternet section</span></a>):</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;rasternet&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;blockcache-mb&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">256</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;blockcache-maxidle-minutes&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;max-threads&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;http-timeout-seconds&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;http-retries&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;http-headers&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;http-probe-sidecars&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -348,6 +364,7 @@ the <em>Identity Server</em> (<code class="docutils literal notranslate"><span c
 <li><a class="reference internal" href="#openid-connect-authentication">OpenID Connect Authentication</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#rasternet-raster-data-source">RasterNet raster data source</a></li>
 </ul>
 </li>
 </ul>

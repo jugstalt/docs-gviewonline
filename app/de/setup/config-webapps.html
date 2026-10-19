@@ -336,6 +336,23 @@ Werte empfohlen:</p>
 <code class="docutils literal notranslate"><span class="pre">RequiredUserRole</span></code> (für Carto-User) und <code class="docutils literal notranslate"><span class="pre">RequiredAdminRole</span></code> (für Admin-User).</p>
 </section>
 </section>
+<section id="raster-datenquelle-rasternet">
+<h2>Raster-Datenquelle RasterNet<a class="headerlink" href="#raster-datenquelle-rasternet" title="Link to this heading">¶</a></h2>
+<p>Auch in <code class="docutils literal notranslate"><span class="pre">_config/gview-webapps.config</span></code> kann ein Abschnitt <code class="docutils literal notranslate"><span class="pre">rasternet</span></code> angegeben werden. Er gilt für
+<em>gView.DataExplorer</em> und <em>gView.Carto</em> und hat dieselben Einträge wie beim <em>gView.Server</em>
+(siehe <a class="reference internal" href="config-server.html#config-rasternet"><span class="std std-ref">Konfiguration gView.Server, Abschnitt rasternet</span></a>):</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;rasternet&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;blockcache-mb&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">256</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;blockcache-maxidle-minutes&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;max-threads&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;http-timeout-seconds&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;http-retries&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;http-headers&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;http-probe-sidecars&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -361,6 +378,7 @@ Werte empfohlen:</p>
 <li><a class="reference internal" href="#openid-connect-authentifizierung">OpenID Connect Authentifizierung</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#raster-datenquelle-rasternet">Raster-Datenquelle RasterNet</a></li>
 </ul>
 </li>
 </ul>

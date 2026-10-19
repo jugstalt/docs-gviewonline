@@ -174,6 +174,31 @@ With the <code class="docutils literal notranslate"><span class="pre">Connection
 MXL file. Changes made to the connection parameters in <em>gView DataExplorer</em> will not affect existing <em>gView Carto</em>
 maps that have already been created.</p>
 </div>
+<section id="cloud-optimized-geotiff-cog-over-http">
+<span id="dataexplorer-cog"></span><h2>Cloud Optimized GeoTIFF (COG) over HTTP<a class="headerlink" href="#cloud-optimized-geotiff-cog-over-http" title="Link to this heading">¶</a></h2>
+<p>GeoTIFF and COG files on a web server or in object storage (S3, Azure Blob Storage) can be added directly by
+their URL, without downloading them. Range requests read only the parts a map needs. The connections are under
+<code class="docutils literal notranslate"><span class="pre">WebServices</span></code> in the <code class="docutils literal notranslate"><span class="pre">Cloud</span> <span class="pre">Optimized</span> <span class="pre">GeoTIFF</span> <span class="pre">(COG)</span></code> node.</p>
+<p><code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">Connection...</span></code> opens a dialog in which one or more URLs are entered, one per line. When the dialog is
+confirmed with <code class="docutils literal notranslate"><span class="pre">OK</span></code>, every URL is opened and checked: valid lines are shown with size, number of bands, overviews
+and coordinate system, failing ones with the error message (e.g. file not found, not a GeoTIFF, server without
+range support). The dialog closes only when all lines can be read. Every URL becomes a connection of its own;
+its name is the file name, for equal file names with the folder before it (e.g. <code class="docutils literal notranslate"><span class="pre">S2B_33UXP_20240824_0_L2A/TCI.tif</span></code>).</p>
+<p>Using the tools in the context area, a connection can be renamed or deleted; <code class="docutils literal notranslate"><span class="pre">URL</span></code> changes the address, e.g. for
+a renewed presigned URL. A connection can be added to a <em>gView Carto</em> map like a raster file; the MXL file stores
+the URL like a file name.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only GeoTIFF/COG is supported; other raster formats are rejected over HTTP. Timeout, retries and additional
+headers (e.g. an API key) are configured globally in the <code class="docutils literal notranslate"><span class="pre">rasternet</span></code> section (see <a class="reference internal" href="../../setup/config-server.html#config-rasternet"><span class="std std-ref">gView.Server configuration, rasternet section</span></a>).
+Protected files are added with presigned or SAS URLs.</p>
+</div>
+<p>Public COGs are suitable for trying it out, e.g. from the <em>Open Data</em> collections on AWS:</p>
+<ul class="simple">
+<li><p>Copernicus DEM (elevation model, Float32): <code class="docutils literal notranslate"><span class="pre">https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N47_00_E016_00_DEM/Copernicus_DSM_COG_10_N47_00_E016_00_DEM.tif</span></code></p></li>
+<li><p>Sentinel-2 true color image (RGB): <code class="docutils literal notranslate"><span class="pre">https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/33/U/XP/2024/8/S2B_33UXP_20240824_0_L2A/TCI.tif</span></code></p></li>
+</ul>
+</section>
 </section>
 
 
@@ -181,6 +206,23 @@ maps that have already been created.</p>
           </div>
         </div>
       </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">Database Connections</a><ul>
+<li><a class="reference internal" href="#cloud-optimized-geotiff-cog-over-http">Cloud Optimized GeoTIFF (COG) over HTTP</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
     
 
       <div class="clearer"></div>

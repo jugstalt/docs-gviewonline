@@ -216,6 +216,17 @@
 <span class="w">         </span><span class="s2">&quot;install-to-system&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="w">     </span><span class="p">},</span>
 
+<span class="w">     </span><span class="c1">// RasterNet raster data source (GeoTIFF/COG, JPEG2000, Arc/Info grids, images, ...)</span>
+<span class="w">     </span><span class="s2">&quot;rasternet&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="s2">&quot;blockcache-mb&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">256</span><span class="p">,</span><span class="w">               </span><span class="c1">// cache of decoded blocks; 0 disables it</span>
+<span class="w">         </span><span class="s2">&quot;blockcache-maxidle-minutes&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w">   </span><span class="c1">// release blocks not used for this long; 0 keeps them until the budget is needed</span>
+<span class="w">         </span><span class="s2">&quot;max-threads&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w">                   </span><span class="c1">// decoding threads per request; 0 = half of the cores, at most 8</span>
+<span class="w">         </span><span class="s2">&quot;http-timeout-seconds&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span><span class="w">         </span><span class="c1">// rasters given as http(s) URL (GeoTIFF/COG only): timeout of one range request</span>
+<span class="w">         </span><span class="s2">&quot;http-retries&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w">                  </span><span class="c1">// retries after network errors, timeouts and HTTP 408/429/5xx</span>
+<span class="w">         </span><span class="s2">&quot;http-headers&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w">                 </span><span class="c1">// headers for every request, e.g. &quot;X-Api-Key=...;X-Other=...&quot;</span>
+<span class="w">         </span><span class="s2">&quot;http-probe-sidecars&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="w">        </span><span class="c1">// look for .ovr and .aux.xml next to the URL</span>
+<span class="w">     </span><span class="p">},</span>
+
 <span class="w">     </span><span class="c1">// optional: projection engine</span>
 <span class="w">     </span><span class="s2">&quot;proj-engine&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">         </span><span class="s2">&quot;engine&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ManageProj4Parallel&quot;</span><span class="w"> </span><span class="c1">// ManagedProj4, NativeProj4</span>
@@ -279,6 +290,35 @@ müssen. Das funktioniert unter Windows und Linux gleich. Neue Schriftdateien in
 Verzeichnissen erfordern einen Server-Neustart, damit sie berücksichtigt werden. Mit
 <code class="docutils literal notranslate"><span class="pre">install-to-system</span></code> (optional, Standard <code class="docutils literal notranslate"><span class="pre">false</span></code>) können die Schriften zusätzlich in den
 benutzerbezogenen Schriftspeicher des Betriebssystems kopiert werden (<em>best effort</em>).</p>
+<p id="config-rasternet">Der optionale Abschnitt <code class="docutils literal notranslate"><span class="pre">rasternet</span></code> konfiguriert die Raster-Datenquelle <em>RasterNet</em>. <em>RasterNet</em> ist ein
+vollständig in .NET geschriebener Raster-Reader, der für die unterstützten Formate (siehe <a class="reference internal" href="../appendix/formats.html#formats-raster"><span class="std std-ref">Rasterdaten</span></a>)
+vor GDAL zum Zug kommt; Formate, die <em>RasterNet</em> nicht lesen kann, werden weiterhin über GDAL gelesen.
+Fehlt der Abschnitt, gelten die angegebenen Standardwerte:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">blockcache-mb</span></code>: Größe des gemeinsamen Caches für dekodierte Blöcke in MB (Standard <code class="docutils literal notranslate"><span class="pre">256</span></code>, <code class="docutils literal notranslate"><span class="pre">0</span></code> schaltet ihn ab).
+Benachbarte und überlappende Kartenanfragen verwenden bereits dekodierte Blöcke wieder; bei JPEG2000-Orthofotos
+verdoppelt sich dadurch etwa der Durchsatz.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">blockcache-maxidle-minutes</span></code>: Blöcke, die so lange nicht verwendet wurden, werden freigegeben (Standard <code class="docutils literal notranslate"><span class="pre">10</span></code>;
+<code class="docutils literal notranslate"><span class="pre">0</span></code> behält sie, bis der Platz gebraucht wird).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max-threads</span></code>: Threads, mit denen eine einzelne Anfrage dekodiert (Standard und <code class="docutils literal notranslate"><span class="pre">0</span></code>: die Hälfte der Kerne,
+höchstens 8).</p></li>
+</ul>
+<p>Raster können auch als <code class="docutils literal notranslate"><span class="pre">http://</span></code>- oder <code class="docutils literal notranslate"><span class="pre">https://</span></code>-URL angegeben werden (nur GeoTIFF/COG, siehe
+<a class="reference internal" href="../webapps/dataexplorer/connections.html#dataexplorer-cog"><span class="std std-ref">Cloud Optimized GeoTIFF (COG) über HTTP</span></a>). Gelesen wird mit Range-Requests, ohne die Datei herunterzuladen. Dafür gelten:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">http-timeout-seconds</span></code>: Timeout eines einzelnen Requests in Sekunden (Standard <code class="docutils literal notranslate"><span class="pre">30</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">http-retries</span></code>: Wiederholungen nach Netzwerkfehlern, Timeouts und HTTP 408, 429 und 5xx (Standard <code class="docutils literal notranslate"><span class="pre">3</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">http-headers</span></code>: Header für jeden Request, als <code class="docutils literal notranslate"><span class="pre">Name=Wert;Name2=Wert2</span></code> (z. B. ein API-Key).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">http-probe-sidecars</span></code>: <code class="docutils literal notranslate"><span class="pre">true</span></code>, um neben der URL nach <code class="docutils literal notranslate"><span class="pre">.ovr</span></code> (externe Overviews) und <code class="docutils literal notranslate"><span class="pre">.aux.xml</span></code>
+(Georeferenzierung) zu suchen (Standard <code class="docutils literal notranslate"><span class="pre">false</span></code>; ein COG enthält beides selbst).</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Der Server muss Range-Requests unterstützen (Antwort <code class="docutils literal notranslate"><span class="pre">206</span> <span class="pre">Partial</span> <span class="pre">Content</span></code>), wie es Webserver und Object
+Stores (S3, Azure Blob Storage) tun. Geschützte Dateien werden über vorsignierte bzw. SAS-URLs oder über
+<code class="docutils literal notranslate"><span class="pre">http-headers</span></code> eingebunden. Wird eine Datei auf dem Server ersetzt, während der Dienst läuft, schlägt das
+Lesen fehl, statt zwei Versionen zu mischen; der Dienst muss dann neu geladen werden.</p>
+</div>
 <p>Der Abschnitt <code class="docutils literal notranslate"><span class="pre">CriticalErrorLevel</span></code> ist optionsal. Hier kann angegeben werden, ab welchem
 Fehlerlevel ein Dienst nicht geladen oder bereitgestellt werden kann. Mögliche Werte sind:</p>
 <ul class="simple">

@@ -201,7 +201,7 @@ Feature Database</p></td>
 </table>
 </section>
 <section id="rasterdata">
-<h2>Rasterdata<a class="headerlink" href="#rasterdata" title="Link to this heading">¶</a></h2>
+<span id="formats-raster"></span><h2>Rasterdata<a class="headerlink" href="#rasterdata" title="Link to this heading">¶</a></h2>
 <p>The following raster data can be used with <em>gview GIS</em>.</p>
 <table class="docutils align-default">
 <thead>
@@ -216,11 +216,18 @@ Feature Database</p></td>
 <tr class="row-odd"><td><p>JPEG 2000, MrSid</p></td>
 <td><p>LizardTec Lib.</p></td>
 </tr>
-<tr class="row-even"><td><p>JPEG 2000, TIF, GeoTIFF,
+<tr class="row-even"><td><p>GeoTIFF/COG (also over HTTP),
+JPEG 2000 (incl. HTJ2K),
+ESRI Grid (adf), JPEG, PNG, GIF,
+BMP, WebP, ESRI BIL/BIP/BSQ/FLT,
+ASCII Grid, XYZ, SRTM HGT</p></td>
+<td><p>RasterNet (.NET, used before GDAL)</p></td>
+</tr>
+<tr class="row-odd"><td><p>JPEG 2000, TIF, GeoTIFF,
 ESRI Grid (adf),</p></td>
 <td><p>GDAL</p></td>
 </tr>
-<tr class="row-odd"><td><p>ECW,
+<tr class="row-even"><td><p>ECW,
 DEM, XPM</p></td>
 <td><p>GDAL: Windows only</p></td>
 </tr>

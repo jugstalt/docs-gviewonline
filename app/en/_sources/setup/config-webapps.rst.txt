@@ -195,3 +195,21 @@ the *Identity Server* (``Authority``) must be specified. On the *Identity Server
 Since the *Identity Server* also provides roles, a specific role for 
 **Admin-User** and **Carto-User** must be specified. This is done through the parameters 
 ``RequiredUserRole`` (for Carto-User) and ``RequiredAdminRole`` (for Admin-User).
+
+RasterNet raster data source
+----------------------------
+
+``_config/gview-webapps.config`` can contain a ``rasternet`` section as well. It applies to *gView.DataExplorer*
+and *gView.Carto* and has the same entries as for *gView.Server* (see :ref:`gView.Server configuration, rasternet section <config-rasternet>`):
+
+.. code-block:: javascript
+
+    "rasternet": {
+        "blockcache-mb": 256,
+        "blockcache-maxidle-minutes": 10,
+        "max-threads": 4,
+        "http-timeout-seconds": 30,
+        "http-retries": 3,
+        "http-headers": "",
+        "http-probe-sidecars": false
+    }
