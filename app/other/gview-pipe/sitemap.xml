@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>Noneindex.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneindex.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/index.html"/>
+    </url>
+    <url>
+        <loc>Noneadmin-guide/index.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/index.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/index.html"/>
+    </url>
+    <url>
+        <loc>Noneadmin-guide/api.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/api.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/api.html"/>
+    </url>
+    <url>
+        <loc>Noneadmin-guide/authentication.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/authentication.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/authentication.html"/>
+    </url>
+    <url>
+        <loc>Noneadmin-guide/configuration.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/configuration.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/configuration.html"/>
+    </url>
+    <url>
+        <loc>Noneadmin-guide/installation.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/installation.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/installation.html"/>
+    </url>
+    <url>
+        <loc>Noneadmin-guide/operations.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/operations.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/operations.html"/>
+    </url>
+    <url>
+        <loc>Noneadmin-guide/plugins.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/plugins.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/plugins.html"/>
+    </url>
+    <url>
+        <loc>Noneadmin-guide/scripts.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/scripts.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/scripts.html"/>
+    </url>
+    <url>
+        <loc>Noneadmin-guide/security.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/security.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/security.html"/>
+    </url>
+    <url>
+        <loc>Noneadmin-guide/troubleshooting.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/troubleshooting.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/troubleshooting.html"/>
+    </url>
+    <url>
+        <loc>Nonedeveloper-guide/index.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonedeveloper-guide/index.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/developer-guide/index.html"/>
+    </url>
+    <url>
+        <loc>Nonedeveloper-guide/parameters.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonedeveloper-guide/parameters.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/developer-guide/parameters.html"/>
+    </url>
+    <url>
+        <loc>Nonedeveloper-guide/plugins.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonedeveloper-guide/plugins.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/developer-guide/plugins.html"/>
+    </url>
+    <url>
+        <loc>Nonedeveloper-guide/writing-nodes.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonedeveloper-guide/writing-nodes.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/developer-guide/writing-nodes.html"/>
+    </url>
+    <url>
+        <loc>Noneuser-guide/index.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/index.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/index.html"/>
+    </url>
+    <url>
+        <loc>Noneuser-guide/credentials.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/credentials.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/credentials.html"/>
+    </url>
+    <url>
+        <loc>Noneuser-guide/data.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/data.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/data.html"/>
+    </url>
+    <url>
+        <loc>Noneuser-guide/editor.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/editor.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/editor.html"/>
+    </url>
+    <url>
+        <loc>Noneuser-guide/error-handling.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/error-handling.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/error-handling.html"/>
+    </url>
+    <url>
+        <loc>Noneuser-guide/executions.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/executions.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/executions.html"/>
+    </url>
+    <url>
+        <loc>Noneuser-guide/expressions.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/expressions.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/expressions.html"/>
+    </url>
+    <url>
+        <loc>Noneuser-guide/getting-started.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/getting-started.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/getting-started.html"/>
+    </url>
+    <url>
+        <loc>Noneuser-guide/notifications.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/notifications.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/notifications.html"/>
+    </url>
+    <url>
+        <loc>Noneuser-guide/recipes.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/recipes.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/recipes.html"/>
+    </url>
+    <url>
+        <loc>Noneuser-guide/triggers.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/triggers.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/triggers.html"/>
+    </url>
+    <url>
+        <loc>Noneuser-guide/variables.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/variables.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/variables.html"/>
+    </url>
+    <url>
+        <loc>Noneuser-guide/nodes/index.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/nodes/index.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/nodes/index.html"/>
+    </url>
+    <url>
+        <loc>Noneuser-guide/nodes/credential-types.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/nodes/credential-types.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/nodes/credential-types.html"/>
+    </url>
+    <url>
+        <loc>Noneuser-guide/nodes/database.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/nodes/database.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/nodes/database.html"/>
+    </url>
+    <url>
+        <loc>Noneuser-guide/nodes/files.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/nodes/files.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/nodes/files.html"/>
+    </url>
+    <url>
+        <loc>Noneuser-guide/nodes/flow.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/nodes/flow.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/nodes/flow.html"/>
+    </url>
+    <url>
+        <loc>Noneuser-guide/nodes/network.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/nodes/network.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/nodes/network.html"/>
+    </url>
+    <url>
+        <loc>Noneuser-guide/nodes/scripts.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/nodes/scripts.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/nodes/scripts.html"/>
+    </url>
+    <url>
+        <loc>Noneuser-guide/nodes/transform.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/nodes/transform.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/nodes/transform.html"/>
+    </url>
+    <url>
+        <loc>Noneuser-guide/nodes/triggers.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/nodes/triggers.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/nodes/triggers.html"/>
+    </url>
+    <url>
+        <loc>Noneuser-guide/nodes/utility.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/nodes/utility.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/nodes/utility.html"/>
+    </url>
+    <url>
+        <loc>Nonede/index.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/index.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneindex.html"/>
+    </url>
+    <url>
+        <loc>Nonede/admin-guide/index.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/index.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/index.html"/>
+    </url>
+    <url>
+        <loc>Nonede/admin-guide/api.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/api.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/api.html"/>
+    </url>
+    <url>
+        <loc>Nonede/admin-guide/authentication.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/authentication.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/authentication.html"/>
+    </url>
+    <url>
+        <loc>Nonede/admin-guide/configuration.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/configuration.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/configuration.html"/>
+    </url>
+    <url>
+        <loc>Nonede/admin-guide/installation.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/installation.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/installation.html"/>
+    </url>
+    <url>
+        <loc>Nonede/admin-guide/operations.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/operations.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/operations.html"/>
+    </url>
+    <url>
+        <loc>Nonede/admin-guide/plugins.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/plugins.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/plugins.html"/>
+    </url>
+    <url>
+        <loc>Nonede/admin-guide/scripts.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/scripts.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/scripts.html"/>
+    </url>
+    <url>
+        <loc>Nonede/admin-guide/security.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/security.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/security.html"/>
+    </url>
+    <url>
+        <loc>Nonede/admin-guide/troubleshooting.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/troubleshooting.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/troubleshooting.html"/>
+    </url>
+    <url>
+        <loc>Nonede/user-guide/index.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/index.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/index.html"/>
+    </url>
+    <url>
+        <loc>Nonede/user-guide/credentials.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/credentials.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/credentials.html"/>
+    </url>
+    <url>
+        <loc>Nonede/user-guide/data.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/data.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/data.html"/>
+    </url>
+    <url>
+        <loc>Nonede/user-guide/editor.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/editor.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/editor.html"/>
+    </url>
+    <url>
+        <loc>Nonede/user-guide/error-handling.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/error-handling.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/error-handling.html"/>
+    </url>
+    <url>
+        <loc>Nonede/user-guide/executions.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/executions.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/executions.html"/>
+    </url>
+    <url>
+        <loc>Nonede/user-guide/expressions.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/expressions.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/expressions.html"/>
+    </url>
+    <url>
+        <loc>Nonede/user-guide/getting-started.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/getting-started.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/getting-started.html"/>
+    </url>
+    <url>
+        <loc>Nonede/user-guide/notifications.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/notifications.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/notifications.html"/>
+    </url>
+    <url>
+        <loc>Nonede/user-guide/recipes.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/recipes.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/recipes.html"/>
+    </url>
+    <url>
+        <loc>Nonede/user-guide/triggers.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/triggers.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/triggers.html"/>
+    </url>
+    <url>
+        <loc>Nonede/user-guide/variables.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/variables.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/variables.html"/>
+    </url>
+    <url>
+        <loc>Nonede/developer-guide/index.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/developer-guide/index.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonedeveloper-guide/index.html"/>
+    </url>
+    <url>
+        <loc>Nonede/developer-guide/parameters.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/developer-guide/parameters.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonedeveloper-guide/parameters.html"/>
+    </url>
+    <url>
+        <loc>Nonede/developer-guide/plugins.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/developer-guide/plugins.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonedeveloper-guide/plugins.html"/>
+    </url>
+    <url>
+        <loc>Nonede/developer-guide/writing-nodes.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/developer-guide/writing-nodes.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonedeveloper-guide/writing-nodes.html"/>
+    </url>
+    <url>
+        <loc>Nonede/user-guide/nodes/index.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/nodes/index.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/nodes/index.html"/>
+    </url>
+    <url>
+        <loc>Nonede/user-guide/nodes/credential-types.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/nodes/credential-types.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/nodes/credential-types.html"/>
+    </url>
+    <url>
+        <loc>Nonede/user-guide/nodes/database.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/nodes/database.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/nodes/database.html"/>
+    </url>
+    <url>
+        <loc>Nonede/user-guide/nodes/files.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/nodes/files.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/nodes/files.html"/>
+    </url>
+    <url>
+        <loc>Nonede/user-guide/nodes/flow.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/nodes/flow.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/nodes/flow.html"/>
+    </url>
+    <url>
+        <loc>Nonede/user-guide/nodes/network.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/nodes/network.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/nodes/network.html"/>
+    </url>
+    <url>
+        <loc>Nonede/user-guide/nodes/scripts.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/nodes/scripts.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/nodes/scripts.html"/>
+    </url>
+    <url>
+        <loc>Nonede/user-guide/nodes/transform.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/nodes/transform.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/nodes/transform.html"/>
+    </url>
+    <url>
+        <loc>Nonede/user-guide/nodes/triggers.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/nodes/triggers.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/nodes/triggers.html"/>
+    </url>
+    <url>
+        <loc>Nonede/user-guide/nodes/utility.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/user-guide/nodes/utility.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneuser-guide/nodes/utility.html"/>
+    </url>
+</urlset>

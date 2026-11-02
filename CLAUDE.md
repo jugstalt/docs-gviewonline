@@ -85,6 +85,10 @@ Für den kompletten Build-und-Kopier-Ablauf siehe den `deploy`-Skill.
 **Nie direkt in `app/de` oder `app/en` editieren** — das sind Build-Artefakte und werden beim
 nächsten Sphinx-Build überschrieben.
 
+## gView.Pipe (Doku aus dem Repo gview-pipe)
+
+`app/other/gview-pipe` enthält die Doku von [gView.Pipe](https://github.com/jugstalt/gview-pipe) (MkDocs, Englisch im Wurzelordner, Deutsch unter `de/`). Sie wird **nicht** hier gebaut und nie hier editiert: Im Repo `gview-pipe` spiegelt `.uild.cmd DocsPublish` die fertige Site in diesen Ordner (löscht ihn vorher komplett). Danach hier `git status` ansehen, committen und pushen wie bei den anderen Ordnern unter `app/`.
+
 ## Sonstiges
 
 * `conf.py` je Sprache setzt u. a. `language = 'de'` bzw. `'en'`, `project = 'gView GIS'`,
