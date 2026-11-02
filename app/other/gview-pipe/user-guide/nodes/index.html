@@ -1072,6 +1072,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../../admin-guide/cli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin-guide/portal.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User portal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../admin-guide/plugins.html" class="md-nav__link">
         
   
@@ -1555,8 +1611,16 @@ Parameters marked as supporting expressions accept <code>{{ … }}</code> (JavaS
 <td>Starts the workflow when another workflow calls it with Execute Workflow; outputs the caller's items.</td>
 </tr>
 <tr>
+<td><a href="triggers.html#form-trigger">Form Trigger</a></td>
+<td>Starts the workflow from the user portal: declares the form the user fills in and outputs one item with the values.</td>
+</tr>
+<tr>
 <td><a href="triggers.html#manual-trigger">Manual Trigger</a></td>
 <td>Starts the workflow when it is run from the editor.</td>
+</tr>
+<tr>
+<td><a href="triggers.html#recovery-trigger">Recovery Trigger</a></td>
+<td>Starts the workflow when a workflow that failed and was reported to this error workflow runs successfully again (triggered runs only).</td>
 </tr>
 <tr>
 <td><a href="triggers.html#webhook-trigger">Webhook Trigger</a></td>
@@ -1754,6 +1818,10 @@ Parameters marked as supporting expressions accept <code>{{ … }}</code> (JavaS
 <tr>
 <td><a href="utility.html#no-operation">No Operation</a></td>
 <td>Passes items through unchanged.</td>
+</tr>
+<tr>
+<td><a href="utility.html#result">Result</a></td>
+<td>Defines what a user sees in the portal at the end of the run: text, Markdown or a table.</td>
 </tr>
 </tbody>
 </table>

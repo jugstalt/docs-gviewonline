@@ -997,6 +997,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#signing-out" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1031,6 +1042,62 @@
     
   
     REST API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="portal.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User portal
   
 
     
@@ -1456,6 +1523,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#signing-out" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1577,6 +1655,8 @@
 <li>
 <p><code>Password</code> in plain text works too, but logs a warning on every start. If both are set, the hash counts.</p>
 </li>
+<li><code>Email</code> (optional) is the address for mails to the user, e.g. when a run of the <a href="portal.html#mail-when-a-run-is-done">portal</a> is done.</li>
+<li><code>Email</code> (optional) is the address for mails to the user, e.g. when a run of the <a href="portal.html#mail-when-a-run-is-done">portal</a> is done.</li>
 <li>User names are not case sensitive.</li>
 <li>After a wrong password the app waits a second; the number of attempts per address is limited.</li>
 </ul>
@@ -1671,8 +1751,59 @@
 <li>Set <code>Mode</code> to <code>oidc</code> in <code>_config/auth.config</code>; the prototype already contains the settings of this client.</li>
 </ol>
 <p>The user with the role can work; the other one sees <strong>No access</strong>.</p>
+<p>The AppHost already creates users for this (password in brackets), all with the role <code>gview-pipe</code>: <code>pipe-viewer@is.net</code> (<code>viewer</code>), <code>pipe-operator@is.net</code> (<code>operator</code>), <code>pipe-editor@is.net</code> (<code>editor</code>) and <code>pipe-admin@is.net</code> (<code>admin</code>), and <code>pipe-samples@is.net</code> (<code>samples</code>), who is a viewer in general and an editor in the group <em>Samples</em> only. It also maps their roles (<code>pipe-viewers</code>, <code>pipe-operators</code>, <code>pipe-editors</code>, <code>pipe-admins</code> and <code>pipe-samples-editors</code> as <code>editor@samples</code>) to the <a href="#roles">roles</a> of the Shell, so you only switch the mode on: uncomment <code>#define PIPE_OIDC</code> at the top of <code>AppHost.cs</code> (it sets <code>Mode</code>, the provider and the client for you, and a user needs the role <code>gview-pipe</code>). With <code>#define PIPE_FORMS</code> instead the Shell has fixed users without the IdentityServer: <code>viewer</code>, <code>operator</code>, <code>editor</code>, <code>admin</code> and <code>samples</code>, each with the name as password. Only one of the two may be defined. The settings reach the Shell as environment variables, which win over <code>_config/auth.config</code>; lists such as <code>Users</code> are merged by position, so move away a <code>_config/auth.config</code> of your own that has users. The user <code>portal@is.net</code> (<code>portal</code>) with the role <code>portal-demo</code> is for the <a href="portal.html">portal</a>.</p>
+<h2 id="roles">Roles<a class="headerlink" href="#roles" title="Permanent link">&para;</a></h2>
+<p>With a login, every user has a role. Each role may do what the ones before it may:</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>May</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>viewer</td>
+<td>see workflows, executions and groups</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>run, stop and replay workflows; activate and deactivate them</td>
+</tr>
+<tr>
+<td>editor</td>
+<td>create, change and delete workflows and groups; pin data</td>
+</tr>
+<tr>
+<td>admin</td>
+<td>credentials, the variables of the instance, API keys</td>
+</tr>
+</tbody>
+</table>
+<p>viewer and operator open workflows <strong>read only</strong>: the editor shows <em>Read only</em>, without palette and Save; the fields can't be changed. Pages and buttons a role may not use are hidden or disabled. Without a login (<code>Mode</code> <em>none</em>) everyone is admin.</p>
+<p>A user can have another role for the workflows of one group, e.g. viewer in general but editor in the group <em>Billing</em>. Credentials, instance variables and API keys only look at the role for the instance. Groups are named by their id (<code>billing</code>), as shown in the address of the group page.</p>
+<p><strong>Forms:</strong> per user in <code>auth.config</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;Users&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;PasswordHash&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;…&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ada&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;PasswordHash&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;…&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;viewer&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;GroupRoles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;billing&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;editor&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p><strong>OIDC:</strong> map values of the role claim (<code>RoleClaimType</code>) to roles; <code>role@group</code> gives the role for one group. The highest match wins, and a group never gets less than the role for the instance:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;Oidc&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;RoleMappings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;pipe-admins&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;pipe-operators&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;operator&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;pipe-billing&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;editor@billing&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Users without a role</strong> (a forms user without <code>Role</code>, an OIDC user without a mapped claim) get <code>DefaultRole</code>. Its default is <code>admin</code>, so an installation from before roles works as before. Once you have given the roles, set it to <code>viewer</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;DefaultRole&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;viewer&quot;</span>
+</code></pre></div>
+<p>The roles are worked out on every check from the configuration, not stored in the login: after changing <code>auth.config</code> and restarting the app they apply without signing in again. The account menu shows the own role, and with <em>(+ groups)</em> that there are others in some groups.</p>
+<p><img alt="A viewer sees Hello Pipe read only" src="../images/editor-readonly.png" /></p>
 <h2 id="signing-out">Signing out<a class="headerlink" href="#signing-out" title="Permanent link">&para;</a></h2>
-<p>With a login, the account icon at the top right shows the user name and <strong>Sign out</strong>.</p>
+<p>With a login, the account icon at the top right shows the user name, the role and <strong>Sign out</strong>.</p>
 
 
 

@@ -14,7 +14,7 @@
         <link rel="prev" href="authentication.html">
       
       
-        <link rel="next" href="plugins.html">
+        <link rel="next" href="cli.html">
       
       
         
@@ -1012,10 +1012,77 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#portal-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portal endpoints
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="portal.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User portal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1420,6 +1487,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#portal-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portal endpoints
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1458,7 +1536,7 @@
 </tr>
 <tr>
 <td>Rights</td>
-<td><strong>Read</strong>: workflows, executions, groups. <strong>Run</strong>: start, stop, replay runs. <strong>Deploy</strong>: create, change, delete, activate workflows.</td>
+<td><strong>Read</strong>: workflows, executions, groups. <strong>Run</strong>: start, stop, replay runs. <strong>Deploy</strong>: create, change, delete, activate workflows. <strong>Portal</strong>: only the <a href="#portal-endpoints">portal endpoints</a>, for the user portal; use it alone.</td>
 </tr>
 <tr>
 <td>Only these groups</td>
@@ -1478,7 +1556,7 @@
 <p>or as <code>Authorization: Bearer pipe_…</code>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Every signed-in user can create keys; there are no roles yet. With <code>Pipe:Auth:Mode</code> <em>none</em> that is everyone who can reach the UI. Protect the UI with a <a href="authentication.html">login</a> before you rely on keys. More than 60 failed attempts per minute from one address answer <code>429</code>.</p>
+<p>Only users with the <a href="authentication.html#roles">role</a> admin can create keys. With <code>Pipe:Auth:Mode</code> <em>none</em> everyone who can reach the UI is admin. Protect the UI with a <a href="authentication.html">login</a> before you rely on keys. More than 60 failed attempts per minute from one address answer <code>429</code>.</p>
 </div>
 <h2 id="endpoints">Endpoints<a class="headerlink" href="#endpoints" title="Permanent link">&para;</a></h2>
 <p>The API is described in <code>/api/v1/openapi.json</code> (OpenAPI 3). Load it into a tool of your choice, e.g. Postman, Bruno or an OpenAPI viewer, to try the endpoints.</p>
@@ -1545,6 +1623,11 @@
 <td><code>GET /api/v1/groups</code></td>
 <td>read</td>
 <td>Lists the workflow groups.</td>
+</tr>
+<tr>
+<td><code>GET /api/v1/audit</code></td>
+<td>read</td>
+<td>The <a href="operations.html#audit-log">audit log</a>, newest first. Filters: <code>from</code>, <code>before</code>, <code>actor</code>, <code>area</code>, <code>objectId</code>, <code>limit</code>. Only for keys that aren't limited to groups.</td>
 </tr>
 </tbody>
 </table>
@@ -1616,6 +1699,68 @@ curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;htt
 </div>
 </div>
 <p>Credentials, variables and groups can't be changed through the API; set them up in the UI.</p>
+<h2 id="portal-endpoints">Portal endpoints<a class="headerlink" href="#portal-endpoints" title="Permanent link">&para;</a></h2>
+<p>For the user portal (users who run workflows, but don't edit them) a key with the right <strong>Portal</strong> reaches only <code>/api/v1/portal</code>. It cannot do anything else, and no other key reaches these endpoints. Every request names the user it is for in the header <code>X-Pipe-On-Behalf-Of</code>, and may list the <a href="portal.html#who-sees-which-workflows">portal roles</a> of the user in <code>X-Pipe-On-Behalf-Of-Roles</code> (each role percent-encoded, separated by commas); runs show <code>portal:&lt;user&gt;</code> as the starter, and users see and stop only their own runs. The portal server is trusted to name the right user, so keep the key on that server and let only it reach the backend.</p>
+<table>
+<thead>
+<tr>
+<th>Method and path</th>
+<th>Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /api/v1/portal/workflows</code></td>
+<td>The published workflows with category, form and run settings.</td>
+</tr>
+<tr>
+<td><code>POST /api/v1/portal/workflows/{id}/run</code></td>
+<td>Starts a run. Body <code>{ "values": { … }, "mode": "wait" or "background" }</code>. The values are checked against the form (<code>422</code> with the fields that are wrong). Waiting answers with the result, or <code>202</code> when the wait timeout passed.</td>
+</tr>
+<tr>
+<td><code>GET /api/v1/portal/executions</code></td>
+<td>The runs of the user, newest first, with the running ones.</td>
+</tr>
+<tr>
+<td><code>GET /api/v1/portal/executions/{workflowId}/{id}</code></td>
+<td>Status and result of a run of the user.</td>
+</tr>
+<tr>
+<td><code>POST /api/v1/portal/executions/{workflowId}/{id}/cancel</code></td>
+<td>Stops a run of the user, unless the workflow forbids it.</td>
+</tr>
+</tbody>
+</table>
+<p>Which workflows appear is set in the <a href="../user-guide/editor.html#workflow-settings">workflow settings</a>: only workflows with <em>Publish in portal</em> are visible, in the category of their group. The <a href="../user-guide/nodes/index.html">Form Trigger</a> declares the form, the Result node what the user sees at the end. Users never see raw items or error details of nodes: a failed run shows the <em>Error message</em> of the Result node, or a general text with the number of the run.</p>
+<p>Each field of the form has a name, a type (text, multiline text, number, yes/no, date, choice, password), a label, a description, a placeholder, a default and <em>Required</em>. Text fields can have a <strong>pattern</strong>, a regular expression the text must match as a whole (e.g. <code>[A-Z]{1,2}-\d{1,5}</code>), with the message shown otherwise. The portal can check it while the user types; the backend checks it again on every start. Keep patterns to what .NET and JavaScript share.</p>
+<p>Settings of the backend for the portal (section <code>Pipe:Portal</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MaxRunsPerUser</code></td>
+<td>Runs a user may have at the same time (default 3, 0 = no limit); more are answered with <code>429</code>.</td>
+</tr>
+<tr>
+<td><code>HistoryDays</code></td>
+<td>Days the result and the entered values of a run are kept for the user (default 30, 0 = always); after that only the status is shown.</td>
+</tr>
+<tr>
+<td><code>NotifyWorkflowId</code></td>
+<td>The workflow that sends the <a href="portal.html#mail-when-a-run-is-done">mail when a run is done</a>. Without it the portal offers no mail.</td>
+</tr>
+<tr>
+<td><code>PublicUrl</code></td>
+<td>The address of the portal, for the link in that mail.</td>
+</tr>
+</tbody>
+</table>
+<p><code>GET /api/v1/portal/info</code> tells the portal whether a mail can be sent (<code>mailWhenDone</code>) and the days kept (<code>historyDays</code>). <code>notifyEmail</code> in the body of a run asks for the mail.</p>
 
 
 

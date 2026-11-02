@@ -926,6 +926,62 @@
   
   
     <li class="md-nav__item">
+      <a href="cli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="portal.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User portal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="plugins.html" class="md-nav__link">
         
   
@@ -1140,6 +1196,17 @@
     <span class="md-ellipsis">
       
         Plugins
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audit-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit-Log
       
     </span>
   </a>
@@ -1476,6 +1543,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#audit-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit-Log
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#updates" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1560,11 +1638,13 @@
 <ul>
 <li>Gib jedem Skript und jeder Pipeline einen eigenen Schlüssel mit nur den nötigen Rechten, beschränkt auf seine Gruppen und mit Ablaufdatum. Lösche Schlüssel, die nicht mehr gebraucht werden; die Seite zeigt, wann jeder zuletzt benutzt wurde.</li>
 <li>Gespeichert wird nur der SHA-256 eines Schlüssels in <code>data/api-keys.json</code>; eine Kopie des Datenordners verrät keine Schlüssel.</li>
-<li>Wer die UI öffnen kann, kann Schlüssel anlegen. Nutze eine <a href="authentication.html">Anmeldung</a>, wenn andere die UI erreichen.</li>
+<li>Nur admins legen Schlüssel an (<a href="authentication.html#rollen">Rollen</a>). Ohne Anmeldung ist jeder admin: Nutze eine, wenn andere die UI erreichen.</li>
 <li>Schicke Schlüssel nur über HTTPS.</li>
 </ul>
 <h2 id="plugins">Plugins<a class="headerlink" href="#plugins" title="Permanent link">&para;</a></h2>
 <p>Ein Plugin läuft mit den vollen Rechten der App. Installiere nur Plugins aus Quellen, denen du vertraust.</p>
+<h2 id="audit-log">Audit-Log<a class="headerlink" href="#audit-log" title="Permanent link">&para;</a></h2>
+<p>Das <a href="operations.html#audit-log">Audit-Log</a> zeichnet auf, wer was geändert, gelöscht oder ausgeführt hat, Anmeldungen und abgelehnte Versuche. Es enthält nie Werte von Credentials oder geheimen Variablen. Für Nachweise, die sich nachträglich nicht ändern lassen, leite das Anwendungslog (Kategorie <code>gView.Pipe.Audit</code>) an ein zentrales Log-System weiter.</p>
 <h2 id="updates">Updates<a class="headerlink" href="#updates" title="Permanent link">&para;</a></h2>
 <p>Spiele Updates regelmäßig ein. Die Runtime und die Bibliotheken von Dritten bekommen Sicherheitskorrekturen.</p>
 

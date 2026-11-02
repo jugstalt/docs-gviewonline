@@ -920,6 +920,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../../admin-guide/cli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin-guide/portal.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User portal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../admin-guide/plugins.html" class="md-nav__link">
         
   
@@ -1291,10 +1347,32 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#form-trigger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Form Trigger
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#manual-trigger" class="md-nav__link">
     <span class="md-ellipsis">
       
         Manual Trigger
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recovery-trigger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recovery Trigger
       
     </span>
   </a>
@@ -1382,8 +1460,31 @@
 <p>Starts the workflow when another workflow calls it with Execute Workflow; outputs the caller's items.</p>
 <p><strong>Inputs:</strong> none (starts the workflow) · <strong>Outputs:</strong> <code>main</code></p>
 <p>This node has no parameters.</p>
+<h2 id="form-trigger">Form Trigger<a class="headerlink" href="#form-trigger" title="Permanent link">&para;</a></h2>
+<p>Starts the workflow from the user portal: declares the form the user fills in and outputs one item with the values. Without a Form Trigger a published workflow starts without input.</p>
+<p><strong>Inputs:</strong> none (starts the workflow) · <strong>Outputs:</strong> <code>main</code></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Fields</strong><br><code>fields</code></td>
+<td>list of JSON</td>
+<td>The inputs of the form. Each has a name (the property in the item), a label, a type (text, multiline text, number, boolean, date, choice or password), and optionally a description, a placeholder, a default, a regular expression the text must match as a whole (with the message shown otherwise) and the values of a choice.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="manual-trigger">Manual Trigger<a class="headerlink" href="#manual-trigger" title="Permanent link">&para;</a></h2>
 <p>Starts the workflow when it is run from the editor.</p>
+<p><strong>Inputs:</strong> none (starts the workflow) · <strong>Outputs:</strong> <code>main</code></p>
+<p>This node has no parameters.</p>
+<h2 id="recovery-trigger">Recovery Trigger<a class="headerlink" href="#recovery-trigger" title="Permanent link">&para;</a></h2>
+<p>Starts the workflow when a workflow that failed and was reported to this error workflow runs successfully again (triggered runs only). Outputs { workflow, execution, failedSince, failedExecution, failures }; execution.url and failedExecution.url link to the runs when Pipe:PublicUrl is set.</p>
 <p><strong>Inputs:</strong> none (starts the workflow) · <strong>Outputs:</strong> <code>main</code></p>
 <p>This node has no parameters.</p>
 <h2 id="webhook-trigger">Webhook Trigger<a class="headerlink" href="#webhook-trigger" title="Permanent link">&para;</a></h2>

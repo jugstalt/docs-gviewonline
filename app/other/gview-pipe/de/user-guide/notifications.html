@@ -697,6 +697,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#wieder-normal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wieder normal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ausprobieren" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -997,6 +1008,62 @@
     
   
     REST API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin-guide/cli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin-guide/portal.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User portal
   
 
     
@@ -1377,6 +1444,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#wieder-normal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wieder normal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ausprobieren" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1482,6 +1560,32 @@
 <li>Ein fehlschlagender Sub-Workflow wird einmal gemeldet, vom Workflow, der ihn aufgerufen hat; die Nachricht nennt den Sub-Workflow und seinen fehlgeschlagenen Node.</li>
 <li>Ein Node mit <em>Continue</em> oder <em>Error output</em> lässt den Lauf nicht fehlschlagen und wird daher nicht gemeldet. Schicke bei Bedarf eine Nachricht aus seinem <code>error</code>-Zweig (<a href="error-handling.html">Fehlerbehandlung</a>).</li>
 </ul>
+<h2 id="wieder-normal">Wieder normal<a class="headerlink" href="#wieder-normal" title="Permanent link">&para;</a></h2>
+<p>Ein Alarm sollte auch enden. Lege einen <strong>Recovery Trigger</strong> in denselben Workflow wie den Error Trigger und verbinde ihn mit einer Nachricht, wie der zweite Zweig der drei Beispiele (deaktiviert, bis du sie einrichtest). Er startet, wenn ein Workflow, der fehlgeschlagen war, wieder erfolgreich läuft.</p>
+<ul>
+<li>Er meldet eine Erholung nur, wenn vorher ein Fehler gemeldet wurde: Hat das Throttling alle Fehler verschluckt oder galt kein Fehler-Workflow, erfährt auch niemand von der Erholung.</li>
+<li>Nur Läufe durch Trigger, <a href="executions.html#replay">Replay</a> oder die API zählen. Ein Lauf, den du im Editor startest, beginnt oder beendet keinen Fehlerzustand.</li>
+<li>Der Zustand liegt auf der Platte (<code>data/health</code>) und übersteht einen Neustart.</li>
+<li>Das Item ist <code>{ workflow, execution, failedSince, failedExecution, failures }</code>; <code>execution.url</code> und <code>failedExecution.url</code> verlinken die Läufe mit <code>Pipe:PublicUrl</code>.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Ausdruck</th>
+<th>Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>{{ $json.failedSince }}</code></td>
+<td>Beginn des ersten fehlgeschlagenen Laufs</td>
+</tr>
+<tr>
+<td><code>{{ $json.failures }}</code></td>
+<td>seither fehlgeschlagene Läufe, gemeldet oder nicht</td>
+</tr>
+</tbody>
+</table>
 <h2 id="ausprobieren">Ausprobieren<a class="headerlink" href="#ausprobieren" title="Permanent link">&para;</a></h2>
 <p>Starte die Entwickler-Container mit Mailpit (<code>ADD_MAILPIT</code> im AppHost, siehe <a href="../developer-guide/index.html">Entwicklerhandbuch</a>) und lege ein SMTP-Credential für <code>localhost</code>, Port <code>1025</code>, ohne TLS an. Richte damit <strong>Error Mail</strong> ein, lass einen Workflow mit Cron- oder Webhook-Trigger fehlschlagen (etwa einen Code-Node mit <code>throw new Error('test')</code>) und lass ihn über seinen Trigger laufen oder starte ein <a href="executions.html#replay">Replay</a> eines fehlgeschlagenen Laufs. Die Mail erscheint unter http://localhost:8025.</p>
 <h2 id="eigene-schreiben">Eigene schreiben<a class="headerlink" href="#eigene-schreiben" title="Permanent link">&para;</a></h2>

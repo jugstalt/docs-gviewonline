@@ -926,6 +926,62 @@
   
   
     <li class="md-nav__item">
+      <a href="cli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="portal.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User portal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="plugins.html" class="md-nav__link">
         
   
@@ -1140,6 +1196,17 @@
     <span class="md-ellipsis">
       
         Plugins
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audit-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit log
       
     </span>
   </a>
@@ -1476,6 +1543,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#audit-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit log
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#updates" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1560,11 +1638,13 @@
 <ul>
 <li>Give each script or pipeline its own key with only the rights it needs, limited to its groups and with an expiry date. Delete keys that are no longer used; the page shows when each was last used.</li>
 <li>Only the SHA-256 of a key is stored in <code>data/api-keys.json</code>; a copy of the data folder doesn't reveal keys.</li>
-<li>Anyone who can open the UI can create keys. Use a <a href="authentication.html">login</a> when the UI is reachable by others.</li>
+<li>Only admins create keys (<a href="authentication.html#roles">roles</a>). Without a login everyone is admin: use one when the UI is reachable by others.</li>
 <li>Send keys only over HTTPS.</li>
 </ul>
 <h2 id="plugins">Plugins<a class="headerlink" href="#plugins" title="Permanent link">&para;</a></h2>
 <p>A plugin runs with the full rights of the app. Install only plugins from sources you trust.</p>
+<h2 id="audit-log">Audit log<a class="headerlink" href="#audit-log" title="Permanent link">&para;</a></h2>
+<p>The <a href="operations.html#audit-log">audit log</a> records who changed, deleted or ran what, sign-ins and refused attempts. It never contains values of credentials or secret variables. For proof that can't be changed afterwards, forward the application log (category <code>gView.Pipe.Audit</code>) to a central log system.</p>
 <h2 id="updates">Updates<a class="headerlink" href="#updates" title="Permanent link">&para;</a></h2>
 <p>Install updates regularly. The runtime and the third-party libraries receive security fixes.</p>
 

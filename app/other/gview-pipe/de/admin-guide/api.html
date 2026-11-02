@@ -14,7 +14,7 @@
         <link rel="prev" href="authentication.html">
       
       
-        <link rel="next" href="plugins.html">
+        <link rel="next" href="cli.html">
       
       
         
@@ -1012,10 +1012,77 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#portal-endpunkte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portal-Endpunkte
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="portal.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User portal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1420,6 +1487,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#portal-endpunkte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portal-Endpunkte
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1458,7 +1536,7 @@
 </tr>
 <tr>
 <td>Rights</td>
-<td><strong>Read</strong>: Workflows, Executions, Gruppen. <strong>Run</strong>: Läufe starten, stoppen, wiederholen. <strong>Deploy</strong>: Workflows anlegen, ändern, löschen, aktivieren.</td>
+<td><strong>Read</strong>: Workflows, Executions, Gruppen. <strong>Run</strong>: Läufe starten, stoppen, wiederholen. <strong>Deploy</strong>: Workflows anlegen, ändern, löschen, aktivieren. <strong>Portal</strong>: nur die <a href="#portal-endpunkte">Portal-Endpunkte</a> für das Anwender-Portal; allein verwenden.</td>
 </tr>
 <tr>
 <td>Only these groups</td>
@@ -1478,7 +1556,7 @@
 <p>oder als <code>Authorization: Bearer pipe_…</code>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Jeder angemeldete Benutzer kann Schlüssel anlegen; Rollen gibt es noch nicht. Mit <code>Pipe:Auth:Mode</code> <em>none</em> ist das jeder, der die UI erreicht. Schütze die UI mit einer <a href="authentication.html">Anmeldung</a>, bevor du dich auf Schlüssel verlässt. Mehr als 60 Fehlversuche pro Minute von einer Adresse werden mit <code>429</code> beantwortet.</p>
+<p>Nur Benutzer mit der <a href="authentication.html#rollen">Rolle</a> admin können Schlüssel anlegen. Mit <code>Pipe:Auth:Mode</code> <em>none</em> ist jeder admin, der die UI erreicht. Schütze die UI mit einer <a href="authentication.html">Anmeldung</a>, bevor du dich auf Schlüssel verlässt. Mehr als 60 Fehlversuche pro Minute von einer Adresse werden mit <code>429</code> beantwortet.</p>
 </div>
 <h2 id="endpunkte">Endpunkte<a class="headerlink" href="#endpunkte" title="Permanent link">&para;</a></h2>
 <p>Die API ist in <code>/api/v1/openapi.json</code> (OpenAPI 3) beschrieben. Lade die Datei in ein Werkzeug deiner Wahl, z. B. Postman, Bruno oder einen OpenAPI-Viewer, um die Endpunkte auszuprobieren.</p>
@@ -1545,6 +1623,11 @@
 <td><code>GET /api/v1/groups</code></td>
 <td>read</td>
 <td>Listet die Workflow-Gruppen.</td>
+</tr>
+<tr>
+<td><code>GET /api/v1/audit</code></td>
+<td>read</td>
+<td>Das <a href="operations.html#audit-log">Audit-Log</a>, die neuesten zuerst. Filter: <code>from</code>, <code>before</code>, <code>actor</code>, <code>area</code>, <code>objectId</code>, <code>limit</code>. Nur für Schlüssel ohne Gruppen-Beschränkung.</td>
 </tr>
 </tbody>
 </table>
@@ -1616,6 +1699,68 @@ curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;htt
 </div>
 </div>
 <p>Credentials, Variablen und Gruppen lassen sich über die API nicht ändern; richte sie in der UI ein.</p>
+<h2 id="portal-endpunkte">Portal-Endpunkte<a class="headerlink" href="#portal-endpunkte" title="Permanent link">&para;</a></h2>
+<p>Für das Anwender-Portal (Anwender, die Workflows ausführen, aber nicht bearbeiten) erreicht ein Key mit dem Recht <strong>Portal</strong> nur <code>/api/v1/portal</code>. Er kann nichts anderes, und kein anderer Key erreicht diese Endpunkte. Jede Anfrage nennt den Anwender, für den sie gilt, im Header <code>X-Pipe-On-Behalf-Of</code> und kann die <a href="portal.html#wer-welche-workflows-sieht">Portal-Rollen</a> des Anwenders in <code>X-Pipe-On-Behalf-Of-Roles</code> auflisten (jede Rolle prozentcodiert, durch Kommas getrennt); Läufe zeigen <code>portal:&lt;Anwender&gt;</code> als Starter, und Anwender sehen und stoppen nur ihre eigenen Läufe. Der Portal-Server wird darin als vertrauenswürdig behandelt, dass er den richtigen Anwender nennt. Halte den Key deshalb auf diesem Server und lass nur ihn das Backend erreichen.</p>
+<table>
+<thead>
+<tr>
+<th>Methode und Pfad</th>
+<th>Macht</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /api/v1/portal/workflows</code></td>
+<td>Die veröffentlichten Workflows mit Kategorie, Formular und Einstellungen zum Lauf.</td>
+</tr>
+<tr>
+<td><code>POST /api/v1/portal/workflows/{id}/run</code></td>
+<td>Startet einen Lauf. Body <code>{ "values": { … }, "mode": "wait" oder "background" }</code>. Die Werte werden gegen das Formular geprüft (<code>422</code> mit den falschen Feldern). Beim Warten kommt das Ergebnis zurück, oder <code>202</code>, wenn das Warte-Timeout abgelaufen ist.</td>
+</tr>
+<tr>
+<td><code>GET /api/v1/portal/executions</code></td>
+<td>Die Läufe des Anwenders, neueste zuerst, auch die laufenden.</td>
+</tr>
+<tr>
+<td><code>GET /api/v1/portal/executions/{workflowId}/{id}</code></td>
+<td>Status und Ergebnis eines Laufs des Anwenders.</td>
+</tr>
+<tr>
+<td><code>POST /api/v1/portal/executions/{workflowId}/{id}/cancel</code></td>
+<td>Stoppt einen Lauf des Anwenders, falls der Workflow das nicht verbietet.</td>
+</tr>
+</tbody>
+</table>
+<p>Welche Workflows erscheinen, stellst du in den <a href="../user-guide/editor.html#einstellungen-des-workflows">Workflow-Einstellungen</a> ein: Sichtbar sind nur Workflows mit <em>Publish in portal</em>, in der Kategorie ihrer Gruppe. Der Form Trigger legt das Formular fest, der Result-Node, was der Anwender am Ende sieht. Anwender sehen nie rohe Items oder Fehlerdetails der Nodes: Ein fehlgeschlagener Lauf zeigt die <em>Error message</em> des Result-Nodes oder einen allgemeinen Text mit der Nummer des Laufs.</p>
+<p>Jedes Feld des Formulars hat einen Namen, einen Typ (Text, mehrzeiliger Text, Zahl, Ja/Nein, Datum, Auswahl, Passwort), ein Label, eine Beschreibung, einen Platzhalter, einen Standardwert und <em>Required</em>. Textfelder können ein <strong>Muster</strong> haben, einen regulären Ausdruck, auf den der Text als Ganzes passen muss (z. B. <code>[A-Z]{1,2}-\d{1,5}</code>), mit der Meldung, die sonst erscheint. Das Portal kann es schon beim Tippen prüfen; das Backend prüft es bei jedem Start nochmal. Beschränke Muster auf das, was .NET und JavaScript gemeinsam verstehen.</p>
+<p>Einstellungen des Backends für das Portal (Abschnitt <code>Pipe:Portal</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Einstellung</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MaxRunsPerUser</code></td>
+<td>Läufe, die ein Anwender gleichzeitig haben darf (Standard 3, 0 = unbegrenzt); weitere werden mit <code>429</code> beantwortet.</td>
+</tr>
+<tr>
+<td><code>HistoryDays</code></td>
+<td>Tage, die Ergebnis und eingegebene Werte eines Laufs für den Anwender aufbewahrt werden (Standard 30, 0 = immer); danach wird nur noch der Status gezeigt.</td>
+</tr>
+<tr>
+<td><code>NotifyWorkflowId</code></td>
+<td>Der Workflow, der die <a href="portal.html#mail-wenn-ein-lauf-fertig-ist">Mail bei Fertigstellung</a> sendet. Ohne ihn bietet das Portal keine Mail an.</td>
+</tr>
+<tr>
+<td><code>PublicUrl</code></td>
+<td>Die Adresse des Portals, für den Link in dieser Mail.</td>
+</tr>
+</tbody>
+</table>
+<p><code>GET /api/v1/portal/info</code> sagt dem Portal, ob eine Mail gesendet werden kann (<code>mailWhenDone</code>), und die aufbewahrten Tage (<code>historyDays</code>). <code>notifyEmail</code> im Body eines Laufs verlangt die Mail.</p>
 
 
 

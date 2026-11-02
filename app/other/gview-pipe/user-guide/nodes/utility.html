@@ -920,6 +920,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../../admin-guide/cli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin-guide/portal.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User portal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../admin-guide/plugins.html" class="md-nav__link">
         
   
@@ -1279,6 +1335,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1330,6 +1397,40 @@
 <p>Passes items through unchanged.</p>
 <p><strong>Inputs:</strong> <code>main</code> · <strong>Outputs:</strong> <code>main</code></p>
 <p>This node has no parameters.</p>
+<h2 id="result">Result<a class="headerlink" href="#result" title="Permanent link">&para;</a></h2>
+<p>Defines what a user sees in the portal at the end of the run: text, Markdown or a table. Without a Result node the portal shows only the status. Outputs one item with the result, so place it at the end of the workflow.</p>
+<p><strong>Inputs:</strong> <code>main</code> · <strong>Outputs:</strong> <code>main</code></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Kind</strong><br><code>kind</code></td>
+<td>one of: <code>text</code>, <code>markdown</code>, <code>table</code></td>
+<td>Text and Markdown show the content; Table shows the incoming items, one row per item. Default: <code>text</code>.</td>
+</tr>
+<tr>
+<td><strong>Title</strong><br><code>title</code></td>
+<td>text</td>
+<td>Supports expressions.</td>
+</tr>
+<tr>
+<td><strong>Content</strong><br><code>content</code></td>
+<td>text</td>
+<td>For Text and Markdown; evaluated for the first incoming item. Supports expressions.</td>
+</tr>
+<tr>
+<td><strong>Error message</strong><br><code>errorMessage</code></td>
+<td>text</td>
+<td>Shown to the portal user when the run fails. Without it the user sees a general message and the number of the run; details of errors stay with the admins. Supports expressions.</td>
+</tr>
+</tbody>
+</table>
 
 
 

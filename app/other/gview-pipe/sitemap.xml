@@ -29,6 +29,13 @@
         <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/authentication.html"/>
     </url>
     <url>
+        <loc>Noneadmin-guide/cli.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/cli.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/cli.html"/>
+    </url>
+    <url>
         <loc>Noneadmin-guide/configuration.html</loc>
         <lastmod>2026-11-02</lastmod>
         <changefreq>daily</changefreq>
@@ -55,6 +62,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/plugins.html"/>
         <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/plugins.html"/>
+    </url>
+    <url>
+        <loc>Noneadmin-guide/portal.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/portal.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/portal.html"/>
     </url>
     <url>
         <loc>Noneadmin-guide/scripts.html</loc>
@@ -288,6 +302,13 @@
         <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/authentication.html"/>
     </url>
     <url>
+        <loc>Nonede/admin-guide/cli.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/cli.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/cli.html"/>
+    </url>
+    <url>
         <loc>Nonede/admin-guide/configuration.html</loc>
         <lastmod>2026-11-02</lastmod>
         <changefreq>daily</changefreq>
@@ -314,6 +335,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/plugins.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/plugins.html"/>
+    </url>
+    <url>
+        <loc>Nonede/admin-guide/portal.html</loc>
+        <lastmod>2026-11-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="Nonede/admin-guide/portal.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneadmin-guide/portal.html"/>
     </url>
     <url>
         <loc>Nonede/admin-guide/scripts.html</loc>

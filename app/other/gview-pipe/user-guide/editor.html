@@ -512,6 +512,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1095,6 +1106,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../admin-guide/cli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin-guide/portal.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User portal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../admin-guide/plugins.html" class="md-nav__link">
         
   
@@ -1466,6 +1533,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1600,7 +1678,7 @@
 </tr>
 <tr>
 <td><strong>Toolbar</strong> (top)</td>
-<td>Back, undo and redo, paste, show or hide the palette and the side panel, the <strong>Active</strong> switch, <strong>Save</strong> and <strong>Run</strong>.</td>
+<td>Back, undo and redo, paste, add a note, show or hide the palette and the side panel, the <strong>Active</strong> switch, <strong>Save</strong> and <strong>Run</strong>.</td>
 </tr>
 </tbody>
 </table>
@@ -1625,6 +1703,9 @@
 <li><strong>Duplicate</strong> a node with the icon in the side panel.</li>
 <li><strong>Undo</strong> and <strong>redo</strong> (Ctrl+Z, Ctrl+Y or Ctrl+Shift+Z on the canvas, or the toolbar) work for every change to the workflow. Typing into the fields of one node counts as one step.</li>
 </ul>
+<h3 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h3>
+<p>Use the note button in the toolbar to put a <strong>sticky note</strong> on the canvas, for example to explain why a filter is there or what to set up first. Select a note to change its text, color (yellow, green, blue, red, purple, gray) and size in the side panel; drag it like a node. Notes lie behind the nodes, have no ports and don't affect a run. They can be copied, pasted, duplicated, deleted and undone like nodes. Without the editor role you see them read only.</p>
+<p><img alt="A note on the canvas" src="../images/editor-note.png" /></p>
 <h2 id="node-tabs">Node tabs<a class="headerlink" href="#node-tabs" title="Permanent link">&para;</a></h2>
 <h3 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h3>
 <p>The form is generated from the node. Most text fields accept <strong>expressions</strong>: <code>{{ $json.total * 1.2 }}</code> is evaluated for each item (see <a href="expressions.html">Items and expressions</a>). In the <strong>Run</strong> tab you can click a field of the input to insert it as an expression into the parameter you edited last.</p>
@@ -1678,7 +1759,7 @@
 <h2 id="groups">Groups<a class="headerlink" href="#groups" title="Permanent link">&para;</a></h2>
 <p>Workflows are sorted into <strong>groups</strong>, shown as tiles on the start page. A workflow is in at most one group. Change it with the <strong>Group</strong> field of the workflow panel, <strong>Move to group</strong> in the list, or by dragging a row onto a tile.</p>
 <p><img alt="The start page with the group Samples" src="../images/start-page.png" /></p>
-<p>Open a group to see its workflows and to create new ones in it. Deleting a group never deletes its workflows. The group dialog (pencil on the tile) sets name, color, and what its workflows inherit: the environment, variables and the error workflow.</p>
+<p>Open a group to see its workflows and to create new ones in it. Deleting a group never deletes its workflows. The group dialog (pencil on the tile) sets name, color, the <a href="../admin-guide/portal.html#who-sees-which-workflows">portal roles</a> and what its workflows inherit: the environment, variables and the error workflow.</p>
 <h2 id="workflow-settings">Workflow settings<a class="headerlink" href="#workflow-settings" title="Permanent link">&para;</a></h2>
 <p>Select no node (click the empty canvas) to see the settings of the workflow:</p>
 <table>
@@ -1724,6 +1805,10 @@
 <tr>
 <td>Error workflow</td>
 <td>Started when a triggered run fails, see <a href="error-handling.html#error-workflows">Error handling</a>. <em>Inherit</em> (the default) takes the group's or the instance's, <em>None</em> switches it off.</td>
+</tr>
+<tr>
+<td>Publish in portal</td>
+<td>Makes the workflow visible to users in the user portal, in the category of its group. Then you choose who may see it (<em>Only these roles</em>), whether users wait or the run goes to the background, the wait timeout, whether users may switch, whether they may stop the run and whether only one run may go at a time. The form comes from a Form Trigger node, the result from a Result node. Without a Form Trigger the workflow starts without input. See <a href="../admin-guide/api.html#portal-endpoints">REST API</a>.</td>
 </tr>
 <tr>
 <td>Executions</td>

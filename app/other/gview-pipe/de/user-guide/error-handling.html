@@ -1034,6 +1034,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../admin-guide/cli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin-guide/portal.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User portal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../admin-guide/plugins.html" class="md-nav__link">
         
   
@@ -1531,6 +1587,7 @@
 </code></pre></div>
 <p>Du nutzt es in Ausdrücken, zum Beispiel <code>{{ $json.workflow.name }}</code> und <code>{{ $json.execution.error }}</code>. <code>url</code> verweist auf den fehlgeschlagenen Lauf, wenn <code>Pipe:PublicUrl</code> konfiguriert ist; <code>subWorkflow</code> gibt es nur, wenn ein Sub-Workflow fehlgeschlagen ist.
 - <strong>Throttle minutes</strong> am Error Trigger (Vorgabe 15) startet ihn pro fehlgeschlagenem Workflow höchstens einmal in dieser Zeit. Fehler dazwischen werden in <code>suppressed</code> des nächsten Laufs gezählt. Mit 0 wird jeder Fehler gemeldet.
+- Füge demselben Workflow einen <strong>Recovery Trigger</strong> hinzu, um zu erfahren, wann der fehlgeschlagene Workflow wieder erfolgreich läuft; siehe <a href="notifications.html#wieder-normal">Fehlerbenachrichtigungen</a>.
 - Ein Fehler des Fehler-Workflows selbst wird nur ins Anwendungslog geschrieben. Ein Workflow ist nie sein eigener Fehler-Workflow.
 - Er ändert das Ergebnis des fehlgeschlagenen Laufs <strong>nicht</strong>. Der Lauf bleibt <strong>Error</strong>.</p>
 </li>

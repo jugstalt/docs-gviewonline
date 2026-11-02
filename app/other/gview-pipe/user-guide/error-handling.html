@@ -1034,6 +1034,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../admin-guide/cli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin-guide/portal.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User portal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../admin-guide/plugins.html" class="md-nav__link">
         
   
@@ -1531,6 +1587,7 @@
 </code></pre></div>
 <p>Use it in expressions, for example <code>{{ $json.workflow.name }}</code> and <code>{{ $json.execution.error }}</code>. <code>url</code> links to the failed run when <code>Pipe:PublicUrl</code> is configured; <code>subWorkflow</code> is only there when a sub-workflow failed.
 - <strong>Throttle minutes</strong> on the Error Trigger (default 15) starts it at most once in that time per failed workflow. Failures in between are counted in <code>suppressed</code> of the next run. Set 0 to report every failure.
+- Add a <strong>Recovery Trigger</strong> to the same workflow to be told when the failed workflow runs successfully again; see <a href="notifications.html#back-to-normal">Failure notifications</a>.
 - A failure of the error workflow itself is only written to the application log. A workflow is never its own error workflow.
 - It does <strong>not</strong> change the result of the failed run. The run stays <strong>Error</strong>.</p>
 </li>

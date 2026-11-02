@@ -697,6 +697,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#back-to-normal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Back to normal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#trying-it-out" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -997,6 +1008,62 @@
     
   
     REST API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin-guide/cli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin-guide/portal.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User portal
   
 
     
@@ -1377,6 +1444,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#back-to-normal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Back to normal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#trying-it-out" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1482,6 +1560,32 @@
 <li>A failing sub-workflow is reported once, by the workflow that called it; the message names the sub-workflow and its failed node.</li>
 <li>A node with <em>Continue</em> or <em>Error output</em> doesn't fail the run, so it isn't reported. Send a message from its <code>error</code> branch if you need one (<a href="error-handling.html">Error handling</a>).</li>
 </ul>
+<h2 id="back-to-normal">Back to normal<a class="headerlink" href="#back-to-normal" title="Permanent link">&para;</a></h2>
+<p>An alarm should also end. Put a <strong>Recovery Trigger</strong> into the same workflow as the Error Trigger and connect it to a message, like the second branch of the three samples (disabled until you set them up). It starts when a workflow that failed runs successfully again.</p>
+<ul>
+<li>It only reports a recovery when a failure was reported before: if the throttle swallowed all failures, or no error workflow applied, nobody hears about the recovery either.</li>
+<li>Only runs by trigger, <a href="executions.html#replay">replay</a> or the API count. A run you start in the editor neither starts nor ends a failure.</li>
+<li>The state is kept on disk (<code>data/health</code>), so it survives a restart.</li>
+<li>The item is <code>{ workflow, execution, failedSince, failedExecution, failures }</code>; <code>execution.url</code> and <code>failedExecution.url</code> link to the runs with <code>Pipe:PublicUrl</code>.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Expression</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>{{ $json.failedSince }}</code></td>
+<td>start of the first failed run</td>
+</tr>
+<tr>
+<td><code>{{ $json.failures }}</code></td>
+<td>failed runs since then, reported or not</td>
+</tr>
+</tbody>
+</table>
 <h2 id="trying-it-out">Trying it out<a class="headerlink" href="#trying-it-out" title="Permanent link">&para;</a></h2>
 <p>Start the developer containers with Mailpit (<code>ADD_MAILPIT</code> in the AppHost, see the <a href="../developer-guide/index.html">Developer Guide</a>) and create an SMTP credential for <code>localhost</code>, port <code>1025</code>, without TLS. Set up <strong>Error Mail</strong> with it, make a workflow with a Cron or Webhook Trigger fail (for example a Code node with <code>throw new Error('test')</code>), and let it run by its trigger or <a href="executions.html#replay">replay</a> a failed run. The mail appears at http://localhost:8025.</p>
 <h2 id="writing-your-own">Writing your own<a class="headerlink" href="#writing-your-own" title="Permanent link">&para;</a></h2>

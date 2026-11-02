@@ -926,6 +926,62 @@
   
   
     <li class="md-nav__item">
+      <a href="cli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="portal.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User portal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="plugins.html" class="md-nav__link">
         
   
@@ -1068,6 +1124,17 @@
     <span class="md-ellipsis">
       
         Execution history
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audit-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit log
       
     </span>
   </a>
@@ -1410,6 +1477,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#audit-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit log
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#backup" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1484,6 +1562,50 @@
 <h2 id="execution-history">Execution history<a class="headerlink" href="#execution-history" title="Permanent link">&para;</a></h2>
 <p>The latest 50 executions per workflow are kept in <code>data/executions/</code>; <code>Pipe:ExecutionRetention</code> and <code>Pipe:ExecutionRetentionDays</code> (see <a href="configuration.html">Configuration</a>) and the workflow panel change that. Switch off <strong>Save item data of executions</strong> in the workflow panel, and only statuses, counts and logs are stored. That is useful when items contain sensitive data.</p>
 <p>Executions that are running live in the memory of the process. A restart ends them, and a Wait node that is waiting loses its run.</p>
+<h2 id="audit-log">Audit log<a class="headerlink" href="#audit-log" title="Permanent link">&para;</a></h2>
+<p>The page <strong>Audit</strong> (admins only) shows who changed, deleted, ran or signed in, and when:</p>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Recorded</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Workflow</td>
+<td>created, saved (with a summary: nodes added, removed and changed, connections, settings), deleted, activated, deactivated, moved, deployed through the API</td>
+</tr>
+<tr>
+<td>Group</td>
+<td>created, changed, deleted</td>
+</tr>
+<tr>
+<td>Credential</td>
+<td>created, changed, deleted; never the values</td>
+</tr>
+<tr>
+<td>Variables</td>
+<td>the instance variables changed; names only</td>
+</tr>
+<tr>
+<td>API key</td>
+<td>created, deleted</td>
+</tr>
+<tr>
+<td>Login</td>
+<td>signed in; failed sign-ins and refused API keys, at most one entry per minute and address, with the number of further attempts</td>
+</tr>
+<tr>
+<td>Execution</td>
+<td>started by hand or through the API, stopped, replayed</td>
+</tr>
+</tbody>
+</table>
+<p>Triggered runs are not in the audit log; the <a href="../user-guide/executions.html">execution history</a> has them. <em>Who</em> is the user name, <code>api:&lt;key name&gt;</code> for the <a href="api.html">REST API</a>, or <code>anonymous</code> without a login.</p>
+<p>Filter by person, area, object id and time, and export what is shown as CSV (<em>Export CSV</em>). The workflow panel of the editor shows the last changes of the workflow under <strong>History</strong>. Scripts read the log with <code>GET /api/v1/audit</code>.</p>
+<p><img alt="The page Audit" src="../images/audit.png" /></p>
+<p>The entries are kept as one file of JSON lines per month in <code>data/audit/</code> and deleted after <code>Pipe:AuditRetentionDays</code> (365, in whole months). Every entry is also written to the application log (category <code>gView.Pipe.Audit</code>). Who can write the data folder can change the files; if you need proof, keep the entries of a central log system.</p>
 <h2 id="backup">Backup<a class="headerlink" href="#backup" title="Permanent link">&para;</a></h2>
 <p>Back up the whole <code>data</code> folder, plus <code>files</code> and <code>scripts</code> if you use them:</p>
 <table>

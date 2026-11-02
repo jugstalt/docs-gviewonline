@@ -926,6 +926,62 @@
   
   
     <li class="md-nav__item">
+      <a href="cli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="portal.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User portal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="plugins.html" class="md-nav__link">
         
   
@@ -1068,6 +1124,17 @@
     <span class="md-ellipsis">
       
         Execution-Historie
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audit-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit-Log
       
     </span>
   </a>
@@ -1410,6 +1477,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#audit-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit-Log
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#backup" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1484,6 +1562,50 @@
 <h2 id="execution-historie">Execution-Historie<a class="headerlink" href="#execution-historie" title="Permanent link">&para;</a></h2>
 <p>Die letzten 50 Executions je Workflow bleiben in <code>data/executions/</code> erhalten; <code>Pipe:ExecutionRetention</code> und <code>Pipe:ExecutionRetentionDays</code> (siehe <a href="configuration.html">Konfiguration</a>) und das Workflow-Panel ändern das. Schaltest du im Workflow-Panel <strong>Save item data of executions</strong> aus, werden nur Status, Zähler und Logs gespeichert. Das ist nützlich, wenn Items sensible Daten enthalten.</p>
 <p>Laufende Executions liegen im Speicher des Prozesses. Ein Neustart beendet sie, und ein wartender Wait-Node verliert seinen Lauf.</p>
+<h2 id="audit-log">Audit-Log<a class="headerlink" href="#audit-log" title="Permanent link">&para;</a></h2>
+<p>Die Seite <strong>Audit</strong> (nur admins) zeigt, wer wann etwas geändert, gelöscht, ausgeführt oder sich angemeldet hat:</p>
+<table>
+<thead>
+<tr>
+<th>Bereich</th>
+<th>Aufgezeichnet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Workflow</td>
+<td>angelegt, gespeichert (mit Zusammenfassung: Nodes hinzugefügt, entfernt und geändert, Verbindungen, Einstellungen), gelöscht, aktiviert, deaktiviert, verschoben, über die API deployt</td>
+</tr>
+<tr>
+<td>Group</td>
+<td>angelegt, geändert, gelöscht</td>
+</tr>
+<tr>
+<td>Credential</td>
+<td>angelegt, geändert, gelöscht; nie die Werte</td>
+</tr>
+<tr>
+<td>Variables</td>
+<td>die Instanz-Variablen geändert; nur Namen</td>
+</tr>
+<tr>
+<td>API key</td>
+<td>angelegt, gelöscht</td>
+</tr>
+<tr>
+<td>Login</td>
+<td>angemeldet; fehlgeschlagene Anmeldungen und abgelehnte API-Schlüssel, höchstens ein Eintrag pro Minute und Adresse, mit der Zahl weiterer Versuche</td>
+</tr>
+<tr>
+<td>Execution</td>
+<td>von Hand oder über die API gestartet, gestoppt, wiederholt</td>
+</tr>
+</tbody>
+</table>
+<p>Getriggerte Läufe stehen nicht im Audit-Log; dafür gibt es die <a href="../user-guide/executions.html">Execution-Historie</a>. <em>Wer</em> ist der Benutzername, <code>api:&lt;Schlüsselname&gt;</code> für die <a href="api.html">REST API</a> oder <code>anonymous</code> ohne Anmeldung.</p>
+<p>Filtere nach Person, Bereich, Objekt-Id und Zeitraum und exportiere das Angezeigte als CSV (<em>Export CSV</em>). Das Workflow-Panel des Editors zeigt unter <strong>History</strong> die letzten Änderungen des Workflows. Skripte lesen das Log mit <code>GET /api/v1/audit</code>.</p>
+<p><img alt="Die Seite Audit" src="../../images/audit.png" /></p>
+<p>Die Einträge liegen als eine Datei mit JSON-Zeilen pro Monat in <code>data/audit/</code> und werden nach <code>Pipe:AuditRetentionDays</code> (365, in ganzen Monaten) gelöscht. Jeder Eintrag geht zusätzlich ins Anwendungslog (Kategorie <code>gView.Pipe.Audit</code>). Wer den Datenordner schreiben kann, kann die Dateien ändern; brauchst du Nachweise, bewahre die Einträge eines zentralen Log-Systems auf.</p>
 <h2 id="backup">Backup<a class="headerlink" href="#backup" title="Permanent link">&para;</a></h2>
 <p>Sichere den ganzen Ordner <code>data</code>, dazu <code>files</code> und <code>scripts</code>, wenn du sie nutzt:</p>
 <table>

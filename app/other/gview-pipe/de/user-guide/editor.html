@@ -512,6 +512,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#notizen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notizen
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1095,6 +1106,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../admin-guide/cli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command line
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin-guide/portal.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User portal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../admin-guide/plugins.html" class="md-nav__link">
         
   
@@ -1466,6 +1533,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#notizen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notizen
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1600,7 +1678,7 @@
 </tr>
 <tr>
 <td><strong>Werkzeugleiste</strong> (oben)</td>
-<td>Zurück, Rückgängig und Wiederholen, Einfügen, Palette und Seitenpanel ein- und ausblenden, der Schalter <strong>Active</strong>, <strong>Save</strong> und <strong>Run</strong>.</td>
+<td>Zurück, Rückgängig und Wiederholen, Einfügen, Notiz hinzufügen, Palette und Seitenpanel ein- und ausblenden, der Schalter <strong>Active</strong>, <strong>Save</strong> und <strong>Run</strong>.</td>
 </tr>
 </tbody>
 </table>
@@ -1625,6 +1703,9 @@
 <li><strong>Dupliziere</strong> einen Node mit dem Symbol im Seitenpanel.</li>
 <li><strong>Rückgängig</strong> und <strong>Wiederholen</strong> (Strg+Z, Strg+Y oder Strg+Umschalt+Z auf der Arbeitsfläche, oder die Werkzeugleiste) gelten für jede Änderung am Workflow. Tippen in die Felder eines Nodes zählt als ein Schritt.</li>
 </ul>
+<h3 id="notizen">Notizen<a class="headerlink" href="#notizen" title="Permanent link">&para;</a></h3>
+<p>Mit der Notiz-Schaltfläche der Werkzeugleiste legst du eine <strong>Haftnotiz</strong> auf die Arbeitsfläche, zum Beispiel um zu erklären, warum ein Filter da ist oder was zuerst einzurichten ist. Wähle eine Notiz, um im Seitenpanel Text, Farbe (yellow, green, blue, red, purple, gray) und Größe zu ändern; ziehe sie wie einen Node. Notizen liegen hinter den Nodes, haben keine Ports und beeinflussen keinen Lauf. Sie lassen sich wie Nodes kopieren, einfügen, duplizieren, löschen und rückgängig machen. Ohne die Rolle editor siehst du sie nur lesend.</p>
+<p><img alt="Eine Notiz auf der Arbeitsfläche" src="../../images/editor-note.png" /></p>
 <h2 id="die-tabs-eines-nodes">Die Tabs eines Nodes<a class="headerlink" href="#die-tabs-eines-nodes" title="Permanent link">&para;</a></h2>
 <h3 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h3>
 <p>Das Formular wird aus dem Node erzeugt. Die meisten Textfelder akzeptieren <strong>Ausdrücke</strong>: <code>{{ $json.total * 1.2 }}</code> wird für jedes Item ausgewertet (siehe <a href="expressions.html">Items und Ausdrücke</a>). Im Tab <strong>Run</strong> kannst du ein Feld der Eingabe anklicken, um es als Ausdruck in den zuletzt bearbeiteten Parameter einzufügen.</p>
@@ -1678,7 +1759,7 @@
 <h2 id="gruppen">Gruppen<a class="headerlink" href="#gruppen" title="Permanent link">&para;</a></h2>
 <p>Workflows werden in <strong>Gruppen</strong> einsortiert, die als Kacheln auf der Startseite erscheinen. Ein Workflow gehört zu höchstens einer Gruppe. Ändere sie mit dem Feld <strong>Group</strong> im Workflow-Panel, mit <strong>Move to group</strong> in der Liste oder indem du eine Zeile auf eine Kachel ziehst.</p>
 <p><img alt="Die Startseite mit der Gruppe Samples" src="../../images/start-page.png" /></p>
-<p>Öffne eine Gruppe, um ihre Workflows zu sehen und dort neue anzulegen. Das Löschen einer Gruppe löscht nie ihre Workflows. Der Gruppen-Dialog (Stift auf der Kachel) legt Name, Farbe und das fest, was ihre Workflows erben: das Environment, Variablen und den Fehler-Workflow.</p>
+<p>Öffne eine Gruppe, um ihre Workflows zu sehen und dort neue anzulegen. Das Löschen einer Gruppe löscht nie ihre Workflows. Der Gruppen-Dialog (Stift auf der Kachel) legt Name, Farbe, die <a href="../admin-guide/portal.html#wer-welche-workflows-sieht">Portal-Rollen</a> und das fest, was ihre Workflows erben: das Environment, Variablen und den Fehler-Workflow.</p>
 <h2 id="einstellungen-des-workflows">Einstellungen des Workflows<a class="headerlink" href="#einstellungen-des-workflows" title="Permanent link">&para;</a></h2>
 <p>Wähle keinen Node (klicke auf die leere Arbeitsfläche), um die Einstellungen des Workflows zu sehen:</p>
 <table>
@@ -1724,6 +1805,10 @@
 <tr>
 <td>Error workflow</td>
 <td>Wird gestartet, wenn ein durch Trigger gestarteter Lauf fehlschlägt, siehe <a href="error-handling.html#fehler-workflows">Fehlerbehandlung</a>. <em>Inherit</em> (Vorgabe) übernimmt den der Gruppe oder der Instanz, <em>None</em> schaltet ihn ab.</td>
+</tr>
+<tr>
+<td>Publish in portal</td>
+<td>Macht den Workflow für Anwender im Anwender-Portal sichtbar, in der Kategorie seiner Gruppe. Dann stellst du ein, wer ihn sehen darf (<em>Only these roles</em>), ob der Anwender wartet oder der Lauf im Hintergrund läuft, das Warte-Timeout, ob der Anwender umschalten und den Lauf stoppen darf und ob nur ein Lauf gleichzeitig laufen darf. Das Formular kommt aus einem Form-Trigger-Node, das Ergebnis aus einem Result-Node. Ohne Form Trigger startet der Workflow ohne Eingabe. Siehe <a href="../admin-guide/api.html#portal-endpunkte">REST API</a>.</td>
 </tr>
 <tr>
 <td>Executions</td>
