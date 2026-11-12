@@ -581,6 +581,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../error-handling.html" class="md-nav__link">
         
   
@@ -1088,6 +1116,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../admin-guide/secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../admin-guide/troubleshooting.html" class="md-nav__link">
         
   
@@ -1287,6 +1343,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versionshinweise
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1325,6 +1408,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#email-trigger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email Trigger
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#error-trigger" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1340,6 +1434,17 @@
     <span class="md-ellipsis">
       
         Execute Workflow Trigger
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-trigger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Trigger
       
     </span>
   </a>
@@ -1428,15 +1533,138 @@
 <tr>
 <td><strong>Cron expression</strong> (required)<br><code>expression</code></td>
 <td>text</td>
-<td>5 fields (minute hour day month weekday) or 6 with seconds first.</td>
+<td>When to run: minute hour day month weekday, e.g. 0 7 * * 1-5 is 7:00 on workdays, */15 * * * * every 15 minutes.</td>
 </tr>
 <tr>
 <td><strong>Time zone</strong><br><code>timeZone</code></td>
 <td>text</td>
-<td>IANA or Windows time zone id.</td>
+<td>Time zone of the schedule, e.g. Europe/Vienna.</td>
 </tr>
 </tbody>
 </table>
+<details class="example">
+<summary>Example: Every workday at 7:00</summary>
+<p>While the workflow is active it starts at the given times with one item.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0 7 * * 1-5"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"timeZone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Europe/Vienna"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-11-11T06:00:00.0000000+00:00"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0 7 * * 1-5"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
+<h2 id="email-trigger">Email Trigger<a class="headerlink" href="#email-trigger" title="Permanent link">&para;</a></h2>
+<p>Starts the workflow when unread mails are in a mailbox (IMAP), while the workflow is active. Checks at an interval; one run per check with one item per mail: sender, recipients, subject, date, text, html and the attachments as binary data. After the run has started the mails are marked as read, moved or deleted. Mails that are unread when the workflow is activated count.</p>
+<p><strong>Inputs:</strong> none (starts the workflow) · <strong>Outputs:</strong> <code>main</code></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mail server</strong> (required)<br><code>credentialId</code></td>
+<td>credential (IMAP Server)</td>
+<td>The mailbox to watch: an IMAP Server credential.</td>
+</tr>
+<tr>
+<td><strong>Folder</strong><br><code>folder</code></td>
+<td>text</td>
+<td>Mail folder to watch, e.g. INBOX or INBOX/Orders.</td>
+</tr>
+<tr>
+<td><strong>From contains</strong><br><code>fromContains</code></td>
+<td>text</td>
+<td>Only mails from a sender with this text, e.g. @shop.example; empty: all.</td>
+</tr>
+<tr>
+<td><strong>Subject contains</strong><br><code>subjectContains</code></td>
+<td>text</td>
+<td>Only mails with this text in the subject, e.g. Invoice; empty: all.</td>
+</tr>
+<tr>
+<td><strong>After processing</strong><br><code>afterProcessing</code></td>
+<td>one of: <code>markAsRead</code>, <code>moveToFolder</code>, <code>delete</code></td>
+<td>What happens to a mail once the run has started. <br><code>markAsRead</code>: The mail stays in the folder, marked as read.<br><code>moveToFolder</code>: The mail moves into the target folder, e.g. Done.<br><code>delete</code>: The mail is deleted.<br> Default: <code>markAsRead</code>.</td>
+</tr>
+<tr>
+<td><strong>Target folder</strong><br><code>targetFolder</code></td>
+<td>text</td>
+<td>Folder for processed mails, e.g. Done; created if it doesn't exist. Only when <em>After processing</em> is <code>moveToFolder</code>.</td>
+</tr>
+<tr>
+<td><strong>Download attachments</strong><br><code>downloadAttachments</code></td>
+<td>true/false</td>
+<td>Attach the files of the mail to the item as attachment1, attachment2, …. Default: <code>true</code>.</td>
+</tr>
+<tr>
+<td><strong>Max message size (MB)</strong><br><code>maxMessageSizeMb</code></td>
+<td>integer</td>
+<td>A larger mail is reported with its header only (tooLarge) and handled like the others. In <em>Advanced</em>. Default: <code>25</code>.</td>
+</tr>
+<tr>
+<td><strong>Check every (seconds)</strong><br><code>intervalSeconds</code></td>
+<td>integer</td>
+<td>How often the mailbox is checked. In <em>Advanced</em>. Default: <code>60</code>.</td>
+</tr>
+</tbody>
+</table>
+<details class="example">
+<summary>Example: Invoices arriving by mail</summary>
+<p>One item per unread mail; the PDF is attached as attachment1, e.g. for Write File or the AI node.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"folder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INBOX"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"subjectContains"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invoice"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"afterProcessing"</span><span class="p">:</span><span class="w"> </span><span class="s2">"moveToFolder"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"targetFolder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Done"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"messageId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;4711@shop.example&gt;"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">4711</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"folder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INBOX"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shop"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"billing@shop.example"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"to"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pipe@example.com"</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"cc"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">    </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invoice R-17"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-11-11T08:00:00.0000000+01:00"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please find the invoice attached."</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"html"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">"R-17.pdf"</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"tooLarge"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"$binary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"attachment1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"fileName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"R-17.pdf"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"mimeType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/pdf"</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 <h2 id="error-trigger">Error Trigger<a class="headerlink" href="#error-trigger" title="Permanent link">&para;</a></h2>
 <p>Starts the workflow when a triggered run of a workflow that uses it as error workflow fails (set on the workflow, its group or the instance). Outputs { workflow, execution, node, subWorkflow, suppressed } of the failed run; execution.url links to it when Pipe:PublicUrl is set.</p>
 <p><strong>Inputs:</strong> none (starts the workflow) · <strong>Outputs:</strong> <code>main</code></p>
@@ -1456,10 +1684,122 @@
 </tr>
 </tbody>
 </table>
+<details class="example">
+<summary>Example: A run of another workflow failed</summary>
+<p>Use it in an error workflow, e.g. to send a mail to the team. node tells which node failed; suppressed counts the failures held back by the throttle.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"throttleMinutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"workflow"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"import-orders"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Import orders"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"execution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6f1d0c"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trigger"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"environment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROD"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"startedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-11-11T07:00:00.0000000+00:00"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HTTP 503 from https://api.example.com/orders"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"node"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Load orders"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HTTP 503 from https://api.example.com/orders"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"suppressed"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 <h2 id="execute-workflow-trigger">Execute Workflow Trigger<a class="headerlink" href="#execute-workflow-trigger" title="Permanent link">&para;</a></h2>
 <p>Starts the workflow when another workflow calls it with Execute Workflow; outputs the caller's items.</p>
 <p><strong>Inputs:</strong> none (starts the workflow) · <strong>Outputs:</strong> <code>main</code></p>
 <p>This node has no parameters.</p>
+<details class="example">
+<summary>Example: The items of the caller</summary>
+<p>Another workflow calls this one with Execute Workflow; its items arrive here unchanged. The output of the last node goes back to the caller.</p>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anna"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"open"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
+<h2 id="file-trigger">File Trigger<a class="headerlink" href="#file-trigger" title="Permanent link">&para;</a></h2>
+<p>Starts the workflow when new files appear in a folder released by the host, while the workflow is active. Checks the folder at an interval and reports a file once it is complete. One run per check, with one item per file: folder, path, name, size, modified and event. Files that exist when the workflow is activated are not reported. Read File reads the content.</p>
+<p><strong>Inputs:</strong> none (starts the workflow) · <strong>Outputs:</strong> <code>main</code></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Folder</strong> (required)<br><code>folder</code></td>
+<td>text</td>
+<td>Which folder to watch: one of the folders the administrator has set up for workflows.</td>
+</tr>
+<tr>
+<td><strong>Path</strong><br><code>path</code></td>
+<td>text</td>
+<td>A subfolder of the folder, e.g. incoming; empty for the folder itself.</td>
+</tr>
+<tr>
+<td><strong>File pattern</strong><br><code>pattern</code></td>
+<td>text</td>
+<td>Which files count, e.g. <em>.csv or order-</em>.xml; * for all.</td>
+</tr>
+<tr>
+<td><strong>Include subfolders</strong><br><code>includeSubfolders</code></td>
+<td>true/false</td>
+<td>Watch the subfolders of the path too. In <em>Advanced</em>. Default: <code>false</code>.</td>
+</tr>
+<tr>
+<td><strong>Events</strong><br><code>events</code></td>
+<td>one of: <code>created</code>, <code>createdOrChanged</code></td>
+<td>Which files start the workflow. <br><code>created</code>: Only files that weren't there before.<br><code>createdOrChanged</code>: New files, and files whose size or time changed.<br> Default: <code>created</code>.</td>
+</tr>
+<tr>
+<td><strong>Check every (seconds)</strong><br><code>intervalSeconds</code></td>
+<td>integer</td>
+<td>A file is reported when it was unchanged in two checks in a row, so it comes after up to two intervals. In <em>Advanced</em>. Default: <code>10</code>.</td>
+</tr>
+</tbody>
+</table>
+<details class="example">
+<summary>Example: New CSV files in the incoming folder</summary>
+<p>One run per check with one item per new file. The file isn't read yet: Read File with {{ $json.path }} reads it.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"folder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"files"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"incoming"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"pattern"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*.csv"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"events"</span><span class="p">:</span><span class="w"> </span><span class="s2">"created"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"folder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"files"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"incoming/orders-17.csv"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders-17.csv"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">2048</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-11-11T08:00:00.0000000+00:00"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"created"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 <h2 id="form-trigger">Form Trigger<a class="headerlink" href="#form-trigger" title="Permanent link">&para;</a></h2>
 <p>Starts the workflow from the user portal: declares the form the user fills in and outputs one item with the values. Without a Form Trigger a published workflow starts without input.</p>
 <p><strong>Inputs:</strong> none (starts the workflow) · <strong>Outputs:</strong> <code>main</code></p>
@@ -1479,14 +1819,79 @@
 </tr>
 </tbody>
 </table>
+<details class="example">
+<summary>Example: A request form in the portal</summary>
+<p>The portal shows the fields; when the user sends the form, the workflow starts with one item of the values, named as the fields.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amount"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urgent"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Urgent"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"boolean"</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anna"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"urgent"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 <h2 id="manual-trigger">Manual Trigger<a class="headerlink" href="#manual-trigger" title="Permanent link">&para;</a></h2>
 <p>Starts the workflow when it is run from the editor.</p>
 <p><strong>Inputs:</strong> none (starts the workflow) · <strong>Outputs:</strong> <code>main</code></p>
 <p>This node has no parameters.</p>
+<details class="example">
+<summary>Example: Start from the editor</summary>
+<p>Run or Test in the editor starts here with one empty item; the next nodes add the data.</p>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 <h2 id="recovery-trigger">Recovery Trigger<a class="headerlink" href="#recovery-trigger" title="Permanent link">&para;</a></h2>
 <p>Starts the workflow when a workflow that failed and was reported to this error workflow runs successfully again (triggered runs only). Outputs { workflow, execution, failedSince, failedExecution, failures }; execution.url and failedExecution.url link to the runs when Pipe:PublicUrl is set.</p>
 <p><strong>Inputs:</strong> none (starts the workflow) · <strong>Outputs:</strong> <code>main</code></p>
 <p>This node has no parameters.</p>
+<details class="example">
+<summary>Example: A failing workflow works again</summary>
+<p>Use it next to an Error Trigger, e.g. to send an all-clear mail.</p>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"workflow"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"import-orders"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Import orders"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"execution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8a2e41"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"failedSince"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-11-11T07:00:00.0000000+00:00"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"failedExecution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6f1d0c"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"failures"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 <h2 id="webhook-trigger">Webhook Trigger<a class="headerlink" href="#webhook-trigger" title="Permanent link">&para;</a></h2>
 <p>Starts the workflow when its URL is called while the workflow is active.</p>
 <p><strong>Inputs:</strong> none (starts the workflow) · <strong>Outputs:</strong> <code>main</code></p>
@@ -1502,22 +1907,22 @@
 <tr>
 <td><strong>Path</strong> (required)<br><code>path</code></td>
 <td>text</td>
-<td>Called at /webhook/&lt;path&gt;; must be unique across active workflows.</td>
+<td>Last part of the URL: the workflow is called at /webhook/&lt;path&gt;, e.g. orders/new; unique across active workflows.</td>
 </tr>
 <tr>
 <td><strong>HTTP method</strong><br><code>method</code></td>
 <td>one of: <code>any</code>, <code>get</code>, <code>post</code>, <code>put</code>, <code>patch</code>, <code>delete</code></td>
-<td>Default: <code>post</code>.</td>
+<td>Which calls start the workflow. <br><code>any</code>: Every method.<br><code>get</code>: Calls without a body, e.g. from a link.<br><code>post</code>: Calls with a body, e.g. forms and other systems; the usual choice.<br><code>put</code>: PUT calls.<br><code>patch</code>: PATCH calls.<br><code>delete</code>: DELETE calls.<br> Default: <code>post</code>.</td>
 </tr>
 <tr>
 <td><strong>Respond</strong><br><code>responseMode</code></td>
 <td>one of: <code>immediately</code>, <code>whenFinished</code>, <code>usingRespondNode</code></td>
-<td>Default: <code>immediately</code>.</td>
+<td>When and with what the caller gets an answer. <br><code>immediately</code>: Answer 202 with the execution id at once; the workflow runs in the background.<br><code>whenFinished</code>: Wait for the run and answer with the items of the last node.<br><code>usingRespondNode</code>: Wait until a Respond to Webhook node answers.<br> Default: <code>immediately</code>.</td>
 </tr>
 <tr>
 <td><strong>Wait timeout (seconds)</strong><br><code>timeoutSeconds</code></td>
 <td>integer</td>
-<td>When waiting for the run or a respond node: after this time 202 is returned and the run continues. The time a run waits in the queue counts; still waiting then, the call gets 503 and the run leaves the queue. Default: <code>30</code>.</td>
+<td>After this time the caller gets 202 and the run goes on; time in the queue counts, and a run still queued then gets 503 and leaves the queue. Only when <em>Respond</em> is <code>whenFinished</code> or <code>usingRespondNode</code>. In <em>Advanced</em>. Default: <code>30</code>.</td>
 </tr>
 <tr>
 <td><strong>Credential</strong><br><code>credentialId</code></td>
@@ -1526,6 +1931,35 @@
 </tr>
 </tbody>
 </table>
+<details class="example">
+<summary>Example: Receive an order from a shop</summary>
+<p>The shop sends POST /webhook/orders/new with JSON; the item holds method, path, query, headers, body and the time. Uploaded files arrive as attachments.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders/new"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"post"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"responseMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"immediately"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders/new"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">    </span><span class="nt">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"Content-Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anna"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"receivedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-11-11T08:00:00.0000000+00:00"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 
 
 

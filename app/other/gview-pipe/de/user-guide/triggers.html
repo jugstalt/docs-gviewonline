@@ -617,6 +617,50 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#file-trigger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Trigger
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#email-trigger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email Trigger
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sftp-trigger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SFTP Trigger
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-blob-trigger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Azure Blob Trigger
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -697,6 +741,34 @@
     
   
     Dateien und Daten
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KI
   
 
     
@@ -1224,6 +1296,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../admin-guide/secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../admin-guide/troubleshooting.html" class="md-nav__link">
         
   
@@ -1423,6 +1523,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versionshinweise
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1532,6 +1659,50 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#file-trigger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Trigger
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#email-trigger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email Trigger
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sftp-trigger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SFTP Trigger
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-blob-trigger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Azure Blob Trigger
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1569,6 +1740,22 @@
 <tr>
 <td>Cron Trigger</td>
 <td>Nach Zeitplan (Cron-Ausdruck mit 5 oder 6 Feldern), solange der Workflow aktiv ist.</td>
+</tr>
+<tr>
+<td>Email Trigger</td>
+<td>Wenn ungelesene Mails in einem Postfach (IMAP) liegen, solange der Workflow aktiv ist (siehe <a href="#email-trigger">unten</a>).</td>
+</tr>
+<tr>
+<td>File Trigger</td>
+<td>Wenn neue Dateien in einem Ordner erscheinen, solange der Workflow aktiv ist (siehe <a href="#file-trigger">unten</a>).</td>
+</tr>
+<tr>
+<td>Azure Blob Trigger</td>
+<td>Wenn Blobs in einem Container von Azure Blob Storage erscheinen, solange der Workflow aktiv ist (Plugin <code>gView.Pipe.Plugins.AzureStorage</code>, siehe <a href="#azure-blob-trigger">unten</a>).</td>
+</tr>
+<tr>
+<td>SFTP Trigger</td>
+<td>Wenn Dateien in einem Ordner auf einem SFTP-Server erscheinen, solange der Workflow aktiv ist (Plugin <code>gView.Pipe.Plugins.Sftp</code>, siehe <a href="#sftp-trigger">unten</a>).</td>
 </tr>
 <tr>
 <td>Webhook Trigger</td>
@@ -1627,12 +1814,12 @@
 <h3 id="der-aufruf-als-item">Der Aufruf als Item<a class="headerlink" href="#der-aufruf-als-item" title="Permanent link">&para;</a></h3>
 <p>Der Trigger macht aus dem Aufruf ein Item:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;orders/new&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;7&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;headers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;content-type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;body&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;customer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ACME&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;receivedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-11-01T10:15:00.0000000+00:00&quot;</span>
+<span class="w">  </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders/new"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"content-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACME"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"receivedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-11-01T10:15:00.0000000+00:00"</span>
 <span class="p">}</span>
 </code></pre></div>
 <ul>
@@ -1758,9 +1945,117 @@
 </code></pre></div>
 <p>Ein Environment, das dort nicht steht, wird mit <code>400</code> abgelehnt und nie still ersetzt. Der Header wird nach dem Credential geprüft; ein Aufrufer ohne Zugang erfährt also nichts über die Environments.</p>
 <h3 id="ausprobieren">Ausprobieren<a class="headerlink" href="#ausprobieren" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-i<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:5240/webhook/demo<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;Ada&quot;}&#39;</span>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-i<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:5240/webhook/demo<span class="w"> </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span>-d<span class="w"> </span><span class="s1">'{"name":"Ada"}'</span>
 </code></pre></div>
 <p>In Windows PowerShell versteckt <code>Invoke-RestMethod</code> den Body einer Fehlerantwort. Nimm <code>curl.exe -i</code> (mit <code>-k</code> für das Entwicklungszertifikat auf <code>https://localhost:7240</code>), dann siehst du Statuscode und Body.</p>
+<h2 id="file-trigger">File Trigger<a class="headerlink" href="#file-trigger" title="Permanent link">&para;</a></h2>
+<p>Startet den Workflow, wenn neue Dateien in einem Ordner erscheinen. Der Ordner ist einer, den der Host mit <code>Pipe:FileRoots</code> freigegeben hat, derselbe wie bei Read File und Write File; du nennst ihn und, wenn du willst, einen Unterordner.</p>
+<p>Der Trigger sieht alle <em>Check every</em> Sekunden (standardmäßig 10) in den Ordner. Eine Datei wird gemeldet, wenn Größe und Zeit in zwei Abfragen hintereinander gleich waren und kein anderes Programm mehr hineinschreibt; eine Datei, die gerade kopiert wird, wird also nicht halbfertig aufgenommen. Das dauert bis zu zwei Intervalle.</p>
+<p>Jede Abfrage, die neue Dateien findet, startet <strong>einen Lauf</strong> mit <strong>einem Item pro Datei</strong> (höchstens 100 pro Lauf, der Rest folgt mit der nächsten Abfrage):</p>
+<table>
+<thead>
+<tr>
+<th>Feld</th>
+<th>Inhalt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>folder</code></td>
+<td>der Name des freigegebenen Ordners</td>
+</tr>
+<tr>
+<td><code>path</code></td>
+<td>der Pfad der Datei relativ zu diesem Ordner, mit <code>/</code></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>der Dateiname</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>die Größe in Bytes</td>
+</tr>
+<tr>
+<td><code>modified</code></td>
+<td>der Zeitpunkt der letzten Änderung (ISO 8601, UTC)</td>
+</tr>
+<tr>
+<td><code>event</code></td>
+<td><code>created</code> oder <code>changed</code></td>
+</tr>
+</tbody>
+</table>
+<p>Die Items enthalten keinen Inhalt. Den liest Read File: nimm <code>{{ $json.path }}</code> als <em>Path</em> und denselben Ordner.</p>
+<ul>
+<li><strong>Welche Dateien:</strong> <em>File pattern</em> (<code>*.csv</code>) und <em>Include subfolders</em>. <em>Events</em> ist <em>Created</em> (Standard) oder <em>Created or changed</em>.</li>
+<li><strong>Dateien, die schon da sind</strong>, wenn der Workflow aktiviert wird oder die App startet, werden nicht gemeldet. Der Trigger merkt sich nichts auf der Platte; nach einem Neustart kennt er nur, was dann im Ordner liegt. Eine Datei, die verschwindet und wiederkommt, ist neu.</li>
+<li><strong>Verschiebe oder lösche die Datei</strong> am Ende des Workflows (Write File), wenn sie nicht noch einmal auftauchen soll.</li>
+<li>Ist der Workflow beschäftigt und seine Warteschlange voll (<a href="error-handling.html">Fehlerbehandlung</a>), warten die Dateien und werden mit der nächsten Abfrage wieder angeboten. Kann der Ordner nicht gelesen werden, wartet der Trigger darauf und schreibt eine Warnung ins Log.</li>
+<li>Eine Datei, die sich ständig ändert oder für ein anderes Programm offen bleibt, wird nicht gemeldet; das Log sagt es nach 30 Abfragen.</li>
+</ul>
+<h2 id="email-trigger">Email Trigger<a class="headerlink" href="#email-trigger" title="Permanent link">&para;</a></h2>
+<p>Startet den Workflow, wenn in einem Postfach (IMAP) ungelesene Mails liegen. Lege zuerst ein <a href="credentials.html">Credential</a> <strong>IMAP Server</strong> an: Host, Port (993), Sicherheit (SSL on connect, StartTLS oder none für lokale Testserver), Benutzername und Passwort. Das Zertifikat des Servers wird immer geprüft. Anbieter, die nur eine OAuth2-Anmeldung zulassen, werden noch nicht unterstützt; nimm ein App-Passwort, wo der Anbieter eines anbietet. Das Passwort kann aus einer <a href="../admin-guide/secrets.html">Secret-Quelle</a> kommen.</p>
+<p>Der Trigger verbindet sich alle <em>Check every (seconds)</em> (standardmäßig 60, mindestens 10) und nimmt die <strong>ungelesenen</strong> Mails aus <em>Folder</em> (<code>INBOX</code>), die älteste zuerst. <em>From contains</em> und <em>Subject contains</em> grenzen auf dem Server ein; andere Mails werden nicht angefasst. Mails, die beim Aktivieren des Workflows schon ungelesen sind, zählen: Sie sind Arbeit, die noch nicht erledigt wurde.</p>
+<p>Jede Abfrage, die Mails findet, startet <strong>einen Lauf</strong> mit <strong>einem Item pro Mail</strong> (höchstens 50, der Rest folgt mit der nächsten Abfrage):</p>
+<table>
+<thead>
+<tr>
+<th>Feld</th>
+<th>Inhalt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>messageId</code>, <code>uid</code>, <code>folder</code></td>
+<td>woher die Mail kommt</td>
+</tr>
+<tr>
+<td><code>from</code></td>
+<td><code>name</code> und <code>address</code> des Absenders</td>
+</tr>
+<tr>
+<td><code>to</code>, <code>cc</code></td>
+<td>Listen aus <code>name</code> und <code>address</code></td>
+</tr>
+<tr>
+<td><code>subject</code>, <code>date</code></td>
+<td>Betreff und Zeit (ISO 8601)</td>
+</tr>
+<tr>
+<td><code>text</code>, <code>html</code></td>
+<td>die beiden Inhalte, wenn die Mail sie hat</td>
+</tr>
+<tr>
+<td><code>attachments</code></td>
+<td>die Namen der Anhänge</td>
+</tr>
+<tr>
+<td><code>tooLarge</code></td>
+<td><code>true</code>, wenn die Mail größer war als <em>Max message size (MB)</em> (25): dann sind nur die Kopffelder gefüllt</td>
+</tr>
+</tbody>
+</table>
+<p>Mit <em>Download attachments</em> (standardmäßig an) ist jeder Anhang ein Binär-Anhang des Items: <code>attachment1</code>, <code>attachment2</code>, … in der Reihenfolge von <code>attachments</code>. Eingebettete Bilder bleiben weg. Write File oder Send Email können sie verwenden.</p>
+<p><strong>Nachdem der Lauf gestartet ist,</strong> werden die Mails behandelt, wie <em>After processing</em> es sagt: <em>Mark as read</em> (Standard), <em>Move to folder</em> (der <em>Target folder</em> wird angelegt, wenn er fehlt) oder <em>Delete</em>. Behandelt wird, wenn der Lauf <strong>startet</strong>, nicht wenn er gelingt; ein fehlschlagender Lauf startet also nicht bei jeder Abfrage neu, und der <a href="error-handling.html">Fehler-Workflow</a> meldet den Fehler. Ist der Workflow beschäftigt und seine Warteschlange voll, bleiben die Mails ungelesen und kommen mit der nächsten Abfrage. Lassen sie sich nicht markieren oder verschieben, steht das im Log, und dieser Trigger startet sie kein zweites Mal.</p>
+<p>Der Trigger hält nichts auf der Platte: Das Postfach hält den Zustand, ein Neustart sieht also dieselben ungelesenen Mails. Nimm eine Instanz pro Postfach; zwei könnten dieselbe Mail abholen.</p>
+<h2 id="sftp-trigger">SFTP Trigger<a class="headerlink" href="#sftp-trigger" title="Permanent link">&para;</a></h2>
+<p>Startet den Workflow, wenn in einem Ordner auf einem SFTP-Server Dateien erscheinen (Plugin <code>gView.Pipe.Plugins.Sftp</code>). Er nutzt ein <a href="credentials.html">Credential</a> <strong>SFTP Server</strong> wie der <a href="data.html#sftp">SFTP-Node</a>, einschließlich der Prüfung des Host-Key-Fingerabdrucks.</p>
+<p>Der Trigger verbindet sich alle <em>Check every (seconds)</em> (standardmäßig 60, mindestens 10) und listet <em>Path</em>. <em>File pattern</em> (<code>*.csv</code>, Groß- und Kleinschreibung egal) und <em>Include subfolders</em> grenzen ein. Ordner und Namen, die auf <code>.part</code> oder <code>.tmp</code> enden, werden nie gemeldet: Uploader schreiben oft unter so einem Namen und benennen um, wenn sie fertig sind. Eine Datei wird gemeldet, wenn Größe und Zeit in zwei Abfragen hintereinander gleich waren; das dauert bis zu zwei Intervalle.</p>
+<p>Jede Abfrage, die vollständige Dateien findet, startet <strong>einen Lauf</strong> mit <strong>einem Item pro Datei</strong> (höchstens 100, der Rest folgt mit der nächsten Abfrage). Das Item ist das, was die Operation List des SFTP-Nodes liefert (<code>fileName</code>, <code>path</code>, <code>size</code>, <code>modifiedAt</code>, <code>isDirectory</code>), dazu <code>event</code> (<code>created</code> oder <code>changed</code>). Den Inhalt holt der SFTP-Node mit <em>Download</em> und <code>{{ $json.path }}</code> als <em>Path</em>.</p>
+<p><em>After processing</em> bestimmt, was mit einer Datei geschieht, sobald der Lauf <strong>gestartet</strong> ist, und damit, was als neu gilt:</p>
+<ul>
+<li><strong>Move to folder</strong> (Standard; <em>Target folder</em> ist Pflicht und wird bei Bedarf angelegt) und <strong>Delete</strong>: Jede Datei im Ordner zählt, auch die, die schon vorher da waren. Der Server hält den Zustand, ein Neustart verliert also nichts. Ein Name, der im Ziel schon vergeben ist, bekommt <code>_2</code>, <code>_3</code>, … vor der Endung. Das Konto braucht Schreibrechte.</li>
+<li><strong>Nothing</strong>: Die Dateien der ersten Abfrage sind die Baseline und lösen nichts aus; danach werden nur neue Dateien gemeldet, mit <em>Events</em> = <em>Created or changed</em> auch geänderte. Der Trigger hält nichts auf der Platte, Dateien, die ankommen, während die App steht, gehören nach einem Neustart also zur Baseline. Nimm das für Konten ohne Schreibrecht.</li>
+</ul>
+<p>Dateien werden behandelt, wenn der Lauf <strong>startet</strong>, nicht wenn er gelingt, damit ein fehlschlagender Lauf nicht bei jeder Abfrage neu startet; der <a href="error-handling.html">Fehler-Workflow</a> meldet den Fehler. Ist der Workflow beschäftigt und seine Warteschlange voll, bleiben die Dateien liegen und werden mit der nächsten Abfrage wieder angeboten. Lässt sich eine Datei nicht verschieben oder löschen, steht das im Log, und dieser Trigger startet sie kein zweites Mal. Ein Server, der nicht erreichbar ist, oder ein Host-Key, der nicht passt, wird protokolliert, und die nächste Abfrage versucht es erneut. Nimm eine Instanz pro Server-Ordner; zwei könnten dieselbe Datei abholen.</p>
+<h2 id="azure-blob-trigger">Azure Blob Trigger<a class="headerlink" href="#azure-blob-trigger" title="Permanent link">&para;</a></h2>
+<p>Startet den Workflow, wenn Blobs in einem Container von Azure Blob Storage erscheinen (Plugin <code>gView.Pipe.Plugins.AzureStorage</code>). Er nutzt ein <a href="credentials.html">Credential</a> <strong>Azure Storage</strong> wie der <a href="data.html#azure-blob">Azure-Blob-Node</a> und arbeitet wie der <a href="#sftp-trigger">SFTP Trigger</a>, mit zwei Unterschieden:</p>
+<ul>
+<li>Ein Blob wird bei der <strong>ersten</strong> Abfrage gemeldet, die ihn sieht, weil ein Blob erst sichtbar ist, wenn er vollständig ist. Eine <code>.part</code>-Regel gibt es nicht.</li>
+<li><em>Move to folder</em> kann in einen anderen Container verschieben: <em>Target container</em> (leer: derselbe; wird angelegt, wenn er fehlt) und <em>Target folder</em>.</li>
+</ul>
+<p>Er prüft <em>Container</em> und den Ordner <em>Path</em> alle <em>Check every (seconds)</em> (standardmäßig 60, mindestens 10), mit <em>File pattern</em> und <em>Include subfolders</em>. Ein Lauf pro Abfrage mit einem Item pro Blob (höchstens 100): das Item der List-Operation des Nodes plus <code>event</code>. <em>After processing</em> ist <em>Move to folder</em> (Standard), <em>Delete</em> oder <em>Nothing</em>, mit derselben Bedeutung wie beim SFTP Trigger: Move und Delete nehmen jeden Blob, auch ältere, und der Speicher hält den Zustand; Nothing meldet nur Blobs, die nach der ersten Abfrage neu sind. Verschieben kopiert den Blob auf dem Server und löscht ihn danach.</p>
 
 
 

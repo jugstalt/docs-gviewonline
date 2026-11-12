@@ -585,6 +585,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../user-guide/ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../user-guide/error-handling.html" class="md-nav__link">
         
   
@@ -1207,6 +1235,34 @@
   
   
     <li class="md-nav__item">
+      <a href="secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="troubleshooting.html" class="md-nav__link">
         
   
@@ -1406,6 +1462,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1590,6 +1673,11 @@
 <td>Deletes the workflow.</td>
 </tr>
 <tr>
+<td><code>GET /api/v1/workflows/{id}/versions</code></td>
+<td>read</td>
+<td>The saved versions, newest first, with a summary of each change.</td>
+</tr>
+<tr>
 <td><code>POST /api/v1/workflows/{id}/activate</code>, <code>/deactivate</code></td>
 <td>deploy</td>
 <td>Switches its triggers on or off.</td>
@@ -1634,7 +1722,7 @@
 <p>Errors are answered as <code>application/problem+json</code> with a <code>title</code> that says what is wrong.</p>
 <h2 id="running-a-workflow">Running a workflow<a class="headerlink" href="#running-a-workflow" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>POST /api/v1/workflows/{id}/run
-{ &quot;items&quot;: [ { &quot;name&quot;: &quot;Ada&quot; } ], &quot;environment&quot;: &quot;TEST&quot;, &quot;wait&quot;: true, &quot;timeoutSeconds&quot;: 30 }
+{ "items": [ { "name": "Ada" } ], "environment": "TEST", "wait": true, "timeoutSeconds": 30 }
 </code></pre></div>
 <p>All fields are optional. The run starts at every node without an incoming connection, with <code>items</code> as their input (default: one empty item). It behaves like a triggered run: pinned data is ignored, the <a href="../user-guide/error-handling.html#error-workflows">error workflow</a> starts on failure and the queue of the workflow applies (<a href="../user-guide/editor.html#workflow-settings">Max queued runs</a>).</p>
 <table>
@@ -1669,31 +1757,31 @@
 <div class="highlight"><pre><span></span><code><span class="nv">KEY</span><span class="o">=</span>pipe_...
 <span class="c1"># run and wait for the result</span>
 curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>https://pipe.example.com/api/v1/workflows/hello-pipe/run<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;X-Pipe-Api-Key: </span><span class="nv">$KEY</span><span class="s2">&quot;</span><span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{ &quot;items&quot;: [ { &quot;name&quot;: &quot;Ada&quot; } ], &quot;wait&quot;: true }&#39;</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">"X-Pipe-Api-Key: </span><span class="nv">$KEY</span><span class="s2">"</span><span class="w"> </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">'{ "items": [ { "name": "Ada" } ], "wait": true }'</span>
 
 <span class="c1"># deploy a workflow from a file</span>
 curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span>https://pipe.example.com/api/v1/workflows/hello-pipe<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;X-Pipe-Api-Key: </span><span class="nv">$KEY</span><span class="s2">&quot;</span><span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">"X-Pipe-Api-Key: </span><span class="nv">$KEY</span><span class="s2">"</span><span class="w"> </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--data-binary<span class="w"> </span>@hello-pipe.json
 
 <span class="c1"># the last failed runs</span>
-curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;https://pipe.example.com/api/v1/executions?status=error&amp;limit=10&quot;</span><span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;X-Pipe-Api-Key: </span><span class="nv">$KEY</span><span class="s2">&quot;</span>
+curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">"https://pipe.example.com/api/v1/executions?status=error&amp;limit=10"</span><span class="w"> </span>-H<span class="w"> </span><span class="s2">"X-Pipe-Api-Key: </span><span class="nv">$KEY</span><span class="s2">"</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="nv">$headers</span> <span class="p">=</span> <span class="p">@{</span> <span class="s2">&quot;X-Pipe-Api-Key&quot;</span> <span class="p">=</span> <span class="s2">&quot;pipe_...&quot;</span> <span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="nv">$headers</span> <span class="p">=</span> <span class="p">@{</span> <span class="s2">"X-Pipe-Api-Key"</span> <span class="p">=</span> <span class="s2">"pipe_..."</span> <span class="p">}</span>
 <span class="c"># run and wait for the result</span>
-<span class="nv">$body</span> <span class="p">=</span> <span class="p">@{</span> <span class="n">items</span> <span class="p">=</span> <span class="p">@(@{</span> <span class="n">name</span> <span class="p">=</span> <span class="s2">&quot;Ada&quot;</span> <span class="p">});</span> <span class="n">wait</span> <span class="p">=</span> <span class="nv">$true</span> <span class="p">}</span> <span class="p">|</span> <span class="nb">ConvertTo-Json</span> <span class="n">-Depth</span> <span class="n">5</span>
+<span class="nv">$body</span> <span class="p">=</span> <span class="p">@{</span> <span class="n">items</span> <span class="p">=</span> <span class="p">@(@{</span> <span class="n">name</span> <span class="p">=</span> <span class="s2">"Ada"</span> <span class="p">});</span> <span class="n">wait</span> <span class="p">=</span> <span class="nv">$true</span> <span class="p">}</span> <span class="p">|</span> <span class="nb">ConvertTo-Json</span> <span class="n">-Depth</span> <span class="n">5</span>
 <span class="nb">Invoke-RestMethod</span> <span class="n">-Method</span> <span class="n">Post</span> <span class="n">-Uri</span> <span class="n">https</span><span class="p">://</span><span class="n">pipe</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">api</span><span class="p">/</span><span class="n">v1</span><span class="p">/</span><span class="n">workflows</span><span class="p">/</span><span class="n">hello-pipe</span><span class="p">/</span><span class="n">run</span> <span class="p">`</span>
-  <span class="n">-Headers</span> <span class="nv">$headers</span> <span class="n">-ContentType</span> <span class="s2">&quot;application/json&quot;</span> <span class="n">-Body</span> <span class="nv">$body</span>
+  <span class="n">-Headers</span> <span class="nv">$headers</span> <span class="n">-ContentType</span> <span class="s2">"application/json"</span> <span class="n">-Body</span> <span class="nv">$body</span>
 
 <span class="c"># deploy a workflow from a file</span>
 <span class="nb">Invoke-RestMethod</span> <span class="n">-Method</span> <span class="n">Put</span> <span class="n">-Uri</span> <span class="n">https</span><span class="p">://</span><span class="n">pipe</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">api</span><span class="p">/</span><span class="n">v1</span><span class="p">/</span><span class="n">workflows</span><span class="p">/</span><span class="n">hello-pipe</span> <span class="p">`</span>
-  <span class="n">-Headers</span> <span class="nv">$headers</span> <span class="n">-ContentType</span> <span class="s2">&quot;application/json&quot;</span> <span class="n">-InFile</span> <span class="n">hello-pipe</span><span class="p">.</span><span class="n">json</span>
+  <span class="n">-Headers</span> <span class="nv">$headers</span> <span class="n">-ContentType</span> <span class="s2">"application/json"</span> <span class="n">-InFile</span> <span class="n">hello-pipe</span><span class="p">.</span><span class="n">json</span>
 
 <span class="c"># the last failed runs</span>
-<span class="nb">Invoke-RestMethod</span> <span class="n">-Uri</span> <span class="s2">&quot;https://pipe.example.com/api/v1/executions?status=error&amp;limit=10&quot;</span> <span class="n">-Headers</span> <span class="nv">$headers</span>
+<span class="nb">Invoke-RestMethod</span> <span class="n">-Uri</span> <span class="s2">"https://pipe.example.com/api/v1/executions?status=error&amp;limit=10"</span> <span class="n">-Headers</span> <span class="nv">$headers</span>
 </code></pre></div>
 </div>
 </div>

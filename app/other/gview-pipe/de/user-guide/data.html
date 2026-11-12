@@ -14,7 +14,7 @@
         <link rel="prev" href="credentials.html">
       
       
-        <link rel="next" href="error-handling.html">
+        <link rel="next" href="ai.html">
       
       
         
@@ -690,10 +690,60 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#sftp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SFTP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-blob" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Azure Blob
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1213,6 +1263,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../admin-guide/secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../admin-guide/troubleshooting.html" class="md-nav__link">
         
   
@@ -1412,6 +1490,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versionshinweise
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1510,6 +1615,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#sftp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SFTP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-blob" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Azure Blob
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1534,7 +1661,7 @@
 <p>Dateien reisen durch einen Workflow als <strong>Anhänge</strong> von Items (siehe <a href="expressions.html">Items und Ausdrücke</a>). Ein Webhook-Upload, ein Mail-Anhang, eine HTTP-Antwort oder Read File liefert einen; Send Email, Write File und HTTP Request nehmen einen entgegen. Die Nodes auf dieser Seite machen aus Anhängen Items und umgekehrt und arbeiten mit Datumswerten, Prüfsummen und Archiven. Das Beispiel <strong>Data Tools</strong> nutzt sie alle (<a href="recipes.html#data-tools">Rezepte</a>).</p>
 <p><img alt="Das Beispiel Data Tools nach einem Lauf: das aus dem entpackten Anhang gelesene CSV" src="../../images/data-tools.png" /></p>
 <h2 id="extract-from-file">Extract from File<a class="headerlink" href="#extract-from-file" title="Permanent link">&para;</a></h2>
-<p>Liest den Anhang <code>data</code> (Einstellung <em>Binary property</em>) jedes Items in einem Format und macht daraus Items.</p>
+<p>Liest den Anhang <code>data</code> (Einstellung <em>Attachment name</em> unter <em>Advanced</em>) jedes Items in einem Format und macht daraus Items.</p>
 <table>
 <thead>
 <tr>
@@ -1575,9 +1702,9 @@
 <p>Text wird als UTF-8 gelesen, außer die Datei beginnt mit einer Byte-Order-Mark oder <em>Encoding</em> sagt etwas anderes, zum Beispiel <code>windows-1252</code> für CSV-Dateien aus einem älteren Excel.</p>
 <h3 id="xml-als-items">XML als Items<a class="headerlink" href="#xml-als-items" title="Permanent link">&para;</a></h3>
 <p>XML-Elemente werden so zu JSON:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;order</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;7&quot;</span><span class="w"> </span><span class="na">xmlns:x=</span><span class="s">&quot;urn:x&quot;</span><span class="nt">&gt;&lt;line&gt;</span>Pen<span class="nt">&lt;/line&gt;&lt;line&gt;</span>Ink<span class="nt">&lt;/line&gt;&lt;x:note&gt;</span>fast<span class="nt">&lt;/x:note&gt;&lt;/order&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;order</span><span class="w"> </span><span class="na">id=</span><span class="s">"7"</span><span class="w"> </span><span class="na">xmlns:x=</span><span class="s">"urn:x"</span><span class="nt">&gt;&lt;line&gt;</span>Pen<span class="nt">&lt;/line&gt;&lt;line&gt;</span>Ink<span class="nt">&lt;/line&gt;&lt;x:note&gt;</span>fast<span class="nt">&lt;/x:note&gt;&lt;/order&gt;</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;@id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;7&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;@xmlns:x&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;urn:x&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;line&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Pen&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Ink&quot;</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;x:note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fast&quot;</span><span class="w"> </span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"@id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w"> </span><span class="nt">"@xmlns:x"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:x"</span><span class="p">,</span><span class="w"> </span><span class="nt">"line"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Pen"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Ink"</span><span class="p">],</span><span class="w"> </span><span class="nt">"x:note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fast"</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <p>Attribute beginnen mit <code>@</code>, Text neben Attributen oder Elementen steht in <code>#text</code>, wiederholte Elemente werden Arrays. Ein Element, das nur einmal vorkommt, ist ein einzelner Wert: Trage es in <em>Always array</em> ein (z. B. <code>line</code>), wenn deine Ausdrücke ein Array erwarten.</p>
 <h2 id="convert-to-file">Convert to File<a class="headerlink" href="#convert-to-file" title="Permanent link">&para;</a></h2>
@@ -1681,6 +1808,81 @@
 </tbody>
 </table>
 <p>Das Entpacken bricht mit einem Fehler ab, wenn der Inhalt größer als <em>Max size</em> (500 MB) wird, damit ein kleines Archiv den Server nicht füllen kann. Archive werden nie auf die Festplatte entpackt: Pfade im Archiv sind in den Items nur Text.</p>
+<h2 id="sftp">SFTP<a class="headerlink" href="#sftp" title="Permanent link">&para;</a></h2>
+<p>Der Node <strong>SFTP</strong> (Plugin <code>gView.Pipe.Plugins.Sftp</code>) listet, lädt herunter, lädt hoch, löscht und benennt Dateien auf einem SFTP-Server um. Er läuft einmal pro Eingabe-Item über eine Verbindung, und die Pfade erlauben Ausdrücke.</p>
+<p>Lege zuerst ein <a href="credentials.html">Credential</a> <strong>SFTP Server</strong> an: Host, Port, Benutzername, ein Passwort und/oder einen privaten Schlüssel und den <strong>Fingerabdruck des Host-Keys</strong> des Servers (<code>SHA256:…</code>). Der Fingerabdruck ist Pflicht: Ein Server mit einem anderen wird abgelehnt, und die Fehlermeldung zeigt den, den er vorgelegt hat. So kannst du ihn mit dem Betreiber des Servers prüfen und eintragen. Passwort, Schlüssel und Passphrase können aus einer <a href="../admin-guide/secrets.html">Secret-Quelle</a> kommen.</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Was sie tut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>List</td>
+<td>Ein Item pro Datei in <em>Path</em> (<code>fileName</code>, <code>path</code>, <code>size</code>, <code>modifiedAt</code>, <code>isDirectory</code>). <em>File pattern</em> filtert (<code>*.csv</code>), <em>Include subfolders</em> geht tiefer, <em>Include folders</em> nimmt auch Ordner auf. Mehr als 10000 Einträge sind ein Fehler.</td>
+</tr>
+<tr>
+<td>Download</td>
+<td>Holt die Datei in <em>Path</em> (genau eine, kein Muster) und hängt sie ans Item, standardmäßig als <code>data</code>. Dateien über <em>Max file size (MB)</em> (100) werden abgelehnt, bevor sie geladen werden.</td>
+</tr>
+<tr>
+<td>Upload</td>
+<td>Schreibt den Anhang des Items nach <em>Path</em>. Eine vorhandene Datei ist ein Fehler, außer <em>Overwrite</em> ist an; ein fehlender Ordner ist ein Fehler, außer <em>Create folders</em> ist an.</td>
+</tr>
+<tr>
+<td>Delete</td>
+<td>Löscht die Datei in <em>Path</em>.</td>
+</tr>
+<tr>
+<td>Rename</td>
+<td>Benennt <em>Path</em> in <em>New path</em> um oder verschiebt ihn. Ein vorhandenes Ziel ist ein Fehler, außer <em>Overwrite</em> ist an.</td>
+</tr>
+</tbody>
+</table>
+<p>Ein Upload geht zuerst nach <code>&lt;Name&gt;.part</code> und wird umbenannt, wenn er vollständig ist, sodass ein Leser auf dem Server nie eine halbe Datei sieht. Mit <em>Overwrite</em> wird die alte Datei kurz vor diesem Umbenennen gelöscht.</p>
+<p>Lokale Dateien rührt dieser Node nicht an: Inhalte reisen als Anhänge. Kombiniere ihn mit Read File und Write File, um eine Datei vom Server in einen freigegebenen Ordner zu holen oder von dort zu senden. Ein typischer Ablauf: <strong>List</strong> → <strong>Download</strong> (mit <code>{{ $json.path }}</code> als <em>Path</em>) → verarbeiten → <strong>Rename</strong> in einen Archivordner auf dem Server.</p>
+<h2 id="azure-blob">Azure Blob<a class="headerlink" href="#azure-blob" title="Permanent link">&para;</a></h2>
+<p>Der Node <strong>Azure Blob</strong> (Plugin <code>gView.Pipe.Plugins.AzureStorage</code>) listet, lädt herunter, lädt hoch, löscht und benennt Blobs in Azure Blob Storage um. Er hat dieselben Operationen und Item-Felder wie der <a href="#sftp">SFTP</a>-Node, dazu <code>container</code>, <code>contentType</code> und <code>etag</code>. Ein Blob hat einen <em>Container</em> und einen <em>Path</em>; Ordner sind die Teile des Pfads vor einem <code>/</code>.</p>
+<p>Lege zuerst ein <a href="credentials.html">Credential</a> <strong>Azure Storage</strong> an. <em>Authentication</em> ist eine von:</p>
+<ul>
+<li><strong>Connection string</strong>: aus den Zugriffsschlüsseln des Kontos. Für den Emulator Azurite ist es <code>UseDevelopmentStorage=true</code>.</li>
+<li><strong>Managed identity</strong>: nur die <em>Account URL</em> (<code>https://&lt;konto&gt;.blob.core.windows.net</code>). Die App meldet sich in Azure mit ihrer Managed Identity an, auf deinem Rechner mit deinem Entwickler-Login (Azure CLI, Visual Studio). Die Identität braucht die Rolle <em>Storage Blob Data Contributor</em>, oder <em>Reader</em> für List und Download.</li>
+<li><strong>SAS token</strong>: die <em>Account URL</em> und eine Shared Access Signature.</li>
+</ul>
+<p>Connection String und SAS-Token können aus einer <a href="../admin-guide/secrets.html">Secret-Quelle</a> kommen.</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Was sie tut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>List</td>
+<td>Ein Item pro Blob im Ordner <em>Path</em> (leer: der ganze Container). <em>File pattern</em> filtert die Namen, <em>Include subfolders</em> geht tiefer. Mehr als 10000 Blobs sind ein Fehler.</td>
+</tr>
+<tr>
+<td>Download</td>
+<td>Holt den Blob in <em>Path</em> und hängt ihn ans Item (standardmäßig <code>data</code>). Blobs über <em>Max file size (MB)</em> (100) werden abgelehnt, bevor sie geladen werden.</td>
+</tr>
+<tr>
+<td>Upload</td>
+<td>Schreibt den Anhang des Items nach <em>Path</em>. Ein vorhandener Blob ist ein Fehler, außer <em>Overwrite</em> ist an; der Server prüft das in derselben Anfrage. Ein fehlender Container ist ein Fehler, außer <em>Create container</em> ist an.</td>
+</tr>
+<tr>
+<td>Delete</td>
+<td>Löscht den Blob in <em>Path</em>.</td>
+</tr>
+<tr>
+<td>Rename</td>
+<td>Verschiebt <em>Path</em> nach <em>New path</em>, auch in einen <em>New container</em>. Blob Storage kennt kein Umbenennen: Der Blob wird auf dem Server kopiert und dann gelöscht, ein großer Blob braucht also die Zeit einer Kopie.</td>
+</tr>
+</tbody>
+</table>
+<p>Ein Blob wird erst sichtbar, wenn er vollständig hochgeladen ist; einen temporären Namen braucht es deshalb nicht.</p>
 
 
 

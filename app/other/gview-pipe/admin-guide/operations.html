@@ -585,6 +585,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../user-guide/ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../user-guide/error-handling.html" class="md-nav__link">
         
   
@@ -1142,6 +1170,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#workflow-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow versions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metrics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#backup" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1198,6 +1248,34 @@
     
   
     Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
   
 
     
@@ -1417,6 +1495,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1481,6 +1586,28 @@
     <span class="md-ellipsis">
       
         Audit log
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow versions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metrics
       
     </span>
   </a>
@@ -1606,6 +1733,10 @@
 <p>Filter by person, area, object id and time, and export what is shown as CSV (<em>Export CSV</em>). The workflow panel of the editor shows the last changes of the workflow under <strong>History</strong>. Scripts read the log with <code>GET /api/v1/audit</code>.</p>
 <p><img alt="The page Audit" src="../images/audit.png" /></p>
 <p>The entries are kept as one file of JSON lines per month in <code>data/audit/</code> and deleted after <code>Pipe:AuditRetentionDays</code> (365, in whole months). Every entry is also written to the application log (category <code>gView.Pipe.Audit</code>). Who can write the data folder can change the files; if you need proof, keep the entries of a central log system.</p>
+<h2 id="workflow-versions">Workflow versions<a class="headerlink" href="#workflow-versions" title="Permanent link">&para;</a></h2>
+<p>Every save that changes a workflow keeps a copy in <code>data/workflow-versions/&lt;workflow id&gt;/</code>, up to <code>Pipe:WorkflowVersions</code> per workflow (50; <code>0</code> switches it off). The <em>Versions</em> section of the workflow panel in the editor lists them with a summary of what changed. <em>Restore</em> loads a version into the editor like an unsaved change: undo brings the current state back, and saving makes the restored state a new version. Deleting a workflow deletes its versions. The API lists them with <code>GET /api/v1/workflows/{id}/versions</code>.</p>
+<h2 id="metrics">Metrics<a class="headerlink" href="#metrics" title="Permanent link">&para;</a></h2>
+<p>The meter <code>gView.Pipe</code> publishes OpenTelemetry metrics: <code>gview.pipe.runs</code> (finished runs by workflow, <code>status</code> and <code>mode</code>), <code>gview.pipe.run.duration</code> (seconds), <code>gview.pipe.runs.skipped</code> (runs dropped because the workflow was busy and its queue full) and <code>gview.pipe.runs.active</code>. Errors per workflow are the runs with <code>status=error</code>. With the AI plugin, <code>gview.pipe.ai.tokens</code> counts the tokens of the <a href="../user-guide/ai.html">AI node</a> by <code>model</code>, <code>direction</code> (input, output) and workflow. The service defaults of the Aspire AppHost collect them; in your own host add the meter with <code>AddMeter("gView.Pipe")</code> and set <code>OTEL_EXPORTER_OTLP_ENDPOINT</code> to export.</p>
 <h2 id="backup">Backup<a class="headerlink" href="#backup" title="Permanent link">&para;</a></h2>
 <p>Back up the whole <code>data</code> folder, plus <code>files</code> and <code>scripts</code> if you use them:</p>
 <table>

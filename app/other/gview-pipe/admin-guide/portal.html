@@ -585,6 +585,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../user-guide/ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../user-guide/error-handling.html" class="md-nav__link">
         
   
@@ -1218,6 +1246,34 @@
   
   
     <li class="md-nav__item">
+      <a href="secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="troubleshooting.html" class="md-nav__link">
         
   
@@ -1417,6 +1473,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1591,7 +1674,7 @@
 <p>The name of the signed-in user goes to the backend with every request. Runs show <code>portal:&lt;name&gt;</code> as the starter in the history of the editor, and users see and stop only their own runs.</p>
 <p>Start it like the Shell: <code>dotnet run --project src/gView.Pipe.Portal</code> (port 5250 in development, <code>--launch-profile https</code> for https on 7250). In the AppHost the login is set at the top of <code>AppHost.cs</code>: <code>#define PORTAL_OIDC</code> (IdentityServer, user <code>portal@is.net</code>) or <code>#define PORTAL_FORMS</code> (fixed users <code>portal</code>, with the portal role <code>portal-demo</code> and an address, and <code>guest</code>, both with the name as password); define only one.</p>
 <p>For the forms mode create the hash of a password with the portal itself:</p>
-<div class="highlight"><pre><span></span><code>dotnet<span class="w"> </span>gView.Pipe.Portal.dll<span class="w"> </span>--hash-password<span class="w"> </span><span class="s2">&quot;my password&quot;</span>
+<div class="highlight"><pre><span></span><code>dotnet<span class="w"> </span>gView.Pipe.Portal.dll<span class="w"> </span>--hash-password<span class="w"> </span><span class="s2">"my password"</span>
 </code></pre></div>
 <p>and put it into <code>PasswordHash</code> of the user (see <a href="authentication.html#forms-fixed-users">Authentication</a>). With OpenID Connect the client of the portal needs the redirect URIs <code>&lt;portal address&gt;/signin-oidc</code> and <code>&lt;portal address&gt;/signout-callback-oidc</code>. The portal needs https for it, behind a proxy with <code>Portal:Auth:UseForwardedHeaders</code>. It asks for the scopes <code>openid profile role email</code> unless you set <code>Portal:Auth:Oidc:Scopes</code>; <code>email</code> brings the address for the mail when a run is done, so the client must be allowed this scope.</p>
 <h2 id="what-users-can-do">What users can do<a class="headerlink" href="#what-users-can-do" title="Permanent link">&para;</a></h2>
@@ -1607,7 +1690,7 @@
 <ol>
 <li>
 <p>Give the users roles at the login of the portal. With OpenID Connect these are the claims of the role claim type of the provider (<code>Portal:Auth:Oidc:RoleClaimType</code>, default <code>role</code>). In the forms mode add <code>Roles</code> to the users in <code>Portal:Auth:Users</code>:</p>
-<p><div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ada&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;PasswordHash&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;…&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Roles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;hr&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;finance&quot;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<p><div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ada"</span><span class="p">,</span><span class="w"> </span><span class="nt">"PasswordHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"…"</span><span class="p">,</span><span class="w"> </span><span class="nt">"Roles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"hr"</span><span class="p">,</span><span class="w"> </span><span class="s2">"finance"</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 2. In the editor name the roles that may see a workflow (<em>Only these roles</em> in its portal settings) or all published workflows of a group (<em>Portal roles</em> in the group dialog). The roles of a workflow count before those of its group. Without roles everybody sees it.</p>
 </li>
@@ -1619,10 +1702,10 @@
 <li>
 <p>Create a workflow with an <strong>Execute Workflow Trigger</strong> and a <strong>Send Email</strong> node, e.g. <em>portal-mail</em>. The trigger gives it one item:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;to&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ada@example.com&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;user&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ada&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;workflow&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;invoice&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Invoice&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;execution&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;…&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;success&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;startedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;…&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;finishedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;…&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://portal.example.com/jobs/invoice/…&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="nt">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ada@example.com"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ada"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"workflow"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invoice"</span><span class="p">,</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invoice"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"execution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"…"</span><span class="p">,</span><span class="w"> </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w"> </span><span class="nt">"startedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"…"</span><span class="p">,</span><span class="w"> </span><span class="nt">"finishedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"…"</span><span class="p">,</span><span class="w"> </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://portal.example.com/jobs/invoice/…"</span><span class="w"> </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>In the Send Email node use <code>{{ $json.to }}</code> as recipient, and for the text e.g. <code>Your run of {{ $json.workflow.name }} ended: {{ $json.execution.status }}. {{ $json.execution.url }}</code>. The item never holds the result of the run.

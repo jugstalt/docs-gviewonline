@@ -585,6 +585,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../user-guide/ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../user-guide/error-handling.html" class="md-nav__link">
         
   
@@ -1092,6 +1120,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../admin-guide/secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../admin-guide/troubleshooting.html" class="md-nav__link">
         
   
@@ -1379,6 +1435,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#testing" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1457,6 +1524,33 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versionshinweise
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1598,6 +1692,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#testing" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1638,13 +1743,13 @@
 
 <span class="k">public</span><span class="w"> </span><span class="k">sealed</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">ShoutNodeParameters</span>
 <span class="p">{</span>
-<span class="w">    </span><span class="na">[PipeParameter(Label = &quot;Field&quot;, Description = &quot;The text field to turn to upper case&quot;)]</span>
-<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Field</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;name&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="na">[PipeParameter(Label = "Field", Description = "The text field to turn to upper case")]</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Field</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"name"</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="na">[PipeNode(&quot;9d6c1c3e-6a60-4b3a-9c43-0f6b6a6f2b11&quot;, &quot;Shout&quot;,</span>
-<span class="na">    Category = &quot;Transform&quot;,</span>
-<span class="na">    Description = &quot;Turns a text field of each item to upper case.&quot;)]</span>
+<span class="na">[PipeNode("9d6c1c3e-6a60-4b3a-9c43-0f6b6a6f2b11", "Shout",</span>
+<span class="na">    Category = "Transform",</span>
+<span class="na">    Description = "Turns a text field of each item to upper case.")]</span>
 <span class="k">public</span><span class="w"> </span><span class="k">sealed</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">ShoutNode</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">PipeItemNodeBase</span><span class="o">&lt;</span><span class="n">ShoutNodeParameters</span><span class="o">&gt;</span>
 <span class="p">{</span>
 <span class="w">    </span><span class="k">protected</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="n">Task</span><span class="o">&lt;</span><span class="n">PipeItem</span><span class="o">?&gt;</span><span class="w"> </span><span class="n">ProcessItemAsync</span><span class="p">(</span>
@@ -1733,16 +1838,16 @@
 <p>A <code>PipeItem</code> is a <code>JsonObject</code> (<code>item.Json</code>) plus <code>Binary</code>, a dictionary of attachment references by name. The engine clones items on their way into a node, so changing them doesn't affect other branches. To produce a new item, build a new <code>PipeItem(new JsonObject { ... })</code>. Keep <code>Binary</code> when the item still stands for the same file.</p>
 <h2 id="ports">Ports<a class="headerlink" href="#ports" title="Permanent link">&para;</a></h2>
 <p>By default a node has one input and one output, <code>main</code>. Declare others on the attribute:</p>
-<div class="highlight"><pre><span></span><code><span class="na">[PipeNode(&quot;…&quot;, &quot;Split by Size&quot;, Outputs = new[]</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;small&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;large&quot;</span><span class="w"> </span><span class="p">})]</span>
+<div class="highlight"><pre><span></span><code><span class="na">[PipeNode("…", "Split by Size", Outputs = new[]</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">"small"</span><span class="p">,</span><span class="w"> </span><span class="s">"large"</span><span class="w"> </span><span class="p">})]</span>
 </code></pre></div>
 <p>and return the items per port:</p>
-<div class="highlight"><pre><span></span><code><span class="k">return</span><span class="w"> </span><span class="n">PipeNodeResult</span><span class="p">.</span><span class="n">FromPorts</span><span class="p">((</span><span class="s">&quot;small&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">small</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;large&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">large</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="k">return</span><span class="w"> </span><span class="n">PipeNodeResult</span><span class="p">.</span><span class="n">FromPorts</span><span class="p">((</span><span class="s">"small"</span><span class="p">,</span><span class="w"> </span><span class="n">small</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="s">"large"</span><span class="p">,</span><span class="w"> </span><span class="n">large</span><span class="p">));</span>
 </code></pre></div>
 <p>A port that gets no items stays empty, and nodes behind it are skipped. If the number of ports depends on the parameters (like Switch), implement <code>IPipeDynamicPorts</code>: <code>GetInputs</code> and <code>GetOutputs</code> receive the stored parameters and return the ports. Nodes with the error mode <em>Route items to an error output</em> get an extra <code>error</code> port from the engine.</p>
 <h2 id="expressions-in-code">Expressions in code<a class="headerlink" href="#expressions-in-code" title="Permanent link">&para;</a></h2>
 <p>Parameters are evaluated for you. To run <strong>JavaScript</strong> from a node (a Code-like node), inject <code>IPipeScriptRunner</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">scope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="n">CreateExpressionScope</span><span class="p">(</span><span class="n">item</span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="p">);</span>
-<span class="kt">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_scripts</span><span class="p">.</span><span class="n">Run</span><span class="p">(</span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="n">scope</span><span class="p">,</span><span class="w"> </span><span class="n">log</span><span class="p">:</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="n">Logger</span><span class="p">.</span><span class="n">LogInformation</span><span class="p">(</span><span class="s">&quot;{Line}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="p">),</span><span class="w"> </span><span class="n">cancellationToken</span><span class="p">:</span><span class="w"> </span><span class="n">cancellationToken</span><span class="p">);</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_scripts</span><span class="p">.</span><span class="n">Run</span><span class="p">(</span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="n">scope</span><span class="p">,</span><span class="w"> </span><span class="n">log</span><span class="p">:</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="n">Logger</span><span class="p">.</span><span class="n">LogInformation</span><span class="p">(</span><span class="s">"{Line}"</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="p">),</span><span class="w"> </span><span class="n">cancellationToken</span><span class="p">:</span><span class="w"> </span><span class="n">cancellationToken</span><span class="p">);</span>
 </code></pre></div>
 <p>Don't reference the JavaScript engine (Jint) from plugins. A <strong>code</strong> field must not be evaluated as an expression: mark it <code>[PipeParameter(Code = true)]</code> and read it from <code>context.RawParameters</code>, because <code>GetParameters</code> evaluates <code>{{ }}</code> in every string.</p>
 <h2 id="triggers">Triggers<a class="headerlink" href="#triggers" title="Permanent link">&para;</a></h2>
@@ -1750,7 +1855,7 @@
 <div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="n">Task</span><span class="o">&lt;</span><span class="n">IAsyncDisposable</span><span class="o">?&gt;</span><span class="w"> </span><span class="n">ActivateAsync</span><span class="p">(</span><span class="n">IPipeTriggerContext</span><span class="w"> </span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">CancellationToken</span><span class="w"> </span><span class="n">cancellationToken</span><span class="p">)</span>
 <span class="p">{</span>
 <span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">parameters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="n">GetParameters</span><span class="o">&lt;</span><span class="n">MyTriggerParameters</span><span class="o">&gt;</span><span class="p">();</span>
-<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">registration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="n">Host</span><span class="p">.</span><span class="n">RegisterSchedule</span><span class="p">(</span><span class="s">&quot;*/5 * * * *&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">TimeZoneInfo</span><span class="p">.</span><span class="n">Utc</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">registration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="n">Host</span><span class="p">.</span><span class="n">RegisterSchedule</span><span class="p">(</span><span class="s">"*/5 * * * *"</span><span class="p">,</span><span class="w"> </span><span class="n">TimeZoneInfo</span><span class="p">.</span><span class="n">Utc</span><span class="p">,</span>
 <span class="w">        </span><span class="n">ct</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="n">FireAsync</span><span class="p">([</span><span class="k">new</span><span class="w"> </span><span class="n">PipeItem</span><span class="p">()],</span><span class="w"> </span><span class="n">ct</span><span class="p">));</span>
 <span class="w">    </span><span class="c1">// registration is an IDisposable that removes the schedule; wrap it in an IAsyncDisposable</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Task</span><span class="p">.</span><span class="n">FromResult</span><span class="o">&lt;</span><span class="n">IAsyncDisposable</span><span class="o">?&gt;</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Handle</span><span class="p">(</span><span class="n">registration</span><span class="p">));</span>
@@ -1776,6 +1881,53 @@
 <p>Increase <code>Version</code> on the attribute when you rename or restructure parameters, and implement <code>IPipeNodeMigration</code>. The engine calls <code>MigrateParameters(fromVersion, parameters)</code> before running a node whose workflow was saved with an older <code>typeVersion</code>.</p>
 <h2 id="values-that-depend-on-the-server">Values that depend on the server<a class="headerlink" href="#values-that-depend-on-the-server" title="Permanent link">&para;</a></h2>
 <p>A parameter can offer values that the server computes from the other parameters (for example the files of a folder): mark it with <code>[PipeOptions]</code> and implement <code>IPipeParameterOptions</code> on the node. A <code>string</code> becomes a choice of one option, a <code>List&lt;PipeSelection&gt;</code> an ordered list whose entries can be switched on and off. <code>Refreshable = true</code> adds a refresh button.</p>
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
+<p>Every node shows examples in the <strong>Examples</strong> tab of the editor and in the node reference. Put them into a file <code>&lt;NodeClass&gt;.examples.json</code> next to the class and mark the class with <code>[PipeNodeExamples]</code>; the build of this repository embeds every <code>*.examples.json</code> (<code>Directory.Build.props</code>). In an own project add <code>&lt;EmbeddedResource Include="**\*.examples.json" /&gt;</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shout the name"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Each item keeps its fields; the name is in capitals."</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"input"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anna"</span><span class="p">,</span><span class="w"> </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Graz"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"output"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ANNA"</span><span class="p">,</span><span class="w"> </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Graz"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code>, <code>description</code></td>
+<td>What the example shows, for people.</td>
+</tr>
+<tr>
+<td><code>parameters</code></td>
+<td>The parameters, as stored in a workflow; the editor offers <strong>Use these parameters</strong>.</td>
+</tr>
+<tr>
+<td><code>given</code></td>
+<td>What the example needs. <code>files</code> (path → text) are put into the folder <code>files</code> before it runs; other keys belong to a plugin and its fake, e.g. <code>ai</code> with the <code>answer</code> of the model.</td>
+</tr>
+<tr>
+<td><code>input</code>, <code>output</code></td>
+<td>Items: an array for the port <code>main</code>, or an object with an array per port (<code>{ "true": […], "false": […] }</code>). Attachments go into the reserved key <code>$binary</code>: <code>{ "data": { "fileName": "a.csv", "mimeType": "text/csv", "text": "…" } }</code>; without <code>text</code> only the name is compared.</td>
+</tr>
+<tr>
+<td><code>ignore</code></td>
+<td>Fields of the output whose value changes, e.g. <code>modifiedAt</code> or <code>usage</code>.</td>
+</tr>
+<tr>
+<td><code>verified</code></td>
+<td><code>false</code> for examples that can't run in a test (triggers, servers); they are shown only.</td>
+</tr>
+</tbody>
+</table>
+<p>The node guide tests of the repository (<code>NodeGuideTests</code>) run every verified example with the engine and compare the output, so an example can't go stale. They also fail when a node has no example or a field no description.</p>
 <h2 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h2>
 <p><code>src/tests/gView.Pipe.Plugins.Tests/PluginTestHost.cs</code> builds a host with the built-in nodes, in memory, and runs workflows. Use the same approach for your plugin: register your assembly in <code>PipeCoreOptions.PluginAssemblies</code> and run a workflow made with the <code>PipeWorkflowBuilder</code> of <code>gView.Pipe.Core</code> or loaded from a JSON file.</p>
 

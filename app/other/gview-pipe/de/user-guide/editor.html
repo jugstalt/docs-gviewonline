@@ -552,6 +552,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#settings" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -747,6 +758,34 @@
     
   
     Dateien und Daten
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KI
   
 
     
@@ -1274,6 +1313,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../admin-guide/secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../admin-guide/troubleshooting.html" class="md-nav__link">
         
   
@@ -1473,6 +1540,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versionshinweise
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1566,6 +1660,17 @@
     <span class="md-ellipsis">
       
         Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
       
     </span>
   </a>
@@ -1688,7 +1793,7 @@
 <ol>
 <li><strong>Node hinzufügen:</strong> Klicke ihn in der Palette an. Er erscheint auf der Arbeitsfläche; ziehe ihn an die gewünschte Stelle.</li>
 <li><strong>Nodes verbinden:</strong> Ziehe von einem Ausgangsport (rechter Rand) zu einem Eingangsport (linker Rand) eines anderen Nodes. Items fließen entlang der Linie. Ein Node mit mehreren Ausgängen (If, Switch) hat je Ausgang einen Port.</li>
-<li><strong>Node bearbeiten:</strong> Klicke ihn an. Das Seitenpanel zeigt die Tabs <strong>Parameters</strong>, <strong>Settings</strong> und <strong>Run</strong>.</li>
+<li><strong>Node bearbeiten:</strong> Klicke ihn an. Das Seitenpanel zeigt die Tabs <strong>Parameters</strong>, <strong>Examples</strong>, <strong>Settings</strong> und <strong>Run</strong>.</li>
 <li><strong>Löschen:</strong> Wähle einen Node oder eine Linie und drücke <strong>Entf</strong>, oder nimm das Papierkorb-Symbol im Seitenpanel.</li>
 <li><strong>Speichern:</strong> <strong>Save</strong> oder <strong>Strg+S</strong> speichert den Workflow. Verlässt du den Editor oder schließt den Tab mit ungespeicherten Änderungen, fragt er vorher nach. Trigger eines aktiven Workflows (Cron, Webhook) werden beim Speichern scharf geschaltet.</li>
 </ol>
@@ -1708,12 +1813,17 @@
 <p><img alt="Eine Notiz auf der Arbeitsfläche" src="../../images/editor-note.png" /></p>
 <h2 id="die-tabs-eines-nodes">Die Tabs eines Nodes<a class="headerlink" href="#die-tabs-eines-nodes" title="Permanent link">&para;</a></h2>
 <h3 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h3>
-<p>Das Formular wird aus dem Node erzeugt. Die meisten Textfelder akzeptieren <strong>Ausdrücke</strong>: <code>{{ $json.total * 1.2 }}</code> wird für jedes Item ausgewertet (siehe <a href="expressions.html">Items und Ausdrücke</a>). Im Tab <strong>Run</strong> kannst du ein Feld der Eingabe anklicken, um es als Ausdruck in den zuletzt bearbeiteten Parameter einzufügen.</p>
+<p>Das Formular wird aus dem Node erzeugt. Unter jedem Feld steht eine kurze Erklärung, und eine Auswahlliste sagt, was jede Wahl bewirkt, in der Liste selbst und unter dem Feld für den gewählten Wert.</p>
+<p>Das Formular zeigt nur, was gerade zutrifft: Felder, die von einer anderen Wahl abhängen, erscheinen erst, wenn sie getroffen ist. Read File zum Beispiel zeigt den <em>CSV delimiter</em> nur, wenn <em>Read as</em> auf <em>CSV</em> steht. Ein ausgeblendetes Feld behält seinen Wert. Selten gebrauchte Felder liegen eingeklappt unter <strong>Advanced</strong> am Ende des Formulars; ein Klick öffnet sie. Wo der Server die möglichen Werte kennt, etwa die für Workflows eingerichteten Ordner, ist das Feld eine Auswahlliste; gibt es nur einen Wert, wird er eingetragen.</p>
+<p>Die meisten Textfelder akzeptieren <strong>Ausdrücke</strong>: <code>{{ $json.total * 1.2 }}</code> wird für jedes Item ausgewertet (siehe <a href="expressions.html">Items und Ausdrücke</a>). Im Tab <strong>Run</strong> kannst du ein Feld der Eingabe anklicken, um es als Ausdruck in den zuletzt bearbeiteten Parameter einzufügen.</p>
 <p>Änderungen gelten schon während du tippst; du musst ein Feld nicht verlassen, bevor du einen anderen Node wählst oder speicherst.</p>
 <p>Ausdrücke sind in ihrem Feld farbig hinterlegt. Nach einem Lauf zeigt eine Zeile unter dem Feld ihren Wert für das erste Eingangs-Item des Nodes, zum Beispiel <code>= Hello Hello Pipe!</code>. <code>$node["Name"]</code> lässt sich dort nicht auflösen und zeigt eine Warnung; der Lauf selbst ist davon nicht betroffen.</p>
 <p><img alt="Das JavaScript eines Code-Nodes im Code-Editor" src="../../images/node-code.png" /></p>
 <p><strong>Code-Felder</strong> (das JavaScript des Code-Nodes, das SQL des SQL-Nodes, rohes JSON) öffnen sich in einem Code-Editor mit Syntaxhervorhebung, Zeilennummern und den üblichen Editor-Tasten (Tab zum Einrücken, Strg+F zum Suchen, Alt+Hoch/Runter zum Verschieben von Zeilen). Das Feld wächst mit seinem Inhalt; das Symbol darüber öffnet einen großen Editor, und <strong>Apply</strong> übernimmt dessen Text.</p>
 <p>Manche Nodes zeigen über ihren Parametern <strong>Hinweise</strong>, zum Beispiel die URL eines Webhooks oder die Warnung, dass er kein Credential hat.</p>
+<h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h3>
+<p><img alt="Der Tab Examples von Read File" src="../../images/node-examples.png" /></p>
+<p>Zeigt, was der Node mit echten Daten macht: je Beispiel die Parameter, was es voraussetzt (zum Beispiel die Dateien im Ordner), die Eingangs- und die Ausgangs-Items, als Tabelle oder als JSON. <strong>Use these parameters</strong> übernimmt die Parameter eines Beispiels in den Node; <strong>Undo</strong> in der Werkzeugleiste holt die alten zurück. Dieselben Beispiele stehen in der <a href="nodes/index.html">Node-Referenz</a>. Die meisten prüfen die Tests jedes Builds, sie stimmen also mit dem überein, was der Node wirklich tut; die, die einen Server brauchen (HTTP, Mail, SFTP, eine Datenbank), zeigen, wie eine typische Antwort aussieht.</p>
 <h3 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">&para;</a></h3>
 <p><img alt="Der Tab Settings eines Nodes" src="../../images/node-settings.png" /></p>
 <table>
@@ -1748,7 +1858,7 @@
 </table>
 <h3 id="run">Run<a class="headerlink" href="#run" title="Permanent link">&para;</a></h3>
 <p><img alt="Der Tab Run eines Nodes" src="../../images/node-run.png" /></p>
-<p>Nach einem Lauf zeigt dieser Tab die <strong>Input</strong>-Items, die der Node bekommen hat, die <strong>Output</strong>-Items je Port und seine <strong>Logs</strong>. Items lassen sich als JSON oder als Text anzeigen. Schreibt ein Node während des Laufs Ausgaben (zum Beispiel ein Skript), siehst du sie live.</p>
+<p>Nach einem Lauf zeigt dieser Tab die <strong>Input</strong>-Items, die der Node bekommen hat, die <strong>Output</strong>-Items je Port und seine <strong>Logs</strong>. Items lassen sich als Tabelle (eine Spalte je Feld), als JSON oder als Text anzeigen; der Editor merkt sich deine Wahl. Schreibt ein Node während des Laufs Ausgaben (zum Beispiel ein Skript), siehst du sie live.</p>
 <h2 id="ausfuhren-und-testen">Ausführen und Testen<a class="headerlink" href="#ausfuhren-und-testen" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Run</strong> startet den Workflow aus dem Editor, im Environment, das neben dem Knopf gewählt ist (siehe <a href="variables.html#in-einem-anderen-environment-laufen">Variablen und Environments</a>). Die Nodes zeigen ihren Zustand: grün bei Erfolg, rot bei einem Fehler, grau, wenn sie keine Items bekamen und übersprungen wurden. Ein Zähler an jedem Ausgang zeigt, wie viele Items er erzeugt hat.</li>
@@ -1761,7 +1871,8 @@
 <p><img alt="Die Startseite mit der Gruppe Samples" src="../../images/start-page.png" /></p>
 <p>Öffne eine Gruppe, um ihre Workflows zu sehen und dort neue anzulegen. Das Löschen einer Gruppe löscht nie ihre Workflows. Der Gruppen-Dialog (Stift auf der Kachel) legt Name, Farbe, die <a href="../admin-guide/portal.html#wer-welche-workflows-sieht">Portal-Rollen</a> und das fest, was ihre Workflows erben: das Environment, Variablen und den Fehler-Workflow.</p>
 <h2 id="einstellungen-des-workflows">Einstellungen des Workflows<a class="headerlink" href="#einstellungen-des-workflows" title="Permanent link">&para;</a></h2>
-<p>Wähle keinen Node (klicke auf die leere Arbeitsfläche), um die Einstellungen des Workflows zu sehen:</p>
+<p>Wähle keinen Node (klicke auf die leere Arbeitsfläche), um die Einstellungen des Workflows zu sehen. Sie sind in Abschnitte gegliedert, die du auf- und zuklappen kannst (<em>General</em> ist zuerst offen; der Browser merkt sich deine Wahl). Das ? neben einem Abschnittstitel erklärt ihn und verweist auf diese Dokumentation; das ? im Kopf des Panels und in der Werkzeugleiste öffnet die Docs, das ? eines Nodes seine Seite in der Node-Referenz.</p>
+<p>Die Abschnitte: <em>General</em> (Name, Description, Group), <em>Execution</em> (Max concurrent runs, Max queued runs, Error workflow), <em>Environment</em>, <em>Variables</em>, <em>Execution data</em> (Save item data, Executions kept, Days kept) und <em>User portal</em>.</p>
 <table>
 <thead>
 <tr>

@@ -585,6 +585,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../user-guide/ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../user-guide/error-handling.html" class="md-nav__link">
         
   
@@ -1092,6 +1120,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../admin-guide/secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../admin-guide/troubleshooting.html" class="md-nav__link">
         
   
@@ -1308,6 +1364,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#pipeenumvalue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [PipeEnumValue]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#types-and-fields" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1395,6 +1462,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versionshinweise
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1426,6 +1520,17 @@
     <span class="md-ellipsis">
       
         [PipeParameter]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeenumvalue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [PipeEnumValue]
       
     </span>
   </a>
@@ -1498,19 +1603,33 @@
 
 <h1 id="parameters-and-the-editor-form">Parameters and the editor form<a class="headerlink" href="#parameters-and-the-editor-form" title="Permanent link">&para;</a></h1>
 <p>The editor builds the form of a node from its parameter class. It shows every public property with a getter <strong>and</strong> setter, in order. Attributes only refine how a property looks. The same class is filled from the stored JSON when the node runs.</p>
-<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">sealed</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">SendThingParameters</span>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">ThingMethod</span>
 <span class="p">{</span>
-<span class="w">    </span><span class="na">[Required, PipeParameter(Label = &quot;Url&quot;, Order = 1, Placeholder = &quot;https://example.com/api&quot;)]</span>
-<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Url</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="na">[PipeEnumValue("Create a new thing")]</span>
+<span class="w">    </span><span class="n">Post</span><span class="p">,</span>
 
-<span class="w">    </span><span class="na">[PipeParameter(Label = &quot;Method&quot;, Order = 2, Expressions = false)]</span>
+<span class="w">    </span><span class="na">[PipeEnumValue("Replace an existing thing")]</span>
+<span class="w">    </span><span class="n">Put</span>
+<span class="p">}</span>
+
+<span class="k">public</span><span class="w"> </span><span class="k">sealed</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">SendThingParameters</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="na">[Required, PipeParameter(Label = "Url", Order = 1, Placeholder = "https://example.com/api",</span>
+<span class="na">        Description = "Address of the API, e.g. https://example.com/api/things")]</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Url</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">""</span><span class="p">;</span>
+
+<span class="w">    </span><span class="na">[PipeParameter(Label = "Method", Order = 2, Expressions = false, Description = "What the call does")]</span>
 <span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">ThingMethod</span><span class="w"> </span><span class="n">Method</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ThingMethod</span><span class="p">.</span><span class="n">Post</span><span class="p">;</span>
 
-<span class="w">    </span><span class="na">[PipeParameter(Label = &quot;Headers&quot;, Order = 3, Description = &quot;Request headers&quot;)]</span>
+<span class="w">    </span><span class="na">[PipeParameter(Label = "Id", Order = 3, ShowWhen = nameof(Method), ShowWhenValues = ["put"]</span><span class="p">,</span>
+<span class="w">        </span><span class="n">Description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"The thing to replace, e.g. {{ $json.id }}"</span><span class="p">)]</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string?</span><span class="w"> </span><span class="n">Id</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="na">[PipeParameter(Label = "Headers", Order = 4, Advanced = true, Description = "Request headers, e.g. Accept → application/json")]</span>
 <span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">Dictionary</span><span class="o">&lt;</span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Headers</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="p">();</span>
 
 <span class="w">    </span><span class="na">[PipeCredential(PipeBuiltInCredentials.BearerToken)]</span>
-<span class="w">    </span><span class="na">[PipeParameter(Label = &quot;Credential&quot;, Expressions = false)]</span>
+<span class="w">    </span><span class="na">[PipeParameter(Label = "Credential", Expressions = false, Description = "The token the API expects")]</span>
 <span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string?</span><span class="w"> </span><span class="n">CredentialId</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -1551,8 +1670,19 @@
 <td><code>Code</code></td>
 <td>Source code: a large monospace field, never evaluated as an expression. Read such values from <code>context.RawParameters</code>.</td>
 </tr>
+<tr>
+<td><code>ShowWhen</code>, <code>ShowWhenValues</code></td>
+<td>The field shows only while another property (<code>nameof(…)</code>) has one of the values: enum names, option values or <code>true</code>/<code>false</code>, without case. A hidden field keeps its value. One property only; a node that needs more conditions does too much.</td>
+</tr>
+<tr>
+<td><code>Advanced</code></td>
+<td>The field is in the folded <em>Advanced</em> section at the end of the form. Use it for settings most people never change: attachment names, timeouts, encodings.</td>
+</tr>
 </tbody>
 </table>
+<p>Every property, every enum value and every node needs a <code>Description</code>; a test of the repository checks all plugins in it. Write one line: what the field does, with an example, in the words of the people who use the node. Don't repeat the label and don't use internal words.</p>
+<h2 id="pipeenumvalue"><code>[PipeEnumValue]</code><a class="headerlink" href="#pipeenumvalue" title="Permanent link">&para;</a></h2>
+<p>On the members of an enum used as a parameter: <code>[PipeEnumValue("What this choice does", Label = "Shown name")]</code>. The description is the second line of the entry in the dropdown and appears below the field for the chosen value; the label replaces the split member name (<code>ItemsAsCsv</code> → "All items as CSV").</p>
 <h2 id="types-and-fields">Types and fields<a class="headerlink" href="#types-and-fields" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1616,7 +1746,7 @@
 </tr>
 <tr>
 <td><code>[PipeOptions]</code></td>
-<td>Values computed by the server (<code>IPipeParameterOptions</code>).</td>
+<td>Values computed by the server (<code>IPipeParameterOptions</code>), each with an optional label and description. A required field with exactly one value is filled in.</td>
 </tr>
 <tr>
 <td><code>[Secret]</code> (credential classes)</td>

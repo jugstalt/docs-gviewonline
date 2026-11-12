@@ -587,6 +587,34 @@
   
   
     <li class="md-nav__item">
+      <a href="ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="error-handling.html" class="md-nav__link">
         
   
@@ -1240,6 +1268,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../admin-guide/secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../admin-guide/troubleshooting.html" class="md-nav__link">
         
   
@@ -1439,6 +1495,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1605,7 +1688,7 @@
 <h2 id="api-demo">API Demo<a class="headerlink" href="#api-demo" title="Permanent link">&para;</a></h2>
 <p><em>Webhook → If → Respond to Webhook.</em> <a href="../downloads/workflows/api-demo.json">Download</a></p>
 <p>A small API: <code>POST /webhook/api/greet</code> with <code>{ "name": "Ada" }</code> answers <code>200</code> with a greeting, and without a name <code>400</code> with an error text. The trigger waits for a <strong>Respond to Webhook</strong> node (<em>Using respond node</em>). Activate the workflow first.</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-i<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:5240/webhook/api/greet<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;Ada&quot;}&#39;</span>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-i<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:5240/webhook/api/greet<span class="w"> </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span>-d<span class="w"> </span><span class="s1">'{"name":"Ada"}'</span>
 </code></pre></div>
 <p>See <a href="triggers.html#respond-to-webhook">Triggers and webhooks</a>.</p>
 <h2 id="webhook-demo">Webhook Demo<a class="headerlink" href="#webhook-demo" title="Permanent link">&para;</a></h2>

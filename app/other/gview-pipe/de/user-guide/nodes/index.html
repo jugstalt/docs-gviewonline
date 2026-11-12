@@ -587,6 +587,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../error-handling.html" class="md-nav__link">
         
   
@@ -1240,6 +1268,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../admin-guide/secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../admin-guide/troubleshooting.html" class="md-nav__link">
         
   
@@ -1439,6 +1495,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versionshinweise
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1603,12 +1686,20 @@ Parameters marked as supporting expressions accept <code>{{ … }}</code> (JavaS
 <td>Starts the workflow on a schedule while the workflow is active.</td>
 </tr>
 <tr>
+<td><a href="triggers.html#email-trigger">Email Trigger</a></td>
+<td>Starts the workflow when unread mails are in a mailbox (IMAP), while the workflow is active.</td>
+</tr>
+<tr>
 <td><a href="triggers.html#error-trigger">Error Trigger</a></td>
 <td>Starts the workflow when a triggered run of a workflow that uses it as error workflow fails (set on the workflow, its group or the instance).</td>
 </tr>
 <tr>
 <td><a href="triggers.html#execute-workflow-trigger">Execute Workflow Trigger</a></td>
 <td>Starts the workflow when another workflow calls it with Execute Workflow; outputs the caller's items.</td>
+</tr>
+<tr>
+<td><a href="triggers.html#file-trigger">File Trigger</a></td>
+<td>Starts the workflow when new files appear in a folder released by the host, while the workflow is active.</td>
 </tr>
 <tr>
 <td><a href="triggers.html#form-trigger">Form Trigger</a></td>
@@ -1674,7 +1765,7 @@ Parameters marked as supporting expressions accept <code>{{ … }}</code> (JavaS
 <tbody>
 <tr>
 <td><a href="transform.html#aggregate">Aggregate</a></td>
-<td>Combines all items into a single item with arrays.</td>
+<td>Combines all items into a single item with lists.</td>
 </tr>
 <tr>
 <td><a href="transform.html#code">Code</a></td>
@@ -1694,7 +1785,7 @@ Parameters marked as supporting expressions accept <code>{{ … }}</code> (JavaS
 </tr>
 <tr>
 <td><a href="transform.html#remove-duplicates">Remove Duplicates</a></td>
-<td>Keeps the first of several items with equal JSON (or equal selected fields).</td>
+<td>Keeps the first of several equal items (all fields equal, or the selected fields).</td>
 </tr>
 <tr>
 <td><a href="transform.html#set">Set</a></td>
@@ -1702,11 +1793,15 @@ Parameters marked as supporting expressions accept <code>{{ … }}</code> (JavaS
 </tr>
 <tr>
 <td><a href="transform.html#sort">Sort</a></td>
-<td>Sorts the items by one or more fields.</td>
+<td>Sorts the items by one or more fields: numbers by value, text alphabetically, missing values last.</td>
+</tr>
+<tr>
+<td><a href="transform.html#split-in-batches">Split in Batches</a></td>
+<td>Turns the items into one item per batch: batch (from 1), batches, count and the items as a list.</td>
 </tr>
 <tr>
 <td><a href="transform.html#split-out">Split Out</a></td>
-<td>Turns an array field into one item per element.</td>
+<td>Turns a list in a field into one item per element.</td>
 </tr>
 </tbody>
 </table>
@@ -1752,15 +1847,15 @@ Parameters marked as supporting expressions accept <code>{{ … }}</code> (JavaS
 </tr>
 <tr>
 <td><a href="files.html#extract-from-file">Extract from File</a></td>
-<td>Turns an attachment (a file from a webhook, a mail, an HTTP response, Read File) into items: CSV, JSON, XML, text, and Excel with the Office plugin.</td>
+<td>Turns an attached file (from a webhook, a mail, an HTTP response, Read File) into items: CSV, JSON, XML, text, and Excel with the Office plugin.</td>
 </tr>
 <tr>
 <td><a href="files.html#read-file">Read File</a></td>
-<td>Reads files from a folder released by the host, as binary, text, JSON or CSV.</td>
+<td>Reads files from a folder of the server: as an attachment, as text, or as items from JSON or CSV.</td>
 </tr>
 <tr>
 <td><a href="files.html#write-file">Write File</a></td>
-<td>Writes attachments or text (one file per item), or all items as JSON or CSV (one file), into a folder released by the host.</td>
+<td>Writes files into a folder of the server: attachments or text (one file per item), or all items as JSON or CSV (one file).</td>
 </tr>
 </tbody>
 </table>

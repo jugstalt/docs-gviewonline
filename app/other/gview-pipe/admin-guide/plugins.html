@@ -585,6 +585,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../user-guide/ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../user-guide/error-handling.html" class="md-nav__link">
         
   
@@ -1174,6 +1202,34 @@
   
   
     <li class="md-nav__item">
+      <a href="secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="troubleshooting.html" class="md-nav__link">
         
   
@@ -1373,6 +1429,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1453,7 +1536,7 @@
 
 
 <h1 id="plugins">Plugins<a class="headerlink" href="#plugins" title="Permanent link">&para;</a></h1>
-<p>All nodes come from plugins. The built-in nodes (<code>gView.Pipe.Plugins.dll</code>) are always part of the app. Two further plugins are separate, because they bring their own dependencies or can run code:</p>
+<p>All nodes come from plugins. The built-in nodes (<code>gView.Pipe.Plugins.dll</code>) are always part of the app. The other plugins are separate, because they bring their own dependencies or can run code:</p>
 <table>
 <thead>
 <tr>
@@ -1463,6 +1546,16 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><code>gView.Pipe.Plugins.AI</code></td>
+<td>AI</td>
+<td>Sends data of the items to a language model (Anthropic API or Azure OpenAI). Not installing it means no data goes to a model.</td>
+</tr>
+<tr>
+<td><code>gView.Pipe.Plugins.AzureStorage</code></td>
+<td>Azure Blob, Azure Blob Trigger</td>
+<td>The Azure Storage SDK.</td>
+</tr>
 <tr>
 <td><code>gView.Pipe.Plugins.Database</code></td>
 <td>SQL</td>
@@ -1478,9 +1571,19 @@
 <td>Run Script, Run Scripts Folder, Run Scripts Repo</td>
 <td>Runs scripts on the server. Not installing it means no script execution.</td>
 </tr>
+<tr>
+<td><code>gView.Pipe.Plugins.Sftp</code></td>
+<td>SFTP</td>
+<td>The SSH library (SSH.NET).</td>
+</tr>
+<tr>
+<td><code>gView.Pipe.Plugins.Secrets</code></td>
+<td>none; adds the secret sources Azure Key Vault and IdentityServer.NET (see <a href="secrets.html">Secrets</a>)</td>
+<td>The Azure SDK and the IdentityServer client.</td>
+</tr>
 </tbody>
 </table>
-<p>The ZIP and the Docker image contain both. Remove a plugin folder to switch it off.</p>
+<p>The ZIP and the Docker image contain all of them. Remove a plugin folder to switch it off.</p>
 <h2 id="folder-layout">Folder layout<a class="headerlink" href="#folder-layout" title="Permanent link">&para;</a></h2>
 <p>Each plugin has its own folder below <code>Pipe:PluginPath</code> (default <code>plugins</code>). The main DLL must have the name of the folder:</p>
 <div class="highlight"><pre><span></span><code>pipe\

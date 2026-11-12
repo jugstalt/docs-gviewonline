@@ -581,6 +581,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../error-handling.html" class="md-nav__link">
         
   
@@ -1088,6 +1116,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../admin-guide/secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../admin-guide/troubleshooting.html" class="md-nav__link">
         
   
@@ -1287,6 +1343,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1384,7 +1467,7 @@
 <tr>
 <td><strong>Script folder</strong><br><code>root</code></td>
 <td>text</td>
-<td>A folder released by the host.</td>
+<td>One of the script folders the administrator has set up.</td>
 </tr>
 <tr>
 <td><strong>Script</strong><br><code>script</code></td>
@@ -1394,12 +1477,12 @@
 <tr>
 <td><strong>Arguments</strong><br><code>arguments</code></td>
 <td>text</td>
-<td>Supports expressions.</td>
+<td>Command line passed to every script, e.g. --date {{ $json.date }}. Supports expressions.</td>
 </tr>
 <tr>
 <td><strong>Environment variables</strong><br><code>environment</code></td>
 <td>key/value pairs</td>
-<td>Name → value; next to PIPE_ITEM, PIPE_WORKFLOW, PIPE_EXECUTION, PIPE_ENVIRONMENT and the variables of workflow, group and instance, which these override.</td>
+<td>Name → value; next to PIPE_ITEM, PIPE_WORKFLOW, PIPE_EXECUTION, PIPE_ENVIRONMENT and the variables of workflow, group and instance, which these override. In <em>Advanced</em>.</td>
 </tr>
 <tr>
 <td><strong>Credential</strong><br><code>credentialId</code></td>
@@ -1409,20 +1492,52 @@
 <tr>
 <td><strong>Error pattern</strong><br><code>errorPattern</code></td>
 <td>text</td>
-<td>Regex; a script fails if a line of its output matches (besides a non-zero exit code).</td>
+<td>A script also fails when a line of its output matches this regular expression, e.g. ^ERROR|Traceback. In <em>Advanced</em>.</td>
 </tr>
 <tr>
 <td><strong>Ignore case</strong><br><code>ignoreCase</code></td>
 <td>true/false</td>
-<td>Default: <code>true</code>.</td>
+<td>The error pattern ignores capitals, so ERROR also matches error. In <em>Advanced</em>. Default: <code>true</code>.</td>
 </tr>
 <tr>
 <td><strong>Timeout per script (minutes)</strong><br><code>timeoutMinutes</code></td>
 <td>number</td>
-<td>Default: <code>10</code>.</td>
+<td>A script that runs longer is stopped and fails. In <em>Advanced</em>. Default: <code>10</code>.</td>
 </tr>
 </tbody>
 </table>
+<details class="example">
+<summary>Example: Run a backup script</summary>
+<p>One run per input item; the output item tells whether it worked, with exit code and what the script printed.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"root"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ops"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"script"</span><span class="p">:</span><span class="w"> </span><span class="s2">"backup.ps1"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"arguments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"--target {{ $json.server }}"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"server"</span><span class="p">:</span><span class="w"> </span><span class="s2">"db01"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"script"</span><span class="p">:</span><span class="w"> </span><span class="s2">"backup.ps1"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"exitCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"matchedLine"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"stdout"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Backup of db01 done: 2.1 GB\n"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"stderr"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"durationMs"</span><span class="p">:</span><span class="w"> </span><span class="mi">18420</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 <h2 id="run-scripts-folder">Run Scripts Folder<a class="headerlink" href="#run-scripts-folder" title="Permanent link">&para;</a></h2>
 <p>Runs the switched-on scripts of a folder released by the host, in order, once per input item. One output item per script with exit code and output.</p>
 <p><strong>Inputs:</strong> <code>main</code> · <strong>Outputs:</strong> <code>main</code></p>
@@ -1438,7 +1553,7 @@
 <tr>
 <td><strong>Script folder</strong><br><code>root</code></td>
 <td>text</td>
-<td>A folder released by the host.</td>
+<td>One of the script folders the administrator has set up.</td>
 </tr>
 <tr>
 <td><strong>Path</strong><br><code>path</code></td>
@@ -1448,7 +1563,7 @@
 <tr>
 <td><strong>Include subfolders</strong><br><code>includeSubfolders</code></td>
 <td>true/false</td>
-<td>Default: <code>false</code>.</td>
+<td>Offer the scripts in the subfolders of the path too. Default: <code>false</code>.</td>
 </tr>
 <tr>
 <td><strong>Scripts</strong><br><code>scripts</code></td>
@@ -1458,17 +1573,17 @@
 <tr>
 <td><strong>Stop on first failure</strong><br><code>stopOnFirstFailure</code></td>
 <td>true/false</td>
-<td>Default: <code>true</code>.</td>
+<td>Don't run the remaining scripts after one failed. Default: <code>true</code>.</td>
 </tr>
 <tr>
 <td><strong>Arguments</strong><br><code>arguments</code></td>
 <td>text</td>
-<td>Supports expressions.</td>
+<td>Command line passed to every script, e.g. --date {{ $json.date }}. Supports expressions.</td>
 </tr>
 <tr>
 <td><strong>Environment variables</strong><br><code>environment</code></td>
 <td>key/value pairs</td>
-<td>Name → value; next to PIPE_ITEM, PIPE_WORKFLOW, PIPE_EXECUTION, PIPE_ENVIRONMENT and the variables of workflow, group and instance, which these override.</td>
+<td>Name → value; next to PIPE_ITEM, PIPE_WORKFLOW, PIPE_EXECUTION, PIPE_ENVIRONMENT and the variables of workflow, group and instance, which these override. In <em>Advanced</em>.</td>
 </tr>
 <tr>
 <td><strong>Credential</strong><br><code>credentialId</code></td>
@@ -1478,20 +1593,64 @@
 <tr>
 <td><strong>Error pattern</strong><br><code>errorPattern</code></td>
 <td>text</td>
-<td>Regex; a script fails if a line of its output matches (besides a non-zero exit code).</td>
+<td>A script also fails when a line of its output matches this regular expression, e.g. ^ERROR|Traceback. In <em>Advanced</em>.</td>
 </tr>
 <tr>
 <td><strong>Ignore case</strong><br><code>ignoreCase</code></td>
 <td>true/false</td>
-<td>Default: <code>true</code>.</td>
+<td>The error pattern ignores capitals, so ERROR also matches error. In <em>Advanced</em>. Default: <code>true</code>.</td>
 </tr>
 <tr>
 <td><strong>Timeout per script (minutes)</strong><br><code>timeoutMinutes</code></td>
 <td>number</td>
-<td>Default: <code>10</code>.</td>
+<td>A script that runs longer is stopped and fails. In <em>Advanced</em>. Default: <code>10</code>.</td>
 </tr>
 </tbody>
 </table>
+<details class="example">
+<summary>Example: The nightly scripts in order</summary>
+<p>One output item per script. When one fails, the node fails; with 'Stop on first failure' the rest doesn't run.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"root"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ops"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nightly/"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nightly/1-export.py"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nightly/2-cleanup.sh"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"script"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nightly/1-export.py"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"exitCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"matchedLine"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"stdout"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Exported 1240 rows\n"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"stderr"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"durationMs"</span><span class="p">:</span><span class="w"> </span><span class="mi">5210</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"script"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nightly/2-cleanup.sh"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"exitCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"matchedLine"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"stdout"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Removed 3 old files\n"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"stderr"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"durationMs"</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 <h2 id="run-scripts-repo">Run Scripts Repo<a class="headerlink" href="#run-scripts-repo" title="Permanent link">&para;</a></h2>
 <p>Clones a repository of a configured Git server for the run and runs its switched-on scripts in order, with the repository root as working directory (PIPE_WORK_DIRECTORY). The clone is deleted afterwards.</p>
 <p><strong>Inputs:</strong> <code>main</code> · <strong>Outputs:</strong> <code>main</code></p>
@@ -1527,7 +1686,7 @@
 <tr>
 <td><strong>Include subfolders</strong><br><code>includeSubfolders</code></td>
 <td>true/false</td>
-<td>Default: <code>false</code>.</td>
+<td>Offer the scripts in the subfolders of the path too. Default: <code>false</code>.</td>
 </tr>
 <tr>
 <td><strong>Scripts</strong><br><code>scripts</code></td>
@@ -1537,17 +1696,17 @@
 <tr>
 <td><strong>Stop on first failure</strong><br><code>stopOnFirstFailure</code></td>
 <td>true/false</td>
-<td>Default: <code>true</code>.</td>
+<td>Don't run the remaining scripts after one failed. Default: <code>true</code>.</td>
 </tr>
 <tr>
 <td><strong>Arguments</strong><br><code>arguments</code></td>
 <td>text</td>
-<td>Supports expressions.</td>
+<td>Command line passed to every script, e.g. --date {{ $json.date }}. Supports expressions.</td>
 </tr>
 <tr>
 <td><strong>Environment variables</strong><br><code>environment</code></td>
 <td>key/value pairs</td>
-<td>Name → value; next to PIPE_ITEM, PIPE_WORKFLOW, PIPE_EXECUTION, PIPE_ENVIRONMENT and the variables of workflow, group and instance, which these override.</td>
+<td>Name → value; next to PIPE_ITEM, PIPE_WORKFLOW, PIPE_EXECUTION, PIPE_ENVIRONMENT and the variables of workflow, group and instance, which these override. In <em>Advanced</em>.</td>
 </tr>
 <tr>
 <td><strong>Credential</strong><br><code>credentialId</code></td>
@@ -1557,20 +1716,52 @@
 <tr>
 <td><strong>Error pattern</strong><br><code>errorPattern</code></td>
 <td>text</td>
-<td>Regex; a script fails if a line of its output matches (besides a non-zero exit code).</td>
+<td>A script also fails when a line of its output matches this regular expression, e.g. ^ERROR|Traceback. In <em>Advanced</em>.</td>
 </tr>
 <tr>
 <td><strong>Ignore case</strong><br><code>ignoreCase</code></td>
 <td>true/false</td>
-<td>Default: <code>true</code>.</td>
+<td>The error pattern ignores capitals, so ERROR also matches error. In <em>Advanced</em>. Default: <code>true</code>.</td>
 </tr>
 <tr>
 <td><strong>Timeout per script (minutes)</strong><br><code>timeoutMinutes</code></td>
 <td>number</td>
-<td>Default: <code>10</code>.</td>
+<td>A script that runs longer is stopped and fails. In <em>Advanced</em>. Default: <code>10</code>.</td>
 </tr>
 </tbody>
 </table>
+<details class="example">
+<summary>Example: Deployment scripts from Git</summary>
+<p>The repository is cloned for the run and deleted afterwards; each output item also names the commit that ran.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"server"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gitea"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"repository"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ops-scripts"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"branch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"main"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deploy/update.ps1"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"script"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deploy/update.ps1"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"exitCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"matchedLine"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"stdout"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Updated 2 services\n"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"stderr"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"durationMs"</span><span class="p">:</span><span class="w"> </span><span class="mi">9310</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"commit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4f2c9a1"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 
 
 

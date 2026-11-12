@@ -14,7 +14,7 @@
         <link rel="prev" href="operations.html">
       
       
-        <link rel="next" href="troubleshooting.html">
+        <link rel="next" href="secrets.html">
       
       
         
@@ -565,6 +565,34 @@
     
   
     Files and data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI
   
 
     
@@ -1240,6 +1268,34 @@
   
   
     <li class="md-nav__item">
+      <a href="secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="troubleshooting.html" class="md-nav__link">
         
   
@@ -1439,6 +1495,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1631,6 +1714,7 @@
 <li>The keys are stored in <code>data/keys/</code>. <strong>Anyone with access to both <code>keys/</code> and <code>credentials/</code> can decrypt the credentials.</strong> Restrict access to the <code>data</code> folder. For production, a developer can configure Data Protection to protect the keys with DPAPI, a certificate or a key vault.</li>
 <li>The headers <code>authorization</code>, <code>proxy-authorization</code> and <code>cookie</code> of webhook calls (and the API key header) are not copied into the items and so never reach the execution history. Credential values are masked in script output and logs.</li>
 </ul>
+<p>Values can also stay outside <code>data/</code>: in environment variables, Azure Key Vault or the vault of IdentityServer.NET, see <a href="secrets.html">Secrets</a>.</p>
 <h2 id="webhooks">Webhooks<a class="headerlink" href="#webhooks" title="Permanent link">&para;</a></h2>
 <p>Give every webhook that is reachable from outside a credential. See <a href="operations.html#webhooks-in-production">Operations</a>.</p>
 <h2 id="rest-api">REST API<a class="headerlink" href="#rest-api" title="Permanent link">&para;</a></h2>

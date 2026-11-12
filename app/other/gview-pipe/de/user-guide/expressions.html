@@ -717,6 +717,34 @@
   
   
     <li class="md-nav__item">
+      <a href="ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="error-handling.html" class="md-nav__link">
         
   
@@ -1224,6 +1252,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../admin-guide/secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../admin-guide/troubleshooting.html" class="md-nav__link">
         
   
@@ -1423,6 +1479,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versionshinweise
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1555,7 +1638,7 @@
 <h1 id="items-und-ausdrucke">Items und Ausdrücke<a class="headerlink" href="#items-und-ausdrucke" title="Permanent link">&para;</a></h1>
 <h2 id="items">Items<a class="headerlink" href="#items" title="Permanent link">&para;</a></h2>
 <p>Daten fließen als <strong>Items</strong> durch einen Workflow. Ein Item ist ein JSON-Objekt, plus optionale binäre Anhänge (Dateien). Eine Verbindung trägt eine Liste von Items, und ein Node bekommt alle Items seiner Eingänge auf einmal.</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;customer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ada&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;country&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AT&quot;</span><span class="w"> </span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ada"</span><span class="p">,</span><span class="w"> </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AT"</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <p>Die meisten Nodes bearbeiten jedes Item einzeln: Der Set-Node ergänzt Felder in jedem Item, If schickt jedes Item nach <code>true</code> oder <code>false</code>. Einige Nodes arbeiten auf der ganzen Liste: Aggregate sammelt viele Items in einem, Split Out macht aus einem Item viele, Limit und Sort verändern die Liste.</p>
 <p>Items werden auf dem Weg in einen Node kopiert, parallele Zweige können sich also nicht gegenseitig die Daten ändern.</p>
@@ -1688,7 +1771,7 @@
 <span class="k">return</span><span class="w"> </span><span class="nx">orders</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">order</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="p">...</span><span class="nx">order</span><span class="p">,</span><span class="w"> </span><span class="nx">big</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}));</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="c1">// Modus: Each item</span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">$json</span><span class="p">.</span><span class="nx">country</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;DE&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">$json</span><span class="p">.</span><span class="nx">country</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">'DE'</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
 <span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="nx">$json</span><span class="p">,</span><span class="w"> </span><span class="nx">vat</span><span class="o">:</span><span class="w"> </span><span class="nx">$json</span><span class="p">.</span><span class="nx">total</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.2</span><span class="w"> </span><span class="p">};</span>
 </code></pre></div>
 <ul>

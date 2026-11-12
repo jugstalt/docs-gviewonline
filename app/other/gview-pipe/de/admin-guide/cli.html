@@ -585,6 +585,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../user-guide/ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../user-guide/error-handling.html" class="md-nav__link">
         
   
@@ -1207,6 +1235,34 @@
   
   
     <li class="md-nav__item">
+      <a href="secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="troubleshooting.html" class="md-nav__link">
         
   
@@ -1406,6 +1462,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versionshinweise
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1540,8 +1623,8 @@ dotnet<span class="w"> </span>tool<span class="w"> </span>install<span class="w"
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="nv">$env:PIPE_URL</span> <span class="p">=</span> <span class="s2">&quot;https://pipe.example.com&quot;</span>
-<span class="nv">$env:PIPE_API_KEY</span> <span class="p">=</span> <span class="s2">&quot;pipe_...&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nv">$env:PIPE_URL</span> <span class="p">=</span> <span class="s2">"https://pipe.example.com"</span>
+<span class="nv">$env:PIPE_API_KEY</span> <span class="p">=</span> <span class="s2">"pipe_..."</span>
 </code></pre></div>
 </div>
 </div>
@@ -1616,7 +1699,7 @@ gview-pipe<span class="w"> </span>workflows<span class="w"> </span>deploy<span c
 <h2 id="ausfuhren">Ausführen<a class="headerlink" href="#ausfuhren" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>gview-pipe<span class="w"> </span>run<span class="w"> </span>hello-pipe<span class="w">                                   </span><span class="c1"># startet ihn, gibt die Execution-Id aus</span>
 gview-pipe<span class="w"> </span>run<span class="w"> </span>hello-pipe<span class="w"> </span>--wait<span class="w"> </span>--input<span class="w"> </span>item.json<span class="w">          </span><span class="c1"># wartet und gibt die Items des letzten Nodes aus</span>
-<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;{ &quot;name&quot;: &quot;Ada&quot; }&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gview-pipe<span class="w"> </span>run<span class="w"> </span>hello-pipe<span class="w"> </span>--wait<span class="w"> </span>--input<span class="w"> </span>-
+<span class="nb">echo</span><span class="w"> </span><span class="s1">'{ "name": "Ada" }'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gview-pipe<span class="w"> </span>run<span class="w"> </span>hello-pipe<span class="w"> </span>--wait<span class="w"> </span>--input<span class="w"> </span>-
 </code></pre></div>
 <p><code>--input</code> ist ein JSON-Objekt (ein Item) oder ein Array von Objekten; <code>-</code> liest es von der Standardeingabe. Der Lauf startet wie ein getriggerter Lauf, siehe <a href="api.html#einen-workflow-ausfuhren">Einen Workflow ausführen</a>.</p>
 <h2 id="exit-codes">Exit-Codes<a class="headerlink" href="#exit-codes" title="Permanent link">&para;</a></h2>

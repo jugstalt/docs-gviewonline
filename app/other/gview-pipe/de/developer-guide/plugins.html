@@ -14,6 +14,8 @@
         <link rel="prev" href="parameters.html">
       
       
+        <link rel="next" href="../release-notes.html">
+      
       
         
           <link rel="alternate" href="../../developer-guide/plugins.html" hreflang="en">
@@ -583,6 +585,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../user-guide/ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../user-guide/error-handling.html" class="md-nav__link">
         
   
@@ -1090,6 +1120,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../admin-guide/secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../admin-guide/troubleshooting.html" class="md-nav__link">
         
   
@@ -1393,6 +1451,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versionshinweise
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1497,7 +1582,7 @@
 <h1 id="plugins">Plugins<a class="headerlink" href="#plugins" title="Permanent link">&para;</a></h1>
 <p>Built-in nodes and external nodes use the same mechanism: assemblies are scanned for <code>[PipeNode]</code> and <code>[PipeCredentialType]</code> classes.</p>
 <h2 id="an-external-plugin-project">An external plugin project<a class="headerlink" href="#an-external-plugin-project" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;Project</span><span class="w"> </span><span class="na">Sdk=</span><span class="s">&quot;Microsoft.NET.Sdk&quot;</span><span class="nt">&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;Project</span><span class="w"> </span><span class="na">Sdk=</span><span class="s">"Microsoft.NET.Sdk"</span><span class="nt">&gt;</span>
 
 <span class="w">  </span><span class="nt">&lt;PropertyGroup&gt;</span>
 <span class="w">    </span><span class="nt">&lt;TargetFramework&gt;</span>net10.0<span class="nt">&lt;/TargetFramework&gt;</span>
@@ -1507,7 +1592,7 @@
 
 <span class="w">  </span><span class="nt">&lt;ItemGroup&gt;</span>
 <span class="w">    </span><span class="cm">&lt;!-- the contracts come from the host: never ship them with the plugin --&gt;</span>
-<span class="w">    </span><span class="nt">&lt;PackageReference</span><span class="w"> </span><span class="na">Include=</span><span class="s">&quot;gView.Pipe.Abstraction&quot;</span><span class="w"> </span><span class="na">Version=</span><span class="s">&quot;…&quot;</span><span class="w"> </span><span class="na">ExcludeAssets=</span><span class="s">&quot;runtime&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;PackageReference</span><span class="w"> </span><span class="na">Include=</span><span class="s">"gView.Pipe.Abstraction"</span><span class="w"> </span><span class="na">Version=</span><span class="s">"…"</span><span class="w"> </span><span class="na">ExcludeAssets=</span><span class="s">"runtime"</span><span class="w"> </span><span class="nt">/&gt;</span>
 <span class="w">  </span><span class="nt">&lt;/ItemGroup&gt;</span>
 
 <span class="nt">&lt;/Project&gt;</span>
@@ -1538,24 +1623,24 @@
 <span class="w">        </span><span class="p">{</span>
 <span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">provider</span><span class="p">.</span><span class="n">GetService</span><span class="o">&lt;</span><span class="n">IConfiguration</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="n">configuration</span><span class="p">)</span>
 <span class="w">            </span><span class="p">{</span>
-<span class="w">                </span><span class="n">configuration</span><span class="p">.</span><span class="n">GetSection</span><span class="p">(</span><span class="s">&quot;Pipe:MyPlugin&quot;</span><span class="p">).</span><span class="n">Bind</span><span class="p">(</span><span class="n">options</span><span class="p">);</span>
+<span class="w">                </span><span class="n">configuration</span><span class="p">.</span><span class="n">GetSection</span><span class="p">(</span><span class="s">"Pipe:MyPlugin"</span><span class="p">).</span><span class="n">Bind</span><span class="p">(</span><span class="n">options</span><span class="p">);</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">});</span>
-<span class="w">        </span><span class="n">services</span><span class="p">.</span><span class="n">AddHttpClient</span><span class="p">(</span><span class="s">&quot;my-plugin&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">services</span><span class="p">.</span><span class="n">AddHttpClient</span><span class="p">(</span><span class="s">"my-plugin"</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>Nodes get services through their constructor. Settings an administrator controls (released folders, servers) belong in options like this, never in a node parameter: that way a workflow can't widen what it is allowed to do.</p>
 <h2 id="credential-types">Credential types<a class="headerlink" href="#credential-types" title="Permanent link">&para;</a></h2>
 <p>A credential type is a POCO with <code>[PipeCredentialType]</code>; its properties are the fields of the form:</p>
-<div class="highlight"><pre><span></span><code><span class="na">[PipeCredentialType(&quot;5b7f3c2a-1d4e-4f7a-9c0b-2a6d8e1f3b45&quot;, &quot;My Service&quot;, Description = &quot;Token and URL of My Service&quot;)]</span>
+<div class="highlight"><pre><span></span><code><span class="na">[PipeCredentialType("5b7f3c2a-1d4e-4f7a-9c0b-2a6d8e1f3b45", "My Service", Description = "Token and URL of My Service")]</span>
 <span class="k">public</span><span class="w"> </span><span class="k">sealed</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">MyServiceCredential</span>
 <span class="p">{</span>
-<span class="w">    </span><span class="na">[Required, PipeParameter(Label = &quot;Base URL&quot;)]</span>
-<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Url</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="na">[Required, PipeParameter(Label = "Base URL")]</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Url</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">""</span><span class="p">;</span>
 
-<span class="w">    </span><span class="na">[Required, Secret, PipeParameter(Label = &quot;Token&quot;)]</span>
-<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Token</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="na">[Required, Secret, PipeParameter(Label = "Token")]</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Token</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">""</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>A node references it with <code>[PipeCredential("5b7f3c2a-…")]</code> on a <code>string?</code> parameter and reads it with <code>await context.GetCredentialAsync&lt;MyServiceCredential&gt;(parameters.CredentialId)</code>. Never log secret values and never copy them into items: items end up in the execution history.</p>

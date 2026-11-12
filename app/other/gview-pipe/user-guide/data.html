@@ -14,7 +14,7 @@
         <link rel="prev" href="credentials.html">
       
       
-        <link rel="next" href="error-handling.html">
+        <link rel="next" href="ai.html">
       
       
         
@@ -690,10 +690,60 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#sftp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SFTP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-blob" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Azure Blob
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1213,6 +1263,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../admin-guide/secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../admin-guide/troubleshooting.html" class="md-nav__link">
         
   
@@ -1412,6 +1490,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1510,6 +1615,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#sftp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SFTP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-blob" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Azure Blob
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1534,7 +1661,7 @@
 <p>Files travel through a workflow as <strong>attachments</strong> of items (see <a href="expressions.html">Items and expressions</a>). A webhook upload, a mail attachment, an HTTP response or Read File gives you one; Send Email, Write File and HTTP Request take one. The nodes on this page turn attachments into items and back, and work with dates, hashes and archives. The sample <strong>Data Tools</strong> uses all of them (<a href="recipes.html#data-tools">Recipes</a>).</p>
 <p><img alt="The sample Data Tools after a run: the CSV read back from the unzipped attachment" src="../images/data-tools.png" /></p>
 <h2 id="extract-from-file">Extract from File<a class="headerlink" href="#extract-from-file" title="Permanent link">&para;</a></h2>
-<p>Reads the attachment <code>data</code> (setting <em>Binary property</em>) of each item in a format and makes items of it.</p>
+<p>Reads the attachment <code>data</code> (setting <em>Attachment name</em> under <em>Advanced</em>) of each item in a format and makes items of it.</p>
 <table>
 <thead>
 <tr>
@@ -1575,9 +1702,9 @@
 <p>Text is read as UTF-8 unless the file starts with a byte order mark or <em>Encoding</em> says otherwise, for example <code>windows-1252</code> for CSV files saved by an older Excel.</p>
 <h3 id="xml-as-items">XML as items<a class="headerlink" href="#xml-as-items" title="Permanent link">&para;</a></h3>
 <p>XML elements become JSON like this:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;order</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;7&quot;</span><span class="w"> </span><span class="na">xmlns:x=</span><span class="s">&quot;urn:x&quot;</span><span class="nt">&gt;&lt;line&gt;</span>Pen<span class="nt">&lt;/line&gt;&lt;line&gt;</span>Ink<span class="nt">&lt;/line&gt;&lt;x:note&gt;</span>fast<span class="nt">&lt;/x:note&gt;&lt;/order&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;order</span><span class="w"> </span><span class="na">id=</span><span class="s">"7"</span><span class="w"> </span><span class="na">xmlns:x=</span><span class="s">"urn:x"</span><span class="nt">&gt;&lt;line&gt;</span>Pen<span class="nt">&lt;/line&gt;&lt;line&gt;</span>Ink<span class="nt">&lt;/line&gt;&lt;x:note&gt;</span>fast<span class="nt">&lt;/x:note&gt;&lt;/order&gt;</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;@id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;7&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;@xmlns:x&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;urn:x&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;line&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Pen&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Ink&quot;</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;x:note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fast&quot;</span><span class="w"> </span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"@id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w"> </span><span class="nt">"@xmlns:x"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:x"</span><span class="p">,</span><span class="w"> </span><span class="nt">"line"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Pen"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Ink"</span><span class="p">],</span><span class="w"> </span><span class="nt">"x:note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fast"</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <p>Attributes start with <code>@</code>, text next to attributes or elements is in <code>#text</code>, repeated elements become arrays. An element that occurs once is a single value: list it in <em>Always array</em> (e.g. <code>line</code>) when your expressions expect an array.</p>
 <h2 id="convert-to-file">Convert to File<a class="headerlink" href="#convert-to-file" title="Permanent link">&para;</a></h2>
@@ -1681,6 +1808,81 @@
 </tbody>
 </table>
 <p>Unpacking stops with an error when the content gets larger than <em>Max size</em> (500 MB), so a small archive can't fill the server. Archives are never unpacked to disk: paths in the archive are only text in the items.</p>
+<h2 id="sftp">SFTP<a class="headerlink" href="#sftp" title="Permanent link">&para;</a></h2>
+<p>The <strong>SFTP</strong> node (plugin <code>gView.Pipe.Plugins.Sftp</code>) lists, downloads, uploads, deletes and renames files on an SFTP server. It runs once per input item over one connection, and the paths accept expressions.</p>
+<p>First create an <strong>SFTP Server</strong> <a href="credentials.html">credential</a>: host, port, user name, a password and/or a private key, and the <strong>fingerprint of the server's host key</strong> (<code>SHA256:…</code>). The fingerprint is required: a server with another one is refused, and the error shows the fingerprint it presented, so you can check it with the owner of the server and enter it. Password, key and passphrase can come from a <a href="../admin-guide/secrets.html">secret source</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>List</td>
+<td>One item per file in <em>Path</em> (<code>fileName</code>, <code>path</code>, <code>size</code>, <code>modifiedAt</code>, <code>isDirectory</code>). <em>File pattern</em> filters (<code>*.csv</code>), <em>Include subfolders</em> goes deeper, <em>Include folders</em> adds folders. More than 10000 entries are an error.</td>
+</tr>
+<tr>
+<td>Download</td>
+<td>Gets the file in <em>Path</em> (one file, no pattern) and attaches it to the item, by default as <code>data</code>. Files larger than <em>Max file size (MB)</em> (100) are refused before they are loaded.</td>
+</tr>
+<tr>
+<td>Upload</td>
+<td>Writes the attachment of the item to <em>Path</em>. A file that exists is an error unless <em>Overwrite</em> is on; a missing folder is an error unless <em>Create folders</em> is on.</td>
+</tr>
+<tr>
+<td>Delete</td>
+<td>Deletes the file in <em>Path</em>.</td>
+</tr>
+<tr>
+<td>Rename</td>
+<td>Renames or moves <em>Path</em> to <em>New path</em>. A target that exists is an error unless <em>Overwrite</em> is on.</td>
+</tr>
+</tbody>
+</table>
+<p>An upload goes to <code>&lt;name&gt;.part</code> first and is renamed when it is complete, so a reader on the server never sees half a file. With <em>Overwrite</em>, the old file is deleted just before that rename.</p>
+<p>Local files are not touched by this node: content travels as attachments. Combine it with Read File and Write File to fetch a file from the server into a released folder, or to send one from there. A typical flow: <strong>List</strong> → <strong>Download</strong> (with <code>{{ $json.path }}</code> as <em>Path</em>) → process → <strong>Rename</strong> into an archive folder on the server.</p>
+<h2 id="azure-blob">Azure Blob<a class="headerlink" href="#azure-blob" title="Permanent link">&para;</a></h2>
+<p>The <strong>Azure Blob</strong> node (plugin <code>gView.Pipe.Plugins.AzureStorage</code>) lists, downloads, uploads, deletes and renames blobs in Azure Blob Storage, with the same operations and item fields as the <a href="#sftp">SFTP</a> node plus <code>container</code>, <code>contentType</code> and <code>etag</code>. A blob has a <em>Container</em> and a <em>Path</em>; folders are the parts of the path before a <code>/</code>.</p>
+<p>First create an <strong>Azure Storage</strong> <a href="credentials.html">credential</a>. <em>Authentication</em> is one of:</p>
+<ul>
+<li><strong>Connection string</strong>: from the access keys of the account. For the emulator Azurite it is <code>UseDevelopmentStorage=true</code>.</li>
+<li><strong>Managed identity</strong>: only the <em>Account URL</em> (<code>https://&lt;account&gt;.blob.core.windows.net</code>). The app signs in with its managed identity in Azure, or with your developer login (Azure CLI, Visual Studio) on your machine. The identity needs the role <em>Storage Blob Data Contributor</em>, or <em>Reader</em> for List and Download.</li>
+<li><strong>SAS token</strong>: the <em>Account URL</em> and a shared access signature.</li>
+</ul>
+<p>The connection string and the SAS token can come from a <a href="../admin-guide/secrets.html">secret source</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>List</td>
+<td>One item per blob in the folder <em>Path</em> (empty: the whole container). <em>File pattern</em> filters the names, <em>Include subfolders</em> goes deeper. More than 10000 blobs are an error.</td>
+</tr>
+<tr>
+<td>Download</td>
+<td>Gets the blob in <em>Path</em> and attaches it to the item (default <code>data</code>). Blobs larger than <em>Max file size (MB)</em> (100) are refused before they are loaded.</td>
+</tr>
+<tr>
+<td>Upload</td>
+<td>Writes the attachment of the item to <em>Path</em>. A blob that exists is an error unless <em>Overwrite</em> is on; the server checks that in the same request. A missing container is an error unless <em>Create container</em> is on.</td>
+</tr>
+<tr>
+<td>Delete</td>
+<td>Deletes the blob in <em>Path</em>.</td>
+</tr>
+<tr>
+<td>Rename</td>
+<td>Moves <em>Path</em> to <em>New path</em>, also into <em>New container</em>. Blob Storage has no rename: the blob is copied on the server and then deleted, so a large blob takes the time of a copy.</td>
+</tr>
+</tbody>
+</table>
+<p>A blob becomes visible only when it is completely uploaded, so there is no temporary name.</p>
 
 
 

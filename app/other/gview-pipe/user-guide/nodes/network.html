@@ -581,6 +581,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../error-handling.html" class="md-nav__link">
         
   
@@ -1088,6 +1116,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../admin-guide/secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../admin-guide/troubleshooting.html" class="md-nav__link">
         
   
@@ -1287,6 +1343,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1384,50 +1467,124 @@
 <tr>
 <td><strong>Method</strong><br><code>method</code></td>
 <td>text</td>
-<td>Supports expressions.</td>
+<td>What the request does.</td>
 </tr>
 <tr>
 <td><strong>URL</strong> (required)<br><code>url</code></td>
 <td>text</td>
-<td>Supports expressions.</td>
+<td>Address of the request, e.g. https://api.example.com/orders/{{ $json.id }}. Supports expressions.</td>
+</tr>
+<tr>
+<td><strong>Credential</strong><br><code>credentialId</code></td>
+<td>credential (Basic Auth, Bearer Token, API Key Header, OAuth2 Client Credentials)</td>
+<td>Signs in at the server: user and password, a token, an API key header or OAuth2 client credentials.</td>
 </tr>
 <tr>
 <td><strong>Query parameters</strong><br><code>query</code></td>
 <td>key/value pairs</td>
-<td>Added to the URL as ?name=value; values are URL-encoded.</td>
-</tr>
-<tr>
-<td><strong>Headers</strong><br><code>headers</code></td>
-<td>key/value pairs</td>
-<td>Request headers, e.g. Accept or Content-Type.</td>
+<td>Added to the URL as ?name=value, e.g. status → open; values are encoded.</td>
 </tr>
 <tr>
 <td><strong>Body</strong><br><code>body</code></td>
 <td>JSON</td>
-<td>JSON, or text if the value is a string. Supports expressions.</td>
+<td>What to send: JSON such as { "name": "{{ $json.name }}" }, or text. Only when <em>Method</em> is <code>post</code> or <code>put</code> or <code>patch</code> or <code>delete</code>. Supports expressions.</td>
 </tr>
 <tr>
 <td><strong>Content type</strong><br><code>contentType</code></td>
 <td>text</td>
-<td>Supports expressions.</td>
+<td>Kind of the body, e.g. application/json or text/plain. Only when <em>Method</em> is <code>post</code> or <code>put</code> or <code>patch</code> or <code>delete</code>. In <em>Advanced</em>. Supports expressions.</td>
+</tr>
+<tr>
+<td><strong>Headers</strong><br><code>headers</code></td>
+<td>key/value pairs</td>
+<td>Request headers, e.g. Accept → application/json. In <em>Advanced</em>.</td>
 </tr>
 <tr>
 <td><strong>Response format</strong><br><code>responseFormat</code></td>
 <td>one of: <code>auto</code>, <code>json</code>, <code>text</code></td>
-<td>Default: <code>auto</code>.</td>
+<td>How the answer is read into body. <br><code>auto</code>: JSON when the server says so, text otherwise.<br><code>json</code>: Read the answer as JSON.<br><code>text</code>: Keep the answer as text, e.g. HTML or CSV.<br> In <em>Advanced</em>. Default: <code>auto</code>.</td>
 </tr>
 <tr>
 <td><strong>Fail on HTTP error status</strong><br><code>failOnHttpError</code></td>
 <td>true/false</td>
-<td>Default: <code>true</code>.</td>
+<td>Stop with an error when the server answers 400 or higher; off: the item goes on with the statusCode. In <em>Advanced</em>. Default: <code>true</code>.</td>
 </tr>
 <tr>
-<td><strong>Credential</strong><br><code>credentialId</code></td>
-<td>credential (Basic Auth, Bearer Token, API Key Header)</td>
-<td>Authenticates the request: Basic, Bearer token or an API key header.</td>
+<td><strong>Pause between requests (ms)</strong><br><code>delayMs</code></td>
+<td>integer</td>
+<td>Waits this long before each request but the first, e.g. 1000 for the rate limit of an API; 0 = no pause. In <em>Advanced</em>. Default: <code>0</code>.</td>
 </tr>
 </tbody>
 </table>
+<details class="example">
+<summary>Example: Read an order from an API</summary>
+<p>One request per item; the answer replaces the item: statusCode, headers and body.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.example.com/orders/{{ $json.id }}"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"Content-Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json; charset=utf-8"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anna"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"paid"</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
+<details class="example">
+<summary>Example: Send an item as JSON</summary>
+<p>POST with a body built from the item, e.g. to create a ticket in another system.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.example.com/tickets"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ $json.subject }}"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"high"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Parcel never arrived"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">201</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"Content-Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json; charset=utf-8"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"Location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/tickets/981"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">981</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Parcel never arrived"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"high"</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 <h2 id="respond-to-webhook">Respond to Webhook<a class="headerlink" href="#respond-to-webhook" title="Permanent link">&para;</a></h2>
 <p>Answers the webhook call that started the execution (Webhook Trigger with 'Using respond node'). The items pass through, so the workflow can continue after responding.</p>
 <p><strong>Inputs:</strong> <code>main</code> · <strong>Outputs:</strong> <code>main</code></p>
@@ -1443,25 +1600,52 @@
 <tr>
 <td><strong>Respond with</strong><br><code>respondWith</code></td>
 <td>one of: <code>firstItem</code>, <code>allItems</code>, <code>customBody</code>, <code>noBody</code></td>
-<td>Default: <code>firstItem</code>.</td>
+<td>What the caller gets back. <br><code>firstItem</code>: The JSON of the first item.<br><code>allItems</code>: A list with the JSON of all items.<br><code>customBody</code>: The body below, e.g. { "ok": true }.<br><code>noBody</code>: Only the status code, no content.<br> Default: <code>firstItem</code>.</td>
 </tr>
 <tr>
 <td><strong>Body</strong><br><code>body</code></td>
 <td>JSON</td>
-<td>Custom body: JSON or an expression, evaluated against the first item. Supports expressions.</td>
+<td>JSON or an expression, evaluated for the first item, e.g. {{ { ok: true, id: $json.id } }}. Only when <em>Respond with</em> is <code>customBody</code>. Supports expressions.</td>
 </tr>
 <tr>
 <td><strong>Status code</strong><br><code>statusCode</code></td>
 <td>integer</td>
-<td>Default: <code>200</code>.</td>
+<td>HTTP status of the answer, e.g. 200 OK, 201 Created, 400 Bad Request. Default: <code>200</code>.</td>
 </tr>
 <tr>
 <td><strong>Headers</strong><br><code>headers</code></td>
 <td>key/value pairs</td>
-<td>Response headers; a Content-Type other than JSON sends a text body as is (e.g. text/html).</td>
+<td>Response headers; a Content-Type other than JSON sends a text body as is, e.g. text/html. In <em>Advanced</em>.</td>
 </tr>
 </tbody>
 </table>
+<details class="example">
+<summary>Example: Confirm an order to the caller</summary>
+<p>The webhook caller gets { "ok": true, "id": 17 } with status 201. The items pass on, so the workflow can go on after answering.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"respondWith"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customBody"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ { ok: true, id: $json.id } }}"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">201</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anna"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anna"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 <h2 id="send-email">Send Email<a class="headerlink" href="#send-email" title="Permanent link">&para;</a></h2>
 <p>Sends one email per item over SMTP, optionally with the item's attachments.</p>
 <p><strong>Inputs:</strong> <code>main</code> · <strong>Outputs:</strong> <code>main</code></p>
@@ -1482,45 +1666,94 @@
 <tr>
 <td><strong>From</strong><br><code>from</code></td>
 <td>text</td>
-<td>Empty: the credential's default sender. Supports expressions.</td>
+<td>Sender, e.g. Orders &lt;orders@example.com&gt;; empty: the sender of the credential. In <em>Advanced</em>. Supports expressions.</td>
 </tr>
 <tr>
 <td><strong>To</strong> (required)<br><code>to</code></td>
 <td>text</td>
-<td>Supports expressions.</td>
+<td>Recipients, separated by commas, e.g. {{ $json.email }}. Supports expressions.</td>
 </tr>
 <tr>
 <td><strong>Cc</strong><br><code>cc</code></td>
 <td>text</td>
-<td>Supports expressions.</td>
+<td>Copy to these addresses, separated by commas. In <em>Advanced</em>. Supports expressions.</td>
 </tr>
 <tr>
 <td><strong>Bcc</strong><br><code>bcc</code></td>
 <td>text</td>
-<td>Supports expressions.</td>
+<td>Hidden copy to these addresses, separated by commas. In <em>Advanced</em>. Supports expressions.</td>
 </tr>
 <tr>
 <td><strong>Subject</strong> (required)<br><code>subject</code></td>
 <td>text</td>
-<td>Supports expressions.</td>
+<td>e.g. Your order {{ $json.id }}. Supports expressions.</td>
 </tr>
 <tr>
 <td><strong>Text</strong><br><code>text</code></td>
 <td>text</td>
-<td>Supports expressions.</td>
+<td>The message as plain text. Supports expressions.</td>
 </tr>
 <tr>
 <td><strong>HTML</strong><br><code>html</code></td>
 <td>text</td>
-<td>Sent next to the text, or alone. Supports expressions.</td>
+<td>The message as HTML, sent next to the text or alone. In <em>Advanced</em>. Supports expressions.</td>
 </tr>
 <tr>
 <td><strong>Attachments</strong><br><code>attachments</code></td>
 <td>list of text</td>
-<td>Names of the item's attachments to send; * for all.</td>
+<td>Names of the item's attachments to send, e.g. data; * sends all.</td>
 </tr>
 </tbody>
 </table>
+<details class="example">
+<summary>Example: A confirmation per order, with the invoice attached</summary>
+<p>One mail per item. The item goes on with sentEmail, e.g. to log or store the message id.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ $json.email }}"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your order {{ $json.id }}"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello {{ $json.customer }},\nthank you for your order. The invoice is attached."</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">"data"</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anna"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"anna@example.com"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"$binary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"fileName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invoice-17.pdf"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"mimeType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/pdf"</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anna"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"anna@example.com"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"sentEmail"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"messageId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;a1b2c3@pipe&gt;"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"anna@example.com"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your order 17"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"$binary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"fileName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invoice-17.pdf"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"mimeType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/pdf"</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 
 
 

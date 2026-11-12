@@ -585,6 +585,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../user-guide/ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../user-guide/error-handling.html" class="md-nav__link">
         
   
@@ -1218,6 +1246,34 @@
   
   
     <li class="md-nav__item">
+      <a href="secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="troubleshooting.html" class="md-nav__link">
         
   
@@ -1417,6 +1473,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versionshinweise
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1591,7 +1674,7 @@
 <p>Der Name des angemeldeten Anwenders geht mit jeder Anfrage ans Backend. Läufe zeigen in der Historie des Editors <code>portal:&lt;Name&gt;</code> als Starter, und Anwender sehen und stoppen nur ihre eigenen Läufe.</p>
 <p>Gestartet wird es wie die Shell: <code>dotnet run --project src/gView.Pipe.Portal</code> (Port 5250 in der Entwicklung, <code>--launch-profile https</code> für https auf 7250). Im AppHost stellst du den Login oben in <code>AppHost.cs</code> ein: <code>#define PORTAL_OIDC</code> (IdentityServer, Benutzer <code>portal@is.net</code>) oder <code>#define PORTAL_FORMS</code> (feste Benutzer <code>portal</code> mit der Portal-Rolle <code>portal-demo</code> und einer Adresse sowie <code>guest</code>, beide mit dem Namen als Passwort); definiere nur eines.</p>
 <p>Für den Modus forms erzeugst du den Hash eines Passworts mit dem Portal selbst:</p>
-<div class="highlight"><pre><span></span><code>dotnet<span class="w"> </span>gView.Pipe.Portal.dll<span class="w"> </span>--hash-password<span class="w"> </span><span class="s2">&quot;mein Passwort&quot;</span>
+<div class="highlight"><pre><span></span><code>dotnet<span class="w"> </span>gView.Pipe.Portal.dll<span class="w"> </span>--hash-password<span class="w"> </span><span class="s2">"mein Passwort"</span>
 </code></pre></div>
 <p>und trägst ihn als <code>PasswordHash</code> des Benutzers ein (siehe <a href="authentication.html#forms-feste-benutzer">Anmeldung</a>). Mit OpenID Connect braucht der Client des Portals die Weiterleitungs-Adressen <code>&lt;Adresse des Portals&gt;/signin-oidc</code> und <code>&lt;Adresse des Portals&gt;/signout-callback-oidc</code>. Das Portal braucht dafür https, hinter einem Proxy mit <code>Portal:Auth:UseForwardedHeaders</code>. Es fragt die Scopes <code>openid profile role email</code> an, solange du <code>Portal:Auth:Oidc:Scopes</code> nicht setzt; <code>email</code> bringt die Adresse für die Mail bei Fertigstellung, der Client muss diesen Scope also verwenden dürfen.</p>
 <h2 id="was-anwender-tun-konnen">Was Anwender tun können<a class="headerlink" href="#was-anwender-tun-konnen" title="Permanent link">&para;</a></h2>
@@ -1607,7 +1690,7 @@
 <ol>
 <li>
 <p>Gib den Anwendern beim Login des Portals Rollen. Mit OpenID Connect sind das die Claims des Rollen-Claim-Typs des Providers (<code>Portal:Auth:Oidc:RoleClaimType</code>, Standard <code>role</code>). Im Modus forms füge den Benutzern in <code>Portal:Auth:Users</code> <code>Roles</code> hinzu:</p>
-<p><div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ada&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;PasswordHash&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;…&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Roles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;hr&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;finance&quot;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<p><div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ada"</span><span class="p">,</span><span class="w"> </span><span class="nt">"PasswordHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"…"</span><span class="p">,</span><span class="w"> </span><span class="nt">"Roles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"hr"</span><span class="p">,</span><span class="w"> </span><span class="s2">"finance"</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 2. Nenne im Editor die Rollen, die einen Workflow sehen dürfen (<em>Only these roles</em> in seinen Portal-Einstellungen) oder alle veröffentlichten Workflows einer Gruppe (<em>Portal roles</em> im Gruppen-Dialog). Die Rollen eines Workflows gelten vor denen seiner Gruppe. Ohne Rollen sieht ihn jeder.</p>
 </li>
@@ -1619,10 +1702,10 @@
 <li>
 <p>Lege einen Workflow mit einem <strong>Execute Workflow Trigger</strong> und einem <strong>Send Email</strong>-Node an, z. B. <em>portal-mail</em>. Der Trigger liefert ihm ein Item:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;to&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ada@example.com&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;user&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ada&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;workflow&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;invoice&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Invoice&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;execution&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;…&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;success&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;startedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;…&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;finishedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;…&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://portal.example.com/jobs/invoice/…&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="nt">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ada@example.com"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ada"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"workflow"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invoice"</span><span class="p">,</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invoice"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"execution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"…"</span><span class="p">,</span><span class="w"> </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w"> </span><span class="nt">"startedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"…"</span><span class="p">,</span><span class="w"> </span><span class="nt">"finishedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"…"</span><span class="p">,</span><span class="w"> </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://portal.example.com/jobs/invoice/…"</span><span class="w"> </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>Verwende im Send-Email-Node <code>{{ $json.to }}</code> als Empfänger, und als Text z. B. <code>Dein Lauf von {{ $json.workflow.name }} ist beendet: {{ $json.execution.status }}. {{ $json.execution.url }}</code>. Das Item enthält nie das Ergebnis des Laufs.

@@ -585,6 +585,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../user-guide/ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../user-guide/error-handling.html" class="md-nav__link">
         
   
@@ -1230,6 +1258,34 @@
   
   
     <li class="md-nav__item">
+      <a href="secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="troubleshooting.html" class="md-nav__link">
         
   
@@ -1425,6 +1481,33 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versionshinweise
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1635,12 +1718,12 @@
 <h2 id="forms-feste-benutzer">Forms: feste Benutzer<a class="headerlink" href="#forms-feste-benutzer" title="Permanent link">&para;</a></h2>
 <p><img alt="Das Anmeldeformular" src="../../images/login.png" /></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;Pipe&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;Auth&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;Mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;forms&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;Users&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;PasswordHash&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pbkdf2-sha256$210000$...&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;editor&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Klartext&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="nt">"Pipe"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"Auth"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"Mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"forms"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"Users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w"> </span><span class="nt">"PasswordHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pbkdf2-sha256$210000$..."</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"editor"</span><span class="p">,</span><span class="w"> </span><span class="nt">"Password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Klartext"</span><span class="w"> </span><span class="p">}</span>
 <span class="w">      </span><span class="p">]</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
@@ -1649,7 +1732,7 @@
 <ul>
 <li>
 <p><code>PasswordHash</code> ist vorzuziehen. Du erzeugst ihn mit der App selbst:</p>
-<div class="highlight"><pre><span></span><code>dotnet<span class="w"> </span>gView.Pipe.Shell.dll<span class="w"> </span>--hash-password<span class="w"> </span><span class="s2">&quot;mein Passwort&quot;</span>
+<div class="highlight"><pre><span></span><code>dotnet<span class="w"> </span>gView.Pipe.Shell.dll<span class="w"> </span>--hash-password<span class="w"> </span><span class="s2">"mein Passwort"</span>
 </code></pre></div>
 </li>
 <li>
@@ -1668,17 +1751,17 @@
 <p><code>PIPE_ADMIN_PASSWORD</code> setzt das Passwort des Benutzers <code>admin</code> (einen anderen Namen mit <code>PIPE_ADMIN_USER</code>). Es ersetzt diesen Benutzer aus <code>auth.config</code>, behält die übrigen und schaltet den Modus <code>none</code> auf <code>forms</code>.</p>
 <h2 id="oidc-identity-provider">OIDC: Identity Provider<a class="headerlink" href="#oidc-identity-provider" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;Pipe&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;Auth&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;Mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;oidc&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;Oidc&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;Authority&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://login.example.com&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;ClientId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gview-pipe&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;ClientSecret&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;secret&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;Scopes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;openid&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;profile&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;role&quot;</span><span class="w"> </span><span class="p">],</span>
-<span class="w">        </span><span class="nt">&quot;RoleClaimType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;role&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;NameClaimType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;name&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;RequiredRoles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;gview-pipe&quot;</span><span class="w"> </span><span class="p">]</span>
+<span class="w">  </span><span class="nt">"Pipe"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"Auth"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"Mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"oidc"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"Oidc"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"Authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://login.example.com"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"ClientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gview-pipe"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"ClientSecret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"secret"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"Scopes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"openid"</span><span class="p">,</span><span class="w"> </span><span class="s2">"profile"</span><span class="p">,</span><span class="w"> </span><span class="s2">"role"</span><span class="w"> </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">"RoleClaimType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"role"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"NameClaimType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"RequiredRoles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"gview-pipe"</span><span class="w"> </span><span class="p">]</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
@@ -1782,22 +1865,22 @@
 <p>viewer und operator öffnen Workflows <strong>nur lesend</strong>: Der Editor zeigt <em>Read only</em>, ohne Palette und Save; die Felder lassen sich nicht ändern. Seiten und Knöpfe, die eine Rolle nicht nutzen darf, sind ausgeblendet oder deaktiviert. Ohne Anmeldung (<code>Mode</code> <em>none</em>) ist jeder admin.</p>
 <p>Ein Benutzer kann für die Workflows einer Gruppe eine andere Rolle haben, z. B. allgemein viewer, aber editor in der Gruppe <em>Billing</em>. Credentials, Instanz-Variablen und API-Schlüssel richten sich nur nach der Rolle für die Instanz. Gruppen werden über ihre Id angegeben (<code>billing</code>), wie sie in der Adresse der Gruppenseite steht.</p>
 <p><strong>Forms:</strong> pro Benutzer in <code>auth.config</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&quot;Users&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;PasswordHash&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;…&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ada&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;PasswordHash&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;…&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;viewer&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;GroupRoles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;billing&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;editor&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="nt">"Users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w"> </span><span class="nt">"PasswordHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"…"</span><span class="p">,</span><span class="w"> </span><span class="nt">"Role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ada"</span><span class="p">,</span><span class="w"> </span><span class="nt">"PasswordHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"…"</span><span class="p">,</span><span class="w"> </span><span class="nt">"Role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"viewer"</span><span class="p">,</span><span class="w"> </span><span class="nt">"GroupRoles"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"billing"</span><span class="p">:</span><span class="w"> </span><span class="s2">"editor"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
 <span class="p">]</span>
 </code></pre></div>
 <p><strong>OIDC:</strong> Bilde Werte des Rollen-Claims (<code>RoleClaimType</code>) auf Rollen ab; <code>rolle@gruppe</code> gibt die Rolle für eine Gruppe. Der höchste Treffer gilt, und eine Gruppe bekommt nie weniger als die Rolle für die Instanz:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&quot;Oidc&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;RoleMappings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;pipe-admins&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;pipe-operators&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;operator&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;pipe-billing&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;editor@billing&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">"Oidc"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"RoleMappings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"pipe-admins"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"pipe-operators"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operator"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"pipe-billing"</span><span class="p">:</span><span class="w"> </span><span class="s2">"editor@billing"</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Benutzer ohne Rolle</strong> (ein Forms-Benutzer ohne <code>Role</code>, ein OIDC-Benutzer ohne abgebildeten Claim) bekommen <code>DefaultRole</code>. Die Vorgabe ist <code>admin</code>, damit eine Installation von vor den Rollen wie bisher funktioniert. Sobald du die Rollen vergeben hast, stelle sie auf <code>viewer</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&quot;DefaultRole&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;viewer&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">"DefaultRole"</span><span class="p">:</span><span class="w"> </span><span class="s2">"viewer"</span>
 </code></pre></div>
 <p>Die Rollen werden bei jeder Prüfung aus der Konfiguration ermittelt und nicht in der Anmeldung gespeichert: Nach einer Änderung an <code>auth.config</code> und einem Neustart der App gelten sie ohne erneute Anmeldung. Das Konto-Menü zeigt die eigene Rolle und mit <em>(+ groups)</em>, dass es in manchen Gruppen andere gibt.</p>
 <p><img alt="Ein viewer sieht Hello Pipe nur lesend" src="../../images/editor-readonly.png" /></p>

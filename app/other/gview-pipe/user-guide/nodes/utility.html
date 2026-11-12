@@ -581,6 +581,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../error-handling.html" class="md-nav__link">
         
   
@@ -1088,6 +1116,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../admin-guide/secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../admin-guide/troubleshooting.html" class="md-nav__link">
         
   
@@ -1287,6 +1343,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1384,19 +1467,67 @@
 <tr>
 <td><strong>Message</strong><br><code>message</code></td>
 <td>JSON</td>
-<td>Supports expressions.</td>
+<td>What to write per item, e.g. Order {{ $json.id }} received; {{ $json }} writes the whole item. Supports expressions.</td>
 </tr>
 <tr>
 <td><strong>Level</strong><br><code>level</code></td>
 <td>one of: <code>trace</code>, <code>debug</code>, <code>information</code>, <code>warning</code>, <code>error</code>, <code>critical</code>, <code>none</code></td>
-<td>Default: <code>information</code>.</td>
+<td>How important the message is; the host decides which levels are kept. <br><code>trace</code>: Very detailed, usually switched off.<br><code>debug</code>: Details for finding errors.<br><code>information</code>: Normal messages.<br><code>warning</code>: Something unexpected that didn't stop the run.<br><code>error</code>: Something failed.<br><code>critical</code>: Something failed badly.<br><code>none</code>: Write nothing; the items just pass.<br> Default: <code>information</code>.</td>
 </tr>
 </tbody>
 </table>
+<details class="example">
+<summary>Example: Write a line per order</summary>
+<p>The log gets 'Order 17 received'; the items pass unchanged.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order {{ $json.id }} received"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"information"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 <h2 id="no-operation">No Operation<a class="headerlink" href="#no-operation" title="Permanent link">&para;</a></h2>
 <p>Passes items through unchanged.</p>
 <p><strong>Inputs:</strong> <code>main</code> · <strong>Outputs:</strong> <code>main</code></p>
 <p>This node has no parameters.</p>
+<details class="example">
+<summary>Example: Pass the items on</summary>
+<p>Useful as a placeholder or as a point where several branches meet.</p>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 <h2 id="result">Result<a class="headerlink" href="#result" title="Permanent link">&para;</a></h2>
 <p>Defines what a user sees in the portal at the end of the run: text, Markdown or a table. Without a Result node the portal shows only the status. Outputs one item with the result, so place it at the end of the workflow.</p>
 <p><strong>Inputs:</strong> <code>main</code> · <strong>Outputs:</strong> <code>main</code></p>
@@ -1412,17 +1543,17 @@
 <tr>
 <td><strong>Kind</strong><br><code>kind</code></td>
 <td>one of: <code>text</code>, <code>markdown</code>, <code>table</code></td>
-<td>Text and Markdown show the content; Table shows the incoming items, one row per item. Default: <code>text</code>.</td>
+<td>What the portal user sees. <br><code>text</code>: A plain message, e.g. Done: 17 rows.<br><code>markdown</code>: Formatted text with headings, lists and links.<br><code>table</code>: The incoming items, one row per item.<br> Default: <code>text</code>.</td>
 </tr>
 <tr>
 <td><strong>Title</strong><br><code>title</code></td>
 <td>text</td>
-<td>Supports expressions.</td>
+<td>Heading above the result, e.g. Import finished. Supports expressions.</td>
 </tr>
 <tr>
 <td><strong>Content</strong><br><code>content</code></td>
 <td>text</td>
-<td>For Text and Markdown; evaluated for the first incoming item. Supports expressions.</td>
+<td>The message, e.g. Done: {{ $json.count }} rows; evaluated for the first incoming item. Only when <em>Kind</em> is <code>text</code> or <code>markdown</code>. Supports expressions.</td>
 </tr>
 <tr>
 <td><strong>Error message</strong><br><code>errorMessage</code></td>
@@ -1431,6 +1562,76 @@
 </tr>
 </tbody>
 </table>
+<details class="example">
+<summary>Example: A message for the portal user</summary>
+<p>The output item describes what the portal shows; put the node at the end of the workflow.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Import finished"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ $json.count }} orders imported"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Import finished"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17 orders imported"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
+<details class="example">
+<summary>Example: The items as a table</summary>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"table"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Open invoices"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"R-17"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"R-18"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"table"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Open invoices"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"columns"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">"invoice"</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">"amount"</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">"R-17"</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"120"</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">"R-18"</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"80"</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 
 
 

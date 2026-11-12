@@ -585,6 +585,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../user-guide/ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../user-guide/error-handling.html" class="md-nav__link">
         
   
@@ -1174,6 +1202,34 @@
   
   
     <li class="md-nav__item">
+      <a href="secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="troubleshooting.html" class="md-nav__link">
         
   
@@ -1373,6 +1429,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versionshinweise
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1453,7 +1536,7 @@
 
 
 <h1 id="plugins">Plugins<a class="headerlink" href="#plugins" title="Permanent link">&para;</a></h1>
-<p>Alle Nodes kommen aus Plugins. Die eingebauten Nodes (<code>gView.Pipe.Plugins.dll</code>) sind immer Teil der App. Zwei weitere Plugins sind getrennt, weil sie eigene Abhängigkeiten mitbringen oder Code ausführen können:</p>
+<p>Alle Nodes kommen aus Plugins. Die eingebauten Nodes (<code>gView.Pipe.Plugins.dll</code>) sind immer Teil der App. Die anderen Plugins sind getrennt, weil sie eigene Abhängigkeiten mitbringen oder Code ausführen können:</p>
 <table>
 <thead>
 <tr>
@@ -1463,6 +1546,16 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><code>gView.Pipe.Plugins.AI</code></td>
+<td>AI</td>
+<td>Schickt Daten der Items an ein Sprachmodell (Anthropic API oder Azure OpenAI). Ohne dieses Plugin gehen keine Daten an ein Modell.</td>
+</tr>
+<tr>
+<td><code>gView.Pipe.Plugins.AzureStorage</code></td>
+<td>Azure Blob, Azure Blob Trigger</td>
+<td>Das Azure Storage SDK.</td>
+</tr>
 <tr>
 <td><code>gView.Pipe.Plugins.Database</code></td>
 <td>SQL</td>
@@ -1478,9 +1571,19 @@
 <td>Run Script, Run Scripts Folder, Run Scripts Repo</td>
 <td>Führt Skripte auf dem Server aus. Ohne dieses Plugin gibt es keine Skriptausführung.</td>
 </tr>
+<tr>
+<td><code>gView.Pipe.Plugins.Sftp</code></td>
+<td>SFTP</td>
+<td>Die SSH-Bibliothek (SSH.NET).</td>
+</tr>
+<tr>
+<td><code>gView.Pipe.Plugins.Secrets</code></td>
+<td>keine; ergänzt die Secret-Quellen Azure Key Vault und IdentityServer.NET (siehe <a href="secrets.html">Secrets</a>)</td>
+<td>Das Azure SDK und der IdentityServer-Client.</td>
+</tr>
 </tbody>
 </table>
-<p>ZIP und Docker-Image enthalten beide. Entferne einen Plugin-Ordner, um es abzuschalten.</p>
+<p>ZIP und Docker-Image enthalten alle. Entferne einen Plugin-Ordner, um es abzuschalten.</p>
 <h2 id="ordnerstruktur">Ordnerstruktur<a class="headerlink" href="#ordnerstruktur" title="Permanent link">&para;</a></h2>
 <p>Jedes Plugin hat einen eigenen Ordner unterhalb von <code>Pipe:PluginPath</code> (Vorgabe <code>plugins</code>). Die Haupt-DLL muss den Namen des Ordners tragen:</p>
 <div class="highlight"><pre><span></span><code>pipe\

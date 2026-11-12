@@ -581,6 +581,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../error-handling.html" class="md-nav__link">
         
   
@@ -1088,6 +1116,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../admin-guide/secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../admin-guide/troubleshooting.html" class="md-nav__link">
         
   
@@ -1287,6 +1343,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1362,35 +1445,93 @@
 <tr>
 <td><strong>Connection</strong> (required)<br><code>credentialId</code></td>
 <td>credential (Connection String)</td>
-<td>Connection String credential: provider (sqlserver, postgres or sqlite) and connection string.</td>
+<td>Connection String credential: which database (sqlserver, postgres or sqlite) and how to reach it.</td>
 </tr>
 <tr>
 <td><strong>Database</strong><br><code>provider</code></td>
 <td>one of: <code>fromCredential</code>, <code>sqlServer</code>, <code>postgreSql</code>, <code>sqlite</code></td>
-<td>From credential: its provider field (sqlserver, postgres or sqlite). Default: <code>fromCredential</code>.</td>
+<td>Kind of database; usually it comes from the credential. <br><code>fromCredential</code>: The database named in the credential (sqlserver, postgres or sqlite).<br><code>sqlServer</code>: Microsoft SQL Server or Azure SQL.<br><code>postgreSql</code>: PostgreSQL.<br><code>sqlite</code>: A SQLite file.<br> In <em>Advanced</em>. Default: <code>fromCredential</code>.</td>
 </tr>
 <tr>
 <td><strong>Operation</strong><br><code>operation</code></td>
 <td>one of: <code>query</code>, <code>execute</code></td>
-<td>Default: <code>query</code>.</td>
+<td>Read rows, or change data. <br><code>query</code>: SELECT: every result row becomes an item.<br><code>execute</code>: INSERT, UPDATE, DELETE, …: one item with the number of affected rows.<br> Default: <code>query</code>.</td>
 </tr>
 <tr>
 <td><strong>SQL</strong> (required)<br><code>sql</code></td>
 <td>code</td>
-<td>Use @name for values; they are passed as parameters, never inserted into the SQL text. Source code; <code>{{ }}</code> is not evaluated.</td>
+<td>The statement; use @name for values, e.g. WHERE id = @id. They are passed as parameters, never inserted into the SQL text. Source code; <code>{{ }}</code> is not evaluated.</td>
 </tr>
 <tr>
 <td><strong>Parameters</strong><br><code>parameters</code></td>
 <td>key/value pairs</td>
-<td>@name → value or expression, evaluated per item.</td>
+<td>@name → value, e.g. id → {{ $json.id }}; evaluated per item.</td>
 </tr>
 <tr>
 <td><strong>Timeout (seconds)</strong><br><code>commandTimeout</code></td>
 <td>integer</td>
-<td>Default: <code>30</code>.</td>
+<td>Longest wait for a statement; 0 waits without limit. In <em>Advanced</em>. Default: <code>30</code>.</td>
 </tr>
 </tbody>
 </table>
+<details class="example">
+<summary>Example: Read the open orders of a customer</summary>
+<p>Runs once per input item; every row becomes an item. The value comes in as the parameter @customer, never as SQL text.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"operation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"query"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"sql"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SELECT id, amount FROM orders WHERE customer = @customer AND status = 'open'"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ $json.customer }}"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anna"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">120.5</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
+<details class="example">
+<summary>Example: Mark orders as shipped</summary>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"operation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"execute"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"sql"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UPDATE orders SET status = 'shipped' WHERE id = @id"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ $json.id }}"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"affectedRows"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 
 
 

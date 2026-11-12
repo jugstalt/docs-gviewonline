@@ -581,6 +581,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../error-handling.html" class="md-nav__link">
         
   
@@ -1088,6 +1116,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../admin-guide/secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../admin-guide/troubleshooting.html" class="md-nav__link">
         
   
@@ -1287,6 +1343,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1402,6 +1485,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#split-in-batches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Split in Batches
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#split-out" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1436,7 +1530,7 @@
 
 <h1 id="transform">Transform<a class="headerlink" href="#transform" title="Permanent link">&para;</a></h1>
 <h2 id="aggregate">Aggregate<a class="headerlink" href="#aggregate" title="Permanent link">&para;</a></h2>
-<p>Combines all items into a single item with arrays. Binary data is not carried over.</p>
+<p>Combines all items into a single item with lists. Attachments are not carried over.</p>
 <p><strong>Inputs:</strong> <code>main</code> · <strong>Outputs:</strong> <code>main</code></p>
 <table>
 <thead>
@@ -1450,20 +1544,103 @@
 <tr>
 <td><strong>Aggregate</strong><br><code>mode</code></td>
 <td>one of: <code>allItemData</code>, <code>individualFields</code></td>
-<td>Default: <code>allItemData</code>.</td>
+<td>What to collect from the items. <br><code>allItemData</code>: One list with all items, e.g. to send them in one request.<br><code>individualFields</code>: One list per field with the values of all items, e.g. all email addresses.<br> Default: <code>allItemData</code>.</td>
 </tr>
 <tr>
 <td><strong>Put into field</strong><br><code>destination</code></td>
 <td>text</td>
-<td>All item data: name of the array field.</td>
+<td>Name of the field that gets the list, e.g. orders. Only when <em>Aggregate</em> is <code>allItemData</code>.</td>
 </tr>
 <tr>
 <td><strong>Fields</strong><br><code>fields</code></td>
 <td>list of text</td>
-<td>Individual fields: paths to collect; items without the field are left out.</td>
+<td>Fields to collect, e.g. email or customer.name; items without the field are left out. Only when <em>Aggregate</em> is <code>individualFields</code>.</td>
 </tr>
 </tbody>
 </table>
+<details class="example">
+<summary>Example: All items into one list</summary>
+<p>Three items become one item with a list, e.g. to send all orders in one HTTP request.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"allItemData"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
+<details class="example">
+<summary>Example: Collect the values of one field</summary>
+<p>One list per field, e.g. all addresses for one mail. Items without the field are left out.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"individualFields"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">"email"</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anna"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"anna@example.com"</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ben"</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cleo"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cleo@example.com"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">"anna@example.com"</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">"cleo@example.com"</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 <h2 id="code">Code<a class="headerlink" href="#code" title="Permanent link">&para;</a></h2>
 <p>Transforms items with JavaScript, once for all items or once per item.</p>
 <p><strong>Inputs:</strong> <code>main</code> · <strong>Outputs:</strong> <code>main</code></p>
@@ -1479,15 +1656,75 @@
 <tr>
 <td><strong>Mode</strong><br><code>mode</code></td>
 <td>one of: <code>allItems</code>, <code>eachItem</code></td>
-<td>Default: <code>allItems</code>.</td>
+<td>How often the code runs. <br><code>allItems</code>: Runs once: items holds all input items, return an array of objects.<br><code>eachItem</code>: Runs per item with $json: return an object, or null to drop the item.<br> Default: <code>allItems</code>.</td>
 </tr>
 <tr>
 <td><strong>JavaScript</strong><br><code>code</code></td>
 <td>code</td>
-<td>Available: items (all items mode), $json, $itemIndex (each item mode), $input, $node, $workflow, $execution, $now. Source code; <code>{{ }}</code> is not evaluated.</td>
+<td>Available: items (once for all), $json, $itemIndex (per item), $input, $node, $workflow, $execution, $now. Source code; <code>{{ }}</code> is not evaluated.</td>
 </tr>
 </tbody>
 </table>
+<details class="example">
+<summary>Example: Sum up all items</summary>
+<p>Once for all items: items holds the JSON of every item; the returned array becomes the output items.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"allItems"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"const total = items.reduce((sum, item) =&gt; sum + item.amount, 0);\nreturn [{ count: items.length, total }];"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
+<details class="example">
+<summary>Example: Change each item, drop some</summary>
+<p>Once per item: $json is the item; return null to drop it.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eachItem"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"if ($json.amount &lt; 50) return null;\nreturn { ...$json, customer: $json.customer.toUpperCase() };"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anna"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ben"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ANNA"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 <h2 id="crypto">Crypto<a class="headerlink" href="#crypto" title="Permanent link">&para;</a></h2>
 <p>Hashes text or attachments (SHA-256, SHA-512, SHA-1, MD5), signs them with HMAC, creates UUIDs and encodes or decodes Base64. Writes the result into a field of each item.</p>
 <p><strong>Inputs:</strong> <code>main</code> · <strong>Outputs:</strong> <code>main</code></p>
@@ -1503,45 +1740,123 @@
 <tr>
 <td><strong>Operation</strong><br><code>operation</code></td>
 <td>one of: <code>hash</code>, <code>hmac</code>, <code>uuid</code>, <code>base64Encode</code>, <code>base64Decode</code></td>
-<td>Default: <code>hash</code>.</td>
+<td>What to compute. <br><code>hash</code>: A checksum of text or a file, e.g. to detect changes.<br><code>hmac</code>: A signature with a secret key, e.g. to check or sign webhook calls.<br><code>uuid</code>: A new random id, e.g. 3f2b8c1e-….<br><code>base64Encode</code>: Text or a file as Base64 text.<br><code>base64Decode</code>: Base64 text back to plain text.<br> Default: <code>hash</code>.</td>
 </tr>
 <tr>
 <td><strong>Source</strong><br><code>source</code></td>
 <td>one of: <code>value</code>, <code>binary</code></td>
-<td>Hash, HMAC, Base64 encode: the Value text or an attachment. Default: <code>value</code>.</td>
+<td>Work on the text in Value or on an attachment. <br><code>value</code>: The text in Value.<br><code>binary</code>: The content of an attachment, e.g. a file from Read File.<br> Only when <em>Operation</em> is <code>hash</code> or <code>hmac</code> or <code>base64Encode</code>. Default: <code>value</code>.</td>
 </tr>
 <tr>
 <td><strong>Value</strong><br><code>value</code></td>
 <td>text</td>
-<td>Text to work on (UTF-8). Supports expressions.</td>
+<td>Text to work on, e.g. {{ $json.body }}; ignored for an attachment. Only when <em>Operation</em> is <code>hash</code> or <code>hmac</code> or <code>base64Encode</code> or <code>base64Decode</code>. Supports expressions.</td>
 </tr>
 <tr>
-<td><strong>Binary property</strong><br><code>binaryProperty</code></td>
+<td><strong>Attachment name</strong><br><code>binaryProperty</code></td>
 <td>text</td>
-<td>Source 'Binary': the attachment.</td>
+<td>Name of the attachment, data unless an earlier node named it differently. Only when <em>Source</em> is <code>binary</code>.</td>
 </tr>
 <tr>
 <td><strong>Algorithm</strong><br><code>algorithm</code></td>
 <td>one of: <code>sha256</code>, <code>sha512</code>, <code>sha1</code>, <code>md5</code></td>
-<td>Hash, HMAC. MD5 and SHA-1 only for checksums, not for security. Default: <code>sha256</code>.</td>
+<td>Hash function; SHA-256 unless a partner asks for another. <br><code>sha256</code>: The common choice.<br><code>sha512</code>: Longer and stronger.<br><code>sha1</code>: Only for checksums of old systems, not for security.<br><code>md5</code>: Only for checksums of old systems, not for security.<br> Only when <em>Operation</em> is <code>hash</code> or <code>hmac</code>. Default: <code>sha256</code>.</td>
 </tr>
 <tr>
 <td><strong>Secret</strong><br><code>secret</code></td>
 <td>text</td>
-<td>HMAC: the key, best from a secret variable. Supports expressions.</td>
+<td>The key, best from a secret variable, e.g. {{ $vars.WEBHOOK_SECRET }}. Only when <em>Operation</em> is <code>hmac</code>. Supports expressions.</td>
 </tr>
 <tr>
 <td><strong>Output</strong><br><code>output</code></td>
 <td>one of: <code>hex</code>, <code>base64</code></td>
-<td>Hash, HMAC: hex (lower case) or Base64. Default: <code>hex</code>.</td>
+<td>How the result is written. <br><code>hex</code>: Lower-case hex digits, e.g. 2cf24d….<br><code>base64</code>: Base64 text, shorter.<br> Only when <em>Operation</em> is <code>hash</code> or <code>hmac</code>. Default: <code>hex</code>.</td>
 </tr>
 <tr>
 <td><strong>Target field</strong> (required)<br><code>targetField</code></td>
 <td>text</td>
-<td></td>
+<td>Field that gets the result, e.g. hash or signature.</td>
 </tr>
 </tbody>
 </table>
+<details class="example">
+<summary>Example: SHA-256 checksum of a field</summary>
+<p>The item keeps its fields and gets the checksum, e.g. to notice when a text has changed.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"operation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hash"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ $json.text }}"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"targetField"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hash"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hello"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hello"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
+<details class="example">
+<summary>Example: Encode text as Base64</summary>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"operation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"base64Encode"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ $json.user }}:{{ $json.password }}"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"targetField"</span><span class="p">:</span><span class="w"> </span><span class="s2">"basic"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pipe"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"secret"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pipe"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"secret"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"basic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cGlwZTpzZWNyZXQ="</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
+<details class="example">
+<summary>Example: A new id per item</summary>
+<p>Every item gets its own random UUID.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"operation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"targetField"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anna"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anna"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3f2b8c1e-5d47-4f0a-9b8e-2c6a1d7e4f90"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 <h2 id="date-time">Date &amp; Time<a class="headerlink" href="#date-time" title="Permanent link">&para;</a></h2>
 <p>Gets the current time, formats, parses and calculates dates, and converts between time zones. Writes the result into a field of each item.</p>
 <p><strong>Inputs:</strong> <code>main</code> · <strong>Outputs:</strong> <code>main</code></p>
@@ -1557,42 +1872,42 @@
 <tr>
 <td><strong>Operation</strong><br><code>operation</code></td>
 <td>one of: <code>now</code>, <code>format</code>, <code>parse</code>, <code>add</code>, <code>subtract</code>, <code>difference</code>, <code>convertTimeZone</code>, <code>startOf</code></td>
-<td>Default: <code>format</code>.</td>
+<td>What to do with the date. <br><code>now</code>: The current date and time.<br><code>format</code>: A date as text in a pattern, e.g. 02.11.2026.<br><code>parse</code>: Text in a pattern to a date (ISO 8601).<br><code>add</code>: A date plus an amount of time, e.g. 14 days.<br><code>subtract</code>: A date minus an amount of time.<br><code>difference</code>: The time between two dates, in a unit.<br><code>convertTimeZone</code>: The same moment in another time zone.<br><code>startOf</code>: The start of the day, week, month … of a date.<br> Default: <code>format</code>.</td>
 </tr>
 <tr>
 <td><strong>Date</strong><br><code>value</code></td>
 <td>text</td>
-<td>The date to work on: ISO 8601 like 2026-11-02T08:30:00+01:00, or text in the pattern (Parse), or Unix seconds or milliseconds. Not used by Now. Supports expressions.</td>
+<td>The date: ISO 8601 like 2026-11-02T08:30:00+01:00, Unix seconds or milliseconds, or for Parse text in the pattern. Only when <em>Operation</em> is <code>format</code> or <code>parse</code> or <code>add</code> or <code>subtract</code> or <code>difference</code> or <code>convertTimeZone</code> or <code>startOf</code>. Supports expressions.</td>
 </tr>
 <tr>
 <td><strong>Until</strong><br><code>until</code></td>
 <td>text</td>
-<td>Difference: the second date; empty means now. The result is positive when it is later than Date. Supports expressions.</td>
+<td>The second date; empty means now. The result is positive when it is later than Date. Only when <em>Operation</em> is <code>difference</code>. Supports expressions.</td>
 </tr>
 <tr>
 <td><strong>Pattern</strong><br><code>pattern</code></td>
 <td>text</td>
-<td>.NET date pattern. Format: the output (empty: ISO 8601). Parse: the input (empty: any common form). Supports expressions.</td>
+<td>e.g. dd.MM.yyyy or yyyy-MM-dd HH:mm; empty: ISO 8601 (Format) or any common form (Parse). Only when <em>Operation</em> is <code>format</code> or <code>parse</code>. Supports expressions.</td>
 </tr>
 <tr>
 <td><strong>Culture</strong><br><code>culture</code></td>
 <td>text</td>
-<td>For month and day names, e.g. de-DE or en-US. Supports expressions.</td>
+<td>Language of month and day names, e.g. de-DE or en-US. Only when <em>Operation</em> is <code>format</code> or <code>parse</code>. In <em>Advanced</em>. Supports expressions.</td>
 </tr>
 <tr>
 <td><strong>Amount</strong><br><code>amount</code></td>
 <td>number</td>
-<td>Add, Subtract: how many units. Default: <code>1</code>.</td>
+<td>How many units, e.g. 14. Only when <em>Operation</em> is <code>add</code> or <code>subtract</code>. Default: <code>1</code>.</td>
 </tr>
 <tr>
 <td><strong>Unit</strong><br><code>unit</code></td>
 <td>one of: <code>milliseconds</code>, <code>seconds</code>, <code>minutes</code>, <code>hours</code>, <code>days</code>, <code>weeks</code>, <code>months</code>, <code>years</code></td>
-<td>Add, Subtract, Difference, Start of. Default: <code>days</code>.</td>
+<td>Unit of the amount, the difference or the start. <br><code>milliseconds</code>: 1/1000 second.<br><code>seconds</code>: Seconds.<br><code>minutes</code>: Minutes.<br><code>hours</code>: Hours.<br><code>days</code>: Calendar days.<br><code>weeks</code>: 7 days; a week starts on Monday.<br><code>months</code>: Calendar months, whole numbers only.<br><code>years</code>: Calendar years, whole numbers only.<br> Only when <em>Operation</em> is <code>add</code> or <code>subtract</code> or <code>difference</code> or <code>startOf</code>. Default: <code>days</code>.</td>
 </tr>
 <tr>
 <td><strong>Time zone</strong><br><code>timeZone</code></td>
 <td>text</td>
-<td>IANA or Windows id, e.g. Europe/Vienna. Convert time zone: the target. Now, Format, Start of: the zone to work in. Parse: the zone of text without offset. Supports expressions.</td>
+<td>e.g. Europe/Vienna; Convert time zone: the target, Parse: the zone of text without offset, otherwise the zone to work in. Only when <em>Operation</em> is <code>now</code> or <code>format</code> or <code>parse</code> or <code>convertTimeZone</code> or <code>startOf</code>. Supports expressions.</td>
 </tr>
 <tr>
 <td><strong>Target field</strong> (required)<br><code>targetField</code></td>
@@ -1601,6 +1916,92 @@
 </tr>
 </tbody>
 </table>
+<details class="example">
+<summary>Example: Due date 14 days after the invoice date</summary>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"operation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"add"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ $json.invoiceDate }}"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"days"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"targetField"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dueDate"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"R-17"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"invoiceDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-11-02T08:30:00+01:00"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"invoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"R-17"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"invoiceDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-11-02T08:30:00+01:00"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"dueDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-11-16T08:30:00+01:00"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
+<details class="example">
+<summary>Example: Format a date for people</summary>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"operation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"format"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ $json.invoiceDate }}"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"pattern"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dd.MM.yyyy"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"targetField"</span><span class="p">:</span><span class="w"> </span><span class="s2">"printed"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"invoiceDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-11-02T08:30:00+01:00"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"invoiceDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-11-02T08:30:00+01:00"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"printed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02.11.2026"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
+<details class="example">
+<summary>Example: Days between two dates</summary>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"operation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"difference"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ $json.openedAt }}"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"until"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ $json.closedAt }}"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"days"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"targetField"</span><span class="p">:</span><span class="w"> </span><span class="s2">"days"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"ticket"</span><span class="p">:</span><span class="w"> </span><span class="mi">4711</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"openedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-11-02T00:00:00Z"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"closedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-11-05T12:00:00Z"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"ticket"</span><span class="p">:</span><span class="w"> </span><span class="mi">4711</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"openedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-11-02T00:00:00Z"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"closedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-11-05T12:00:00Z"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"days"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 <h2 id="limit">Limit<a class="headerlink" href="#limit" title="Permanent link">&para;</a></h2>
 <p>Keeps only the first or the last N items.</p>
 <p><strong>Inputs:</strong> <code>main</code> · <strong>Outputs:</strong> <code>main</code></p>
@@ -1616,17 +2017,55 @@
 <tr>
 <td><strong>Max items</strong><br><code>maxItems</code></td>
 <td>integer</td>
-<td>Default: <code>1</code>.</td>
+<td>How many items go on, e.g. 10; the rest is dropped. Default: <code>1</code>.</td>
 </tr>
 <tr>
 <td><strong>Keep</strong><br><code>keep</code></td>
 <td>one of: <code>firstItems</code>, <code>lastItems</code></td>
-<td>Default: <code>firstItems</code>.</td>
+<td>Which items are kept. <br><code>firstItems</code>: The items at the start, e.g. the newest after sorting by date descending.<br><code>lastItems</code>: The items at the end.<br> Default: <code>firstItems</code>.</td>
 </tr>
 </tbody>
 </table>
+<details class="example">
+<summary>Example: Keep the first two items</summary>
+<p>E.g. after Sort: only the top two go on.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"maxItems"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"keep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"firstItems"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lamp"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"sold"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Desk"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"sold"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chair"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"sold"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lamp"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"sold"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Desk"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"sold"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 <h2 id="remove-duplicates">Remove Duplicates<a class="headerlink" href="#remove-duplicates" title="Permanent link">&para;</a></h2>
-<p>Keeps the first of several items with equal JSON (or equal selected fields).</p>
+<p>Keeps the first of several equal items (all fields equal, or the selected fields).</p>
 <p><strong>Inputs:</strong> <code>main</code> · <strong>Outputs:</strong> <code>main</code></p>
 <table>
 <thead>
@@ -1640,15 +2079,55 @@
 <tr>
 <td><strong>Compare</strong><br><code>compare</code></td>
 <td>one of: <code>allFields</code>, <code>selectedFields</code></td>
-<td>Default: <code>allFields</code>.</td>
+<td>When two items count as the same. <br><code>allFields</code>: Items are duplicates when all their fields are equal.<br><code>selectedFields</code>: Items are duplicates when the fields below are equal, e.g. the same email.<br> Default: <code>allFields</code>.</td>
 </tr>
 <tr>
 <td><strong>Fields</strong><br><code>fields</code></td>
 <td>list of text</td>
-<td>Selected fields: paths that together identify an item.</td>
+<td>Fields that together identify an item, e.g. email or customer.id. Only when <em>Compare</em> is <code>selectedFields</code>.</td>
 </tr>
 </tbody>
 </table>
+<details class="example">
+<summary>Example: One item per email address</summary>
+<p>The first item of each address is kept, later ones are dropped.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"compare"</span><span class="p">:</span><span class="w"> </span><span class="s2">"selectedFields"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">"email"</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"anna@example.com"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ben@example.com"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"anna@example.com"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fair"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"anna@example.com"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ben@example.com"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 <h2 id="set">Set<a class="headerlink" href="#set" title="Permanent link">&para;</a></h2>
 <p>Sets, renames or keeps fields of each item.</p>
 <p><strong>Inputs:</strong> <code>main</code> · <strong>Outputs:</strong> <code>main</code></p>
@@ -1664,22 +2143,92 @@
 <tr>
 <td><strong>Fields</strong><br><code>fields</code></td>
 <td>key/value pairs</td>
-<td>Field path (e.g. address.city) → value or expression.</td>
+<td>Field (e.g. address.city) → value, e.g. Vienna or {{ $json.price * 1.2 }}.</td>
 </tr>
 <tr>
 <td><strong>Rename</strong><br><code>rename</code></td>
 <td>key/value pairs</td>
-<td>Old field path → new field path (applied before setting fields).</td>
+<td>Old field → new name, e.g. mail → email; done before the fields are set.</td>
 </tr>
 <tr>
 <td><strong>Keep only set fields</strong><br><code>keepOnlySet</code></td>
 <td>true/false</td>
-<td>Default: <code>false</code>.</td>
+<td>Drop all other fields: the items have only the fields set above. Default: <code>false</code>.</td>
 </tr>
 </tbody>
 </table>
+<details class="example">
+<summary>Example: Add a calculated field and rename one</summary>
+<p>Values may be fixed or expressions; numbers stay numbers. Rename happens before the fields are set.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"gross"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ $json.net * 1.2 }}"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"rename"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"mail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anna"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"mail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"anna@example.com"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"net"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anna"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"net"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"anna@example.com"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"gross"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
+<details class="example">
+<summary>Example: Keep only some fields</summary>
+<p>With 'Keep only set fields' everything else is dropped, e.g. before writing a CSV file.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ $json.customer.name }}"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ $json.customer.address.city }}"</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"keepOnlySet"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anna"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Graz"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8010"</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anna"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Graz"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 <h2 id="sort">Sort<a class="headerlink" href="#sort" title="Permanent link">&para;</a></h2>
-<p>Sorts the items by one or more fields.</p>
+<p>Sorts the items by one or more fields: numbers by value, text alphabetically, missing values last.</p>
 <p><strong>Inputs:</strong> <code>main</code> · <strong>Outputs:</strong> <code>main</code></p>
 <table>
 <thead>
@@ -1693,12 +2242,147 @@
 <tr>
 <td><strong>Sort by</strong><br><code>fields</code></td>
 <td>list of text</td>
-<td>Field paths in order of priority; append ' desc' for descending.</td>
+<td>Fields in order of priority, e.g. customer, then date desc; desc sorts from high to low.</td>
 </tr>
 </tbody>
 </table>
+<details class="example">
+<summary>Example: Highest amount first</summary>
+<p>Numbers are compared as numbers, so 120 comes before 80.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">"amount desc"</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ben"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anna"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cleo"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anna"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ben"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cleo"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
+<h2 id="split-in-batches">Split in Batches<a class="headerlink" href="#split-in-batches" title="Permanent link">&para;</a></h2>
+<p>Turns the items into one item per batch: batch (from 1), batches, count and the items as a list. Attachments are not carried over.</p>
+<p><strong>Inputs:</strong> <code>main</code> · <strong>Outputs:</strong> <code>main</code></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Batch size</strong><br><code>batchSize</code></td>
+<td>integer</td>
+<td>Items per batch, e.g. 100; the last batch may have fewer. Default: <code>10</code>.</td>
+</tr>
+<tr>
+<td><strong>Put into field</strong><br><code>destination</code></td>
+<td>text</td>
+<td>Name of the field that holds the items of a batch, e.g. items.</td>
+</tr>
+</tbody>
+</table>
+<details class="example">
+<summary>Example: Batches of two</summary>
+<p>Five items become three batches, e.g. to call Execute Workflow or an API with at most two items at a time.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"batchSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"batch"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"batches"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"batch"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"batches"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"batch"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"batches"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 <h2 id="split-out">Split Out<a class="headerlink" href="#split-out" title="Permanent link">&para;</a></h2>
-<p>Turns an array field into one item per element.</p>
+<p>Turns a list in a field into one item per element.</p>
 <p><strong>Inputs:</strong> <code>main</code> · <strong>Outputs:</strong> <code>main</code></p>
 <table>
 <thead>
@@ -1712,15 +2396,86 @@
 <tr>
 <td><strong>Field to split out</strong> (required)<br><code>field</code></td>
 <td>text</td>
-<td>Path of an array field; every element becomes an item.</td>
+<td>A field with a list, e.g. orders or customer.addresses; every element becomes an item.</td>
 </tr>
 <tr>
 <td><strong>Keep the other fields of the item</strong><br><code>includeOtherFields</code></td>
 <td>true/false</td>
-<td>Default: <code>false</code>.</td>
+<td>Copy the other fields into every new item, e.g. the customer to each of their orders. Default: <code>false</code>.</td>
 </tr>
 </tbody>
 </table>
+<details class="example">
+<summary>Example: One item per order line</summary>
+<p>The list lines becomes two items; with 'Keep the other fields' each line also gets the order number.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lines"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"includeOtherFields"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A-17"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P-1"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P-7"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A-17"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P-1"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A-17"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P-7"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
+<details class="example">
+<summary>Example: A list of plain values</summary>
+<p>Values that aren't objects keep the name of the field.</p>
+<p>Parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tags"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">"urgent"</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">"billing"</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urgent"</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="s2">"billing"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</details>
 
 
 

@@ -585,6 +585,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../user-guide/ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../user-guide/error-handling.html" class="md-nav__link">
         
   
@@ -1207,6 +1235,34 @@
   
   
     <li class="md-nav__item">
+      <a href="secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="troubleshooting.html" class="md-nav__link">
         
   
@@ -1406,6 +1462,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versionshinweise
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1542,7 +1625,12 @@
 <tr>
 <td><code>Pipe:DocsPath</code></td>
 <td><code>docs</code></td>
-<td>Ordner mit der gebauten Dokumentation, die unter <code>/docs</code> ausgeliefert wird. ZIP und Docker-Image enthalten sie. Ohne ihn gibt es weder <code>/docs</code> noch den Docs-Link.</td>
+<td>Ordner mit der gebauten Dokumentation, die unter <code>/docs</code> ausgeliefert wird. ZIP und Docker-Image enthalten sie. Ohne ihn führen die Docs-Links zur öffentlichen Dokumentation.</td>
+</tr>
+<tr>
+<td><code>Pipe:DocsUrl</code></td>
+<td></td>
+<td>Adresse, auf die die Docs-Links und die ?-Buttons der Oberfläche zeigen. Standard: <code>/docs</code>, wenn die gebaute Dokumentation da ist, sonst https://docs.gviewonline.com/other/gview-pipe/.</td>
 </tr>
 <tr>
 <td><code>Pipe:PluginPath</code></td>
@@ -1620,6 +1708,11 @@
 <td>Tage, die Executions behalten werden; <code>0</code> bedeutet keine Grenze. Ein Workflow kann einen eigenen Wert setzen. Ältere Executions werden einmal am Tag und nach jedem Lauf gelöscht.</td>
 </tr>
 <tr>
+<td><code>Pipe:WorkflowVersions</code></td>
+<td><code>50</code></td>
+<td>Gespeicherte <a href="operations.html#workflow-versionen">Versionen</a> pro Workflow; <code>0</code> behält keine.</td>
+</tr>
+<tr>
 <td><code>Pipe:AuditRetentionDays</code></td>
 <td><code>365</code></td>
 <td>Tage, die das <a href="operations.html#audit-log">Audit-Log</a> behalten wird, in ganzen Monaten; <code>0</code> bedeutet keine Grenze.</td>
@@ -1629,11 +1722,11 @@
 <p>Relative Pfade gelten relativ zum Arbeitsordner der App.</p>
 <p>Beispiel (<code>_config/pipe.config</code>):</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;Pipe&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;DataPath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;D:\\gview-pipe\\data&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;FileRoots&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;import&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;D:\\exchange\\import&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;export&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;D:\\exchange\\export&quot;</span>
+<span class="w">  </span><span class="nt">"Pipe"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"DataPath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"D:\\gview-pipe\\data"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"FileRoots"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"import"</span><span class="p">:</span><span class="w"> </span><span class="s2">"D:\\exchange\\import"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"export"</span><span class="p">:</span><span class="w"> </span><span class="s2">"D:\\exchange\\export"</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
@@ -1642,14 +1735,14 @@
 <h2 id="environments-und-variablen">Environments und Variablen<a class="headerlink" href="#environments-und-variablen" title="Permanent link">&para;</a></h2>
 <p>Jede Instanz läuft in einem <strong>Environment</strong>: ein Testserver in <code>TEST</code>, der Produktionsserver in <code>PROD</code>. Gruppen und Workflows erben es, wenn sie kein eigenes setzen, siehe <a href="../user-guide/variables.html">Variablen und Environments</a>. Anwender können das Environment der Instanz in der App nicht ändern.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;Pipe&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;Environment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PROD&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;Environments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;TEST&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;STAGE&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;PROD&quot;</span><span class="w"> </span><span class="p">],</span>
-<span class="w">    </span><span class="nt">&quot;Variables&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;DATABASE_SERVER&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;DEFAULT&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;db-test&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;PROD&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;db-prod&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">      </span><span class="nt">&quot;DATABASE_PASSWORD&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;PROD&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="nt">"Pipe"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"Environment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROD"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"Environments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"TEST"</span><span class="p">,</span><span class="w"> </span><span class="s2">"STAGE"</span><span class="p">,</span><span class="w"> </span><span class="s2">"PROD"</span><span class="w"> </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"Variables"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"DATABASE_SERVER"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"DEFAULT"</span><span class="p">:</span><span class="w"> </span><span class="s2">"db-test"</span><span class="p">,</span><span class="w"> </span><span class="nt">"PROD"</span><span class="p">:</span><span class="w"> </span><span class="s2">"db-prod"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">"DATABASE_PASSWORD"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"PROD"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;SecretVariables&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;DATABASE_PASSWORD&quot;</span><span class="w"> </span><span class="p">]</span>
+<span class="w">    </span><span class="nt">"SecretVariables"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"DATABASE_PASSWORD"</span><span class="w"> </span><span class="p">]</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -1666,8 +1759,8 @@ Pipe__Variables__DATABASE_SERVER__PROD=db-prod
 <h2 id="lauschadresse">Lauschadresse<a class="headerlink" href="#lauschadresse" title="Permanent link">&para;</a></h2>
 <p>Die Startskripte lauschen standardmäßig auf <code>http://localhost:5100</code>. Um das zu ändern, etwa für eine zweite Instanz auf demselben Rechner, setze <code>urls</code> oben in <code>pipe.config</code> (neben <code>Pipe</code>, nicht darin):</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;urls&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://localhost:5101&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;Pipe&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="nt">"urls"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:5101"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"Pipe"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><code>urls</code> in <code>pipe.config</code> gewinnt gegen <code>ASPNETCORE_URLS</code>; <code>--urls</code> auf der Kommandozeile gewinnt gegen beide. Der Windows-Dienst übergibt seinen Port mit <code>--urls</code> (<code>gview-pipe-service.bat install &lt;name&gt; &lt;port&gt;</code>). Das Docker-Image nutzt <code>http://*:8080</code>.</p>
