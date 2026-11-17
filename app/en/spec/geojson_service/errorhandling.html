@@ -6,16 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Error Handling &#8212; gView GIS 8.x documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=d7bb20b6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=9b2032db" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=247da48f" />
     <script src="../../_static/documentation_options.js?v=5f428a84"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/js/theme.js"></script>
     <script src="../../_static/js/petite-vue.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Network Service Specification" href="../network_service/index.html" />
     <link rel="prev" title="Token Endpoint" href="token.html" /> 
   </head><body data-dark_mode_code_blocks="true">
 
@@ -102,7 +103,7 @@
 
         <div class="searchbox_wrapper">
             
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
@@ -110,14 +111,14 @@
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
+</search>
 <script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
     </nav>
 </div>
 
     
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Table of contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../setup/index.html">Getting Started</a></li>
@@ -140,6 +141,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Error Handling</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../network_service/index.html">Network Service Specification</a></li>
 </ul>
 
         </div>
@@ -160,9 +162,9 @@ an <strong>ErrorResponse</strong> is returned containing details about the error
 <h2>Error Response Structure<a class="headerlink" href="#error-response-structure" title="Link to this heading">¶</a></h2>
 <p>The structure of the <strong>ErrorResponse</strong> is defined as follows:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ErrorResponse&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;errorCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;errorMessage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Invalid request parameters.&quot;</span>
+<span class="w">  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ErrorResponse"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"errorCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"errorMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid request parameters."</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -235,6 +237,8 @@ correct their input.</p></li>
 
             <div class="right">
                 
+                    <a href="../network_service/index.html"><span>Network Service Specification</span><span class="icon">&gt;</span></a>
+                
             </div>
         </div>
     </div>
@@ -242,7 +246,7 @@ correct their input.</p></li>
 
     <div class="footer" role="contentinfo">
     &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

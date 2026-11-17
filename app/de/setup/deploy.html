@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Installation &#8212; gView GIS 8.x Dokumentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=d7bb20b6" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=9b2032db" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=247da48f" />
     <script src="../_static/documentation_options.js?v=223d518e"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/translations.js?v=70a09b52"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/translations.js?v=9bf55d28"></script>
     <script src="../_static/js/theme.js"></script>
     <script src="../_static/js/petite-vue.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
@@ -104,7 +104,7 @@
 
         <div class="searchbox_wrapper">
             
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
@@ -112,14 +112,14 @@
       <input type="submit" value="Los" />
     </form>
     </div>
-</div>
+</search>
 <script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
     </nav>
 </div>
 
     
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Inhaltsverzeichnis:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Erste Schritte</a><ul class="current">
@@ -135,6 +135,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Anleitungen (Tutorials)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../appendix/index.html">Anhang</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../spec/geojson_service/index.html">GeoJson Service Spezifikation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spec/network_service/index.html">Network Service Spezifikation</a></li>
 </ul>
 
         </div>
@@ -230,7 +231,7 @@ Input product index [0]:
 </div>
 <p>Nachdem die Version und das Produkt gewählt wurden, fragt das Deployment-Tool noch einmal nach, ob
 tatsächlich die gewählte Version mit dem Profil deployed werden sollte:</p>
-<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>Deploy &#39;Everything&#39; from version 6.24.1801 to profile local
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>Deploy 'Everything' from version 6.24.1801 to profile local
 Do you want to continue? Y/N [Y]
 </pre></div>
 </div>
@@ -395,8 +396,8 @@ Beantwortet explizit die Frage „do you want to continue“ und überschreibt d
 <div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>gview.deploy.exe -p production -v 1.2.3.4 --product Everything -y <span class="se">^</span>
 <span class="se"> </span> --repository-path C:\apps\gview-gis\production\gview-repository <span class="se">^</span>
 <span class="se"> </span> --server-url http://localhost:45622 <span class="se">^</span>
-<span class="se"> </span> --admin-username admin --admin-password <span class="s2">&quot;Str0ng!Pass&quot;</span> <span class="se">^</span>
-<span class="se"> </span> --carto-username carto --carto-password <span class="s2">&quot;Str0ng!Pass&quot;</span>
+<span class="se"> </span> --admin-username admin --admin-password <span class="s2">"Str0ng!Pass"</span> <span class="se">^</span>
+<span class="se"> </span> --carto-username carto --carto-password <span class="s2">"Str0ng!Pass"</span>
 </pre></div>
 </div>
 <p>Beispiel: bestehendes Profil aktualisieren, unbeaufsichtigt (die Profil-Parameter oben wurden
@@ -463,7 +464,7 @@ entsprechend abgesichert werden.</p>
 
     <div class="footer" role="contentinfo">
     &#169; Copyright 2024, Jürgen Gstaltmaier.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

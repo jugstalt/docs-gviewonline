@@ -94,5 +94,6 @@ Die Komponenten des gView Frameworks lassen sich in drei Kategorien einteilen:
    examples/index
    appendix/index
    spec/geojson_service/index
+   spec/network_service/index
 
 

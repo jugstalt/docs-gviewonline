@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Legend Endpoint &#8212; gView GIS 8.x Dokumentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=d7bb20b6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=9b2032db" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=247da48f" />
     <script src="../../_static/documentation_options.js?v=223d518e"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../../_static/translations.js?v=70a09b52"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/translations.js?v=9bf55d28"></script>
     <script src="../../_static/js/theme.js"></script>
     <script src="../../_static/js/petite-vue.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
@@ -104,7 +104,7 @@
 
         <div class="searchbox_wrapper">
             
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
@@ -112,14 +112,14 @@
       <input type="submit" value="Los" />
     </form>
     </div>
-</div>
+</search>
 <script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
     </nav>
 </div>
 
     
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Inhaltsverzeichnis:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../setup/index.html">Erste Schritte</a></li>
@@ -142,6 +142,7 @@
 <li class="toctree-l2"><a class="reference internal" href="errorhandling.html">Error Handling</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../network_service/index.html">Network Service Spezifikation</a></li>
 </ul>
 
         </div>
@@ -163,10 +164,10 @@ Die Anfrage kann entweder als GET- oder POST-Anfrage erfolgen.</p>
 <p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{folder}/{service}/legend?width=20&amp;height=20</span></code></p>
 <p>Bei einer POST-Anfrage wird der folgende Body verwendet:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GetLegend&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;dpi&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">96</span>
+<span class="w">  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GetLegend"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"dpi"</span><span class="p">:</span><span class="w"> </span><span class="mi">96</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -182,21 +183,21 @@ Die Anfrage kann entweder als GET- oder POST-Anfrage erfolgen.</p>
 <p>Der Response enthält Informationen zu den einzelnen Layern und deren Legendenitems.
 Die Struktur des Responses ist wie folgt definiert:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GetLegendResponse&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;layers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GetLegendResponse"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"layers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;layer1&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Layer 1&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;layerType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FeatureLayer&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;minScaleDenominator&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;maxScaleDenominator&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"layer1"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Layer 1"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"layerType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FeatureLayer"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"minScaleDenominator"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"maxScaleDenominator"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Gebäude&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;imageBase64&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;iVBORw0KGgoAAAANSUhEUg...&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;imageContentType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;image/png&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span>
+<span class="w">          </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gebäude"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"imageBase64"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iVBORw0KGgoAAAANSUhEUg..."</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"imageContentType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/png"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">]</span>
 <span class="w">    </span><span class="p">}</span>
@@ -275,7 +276,7 @@ Die Struktur des Responses ist wie folgt definiert:</p>
 
     <div class="footer" role="contentinfo">
     &#169; Copyright 2024, Jürgen Gstaltmaier.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

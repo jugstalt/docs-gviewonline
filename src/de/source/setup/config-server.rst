@@ -12,6 +12,10 @@ Der **gView.Server** kann über die Datei ``_config/mapserver.json`` konfigurier
         // Folder, where gView Server stores Services, Logins, etc
         "services-folder": "{repository-path}/server/configuration",
 
+        // Ordner, in dem die gebauten Netzwerke (SpatialNET) der Dienste liegen (optional).
+        // Standard: {services-folder}/networks, Details siehe Network Service Spezifikation
+        "networks-folder": "{repository-path}/server/networks",
+
         // Path, where gView Server stores Map Request Images
         "output-path": "{repository-path}/server/web/output",
         // Url to the Path, where gView Server stores Map Request Images
@@ -113,6 +117,12 @@ eingehenden Request. Das Laden erfolgt im Hintergrund und verzögert den Servers
 diese Dienste bereits beim ersten Client-Request geladen zur Verfügung, was die erste Antwortzeit
 verbessert. Mögliche Werte sind z. B. ``*`` (alle Dienste), ``myfolder/*`` (alle Dienste in einem Ordner)
 oder ``myfolder/myservice`` (ein einzelner Dienst).
+
+Mit ``networks-folder`` (optional) wird der Ordner festgelegt, in dem die gebauten Netzwerke (SpatialNET) der Dienste
+liegen. Standard ist ``{services-folder}/networks``; die Netzwerke liegen dort in ``{ordner}/{dienst}.network``.
+Die Suchen auf diesen Netzwerken (*NetworkServer*) werden zusätzlich im Abschnitt ``Network`` der ``appsettings.json``
+begrenzt (``MaxResultNodes``, ``TimeoutSeconds``, ``MaxParallel``, ``MaxLoadedShards``, ``IdleMinutes``).
+Die genaue Beschreibung der Parameter steht in :ref:`network-service-administration`.
 
 Im Abschnitt ``mapserver-defaults`` können *Default-Werte* für Kartendienste angegeben werden.
 Werden für einen Dienst diese Werte nicht explizit gesetzt, wird der hier eingestellte

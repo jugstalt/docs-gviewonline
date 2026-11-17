@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Konfiguration gView.WebApps &#8212; gView GIS 8.x Dokumentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=d7bb20b6" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=9b2032db" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=247da48f" />
     <script src="../_static/documentation_options.js?v=223d518e"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/translations.js?v=70a09b52"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/translations.js?v=9bf55d28"></script>
     <script src="../_static/js/theme.js"></script>
     <script src="../_static/js/petite-vue.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
@@ -104,7 +104,7 @@
 
         <div class="searchbox_wrapper">
             
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
@@ -112,14 +112,14 @@
       <input type="submit" value="Los" />
     </form>
     </div>
-</div>
+</search>
 <script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
     </nav>
 </div>
 
     
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Inhaltsverzeichnis:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Erste Schritte</a><ul class="current">
@@ -139,6 +139,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Anleitungen (Tutorials)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../appendix/index.html">Anhang</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../spec/geojson_service/index.html">GeoJson Service Spezifikation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spec/network_service/index.html">Network Service Spezifikation</a></li>
 </ul>
 
         </div>
@@ -154,29 +155,29 @@
 <span id="config-webapps"></span><h1>Konfiguration gView.WebApps<a class="headerlink" href="#konfiguration-gview-webapps" title="Link to this heading">¶</a></h1>
 <p>Die <em>gView.WebApps</em> Anwendung kann über die Datei <code class="docutils literal notranslate"><span class="pre">_config/gview-webapps.config</span></code> konfiguriert werden:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="s2">&quot;RepositoryPath&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;{repository-path}/gview-web&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;Authentication&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="s2">"RepositoryPath"</span><span class="o">:</span><span class="w"> </span><span class="s2">"{repository-path}/gview-web"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"Authentication"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="c1">// depends on your authentication provider</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="s2">&quot;Drives&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s2">&quot;TILE_CACHES&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;{repository-path}/server/web/tile-caches&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;USER&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;{repository-path}/gview-web/users/{{username}}&quot;</span>
+<span class="w">    </span><span class="s2">"Drives"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">"TILE_CACHES"</span><span class="o">:</span><span class="w"> </span><span class="s2">"{repository-path}/server/web/tile-caches"</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"USER"</span><span class="o">:</span><span class="w"> </span><span class="s2">"{repository-path}/gview-web/users/{{username}}"</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="s2">&quot;CustomTiles&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">"CustomTiles"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="s2">&quot;Title&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Local gView Server&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;Description&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;gView Server in development environment&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;TargetUrl&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https://localhost:44331&quot;</span>
+<span class="w">            </span><span class="s2">"Title"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Local gView Server"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"Description"</span><span class="o">:</span><span class="w"> </span><span class="s2">"gView Server in development environment"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"TargetUrl"</span><span class="o">:</span><span class="w"> </span><span class="s2">"https://localhost:44331"</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">],</span>
-<span class="w">    </span><span class="s2">&quot;Publish&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// optional</span>
-<span class="w">        </span><span class="s2">&quot;Servers&quot;</span><span class="o">:</span>
+<span class="w">    </span><span class="s2">"Publish"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// optional</span>
+<span class="w">        </span><span class="s2">"Servers"</span><span class="o">:</span>
 <span class="w">        </span><span class="p">[</span>
 <span class="w">            </span><span class="p">{</span>
-<span class="w">                </span><span class="s2">&quot;Name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;Url&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https://localhost:44331&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;Client&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;carto-publish&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1">// optional</span>
-<span class="w">                </span><span class="s2">&quot;Secret&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;008bHbuWQx7JAY5lxOWnNWqm67L&quot;</span><span class="w">  </span><span class="c1">// optional: if you dont set, user is ask on publish</span>
+<span class="w">                </span><span class="s2">"Name"</span><span class="o">:</span><span class="w"> </span><span class="s2">"localhost"</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">"Url"</span><span class="o">:</span><span class="w"> </span><span class="s2">"https://localhost:44331"</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">"Client"</span><span class="o">:</span><span class="w"> </span><span class="s2">"carto-publish"</span><span class="p">,</span><span class="w">  </span><span class="c1">// optional</span>
+<span class="w">                </span><span class="s2">"Secret"</span><span class="o">:</span><span class="w"> </span><span class="s2">"008bHbuWQx7JAY5lxOWnNWqm67L"</span><span class="w">  </span><span class="c1">// optional: if you dont set, user is ask on publish</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">]</span>
 <span class="w">    </span><span class="p">}</span>
@@ -289,19 +290,19 @@ Hashwert im Hexadezimalformat angegeben. Dieser Hash kann mit dem
 <li><p><a class="reference external" href="https://coding.tools/sha512">https://coding.tools/sha512</a></p></li>
 </ul>
 </div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Authentication&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s2">&quot;Type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;forms&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;Forms&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="s2">&quot;AdminUsers&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">"Authentication"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">"Type"</span><span class="o">:</span><span class="w"> </span><span class="s2">"forms"</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"Forms"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">"AdminUsers"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                </span><span class="p">{</span>
-<span class="w">                    </span><span class="s2">&quot;Username&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="p">,</span>
-<span class="w">                    </span><span class="s2">&quot;PasswordHash&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;B109F3BBBC244EB82441917ED06D6....&quot;</span>
+<span class="w">                    </span><span class="s2">"Username"</span><span class="o">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">"PasswordHash"</span><span class="o">:</span><span class="w"> </span><span class="s2">"B109F3BBBC244EB82441917ED06D6...."</span>
 <span class="w">                </span><span class="p">}</span>
 <span class="w">            </span><span class="p">],</span>
-<span class="w">            </span><span class="s2">&quot;CartoUsers&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">"CartoUsers"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                </span><span class="p">{</span>
-<span class="w">                    </span><span class="s2">&quot;Username&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;carto&quot;</span><span class="p">,</span>
-<span class="w">                    </span><span class="s2">&quot;PasswordHash&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;5E884898DA28047151D0E56F8DC629277360...&quot;</span>
+<span class="w">                    </span><span class="s2">"Username"</span><span class="o">:</span><span class="w"> </span><span class="s2">"carto"</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">"PasswordHash"</span><span class="o">:</span><span class="w"> </span><span class="s2">"5E884898DA28047151D0E56F8DC629277360..."</span>
 <span class="w">                </span><span class="p">}</span>
 <span class="w">            </span><span class="p">]</span>
 <span class="w">        </span><span class="p">}</span>
@@ -318,15 +319,15 @@ der <em>Identity Server</em> (<code class="docutils literal notranslate"><span c
 <em>gView.WebApps</em> als Client hinzugefügt werden. Die entsprechende <code class="docutils literal notranslate"><span class="pre">ClientId</span></code> und das
 <code class="docutils literal notranslate"><span class="pre">ClientSecret</span></code> sind ebenfalls hier einzutragen. Als <code class="docutils literal notranslate"><span class="pre">Scopes</span></code> werden die folgenden
 Werte empfohlen:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Authentication&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">       </span><span class="s2">&quot;Type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;oidc&quot;</span><span class="p">,</span>
-<span class="w">       </span><span class="s2">&quot;RequiredUserRole&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;gview-web-user&quot;</span><span class="p">,</span>
-<span class="w">       </span><span class="s2">&quot;RequiredAdminRole&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;gview-web-admin&quot;</span><span class="p">,</span>
-<span class="w">       </span><span class="s2">&quot;Oidc&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">           </span><span class="s2">&quot;Authority&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https://my-identity-server&quot;</span><span class="p">,</span>
-<span class="w">           </span><span class="s2">&quot;ClientId&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;client-id-for-gview-web&quot;</span><span class="p">,</span>
-<span class="w">           </span><span class="s2">&quot;ClientSecret&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;passW0rd&quot;</span><span class="p">,</span>
-<span class="w">           </span><span class="s2">&quot;scopes&quot;</span><span class="o">:</span><span class="p">[</span><span class="s2">&quot;openid&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;profile&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;role&quot;</span><span class="p">]</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">"Authentication"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="s2">"Type"</span><span class="o">:</span><span class="w"> </span><span class="s2">"oidc"</span><span class="p">,</span>
+<span class="w">       </span><span class="s2">"RequiredUserRole"</span><span class="o">:</span><span class="w"> </span><span class="s2">"gview-web-user"</span><span class="p">,</span>
+<span class="w">       </span><span class="s2">"RequiredAdminRole"</span><span class="o">:</span><span class="w"> </span><span class="s2">"gview-web-admin"</span><span class="p">,</span>
+<span class="w">       </span><span class="s2">"Oidc"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">           </span><span class="s2">"Authority"</span><span class="o">:</span><span class="w"> </span><span class="s2">"https://my-identity-server"</span><span class="p">,</span>
+<span class="w">           </span><span class="s2">"ClientId"</span><span class="o">:</span><span class="w"> </span><span class="s2">"client-id-for-gview-web"</span><span class="p">,</span>
+<span class="w">           </span><span class="s2">"ClientSecret"</span><span class="o">:</span><span class="w"> </span><span class="s2">"passW0rd"</span><span class="p">,</span>
+<span class="w">           </span><span class="s2">"scopes"</span><span class="o">:</span><span class="p">[</span><span class="s2">"openid"</span><span class="p">,</span><span class="w"> </span><span class="s2">"profile"</span><span class="p">,</span><span class="w"> </span><span class="s2">"role"</span><span class="p">]</span>
 <span class="w">       </span><span class="p">}</span>
 <span class="w">   </span><span class="p">}</span>
 </pre></div>
@@ -341,14 +342,14 @@ Werte empfohlen:</p>
 <p>Auch in <code class="docutils literal notranslate"><span class="pre">_config/gview-webapps.config</span></code> kann ein Abschnitt <code class="docutils literal notranslate"><span class="pre">rasternet</span></code> angegeben werden. Er gilt für
 <em>gView.DataExplorer</em> und <em>gView.Carto</em> und hat dieselben Einträge wie beim <em>gView.Server</em>
 (siehe <a class="reference internal" href="config-server.html#config-rasternet"><span class="std std-ref">Konfiguration gView.Server, Abschnitt rasternet</span></a>):</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;rasternet&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s2">&quot;blockcache-mb&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">256</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;blockcache-maxidle-minutes&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;max-threads&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;http-timeout-seconds&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;http-retries&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;http-headers&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;http-probe-sidecars&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">"rasternet"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">"blockcache-mb"</span><span class="o">:</span><span class="w"> </span><span class="mf">256</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"blockcache-maxidle-minutes"</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"max-threads"</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"http-timeout-seconds"</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"http-retries"</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"http-headers"</span><span class="o">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"http-probe-sidecars"</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -409,7 +410,7 @@ Werte empfohlen:</p>
 
     <div class="footer" role="contentinfo">
     &#169; Copyright 2024, Jürgen Gstaltmaier.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

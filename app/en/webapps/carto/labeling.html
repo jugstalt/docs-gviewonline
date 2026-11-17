@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Label Renderer &#8212; gView GIS 8.x documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=d7bb20b6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=9b2032db" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=247da48f" />
     <script src="../../_static/documentation_options.js?v=5f428a84"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/js/theme.js"></script>
     <script src="../../_static/js/petite-vue.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -103,7 +103,7 @@
 
         <div class="searchbox_wrapper">
             
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
@@ -111,14 +111,14 @@
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
+</search>
 <script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
     </nav>
 </div>
 
     
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Table of contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../setup/index.html">Getting Started</a></li>
@@ -145,6 +145,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../appendix/index.html">Appendix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../spec/geojson_service/index.html">GeoJson Service Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spec/network_service/index.html">Network Service Specification</a></li>
 </ul>
 
         </div>
@@ -171,11 +172,13 @@ most common use case.</p>
 <ul>
 <li><p><strong>Field / Expression:</strong> Labeling can be done based on a field or an expression.
 For the <code class="docutils literal notranslate"><span class="pre">Field</span></code> type, simply select the field you want to label by:</p>
-<a class="reference internal image-reference" href="../../_images/labeling2.png"><img alt="../../_images/labeling2.png" src="../../_images/labeling2.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="../../_images/labeling2.png"><img alt="../../_images/labeling2.png" src="../../_images/labeling2.png" width="400" />
+</a>
 <p>With <code class="docutils literal notranslate"><span class="pre">Expression</span></code>, an expression can be defined. When you click on <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">Expression</span></code>,
 the <strong>Expression Editor</strong> opens. Here, an expression can be specified that consists of free text
 and placeholders (field names in square brackets) for the fields:</p>
-<a class="reference internal image-reference" href="../../_images/labeling3.png"><img alt="../../_images/labeling3.png" src="../../_images/labeling3.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="../../_images/labeling3.png"><img alt="../../_images/labeling3.png" src="../../_images/labeling3.png" width="400" />
+</a>
 <p>Field names are listed at the top. By double-clicking on a field, it is added as
 a placeholder in the expression.</p>
 <p>Using <em>expressions</em>, field values can also be formatted. Formatting is possible for
@@ -450,7 +453,8 @@ comparisons (no case tolerance for the value itself — only the operator keywor
 </ul>
 </li>
 <li><p><strong>Behavior:</strong> Here, the priority of the label is specified:</p>
-<a class="reference internal image-reference" href="../../_images/labeling4.png"><img alt="../../_images/labeling4.png" src="../../_images/labeling4.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="../../_images/labeling4.png"><img alt="../../_images/labeling4.png" src="../../_images/labeling4.png" width="400" />
+</a>
 <p>When multiple layers are labeled, this is done in the drawing order of the layers. To highlight the labels
 of a layer, the priority can be specified here. The reason is also that labels are only drawn if there
 is space available on the map. Labels cannot overlap. Therefore, it is possible that a label is not drawn at all.
@@ -468,9 +472,11 @@ only the first is labeled. This prevents duplicate texts (for this layer) on the
 </div></blockquote>
 </li>
 <li><p><strong>Symbol / Cartography:</strong> Here, the labeling symbol (font) can be set:</p>
-<a class="reference internal image-reference" href="../../_images/labeling5.png"><img alt="../../_images/labeling5.png" src="../../_images/labeling5.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="../../_images/labeling5.png"><img alt="../../_images/labeling5.png" src="../../_images/labeling5.png" width="400" />
+</a>
 <p>Similar to feature symbology, there is also a <strong>Symbol Composer</strong> for text symbols here:</p>
-<a class="reference internal image-reference" href="../../_images/labeling6.png"><img alt="../../_images/labeling6.png" src="../../_images/labeling6.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="../../_images/labeling6.png"><img alt="../../_images/labeling6.png" src="../../_images/labeling6.png" width="400" />
+</a>
 <p>There is a <code class="docutils literal notranslate"><span class="pre">Gallery</span></code> with predefined symbols. Different types of symbols can be added via the <code class="docutils literal notranslate"><span class="pre">Stack</span></code>:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Simple</span> <span class="pre">Text</span></code>: Just the text, no border</p></li>
@@ -486,7 +492,8 @@ difficult to read.</p>
 </li>
 <li><p><strong>Placement / Placement Priority:</strong> For point and line themes, it may make sense to determine where
 the label is placed. This can be controlled through <code class="docutils literal notranslate"><span class="pre">Placement</span></code>:</p>
-<a class="reference internal image-reference" href="../../_images/labeling7.png"><img alt="../../_images/labeling7.png" src="../../_images/labeling7.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="../../_images/labeling7.png"><img alt="../../_images/labeling7.png" src="../../_images/labeling7.png" width="400" />
+</a>
 <p>The center point would mean that the label is placed directly in the middle of the point or line.
 Through the priority, alternative positions can be assigned. If the label cannot be drawn due to
 space constraints, the subsequent specified positions are applied in order until a positive result is achieved.</p>
@@ -565,7 +572,7 @@ calculated relative to these values.</p></li>
 
     <div class="footer" role="contentinfo">
     &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Configuration &#8212; gView GIS 8.x documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=d7bb20b6" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=9b2032db" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=247da48f" />
     <script src="../_static/documentation_options.js?v=5f428a84"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/js/theme.js"></script>
     <script src="../_static/js/petite-vue.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -103,7 +103,7 @@
 
         <div class="searchbox_wrapper">
             
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
@@ -111,14 +111,14 @@
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
+</search>
 <script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
     </nav>
 </div>
 
     
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Table of contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Getting Started</a><ul class="current">
@@ -138,6 +138,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../appendix/index.html">Appendix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../spec/geojson_service/index.html">GeoJson Service Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spec/network_service/index.html">Network Service Specification</a></li>
 </ul>
 
         </div>
@@ -170,7 +171,7 @@ In IIS, for example, the corresponding <em>Application Pool</em> needs to be res
 </div>
 <p>The configuration files in the <code class="docutils literal notranslate"><span class="pre">override</span></code> directories contain placeholders, for example:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">    </span><span class="s2">&quot;RepositoryPath&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;{repository-path}/gview-web&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"RepositoryPath"</span><span class="o">:</span><span class="w"> </span><span class="s2">"{repository-path}/gview-web"</span><span class="p">,</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -182,11 +183,11 @@ you would need to update all the configuration files accordingly.</p>
 <p>The best practice is to change the values in the file
 <code class="docutils literal notranslate"><span class="pre">_deploy_repository/profiles/{profile}/deploy-model.json</span></code>:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">    </span><span class="s2">&quot;ProfileName&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;local&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;TargetInstallationPath&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;C:\\apps\\gview-gis&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"ProfileName"</span><span class="o">:</span><span class="w"> </span><span class="s2">"local"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"TargetInstallationPath"</span><span class="o">:</span><span class="w"> </span><span class="s2">"C:\\apps\\gview-gis"</span><span class="p">,</span>
 
 <span class="w">    </span><span class="c1">// Placeholder: {repository-path}</span>
-<span class="w">    </span><span class="s2">&quot;RepositoryPath&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;C:\\apps\\gview-gis/local/gview-repository&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"RepositoryPath"</span><span class="o">:</span><span class="w"> </span><span class="s2">"C:\\apps\\gview-gis/local/gview-repository"</span><span class="p">,</span>
 
 <span class="w">    </span><span class="c1">// ...</span>
 <span class="p">}</span>
@@ -242,7 +243,7 @@ However, it should be possible to deduce from the names which placeholder is bei
 
     <div class="footer" role="contentinfo">
     &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
     </div>
 
 <p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>

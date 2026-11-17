@@ -11,6 +11,10 @@ The **gView.Server** can be configured via the file ``_config/mapserver.json``:
         // Folder, where gView Server stores Services, Logins, etc
         "services-folder": "{repository-path}/server/configuration",
 
+        // Folder where the built networks (SpatialNET) of the services are stored (optional).
+        // Default: {services-folder}/networks, details see Network Service Specification
+        "networks-folder": "{repository-path}/server/networks",
+
         // Path, where gView Server stores Map Request Images
         "output-path": "{repository-path}/server/web/output",
         // Url to the Path, where gView Server stores Map Request Images
@@ -112,6 +116,8 @@ request. Loading happens in the background and does not delay the server start. 
 services are already loaded by the time the first client request arrives, improving the first
 response time. Possible values are, for example, ``*`` (all services), ``myfolder/*`` (all services
 in a folder), or ``myfolder/myservice`` (a single service).
+
+With ``networks-folder`` (optional) the folder is set where the built networks (SpatialNET) of the services are stored. The default is ``{services-folder}/networks``; the networks live there in ``{folder}/{service}.network``. The searches on these networks (*NetworkServer*) are limited additionally in the section ``Network`` of ``appsettings.json`` (``MaxResultNodes``, ``TimeoutSeconds``, ``MaxParallel``, ``MaxLoadedShards``, ``IdleMinutes``). The exact description of the parameters is in :ref:`network-service-administration`.
 
 In the section ``mapserver-defaults``, *default values* for map services can be specified.
 If these values are not explicitly set for a service, the *default value* configured here will be used. 
