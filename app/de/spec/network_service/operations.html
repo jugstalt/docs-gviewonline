@@ -159,14 +159,33 @@ nehmen eine kommagetrennte Liste von:</p>
 eindeutig, muss der Pfad verwendet werden). In URLs wird <code class="docutils literal notranslate"><span class="pre">#</span></code> als <code class="docutils literal notranslate"><span class="pre">%23</span></code> übergeben: <code class="docutils literal notranslate"><span class="pre">start=Trafo%235929</span></code>.</p></li>
 <li><p>einer <strong>rohen Knoten-Id</strong> (Zahl).</p></li>
 <li><p>einem <strong>Typ-Muster</strong>, z. B. <code class="docutils literal notranslate"><span class="pre">[*,Trafo,*]</span></code> oder <code class="docutils literal notranslate"><span class="pre">Niederspannung.Kasten</span></code>: alle Knoten dieses Typs
-(Kommas innerhalb von <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code> trennen nicht).</p></li>
+(Kommas innerhalb von <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code> trennen nicht). Ein Muster kann mit einem führenden <code class="docutils literal notranslate"><span class="pre">!</span></code> für das ganze Muster
+<strong>negiert</strong> werden: <code class="docutils literal notranslate"><span class="pre">!a</span> <span class="pre">|</span> <span class="pre">b</span></code> bedeutet alle Typen der Art außer <code class="docutils literal notranslate"><span class="pre">a</span></code> und <code class="docutils literal notranslate"><span class="pre">b</span></code> (Hilfsknoten bleiben wie bei <code class="docutils literal notranslate"><span class="pre">*</span></code>
+außen vor). Ein Muster, das alle Typen ausschließt, ist ein Fehler.</p></li>
+<li><p>einem <strong>Ort</strong>: <code class="docutils literal notranslate"><span class="pre">&#64;x,y</span></code> oder <code class="docutils literal notranslate"><span class="pre">&#64;x,y~radius</span></code> = der nächstgelegene Netzwerkknoten zu diesem Ort, im Koordinatensystem
+des Netzwerks oder in <code class="docutils literal notranslate"><span class="pre">inSR</span></code>. Das schließt <strong>Hilfsknoten</strong> ein, also Linienenden, die erst beim Aufbau entstehen
+(z. B. dort, wo eine <em>Leitung</em> an einem <em>Anlagen Verbinder</em> in einer Station hängt). Der Radius wird in
+Netzwerkeinheiten angegeben, Standard ist das 10-fache der Aufbau-Toleranz. Liegt kein Knoten im Radius, schlägt die
+Anfrage fehl. Das Komma in <code class="docutils literal notranslate"><span class="pre">&#64;x,y</span></code> trennt die Liste nicht, z. B. <code class="docutils literal notranslate"><span class="pre">start=&#64;5,0,</span> <span class="pre">Trafo%231</span></code>.</p></li>
 </ul>
 <p>Zusammengeführte Punkte werden zu dem Knoten aufgelöst, in den sie zusammengeführt wurden.
 Bei <code class="docutils literal notranslate"><span class="pre">path</span></code> (<code class="docutils literal notranslate"><span class="pre">from</span></code>, <code class="docutils literal notranslate"><span class="pre">to</span></code>) und <code class="docutils literal notranslate"><span class="pre">info</span></code> (<code class="docutils literal notranslate"><span class="pre">node</span></code>) muss die Referenz genau einen Knoten ergeben.</p>
+<p>Linienenden werden in den Ergebnissen z. B. als <code class="docutils literal notranslate"><span class="pre">end</span> <span class="pre">of</span> <span class="pre">Verbinder#12,</span> <span class="pre">Leitung#3456</span></code> bezeichnet.</p>
+<p>Beispiel: <code class="docutils literal notranslate"><span class="pre">filter=![*,Anlagen</span> <span class="pre">Verbinder,*]</span></code> hält einen Trace ab einem Linienende auf seinem Strang, statt zurück über
+die Station zu laufen.</p>
+</section>
+<section id="kantenreferenzen">
+<h2>Kantenreferenzen<a class="headerlink" href="#kantenreferenzen" title="Link to this heading">¶</a></h2>
+<p>Parameter, die Kanten angeben (<code class="docutils literal notranslate"><span class="pre">disable</span></code> bei allen Suchen und bei <code class="docutils literal notranslate"><span class="pre">outage</span></code>), nehmen eine kommagetrennte Liste von:</p>
+<ul class="simple">
+<li><p><strong>Layer#OID</strong>: alle Teile des Linien-Features.</p></li>
+<li><p><strong>Layer#OID/part</strong>: ein Teil des Linien-Features.</p></li>
+<li><p>einer <strong>rohen Kanten-Id</strong> (Zahl).</p></li>
+</ul>
 </section>
 <section id="gemeinsame-parameter">
 <h2>Gemeinsame Parameter<a class="headerlink" href="#gemeinsame-parameter" title="Link to this heading">¶</a></h2>
-<p>Für <code class="docutils literal notranslate"><span class="pre">trace</span></code>, <code class="docutils literal notranslate"><span class="pre">reach</span></code>, <code class="docutils literal notranslate"><span class="pre">path</span></code> und <code class="docutils literal notranslate"><span class="pre">supply</span></code>:</p>
+<p>Für <code class="docutils literal notranslate"><span class="pre">trace</span></code>, <code class="docutils literal notranslate"><span class="pre">reach</span></code>, <code class="docutils literal notranslate"><span class="pre">path</span></code>, <code class="docutils literal notranslate"><span class="pre">supply</span></code> und <code class="docutils literal notranslate"><span class="pre">outage</span></code>:</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 20.0%" />
@@ -187,10 +206,13 @@ Bei <code class="docutils literal notranslate"><span class="pre">path</span></co
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">unblock</span></code></p></td>
 <td><p>Knoten, die trotz Sperre im Netzwerk durchlässig sind.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">weight</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">disable</span></code></p></td>
+<td><p>Kanten (siehe <em>Kantenreferenzen</em>), die nur für diese eine Suche ausgeschaltet werden.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">weight</span></code></p></td>
 <td><p>Gewicht für die Kosten. Standard <code class="docutils literal notranslate"><span class="pre">length</span></code> (Meter), weitere siehe <em>Network Description</em>.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">maxCost</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">maxCost</span></code></p></td>
 <td><p>Kostengrenze (Dezimalzahl, <code class="docutils literal notranslate"><span class="pre">.</span></code> oder <code class="docutils literal notranslate"><span class="pre">,</span></code>). Vor allem für <code class="docutils literal notranslate"><span class="pre">reach</span></code>.</p></td>
 </tr>
 </tbody>
@@ -220,8 +242,18 @@ abgelehnt (forbidden). Ohne <code class="docutils literal notranslate"><span cla
 angeforderten Felder, die er hat (Groß-/Kleinschreibung egal). Unbekannte Namen werden ohne Fehler ignoriert,
 ein Layer ohne eines der Felder liefert <code class="docutils literal notranslate"><span class="pre">{}</span></code>. Das Id-Feld nur, wenn es angefordert wird (die OID steht in <code class="docutils literal notranslate"><span class="pre">oid</span></code>).</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">outSR</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">snap</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code>: (mit Geometrie) die Enden jedes Kantenteils werden exakt auf die Position seines Von-/Nach-Knotens
+gesetzt, sodass das Ergebnis ein gültiges Netzwerk ist (z. B. für Lastfluss-Software, die ein gesnaptes Netz
+braucht). Zusammengeführte Punkte werden an der Position ihres Knotens ausgegeben. Eine Verschiebung größer als
+die Aufbau-Toleranz wird in <code class="docutils literal notranslate"><span class="pre">messages</span></code> gemeldet. Standard <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">outSR</span></code></p></td>
 <td><p>EPSG-Code (<code class="docutils literal notranslate"><span class="pre">4326</span></code> oder <code class="docutils literal notranslate"><span class="pre">epsg:4326</span></code>). Standard: Koordinatensystem des Netzwerks.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">inSR</span></code></p></td>
+<td><p>EPSG-Code der Koordinaten in <code class="docutils literal notranslate"><span class="pre">x</span></code>/<code class="docutils literal notranslate"><span class="pre">y</span></code> und in jeder <code class="docutils literal notranslate"><span class="pre">&#64;x,y</span></code>-Referenz. Standard: Koordinatensystem des
+Netzwerks. Der Radius bleibt in Netzwerkeinheiten.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">f</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">json</span></code>, <code class="docutils literal notranslate"><span class="pre">pjson</span></code> (eingerückt), <code class="docutils literal notranslate"><span class="pre">geojson</span></code> oder <code class="docutils literal notranslate"><span class="pre">csv</span></code>. Ohne <code class="docutils literal notranslate"><span class="pre">f</span></code>: HTML-Formular.</p></td>
@@ -262,6 +294,29 @@ die Knoten die Kosten entlang des Weges.</p>
 <code class="docutils literal notranslate"><span class="pre">NotSupplied</span></code> oder <code class="docutils literal notranslate"><span class="pre">Multiple</span></code>; <code class="docutils literal notranslate"><span class="pre">source</span></code> nennt die Quellen.</p>
 <p>Parameter: <code class="docutils literal notranslate"><span class="pre">sources</span></code>, <code class="docutils literal notranslate"><span class="pre">sinks</span></code> (erforderlich), <code class="docutils literal notranslate"><span class="pre">weight</span></code>, <code class="docutils literal notranslate"><span class="pre">filter</span></code>, <code class="docutils literal notranslate"><span class="pre">block</span></code>, <code class="docutils literal notranslate"><span class="pre">unblock</span></code>.</p>
 </section>
+<section id="outage">
+<h2>outage<a class="headerlink" href="#outage" title="Link to this heading">¶</a></h2>
+<p>Berechnet die Versorgung mit und ohne die ausgeschalteten Kanten und meldet, welche Kunden ihre Versorgung verlieren.
+Untersucht wird nur der Teil des Netzwerks, der mit den ausgeschalteten Kanten verbunden ist.</p>
+<p>Parameter: <code class="docutils literal notranslate"><span class="pre">disable</span></code> (erforderlich: die auszuschaltenden Kanten), <code class="docutils literal notranslate"><span class="pre">sources</span></code>, <code class="docutils literal notranslate"><span class="pre">sinks</span></code> (beide Standard:
+<code class="docutils literal notranslate"><span class="pre">supplySources</span></code> bzw. <code class="docutils literal notranslate"><span class="pre">customers</span></code> der Netzwerk-Konfiguration), <code class="docutils literal notranslate"><span class="pre">filter</span></code>, <code class="docutils literal notranslate"><span class="pre">block</span></code>, <code class="docutils literal notranslate"><span class="pre">unblock</span></code>, <code class="docutils literal notranslate"><span class="pre">weight</span></code> usw.</p>
+<p><code class="docutils literal notranslate"><span class="pre">.../networkserver/outage?disable=Leitung%2312&amp;f=pjson</span></code></p>
+<p>Ergebnis:</p>
+<ul class="simple">
+<li><p>Knoten-<code class="docutils literal notranslate"><span class="pre">kind</span></code> <code class="docutils literal notranslate"><span class="pre">Affected</span></code>: Kunden, die vorher versorgt waren, nach dem Ausschalten aber nicht mehr. Zusammengeführte
+Punkte stehen als Alias-Zeilen dabei.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">messages</span></code> mit den Anzahlen: betroffen, weiterhin versorgt (Masche) und schon vorher nicht versorgt.</p></li>
+<li><p>Kanten-<code class="docutils literal notranslate"><span class="pre">kind</span></code> <code class="docutils literal notranslate"><span class="pre">Disabled</span></code> (ausgeschaltet) und <code class="docutils literal notranslate"><span class="pre">Dead</span></code> (ohne Versorgung).</p></li>
+</ul>
+</section>
+<section id="nearest">
+<h2>nearest<a class="headerlink" href="#nearest" title="Link to this heading">¶</a></h2>
+<p>Knoten in der Nähe eines Ortes. Jeder Knoten wird einmal geliefert, der nächste zuerst; <code class="docutils literal notranslate"><span class="pre">cost</span></code> ist die Entfernung.</p>
+<p>Parameter: <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code> (erforderlich), <code class="docutils literal notranslate"><span class="pre">radius</span></code> (Netzwerkeinheiten, Standard 10-fache Aufbau-Toleranz), <code class="docutils literal notranslate"><span class="pre">count</span></code>
+(Standard 1), <code class="docutils literal notranslate"><span class="pre">inSR</span></code>, <code class="docutils literal notranslate"><span class="pre">outSR</span></code>, <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">.../networkserver/nearest?x=5&amp;y=0&amp;count=3&amp;f=pjson</span></code></p>
+<p>Knoten-<code class="docutils literal notranslate"><span class="pre">kind</span></code>: <code class="docutils literal notranslate"><span class="pre">Nearest</span></code>.</p>
+</section>
 <section id="info">
 <h2>info<a class="headerlink" href="#info" title="Link to this heading">¶</a></h2>
 <p>Daten eines Knotens: Typ, Position, Shard, gesperrt, zusammengeführte Punkte, angrenzende Kanten und Nachbarknoten
@@ -293,11 +348,14 @@ eine Regel der Schwere <code class="docutils literal notranslate"><span class="p
                 <ul>
 <li><a class="reference internal" href="#">Operationen</a><ul>
 <li><a class="reference internal" href="#knotenreferenzen">Knotenreferenzen</a></li>
+<li><a class="reference internal" href="#kantenreferenzen">Kantenreferenzen</a></li>
 <li><a class="reference internal" href="#gemeinsame-parameter">Gemeinsame Parameter</a></li>
 <li><a class="reference internal" href="#trace">trace</a></li>
 <li><a class="reference internal" href="#reach">reach</a></li>
 <li><a class="reference internal" href="#path">path</a></li>
 <li><a class="reference internal" href="#supply">supply</a></li>
+<li><a class="reference internal" href="#outage">outage</a></li>
+<li><a class="reference internal" href="#nearest">nearest</a></li>
 <li><a class="reference internal" href="#info">info</a></li>
 <li><a class="reference internal" href="#validate">validate</a></li>
 </ul>

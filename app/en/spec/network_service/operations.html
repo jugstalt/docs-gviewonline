@@ -158,14 +158,33 @@ take a comma separated list of:</p>
 the path is required). In URLs <code class="docutils literal notranslate"><span class="pre">#</span></code> is sent as <code class="docutils literal notranslate"><span class="pre">%23</span></code>: <code class="docutils literal notranslate"><span class="pre">start=Trafo%235929</span></code>.</p></li>
 <li><p>a <strong>raw node id</strong> (number).</p></li>
 <li><p>a <strong>type pattern</strong>, e.g. <code class="docutils literal notranslate"><span class="pre">[*,Trafo,*]</span></code> or <code class="docutils literal notranslate"><span class="pre">Niederspannung.Kasten</span></code>: all nodes of that type
-(commas inside <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code> don’t separate).</p></li>
+(commas inside <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code> don’t separate). A pattern can be <strong>negated</strong> with a leading <code class="docutils literal notranslate"><span class="pre">!</span></code> for the whole pattern:
+<code class="docutils literal notranslate"><span class="pre">!a</span> <span class="pre">|</span> <span class="pre">b</span></code> means every type of the kind except <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> (helper nodes stay out, as with <code class="docutils literal notranslate"><span class="pre">*</span></code>). A pattern
+that excludes every type is an error.</p></li>
+<li><p>a <strong>location</strong>: <code class="docutils literal notranslate"><span class="pre">&#64;x,y</span></code> or <code class="docutils literal notranslate"><span class="pre">&#64;x,y~radius</span></code> = the nearest network node to that location, in the spatial reference of
+the network or in <code class="docutils literal notranslate"><span class="pre">inSR</span></code>. This includes <strong>helper nodes</strong>, i.e. line ends that only arise during the build (e.g. where
+a <em>Leitung</em> hangs on an <em>Anlagen Verbinder</em> at a station). The radius is given in network units, the default is
+10 × the build tolerance. If no node lies within the radius, the request fails. The comma inside <code class="docutils literal notranslate"><span class="pre">&#64;x,y</span></code> does not
+split the list, e.g. <code class="docutils literal notranslate"><span class="pre">start=&#64;5,0,</span> <span class="pre">Trafo%231</span></code>.</p></li>
 </ul>
 <p>Merged points resolve to the node they were merged into.
 For <code class="docutils literal notranslate"><span class="pre">path</span></code> (<code class="docutils literal notranslate"><span class="pre">from</span></code>, <code class="docutils literal notranslate"><span class="pre">to</span></code>) and <code class="docutils literal notranslate"><span class="pre">info</span></code> (<code class="docutils literal notranslate"><span class="pre">node</span></code>) the reference must result in exactly one node.</p>
+<p>Line ends are labelled in the results like <code class="docutils literal notranslate"><span class="pre">end</span> <span class="pre">of</span> <span class="pre">Verbinder#12,</span> <span class="pre">Leitung#3456</span></code>.</p>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">filter=![*,Anlagen</span> <span class="pre">Verbinder,*]</span></code> keeps a trace started at a line end on its branch instead of running back
+over the station.</p>
+</section>
+<section id="edge-references">
+<h2>Edge references<a class="headerlink" href="#edge-references" title="Link to this heading">¶</a></h2>
+<p>Parameters that specify edges (<code class="docutils literal notranslate"><span class="pre">disable</span></code> of all searches and of <code class="docutils literal notranslate"><span class="pre">outage</span></code>) take a comma separated list of:</p>
+<ul class="simple">
+<li><p><strong>Layer#OID</strong>: all parts of the line feature.</p></li>
+<li><p><strong>Layer#OID/part</strong>: one part of the line feature.</p></li>
+<li><p>a <strong>raw edge id</strong> (number).</p></li>
+</ul>
 </section>
 <section id="common-parameters">
 <h2>Common parameters<a class="headerlink" href="#common-parameters" title="Link to this heading">¶</a></h2>
-<p>For <code class="docutils literal notranslate"><span class="pre">trace</span></code>, <code class="docutils literal notranslate"><span class="pre">reach</span></code>, <code class="docutils literal notranslate"><span class="pre">path</span></code> and <code class="docutils literal notranslate"><span class="pre">supply</span></code>:</p>
+<p>For <code class="docutils literal notranslate"><span class="pre">trace</span></code>, <code class="docutils literal notranslate"><span class="pre">reach</span></code>, <code class="docutils literal notranslate"><span class="pre">path</span></code>, <code class="docutils literal notranslate"><span class="pre">supply</span></code> and <code class="docutils literal notranslate"><span class="pre">outage</span></code>:</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 20.0%" />
@@ -186,10 +205,13 @@ For <code class="docutils literal notranslate"><span class="pre">path</span></co
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">unblock</span></code></p></td>
 <td><p>Nodes that are passable although they are blocked in the network.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">weight</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">disable</span></code></p></td>
+<td><p>Edges (see <em>Edge references</em>) that are switched off for this one search only.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">weight</span></code></p></td>
 <td><p>Weight for the costs. Default <code class="docutils literal notranslate"><span class="pre">length</span></code> (metres), others see <em>Network Description</em>.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">maxCost</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">maxCost</span></code></p></td>
 <td><p>Cost limit (decimal number, <code class="docutils literal notranslate"><span class="pre">.</span></code> or <code class="docutils literal notranslate"><span class="pre">,</span></code>). Mainly for <code class="docutils literal notranslate"><span class="pre">reach</span></code>.</p></td>
 </tr>
 </tbody>
@@ -219,8 +241,18 @@ edges and violations. Needs the right <code class="docutils literal notranslate"
 fields it has (case-insensitive). Unknown names are ignored without error, a layer without any of the fields
 returns <code class="docutils literal notranslate"><span class="pre">{}</span></code>. The id field is only returned if requested (the OID is already in <code class="docutils literal notranslate"><span class="pre">oid</span></code>).</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">outSR</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">snap</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code>: (with geometry) the ends of every edge part are set exactly onto the location of its from/to node,
+so the result is a valid network (e.g. for power-flow software that needs a snapped network). Merged points are
+output at the location of their node. A shift larger than the build tolerance is reported in <code class="docutils literal notranslate"><span class="pre">messages</span></code>.
+Default <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">outSR</span></code></p></td>
 <td><p>EPSG code (<code class="docutils literal notranslate"><span class="pre">4326</span></code> or <code class="docutils literal notranslate"><span class="pre">epsg:4326</span></code>). Default: spatial reference of the network.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">inSR</span></code></p></td>
+<td><p>EPSG code of the coordinates in <code class="docutils literal notranslate"><span class="pre">x</span></code>/<code class="docutils literal notranslate"><span class="pre">y</span></code> and in every <code class="docutils literal notranslate"><span class="pre">&#64;x,y</span></code> reference. Default: spatial reference of the
+network. The radius stays in network units.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">f</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">json</span></code>, <code class="docutils literal notranslate"><span class="pre">pjson</span></code> (indented), <code class="docutils literal notranslate"><span class="pre">geojson</span></code> or <code class="docutils literal notranslate"><span class="pre">csv</span></code>. Without <code class="docutils literal notranslate"><span class="pre">f</span></code>: HTML form.</p></td>
@@ -261,6 +293,29 @@ the cost along the path.</p>
 <code class="docutils literal notranslate"><span class="pre">NotSupplied</span></code> or <code class="docutils literal notranslate"><span class="pre">Multiple</span></code>; <code class="docutils literal notranslate"><span class="pre">source</span></code> names the sources.</p>
 <p>Parameters: <code class="docutils literal notranslate"><span class="pre">sources</span></code>, <code class="docutils literal notranslate"><span class="pre">sinks</span></code> (required), <code class="docutils literal notranslate"><span class="pre">weight</span></code>, <code class="docutils literal notranslate"><span class="pre">filter</span></code>, <code class="docutils literal notranslate"><span class="pre">block</span></code>, <code class="docutils literal notranslate"><span class="pre">unblock</span></code>.</p>
 </section>
+<section id="outage">
+<h2>outage<a class="headerlink" href="#outage" title="Link to this heading">¶</a></h2>
+<p>Computes the supply with and without the edges that are switched off, and reports which customers lose their supply.
+Only the part of the network that is connected to the switched-off edges is examined.</p>
+<p>Parameters: <code class="docutils literal notranslate"><span class="pre">disable</span></code> (required: the edges to switch off), <code class="docutils literal notranslate"><span class="pre">sources</span></code>, <code class="docutils literal notranslate"><span class="pre">sinks</span></code> (both default to <code class="docutils literal notranslate"><span class="pre">supplySources</span></code>
+and <code class="docutils literal notranslate"><span class="pre">customers</span></code> of the network configuration), <code class="docutils literal notranslate"><span class="pre">filter</span></code>, <code class="docutils literal notranslate"><span class="pre">block</span></code>, <code class="docutils literal notranslate"><span class="pre">unblock</span></code>, <code class="docutils literal notranslate"><span class="pre">weight</span></code> etc.</p>
+<p><code class="docutils literal notranslate"><span class="pre">.../networkserver/outage?disable=Leitung%2312&amp;f=pjson</span></code></p>
+<p>Result:</p>
+<ul class="simple">
+<li><p>Node <code class="docutils literal notranslate"><span class="pre">kind</span></code> <code class="docutils literal notranslate"><span class="pre">Affected</span></code>: customers that were supplied before but are not supplied after the switch-off. Merged
+points are listed as alias rows.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">messages</span></code> with the counts: affected, still supplied (mesh) and not supplied before.</p></li>
+<li><p>Edge <code class="docutils literal notranslate"><span class="pre">kind</span></code> <code class="docutils literal notranslate"><span class="pre">Disabled</span></code> (switched off) and <code class="docutils literal notranslate"><span class="pre">Dead</span></code> (no supply any more).</p></li>
+</ul>
+</section>
+<section id="nearest">
+<h2>nearest<a class="headerlink" href="#nearest" title="Link to this heading">¶</a></h2>
+<p>Nodes near a location. Every node is returned once, the nearest first; <code class="docutils literal notranslate"><span class="pre">cost</span></code> is the distance.</p>
+<p>Parameters: <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code> (required), <code class="docutils literal notranslate"><span class="pre">radius</span></code> (network units, default 10 × the build tolerance), <code class="docutils literal notranslate"><span class="pre">count</span></code>
+(default 1), <code class="docutils literal notranslate"><span class="pre">inSR</span></code>, <code class="docutils literal notranslate"><span class="pre">outSR</span></code>, <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">.../networkserver/nearest?x=5&amp;y=0&amp;count=3&amp;f=pjson</span></code></p>
+<p>Node <code class="docutils literal notranslate"><span class="pre">kind</span></code>: <code class="docutils literal notranslate"><span class="pre">Nearest</span></code>.</p>
+</section>
 <section id="info">
 <h2>info<a class="headerlink" href="#info" title="Link to this heading">¶</a></h2>
 <p>Data of a node: type, position, shard, blocked, merged points, adjacent edges and neighbour nodes
@@ -292,11 +347,14 @@ rule of severity <code class="docutils literal notranslate"><span class="pre">Er
                 <ul>
 <li><a class="reference internal" href="#">Operations</a><ul>
 <li><a class="reference internal" href="#node-references">Node references</a></li>
+<li><a class="reference internal" href="#edge-references">Edge references</a></li>
 <li><a class="reference internal" href="#common-parameters">Common parameters</a></li>
 <li><a class="reference internal" href="#trace">trace</a></li>
 <li><a class="reference internal" href="#reach">reach</a></li>
 <li><a class="reference internal" href="#path">path</a></li>
 <li><a class="reference internal" href="#supply">supply</a></li>
+<li><a class="reference internal" href="#outage">outage</a></li>
+<li><a class="reference internal" href="#nearest">nearest</a></li>
 <li><a class="reference internal" href="#info">info</a></li>
 <li><a class="reference internal" href="#validate">validate</a></li>
 </ul>

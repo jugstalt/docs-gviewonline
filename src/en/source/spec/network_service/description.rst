@@ -19,7 +19,7 @@ Response
       "edgeCount": 118000,
       "mergedPointCount": 5000,
       "shardCount": 40,
-      "operations": ["trace", "reach", "path", "supply", "info", "validate"],
+      "operations": ["trace", "reach", "path", "supply", "outage", "nearest", "info", "validate"],
       "nodeLayers": ["Trafo", "Niederspannung/Kasten"],
       "edgeLayers": ["Niederspannung/Leitung"],
       "weights": ["length"],

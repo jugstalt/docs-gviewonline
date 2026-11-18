@@ -27,6 +27,21 @@ Building the network
 - **Command line:** ``gView.Cmd --command Network -u build -mxl map.mxl``.
 - Or copy a built network directory to the location above.
 
+The built network directory also contains ``spatial.idx`` (all nodes, line ends and merged points with their location)
+and ``edges.idx``. **Networks built before this must be rebuilt**, otherwise ``@x,y`` references, ``nearest``, edge
+references and ``outage`` fail with "build the network again".
+
+Network configuration
+---------------------
+
+Besides the build settings, the network configuration (written into ``network.json`` at build) has two node patterns
+that are used as defaults by ``outage``:
+
+- ``supplySources``: the supply sources, e.g. ``[*,Trafo,*]``.
+- ``customers``: the customers, e.g. ``[*,Kunde,*]``.
+
+In *gView Carto* they are set on the network module page, tab **General**, card **Supply**.
+
 Configuration (appsettings, section ``Network``)
 ------------------------------------------------
 

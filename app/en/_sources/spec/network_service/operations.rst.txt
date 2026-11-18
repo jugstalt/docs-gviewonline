@@ -11,15 +11,36 @@ take a comma separated list of:
   the path is required). In URLs ``#`` is sent as ``%23``: ``start=Trafo%235929``.
 - a **raw node id** (number).
 - a **type pattern**, e.g. ``[*,Trafo,*]`` or ``Niederspannung.Kasten``: all nodes of that type
-  (commas inside ``[ ]`` don't separate).
+  (commas inside ``[ ]`` don't separate). A pattern can be **negated** with a leading ``!`` for the whole pattern:
+  ``!a | b`` means every type of the kind except ``a`` and ``b`` (helper nodes stay out, as with ``*``). A pattern
+  that excludes every type is an error.
+- a **location**: ``@x,y`` or ``@x,y~radius`` = the nearest network node to that location, in the spatial reference of
+  the network or in ``inSR``. This includes **helper nodes**, i.e. line ends that only arise during the build (e.g. where
+  a *Leitung* hangs on an *Anlagen Verbinder* at a station). The radius is given in network units, the default is
+  10 × the build tolerance. If no node lies within the radius, the request fails. The comma inside ``@x,y`` does not
+  split the list, e.g. ``start=@5,0, Trafo%231``.
 
 Merged points resolve to the node they were merged into.
 For ``path`` (``from``, ``to``) and ``info`` (``node``) the reference must result in exactly one node.
 
+Line ends are labelled in the results like ``end of Verbinder#12, Leitung#3456``.
+
+Example: ``filter=![*,Anlagen Verbinder,*]`` keeps a trace started at a line end on its branch instead of running back
+over the station.
+
+Edge references
+---------------
+
+Parameters that specify edges (``disable`` of all searches and of ``outage``) take a comma separated list of:
+
+- **Layer#OID**: all parts of the line feature.
+- **Layer#OID/part**: one part of the line feature.
+- a **raw edge id** (number).
+
 Common parameters
 -----------------
 
-For ``trace``, ``reach``, ``path`` and ``supply``:
+For ``trace``, ``reach``, ``path``, ``supply`` and ``outage``:
 
 .. list-table::
    :header-rows: 1
@@ -33,6 +54,8 @@ For ``trace``, ``reach``, ``path`` and ``supply``:
      - Nodes that are blocked for this search.
    * - ``unblock``
      - Nodes that are passable although they are blocked in the network.
+   * - ``disable``
+     - Edges (see *Edge references*) that are switched off for this one search only.
    * - ``weight``
      - Weight for the costs. Default ``length`` (metres), others see *Network Description*.
    * - ``maxCost``
@@ -56,8 +79,16 @@ For all operations with a result (``info``: only ``f``):
      - Comma separated field names, default ``*`` (all fields). Applied per layer: each layer returns only the requested
        fields it has (case-insensitive). Unknown names are ignored without error, a layer without any of the fields
        returns ``{}``. The id field is only returned if requested (the OID is already in ``oid``).
+   * - ``snap``
+     - ``true``: (with geometry) the ends of every edge part are set exactly onto the location of its from/to node,
+       so the result is a valid network (e.g. for power-flow software that needs a snapped network). Merged points are
+       output at the location of their node. A shift larger than the build tolerance is reported in ``messages``.
+       Default ``false``.
    * - ``outSR``
      - EPSG code (``4326`` or ``epsg:4326``). Default: spatial reference of the network.
+   * - ``inSR``
+     - EPSG code of the coordinates in ``x``/``y`` and in every ``@x,y`` reference. Default: spatial reference of the
+       network. The radius stays in network units.
    * - ``f``
      - ``json``, ``pjson`` (indented), ``geojson`` or ``csv``. Without ``f``: HTML form.
 
@@ -109,6 +140,36 @@ Checks which sources supply the sinks. One node per sink with ``kind`` ``Supplie
 ``NotSupplied`` or ``Multiple``; ``source`` names the sources.
 
 Parameters: ``sources``, ``sinks`` (required), ``weight``, ``filter``, ``block``, ``unblock``.
+
+outage
+------
+
+Computes the supply with and without the edges that are switched off, and reports which customers lose their supply.
+Only the part of the network that is connected to the switched-off edges is examined.
+
+Parameters: ``disable`` (required: the edges to switch off), ``sources``, ``sinks`` (both default to ``supplySources``
+and ``customers`` of the network configuration), ``filter``, ``block``, ``unblock``, ``weight`` etc.
+
+``.../networkserver/outage?disable=Leitung%2312&f=pjson``
+
+Result:
+
+- Node ``kind`` ``Affected``: customers that were supplied before but are not supplied after the switch-off. Merged
+  points are listed as alias rows.
+- ``messages`` with the counts: affected, still supplied (mesh) and not supplied before.
+- Edge ``kind`` ``Disabled`` (switched off) and ``Dead`` (no supply any more).
+
+nearest
+-------
+
+Nodes near a location. Every node is returned once, the nearest first; ``cost`` is the distance.
+
+Parameters: ``x``, ``y`` (required), ``radius`` (network units, default 10 × the build tolerance), ``count``
+(default 1), ``inSR``, ``outSR``, ``f``.
+
+``.../networkserver/nearest?x=5&y=0&count=3&f=pjson``
+
+Node ``kind``: ``Nearest``.
 
 info
 ----

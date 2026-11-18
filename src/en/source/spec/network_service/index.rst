@@ -16,6 +16,8 @@ Functions:
 * **Reach:** cost-limited search (shortest-path tree).
 * **Path:** shortest path between two nodes.
 * **Supply:** supply of sinks by sources.
+* **Outage:** customers that lose their supply when edges are switched off.
+* **Nearest:** nodes near a location.
 * **Info:** data of a node and its neighbours.
 * **Validate:** check of the network rules.
 
@@ -38,6 +40,8 @@ Structure of the API links
   - ``https://{server}/geoservices/rest/services/[{folder}/]{service}/networkserver/reach``
   - ``https://{server}/geoservices/rest/services/[{folder}/]{service}/networkserver/path``
   - ``https://{server}/geoservices/rest/services/[{folder}/]{service}/networkserver/supply``
+  - ``https://{server}/geoservices/rest/services/[{folder}/]{service}/networkserver/outage``
+  - ``https://{server}/geoservices/rest/services/[{folder}/]{service}/networkserver/nearest``
   - ``https://{server}/geoservices/rest/services/[{folder}/]{service}/networkserver/info``
   - ``https://{server}/geoservices/rest/services/[{folder}/]{service}/networkserver/validate``
 

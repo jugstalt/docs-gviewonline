@@ -18,7 +18,7 @@ Alle Operationen liefern dieselbe Struktur (``f=json`` oder ``pjson``):
       ],
       "edges": [
         { "id": 5678, "label": "Leitung#1", "layer": "Niederspannung/Leitung", "oid": 1, "type": "Leitung",
-          "length": 12.3, "fromMeasure": 0.0, "toMeasure": 12.3, "from": 1234, "to": 1235,
+          "kind": "Edge", "length": 12.3, "fromMeasure": 0.0, "toMeasure": 12.3, "from": 1234, "to": 1235,
           "coordinates": [[0.0, 0.0], [1.0, 1.0]] }
       ],
       "violations": [],
@@ -34,7 +34,7 @@ Alle Operationen liefern dieselbe Struktur (``f=json`` oder ``pjson``):
 - **messages**: lesbarer Bericht.
 - **nodes**: Knoten mit Layer und OID (bei Hilfsknoten leer), Typ, ``kind``, Kosten, ``source`` (Ausgangsknoten),
   ``aliasOf`` (bei zusammengeführten Punkten die Bezeichnung des Knotens, auf dem sie liegen) und Position.
-- **edges**: Teil eines Linien-Features zwischen ``fromMeasure`` und ``toMeasure`` mit Länge, Anfangs- und Endknoten und
+- **edges**: ``kind`` (``Edge``, ``Disabled``, ``Dead``; die letzten beiden bei ``outage``), Teil eines Linien-Features zwischen ``fromMeasure`` und ``toMeasure`` mit Länge, Anfangs- und Endknoten und
   ``coordinates`` (bei ``geometry=false`` nur Anfangs- und Endpunkt).
 - **violations** (``validate``): ``rule``, ``severity``, ``message``, ``kind`` (``Node``/``Edge``), ``node``,
   ``nodeLabel``, ``layer``, ``oid``, ``edge``/``edgeLabel``/``edgeLayer``/``edgeOid``, ``type``, ``count``, ``min``,
@@ -49,7 +49,7 @@ GeoJSON und CSV
 
 - ``f=geojson``: ``FeatureCollection``; Knoten und Verletzungen als ``Point``, Kanten als ``LineString``.
   Die ``properties`` enthalten u. a. ``kind``, ``id``, ``layer``, ``oid``, ``type``, ``cost`` bzw. ``length``,
-  ``from_measure``, ``to_measure``. Mit ``attributes=true`` zusätzlich ``properties.attributes`` (bei Verletzungen auch
+  ``from_measure``, ``to_measure``. Kanten haben außerdem ``from_node`` und ``to_node`` (Knoten-Ids). Mit ``attributes=true`` zusätzlich ``properties.attributes`` (bei Verletzungen auch
   ``properties.edge_attributes``).
 - ``f=csv``: eine Zeile pro Knoten (``id;node;type;kind;cost;source;alias_of``), bei ``validate`` eine Zeile pro
   Verletzung (``rule;severity;kind;node;edge;type;count;min;max;x;y;aliases``).

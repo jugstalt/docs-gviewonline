@@ -172,6 +172,19 @@ Reports: <code class="docutils literal notranslate"><span class="pre">build.log<
 <li><p><strong>Kommandozeile:</strong> <code class="docutils literal notranslate"><span class="pre">gView.Cmd</span> <span class="pre">--command</span> <span class="pre">Network</span> <span class="pre">-u</span> <span class="pre">build</span> <span class="pre">-mxl</span> <span class="pre">map.mxl</span></code>.</p></li>
 <li><p>Oder ein fertig gebautes Netzwerkverzeichnis an den Speicherort kopieren.</p></li>
 </ul>
+<p>Das gebaute Netzwerkverzeichnis enthält zusätzlich <code class="docutils literal notranslate"><span class="pre">spatial.idx</span></code> (alle Knoten, Linienenden und zusammengeführten
+Punkte mit ihrer Position) und <code class="docutils literal notranslate"><span class="pre">edges.idx</span></code>. <strong>Früher gebaute Netzwerke müssen neu gebaut werden</strong>, sonst schlagen
+<code class="docutils literal notranslate"><span class="pre">&#64;x,y</span></code>-Referenzen, <code class="docutils literal notranslate"><span class="pre">nearest</span></code>, Kantenreferenzen und <code class="docutils literal notranslate"><span class="pre">outage</span></code> mit „build the network again“ fehl.</p>
+</section>
+<section id="netzwerk-konfiguration">
+<h2>Netzwerk-Konfiguration<a class="headerlink" href="#netzwerk-konfiguration" title="Link to this heading">¶</a></h2>
+<p>Neben den Aufbau-Einstellungen hat die Netzwerk-Konfiguration (beim Aufbau in <code class="docutils literal notranslate"><span class="pre">network.json</span></code> geschrieben) zwei
+Knoten-Muster, die <code class="docutils literal notranslate"><span class="pre">outage</span></code> als Standard verwendet:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">supplySources</span></code>: die Versorgungsquellen, z. B. <code class="docutils literal notranslate"><span class="pre">[*,Trafo,*]</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">customers</span></code>: die Kunden, z. B. <code class="docutils literal notranslate"><span class="pre">[*,Kunde,*]</span></code>.</p></li>
+</ul>
+<p>In <em>gView Carto</em> werden sie auf der Seite des Netzwerk-Moduls, Tab <strong>General</strong>, Karte <strong>Supply</strong> gesetzt.</p>
 </section>
 <section id="konfiguration-appsettings-abschnitt-network">
 <h2>Konfiguration (appsettings, Abschnitt <code class="docutils literal notranslate"><span class="pre">Network</span></code>)<a class="headerlink" href="#konfiguration-appsettings-abschnitt-network" title="Link to this heading">¶</a></h2>
@@ -231,6 +244,7 @@ Reports: <code class="docutils literal notranslate"><span class="pre">build.log<
 <li><a class="reference internal" href="#zugriff">Zugriff</a></li>
 <li><a class="reference internal" href="#speicherort">Speicherort</a></li>
 <li><a class="reference internal" href="#netzwerk-aufbauen">Netzwerk aufbauen</a></li>
+<li><a class="reference internal" href="#netzwerk-konfiguration">Netzwerk-Konfiguration</a></li>
 <li><a class="reference internal" href="#konfiguration-appsettings-abschnitt-network">Konfiguration (appsettings, Abschnitt <code class="docutils literal notranslate"><span class="pre">Network</span></code>)</a></li>
 </ul>
 </li>

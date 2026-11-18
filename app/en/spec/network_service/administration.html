@@ -171,6 +171,19 @@ Reports: <code class="docutils literal notranslate"><span class="pre">build.log<
 <li><p><strong>Command line:</strong> <code class="docutils literal notranslate"><span class="pre">gView.Cmd</span> <span class="pre">--command</span> <span class="pre">Network</span> <span class="pre">-u</span> <span class="pre">build</span> <span class="pre">-mxl</span> <span class="pre">map.mxl</span></code>.</p></li>
 <li><p>Or copy a built network directory to the location above.</p></li>
 </ul>
+<p>The built network directory also contains <code class="docutils literal notranslate"><span class="pre">spatial.idx</span></code> (all nodes, line ends and merged points with their location)
+and <code class="docutils literal notranslate"><span class="pre">edges.idx</span></code>. <strong>Networks built before this must be rebuilt</strong>, otherwise <code class="docutils literal notranslate"><span class="pre">&#64;x,y</span></code> references, <code class="docutils literal notranslate"><span class="pre">nearest</span></code>, edge
+references and <code class="docutils literal notranslate"><span class="pre">outage</span></code> fail with “build the network again”.</p>
+</section>
+<section id="network-configuration">
+<h2>Network configuration<a class="headerlink" href="#network-configuration" title="Link to this heading">¶</a></h2>
+<p>Besides the build settings, the network configuration (written into <code class="docutils literal notranslate"><span class="pre">network.json</span></code> at build) has two node patterns
+that are used as defaults by <code class="docutils literal notranslate"><span class="pre">outage</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">supplySources</span></code>: the supply sources, e.g. <code class="docutils literal notranslate"><span class="pre">[*,Trafo,*]</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">customers</span></code>: the customers, e.g. <code class="docutils literal notranslate"><span class="pre">[*,Kunde,*]</span></code>.</p></li>
+</ul>
+<p>In <em>gView Carto</em> they are set on the network module page, tab <strong>General</strong>, card <strong>Supply</strong>.</p>
 </section>
 <section id="configuration-appsettings-section-network">
 <h2>Configuration (appsettings, section <code class="docutils literal notranslate"><span class="pre">Network</span></code>)<a class="headerlink" href="#configuration-appsettings-section-network" title="Link to this heading">¶</a></h2>
@@ -230,6 +243,7 @@ Reports: <code class="docutils literal notranslate"><span class="pre">build.log<
 <li><a class="reference internal" href="#access">Access</a></li>
 <li><a class="reference internal" href="#location">Location</a></li>
 <li><a class="reference internal" href="#building-the-network">Building the network</a></li>
+<li><a class="reference internal" href="#network-configuration">Network configuration</a></li>
 <li><a class="reference internal" href="#configuration-appsettings-section-network">Configuration (appsettings, section <code class="docutils literal notranslate"><span class="pre">Network</span></code>)</a></li>
 </ul>
 </li>

@@ -18,7 +18,7 @@ All operations return the same structure (``f=json`` or ``pjson``):
       ],
       "edges": [
         { "id": 5678, "label": "Leitung#1", "layer": "Niederspannung/Leitung", "oid": 1, "type": "Leitung",
-          "length": 12.3, "fromMeasure": 0.0, "toMeasure": 12.3, "from": 1234, "to": 1235,
+          "kind": "Edge", "length": 12.3, "fromMeasure": 0.0, "toMeasure": 12.3, "from": 1234, "to": 1235,
           "coordinates": [[0.0, 0.0], [1.0, 1.0]] }
       ],
       "violations": [],
@@ -34,7 +34,7 @@ All operations return the same structure (``f=json`` or ``pjson``):
 - **messages**: readable report.
 - **nodes**: nodes with layer and OID (empty for helper nodes), type, ``kind``, cost, ``source`` (originating node),
   ``aliasOf`` (for merged points the label of the node they lie on) and position.
-- **edges**: part of a line feature between ``fromMeasure`` and ``toMeasure`` with length, start and end node and
+- **edges**: ``kind`` (``Edge``, ``Disabled``, ``Dead``; the latter two for ``outage``), part of a line feature between ``fromMeasure`` and ``toMeasure`` with length, start and end node and
   ``coordinates`` (with ``geometry=false`` only start and end point).
 - **violations** (``validate``): ``rule``, ``severity``, ``message``, ``kind`` (``Node``/``Edge``), ``node``,
   ``nodeLabel``, ``layer``, ``oid``, ``edge``/``edgeLabel``/``edgeLayer``/``edgeOid``, ``type``, ``count``, ``min``,
@@ -49,7 +49,7 @@ GeoJSON and CSV
 
 - ``f=geojson``: ``FeatureCollection``; nodes and violations as ``Point``, edges as ``LineString``.
   The ``properties`` contain among others ``kind``, ``id``, ``layer``, ``oid``, ``type``, ``cost`` or ``length``,
-  ``from_measure``, ``to_measure``. With ``attributes=true`` also ``properties.attributes`` (violations also
+  ``from_measure``, ``to_measure``. Edges also have ``from_node`` and ``to_node`` (node ids). With ``attributes=true`` also ``properties.attributes`` (violations also
   ``properties.edge_attributes``).
 - ``f=csv``: one row per node (``id;node;type;kind;cost;source;alias_of``), for ``validate`` one row per
   violation (``rule;severity;kind;node;edge;type;count;min;max;x;y;aliases``).

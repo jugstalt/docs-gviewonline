@@ -16,6 +16,8 @@ Funktionen:
 * **Reach:** kostenbegrenzte Suche (Kürzeste-Wege-Baum).
 * **Path:** kürzester Weg zwischen zwei Knoten.
 * **Supply:** Versorgung von Senken durch Quellen.
+* **Outage:** Kunden, die bei ausgeschalteten Kanten ihre Versorgung verlieren.
+* **Nearest:** Knoten in der Nähe eines Ortes.
 * **Info:** Daten eines Knotens und seiner Nachbarn.
 * **Validate:** Prüfung der Netzwerk-Regeln.
 
@@ -38,6 +40,8 @@ Struktur der API-Links
   - ``https://{server}/geoservices/rest/services/[{folder}/]{service}/networkserver/reach``
   - ``https://{server}/geoservices/rest/services/[{folder}/]{service}/networkserver/path``
   - ``https://{server}/geoservices/rest/services/[{folder}/]{service}/networkserver/supply``
+  - ``https://{server}/geoservices/rest/services/[{folder}/]{service}/networkserver/outage``
+  - ``https://{server}/geoservices/rest/services/[{folder}/]{service}/networkserver/nearest``
   - ``https://{server}/geoservices/rest/services/[{folder}/]{service}/networkserver/info``
   - ``https://{server}/geoservices/rest/services/[{folder}/]{service}/networkserver/validate``
 

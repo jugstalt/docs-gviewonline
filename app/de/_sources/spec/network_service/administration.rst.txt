@@ -27,6 +27,21 @@ Netzwerk aufbauen
 - **Kommandozeile:** ``gView.Cmd --command Network -u build -mxl map.mxl``.
 - Oder ein fertig gebautes Netzwerkverzeichnis an den Speicherort kopieren.
 
+Das gebaute Netzwerkverzeichnis enthält zusätzlich ``spatial.idx`` (alle Knoten, Linienenden und zusammengeführten
+Punkte mit ihrer Position) und ``edges.idx``. **Früher gebaute Netzwerke müssen neu gebaut werden**, sonst schlagen
+``@x,y``-Referenzen, ``nearest``, Kantenreferenzen und ``outage`` mit "build the network again" fehl.
+
+Netzwerk-Konfiguration
+----------------------
+
+Neben den Aufbau-Einstellungen hat die Netzwerk-Konfiguration (beim Aufbau in ``network.json`` geschrieben) zwei
+Knoten-Muster, die ``outage`` als Standard verwendet:
+
+- ``supplySources``: die Versorgungsquellen, z. B. ``[*,Trafo,*]``.
+- ``customers``: die Kunden, z. B. ``[*,Kunde,*]``.
+
+In *gView Carto* werden sie auf der Seite des Netzwerk-Moduls, Tab **General**, Karte **Supply** gesetzt.
+
 Konfiguration (appsettings, Abschnitt ``Network``)
 --------------------------------------------------
 
