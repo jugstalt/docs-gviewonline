@@ -172,6 +172,61 @@ Limits
 - **Vector tile glyphs** are cached per installed font, not per requested font stack.
 - **Rate limit:** optional, ``security:rate-limit``, answers with 429.
 
+.. _security-server-sql:
+
+Database and SQL filters
+------------------------
+
+**Database user with as few rights as possible:** the *gView Server* accesses the database with
+the user of the services' connection. This user should only have the rights the services need:
+
+- Read rights on the tables and views of the services.
+- Write rights (INSERT, UPDATE, DELETE) only on tables edited through a *FeatureServer*.
+- No owner, DDL or admin rights (CREATE, ALTER, DROP, ``sysadmin``, ``superuser``) and no access
+  to other databases or schemas.
+
+Even if a filter ever lets through more than intended, nothing can be changed or deleted and no
+other table can be read.
+
+**Filters in requests:** filters sent by a client are checked before the query:
+
+- GeoServices ``where``, ``layerDefs`` (export, identify) and
+  ``dynamicLayers[].definitionExpression``, ArcXML ``where``, GeoJsonService ``where``.
+- Allowed are fields of the layer, text, number and date literals (``date '2020-01-01'``,
+  ``timestamp '...'``), ``NULL``, ``TRUE``/``FALSE``, comparisons (``= <> != < > <= >=``),
+  ``AND``, ``OR``, ``NOT``, ``IN``, ``LIKE`` (with ``ESCAPE``), ``IS [NOT] NULL``, ``BETWEEN``,
+  parentheses and ``+ - * /``.
+- Allowed functions: ``UPPER``, ``LOWER``, ``CHAR_LENGTH``, ``TRIM``, ``CAST``, ``EXTRACT``,
+  ``CURRENT_DATE``, ``CURRENT_TIMESTAMP``.
+- Everything else (subqueries, ``UNION``, ``;``, comments, other functions, unknown fields) is
+  refused with status 400. The message names the refused part, not the SQL. ``1=1`` (Esri
+  clients) stays allowed.
+- Sorting (GeoServices ``orderByFields``, WFS ``SortBy``) only ``field [ASC|DESC]``, field
+  lists (``outFields``, ArcXML ``subfields``, fields of renderers from ``dynamicLayers`` and WMS
+  ``SLD_BODY``) only fields of the layer.
+- WFS filters are written from the XML as new SQL (texts escaped, numbers checked).
+
+The filter of a layer from the service configuration is not checked; it is always combined with
+the filter from the request by ``AND``.
+
+More functions can be allowed:
+
+.. code-block:: javascript
+
+   {
+        "security": {
+            "sql": {
+                // in addition to the default functions, function names only
+                "allowed-functions": [ "ROUND", "SUBSTRING" ]
+            }
+        }
+   }
+
+.. note::
+   Since 8.26.4001, ``layerDefs`` and ``definitionExpression`` are checked, too. Clients using
+   other functions or subqueries there now get an error. Add the functions they need to
+   ``security:sql:allowed-functions``.
+
 Logging
 -------
 

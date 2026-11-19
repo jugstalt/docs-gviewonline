@@ -177,6 +177,63 @@ Grenzen
   Font-Stack.
 - **Rate Limit:** optional, ``security:rate-limit``, antwortet mit 429.
 
+.. _security-server-sql:
+
+Datenbank und SQL-Filter
+------------------------
+
+**Datenbank-User mit möglichst wenig Rechten:** Der *gView Server* greift mit dem User aus der
+Verbindung der Dienste auf die Datenbank zu. Dieser User sollte nur die Rechte haben, die die
+Dienste brauchen:
+
+- Leserechte auf die Tabellen und Views der Dienste.
+- Schreibrechte (INSERT, UPDATE, DELETE) nur auf Tabellen, die über einen *FeatureServer*
+  bearbeitet werden.
+- Keine Owner-, DDL- oder Admin-Rechte (CREATE, ALTER, DROP, ``sysadmin``, ``superuser``) und
+  kein Zugriff auf andere Datenbanken oder Schemas.
+
+Selbst wenn ein Filter einmal mehr durchlässt als gedacht, kann damit nichts verändert oder
+gelöscht und keine fremde Tabelle gelesen werden.
+
+**Filter in Requests:** Filter, die ein Client schickt, werden vor der Abfrage geprüft:
+
+- GeoServices ``where``, ``layerDefs`` (Export, Identify) und
+  ``dynamicLayers[].definitionExpression``, ArcXML ``where``, GeoJsonService ``where``.
+- Erlaubt sind Felder des Layers, Text-, Zahlen- und Datumsliterale (``date '2020-01-01'``,
+  ``timestamp '...'``), ``NULL``, ``TRUE``/``FALSE``, Vergleiche (``= <> != < > <= >=``),
+  ``AND``, ``OR``, ``NOT``, ``IN``, ``LIKE`` (mit ``ESCAPE``), ``IS [NOT] NULL``, ``BETWEEN``,
+  Klammern und ``+ - * /``.
+- Erlaubte Funktionen: ``UPPER``, ``LOWER``, ``CHAR_LENGTH``, ``TRIM``, ``CAST``, ``EXTRACT``,
+  ``CURRENT_DATE``, ``CURRENT_TIMESTAMP``.
+- Alles andere (Unterabfragen, ``UNION``, ``;``, Kommentare, andere Funktionen, unbekannte
+  Felder) wird mit Status 400 abgewiesen. Die Meldung nennt den abgewiesenen Teil, nicht das
+  SQL. ``1=1`` (Esri-Clients) bleibt erlaubt.
+- Sortierung (GeoServices ``orderByFields``, WFS ``SortBy``) nur ``Feld [ASC|DESC]``,
+  Feldlisten (``outFields``, ArcXML ``subfields``, Felder von Renderern aus ``dynamicLayers``
+  und WMS ``SLD_BODY``) nur Felder des Layers.
+- WFS-Filter werden aus dem XML neu als SQL geschrieben (Texte maskiert, Zahlen geprüft).
+
+Der Filter eines Layers aus der Dienst-Konfiguration wird nicht geprüft; er wird immer mit
+``AND`` an den Filter aus dem Request gehängt.
+
+Weitere Funktionen lassen sich freigeben:
+
+.. code-block:: javascript
+
+   {
+        "security": {
+            "sql": {
+                // zusätzlich zu den Standard-Funktionen, nur Funktionsnamen
+                "allowed-functions": [ "ROUND", "SUBSTRING" ]
+            }
+        }
+   }
+
+.. note::
+   Ab 8.26.4001 werden auch ``layerDefs`` und ``definitionExpression`` geprüft. Clients, die
+   dort andere Funktionen oder Unterabfragen verwenden, bekommen jetzt einen Fehler. Benötigte
+   Funktionen unter ``security:sql:allowed-functions`` eintragen.
+
 Protokoll
 ---------
 
