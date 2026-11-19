@@ -37,8 +37,9 @@ The two environment variables let you override the most important values of
   is used, for example, to deliver map images to clients via the output directory.
 
 After startup, the management interface is available at http://localhost:45622 (in the example
-above). The first login follows the same flow described in :doc:`run-local`: the first user
-created automatically becomes the administrator.
+above). The first administrator comes from the environment variables ``GVIEW_ADMIN_USER`` and
+``GVIEW_ADMIN_PASSWORD`` or from the setup code the server writes to the log
+(``docker logs gview-server``), see :doc:`security-server`.
 
 
 gView.WebApps Image
@@ -60,6 +61,36 @@ The application is then reachable at http://localhost:45623.
     Configuration works the same way as in the other run modes, via ``_config/gview-web.config``
     (see :doc:`config-webapps`). If this file needs to be adjusted, a customized version can be
     mounted into the container's ``/app/_config`` directory as a volume.
+
+
+User and volumes
+----------------
+
+The images do not run as ``root`` but as the user ``app`` (UID 1654) of the .NET base image.
+Everything the application writes at runtime must be writable for this user:
+
+* ``/app/_config``: configuration, created from ``_setup`` on first start unless your own is
+  mounted.
+* ``/etc/gview/gview-repository`` (default of ``GV_REPOSITORY_PATH``) or
+  ``/etc/gview-repository`` (as in the examples here): services, logins, logs, output files,
+  tile caches.
+
+In the image these directories already belong to the user ``app``, Docker volumes take that
+over. For host directories (bind mounts) the owner must match:
+
+.. code-block:: bash
+
+    sudo chown -R 1654:1654 /path/to/gview-repository
+
+    docker run -d -p 45622:8080 --name=gview-server         -v /path/to/gview-repository:/etc/gview-repository         -e GV_REPOSITORY_PATH=/etc/gview-repository         -e GV_ONLINERESOURCE_URL=http://localhost:45622         ghcr.io/jugstalt/gview-server:latest
+
+In Kubernetes this fits ``runAsNonRoot: true`` and ``runAsUser: 1654`` (see
+:doc:`run-kubernetes`).
+
+.. note::
+
+    Up to v8 the images ran as ``root``. When upgrading to v9, existing host directories must be
+    made writable for UID 1654, otherwise the server cannot create anything there.
 
 
 Using a custom configuration

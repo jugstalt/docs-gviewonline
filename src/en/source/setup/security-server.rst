@@ -12,12 +12,17 @@ Recommended setup
 - Run the *gView Server* behind a reverse proxy (IIS, nginx, Traefik, a Kubernetes ingress,
   Azure Application Gateway, ...) that terminates TLS and sends ``X-Forwarded-For`` and
   ``X-Forwarded-Proto``.
-- Enter the addresses of your proxies in ``security:known-proxies`` (or ``known-networks``).
+- Enter the addresses of your proxies in ``security:known-proxies`` (or ``known-networks``),
+  always on the internet: without an entry every host in the private networks counts as a proxy.
 - Keep the admin pages in your internal network (``security:manage:allowed-networks``, the
   default) or use an OIDC admin login.
 - Set ``force-https`` when the server is only reachable via https.
 - Create the first admin with ``GVIEW_ADMIN_USER``/``GVIEW_ADMIN_PASSWORD`` or the setup code
   from the log before the server is reachable from outside (see :ref:`server_postinstallation`).
+- Run the server with its own service account that may write to a few folders only, and with a
+  database user that only reads (see :ref:`security-server-account` and
+  :ref:`security-server-sql`).
+- Install updates promptly (see :ref:`security-server-updates`).
 
 The security section
 --------------------
@@ -118,7 +123,9 @@ only answer to clients in ``security:manage:allowed-networks``. Everyone else ge
 request is logged. The **Manage** links are hidden outside.
 
 - Default: loopback and the private networks.
-- ``"*"`` allows everywhere.
+- ``"*"`` allows everywhere. Do **not** use it for a server on the internet: login and admin pages
+  are then reachable for everyone and only protected by the password. Enter the admins' networks,
+  use a VPN or an OIDC admin login instead.
 - With an OIDC admin login (``Authentication:Type = oidc``) the restriction only applies if
   ``allowed-networks`` is configured.
 - *gView Carto* publishes services with ``BrowseServices/PublishService``: the Carto server must
@@ -245,6 +252,37 @@ More functions can be allowed:
    other functions or subqueries there now get an error. Add the functions they need to
    ``security:sql:allowed-functions``.
 
+.. _security-server-account:
+
+Service account and file permissions
+------------------------------------
+
+Do not run the *gView Server* as administrator, ``root`` or ``LocalSystem``, but with its own
+service account (IIS: app pool identity, Windows service or Linux: a dedicated user, Docker: user
+``app``). The account needs:
+
+- **Read:** the program directory, ``_config`` and the data of the services (files, rasters,
+  FDBs).
+- **Write** only to these folders (from ``_config/mapserver.json``):
+
+  - ``output-path``: map images delivered as url.
+  - ``tilecache-root``: tile cache, vector tile cache and glyphs (``_glyphs``).
+  - ``services-folder``: ``services`` (publishing, deleting, settings of services),
+    ``_login`` (logins, tokens, security stamps, the certificate that signs the tokens),
+    ``log`` (service logs) and ``networks`` (network build; or ``networks-folder``).
+  - Data edited through a *FeatureServer* or OGC API Features (file based sources such as FDB,
+    GeoPackage, shape).
+
+- **No** write permissions on the program directory and ``_config``: on the first start the
+  server creates ``_config/mapserver.json`` if it is missing. Grant write permissions once or
+  create the file beforehand.
+
+``_login`` contains password hashes and the certificate that signs the tokens: only the service
+account and admins may read this folder. Do not put any of these folders below a directory the
+web server delivers directly (except ``output-path``).
+
+For database access see :ref:`security-server-sql`.
+
 Logging
 -------
 
@@ -258,13 +296,40 @@ gView service logs (``Logging:LogServiceRequests``/``...Details``). The ASP.NET 
 (``Microsoft.AspNetCore.Hosting``) is not masked: keep it at ``Warning`` (the default in
 ``appsettings.json``), otherwise query strings with tokens are written in plain text.
 
+**Error messages to clients:** the services do not pass internals (paths, connection data, SQL,
+database messages, stack traces) to clients. Unexpected errors are answered with
+``internal server error (id: 7f3a9c21)``; map images and tiles show the same text. The full
+message is written with the same id to the error log of the service
+(``Logging:LogServiceErrors``, default ``true``, folder ``log``), for the GeoJson service and OGC
+API to the server log. Errors caused by the request itself (unknown layer, invalid filter, ...)
+are still reported with their text. The admin pages show the details.
+
+.. _security-server-updates:
+
+Installing updates
+------------------
+
+- **gView Server:** new versions contain updated libraries. Install releases with a *Security*
+  section in the changelog promptly. Before every release the NuGet packages are checked for
+  known vulnerabilities.
+- **.NET runtime:** the regular ZIPs use the installed ASP.NET Core runtime. Keep it up to date
+  with Windows Update or the package manager. The *portable* ZIPs include the runtime and are only
+  updated with a new gView release.
+- **Docker:** the images are based on ``mcr.microsoft.com/dotnet/aspnet``. Pull them with every
+  release; rebuild your own images based on ``gview-server`` regularly.
+- **GDAL** is not included (``GVIEW_GDAL_PATH``, program directory or system). Keep your own GDAL
+  installation up to date. The other native libraries (Skia, HarfBuzz, SQL client) come with the
+  gView release.
+
+
 Upgrading to v9
 ---------------
 
 - **Sessions and tokens:** tokens issued before v9 have no security stamp and are rejected.
   Admins and token users log in again, GeoServices clients request a new token.
 - **Admin pages from outside:** only from ``security:manage:allowed-networks`` (default: private
-  networks). Enter your networks, ``"*"`` or use OIDC.
+  networks). Enter your networks or use OIDC; ``"*"`` only if the server is not reachable from
+  the internet.
 - **Proxy on a public address:** enter it in ``security:known-proxies``, otherwise the server
   does not see the client ip and https.
 - **First admin:** a fresh installation needs ``GVIEW_ADMIN_USER``/``GVIEW_ADMIN_PASSWORD`` or
@@ -274,3 +339,6 @@ Upgrading to v9
   needed, raise ``mapserver-defaults:maxDpi``.
 - **Docker:** the images run as user ``app`` (UID 1654). Mounted directories must be writable for
   this user (see :doc:`run-docker`).
+- **Error messages:** unexpected errors are answered with ``internal server error (id: ...)``
+  instead of the internal message (see `Logging`_). The details are in the log. FeatureServer
+  edits also report database errors with this id only.

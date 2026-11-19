@@ -185,8 +185,9 @@ container so that the settings survive a container restart.</p></li>
 is used, for example, to deliver map images to clients via the output directory.</p></li>
 </ul>
 <p>After startup, the management interface is available at <a class="reference external" href="http://localhost:45622">http://localhost:45622</a> (in the example
-above). The first login follows the same flow described in <a class="reference internal" href="run-local.html"><span class="doc">Run Locally (Desktop Mode)</span></a>: the first user
-created automatically becomes the administrator.</p>
+above). The first administrator comes from the environment variables <code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_USER</span></code> and
+<code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_PASSWORD</span></code> or from the setup code the server writes to the log
+(<code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">logs</span> <span class="pre">gview-server</span></code>), see <a class="reference internal" href="security-server.html"><span class="doc">Security gView.Server</span></a>.</p>
 </section>
 <section id="gview-webapps-image">
 <h2>gView.WebApps Image<a class="headerlink" href="#gview-webapps-image" title="Link to this heading">¶</a></h2>
@@ -203,6 +204,32 @@ created automatically becomes the administrator.</p>
 Configuration works the same way as in the other run modes, via <code class="docutils literal notranslate"><span class="pre">_config/gview-web.config</span></code>
 (see <a class="reference internal" href="config-webapps.html"><span class="doc">Configuration of gView.WebApps</span></a>). If this file needs to be adjusted, a customized version can be
 mounted into the container’s <code class="docutils literal notranslate"><span class="pre">/app/_config</span></code> directory as a volume.</p>
+</div>
+</section>
+<section id="user-and-volumes">
+<h2>User and volumes<a class="headerlink" href="#user-and-volumes" title="Link to this heading">¶</a></h2>
+<p>The images do not run as <code class="docutils literal notranslate"><span class="pre">root</span></code> but as the user <code class="docutils literal notranslate"><span class="pre">app</span></code> (UID 1654) of the .NET base image.
+Everything the application writes at runtime must be writable for this user:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/app/_config</span></code>: configuration, created from <code class="docutils literal notranslate"><span class="pre">_setup</span></code> on first start unless your own is
+mounted.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/etc/gview/gview-repository</span></code> (default of <code class="docutils literal notranslate"><span class="pre">GV_REPOSITORY_PATH</span></code>) or
+<code class="docutils literal notranslate"><span class="pre">/etc/gview-repository</span></code> (as in the examples here): services, logins, logs, output files,
+tile caches.</p></li>
+</ul>
+<p>In the image these directories already belong to the user <code class="docutils literal notranslate"><span class="pre">app</span></code>, Docker volumes take that
+over. For host directories (bind mounts) the owner must match:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span><span class="m">1654</span>:1654<span class="w"> </span>/path/to/gview-repository
+
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">45622</span>:8080<span class="w"> </span>--name<span class="o">=</span>gview-server<span class="w">         </span>-v<span class="w"> </span>/path/to/gview-repository:/etc/gview-repository<span class="w">         </span>-e<span class="w"> </span><span class="nv">GV_REPOSITORY_PATH</span><span class="o">=</span>/etc/gview-repository<span class="w">         </span>-e<span class="w"> </span><span class="nv">GV_ONLINERESOURCE_URL</span><span class="o">=</span>http://localhost:45622<span class="w">         </span>ghcr.io/jugstalt/gview-server:latest
+</pre></div>
+</div>
+<p>In Kubernetes this fits <code class="docutils literal notranslate"><span class="pre">runAsNonRoot:</span> <span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">runAsUser:</span> <span class="pre">1654</span></code> (see
+<a class="reference internal" href="run-kubernetes.html"><span class="doc">Kubernetes</span></a>).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Up to v8 the images ran as <code class="docutils literal notranslate"><span class="pre">root</span></code>. When upgrading to v9, existing host directories must be
+made writable for UID 1654, otherwise the server cannot create anything there.</p>
 </div>
 </section>
 <section id="using-a-custom-configuration">
@@ -245,6 +272,7 @@ approach.</p>
 <li><a class="reference internal" href="#">Docker</a><ul>
 <li><a class="reference internal" href="#gview-server-image">gView.Server Image</a></li>
 <li><a class="reference internal" href="#gview-webapps-image">gView.WebApps Image</a></li>
+<li><a class="reference internal" href="#user-and-volumes">User and volumes</a></li>
 <li><a class="reference internal" href="#using-a-custom-configuration">Using a custom configuration</a></li>
 </ul>
 </li>

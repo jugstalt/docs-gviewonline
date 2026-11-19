@@ -13,12 +13,17 @@ Empfohlener Betrieb
 - Den *gView Server* hinter einem Reverse Proxy betreiben (IIS, nginx, Traefik,
   Kubernetes-Ingress, Azure Application Gateway, ...), der TLS beendet und ``X-Forwarded-For``
   und ``X-Forwarded-Proto`` sendet.
-- Die Adressen der Proxies unter ``security:known-proxies`` (oder ``known-networks``) eintragen.
+- Die Adressen der Proxies unter ``security:known-proxies`` (oder ``known-networks``) eintragen,
+  im Internetbetrieb immer: ohne Eintrag gilt jeder Rechner in den privaten Netzen als Proxy.
 - Die Admin-Seiten im internen Netz lassen (``security:manage:allowed-networks``, Standard) oder
   einen OIDC-Admin-Login verwenden.
 - ``force-https`` setzen, wenn der Server nur über https erreichbar ist.
 - Den ersten Admin mit ``GVIEW_ADMIN_USER``/``GVIEW_ADMIN_PASSWORD`` oder dem Setup-Code aus dem
   Log anlegen, bevor der Server von außen erreichbar ist (siehe :ref:`server_postinstallation`).
+- Den Server unter einem eigenen Dienstkonto betreiben, das nur in wenige Ordner schreiben darf,
+  und mit einem Datenbank-User, der nur liest (siehe :ref:`security-server-account` und
+  :ref:`security-server-sql`).
+- Updates zeitnah einspielen (siehe :ref:`security-server-updates`).
 
 Der Abschnitt security
 ----------------------
@@ -120,7 +125,9 @@ antworten nur Clients aus ``security:manage:allowed-networks``. Alle anderen bek
 der Zugriff wird protokolliert. Der Link **Manage** wird außerhalb ausgeblendet.
 
 - Standard: localhost und die privaten Netze.
-- ``"*"`` erlaubt den Zugriff von überall.
+- ``"*"`` erlaubt den Zugriff von überall. Bei einem Server im Internet **nicht** verwenden: Dann
+  sind Login und Admin-Seiten für jeden erreichbar und nur noch durch das Passwort geschützt.
+  Besser die Netze der Admins eintragen, ein VPN verwenden oder einen OIDC-Admin-Login.
 - Mit OIDC-Admin-Login (``Authentication:Type = oidc``) gilt die Einschränkung nur, wenn
   ``allowed-networks`` gesetzt ist.
 - *gView Carto* publiziert Dienste über ``BrowseServices/PublishService``: Der Carto-Server muss
@@ -254,6 +261,37 @@ Weitere Funktionen lassen sich freigeben:
    dort andere Funktionen oder Unterabfragen verwenden, bekommen jetzt einen Fehler. Benötigte
    Funktionen unter ``security:sql:allowed-functions`` eintragen.
 
+.. _security-server-account:
+
+Dienstkonto und Dateirechte
+---------------------------
+
+Den *gView Server* nicht als Administrator, ``root`` oder ``LocalSystem`` betreiben, sondern unter
+einem eigenen Dienstkonto (IIS: App-Pool-Identität, Windows-Dienst oder Linux: eigener User,
+Docker: User ``app``). Das Konto braucht:
+
+- **Lesen:** das Programmverzeichnis, ``_config`` und die Daten der Dienste (Dateien, Raster,
+  FDBs).
+- **Schreiben** nur in diese Ordner (aus ``_config/mapserver.json``):
+
+  - ``output-path``: Kartenbilder, die als Url ausgeliefert werden.
+  - ``tilecache-root``: Tile-Cache, Vector-Tile-Cache und Glyphen (``_glyphs``).
+  - ``services-folder``: ``services`` (Dienste publizieren, löschen, Einstellungen),
+    ``_login`` (Logins, Tokens, Security Stamps, Zertifikat zum Signieren der Tokens),
+    ``log`` (Dienst-Logs) und ``networks`` (Netzwerk-Build; oder ``networks-folder``).
+  - Daten, die über einen *FeatureServer* oder OGC API Features bearbeitet werden (dateibasierte
+    Quellen wie FDB, GeoPackage, Shape).
+
+- **Keine** Schreibrechte auf das Programmverzeichnis und ``_config``: Beim ersten Start legt der
+  Server ``_config/mapserver.json`` an, wenn sie fehlt. Dafür einmalig Schreibrechte geben oder die
+  Datei vorher anlegen.
+
+``_login`` enthält Passwort-Hashes und das Zertifikat, mit dem Tokens signiert werden: Nur das
+Dienstkonto und Admins dürfen diesen Ordner lesen. Keinen der Ordner unter einem Verzeichnis
+ablegen, das der Webserver direkt ausliefert (außer ``output-path``).
+
+Für den Zugriff auf Datenbanken siehe :ref:`security-server-sql`.
+
 Protokoll
 ---------
 
@@ -269,13 +307,40 @@ ASP.NET-Request-Log (``Microsoft.AspNetCore.Hosting``) wird nicht maskiert: auf 
 lassen (Standard in ``appsettings.json``), sonst stehen Query-Strings mit Tokens im Klartext im
 Log.
 
+**Fehlermeldungen an Clients:** Die Dienste geben keine Interna (Pfade, Verbindungsdaten, SQL,
+Datenbankmeldungen, Stacktraces) an Clients weiter. Unerwartete Fehler werden mit
+``internal server error (id: 7f3a9c21)`` beantwortet; in Kartenbildern und Kacheln steht derselbe
+Text. Die vollständige Meldung steht mit derselben Id im Fehler-Log des Dienstes
+(``Logging:LogServiceErrors``, Standard ``true``, Ordner ``log``) bzw. beim GeoJson-Service und
+OGC API im Server-Log. Fehler, die der Request selbst verursacht (unbekannter Layer, ungültiger
+Filter, ...), werden weiter mit ihrem Text gemeldet. Die Admin-Seiten zeigen die Details.
+
+.. _security-server-updates:
+
+Updates einspielen
+------------------
+
+- **gView Server:** Neue Versionen enthalten aktualisierte Bibliotheken. Releases mit einem
+  Abschnitt *Security* im Changelog zeitnah einspielen. Vor jedem Release werden die
+  NuGet-Pakete gegen bekannte Schwachstellen geprüft.
+- **.NET-Runtime:** Die normalen ZIPs verwenden die installierte ASP.NET-Core-Runtime. Diese über
+  Windows Update bzw. die Paketverwaltung aktuell halten. Die *portable*-ZIPs bringen die Runtime
+  mit und werden nur mit einem neuen gView-Release aktualisiert.
+- **Docker:** Die Images basieren auf ``mcr.microsoft.com/dotnet/aspnet``. Mit jedem Release neu
+  ziehen; eigene Images auf Basis von ``gview-server`` regelmäßig neu bauen.
+- **GDAL** wird nicht mitgeliefert (``GVIEW_GDAL_PATH``, Programmverzeichnis oder System). Eine
+  eigene GDAL-Installation selbst aktuell halten. Die übrigen nativen Bibliotheken (Skia,
+  HarfBuzz, SQL-Client) kommen mit dem gView-Release.
+
+
 Umstieg auf v9
 --------------
 
 - **Sitzungen und Tokens:** Tokens von vor v9 haben keinen Security Stamp und werden abgelehnt.
   Admins und Token-User melden sich neu an, GeoServices-Clients holen ein neues Token.
 - **Admin-Seiten von außen:** nur aus ``security:manage:allowed-networks`` (Standard: private
-  Netze). Eigene Netze, ``"*"`` eintragen oder OIDC verwenden.
+  Netze). Eigene Netze eintragen oder OIDC verwenden; ``"*"`` nur, wenn der Server nicht aus dem
+  Internet erreichbar ist.
 - **Proxy mit öffentlicher Adresse:** unter ``security:known-proxies`` eintragen, sonst sieht
   der Server Client-IP und https nicht.
 - **Erster Admin:** Eine neue Installation braucht ``GVIEW_ADMIN_USER``/``GVIEW_ADMIN_PASSWORD``
@@ -285,3 +350,6 @@ Umstieg auf v9
   gebraucht, ``mapserver-defaults:maxDpi`` erhöhen.
 - **Docker:** Die Images laufen als User ``app`` (UID 1654). Gemountete Verzeichnisse müssen für
   diesen User schreibbar sein (siehe :doc:`run-docker`).
+- **Fehlermeldungen:** Unerwartete Fehler werden mit ``internal server error (id: ...)``
+  beantwortet statt mit der internen Meldung (siehe `Protokoll`_). Die Details stehen im Log.
+  FeatureServer-Edits melden Datenbankfehler ebenfalls nur noch mit dieser Id.

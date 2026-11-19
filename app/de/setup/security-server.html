@@ -163,12 +163,17 @@ Reverse Proxy betrieben wird.</p>
 <li><p>Den <em>gView Server</em> hinter einem Reverse Proxy betreiben (IIS, nginx, Traefik,
 Kubernetes-Ingress, Azure Application Gateway, …), der TLS beendet und <code class="docutils literal notranslate"><span class="pre">X-Forwarded-For</span></code>
 und <code class="docutils literal notranslate"><span class="pre">X-Forwarded-Proto</span></code> sendet.</p></li>
-<li><p>Die Adressen der Proxies unter <code class="docutils literal notranslate"><span class="pre">security:known-proxies</span></code> (oder <code class="docutils literal notranslate"><span class="pre">known-networks</span></code>) eintragen.</p></li>
+<li><p>Die Adressen der Proxies unter <code class="docutils literal notranslate"><span class="pre">security:known-proxies</span></code> (oder <code class="docutils literal notranslate"><span class="pre">known-networks</span></code>) eintragen,
+im Internetbetrieb immer: ohne Eintrag gilt jeder Rechner in den privaten Netzen als Proxy.</p></li>
 <li><p>Die Admin-Seiten im internen Netz lassen (<code class="docutils literal notranslate"><span class="pre">security:manage:allowed-networks</span></code>, Standard) oder
 einen OIDC-Admin-Login verwenden.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">force-https</span></code> setzen, wenn der Server nur über https erreichbar ist.</p></li>
 <li><p>Den ersten Admin mit <code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_USER</span></code>/<code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_PASSWORD</span></code> oder dem Setup-Code aus dem
 Log anlegen, bevor der Server von außen erreichbar ist (siehe <a class="reference internal" href="../server/inst/postinstallation.html#server-postinstallation"><span class="std std-ref">Postinstallation</span></a>).</p></li>
+<li><p>Den Server unter einem eigenen Dienstkonto betreiben, das nur in wenige Ordner schreiben darf,
+und mit einem Datenbank-User, der nur liest (siehe <a class="reference internal" href="#security-server-account"><span class="std std-ref">Dienstkonto und Dateirechte</span></a> und
+<a class="reference internal" href="#security-server-sql"><span class="std std-ref">Datenbank und SQL-Filter</span></a>).</p></li>
+<li><p>Updates zeitnah einspielen (siehe <a class="reference internal" href="#security-server-updates"><span class="std std-ref">Updates einspielen</span></a>).</p></li>
 </ul>
 </section>
 <section id="der-abschnitt-security">
@@ -267,7 +272,9 @@ antworten nur Clients aus <code class="docutils literal notranslate"><span class
 der Zugriff wird protokolliert. Der Link <strong>Manage</strong> wird außerhalb ausgeblendet.</p>
 <ul class="simple">
 <li><p>Standard: localhost und die privaten Netze.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;*&quot;</span></code> erlaubt den Zugriff von überall.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;*&quot;</span></code> erlaubt den Zugriff von überall. Bei einem Server im Internet <strong>nicht</strong> verwenden: Dann
+sind Login und Admin-Seiten für jeden erreichbar und nur noch durch das Passwort geschützt.
+Besser die Netze der Admins eintragen, ein VPN verwenden oder einen OIDC-Admin-Login.</p></li>
 <li><p>Mit OIDC-Admin-Login (<code class="docutils literal notranslate"><span class="pre">Authentication:Type</span> <span class="pre">=</span> <span class="pre">oidc</span></code>) gilt die Einschränkung nur, wenn
 <code class="docutils literal notranslate"><span class="pre">allowed-networks</span></code> gesetzt ist.</p></li>
 <li><p><em>gView Carto</em> publiziert Dienste über <code class="docutils literal notranslate"><span class="pre">BrowseServices/PublishService</span></code>: Der Carto-Server muss
@@ -314,7 +321,7 @@ falsches Url-Token wird mit <em>Invalid Token (498)</em> beantwortet.</p>
 </section>
 <section id="grenzen">
 <h2>Grenzen<a class="headerlink" href="#grenzen" title="Link to this heading">¶</a></h2>
-<ul class="simple">
+<ul>
 <li><p><strong>Request-Body:</strong> <code class="docutils literal notranslate"><span class="pre">security:max-request-body-mb</span></code> (50 MB) für Kestrel, IIS und Formulare.
 Mit IIS muss <code class="docutils literal notranslate"><span class="pre">requestLimits</span> <span class="pre">maxAllowedContentLength</span></code> in der <code class="docutils literal notranslate"><span class="pre">web.config</span></code> mindestens so
 groß sein.</p></li>
@@ -325,7 +332,106 @@ begrenzt.</p></li>
 <li><p><strong>Glyphen für Vector Tiles</strong> werden pro installierter Schrift gecacht, nicht pro angefragtem
 Font-Stack.</p></li>
 <li><p><strong>Rate Limit:</strong> optional, <code class="docutils literal notranslate"><span class="pre">security:rate-limit</span></code>, antwortet mit 429.</p></li>
+<li><p><strong>Bildgröße:</strong> Kartenbilder (WMS, GeoServices, ArcXML, GeoJson-Service, OGC API Maps) sind
+höchstens <code class="docutils literal notranslate"><span class="pre">MaxImageWidth</span></code>/<code class="docutils literal notranslate"><span class="pre">MaxImageHeight</span></code> des Dienstes groß (Einstellung des Dienstes,
+sonst <code class="docutils literal notranslate"><span class="pre">mapserver-defaults:maxImageWidth</span></code>/<code class="docutils literal notranslate"><span class="pre">maxImageHeight</span></code>, sonst 4096), aber nie größer als
+16384 Pixel. Größere Anfragen werden mit gleichem Seitenverhältnis verkleinert, die DPI
+entsprechend reduziert. Breite oder Höhe ≤ 0 ergeben einen Fehler. Die Capabilities melden die
+tatsächlichen Grenzen.</p></li>
+<li><p><strong>DPI:</strong> höchstens <code class="docutils literal notranslate"><span class="pre">mapserver-defaults:maxDpi</span></code> (Standard 600, gilt für alle Dienste). Höhere
+Werte werden auf diese Grenze gesetzt, die Bildgröße bleibt gleich.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"mapserver-defaults"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"maxImageWidth"</span><span class="p">:</span><span class="w"> </span><span class="mi">4096</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"maxImageHeight"</span><span class="p">:</span><span class="w"> </span><span class="mi">4096</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"maxDpi"</span><span class="p">:</span><span class="w"> </span><span class="mi">600</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>XML:</strong> XML aus Requests (ArcXML, WFS POST, <code class="docutils literal notranslate"><span class="pre">SLD_BODY</span></code>, OGC-Filter) und aus Antworten
+fremder Dienste wird ohne DTD-Verarbeitung gelesen: keine Entity-Expansion, keine externen
+Ressourcen.</p></li>
 </ul>
+</section>
+<section id="datenbank-und-sql-filter">
+<span id="security-server-sql"></span><h2>Datenbank und SQL-Filter<a class="headerlink" href="#datenbank-und-sql-filter" title="Link to this heading">¶</a></h2>
+<p><strong>Datenbank-User mit möglichst wenig Rechten:</strong> Der <em>gView Server</em> greift mit dem User aus der
+Verbindung der Dienste auf die Datenbank zu. Dieser User sollte nur die Rechte haben, die die
+Dienste brauchen:</p>
+<ul class="simple">
+<li><p>Leserechte auf die Tabellen und Views der Dienste.</p></li>
+<li><p>Schreibrechte (INSERT, UPDATE, DELETE) nur auf Tabellen, die über einen <em>FeatureServer</em>
+bearbeitet werden.</p></li>
+<li><p>Keine Owner-, DDL- oder Admin-Rechte (CREATE, ALTER, DROP, <code class="docutils literal notranslate"><span class="pre">sysadmin</span></code>, <code class="docutils literal notranslate"><span class="pre">superuser</span></code>) und
+kein Zugriff auf andere Datenbanken oder Schemas.</p></li>
+</ul>
+<p>Selbst wenn ein Filter einmal mehr durchlässt als gedacht, kann damit nichts verändert oder
+gelöscht und keine fremde Tabelle gelesen werden.</p>
+<p><strong>Filter in Requests:</strong> Filter, die ein Client schickt, werden vor der Abfrage geprüft:</p>
+<ul class="simple">
+<li><p>GeoServices <code class="docutils literal notranslate"><span class="pre">where</span></code>, <code class="docutils literal notranslate"><span class="pre">layerDefs</span></code> (Export, Identify) und
+<code class="docutils literal notranslate"><span class="pre">dynamicLayers[].definitionExpression</span></code>, ArcXML <code class="docutils literal notranslate"><span class="pre">where</span></code>, GeoJsonService <code class="docutils literal notranslate"><span class="pre">where</span></code>.</p></li>
+<li><p>Erlaubt sind Felder des Layers, Text-, Zahlen- und Datumsliterale (<code class="docutils literal notranslate"><span class="pre">date</span> <span class="pre">'2020-01-01'</span></code>,
+<code class="docutils literal notranslate"><span class="pre">timestamp</span> <span class="pre">'...'</span></code>), <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>/<code class="docutils literal notranslate"><span class="pre">FALSE</span></code>, Vergleiche (<code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">&lt;&gt;</span> <span class="pre">!=</span> <span class="pre">&lt;</span> <span class="pre">&gt;</span> <span class="pre">&lt;=</span> <span class="pre">&gt;=</span></code>),
+<code class="docutils literal notranslate"><span class="pre">AND</span></code>, <code class="docutils literal notranslate"><span class="pre">OR</span></code>, <code class="docutils literal notranslate"><span class="pre">NOT</span></code>, <code class="docutils literal notranslate"><span class="pre">IN</span></code>, <code class="docutils literal notranslate"><span class="pre">LIKE</span></code> (mit <code class="docutils literal notranslate"><span class="pre">ESCAPE</span></code>), <code class="docutils literal notranslate"><span class="pre">IS</span> <span class="pre">[NOT]</span> <span class="pre">NULL</span></code>, <code class="docutils literal notranslate"><span class="pre">BETWEEN</span></code>,
+Klammern und <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">-</span> <span class="pre">*</span> <span class="pre">/</span></code>.</p></li>
+<li><p>Erlaubte Funktionen: <code class="docutils literal notranslate"><span class="pre">UPPER</span></code>, <code class="docutils literal notranslate"><span class="pre">LOWER</span></code>, <code class="docutils literal notranslate"><span class="pre">CHAR_LENGTH</span></code>, <code class="docutils literal notranslate"><span class="pre">TRIM</span></code>, <code class="docutils literal notranslate"><span class="pre">CAST</span></code>, <code class="docutils literal notranslate"><span class="pre">EXTRACT</span></code>,
+<code class="docutils literal notranslate"><span class="pre">CURRENT_DATE</span></code>, <code class="docutils literal notranslate"><span class="pre">CURRENT_TIMESTAMP</span></code>.</p></li>
+<li><p>Alles andere (Unterabfragen, <code class="docutils literal notranslate"><span class="pre">UNION</span></code>, <code class="docutils literal notranslate"><span class="pre">;</span></code>, Kommentare, andere Funktionen, unbekannte
+Felder) wird mit Status 400 abgewiesen. Die Meldung nennt den abgewiesenen Teil, nicht das
+SQL. <code class="docutils literal notranslate"><span class="pre">1=1</span></code> (Esri-Clients) bleibt erlaubt.</p></li>
+<li><p>Sortierung (GeoServices <code class="docutils literal notranslate"><span class="pre">orderByFields</span></code>, WFS <code class="docutils literal notranslate"><span class="pre">SortBy</span></code>) nur <code class="docutils literal notranslate"><span class="pre">Feld</span> <span class="pre">[ASC|DESC]</span></code>,
+Feldlisten (<code class="docutils literal notranslate"><span class="pre">outFields</span></code>, ArcXML <code class="docutils literal notranslate"><span class="pre">subfields</span></code>, Felder von Renderern aus <code class="docutils literal notranslate"><span class="pre">dynamicLayers</span></code>
+und WMS <code class="docutils literal notranslate"><span class="pre">SLD_BODY</span></code>) nur Felder des Layers.</p></li>
+<li><p>WFS-Filter werden aus dem XML neu als SQL geschrieben (Texte maskiert, Zahlen geprüft).</p></li>
+</ul>
+<p>Der Filter eines Layers aus der Dienst-Konfiguration wird nicht geprüft; er wird immer mit
+<code class="docutils literal notranslate"><span class="pre">AND</span></code> an den Filter aus dem Request gehängt.</p>
+<p>Weitere Funktionen lassen sich freigeben:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">     </span><span class="s2">"security"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="s2">"sql"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">             </span><span class="c1">// zusätzlich zu den Standard-Funktionen, nur Funktionsnamen</span>
+<span class="w">             </span><span class="s2">"allowed-functions"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"ROUND"</span><span class="p">,</span><span class="w"> </span><span class="s2">"SUBSTRING"</span><span class="w"> </span><span class="p">]</span>
+<span class="w">         </span><span class="p">}</span>
+<span class="w">     </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Ab 8.26.4001 werden auch <code class="docutils literal notranslate"><span class="pre">layerDefs</span></code> und <code class="docutils literal notranslate"><span class="pre">definitionExpression</span></code> geprüft. Clients, die
+dort andere Funktionen oder Unterabfragen verwenden, bekommen jetzt einen Fehler. Benötigte
+Funktionen unter <code class="docutils literal notranslate"><span class="pre">security:sql:allowed-functions</span></code> eintragen.</p>
+</div>
+</section>
+<section id="dienstkonto-und-dateirechte">
+<span id="security-server-account"></span><h2>Dienstkonto und Dateirechte<a class="headerlink" href="#dienstkonto-und-dateirechte" title="Link to this heading">¶</a></h2>
+<p>Den <em>gView Server</em> nicht als Administrator, <code class="docutils literal notranslate"><span class="pre">root</span></code> oder <code class="docutils literal notranslate"><span class="pre">LocalSystem</span></code> betreiben, sondern unter
+einem eigenen Dienstkonto (IIS: App-Pool-Identität, Windows-Dienst oder Linux: eigener User,
+Docker: User <code class="docutils literal notranslate"><span class="pre">app</span></code>). Das Konto braucht:</p>
+<ul class="simple">
+<li><p><strong>Lesen:</strong> das Programmverzeichnis, <code class="docutils literal notranslate"><span class="pre">_config</span></code> und die Daten der Dienste (Dateien, Raster,
+FDBs).</p></li>
+<li><p><strong>Schreiben</strong> nur in diese Ordner (aus <code class="docutils literal notranslate"><span class="pre">_config/mapserver.json</span></code>):</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">output-path</span></code>: Kartenbilder, die als Url ausgeliefert werden.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tilecache-root</span></code>: Tile-Cache, Vector-Tile-Cache und Glyphen (<code class="docutils literal notranslate"><span class="pre">_glyphs</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">services-folder</span></code>: <code class="docutils literal notranslate"><span class="pre">services</span></code> (Dienste publizieren, löschen, Einstellungen),
+<code class="docutils literal notranslate"><span class="pre">_login</span></code> (Logins, Tokens, Security Stamps, Zertifikat zum Signieren der Tokens),
+<code class="docutils literal notranslate"><span class="pre">log</span></code> (Dienst-Logs) und <code class="docutils literal notranslate"><span class="pre">networks</span></code> (Netzwerk-Build; oder <code class="docutils literal notranslate"><span class="pre">networks-folder</span></code>).</p></li>
+<li><p>Daten, die über einen <em>FeatureServer</em> oder OGC API Features bearbeitet werden (dateibasierte
+Quellen wie FDB, GeoPackage, Shape).</p></li>
+</ul>
+</li>
+<li><p><strong>Keine</strong> Schreibrechte auf das Programmverzeichnis und <code class="docutils literal notranslate"><span class="pre">_config</span></code>: Beim ersten Start legt der
+Server <code class="docutils literal notranslate"><span class="pre">_config/mapserver.json</span></code> an, wenn sie fehlt. Dafür einmalig Schreibrechte geben oder die
+Datei vorher anlegen.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">_login</span></code> enthält Passwort-Hashes und das Zertifikat, mit dem Tokens signiert werden: Nur das
+Dienstkonto und Admins dürfen diesen Ordner lesen. Keinen der Ordner unter einem Verzeichnis
+ablegen, das der Webserver direkt ausliefert (außer <code class="docutils literal notranslate"><span class="pre">output-path</span></code>).</p>
+<p>Für den Zugriff auf Datenbanken siehe <a class="reference internal" href="#security-server-sql"><span class="std std-ref">Datenbank und SQL-Filter</span></a>.</p>
 </section>
 <section id="protokoll">
 <h2>Protokoll<a class="headerlink" href="#protokoll" title="Link to this heading">¶</a></h2>
@@ -339,6 +445,29 @@ gView-Dienst-Logs (<code class="docutils literal notranslate"><span class="pre">
 ASP.NET-Request-Log (<code class="docutils literal notranslate"><span class="pre">Microsoft.AspNetCore.Hosting</span></code>) wird nicht maskiert: auf <code class="docutils literal notranslate"><span class="pre">Warning</span></code>
 lassen (Standard in <code class="docutils literal notranslate"><span class="pre">appsettings.json</span></code>), sonst stehen Query-Strings mit Tokens im Klartext im
 Log.</p>
+<p><strong>Fehlermeldungen an Clients:</strong> Die Dienste geben keine Interna (Pfade, Verbindungsdaten, SQL,
+Datenbankmeldungen, Stacktraces) an Clients weiter. Unerwartete Fehler werden mit
+<code class="docutils literal notranslate"><span class="pre">internal</span> <span class="pre">server</span> <span class="pre">error</span> <span class="pre">(id:</span> <span class="pre">7f3a9c21)</span></code> beantwortet; in Kartenbildern und Kacheln steht derselbe
+Text. Die vollständige Meldung steht mit derselben Id im Fehler-Log des Dienstes
+(<code class="docutils literal notranslate"><span class="pre">Logging:LogServiceErrors</span></code>, Standard <code class="docutils literal notranslate"><span class="pre">true</span></code>, Ordner <code class="docutils literal notranslate"><span class="pre">log</span></code>) bzw. beim GeoJson-Service und
+OGC API im Server-Log. Fehler, die der Request selbst verursacht (unbekannter Layer, ungültiger
+Filter, …), werden weiter mit ihrem Text gemeldet. Die Admin-Seiten zeigen die Details.</p>
+</section>
+<section id="updates-einspielen">
+<span id="security-server-updates"></span><h2>Updates einspielen<a class="headerlink" href="#updates-einspielen" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>gView Server:</strong> Neue Versionen enthalten aktualisierte Bibliotheken. Releases mit einem
+Abschnitt <em>Security</em> im Changelog zeitnah einspielen. Vor jedem Release werden die
+NuGet-Pakete gegen bekannte Schwachstellen geprüft.</p></li>
+<li><p><strong>.NET-Runtime:</strong> Die normalen ZIPs verwenden die installierte ASP.NET-Core-Runtime. Diese über
+Windows Update bzw. die Paketverwaltung aktuell halten. Die <em>portable</em>-ZIPs bringen die Runtime
+mit und werden nur mit einem neuen gView-Release aktualisiert.</p></li>
+<li><p><strong>Docker:</strong> Die Images basieren auf <code class="docutils literal notranslate"><span class="pre">mcr.microsoft.com/dotnet/aspnet</span></code>. Mit jedem Release neu
+ziehen; eigene Images auf Basis von <code class="docutils literal notranslate"><span class="pre">gview-server</span></code> regelmäßig neu bauen.</p></li>
+<li><p><strong>GDAL</strong> wird nicht mitgeliefert (<code class="docutils literal notranslate"><span class="pre">GVIEW_GDAL_PATH</span></code>, Programmverzeichnis oder System). Eine
+eigene GDAL-Installation selbst aktuell halten. Die übrigen nativen Bibliotheken (Skia,
+HarfBuzz, SQL-Client) kommen mit dem gView-Release.</p></li>
+</ul>
 </section>
 <section id="umstieg-auf-v9">
 <h2>Umstieg auf v9<a class="headerlink" href="#umstieg-auf-v9" title="Link to this heading">¶</a></h2>
@@ -346,12 +475,20 @@ Log.</p>
 <li><p><strong>Sitzungen und Tokens:</strong> Tokens von vor v9 haben keinen Security Stamp und werden abgelehnt.
 Admins und Token-User melden sich neu an, GeoServices-Clients holen ein neues Token.</p></li>
 <li><p><strong>Admin-Seiten von außen:</strong> nur aus <code class="docutils literal notranslate"><span class="pre">security:manage:allowed-networks</span></code> (Standard: private
-Netze). Eigene Netze, <code class="docutils literal notranslate"><span class="pre">&quot;*&quot;</span></code> eintragen oder OIDC verwenden.</p></li>
+Netze). Eigene Netze eintragen oder OIDC verwenden; <code class="docutils literal notranslate"><span class="pre">&quot;*&quot;</span></code> nur, wenn der Server nicht aus dem
+Internet erreichbar ist.</p></li>
 <li><p><strong>Proxy mit öffentlicher Adresse:</strong> unter <code class="docutils literal notranslate"><span class="pre">security:known-proxies</span></code> eintragen, sonst sieht
 der Server Client-IP und https nicht.</p></li>
 <li><p><strong>Erster Admin:</strong> Eine neue Installation braucht <code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_USER</span></code>/<code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_PASSWORD</span></code>
 oder den Setup-Code aus dem Log.</p></li>
 <li><p><strong>WFS:</strong> <code class="docutils literal notranslate"><span class="pre">GetFeature</span></code> liefert höchstens <code class="docutils literal notranslate"><span class="pre">MaxRecordCount</span></code> Features.</p></li>
+<li><p><strong>DPI:</strong> Kartenbilder mit mehr als 600 DPI (z. B. Druck) werden auf 600 DPI begrenzt. Wird mehr
+gebraucht, <code class="docutils literal notranslate"><span class="pre">mapserver-defaults:maxDpi</span></code> erhöhen.</p></li>
+<li><p><strong>Docker:</strong> Die Images laufen als User <code class="docutils literal notranslate"><span class="pre">app</span></code> (UID 1654). Gemountete Verzeichnisse müssen für
+diesen User schreibbar sein (siehe <a class="reference internal" href="run-docker.html"><span class="doc">Docker</span></a>).</p></li>
+<li><p><strong>Fehlermeldungen:</strong> Unerwartete Fehler werden mit <code class="docutils literal notranslate"><span class="pre">internal</span> <span class="pre">server</span> <span class="pre">error</span> <span class="pre">(id:</span> <span class="pre">...)</span></code>
+beantwortet statt mit der internen Meldung (siehe <a class="reference internal" href="#protokoll">Protokoll</a>). Die Details stehen im Log.
+FeatureServer-Edits melden Datenbankfehler ebenfalls nur noch mit dieser Id.</p></li>
 </ul>
 </section>
 </section>
@@ -380,7 +517,10 @@ oder den Setup-Code aus dem Log.</p></li>
 <li><a class="reference internal" href="#cors-cookies-und-security-header">CORS, Cookies und Security-Header</a></li>
 <li><a class="reference internal" href="#url-tokens">Url-Tokens</a></li>
 <li><a class="reference internal" href="#grenzen">Grenzen</a></li>
+<li><a class="reference internal" href="#datenbank-und-sql-filter">Datenbank und SQL-Filter</a></li>
+<li><a class="reference internal" href="#dienstkonto-und-dateirechte">Dienstkonto und Dateirechte</a></li>
 <li><a class="reference internal" href="#protokoll">Protokoll</a></li>
+<li><a class="reference internal" href="#updates-einspielen">Updates einspielen</a></li>
 <li><a class="reference internal" href="#umstieg-auf-v9">Umstieg auf v9</a></li>
 </ul>
 </li>

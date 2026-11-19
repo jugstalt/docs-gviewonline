@@ -13,12 +13,17 @@ Empfohlener Betrieb
 - Den *gView Server* hinter einem Reverse Proxy betreiben (IIS, nginx, Traefik,
   Kubernetes-Ingress, Azure Application Gateway, ...), der TLS beendet und ``X-Forwarded-For``
   und ``X-Forwarded-Proto`` sendet.
-- Die Adressen der Proxies unter ``security:known-proxies`` (oder ``known-networks``) eintragen.
+- Die Adressen der Proxies unter ``security:known-proxies`` (oder ``known-networks``) eintragen,
+  im Internetbetrieb immer: ohne Eintrag gilt jeder Rechner in den privaten Netzen als Proxy.
 - Die Admin-Seiten im internen Netz lassen (``security:manage:allowed-networks``, Standard) oder
   einen OIDC-Admin-Login verwenden.
 - ``force-https`` setzen, wenn der Server nur über https erreichbar ist.
 - Den ersten Admin mit ``GVIEW_ADMIN_USER``/``GVIEW_ADMIN_PASSWORD`` oder dem Setup-Code aus dem
   Log anlegen, bevor der Server von außen erreichbar ist (siehe :ref:`server_postinstallation`).
+- Den Server unter einem eigenen Dienstkonto betreiben, das nur in wenige Ordner schreiben darf,
+  und mit einem Datenbank-User, der nur liest (siehe :ref:`security-server-account` und
+  :ref:`security-server-sql`).
+- Updates zeitnah einspielen (siehe :ref:`security-server-updates`).
 
 Der Abschnitt security
 ----------------------
@@ -120,7 +125,9 @@ antworten nur Clients aus ``security:manage:allowed-networks``. Alle anderen bek
 der Zugriff wird protokolliert. Der Link **Manage** wird außerhalb ausgeblendet.
 
 - Standard: localhost und die privaten Netze.
-- ``"*"`` erlaubt den Zugriff von überall.
+- ``"*"`` erlaubt den Zugriff von überall. Bei einem Server im Internet **nicht** verwenden: Dann
+  sind Login und Admin-Seiten für jeden erreichbar und nur noch durch das Passwort geschützt.
+  Besser die Netze der Admins eintragen, ein VPN verwenden oder einen OIDC-Admin-Login.
 - Mit OIDC-Admin-Login (``Authentication:Type = oidc``) gilt die Einschränkung nur, wenn
   ``allowed-networks`` gesetzt ist.
 - *gView Carto* publiziert Dienste über ``BrowseServices/PublishService``: Der Carto-Server muss
@@ -176,6 +183,114 @@ Grenzen
 - **Glyphen für Vector Tiles** werden pro installierter Schrift gecacht, nicht pro angefragtem
   Font-Stack.
 - **Rate Limit:** optional, ``security:rate-limit``, antwortet mit 429.
+- **Bildgröße:** Kartenbilder (WMS, GeoServices, ArcXML, GeoJson-Service, OGC API Maps) sind
+  höchstens ``MaxImageWidth``/``MaxImageHeight`` des Dienstes groß (Einstellung des Dienstes,
+  sonst ``mapserver-defaults:maxImageWidth``/``maxImageHeight``, sonst 4096), aber nie größer als
+  16384 Pixel. Größere Anfragen werden mit gleichem Seitenverhältnis verkleinert, die DPI
+  entsprechend reduziert. Breite oder Höhe ≤ 0 ergeben einen Fehler. Die Capabilities melden die
+  tatsächlichen Grenzen.
+- **DPI:** höchstens ``mapserver-defaults:maxDpi`` (Standard 600, gilt für alle Dienste). Höhere
+  Werte werden auf diese Grenze gesetzt, die Bildgröße bleibt gleich.
+
+  .. code-block:: json
+
+      "mapserver-defaults": {
+        "maxImageWidth": 4096,
+        "maxImageHeight": 4096,
+        "maxDpi": 600
+      }
+
+- **XML:** XML aus Requests (ArcXML, WFS POST, ``SLD_BODY``, OGC-Filter) und aus Antworten
+  fremder Dienste wird ohne DTD-Verarbeitung gelesen: keine Entity-Expansion, keine externen
+  Ressourcen.
+
+.. _security-server-sql:
+
+Datenbank und SQL-Filter
+------------------------
+
+**Datenbank-User mit möglichst wenig Rechten:** Der *gView Server* greift mit dem User aus der
+Verbindung der Dienste auf die Datenbank zu. Dieser User sollte nur die Rechte haben, die die
+Dienste brauchen:
+
+- Leserechte auf die Tabellen und Views der Dienste.
+- Schreibrechte (INSERT, UPDATE, DELETE) nur auf Tabellen, die über einen *FeatureServer*
+  bearbeitet werden.
+- Keine Owner-, DDL- oder Admin-Rechte (CREATE, ALTER, DROP, ``sysadmin``, ``superuser``) und
+  kein Zugriff auf andere Datenbanken oder Schemas.
+
+Selbst wenn ein Filter einmal mehr durchlässt als gedacht, kann damit nichts verändert oder
+gelöscht und keine fremde Tabelle gelesen werden.
+
+**Filter in Requests:** Filter, die ein Client schickt, werden vor der Abfrage geprüft:
+
+- GeoServices ``where``, ``layerDefs`` (Export, Identify) und
+  ``dynamicLayers[].definitionExpression``, ArcXML ``where``, GeoJsonService ``where``.
+- Erlaubt sind Felder des Layers, Text-, Zahlen- und Datumsliterale (``date '2020-01-01'``,
+  ``timestamp '...'``), ``NULL``, ``TRUE``/``FALSE``, Vergleiche (``= <> != < > <= >=``),
+  ``AND``, ``OR``, ``NOT``, ``IN``, ``LIKE`` (mit ``ESCAPE``), ``IS [NOT] NULL``, ``BETWEEN``,
+  Klammern und ``+ - * /``.
+- Erlaubte Funktionen: ``UPPER``, ``LOWER``, ``CHAR_LENGTH``, ``TRIM``, ``CAST``, ``EXTRACT``,
+  ``CURRENT_DATE``, ``CURRENT_TIMESTAMP``.
+- Alles andere (Unterabfragen, ``UNION``, ``;``, Kommentare, andere Funktionen, unbekannte
+  Felder) wird mit Status 400 abgewiesen. Die Meldung nennt den abgewiesenen Teil, nicht das
+  SQL. ``1=1`` (Esri-Clients) bleibt erlaubt.
+- Sortierung (GeoServices ``orderByFields``, WFS ``SortBy``) nur ``Feld [ASC|DESC]``,
+  Feldlisten (``outFields``, ArcXML ``subfields``, Felder von Renderern aus ``dynamicLayers``
+  und WMS ``SLD_BODY``) nur Felder des Layers.
+- WFS-Filter werden aus dem XML neu als SQL geschrieben (Texte maskiert, Zahlen geprüft).
+
+Der Filter eines Layers aus der Dienst-Konfiguration wird nicht geprüft; er wird immer mit
+``AND`` an den Filter aus dem Request gehängt.
+
+Weitere Funktionen lassen sich freigeben:
+
+.. code-block:: javascript
+
+   {
+        "security": {
+            "sql": {
+                // zusätzlich zu den Standard-Funktionen, nur Funktionsnamen
+                "allowed-functions": [ "ROUND", "SUBSTRING" ]
+            }
+        }
+   }
+
+.. note::
+   Ab 8.26.4001 werden auch ``layerDefs`` und ``definitionExpression`` geprüft. Clients, die
+   dort andere Funktionen oder Unterabfragen verwenden, bekommen jetzt einen Fehler. Benötigte
+   Funktionen unter ``security:sql:allowed-functions`` eintragen.
+
+.. _security-server-account:
+
+Dienstkonto und Dateirechte
+---------------------------
+
+Den *gView Server* nicht als Administrator, ``root`` oder ``LocalSystem`` betreiben, sondern unter
+einem eigenen Dienstkonto (IIS: App-Pool-Identität, Windows-Dienst oder Linux: eigener User,
+Docker: User ``app``). Das Konto braucht:
+
+- **Lesen:** das Programmverzeichnis, ``_config`` und die Daten der Dienste (Dateien, Raster,
+  FDBs).
+- **Schreiben** nur in diese Ordner (aus ``_config/mapserver.json``):
+
+  - ``output-path``: Kartenbilder, die als Url ausgeliefert werden.
+  - ``tilecache-root``: Tile-Cache, Vector-Tile-Cache und Glyphen (``_glyphs``).
+  - ``services-folder``: ``services`` (Dienste publizieren, löschen, Einstellungen),
+    ``_login`` (Logins, Tokens, Security Stamps, Zertifikat zum Signieren der Tokens),
+    ``log`` (Dienst-Logs) und ``networks`` (Netzwerk-Build; oder ``networks-folder``).
+  - Daten, die über einen *FeatureServer* oder OGC API Features bearbeitet werden (dateibasierte
+    Quellen wie FDB, GeoPackage, Shape).
+
+- **Keine** Schreibrechte auf das Programmverzeichnis und ``_config``: Beim ersten Start legt der
+  Server ``_config/mapserver.json`` an, wenn sie fehlt. Dafür einmalig Schreibrechte geben oder die
+  Datei vorher anlegen.
+
+``_login`` enthält Passwort-Hashes und das Zertifikat, mit dem Tokens signiert werden: Nur das
+Dienstkonto und Admins dürfen diesen Ordner lesen. Keinen der Ordner unter einem Verzeichnis
+ablegen, das der Webserver direkt ausliefert (außer ``output-path``).
+
+Für den Zugriff auf Datenbanken siehe :ref:`security-server-sql`.
 
 Protokoll
 ---------
@@ -192,15 +307,49 @@ ASP.NET-Request-Log (``Microsoft.AspNetCore.Hosting``) wird nicht maskiert: auf 
 lassen (Standard in ``appsettings.json``), sonst stehen Query-Strings mit Tokens im Klartext im
 Log.
 
+**Fehlermeldungen an Clients:** Die Dienste geben keine Interna (Pfade, Verbindungsdaten, SQL,
+Datenbankmeldungen, Stacktraces) an Clients weiter. Unerwartete Fehler werden mit
+``internal server error (id: 7f3a9c21)`` beantwortet; in Kartenbildern und Kacheln steht derselbe
+Text. Die vollständige Meldung steht mit derselben Id im Fehler-Log des Dienstes
+(``Logging:LogServiceErrors``, Standard ``true``, Ordner ``log``) bzw. beim GeoJson-Service und
+OGC API im Server-Log. Fehler, die der Request selbst verursacht (unbekannter Layer, ungültiger
+Filter, ...), werden weiter mit ihrem Text gemeldet. Die Admin-Seiten zeigen die Details.
+
+.. _security-server-updates:
+
+Updates einspielen
+------------------
+
+- **gView Server:** Neue Versionen enthalten aktualisierte Bibliotheken. Releases mit einem
+  Abschnitt *Security* im Changelog zeitnah einspielen. Vor jedem Release werden die
+  NuGet-Pakete gegen bekannte Schwachstellen geprüft.
+- **.NET-Runtime:** Die normalen ZIPs verwenden die installierte ASP.NET-Core-Runtime. Diese über
+  Windows Update bzw. die Paketverwaltung aktuell halten. Die *portable*-ZIPs bringen die Runtime
+  mit und werden nur mit einem neuen gView-Release aktualisiert.
+- **Docker:** Die Images basieren auf ``mcr.microsoft.com/dotnet/aspnet``. Mit jedem Release neu
+  ziehen; eigene Images auf Basis von ``gview-server`` regelmäßig neu bauen.
+- **GDAL** wird nicht mitgeliefert (``GVIEW_GDAL_PATH``, Programmverzeichnis oder System). Eine
+  eigene GDAL-Installation selbst aktuell halten. Die übrigen nativen Bibliotheken (Skia,
+  HarfBuzz, SQL-Client) kommen mit dem gView-Release.
+
+
 Umstieg auf v9
 --------------
 
 - **Sitzungen und Tokens:** Tokens von vor v9 haben keinen Security Stamp und werden abgelehnt.
   Admins und Token-User melden sich neu an, GeoServices-Clients holen ein neues Token.
 - **Admin-Seiten von außen:** nur aus ``security:manage:allowed-networks`` (Standard: private
-  Netze). Eigene Netze, ``"*"`` eintragen oder OIDC verwenden.
+  Netze). Eigene Netze eintragen oder OIDC verwenden; ``"*"`` nur, wenn der Server nicht aus dem
+  Internet erreichbar ist.
 - **Proxy mit öffentlicher Adresse:** unter ``security:known-proxies`` eintragen, sonst sieht
   der Server Client-IP und https nicht.
 - **Erster Admin:** Eine neue Installation braucht ``GVIEW_ADMIN_USER``/``GVIEW_ADMIN_PASSWORD``
   oder den Setup-Code aus dem Log.
 - **WFS:** ``GetFeature`` liefert höchstens ``MaxRecordCount`` Features.
+- **DPI:** Kartenbilder mit mehr als 600 DPI (z. B. Druck) werden auf 600 DPI begrenzt. Wird mehr
+  gebraucht, ``mapserver-defaults:maxDpi`` erhöhen.
+- **Docker:** Die Images laufen als User ``app`` (UID 1654). Gemountete Verzeichnisse müssen für
+  diesen User schreibbar sein (siehe :doc:`run-docker`).
+- **Fehlermeldungen:** Unerwartete Fehler werden mit ``internal server error (id: ...)``
+  beantwortet statt mit der internen Meldung (siehe `Protokoll`_). Die Details stehen im Log.
+  FeatureServer-Edits melden Datenbankfehler ebenfalls nur noch mit dieser Id.

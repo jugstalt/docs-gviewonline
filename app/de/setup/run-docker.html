@@ -188,8 +188,9 @@ Containers überstehen.</p></li>
 z. B. verwendet, um Kartenbilder über das Output-Verzeichnis an Clients auszuliefern.</p></li>
 </ul>
 <p>Nach dem Start ist die Verwaltungsoberfläche unter <a class="reference external" href="http://localhost:45622">http://localhost:45622</a> erreichbar (im Beispiel
-oben). Der erste Login-Vorgang entspricht dem unter <a class="reference internal" href="run-local.html"><span class="doc">Lokal ausführen (Windows Desktop Modus)</span></a> beschriebenen Ablauf: Der
-erste angelegte Benutzer wird automatisch zum Administrator.</p>
+oben). Den ersten Administrator legt man über die Umgebungsvariablen <code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_USER</span></code> und
+<code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_PASSWORD</span></code> an oder mit dem Setup-Code, den der Server ins Log schreibt
+(<code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">logs</span> <span class="pre">gview-server</span></code>), siehe <a class="reference internal" href="security-server.html"><span class="doc">Sicherheit gView.Server</span></a>.</p>
 </section>
 <section id="gview-webapps-image">
 <h2>gView.WebApps Image<a class="headerlink" href="#gview-webapps-image" title="Link to this heading">¶</a></h2>
@@ -206,6 +207,32 @@ erste angelegte Benutzer wird automatisch zum Administrator.</p>
 Die Konfiguration erfolgt wie bei den anderen Betriebsarten über <code class="docutils literal notranslate"><span class="pre">_config/gview-web.config</span></code>
 (siehe <a class="reference internal" href="config-webapps.html"><span class="doc">Konfiguration gView.WebApps</span></a>). Muss diese Datei angepasst werden, kann eine eigene Version
 per Volume in das Verzeichnis <code class="docutils literal notranslate"><span class="pre">/app/_config</span></code> des Containers gemountet werden.</p>
+</div>
+</section>
+<section id="benutzer-und-volumes">
+<h2>Benutzer und Volumes<a class="headerlink" href="#benutzer-und-volumes" title="Link to this heading">¶</a></h2>
+<p>Die Images laufen nicht als <code class="docutils literal notranslate"><span class="pre">root</span></code>, sondern als User <code class="docutils literal notranslate"><span class="pre">app</span></code> (UID 1654) des .NET-Basis-Images.
+Alles, was die Anwendung zur Laufzeit schreibt, muss für diesen User schreibbar sein:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/app/_config</span></code>: Konfiguration, wird beim ersten Start aus <code class="docutils literal notranslate"><span class="pre">_setup</span></code> erzeugt, wenn keine
+eigene gemountet ist.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/etc/gview/gview-repository</span></code> (Standard für <code class="docutils literal notranslate"><span class="pre">GV_REPOSITORY_PATH</span></code>) bzw.
+<code class="docutils literal notranslate"><span class="pre">/etc/gview-repository</span></code> (wie in den Beispielen hier): Services, Logins, Logs, Output-Dateien,
+Tile-Caches.</p></li>
+</ul>
+<p>Im Image gehören diese Verzeichnisse bereits dem User <code class="docutils literal notranslate"><span class="pre">app</span></code>, Docker-Volumes übernehmen das. Bei
+Host-Verzeichnissen (Bind-Mounts) muss der Besitzer passen:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span><span class="m">1654</span>:1654<span class="w"> </span>/pfad/zu/gview-repository
+
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">45622</span>:8080<span class="w"> </span>--name<span class="o">=</span>gview-server<span class="w">         </span>-v<span class="w"> </span>/pfad/zu/gview-repository:/etc/gview-repository<span class="w">         </span>-e<span class="w"> </span><span class="nv">GV_REPOSITORY_PATH</span><span class="o">=</span>/etc/gview-repository<span class="w">         </span>-e<span class="w"> </span><span class="nv">GV_ONLINERESOURCE_URL</span><span class="o">=</span>http://localhost:45622<span class="w">         </span>ghcr.io/jugstalt/gview-server:latest
+</pre></div>
+</div>
+<p>In Kubernetes passt das zu <code class="docutils literal notranslate"><span class="pre">runAsNonRoot:</span> <span class="pre">true</span></code> und <code class="docutils literal notranslate"><span class="pre">runAsUser:</span> <span class="pre">1654</span></code> (siehe
+<a class="reference internal" href="run-kubernetes.html"><span class="doc">Kubernetes</span></a>).</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Bis v8 liefen die Images als <code class="docutils literal notranslate"><span class="pre">root</span></code>. Beim Umstieg auf v9 müssen bestehende Host-Verzeichnisse
+für UID 1654 schreibbar gemacht werden, sonst kann der Server dort nichts mehr anlegen.</p>
 </div>
 </section>
 <section id="eigene-konfiguration-einbinden">
@@ -249,6 +276,7 @@ der empfohlene Weg.</p>
 <li><a class="reference internal" href="#">Docker</a><ul>
 <li><a class="reference internal" href="#gview-server-image">gView.Server Image</a></li>
 <li><a class="reference internal" href="#gview-webapps-image">gView.WebApps Image</a></li>
+<li><a class="reference internal" href="#benutzer-und-volumes">Benutzer und Volumes</a></li>
 <li><a class="reference internal" href="#eigene-konfiguration-einbinden">Eigene Konfiguration einbinden</a></li>
 </ul>
 </li>
