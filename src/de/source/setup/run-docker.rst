@@ -39,8 +39,9 @@ Der Container kann direkt gestartet werden:
   z. B. verwendet, um Kartenbilder über das Output-Verzeichnis an Clients auszuliefern.
 
 Nach dem Start ist die Verwaltungsoberfläche unter http://localhost:45622 erreichbar (im Beispiel
-oben). Der erste Login-Vorgang entspricht dem unter :doc:`run-local` beschriebenen Ablauf: Der
-erste angelegte Benutzer wird automatisch zum Administrator.
+oben). Den ersten Administrator legt man über die Umgebungsvariablen ``GVIEW_ADMIN_USER`` und
+``GVIEW_ADMIN_PASSWORD`` an oder mit dem Setup-Code, den der Server ins Log schreibt
+(``docker logs gview-server``), siehe :doc:`security-server`.
 
 
 gView.WebApps Image
@@ -62,6 +63,36 @@ Die Anwendung ist danach unter http://localhost:45623 erreichbar.
     Die Konfiguration erfolgt wie bei den anderen Betriebsarten über ``_config/gview-web.config``
     (siehe :doc:`config-webapps`). Muss diese Datei angepasst werden, kann eine eigene Version
     per Volume in das Verzeichnis ``/app/_config`` des Containers gemountet werden.
+
+
+Benutzer und Volumes
+--------------------
+
+Die Images laufen nicht als ``root``, sondern als User ``app`` (UID 1654) des .NET-Basis-Images.
+Alles, was die Anwendung zur Laufzeit schreibt, muss für diesen User schreibbar sein:
+
+* ``/app/_config``: Konfiguration, wird beim ersten Start aus ``_setup`` erzeugt, wenn keine
+  eigene gemountet ist.
+* ``/etc/gview/gview-repository`` (Standard für ``GV_REPOSITORY_PATH``) bzw.
+  ``/etc/gview-repository`` (wie in den Beispielen hier): Services, Logins, Logs, Output-Dateien,
+  Tile-Caches.
+
+Im Image gehören diese Verzeichnisse bereits dem User ``app``, Docker-Volumes übernehmen das. Bei
+Host-Verzeichnissen (Bind-Mounts) muss der Besitzer passen:
+
+.. code-block:: bash
+
+    sudo chown -R 1654:1654 /pfad/zu/gview-repository
+
+    docker run -d -p 45622:8080 --name=gview-server         -v /pfad/zu/gview-repository:/etc/gview-repository         -e GV_REPOSITORY_PATH=/etc/gview-repository         -e GV_ONLINERESOURCE_URL=http://localhost:45622         ghcr.io/jugstalt/gview-server:latest
+
+In Kubernetes passt das zu ``runAsNonRoot: true`` und ``runAsUser: 1654`` (siehe
+:doc:`run-kubernetes`).
+
+.. note::
+
+    Bis v8 liefen die Images als ``root``. Beim Umstieg auf v9 müssen bestehende Host-Verzeichnisse
+    für UID 1654 schreibbar gemacht werden, sonst kann der Server dort nichts mehr anlegen.
 
 
 Eigene Konfiguration einbinden

@@ -176,6 +176,26 @@ Grenzen
 - **Glyphen für Vector Tiles** werden pro installierter Schrift gecacht, nicht pro angefragtem
   Font-Stack.
 - **Rate Limit:** optional, ``security:rate-limit``, antwortet mit 429.
+- **Bildgröße:** Kartenbilder (WMS, GeoServices, ArcXML, GeoJson-Service, OGC API Maps) sind
+  höchstens ``MaxImageWidth``/``MaxImageHeight`` des Dienstes groß (Einstellung des Dienstes,
+  sonst ``mapserver-defaults:maxImageWidth``/``maxImageHeight``, sonst 4096), aber nie größer als
+  16384 Pixel. Größere Anfragen werden mit gleichem Seitenverhältnis verkleinert, die DPI
+  entsprechend reduziert. Breite oder Höhe ≤ 0 ergeben einen Fehler. Die Capabilities melden die
+  tatsächlichen Grenzen.
+- **DPI:** höchstens ``mapserver-defaults:maxDpi`` (Standard 600, gilt für alle Dienste). Höhere
+  Werte werden auf diese Grenze gesetzt, die Bildgröße bleibt gleich.
+
+  .. code-block:: json
+
+      "mapserver-defaults": {
+        "maxImageWidth": 4096,
+        "maxImageHeight": 4096,
+        "maxDpi": 600
+      }
+
+- **XML:** XML aus Requests (ArcXML, WFS POST, ``SLD_BODY``, OGC-Filter) und aus Antworten
+  fremder Dienste wird ohne DTD-Verarbeitung gelesen: keine Entity-Expansion, keine externen
+  Ressourcen.
 
 .. _security-server-sql:
 
@@ -261,3 +281,7 @@ Umstieg auf v9
 - **Erster Admin:** Eine neue Installation braucht ``GVIEW_ADMIN_USER``/``GVIEW_ADMIN_PASSWORD``
   oder den Setup-Code aus dem Log.
 - **WFS:** ``GetFeature`` liefert höchstens ``MaxRecordCount`` Features.
+- **DPI:** Kartenbilder mit mehr als 600 DPI (z. B. Druck) werden auf 600 DPI begrenzt. Wird mehr
+  gebraucht, ``mapserver-defaults:maxDpi`` erhöhen.
+- **Docker:** Die Images laufen als User ``app`` (UID 1654). Gemountete Verzeichnisse müssen für
+  diesen User schreibbar sein (siehe :doc:`run-docker`).
