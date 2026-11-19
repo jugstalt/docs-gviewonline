@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Creating and Administering Realms &#8212; IdentityserverNET 7.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=d7bb20b6" />
+    <script src="../_static/documentation_options.js?v=efe5be6f"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/petite-vue.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Realm Appearance (Branding)" href="appearance.html" />
+    <link rel="prev" title="Realms (Multi-Tenancy)" href="index.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../index.html" title="Go to homepage">IdentityserverNET 7.0.0 documentation</a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clients/index.html">Managing Clients</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Realms (Multi-Tenancy)</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Creating and Administering Realms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appearance.html">Realm Appearance (Branding)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cross-realm-access.html">Allowing Cross-Realm and Public Access to a Client</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../accessories/index.html">Additional Admin Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">How IdentityServerNET Works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etc/index.html">Additional Topics</a></li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="creating-and-administering-realms">
+<h1>Creating and Administering Realms<a class="headerlink" href="#creating-and-administering-realms" title="Link to this heading">¶</a></h1>
+<p>Creating a realm — as well as removing one — is a <strong>system-level</strong> capability. It requires the
+<code class="docutils literal notranslate"><span class="pre">identityserver-realm-administrator</span></code> role, which (unlike the other admin roles) is never delegated to
+a realm admin: a realm admin manages its own realm, but cannot create further realms.</p>
+<section id="creating-a-realm">
+<h2>Creating a Realm<a class="headerlink" href="#creating-a-realm" title="Link to this heading">¶</a></h2>
+<p>When logged in as a system administrator with the realm-administrator role, a <code class="docutils literal notranslate"><span class="pre">Realms...</span></code> tile appears
+on the admin homepage. It leads to the realm list and a <strong>Create new realm</strong> form:</p>
+<ul class="simple">
+<li><p><strong>Realm name</strong> — the lowercase slug used as the <code class="docutils literal notranslate"><span class="pre">&#64;realm</span></code> suffix (letters, digits and <code class="docutils literal notranslate"><span class="pre">-</span></code> only, e.g.
+<code class="docutils literal notranslate"><span class="pre">acme</span></code>).</p></li>
+<li><p><strong>Primary domain</strong> — the e-mail domain that anchors the realm admin account (e.g. <code class="docutils literal notranslate"><span class="pre">acme.com</span></code>).</p></li>
+<li><p><strong>Additional domains</strong> — further e-mail domains that belong to this realm, comma- or space-separated.
+Can also be left empty and added later (see the <strong>Domains</strong> management page below).</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A domain can belong to at most <strong>one</strong> realm at a time. Creating a realm with a domain that is
+already assigned elsewhere is rejected.</p>
+</div>
+<p>On creation, <strong>IdentityServerNET</strong> automatically provisions:</p>
+<ul>
+<li><p>A <strong>realm admin account</strong>, <code class="docutils literal notranslate"><span class="pre">admin&#64;{PrimaryDomain}</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">admin&#64;acme.com</span></code>), with a randomly
+generated password.</p></li>
+<li><p>Five <strong>delegated admin roles</strong>, scoped to the new realm (<code class="docutils literal notranslate"><span class="pre">role&#64;realm</span></code>, e.g.
+<code class="docutils literal notranslate"><span class="pre">identityserver-user-administrator&#64;acme</span></code>), assigned to that admin account:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 35.0%" />
+<col style="width: 65.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Delegated role</p></th>
+<th class="head"><p>Grants (within the realm only)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>User Administrator</p></td>
+<td><p>Manage user accounts whose e-mail belongs to one of the realm’s domains.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Role Administrator</p></td>
+<td><p>Manage custom roles scoped to the realm.</p></td>
+</tr>
+<tr class="row-even"><td><p>Resource Administrator</p></td>
+<td><p>Manage identity/API resources scoped to the realm.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Client Administrator</p></td>
+<td><p>Manage clients scoped to the realm.</p></td>
+</tr>
+<tr class="row-even"><td><p>Secrets Vault Administrator</p></td>
+<td><p>Manage the realm’s own lockers/secrets in the <a class="reference internal" href="../accessories/secretsvault.html"><span class="doc">Secrets Vault</span></a>.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Realm administration itself and the <strong>Payload Signing</strong> tool remain system-level and are <strong>not</strong>
+delegated to realm admins.</p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Realms created <strong>before</strong> Secrets Vault delegation was introduced do not retroactively get the
+Secrets Vault Administrator role. Grant it manually once, via the realm admin’s <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">Roles</span></code> page,
+by assigning the role <code class="docutils literal notranslate"><span class="pre">identityserver-secretsvault-administrator&#64;{realm}</span></code>.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The generated admin password is shown <strong>exactly once</strong>, directly after creation, in the status
+message on the realm list page. Store it immediately — it cannot be retrieved again (only reset via
+the regular <code class="docutils literal notranslate"><span class="pre">Set</span> <span class="pre">Password</span></code> admin function).</p>
+<p>It is also a <strong>one-time password</strong>: the first time <code class="docutils literal notranslate"><span class="pre">admin&#64;{PrimaryDomain}</span></code> signs in, they are
+immediately forced to choose a new password before they can access anything else. See
+<a class="reference internal" href="../getting-started/admin-server.html"><span class="doc">One-time Passwords</span></a> for details on this mechanism.</p>
+</div>
+</section>
+<section id="realm-admin-scoped-administration">
+<h2>Realm Admin — Scoped Administration<a class="headerlink" href="#realm-admin-scoped-administration" title="Link to this heading">¶</a></h2>
+<p>Once signed in as <code class="docutils literal notranslate"><span class="pre">admin&#64;acme.com</span></code>, the realm admin sees the same admin tiles as a regular
+administrator (Users, Roles, Resources, Clients, Appearance) — but every list and edit page is
+transparently filtered to that realm:</p>
+<ul class="simple">
+<li><p><strong>Users</strong> only shows/creates accounts whose e-mail belongs to the realm’s domains.</p></li>
+<li><p><strong>Roles</strong>, <strong>Resources</strong> and <strong>Clients</strong> the realm admin creates are automatically namespaced
+<code class="docutils literal notranslate"><span class="pre">{name}&#64;acme</span></code> — the admin never has to type the suffix; it is applied on write, and stripped again
+for display.</p></li>
+<li><p>Attempting to load another realm’s (or the global) entity by guessing its id is rejected — the same
+ownership check runs on both the read and the write side.</p></li>
+</ul>
+</section>
+<section id="managing-an-existing-realm">
+<h2>Managing an Existing Realm<a class="headerlink" href="#managing-an-existing-realm" title="Link to this heading">¶</a></h2>
+<p>The realm list (“Realms…”) leads to per-realm management pages:</p>
+<dl>
+<dt><strong>General</strong></dt><dd><p>The realm <code class="docutils literal notranslate"><span class="pre">Name</span></code> and <code class="docutils literal notranslate"><span class="pre">Primary</span> <span class="pre">domain</span></code> are fixed after creation. Only the <code class="docutils literal notranslate"><span class="pre">Display</span> <span class="pre">name</span></code>
+(a human-readable label) can be changed here.</p>
+</dd>
+<dt><strong>Domains</strong></dt><dd><p>A textarea listing all e-mail domains that belong to the realm, one per line. The primary domain is
+always included automatically and cannot be removed. Add further domains here to extend which users
+are considered realm members — for example if the tenant later acquires an additional company domain.</p>
+</dd>
+<dt><strong>Users</strong></dt><dd><p>A read-only list of all user accounts whose e-mail domain matches one of the realm’s domains, linking
+to the standard <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">User</span></code> page for each.</p>
+</dd>
+<dt><strong>Delete</strong></dt><dd><p>Permanently deprovisions the realm. This removes:</p>
+<ul class="simple">
+<li><p>All realm-scoped <strong>clients</strong></p></li>
+<li><p>All realm-scoped <strong>roles</strong></p></li>
+<li><p>All realm-scoped <strong>resources</strong></p></li>
+<li><p>The realm <strong>admin account</strong></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>End-user accounts in the realm’s domains are <strong>retained</strong> — deleting a realm does not delete its
+members, only the tenant’s administrative scaffolding (clients/roles/resources/admin).</p>
+</div>
+<p>As a safety check, the realm name must be typed again to confirm deletion.</p>
+</dd>
+</dl>
+</section>
+<section id="naming-convention-reference">
+<h2>Naming Convention Reference<a class="headerlink" href="#naming-convention-reference" title="Link to this heading">¶</a></h2>
+<p>The realm namespace convention is applied consistently to every realm-scoped identifier:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Identifier</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Global client/role/resource</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">my-app</span></code> (no suffix — usable outside any realm)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Realm-scoped client/role/resource</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">my-app&#64;acme</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Realm admin account</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">admin&#64;acme.com</span></code> (an e-mail address — <strong>not</strong> namespaced; user membership is always
+domain-derived)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Standard OIDC scopes and identity resources (<code class="docutils literal notranslate"><span class="pre">openid</span></code>, <code class="docutils literal notranslate"><span class="pre">profile</span></code>, <code class="docutils literal notranslate"><span class="pre">email</span></code>, <code class="docutils literal notranslate"><span class="pre">address</span></code>,
+<code class="docutils literal notranslate"><span class="pre">phone</span></code>, <code class="docutils literal notranslate"><span class="pre">offline_access</span></code>, <code class="docutils literal notranslate"><span class="pre">roles</span></code>) are global by definition and are never namespaced, even
+inside a realm’s client configuration.</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">Creating and Administering Realms</a><ul>
+<li><a class="reference internal" href="#creating-a-realm">Creating a Realm</a></li>
+<li><a class="reference internal" href="#realm-admin-scoped-administration">Realm Admin — Scoped Administration</a></li>
+<li><a class="reference internal" href="#managing-an-existing-realm">Managing an Existing Realm</a></li>
+<li><a class="reference internal" href="#naming-convention-reference">Naming Convention Reference</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="index.html">
+                    <span class="icon">&lt;</span><span>Realms (Multi-Tenancy)</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="appearance.html"><span>Realm Appearance (Branding)</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026, Jürgen Gstaltmaier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

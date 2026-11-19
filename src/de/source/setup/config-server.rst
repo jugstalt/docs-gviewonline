@@ -1,0 +1,245 @@
+.. _config-server:
+
+Konfiguration gView.Server
+==========================
+
+Der **gView.Server** kann über die Datei ``_config/mapserver.json`` konfiguriert werden:
+
+
+.. code-block:: javascript
+
+   {
+        // Folder, where gView Server stores Services, Logins, etc
+        "services-folder": "{repository-path}/server/configuration",
+
+        // Ordner, in dem die gebauten Netzwerke (SpatialNET) der Dienste liegen (optional).
+        // Standard: {services-folder}/networks, Details siehe Network Service Spezifikation
+        "networks-folder": "{repository-path}/server/networks",
+
+        // Path, where gView Server stores Map Request Images
+        "output-path": "{repository-path}/server/web/output",
+        // Url to the Path, where gView Server stores Map Request Images
+        "output-url": "{server-url}/output",
+
+        // Path, where gView Server stores Tiles
+        "tilecache-root": "{repository-path}/server/web/tile-caches",
+
+        // Dienstnamen (Wildcards "*"/"?" erlaubt), die direkt nach dem Serverstart in den
+        // Speicher geladen werden sollen, statt erst beim ersten eingehenden Request.
+        // Das Laden erfolgt im Hintergrund und verzögert den Serverstart nicht.
+        // Beispiele: "*" (alle Dienste), "myfolder/*" (alle Dienste in einem Ordner), "myfolder/myservice"
+        "preload-services": [ "myfolder/*" ],
+
+        // The Task Queue
+        "task-queue": {
+            // Indicates how many requests can be processed at the same time
+            "max-parallel-tasks": 50,
+            // The maximum length of the queue
+            "max-queue-length": 1000
+        },
+
+        // default value for mapserver and services
+        "mapserver-defaults": {
+            // maximum width in pixel of an map image
+            "maxImageWidth": 4096,
+            // maximum height in pixel of an map image
+            "maxImageHeight": 4096,
+            // maximum records that will be returned from a query
+            "maxRecordCount": 1000
+        },
+
+        // Whether clients are allowed to log in through the web interface
+        "allowFormsLogin": true,
+        // It can be assumed that all calls are made over HTTPS
+        // (auch security:force-https)
+        "force-https":  false,
+
+        // Reverse Proxies, Admin-Netze, Login-Sperre, CORS, Grenzen
+        // (siehe Sicherheit gView.Server)
+        "security": { },
+
+        // the level that causes an error on load and deploy services
+        "CriticalErrorLevel": {
+             "ErrorType": "error"  // any, warning, error, critical, never
+        },
+
+        // optional: graphic engines. gdiplus only works on windows systems
+        "graphics": {
+            "rendering": "skia",  // engine for rendering: skia|gdiplus
+            "encoding": "skia"  // engine for encoding images (jpg|png): skia|gdiplus
+        },
+
+        // Schriftdateien (*.ttf, *.otf, *.ttc) in diesen Verzeichnissen werden beim
+        // Serverstart für das Rendering verfügbar gemacht - die Schriften müssen
+        // NICHT im Betriebssystem installiert sein. Funktioniert unter Windows und
+        // Linux gleich. Neue Schriftdateien erfordern einen Server-Neustart.
+        "fonts": {
+            "directories": [ "C:\\gView5\\Server\\Fonts" ],
+            // optional, Standard false: Schriften zusätzlich in den benutzerbezogenen
+            // Schriftspeicher des Betriebssystems kopieren (best effort)
+            "install-to-system": false
+        },
+
+        // RasterNet raster data source (GeoTIFF/COG, JPEG2000, Arc/Info grids, images, ...)
+        "rasternet": {
+            "blockcache-mb": 256,               // cache of decoded blocks; 0 disables it
+            "blockcache-maxidle-minutes": 10,   // release blocks not used for this long; 0 keeps them until the budget is needed
+            "max-threads": 4,                   // decoding threads per request; 0 = half of the cores, at most 8
+            "http-timeout-seconds": 30,         // rasters given as http(s) URL (GeoTIFF/COG only): timeout of one range request
+            "http-retries": 3,                  // retries after network errors, timeouts and HTTP 408/429/5xx
+            "http-headers": "",                 // headers for every request, e.g. "X-Api-Key=...;X-Other=..."
+            "http-probe-sidecars": false        // look for .ovr and .aux.xml next to the URL
+        },
+
+        // optional: projection engine
+        "proj-engine": {
+            "engine": "ManageProj4Parallel" // ManagedProj4, NativeProj4
+        },
+
+        // Optional Settings
+        "Facilities": {
+            "MessageQueue": {
+                "Type": "messagequeue-net",
+                "ConnectionString": "http://localhost:9091",
+                "Namespace": "development"
+            }
+        }
+    }
+
+Der Abschnitt ``security`` (Reverse Proxies, HTTPS, Admin-Netze, Login-Sperre, Sitzungen, CORS
+und Grenzen) ist unter :ref:`security-server` beschrieben.
+
+Im ersten Abschnitt werden Pfade und URLs definiert. Diese werden im ersten Schritt über das ``gview.deploy``
+Tool angelegt und können hier noch einfach angepasst werden.
+
+Unter ``task-queue`` kann angegeben werden, wie viele Requests gleichzeitig abgearbeitet werden können.
+Wenn ausreichend RAM zur Verfügung steht, kann dieser Wert beliebig erhöht werden. Man muss jedoch bedenken,
+dass der Server Kartenbilder (Bitmaps) erzeugt, die einiges an RAM benötigen können. Ist man mit der 
+RAM-Auslastung immer wieder am Limit (aufgrund vieler Anfragen), kann der Wert auch niedriger angesetzt werden.
+Sind alle Tasks belegt, kommt ein Request in die Warteschleife. Die Länge der Warteschleife kann hier ebenfalls
+angepasst werden.
+
+Unter ``preload-services`` können Dienstnamen (auch mit den Wildcards ``*`` und ``?``) angegeben werden,
+die direkt nach dem Serverstart in den Speicher geladen werden sollen, statt erst beim ersten
+eingehenden Request. Das Laden erfolgt im Hintergrund und verzögert den Serverstart nicht. Damit stehen
+diese Dienste bereits beim ersten Client-Request geladen zur Verfügung, was die erste Antwortzeit
+verbessert. Mögliche Werte sind z. B. ``*`` (alle Dienste), ``myfolder/*`` (alle Dienste in einem Ordner)
+oder ``myfolder/myservice`` (ein einzelner Dienst).
+
+Mit ``networks-folder`` (optional) wird der Ordner festgelegt, in dem die gebauten Netzwerke (SpatialNET) der Dienste
+liegen. Standard ist ``{services-folder}/networks``; die Netzwerke liegen dort in ``{ordner}/{dienst}.network``.
+Die Suchen auf diesen Netzwerken (*NetworkServer*) werden zusätzlich im Abschnitt ``Network`` der ``appsettings.json``
+begrenzt (``MaxResultNodes``, ``TimeoutSeconds``, ``MaxParallel``, ``MaxLoadedShards``, ``IdleMinutes``).
+Die genaue Beschreibung der Parameter steht in :ref:`network-service-administration`.
+
+Im Abschnitt ``mapserver-defaults`` können *Default-Werte* für Kartendienste angegeben werden.
+Werden für einen Dienst diese Werte nicht explizit gesetzt, wird der hier eingestellte
+*Default-Wert* verwendet. Dabei geht es um die maximale Größe eines Kartenbildes in Pixel,
+das von einem Client abgeholt werden kann. Ebenfalls kann hier angegeben werden, wie viele 
+Geo-Objekte bei einer Abfrage maximal abgeholt werden dürfen. Wird der Abschnitt oder einzelne 
+Werte nicht angeführt, gelten die oben angeführten Werte.
+
+
+.. note::
+
+    Die hier angegebenen Werte sind *Default-Werte* und können für jedes Service über die 
+    *Map Service Einstellung* in *gView.Carto* überschrieben werden. Es können dort für 
+    einzelne Dienste auch Werte angeführt werden, die höher sind als die *Default-Werte*.
+    Die Werte in dieser Konfiguration sind keine *globalen Maximalwerte*.
+
+.. note::
+
+    Ein Client kann ein Kartenbild anfordern, das größer ist als die Maximalwerte. Der Kartenserver
+    liefert dann keinen Fehler, sondern ein verkleinertes Bild, das den Maximalwerten 
+    entspricht. Das Seitenverhältnis und der geografische Ausschnitt bleiben erhalten. Allerdings 
+    wird dann automatisch die Auflösung des Bildes (DPI-Wert) angepasst, damit der Maßstab 
+    dem ursprünglich bestellten Kartenbild entspricht.
+
+    Ein Client kann überprüfen, ob das Bild skaliert wurde, indem die Größe des Ergebnisbildes 
+    geprüft wird. Die Werte stehen beim *GeoServices Response* auch im Ergebnis-JSON.
+
+Im Abschnitt ``graphics`` kann die *Graphic Engine* angegeben werden. Diese kann entweder ``skia`` oder
+``gdiplus`` (auf Windows-Plattformen) sein. ``gdiplus`` ist allerdings ein Auslaufmodell und
+funktioniert nur, wenn die Anwendung auf einem Windows-System ausgeführt wird.
+
+Im optionalen Abschnitt ``fonts`` können unter ``directories`` Verzeichnisse angegeben werden, in
+denen Schriftdateien (``*.ttf``, ``*.otf``, ``*.ttc``) liegen. Diese Schriften werden beim
+Serverstart für das Rendering verfügbar gemacht, ohne dass sie im Betriebssystem installiert sein
+müssen. Das funktioniert unter Windows und Linux gleich. Neue Schriftdateien in diesen
+Verzeichnissen erfordern einen Server-Neustart, damit sie berücksichtigt werden. Mit
+``install-to-system`` (optional, Standard ``false``) können die Schriften zusätzlich in den
+benutzerbezogenen Schriftspeicher des Betriebssystems kopiert werden (*best effort*).
+
+.. _config-rasternet:
+
+Der optionale Abschnitt ``rasternet`` konfiguriert die Raster-Datenquelle *RasterNet*. *RasterNet* ist ein
+vollständig in .NET geschriebener Raster-Reader, der für die unterstützten Formate (siehe :ref:`formats-raster`)
+vor GDAL zum Zug kommt; Formate, die *RasterNet* nicht lesen kann, werden weiterhin über GDAL gelesen.
+Fehlt der Abschnitt, gelten die angegebenen Standardwerte:
+
+- ``blockcache-mb``: Größe des gemeinsamen Caches für dekodierte Blöcke in MB (Standard ``256``, ``0`` schaltet ihn ab).
+  Benachbarte und überlappende Kartenanfragen verwenden bereits dekodierte Blöcke wieder; bei JPEG2000-Orthofotos
+  verdoppelt sich dadurch etwa der Durchsatz.
+- ``blockcache-maxidle-minutes``: Blöcke, die so lange nicht verwendet wurden, werden freigegeben (Standard ``10``;
+  ``0`` behält sie, bis der Platz gebraucht wird).
+- ``max-threads``: Threads, mit denen eine einzelne Anfrage dekodiert (Standard und ``0``: die Hälfte der Kerne,
+  höchstens 8).
+
+Raster können auch als ``http://``- oder ``https://``-URL angegeben werden (nur GeoTIFF/COG, siehe
+:ref:`dataexplorer-cog`). Gelesen wird mit Range-Requests, ohne die Datei herunterzuladen. Dafür gelten:
+
+- ``http-timeout-seconds``: Timeout eines einzelnen Requests in Sekunden (Standard ``30``).
+- ``http-retries``: Wiederholungen nach Netzwerkfehlern, Timeouts und HTTP 408, 429 und 5xx (Standard ``3``).
+- ``http-headers``: Header für jeden Request, als ``Name=Wert;Name2=Wert2`` (z. B. ein API-Key).
+- ``http-probe-sidecars``: ``true``, um neben der URL nach ``.ovr`` (externe Overviews) und ``.aux.xml``
+  (Georeferenzierung) zu suchen (Standard ``false``; ein COG enthält beides selbst).
+
+.. note::
+   Der Server muss Range-Requests unterstützen (Antwort ``206 Partial Content``), wie es Webserver und Object
+   Stores (S3, Azure Blob Storage) tun. Geschützte Dateien werden über vorsignierte bzw. SAS-URLs oder über
+   ``http-headers`` eingebunden. Wird eine Datei auf dem Server ersetzt, während der Dienst läuft, schlägt das
+   Lesen fehl, statt zwei Versionen zu mischen; der Dienst muss dann neu geladen werden.
+
+Der Abschnitt ``CriticalErrorLevel`` ist optionsal. Hier kann angegeben werden, ab welchem
+Fehlerlevel ein Dienst nicht geladen oder bereitgestellt werden kann. Mögliche Werte sind:
+
+- ``any``: Jeder Fehler, egal ob Warnung oder kritischer Fehler, verhindert das Laden und Bereitstellen eines Dienstes.
+
+- ``warning``: Ab Warnungen wird ein Dienst nicht geladen oder bereitgestellt.
+
+- ``error``: Ab Fehlern wird ein Dienst nicht geladen oder bereitgestellt.
+
+- ``critical``: Nur bei kritischen Fehlern wird ein Dienst nicht geladen oder bereitgestellt.
+
+- ``never``: Ein Dienst wird immer geladen und bereitgestellt, egal welche Fehler auftreten.
+
+Der Abschnitt ``proj-engine`` ist optional. Hier kann angegeben werden, ob die *Proj4 Engine* 
+
+- ``ManageProj4Parallel``: Verwendet die Proj4-Portierung in C#, wobei bei Objekten mit vielen 
+  Vertices (>100) die Transformation parallelisiert wird (höhere Performance).
+
+- ``ManagedProj4``: Verwendet die Proj4-Portierung in C#.
+
+- ``NativeProj4``: Verwendet die native C++ Proj4-Bibliothek.
+
+Empfohlen wird eine der Managed-Versionen, da diese plattformunabhängig sind und 
+mittlerweile keine Performance-Einbußen mehr haben. Auf die native Version
+kann zurückgegriffen werden, wenn die Managed-Version nicht die richtigen Ergebnisse liefert.
+
+Unter ``Facilities`` können weitere optionale Einstellungen vorgenommen werden.
+
+Eine Option ist beispielsweise ``MessageQueue``. Dort kann bisher nur eine MessageQueue vom 
+Typ ``messagequeue-net`` angegeben werden (https://github.com/jugstalt/messagequeuenet).
+Eine MessageQueue ist sinnvoll, wenn der *gView.Server* in mehreren Instanzen gleichzeitig ausgeführt wird,
+beispielsweise wenn *gView.Server* in Kubernetes mit mehreren *Replicas* läuft.
+Über die MessageQueue können die einzelnen Komponenten miteinander kommunizieren, wenn beispielsweise 
+ein Kartendienst geändert oder gelöscht wird. So bleiben alle Instanzen auf dem aktuellen Stand.
+Mit ``Namespace`` kann hier ein Namensraum angegeben werden, der definiert, welche Instanzen zusammengehören.
+Da beispielsweise sowohl Instanzen aus ``Staging`` als auch ``Production`` auf dieselbe 
+MessageQueue-API zugreifen können, kann über den Namensraum unterschieden werden, welche Instanzen wirklich 
+zusammengehören.
+
+
+
+
+

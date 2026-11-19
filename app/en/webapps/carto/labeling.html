@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Label Renderer &#8212; gView GIS 8.x documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=9b2032db" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=247da48f" />
+    <script src="../../_static/documentation_options.js?v=5f428a84"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <script src="../../_static/js/petite-vue.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Scale Limits" href="scales.html" />
+    <link rel="prev" title="Feature Renderer" href="renderers.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../../index.html" title="Go to homepage">gView GIS 8.x documentation</a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Table of contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../setup/index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">gView WebApps</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">gView Carto</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="newmap.html">Creating a New Map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="adddata.html">Add Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="toc.html">Drawing Order/TOC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contexttools.html">Context-Related Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbology.html">Representation and Symbology</a></li>
+<li class="toctree-l3"><a class="reference internal" href="renderers.html">Feature Renderer</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Label Renderer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scales.html">Scale Limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="layersettings.html">Additional Layer Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="managemaps.html">Saving and Managing Map Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dataexplorer/index.html">gView Data Explorer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../server/index.html">gView Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commandline/index.html">gView Command Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commandline/index.html#command-line-tools-interactive-mode">Command Line Tools (Interactive Mode)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix/index.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spec/geojson_service/index.html">GeoJson Service Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spec/network_service/index.html">Network Service Specification</a></li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="label-renderer">
+<h1>Label Renderer<a class="headerlink" href="#label-renderer" title="Link to this heading">¶</a></h1>
+<p>To label the features of a layer, the approach is similar to that used in <em>Rendering</em>. In the
+<em>Settings</em> dialog for the layer, on the left, you will find the section <code class="docutils literal notranslate"><span class="pre">Label</span> <span class="pre">Renderer</span></code>. Here,
+the checkbox <code class="docutils literal notranslate"><span class="pre">Label</span> <span class="pre">features</span> <span class="pre">for</span> <span class="pre">this</span> <span class="pre">layer</span></code> must first be activated:</p>
+<img alt="../../_images/labeling1.png" src="../../_images/labeling1.png" />
+<p>Different <em>Renderers</em> are offered here as well.</p>
+<section id="simple-text-renderer">
+<h2>Simple Text Renderer<a class="headerlink" href="#simple-text-renderer" title="Link to this heading">¶</a></h2>
+<p>With this renderer, features can be labeled based on attribute values. This represents the
+most common use case.</p>
+<p>The properties of the <em>Renderer</em> are divided into the following categories:</p>
+<ul>
+<li><p><strong>Field / Expression:</strong> Labeling can be done based on a field or an expression.
+For the <code class="docutils literal notranslate"><span class="pre">Field</span></code> type, simply select the field you want to label by:</p>
+<a class="reference internal image-reference" href="../../_images/labeling2.png"><img alt="../../_images/labeling2.png" src="../../_images/labeling2.png" width="400" />
+</a>
+<p>With <code class="docutils literal notranslate"><span class="pre">Expression</span></code>, an expression can be defined. When you click on <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">Expression</span></code>,
+the <strong>Expression Editor</strong> opens. Here, an expression can be specified that consists of free text
+and placeholders (field names in square brackets) for the fields:</p>
+<a class="reference internal image-reference" href="../../_images/labeling3.png"><img alt="../../_images/labeling3.png" src="../../_images/labeling3.png" width="400" />
+</a>
+<p>Field names are listed at the top. By double-clicking on a field, it is added as
+a placeholder in the expression.</p>
+<p>Using <em>expressions</em>, field values can also be formatted. Formatting is possible for
+number and date fields. The syntax for a placeholder with formatting is as follows:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">[FieldName:Format]</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">[FieldName:0.00]</span></code> for a number with two decimal places.</p>
+</div></blockquote>
+<p>Examples:</p>
+<p><em>Standard formats for numbers:</em></p>
+<table class="docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Purpose</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Placeholder Example</p></th>
+<th class="head"><p>Result with Value = 12345.678</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Fixed decimal places</p></td>
+<td><p>F2</p></td>
+<td><p>[AMOUNT:F2]</p></td>
+<td><p>12,345.68</p></td>
+</tr>
+<tr class="row-odd"><td><p>Currency</p></td>
+<td><p>C</p></td>
+<td><p>[PRICE:C]</p></td>
+<td><p>€12,345.68</p></td>
+</tr>
+<tr class="row-even"><td><p>Thousands separator, standard</p></td>
+<td><p>N0</p></td>
+<td><p>[QUANTITY:N0]</p></td>
+<td><p>12,346</p></td>
+</tr>
+<tr class="row-odd"><td><p>Percent</p></td>
+<td><p>P1</p></td>
+<td><p>[SHARE:P1]</p></td>
+<td><p>(Value = 0.256) 25.6%</p></td>
+</tr>
+<tr class="row-even"><td><p>Exponential</p></td>
+<td><p>E3</p></td>
+<td><p>[VALUE:E3]</p></td>
+<td><p>1.235E+004</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hexadecimal (Integer)</p></td>
+<td><p>X8</p></td>
+<td><p>[ID:X8]</p></td>
+<td><p>(Value = 48879) 0000BEEF</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Custom number formats:</em></p>
+<table class="docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Purpose</p></th>
+<th class="head"><p>Format String</p></th>
+<th class="head"><p>Example</p></th>
+<th class="head"><p>Result</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Two decimals, dot as separator</p></td>
+<td><p>0.00</p></td>
+<td><p>[VALUE:0.00] (12.3456)</p></td>
+<td><p>12.35</p></td>
+</tr>
+<tr class="row-odd"><td><p>Up to two decimals</p></td>
+<td><p>#.##</p></td>
+<td><p>[VALUE:#.##] (12.3)</p></td>
+<td><p>12.3</p></td>
+</tr>
+<tr class="row-even"><td><p>Fixed width, leading zeros</p></td>
+<td><p>00000</p></td>
+<td><p>[NO:00000] (42)</p></td>
+<td><p>00042</p></td>
+</tr>
+<tr class="row-odd"><td><p>Thousands separator, two decimals</p></td>
+<td><p>#,##0.00</p></td>
+<td><p>[TOTAL:#,##0.00]</p></td>
+<td><p>12,345.68</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Standard formats for date/time:</em></p>
+<table class="docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Purpose</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Placeholder Example</p></th>
+<th class="head"><p>Result with Value = 2025-04-24 14:30</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Short date</p></td>
+<td><p>d</p></td>
+<td><p>[DATE:d]</p></td>
+<td><p>04/24/2025</p></td>
+</tr>
+<tr class="row-odd"><td><p>Long date</p></td>
+<td><p>D</p></td>
+<td><p>[DATE:D]</p></td>
+<td><p>Thursday, April 24, 2025</p></td>
+</tr>
+<tr class="row-even"><td><p>Date + short time</p></td>
+<td><p>g</p></td>
+<td><p>[DATE:g]</p></td>
+<td><p>04/24/2025 14:30</p></td>
+</tr>
+<tr class="row-odd"><td><p>ISO-8601</p></td>
+<td><p>o</p></td>
+<td><p>[DATE:o]</p></td>
+<td><p>2025-04-24T14:30:00.0000000+02:00</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Geometry placeholders: [$feature.length] / [$feature.area]:</strong></p>
+<p>In addition to field names, an expression can also use the special placeholders
+<code class="docutils literal notranslate"><span class="pre">[$feature.length]</span></code> (length) and <code class="docutils literal notranslate"><span class="pre">[$feature.area]</span></code> (area). Formatting works here as well,
+just like with number fields, e.g. <code class="docutils literal notranslate"><span class="pre">[$feature.length:F2]</span></code> for the length rounded to two
+decimal places.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">[$feature.length]</span></code> / <code class="docutils literal notranslate"><span class="pre">[$feature.area]</span></code> differ from a field like <code class="docutils literal notranslate"><span class="pre">[SHAPE_LENGTH]</span></code>:
+such a field comes from the database (e.g. an SDE) and holds a value stored there, which
+may not have been updated in a while. <code class="docutils literal notranslate"><span class="pre">[$feature.length]</span></code> and <code class="docutils literal notranslate"><span class="pre">[$feature.area]</span></code>, on
+the other hand, are always computed live from the current geometry.</p>
+<p>This also means: with projected coordinate systems that are not length- or area-preserving
+(e.g. <strong>WebMercator</strong> or <strong>WGS84</strong>), the computed value does <strong>not</strong> correspond to the
+geodetic length or area! For accurate measurements, the geometry should be in a
+length-/area-preserving coordinate system suitable for the area in question.</p>
+</div>
+<p><strong>SimpleScript expressions:</strong></p>
+<p>In addition to simple placeholder expressions, the <strong>Expression Editor</strong> also supports
+so-called <code class="docutils literal notranslate"><span class="pre">SimpleScript</span></code> expressions. They allow conditional text blocks and text
+replacements that go well beyond plain placeholder substitution.</p>
+<p><em>Basic structure:</em></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>@@start
+&lt;line 1&gt;
+&lt;line 2&gt;
+...
+@@end
+[@@replace(Search,Replacement)]
+[@@replace(Search,Replacement)]
+</pre></div>
+</div>
+<p>A value is only interpreted as SimpleScript if it literally starts with <code class="docutils literal notranslate"><span class="pre">&#64;&#64;start</span></code> followed
+by a line break. Otherwise the text is left unchanged — useful in case a field value happens
+to start with the text “&#64;&#64;start”.</p>
+<p>Between <code class="docutils literal notranslate"><span class="pre">&#64;&#64;start</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;&#64;end</span></code>, each line is either a control line (<code class="docutils literal notranslate"><span class="pre">&#64;&#64;if(...)</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&#64;&#64;endif</span></code>) or a content line (plain text, usually with <code class="docutils literal notranslate"><span class="pre">[Field]</span></code> or
+<code class="docutils literal notranslate"><span class="pre">[Field:Format]</span></code> placeholders). The included content lines are joined back together with a
+line break — but only between lines that are actually included: if, for example, the first
+line is dropped due to a false condition, no leading blank line is produced. If <code class="docutils literal notranslate"><span class="pre">&#64;&#64;end</span></code> is
+missing entirely, the whole original text is left unchanged (no error, simply no
+interpretation).</p>
+<p><em>Conditional blocks: &#64;&#64;if(…) / &#64;&#64;endif</em></p>
+<p>A content line only appears if every <code class="docutils literal notranslate"><span class="pre">&#64;&#64;if(...)</span></code> condition enclosing it is true — nesting
+acts as an AND combination, to any depth. There are four argument forms (comma-separated
+inside the parentheses):</p>
+<table class="docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Form</p></th>
+<th class="head"><p>Example</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1 argument</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if([FIELD])</span></code></p></td>
+<td><p>true if the value is not empty/not just whitespace</p></td>
+</tr>
+<tr class="row-odd"><td><p>2 arguments</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if([FIELD],Value)</span></code></p></td>
+<td><p>true if it equals “Value” exactly (case-sensitive)</p></td>
+</tr>
+<tr class="row-even"><td><p>2 arguments, empty</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if([FIELD],)</span></code></p></td>
+<td><p>trick for “field is empty”</p></td>
+</tr>
+<tr class="row-odd"><td><p>3 arguments</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if([FIELD],op,Value)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">op</span></code> ∈ <code class="docutils literal notranslate"><span class="pre">eq</span></code>/<code class="docutils literal notranslate"><span class="pre">not</span></code>/<code class="docutils literal notranslate"><span class="pre">lt</span></code>/<code class="docutils literal notranslate"><span class="pre">le</span></code>/<code class="docutils literal notranslate"><span class="pre">gt</span></code>/<code class="docutils literal notranslate"><span class="pre">ge</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>variable</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;if([FIELD],in,V1,V2,V3,...)</span></code></p></td>
+<td><p>true if the value matches one of the listed values</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">eq</span></code>/<code class="docutils literal notranslate"><span class="pre">not</span></code> are equality/inequality (case-sensitive text comparison).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lt</span></code>/<code class="docutils literal notranslate"><span class="pre">le</span></code>/<code class="docutils literal notranslate"><span class="pre">gt</span></code>/<code class="docutils literal notranslate"><span class="pre">ge</span></code> are numeric comparisons. Both sides are parsed as a number
+(first with a dot as the decimal separator, then with the current culture, e.g. a German
+comma “123,4”); if either side is not a number, the condition is false. Unknown operators
+always evaluate to false.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">in</span></code> combines several equivalent alternatives into a single condition, instead of
+requiring several near-identical <code class="docutils literal notranslate"><span class="pre">&#64;&#64;if</span></code> blocks.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Arguments are simply split on commas. A field value that itself contains a comma
+(e.g. a decimal comma like “125,4”) therefore shifts the argument count. For the operator
+forms (<code class="docutils literal notranslate"><span class="pre">eq</span></code>/<code class="docutils literal notranslate"><span class="pre">not</span></code>/<code class="docutils literal notranslate"><span class="pre">lt</span></code>/<code class="docutils literal notranslate"><span class="pre">le</span></code>/<code class="docutils literal notranslate"><span class="pre">gt</span></code>/<code class="docutils literal notranslate"><span class="pre">ge</span></code>) there is an automatic rescue for this:
+if the first (field) value contains a decimal comma, it is reassembled correctly —
+provided the second-to-last element is a recognized operator keyword.</p>
+</div>
+<p><em>Post-processing: &#64;&#64;replace(Search,Replacement)</em></p>
+<p>Any number of <code class="docutils literal notranslate"><span class="pre">&#64;&#64;replace(...)</span></code> lines can follow after <code class="docutils literal notranslate"><span class="pre">&#64;&#64;end</span></code>. They are applied one after
+another to the fully assembled result (not to individual lines), so chaining is possible —
+each replacement operates on the result of the previous one.</p>
+<ul class="simple">
+<li><p>Exact, case-sensitive substring replacement (no pattern/regex).</p></li>
+<li><p>An empty replacement (<code class="docutils literal notranslate"><span class="pre">&#64;&#64;replace(Search,)</span></code>) removes the found text.</p></li>
+<li><p>No match → the text is left unchanged.</p></li>
+<li><p>An argument count other than 2 → the line is ignored.</p></li>
+</ul>
+<p><em>Examples:</em></p>
+<p>Labeling by type, with the prefix <code class="docutils literal notranslate"><span class="pre">S:</span></code> for <code class="docutils literal notranslate"><span class="pre">Schieber</span></code> and <code class="docutils literal notranslate"><span class="pre">V:</span></code> for <code class="docutils literal notranslate"><span class="pre">Ventil</span></code>
+(nesting acting as an AND combination):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>@@start
+@@if([TYP],Schieber)
+S: [NAME]
+@@endif
+@@if([TYP],Ventil)
+@@if([TYP],not,Schieber)
+V: [NAME]
+@@endif
+@@endif
+@@if([TYP],not,Schieber)
+@@if([TYP],not,Ventil)
+[NAME]
+@@endif
+@@endif
+@@end
+</pre></div>
+</div>
+<p>A “field is empty” condition (<code class="docutils literal notranslate"><span class="pre">&#64;&#64;if([FIELD],)</span></code>) combined with post-processing via
+<code class="docutils literal notranslate"><span class="pre">&#64;&#64;replace</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>@@start
+@@if([STPKT_NR],)
+[NORMBEZEICHNUNG]
+@@endif
+@@if([STPKT_NR])
+Nr [STPKT_NR] [NORMBEZEICHNUNG]
+@@endif
+@@end
+@@replace(Hausanschluss,HA)
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">[STPKT_NR]</span></code> is empty, only <code class="docutils literal notranslate"><span class="pre">[NORMBEZEICHNUNG]</span></code> is output; otherwise
+<code class="docutils literal notranslate"><span class="pre">Nr</span> <span class="pre">&lt;STPKT_NR&gt;</span> <span class="pre">&lt;NORMBEZEICHNUNG&gt;</span></code>. At the end, every occurrence of “Hausanschluss” is
+replaced with “HA”.</p>
+<p>Multiple <code class="docutils literal notranslate"><span class="pre">&#64;&#64;replace</span></code> statements to abbreviate long default values or hide them entirely
+(an empty replacement removes the search text):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>@@start
+[TYP]
+@@end
+@@replace(Hausanschluß,HA)
+@@replace(Hausanschluss,HA)
+@@replace(Sonstiger Endpunkt,)
+@@replace(Sonstiger Punkt,)
+@@replace(Sonstiges Punktobjekt,)
+@@replace(Reserve,Res.)
+</pre></div>
+</div>
+<p><em>Other notes:</em></p>
+<ul class="simple">
+<li><p>Line breaks in the script source (<code class="docutils literal notranslate"><span class="pre">\r\n</span></code>, <code class="docutils literal notranslate"><span class="pre">\r</span></code>, <code class="docutils literal notranslate"><span class="pre">\n</span></code>) are all handled the same way,
+regardless of the server operating system.</p></li>
+<li><p>All comparisons except <code class="docutils literal notranslate"><span class="pre">lt</span></code>/<code class="docutils literal notranslate"><span class="pre">le</span></code>/<code class="docutils literal notranslate"><span class="pre">gt</span></code>/<code class="docutils literal notranslate"><span class="pre">ge</span></code> are exact, case-sensitive character
+comparisons (no case tolerance for the value itself — only the operator keywords such as
+<code class="docutils literal notranslate"><span class="pre">eq</span></code>/<code class="docutils literal notranslate"><span class="pre">in</span></code> are case-insensitive).</p></li>
+</ul>
+</li>
+<li><p><strong>Behavior:</strong> Here, the priority of the label is specified:</p>
+<a class="reference internal image-reference" href="../../_images/labeling4.png"><img alt="../../_images/labeling4.png" src="../../_images/labeling4.png" width="400" />
+</a>
+<p>When multiple layers are labeled, this is done in the drawing order of the layers. To highlight the labels
+of a layer, the priority can be specified here. The reason is also that labels are only drawn if there
+is space available on the map. Labels cannot overlap. Therefore, it is possible that a label is not drawn at all.
+Labels with higher priority have a better chance of being drawn.
+If the priority <code class="docutils literal notranslate"><span class="pre">Always</span></code> is given, it will always be drawn, regardless of overlaps.
+However, this can lead to illegible labels if too many texts overlap.</p>
+<p><code class="docutils literal notranslate"><span class="pre">How</span> <span class="pre">many</span> <span class="pre">labels</span></code> indicates how often a text may occur:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">One</span> <span class="pre">per</span> <span class="pre">feature</span></code>: Each feature is labeled exactly once.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">One</span> <span class="pre">per</span> <span class="pre">part</span></code>: If the feature is a <em>multipart</em> feature, each part of the feature is labeled.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">One</span> <span class="pre">per</span> <span class="pre">name</span></code>: If there are multiple features labeled with the same text,
+only the first is labeled. This prevents duplicate texts (for this layer) on the map.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>Symbol / Cartography:</strong> Here, the labeling symbol (font) can be set:</p>
+<a class="reference internal image-reference" href="../../_images/labeling5.png"><img alt="../../_images/labeling5.png" src="../../_images/labeling5.png" width="400" />
+</a>
+<p>Similar to feature symbology, there is also a <strong>Symbol Composer</strong> for text symbols here:</p>
+<a class="reference internal image-reference" href="../../_images/labeling6.png"><img alt="../../_images/labeling6.png" src="../../_images/labeling6.png" width="400" />
+</a>
+<p>There is a <code class="docutils literal notranslate"><span class="pre">Gallery</span></code> with predefined symbols. Different types of symbols can be added via the <code class="docutils literal notranslate"><span class="pre">Stack</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Simple</span> <span class="pre">Text</span></code>: Just the text, no border</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Glowing</span> <span class="pre">Text</span></code>: Text with a colored outline</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Blockout</span> <span class="pre">Text</span></code>: Text within a colored rectangle</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Glowing</strong> and <strong>Blockout</strong> text improve the readability of text because they stand out better
+against the background. On backgrounds like aerial images, normal texts are often
+difficult to read.</p>
+</div>
+</li>
+<li><p><strong>Placement / Placement Priority:</strong> For point and line themes, it may make sense to determine where
+the label is placed. This can be controlled through <code class="docutils literal notranslate"><span class="pre">Placement</span></code>:</p>
+<a class="reference internal image-reference" href="../../_images/labeling7.png"><img alt="../../_images/labeling7.png" src="../../_images/labeling7.png" width="400" />
+</a>
+<p>The center point would mean that the label is placed directly in the middle of the point or line.
+Through the priority, alternative positions can be assigned. If the label cannot be drawn due to
+space constraints, the subsequent specified positions are applied in order until a positive result is achieved.</p>
+</li>
+</ul>
+</section>
+<section id="scale-dependent-group-layer-renderer">
+<h2>Scale Dependent/Group Layer Renderer<a class="headerlink" href="#scale-dependent-group-layer-renderer" title="Link to this heading">¶</a></h2>
+<p>Here, as previously with the <strong>Scale Dependent (Feature) Renderer</strong>, groups of <em>Label Renderers</em>
+can be defined. This allows layers to be labeled differently at different scales.</p>
+<p>For example, countries could be labeled with a country abbreviation at small scales.
+As you zoom further into the map, they could be labeled with the full country name.</p>
+</section>
+<section id="chart-renderer">
+<h2>Chart Renderer<a class="headerlink" href="#chart-renderer" title="Link to this heading">¶</a></h2>
+<p>Here, instead of text, charts are inserted into the map:</p>
+<img alt="../../_images/labeling8.png" src="../../_images/labeling8.png" />
+<ul class="simple">
+<li><p><strong>Behavior:</strong> Here, the type of chart can be specified (Pie, Bars, Stack).</p></li>
+<li><p><strong>Chart Data:</strong> Here, fields can be dragged into the <code class="docutils literal notranslate"><span class="pre">Chart</span> <span class="pre">Fields</span></code> area.
+The chart is created from the field values of these fields.
+(Note: the first field must be dragged onto the title (<code class="docutils literal notranslate"><span class="pre">Chart</span> <span class="pre">Fields</span></code>).)
+If you want to remove a field, it can simply be dragged back to the left into the list.</p></li>
+<li><p><strong>Size:</strong> Charts can have a fixed size, or the size can depend on the total sum.
+For this, a sum value and a size in pixels are entered. The size of the charts is then
+calculated relative to these values.</p></li>
+</ul>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">Label Renderer</a><ul>
+<li><a class="reference internal" href="#simple-text-renderer">Simple Text Renderer</a></li>
+<li><a class="reference internal" href="#scale-dependent-group-layer-renderer">Scale Dependent/Group Layer Renderer</a></li>
+<li><a class="reference internal" href="#chart-renderer">Chart Renderer</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="renderers.html">
+                    <span class="icon">&lt;</span><span>Feature Renderer</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="scales.html"><span>Scale Limits</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

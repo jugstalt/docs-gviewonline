@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Grant Types and Flows &#8212; IdentityserverNET 7.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=d7bb20b6" />
+    <script src="../_static/documentation_options.js?v=efe5be6f"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/petite-vue.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Web Application" href="webapp.html" />
+    <link rel="prev" title="Managing Clients" href="index.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../index.html" title="Go to homepage">IdentityserverNET 7.0.0 documentation</a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Managing Clients</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Grant Types and Flows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webapp.html">Web Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spa.html">JavaScript / SPA Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html">API Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced-options.html">Client Reference (Advanced Options)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../accessories/index.html">Additional Admin Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etc/index.html">Additional Topics</a></li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="grant-types-and-flows">
+<h1>Grant Types and Flows<a class="headerlink" href="#grant-types-and-flows" title="Link to this heading">¶</a></h1>
+<p>Every client declares one or more <strong>grant types</strong> under <code class="docutils literal notranslate"><span class="pre">Allowed</span> <span class="pre">Grants</span></code>. A grant type
+determines <em>how</em> a client obtains tokens from <strong>IdentityServerNET</strong> — which endpoints are
+involved, whether a user is present, and how credentials are exchanged.</p>
+<p>This page explains the available grant types and walks through the recommended flows with
+sequence diagrams and example HTTP requests. All examples use the authority
+<code class="docutils literal notranslate"><span class="pre">https://localhost:44300</span></code> and the demo client <code class="docutils literal notranslate"><span class="pre">is-webclient-test</span></code>.</p>
+<section id="grant-types-overview">
+<h2>Grant Types Overview<a class="headerlink" href="#grant-types-overview" title="Link to this heading">¶</a></h2>
+<p>The following grant types can be enabled under <code class="docutils literal notranslate"><span class="pre">Allowed</span> <span class="pre">Grants</span></code>. The descriptions match the
+ones shown in the Admin UI:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 55.0%" />
+<col style="width: 15.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Grant</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Status</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">authorization_code</span></code></p></td>
+<td><p>Recommended for web apps — exchanges a short-lived code for tokens after user login.</p></td>
+<td><p>Recommended</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">client_credentials</span></code></p></td>
+<td><p>Machine-to-machine — client authenticates with its own secret, no user involved.</p></td>
+<td><p>Recommended</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">refresh_token</span></code></p></td>
+<td><p>Allows clients to obtain new access tokens without re-authentication using a long-lived refresh token.</p></td>
+<td><p>Recommended</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">urn:ietf:params:oauth:grant-type:device_code</span></code></p></td>
+<td><p>For input-constrained devices (TV, CLI) — user authorizes on a secondary device with a browser.</p></td>
+<td><p>Recommended</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">urn:ietf:params:oauth:grant-type:jwt-bearer</span></code></p></td>
+<td><p>Exchange a signed JWT assertion for an OAuth access token (federation / service accounts).</p></td>
+<td><p>Advanced</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">urn:ietf:params:oauth:grant-type:saml2-bearer</span></code></p></td>
+<td><p>Exchange a SAML 2.0 assertion for an OAuth access token.</p></td>
+<td><p>Advanced</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">urn:ietf:params:oauth:grant-type:token-exchange</span></code></p></td>
+<td><p>Exchange one token for another; supports impersonation and delegation scenarios.</p></td>
+<td><p>Advanced</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">urn:openid:params:grant-type:ciba</span></code></p></td>
+<td><p>Client-Initiated Backchannel Authentication — authenticate the user via an out-of-band channel (e.g. push notification).</p></td>
+<td><p>Advanced</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">implicit</span></code></p></td>
+<td><p>Legacy browser flow — tokens returned directly from the authorization endpoint. Deprecated, prefer Authorization Code + PKCE.</p></td>
+<td><p>Deprecated</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">hybrid</span></code></p></td>
+<td><p>Combination of code and implicit. Prefer Authorization Code + PKCE.</p></td>
+<td><p>Deprecated</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">password</span></code></p></td>
+<td><p>Resource Owner Password — user provides credentials directly to the client. Avoid for public clients.</p></td>
+<td><p>Deprecated</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When you create a client from a template (<code class="docutils literal notranslate"><span class="pre">WebApplication</span></code>, <code class="docutils literal notranslate"><span class="pre">ApiClient</span></code>,
+<code class="docutils literal notranslate"><span class="pre">JavascriptClient</span></code>), the appropriate grant types are set automatically. You rarely need to
+edit <code class="docutils literal notranslate"><span class="pre">Allowed</span> <span class="pre">Grants</span></code> by hand.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">implicit</span></code>, <code class="docutils literal notranslate"><span class="pre">hybrid</span></code> and <code class="docutils literal notranslate"><span class="pre">password</span></code> grants are considered legacy. Modern clients
+should use <strong>Authorization Code with PKCE</strong> (for interactive logins) or <strong>Client Credentials</strong>
+(for machine-to-machine). They are documented here only for completeness and receive no
+dedicated flow diagram.</p>
+</div>
+</section>
+<section id="authorization-code-pkce">
+<h2>Authorization Code + PKCE<a class="headerlink" href="#authorization-code-pkce" title="Link to this heading">¶</a></h2>
+<p>The standard flow for web applications and single-page apps. The user authenticates at
+<strong>IdentityServerNET</strong>, the client receives a short-lived <code class="docutils literal notranslate"><span class="pre">code</span></code>, and exchanges it for tokens on
+the back channel. <strong>PKCE</strong> (Proof Key for Code Exchange) binds the code to the client that
+started the flow, preventing code interception attacks.</p>
+<p>Used by the <code class="docutils literal notranslate"><span class="pre">WebApplication</span></code> and <code class="docutils literal notranslate"><span class="pre">JavascriptClient</span></code> templates. Enable via the
+<code class="docutils literal notranslate"><span class="pre">authorization_code</span></code> grant and the <code class="docutils literal notranslate"><span class="pre">RequirePkce</span></code> option.</p>
+<div class="mermaid">
+            sequenceDiagram
+    participant B as Browser
+    participant C as Client (web app)
+    participant IS as IdentityServerNET
+
+    B-&gt;&gt;C: Open protected page
+    C-&gt;&gt;B: Redirect to /connect/authorize (+ code_challenge)
+    B-&gt;&gt;IS: GET /connect/authorize
+    IS-&gt;&gt;B: Show login page
+    B-&gt;&gt;IS: Submit credentials
+    IS-&gt;&gt;B: Redirect to redirect_uri (+ code)
+    B-&gt;&gt;C: Deliver code
+    C-&gt;&gt;IS: POST /connect/token (code + code_verifier + secret)
+    IS-&gt;&gt;C: access_token, id_token, refresh_token
+    C-&gt;&gt;B: Set session cookie
+        </div><p>Step 1 — Authorization request (browser):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GET https://localhost:44300/connect/authorize?
+    client_id=is-webclient-test&amp;
+    response_type=code&amp;
+    scope=openid profile offline_access&amp;
+    redirect_uri=https://localhost:44360/signin-oidc&amp;
+    code_challenge=K2-ltc0...&amp;
+    code_challenge_method=S256&amp;
+    state=xyz&amp;
+    nonce=abc
+</pre></div>
+</div>
+<p>Step 2 — Token request (back channel, after the code is returned):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">44300</span><span class="o">/</span><span class="n">connect</span><span class="o">/</span><span class="n">token</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">x</span><span class="o">-</span><span class="n">www</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">urlencoded</span>
+
+<span class="n">grant_type</span><span class="o">=</span><span class="n">authorization_code</span><span class="o">&amp;</span>
+<span class="n">client_id</span><span class="o">=</span><span class="ow">is</span><span class="o">-</span><span class="n">webclient</span><span class="o">-</span><span class="n">test</span><span class="o">&amp;</span>
+<span class="n">client_secret</span><span class="o">=</span><span class="n">secret</span><span class="o">&amp;</span>
+<span class="n">code</span><span class="o">=</span><span class="mi">8</span><span class="n">f1a</span><span class="o">...&amp;</span>
+<span class="n">code_verifier</span><span class="o">=</span><span class="n">dBjftJeZ</span><span class="o">...&amp;</span>
+<span class="n">redirect_uri</span><span class="o">=</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">44360</span><span class="o">/</span><span class="n">signin</span><span class="o">-</span><span class="n">oidc</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In an ASP.NET Core client the OIDC middleware performs both steps automatically — see
+<a class="reference internal" href="webapp.html"><span class="doc">Web Application</span></a>. PKCE parameters (<code class="docutils literal notranslate"><span class="pre">code_challenge</span></code> / <code class="docutils literal notranslate"><span class="pre">code_verifier</span></code>) are generated and
+validated for you.</p>
+</div>
+</section>
+<section id="pushed-authorization-request-par">
+<h2>Pushed Authorization Request (PAR)<a class="headerlink" href="#pushed-authorization-request-par" title="Link to this heading">¶</a></h2>
+<p>A hardening of the Authorization Code flow (RFC 9126). Instead of putting all parameters into the
+browser URL, the client first <strong>POSTs</strong> them to the <code class="docutils literal notranslate"><span class="pre">/connect/par</span></code> endpoint on the back channel
+and receives a short-lived <code class="docutils literal notranslate"><span class="pre">request_uri</span></code>. The browser redirect then only carries <code class="docutils literal notranslate"><span class="pre">client_id</span></code>
+and <code class="docutils literal notranslate"><span class="pre">request_uri</span></code> — no <code class="docutils literal notranslate"><span class="pre">scope</span></code>, <code class="docutils literal notranslate"><span class="pre">code_challenge</span></code> or <code class="docutils literal notranslate"><span class="pre">client_secret</span></code> is ever visible in the
+URL or server logs.</p>
+<div class="mermaid">
+            sequenceDiagram
+    participant B as Browser
+    participant C as Client
+    participant IS as IdentityServerNET
+
+    C-&gt;&gt;IS: POST /connect/par (all params + secret)
+    IS-&gt;&gt;C: request_uri (expires in 60s)
+    C-&gt;&gt;B: Redirect to /connect/authorize?client_id=...&amp;request_uri=...
+    B-&gt;&gt;IS: GET /connect/authorize (request_uri only)
+    IS-&gt;&gt;B: Show login page
+    B-&gt;&gt;IS: Submit credentials
+    IS-&gt;&gt;B: Redirect to redirect_uri (+ code)
+    B-&gt;&gt;C: Deliver code
+    C-&gt;&gt;IS: POST /connect/token
+    IS-&gt;&gt;C: tokens
+        </div><p>Step 1 — Push the parameters (back channel):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">44300</span><span class="o">/</span><span class="n">connect</span><span class="o">/</span><span class="n">par</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">x</span><span class="o">-</span><span class="n">www</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">urlencoded</span>
+
+<span class="n">client_id</span><span class="o">=</span><span class="ow">is</span><span class="o">-</span><span class="n">webclient</span><span class="o">-</span><span class="n">test</span><span class="o">&amp;</span>
+<span class="n">client_secret</span><span class="o">=</span><span class="n">secret</span><span class="o">&amp;</span>
+<span class="n">response_type</span><span class="o">=</span><span class="n">code</span><span class="o">&amp;</span>
+<span class="n">scope</span><span class="o">=</span><span class="n">openid</span> <span class="n">profile</span><span class="o">&amp;</span>
+<span class="n">redirect_uri</span><span class="o">=</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">44360</span><span class="o">/</span><span class="n">signin</span><span class="o">-</span><span class="n">oidc</span><span class="o">&amp;</span>
+<span class="n">code_challenge</span><span class="o">=</span><span class="n">K2</span><span class="o">-</span><span class="n">ltc0</span><span class="o">...&amp;</span>
+<span class="n">code_challenge_method</span><span class="o">=</span><span class="n">S256</span>
+</pre></div>
+</div>
+<p>Response:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">201</span> <span class="n">Created</span>
+<span class="p">{</span>
+    <span class="s2">&quot;request_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:ietf:params:oauth:request_uri:8f1a...&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;expires_in&quot;</span><span class="p">:</span> <span class="mi">60</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Step 2 — Browser redirect uses only the <code class="docutils literal notranslate"><span class="pre">request_uri</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GET https://localhost:44300/connect/authorize?
+    client_id=is-webclient-test&amp;
+    request_uri=urn:ietf:params:oauth:request_uri:8f1a...
+</pre></div>
+</div>
+<p>PAR can be enforced per client via the <code class="docutils literal notranslate"><span class="pre">RequirePushedAuthorization</span></code> option (see
+<a class="reference internal" href="advanced-options.html"><span class="doc">Client Reference (Advanced Options)</span></a>). The server also advertises the <code class="docutils literal notranslate"><span class="pre">pushed_authorization_request_endpoint</span></code>
+in its discovery document so the ASP.NET Core OIDC middleware (.NET 9+) uses it automatically. See
+the <code class="docutils literal notranslate"><span class="pre">Stores</span></code> section in <a class="reference internal" href="../getting-started/configuration.html"><span class="doc">Configuration</span></a> for server-side storage of the
+<code class="docutils literal notranslate"><span class="pre">request_uri</span></code>.</p>
+</section>
+<section id="client-credentials">
+<h2>Client Credentials<a class="headerlink" href="#client-credentials" title="Link to this heading">¶</a></h2>
+<p>Machine-to-machine access with no user involved. The client authenticates with its own secret and
+receives an access token. Used by the <code class="docutils literal notranslate"><span class="pre">ApiClient</span></code> template.</p>
+<div class="mermaid">
+            sequenceDiagram
+    participant C as Client (service)
+    participant IS as IdentityServerNET
+    participant API as Web API
+
+    C-&gt;&gt;IS: POST /connect/token (client_id + secret)
+    IS-&gt;&gt;C: access_token
+    C-&gt;&gt;API: Request + Bearer access_token
+    API-&gt;&gt;C: Protected resource
+        </div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">44300</span><span class="o">/</span><span class="n">connect</span><span class="o">/</span><span class="n">token</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">x</span><span class="o">-</span><span class="n">www</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">urlencoded</span>
+
+<span class="n">grant_type</span><span class="o">=</span><span class="n">client_credentials</span><span class="o">&amp;</span>
+<span class="n">client_id</span><span class="o">=</span><span class="n">my</span><span class="o">-</span><span class="n">api</span><span class="o">-</span><span class="n">commands</span><span class="o">&amp;</span>
+<span class="n">client_secret</span><span class="o">=</span><span class="n">secret</span><span class="o">&amp;</span>
+<span class="n">scope</span><span class="o">=</span><span class="n">my</span><span class="o">-</span><span class="n">api</span> <span class="n">my</span><span class="o">-</span><span class="n">api</span><span class="o">.</span><span class="n">command</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="api.html"><span class="doc">API Client</span></a> for a full walk-through including how to secure the target Web API.</p>
+</section>
+<section id="device-flow">
+<h2>Device Flow<a class="headerlink" href="#device-flow" title="Link to this heading">¶</a></h2>
+<p>For input-constrained devices (smart TVs, CLI tools) that cannot easily show a browser. The device
+requests a <code class="docutils literal notranslate"><span class="pre">user_code</span></code> and asks the user to enter it on a second device (phone, laptop), while it
+polls the token endpoint until the user has authorized. Enable via the
+<code class="docutils literal notranslate"><span class="pre">urn:ietf:params:oauth:grant-type:device_code</span></code> grant.</p>
+<div class="mermaid">
+            sequenceDiagram
+    participant D as Device (TV/CLI)
+    participant IS as IdentityServerNET
+    participant U as User's phone
+
+    D-&gt;&gt;IS: POST /connect/deviceauthorization
+    IS-&gt;&gt;D: device_code, user_code, verification_uri
+    D-&gt;&gt;U: Show &quot;go to URL, enter CODE&quot;
+    U-&gt;&gt;IS: Open verification_uri, log in, enter user_code
+    loop until authorized
+        D-&gt;&gt;IS: POST /connect/token (device_code)
+        IS-&gt;&gt;D: authorization_pending
+    end
+    IS-&gt;&gt;D: access_token, refresh_token
+        </div><p>Step 1 — Device requests a code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">44300</span><span class="o">/</span><span class="n">connect</span><span class="o">/</span><span class="n">deviceauthorization</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">x</span><span class="o">-</span><span class="n">www</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">urlencoded</span>
+
+<span class="n">client_id</span><span class="o">=</span><span class="n">device</span><span class="o">-</span><span class="n">client</span><span class="o">&amp;</span><span class="n">scope</span><span class="o">=</span><span class="n">openid</span> <span class="n">profile</span>
+</pre></div>
+</div>
+<p>Response:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;device_code&quot;</span><span class="p">:</span> <span class="s2">&quot;GmRh...&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;user_code&quot;</span><span class="p">:</span> <span class="s2">&quot;WDJB-MJHT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;verification_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;https://localhost:44300/device&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;expires_in&quot;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+    <span class="s2">&quot;interval&quot;</span><span class="p">:</span> <span class="mi">5</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Step 2 — Device polls the token endpoint:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">44300</span><span class="o">/</span><span class="n">connect</span><span class="o">/</span><span class="n">token</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">x</span><span class="o">-</span><span class="n">www</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">urlencoded</span>
+
+<span class="n">grant_type</span><span class="o">=</span><span class="n">urn</span><span class="p">:</span><span class="n">ietf</span><span class="p">:</span><span class="n">params</span><span class="p">:</span><span class="n">oauth</span><span class="p">:</span><span class="n">grant</span><span class="o">-</span><span class="nb">type</span><span class="p">:</span><span class="n">device_code</span><span class="o">&amp;</span>
+<span class="n">client_id</span><span class="o">=</span><span class="n">device</span><span class="o">-</span><span class="n">client</span><span class="o">&amp;</span>
+<span class="n">device_code</span><span class="o">=</span><span class="n">GmRh</span><span class="o">...</span>
+</pre></div>
+</div>
+</section>
+<section id="refresh-token">
+<h2>Refresh Token<a class="headerlink" href="#refresh-token" title="Link to this heading">¶</a></h2>
+<p>Lets a client obtain a fresh access token when the old one expires, without sending the user
+through the login flow again. Requires the <code class="docutils literal notranslate"><span class="pre">AllowOfflineAccess</span></code> option <strong>and</strong> the
+<code class="docutils literal notranslate"><span class="pre">offline_access</span></code> scope in the original request. The client receives a <code class="docutils literal notranslate"><span class="pre">refresh_token</span></code> alongside
+the access token and exchanges it later.</p>
+<div class="mermaid">
+            sequenceDiagram
+    participant C as Client
+    participant IS as IdentityServerNET
+
+    Note over C: access_token expired
+    C-&gt;&gt;IS: POST /connect/token (grant_type=refresh_token)
+    IS-&gt;&gt;C: new access_token (+ new refresh_token)
+        </div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">44300</span><span class="o">/</span><span class="n">connect</span><span class="o">/</span><span class="n">token</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">x</span><span class="o">-</span><span class="n">www</span><span class="o">-</span><span class="n">form</span><span class="o">-</span><span class="n">urlencoded</span>
+
+<span class="n">grant_type</span><span class="o">=</span><span class="n">refresh_token</span><span class="o">&amp;</span>
+<span class="n">client_id</span><span class="o">=</span><span class="ow">is</span><span class="o">-</span><span class="n">webclient</span><span class="o">-</span><span class="n">test</span><span class="o">&amp;</span>
+<span class="n">client_secret</span><span class="o">=</span><span class="n">secret</span><span class="o">&amp;</span>
+<span class="n">refresh_token</span><span class="o">=</span><span class="mi">8</span><span class="n">xLOxBtZp8</span><span class="o">...</span>
+</pre></div>
+</div>
+<p>The lifetime and rotation behaviour of refresh tokens is controlled by the <code class="docutils literal notranslate"><span class="pre">Advanced</span> <span class="pre">Properties</span></code>
+(<code class="docutils literal notranslate"><span class="pre">AbsoluteRefreshTokenLifetime</span></code>, <code class="docutils literal notranslate"><span class="pre">SlidingRefreshTokenLifetime</span></code>, <code class="docutils literal notranslate"><span class="pre">RefreshTokenUsage</span></code>,
+<code class="docutils literal notranslate"><span class="pre">RefreshTokenExpiration</span></code>) — see <a class="reference internal" href="advanced-options.html"><span class="doc">Client Reference (Advanced Options)</span></a>.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">Grant Types and Flows</a><ul>
+<li><a class="reference internal" href="#grant-types-overview">Grant Types Overview</a></li>
+<li><a class="reference internal" href="#authorization-code-pkce">Authorization Code + PKCE</a></li>
+<li><a class="reference internal" href="#pushed-authorization-request-par">Pushed Authorization Request (PAR)</a></li>
+<li><a class="reference internal" href="#client-credentials">Client Credentials</a></li>
+<li><a class="reference internal" href="#device-flow">Device Flow</a></li>
+<li><a class="reference internal" href="#refresh-token">Refresh Token</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="index.html">
+                    <span class="icon">&lt;</span><span>Managing Clients</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="webapp.html"><span>Web Application</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026, Jürgen Gstaltmaier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

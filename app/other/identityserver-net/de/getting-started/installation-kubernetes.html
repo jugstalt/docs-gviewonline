@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+
+<html lang="de" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Installation mit Kubernetes &#8212; IdentityserverNET 7.0.0 Dokumentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=d7bb20b6" />
+    <script src="../_static/documentation_options.js?v=929a6565"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/translations.js?v=70a09b52"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/petite-vue.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Installation mit Aspire" href="installation-aspire.html" />
+    <link rel="prev" title="Installation mit Docker Compose" href="installation-docker-compose.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../index.html" title="Go to homepage">IdentityserverNET 7.0.0 Dokumentation</a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Schnellsuche</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Los" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Erste Schritte</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="installation-windows.html">Installation unter Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-linux.html">Installation unter Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-docker.html">Installation mit Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-docker-compose.html">Installation mit Docker Compose</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation mit Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-aspire.html">Installation mit Aspire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">Konfiguration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="login-as-admin.html">Als Administrator anmelden</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin-server.html">Administration des Servers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../clients/index.html">Clients verwalten</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../accessories/index.html">Weitere Admin-Werkzeuge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etc/index.html">Weitere Themen</a></li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="installation-mit-kubernetes">
+<h1>Installation mit Kubernetes<a class="headerlink" href="#installation-mit-kubernetes" title="Link to this heading">¶</a></h1>
+<p>Die Kubernetes-Manifeste befinden sich im Repository unter
+<a class="reference external" href="https://github.com/jugstalt/identityserver.net/tree/master/dist/kubernetes">dist/kubernetes/</a>.</p>
+<section id="dateien-im-uberblick">
+<h2>Dateien im Überblick<a class="headerlink" href="#dateien-im-uberblick" title="Link to this heading">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Datei</p></th>
+<th class="head"><p>Inhalt</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">secret.yaml</span></code></p></td>
+<td><p>Passwörter und Zugangsdaten (Zertifikats-Passwort, Admin-Passwort, DB-Connection-Strings, Mail)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">configmap.yaml</span></code></p></td>
+<td><p>Alle nicht-sensiblen Einstellungen sowie auskommentierte Migrationsbeispiele</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pvc.yaml</span></code></p></td>
+<td><p>PersistentVolumeClaim für die Datenhaltung (Datenbank, Signing-Keys, Data-Protection-Keys)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">deployment.yaml</span></code></p></td>
+<td><p>Deployment mit SecurityContext, Liveness-/Readiness-Probes und Resource-Limits</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">service.yaml</span></code></p></td>
+<td><p>ClusterIP-Service, der den Container-Port 8080 intern auf Port 80 exponiert</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ingress.yaml</span></code></p></td>
+<td><p>Ingress-Vorlage (nginx, optional TLS via cert-manager)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="schnellstart">
+<h2>Schnellstart<a class="headerlink" href="#schnellstart" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/jugstalt/identityserver.net.git
+<span class="nb">cd</span><span class="w"> </span>identityserver.net/dist/kubernetes
+
+<span class="c1"># 1. secret.yaml und configmap.yaml an die eigene Umgebung anpassen</span>
+<span class="c1"># 2. Alle Manifeste anwenden</span>
+kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>.
+</pre></div>
+</div>
+<p>Der OIDC-Discovery-Endpunkt ist danach erreichbar unter:
+<code class="docutils literal notranslate"><span class="pre">http://&lt;ingress-host&gt;/.well-known/openid-configuration</span></code></p>
+</section>
+<section id="namespace">
+<h2>Namespace<a class="headerlink" href="#namespace" title="Link to this heading">¶</a></h2>
+<p>Alle Manifeste verwenden standardmäßig <code class="docutils literal notranslate"><span class="pre">namespace:</span> <span class="pre">default</span></code>. Für einen eigenen
+Namespace diesen zuerst anlegen und anschließend das Feld <code class="docutils literal notranslate"><span class="pre">namespace:</span></code> in jeder
+Datei anpassen:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>create<span class="w"> </span>namespace<span class="w"> </span>identity
+<span class="c1"># dann namespace: identity in allen .yaml Files setzen</span>
+</pre></div>
+</div>
+<p>Alternativ <code class="docutils literal notranslate"><span class="pre">kubectl</span> <span class="pre">apply</span> <span class="pre">-n</span> <span class="pre">identity</span> <span class="pre">-f</span> <span class="pre">.</span></code> verwenden und das Namespace-Feld in den
+Dateien weglassen — für Produktionsumgebungen ist die explizite Angabe in den Dateien
+aber vorzuziehen.</p>
+</section>
+<section id="secret-secret-yaml">
+<h2>Secret (<code class="docutils literal notranslate"><span class="pre">secret.yaml</span></code>)<a class="headerlink" href="#secret-secret-yaml" title="Link to this heading">¶</a></h2>
+<p>Sensible Werte werden in einem Kubernetes Secret gespeichert. Die Datei verwendet
+<code class="docutils literal notranslate"><span class="pre">stringData</span></code>, sodass Werte im Klartext eingetragen werden können — Kubernetes
+kodiert sie automatisch in Base64:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Secret</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">identityserver-secret</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Opaque</span>
+<span class="nt">stringData</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">IDENTITYSERVER__SIGNINGCREDENTIAL__CERTPASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Change-This-Password!&quot;</span>
+<span class="w">  </span><span class="nt">IDENTITYSERVER__MIGRATIONS__ADMINPASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Admin1234!&quot;</span>
+
+<span class="w">  </span><span class="c1"># Datenbank — genau eine auskommentieren:</span>
+<span class="w">  </span><span class="c1"># IDENTITYSERVER__CONNECTIONSTRINGS__SQLSERVER: &quot;Server=db;...&quot;</span>
+<span class="w">  </span><span class="c1"># IDENTITYSERVER__CONNECTIONSTRINGS__POSTGRES: &quot;Host=db;...&quot;</span>
+<span class="w">  </span><span class="c1"># IDENTITYSERVER__CONNECTIONSTRINGS__MONGODB: &quot;mongodb://mongo:27017&quot;</span>
+
+<span class="w">  </span><span class="c1"># Mail-Sender — gewünschten auskommentieren:</span>
+<span class="w">  </span><span class="c1"># IDENTITYSERVER__MAIL__SMTP__PASSWORD: &quot;smtp-password&quot;</span>
+<span class="w">  </span><span class="c1"># IDENTITYSERVER__MAIL__SENDGRID__APIKEY: &quot;SG.xxxxxxxxxxxx&quot;</span>
+
+<span class="w">  </span><span class="c1"># Externer Identity Provider:</span>
+<span class="w">  </span><span class="c1"># IDENTITYSERVER__EXTERNAL__MICROSOFTIDENTITYWEB__CLIENTSECRET: &quot;...&quot;</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warnung</p>
+<p><code class="docutils literal notranslate"><span class="pre">secret.yaml</span></code> mit echten Zugangsdaten niemals in ein öffentliches Repository
+einchecken. In Produktionsumgebungen einen Secrets-Manager verwenden
+(Sealed Secrets, External Secrets Operator, Vault, …).</p>
+</div>
+</section>
+<section id="configmap-configmap-yaml">
+<h2>ConfigMap (<code class="docutils literal notranslate"><span class="pre">configmap.yaml</span></code>)<a class="headerlink" href="#configmap-configmap-yaml" title="Link to this heading">¶</a></h2>
+<p>Nicht-sensible Einstellungen stehen in der ConfigMap. Die Variablennamen verwenden
+<code class="docutils literal notranslate"><span class="pre">__</span></code> als Trennzeichen für hierarchische ASP.NET Core-Konfigurationswerte — identisch
+mit der <a class="reference internal" href="installation-docker-compose.html"><span class="doc">docker-compose-Installation</span></a>.</p>
+<p>Die wichtigsten Werte vor dem ersten Deployment anpassen:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Öffentliche URL — muss mit der URL übereinstimmen, unter der Clients den Server erreichen</span>
+<span class="nt">IDENTITYSERVER__PUBLICORIGIN</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://auth.example.com&quot;</span>
+
+<span class="nt">IDENTITYSERVER__APPLICATIONTITLE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;IdentityServer.NET&quot;</span>
+
+<span class="c1"># LiteDB (Standard) — Pfad innerhalb des PVC, das bei /home/app eingehängt ist</span>
+<span class="nt">IDENTITYSERVER__CONNECTIONSTRINGS__LITEDB</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/home/app/identityserver-net/is_identityserver-net.db&quot;</span>
+
+<span class="c1"># Hinter einem Ingress-Controller, der TLS terminiert:</span>
+<span class="nt">IDENTITYSERVER__CONFIGURE__USEHTTPSREDIRECTION</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;false&quot;</span>
+<span class="nt">IDENTITYSERVER__CONFIGURE__ADDXFORWARDEDPROTOMIDDLEWARE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+</pre></div>
+</div>
+<p>Vollständige Liste aller verfügbaren Konfigurationsvariablen: siehe <code class="docutils literal notranslate"><span class="pre">configmap.yaml</span></code>
+im Repository.</p>
+</section>
+<section id="persistentvolumeclaim-pvc-yaml">
+<h2>PersistentVolumeClaim (<code class="docutils literal notranslate"><span class="pre">pvc.yaml</span></code>)<a class="headerlink" href="#persistentvolumeclaim-pvc-yaml" title="Link to this heading">¶</a></h2>
+<p>1 Gi ist für die meisten Deployments mit LiteDB ausreichend.
+Die Storage-Class an den eigenen Cluster anpassen:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolumeClaim</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">identityserver-pvc</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
+<span class="w">  </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1Gi</span>
+<span class="w">  </span><span class="c1"># storageClassName: standard</span>
+</pre></div>
+</div>
+</section>
+<section id="deployment-deployment-yaml">
+<h2>Deployment (<code class="docutils literal notranslate"><span class="pre">deployment.yaml</span></code>)<a class="headerlink" href="#deployment-deployment-yaml" title="Link to this heading">¶</a></h2>
+<p>Das Deployment hängt das PVC ein, setzt den SecurityContext und konfiguriert
+Health-Probes.</p>
+<section id="volume-und-berechtigungen">
+<h3>Volume und Berechtigungen<a class="headerlink" href="#volume-und-berechtigungen" title="Link to this heading">¶</a></h3>
+<p>Das PVC wird bei <code class="docutils literal notranslate"><span class="pre">/home/app</span></code> eingehängt — <strong>nicht</strong> bei
+<code class="docutils literal notranslate"><span class="pre">/home/app/identityserver-net</span></code>. Ein Einhängen eine Ebene tiefer würde dazu führen,
+dass Kubernetes das Verzeichnis als <code class="docutils literal notranslate"><span class="pre">root</span></code> anlegt, was der nicht-privilegierte
+<code class="docutils literal notranslate"><span class="pre">app</span></code>-Benutzer (UID 1654) nicht beschreiben kann. Das Einhängen bei <code class="docutils literal notranslate"><span class="pre">/home/app</span></code>
+übernimmt stattdessen die Dateirechte aus dem Image.</p>
+<p><code class="docutils literal notranslate"><span class="pre">fsGroup:</span> <span class="pre">1654</span></code> stellt sicher, dass das eingehängte Volume dem <code class="docutils literal notranslate"><span class="pre">app</span></code>-Benutzer
+gehört:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">securityContext</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">fsGroup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1654</span>
+<span class="w">    </span><span class="nt">runAsNonRoot</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+</section>
+<section id="health-probes">
+<h3>Health-Probes<a class="headerlink" href="#health-probes" title="Link to this heading">¶</a></h3>
+<p>Beide Probes rufen den OIDC-Discovery-Endpunkt auf, der verfügbar ist, sobald der
+Server vollständig initialisiert ist:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">livenessProbe</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">httpGet</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/.well-known/openid-configuration</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">  </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span>
+<span class="w">  </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
+
+<span class="nt">readinessProbe</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">httpGet</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/.well-known/openid-configuration</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">  </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">  </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="service-service-yaml">
+<h2>Service (<code class="docutils literal notranslate"><span class="pre">service.yaml</span></code>)<a class="headerlink" href="#service-service-yaml" title="Link to this heading">¶</a></h2>
+<p>Ein ClusterIP-Service mappt Port 80 auf den Container-Port 8080:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">identityserver</span>
+<span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
+<span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterIP</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">type</span></code> auf <code class="docutils literal notranslate"><span class="pre">NodePort</span></code> oder <code class="docutils literal notranslate"><span class="pre">LoadBalancer</span></code> ändern, wenn kein Ingress-Controller
+verwendet wird.</p>
+</section>
+<section id="ingress-tls-ingress-yaml">
+<h2>Ingress / TLS (<code class="docutils literal notranslate"><span class="pre">ingress.yaml</span></code>)<a class="headerlink" href="#ingress-tls-ingress-yaml" title="Link to this heading">¶</a></h2>
+<p>Die Vorlage richtet sich an den nginx Ingress Controller. <code class="docutils literal notranslate"><span class="pre">auth.example.com</span></code> durch
+die eigene Domain ersetzen:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">rules</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">auth.example.com</span>
+<span class="w">      </span><span class="nt">http</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">paths</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
+<span class="w">            </span><span class="nt">pathType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Prefix</span>
+<span class="w">            </span><span class="nt">backend</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">service</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">identityserver</span>
+<span class="w">                </span><span class="nt">port</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
+</pre></div>
+</div>
+<section id="tls-mit-cert-manager-let-s-encrypt">
+<h3>TLS mit cert-manager (Let’s Encrypt)<a class="headerlink" href="#tls-mit-cert-manager-let-s-encrypt" title="Link to this heading">¶</a></h3>
+<p>Den <code class="docutils literal notranslate"><span class="pre">tls</span></code>-Block und die cert-manager-Annotation einkommentieren:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">cert-manager.io/cluster-issuer</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;letsencrypt-prod&quot;</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">tls</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hosts</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">auth.example.com</span>
+<span class="w">      </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">identityserver-tls</span>
+</pre></div>
+</div>
+<p>Anschließend <code class="docutils literal notranslate"><span class="pre">IDENTITYSERVER__PUBLICORIGIN</span></code> in der <code class="docutils literal notranslate"><span class="pre">configmap.yaml</span></code> setzen:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">IDENTITYSERVER__PUBLICORIGIN</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://auth.example.com&quot;</span>
+</pre></div>
+</div>
+<p>Und die aktualisierte ConfigMap einpielen sowie einen Rollout-Neustart auslösen:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>configmap.yaml
+kubectl<span class="w"> </span>rollout<span class="w"> </span>restart<span class="w"> </span>deployment/identityserver
+</pre></div>
+</div>
+</section>
+</section>
+<section id="migrationen-seeding">
+<h2>Migrationen (Seeding)<a class="headerlink" href="#migrationen-seeding" title="Link to this heading">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Migrationen werden nur ausgeführt, wenn <code class="docutils literal notranslate"><span class="pre">ASPNETCORE_ENVIRONMENT=Development</span></code>
+gesetzt ist. Sie legen fehlende Einträge beim ersten Start an und überschreiben
+niemals vorhandene Daten. Danach kann die Variable entfernt oder belassen werden —
+nachfolgende Starts verändern nichts Bestehendes.</p>
+</div>
+<p>Das Seeding wird in der <code class="docutils literal notranslate"><span class="pre">configmap.yaml</span></code> konfiguriert. Alle Migrations-Werte sind
+nicht-sensibel — Ausnahme: Passwörter und Secrets gehören in die <code class="docutils literal notranslate"><span class="pre">secret.yaml</span></code>.</p>
+<p>Vollständiges Beispiel für ein typisches Setup:</p>
+<p><em>configmap.yaml</em></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">ASPNETCORE_ENVIRONMENT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Development&quot;</span>
+
+<span class="c1"># Identity Resources</span>
+<span class="nt">IDENTITYSERVER__MIGRATIONS__IDENTITYRESOURCES__0__NAME</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;openid&quot;</span>
+<span class="nt">IDENTITYSERVER__MIGRATIONS__IDENTITYRESOURCES__1__NAME</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;profile&quot;</span>
+<span class="nt">IDENTITYSERVER__MIGRATIONS__IDENTITYRESOURCES__2__NAME</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;role&quot;</span>
+
+<span class="c1"># API Resource</span>
+<span class="nt">IDENTITYSERVER__MIGRATIONS__APIRESOURCES__0__NAME</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;my-api&quot;</span>
+<span class="nt">IDENTITYSERVER__MIGRATIONS__APIRESOURCES__0__SCOPES__0__NAME</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;read&quot;</span>
+<span class="nt">IDENTITYSERVER__MIGRATIONS__APIRESOURCES__0__SCOPES__1__NAME</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;write&quot;</span>
+
+<span class="c1"># Rollen</span>
+<span class="nt">IDENTITYSERVER__MIGRATIONS__ROLES__0__NAME</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;admin&quot;</span>
+<span class="nt">IDENTITYSERVER__MIGRATIONS__ROLES__1__NAME</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;user&quot;</span>
+
+<span class="c1"># Zusätzlicher Benutzer (Passwort in secret.yaml)</span>
+<span class="nt">IDENTITYSERVER__MIGRATIONS__USERS__0__NAME</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;alice@example.com&quot;</span>
+<span class="nt">IDENTITYSERVER__MIGRATIONS__USERS__0__ROLES__0</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;admin&quot;</span>
+
+<span class="c1"># Web Application Client</span>
+<span class="nt">IDENTITYSERVER__MIGRATIONS__CLIENTS__0__CLIENTTYPE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;WebApplication&quot;</span>
+<span class="nt">IDENTITYSERVER__MIGRATIONS__CLIENTS__0__CLIENTID</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;my-webapp&quot;</span>
+<span class="nt">IDENTITYSERVER__MIGRATIONS__CLIENTS__0__CLIENTURL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://myapp.example.com&quot;</span>
+<span class="nt">IDENTITYSERVER__MIGRATIONS__CLIENTS__0__SCOPES__0</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;openid&quot;</span>
+<span class="nt">IDENTITYSERVER__MIGRATIONS__CLIENTS__0__SCOPES__1</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;profile&quot;</span>
+<span class="nt">IDENTITYSERVER__MIGRATIONS__CLIENTS__0__SCOPES__2</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;role&quot;</span>
+
+<span class="c1"># API Client (Client Credentials)</span>
+<span class="nt">IDENTITYSERVER__MIGRATIONS__CLIENTS__1__CLIENTTYPE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ApiClient&quot;</span>
+<span class="nt">IDENTITYSERVER__MIGRATIONS__CLIENTS__1__CLIENTID</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;my-service&quot;</span>
+<span class="nt">IDENTITYSERVER__MIGRATIONS__CLIENTS__1__SCOPES__0</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;my-api&quot;</span>
+<span class="nt">IDENTITYSERVER__MIGRATIONS__CLIENTS__1__SCOPES__1</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;my-api.read&quot;</span>
+</pre></div>
+</div>
+<p><em>secret.yaml</em></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">IDENTITYSERVER__MIGRATIONS__ADMINPASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Admin1234!&quot;</span>
+<span class="nt">IDENTITYSERVER__MIGRATIONS__APIRESOURCES__0__APISECRET</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;apisecret&quot;</span>
+<span class="nt">IDENTITYSERVER__MIGRATIONS__USERS__0__PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Alice1234!&quot;</span>
+<span class="nt">IDENTITYSERVER__MIGRATIONS__CLIENTS__0__CLIENTSECRET</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;secret&quot;</span>
+<span class="nt">IDENTITYSERVER__MIGRATIONS__CLIENTS__1__CLIENTSECRET</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;secret&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="passkey-webauthn-fido2">
+<h2>Passkey (WebAuthn / FIDO2)<a class="headerlink" href="#passkey-webauthn-fido2" title="Link to this heading">¶</a></h2>
+<p>Passkeys ermöglichen die passwortlose Anmeldung per Biometrie oder Hardware-Schlüssel.
+Folgende Werte in der <code class="docutils literal notranslate"><span class="pre">configmap.yaml</span></code> setzen:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 60.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IDENTITYSERVER__LOGIN__PASSKEY__ALLOWPASSWORDLESS</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;true&quot;</span></code> – passwortlose Erstfaktor-Anmeldung aktivieren</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IDENTITYSERVER__LOGIN__PASSKEY__ALLOWSECONDFACTOR</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;true&quot;</span></code> – Passkey als zweiten Faktor nach Benutzername/Passwort</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IDENTITYSERVER__LOGIN__PASSKEY__SERVERDOMAIN</span></code></p></td>
+<td><p>WebAuthn Relying Party ID, z. B. <code class="docutils literal notranslate"><span class="pre">&quot;example.com&quot;</span></code>. Leer lassen = vom Request-Host ableiten.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IDENTITYSERVER__LOGIN__PASSKEY__RELYINGPARTYNAME</span></code></p></td>
+<td><p>Anzeigename im Authenticator während der Passkey-Registrierung</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="erstes-login">
+<h2>Erstes Login<a class="headerlink" href="#erstes-login" title="Link to this heading">¶</a></h2>
+<p>Nach dem ersten Start die Pod-Logs auf die erzeugten Admin-Zugangsdaten prüfen:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>logs<span class="w"> </span>deployment/identityserver
+</pre></div>
+</div>
+<p>Dort erscheint ein Block ähnlich wie:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>################# Setup ##################
+User admin@identityserver.net created
+Password: Admin1234!
+#########################################
+</pre></div>
+</div>
+<p>Die Standard-Admin-E-Mail-Adresse ist <code class="docutils literal notranslate"><span class="pre">admin&#64;identityserver.net</span></code>.
+Wurde <code class="docutils literal notranslate"><span class="pre">IDENTITYSERVER__MIGRATIONS__ADMINPASSWORD</span></code> nicht gesetzt, generiert der
+Server ein zufälliges 16-Zeichen-Passwort und gibt es in den Logs aus.</p>
+</section>
+<section id="update">
+<h2>Update<a class="headerlink" href="#update" title="Link to this heading">¶</a></h2>
+<p>Das neueste Image laden und einen Rolling-Restart auslösen:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>rollout<span class="w"> </span>restart<span class="w"> </span>deployment/identityserver
+kubectl<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/identityserver
+</pre></div>
+</div>
+<p>Um eine bestimmte Version festzuhalten, <code class="docutils literal notranslate"><span class="pre">image:</span></code> in der <code class="docutils literal notranslate"><span class="pre">deployment.yaml</span></code> anpassen:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gstalt/identityserver-net:5.25.0000</span>
+</pre></div>
+</div>
+</section>
+<section id="konfiguration-andern">
+<h2>Konfiguration ändern<a class="headerlink" href="#konfiguration-andern" title="Link to this heading">¶</a></h2>
+<p>Nach Änderungen an <code class="docutils literal notranslate"><span class="pre">configmap.yaml</span></code> oder <code class="docutils literal notranslate"><span class="pre">secret.yaml</span></code> anwenden und neu starten:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>configmap.yaml<span class="w">   </span><span class="c1"># bzw. secret.yaml</span>
+kubectl<span class="w"> </span>rollout<span class="w"> </span>restart<span class="w"> </span>deployment/identityserver
+</pre></div>
+</div>
+</section>
+<section id="horizontale-skalierung">
+<h2>Horizontale Skalierung<a class="headerlink" href="#horizontale-skalierung" title="Link to this heading">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Mit LiteDB (Standard) ist nur <code class="docutils literal notranslate"><span class="pre">replicas:</span> <span class="pre">1</span></code> möglich, da LiteDB keine
+gleichzeitigen Schreibzugriffe aus mehreren Pods unterstützt.</p>
+</div>
+<p>Für mehrere Replikas auf eine der folgenden Datenbanken wechseln
+(Connection-String in <code class="docutils literal notranslate"><span class="pre">secret.yaml</span></code>):</p>
+<ul class="simple">
+<li><p>SQL Server (<code class="docutils literal notranslate"><span class="pre">IDENTITYSERVER__CONNECTIONSTRINGS__SQLSERVER</span></code>)</p></li>
+<li><p>PostgreSQL (<code class="docutils literal notranslate"><span class="pre">IDENTITYSERVER__CONNECTIONSTRINGS__POSTGRES</span></code>)</p></li>
+<li><p>MongoDB (<code class="docutils literal notranslate"><span class="pre">IDENTITYSERVER__CONNECTIONSTRINGS__MONGODB</span></code>)</p></li>
+</ul>
+<p>Außerdem muss das PVC <code class="docutils literal notranslate"><span class="pre">accessModes:</span> <span class="pre">ReadWriteMany</span></code> unterstützen oder der Speicher
+für Signing-Keys und Data-Protection-Keys extern abgelegt werden.</p>
+</section>
+<section id="fehlerbehebung">
+<h2>Fehlerbehebung<a class="headerlink" href="#fehlerbehebung" title="Link to this heading">¶</a></h2>
+<p><strong>Pod bleibt in</strong> <code class="docutils literal notranslate"><span class="pre">Pending</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>identityserver
+</pre></div>
+</div>
+<p>Im Abschnitt <code class="docutils literal notranslate"><span class="pre">Events</span></code> nachsehen — meistens ein PVC das nicht gebunden werden kann
+oder unzureichende Node-Ressourcen.</p>
+<p><strong>Pod stürzt beim Start ab (</strong> <code class="docutils literal notranslate"><span class="pre">CrashLoopBackOff</span></code> <strong>)</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>logs<span class="w"> </span>deployment/identityserver<span class="w"> </span>--previous
+</pre></div>
+</div>
+<p>Häufige Ursachen:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">UnauthorizedAccessException:</span> <span class="pre">Access</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">path</span> <span class="pre">'/home/app/...'</span> <span class="pre">is</span> <span class="pre">denied</span></code> —
+das Volume ist am falschen Pfad eingehängt oder <code class="docutils literal notranslate"><span class="pre">fsGroup</span></code> fehlt. Prüfen, ob
+das Mount bei <code class="docutils literal notranslate"><span class="pre">/home/app</span></code> liegt und <code class="docutils literal notranslate"><span class="pre">securityContext.fsGroup:</span> <span class="pre">1654</span></code> gesetzt ist.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IDENTITYSERVER__PUBLICORIGIN</span></code> nicht gesetzt — der Server kann ohne einen gültigen
+Public Origin nicht starten.</p></li>
+</ul>
+<p><strong>Pod ist</strong> <code class="docutils literal notranslate"><span class="pre">Running</span></code><strong>, aber die Site ist nicht erreichbar</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>get<span class="w"> </span>ingress
+kubectl<span class="w"> </span>describe<span class="w"> </span>ingress<span class="w"> </span>identityserver
+</pre></div>
+</div>
+<p>Sicherstellen, dass der Ingress-Controller installiert ist und der Host mit der
+verwendeten Domain übereinstimmt.</p>
+<p><strong>Shell-Zugriff zum Debuggen</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>deployment/identityserver<span class="w"> </span>--<span class="w"> </span>/bin/sh
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">Installation mit Kubernetes</a><ul>
+<li><a class="reference internal" href="#dateien-im-uberblick">Dateien im Überblick</a></li>
+<li><a class="reference internal" href="#schnellstart">Schnellstart</a></li>
+<li><a class="reference internal" href="#namespace">Namespace</a></li>
+<li><a class="reference internal" href="#secret-secret-yaml">Secret (<code class="docutils literal notranslate"><span class="pre">secret.yaml</span></code>)</a></li>
+<li><a class="reference internal" href="#configmap-configmap-yaml">ConfigMap (<code class="docutils literal notranslate"><span class="pre">configmap.yaml</span></code>)</a></li>
+<li><a class="reference internal" href="#persistentvolumeclaim-pvc-yaml">PersistentVolumeClaim (<code class="docutils literal notranslate"><span class="pre">pvc.yaml</span></code>)</a></li>
+<li><a class="reference internal" href="#deployment-deployment-yaml">Deployment (<code class="docutils literal notranslate"><span class="pre">deployment.yaml</span></code>)</a><ul>
+<li><a class="reference internal" href="#volume-und-berechtigungen">Volume und Berechtigungen</a></li>
+<li><a class="reference internal" href="#health-probes">Health-Probes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#service-service-yaml">Service (<code class="docutils literal notranslate"><span class="pre">service.yaml</span></code>)</a></li>
+<li><a class="reference internal" href="#ingress-tls-ingress-yaml">Ingress / TLS (<code class="docutils literal notranslate"><span class="pre">ingress.yaml</span></code>)</a><ul>
+<li><a class="reference internal" href="#tls-mit-cert-manager-let-s-encrypt">TLS mit cert-manager (Let’s Encrypt)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#migrationen-seeding">Migrationen (Seeding)</a></li>
+<li><a class="reference internal" href="#passkey-webauthn-fido2">Passkey (WebAuthn / FIDO2)</a></li>
+<li><a class="reference internal" href="#erstes-login">Erstes Login</a></li>
+<li><a class="reference internal" href="#update">Update</a></li>
+<li><a class="reference internal" href="#konfiguration-andern">Konfiguration ändern</a></li>
+<li><a class="reference internal" href="#horizontale-skalierung">Horizontale Skalierung</a></li>
+<li><a class="reference internal" href="#fehlerbehebung">Fehlerbehebung</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="installation-docker-compose.html">
+                    <span class="icon">&lt;</span><span>Installation mit Docker Compose</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="installation-aspire.html"><span>Installation mit Aspire</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026, Jürgen Gstaltmaier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

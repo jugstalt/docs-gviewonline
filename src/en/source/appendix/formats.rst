@@ -1,0 +1,88 @@
+Data formats for maps and services
+==================================
+
+Vektordata
+----------
+
+The following vector data can be used with *gView GIS*:
+
++--------------------------+----------+-------------+-------------------------------+ 
+| Format                   | read     | write       | note                          |
++==========================+==========+=============+===============================+
+| Esri Shape               |    x     |             |                               |
++--------------------------+----------+-------------+-------------------------------+ 
+| ArcSDE (SQL Server)      |    x     |      x      |  Geometry must be GEOMETRY    |
+|                          |          |             |  or GEOGRAPHY                 |
+|                          |          |             |                               |
++--------------------------+----------+-------------+-------------------------------+ 
+| Post GIS                 |    x     |      x      |                               |
++--------------------------+----------+-------------+-------------------------------+ 
+| MS SQL Server            |    x     |      x      |  Geometry must be GEOMETRY    |
+|                          |          |             |  or GEOGRAPHY                 |
+|                          |          |             |                               |
++--------------------------+----------+-------------+-------------------------------+ 
+| MS SQL                   |    x     |      x      |  proprietary gView format     |
+| Feature Database         |          |             |                               |
++--------------------------+----------+-------------+-------------------------------+ 
+| PostgeSQL                |    x     |      x      |  proprietary gView format     |
+| Feature Database         |          |             |                               |
++--------------------------+----------+-------------+-------------------------------+ 
+| SQLite                   |    x     |      x      |  proprietary gView format     |
+| Feature Database         |          |             |                               |
++--------------------------+----------+-------------+-------------------------------+
+
+.. _formats-raster:
+
+Rasterdata
+----------
+
+The following raster data can be used with *gview GIS*.
+
++------------------------------------+-----------------------------------------------+
+| Format                             | Source (Library)                              |
++====================================+===============================================+
+| JPEG, PNG                          | GDI+ (.NET)                                   |
++------------------------------------+-----------------------------------------------+
+| JPEG 2000, MrSid                   | LizardTec Lib.                                |
++------------------------------------+-----------------------------------------------+
+| GeoTIFF/COG (also over HTTP),      | RasterNet (.NET, used before GDAL)            |
+| JPEG 2000 (incl. HTJ2K),           |                                               |
+| ESRI Grid (adf), JPEG, PNG, GIF,   |                                               |
+| BMP, WebP, ESRI BIL/BIP/BSQ/FLT,   |                                               |
+| ASCII Grid, XYZ, SRTM HGT          |                                               |
++------------------------------------+-----------------------------------------------+
+| JPEG 2000, TIF, GeoTIFF,           | GDAL                                          |
+| ESRI Grid (adf),                   |                                               |
++------------------------------------+-----------------------------------------------+
+| ECW,                               | GDAL: Windows only                            |
+| DEM, XPM                           |                                               |
++------------------------------------+-----------------------------------------------+
+
+gView Server Map Services
+-------------------------
+
+Services published to the map server can be requested in the following formats.
+
++--------------------------+----------+-------------+-------------------------------+ 
+| Format                   | read     | write       | note                          |
++==========================+==========+=============+===============================+
+| WMS                      | X        |             | 1.1.1, 1.3.0                  |
++--------------------------+----------+-------------+-------------------------------+ 
+| WFS                      | X        |             | 1.0.0                         |
++--------------------------+----------+-------------+-------------------------------+ 
+| WMTS                     | X        |             | 1.0.0                         |
++--------------------------+----------+-------------+-------------------------------+
+| ArcXML                   | X        |             | 1.0.0                         |
++--------------------------+----------+-------------+-------------------------------+ 
+| GeoServices REST         | X        | X           |                               |
++--------------------------+----------+-------------+-------------------------------+ 
+
+GeoServices REST is an (`Open Web Foundation`_) standard developed by
+`ESRI`_. This format is also used by the ArcGIS server.
+In addition to *MapServices*, the interface also offers *FeatureServices*, with which geo-objects can created and edited.
+
+
+
+.. _`Open Web Foundation`: https://www.openwebfoundation.org/faqs/some-users-of-owf-agreements
+.. _`ESRI`: https://www.esri.com/en-us/arcgis/open-vision/overview
+ 

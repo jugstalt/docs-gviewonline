@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html lang="de" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Konfiguration gView.Server &#8212; gView GIS 8.x Dokumentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=9b2032db" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=247da48f" />
+    <script src="../_static/documentation_options.js?v=223d518e"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/translations.js?v=9bf55d28"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/petite-vue.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Sicherheit gView.Server" href="security-server.html" />
+    <link rel="prev" title="Konfiguration gView.WebApps" href="config-webapps.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../index.html" title="Go to homepage">gView GIS 8.x Dokumentation</a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Schnellsuche</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Los" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Inhaltsverzeichnis:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Erste Schritte</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="deploy.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">gView Anwendungen Ausführen</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="config.html">Konfiguration</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="config-webapps.html">Konfiguration gView.WebApps</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Konfiguration gView.Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="security-server.html">Sicherheit gView.Server</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../webapps/index.html">gView WebApps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server/index.html">gView Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commandline/index.html">gView Kommandozeilenwerkzeuge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commandline/index.html#kommandozeilenwerkzeuge-interaktiver-modus">Kommandozeilenwerkzeuge (Interaktiver Modus)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Anleitungen (Tutorials)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/index.html">Anhang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spec/geojson_service/index.html">GeoJson Service Spezifikation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spec/network_service/index.html">Network Service Spezifikation</a></li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="konfiguration-gview-server">
+<span id="config-server"></span><h1>Konfiguration gView.Server<a class="headerlink" href="#konfiguration-gview-server" title="Link to this heading">¶</a></h1>
+<p>Der <strong>gView.Server</strong> kann über die Datei <code class="docutils literal notranslate"><span class="pre">_config/mapserver.json</span></code> konfiguriert werden:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">     </span><span class="c1">// Folder, where gView Server stores Services, Logins, etc</span>
+<span class="w">     </span><span class="s2">"services-folder"</span><span class="o">:</span><span class="w"> </span><span class="s2">"{repository-path}/server/configuration"</span><span class="p">,</span>
+
+<span class="w">     </span><span class="c1">// Ordner, in dem die gebauten Netzwerke (SpatialNET) der Dienste liegen (optional).</span>
+<span class="w">     </span><span class="c1">// Standard: {services-folder}/networks, Details siehe Network Service Spezifikation</span>
+<span class="w">     </span><span class="s2">"networks-folder"</span><span class="o">:</span><span class="w"> </span><span class="s2">"{repository-path}/server/networks"</span><span class="p">,</span>
+
+<span class="w">     </span><span class="c1">// Path, where gView Server stores Map Request Images</span>
+<span class="w">     </span><span class="s2">"output-path"</span><span class="o">:</span><span class="w"> </span><span class="s2">"{repository-path}/server/web/output"</span><span class="p">,</span>
+<span class="w">     </span><span class="c1">// Url to the Path, where gView Server stores Map Request Images</span>
+<span class="w">     </span><span class="s2">"output-url"</span><span class="o">:</span><span class="w"> </span><span class="s2">"{server-url}/output"</span><span class="p">,</span>
+
+<span class="w">     </span><span class="c1">// Path, where gView Server stores Tiles</span>
+<span class="w">     </span><span class="s2">"tilecache-root"</span><span class="o">:</span><span class="w"> </span><span class="s2">"{repository-path}/server/web/tile-caches"</span><span class="p">,</span>
+
+<span class="w">     </span><span class="c1">// Dienstnamen (Wildcards "*"/"?" erlaubt), die direkt nach dem Serverstart in den</span>
+<span class="w">     </span><span class="c1">// Speicher geladen werden sollen, statt erst beim ersten eingehenden Request.</span>
+<span class="w">     </span><span class="c1">// Das Laden erfolgt im Hintergrund und verzögert den Serverstart nicht.</span>
+<span class="w">     </span><span class="c1">// Beispiele: "*" (alle Dienste), "myfolder/*" (alle Dienste in einem Ordner), "myfolder/myservice"</span>
+<span class="w">     </span><span class="s2">"preload-services"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"myfolder/*"</span><span class="w"> </span><span class="p">],</span>
+
+<span class="w">     </span><span class="c1">// The Task Queue</span>
+<span class="w">     </span><span class="s2">"task-queue"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="c1">// Indicates how many requests can be processed at the same time</span>
+<span class="w">         </span><span class="s2">"max-parallel-tasks"</span><span class="o">:</span><span class="w"> </span><span class="mf">50</span><span class="p">,</span>
+<span class="w">         </span><span class="c1">// The maximum length of the queue</span>
+<span class="w">         </span><span class="s2">"max-queue-length"</span><span class="o">:</span><span class="w"> </span><span class="mf">1000</span>
+<span class="w">     </span><span class="p">},</span>
+
+<span class="w">     </span><span class="c1">// default value for mapserver and services</span>
+<span class="w">     </span><span class="s2">"mapserver-defaults"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="c1">// maximum width in pixel of an map image</span>
+<span class="w">         </span><span class="s2">"maxImageWidth"</span><span class="o">:</span><span class="w"> </span><span class="mf">4096</span><span class="p">,</span>
+<span class="w">         </span><span class="c1">// maximum height in pixel of an map image</span>
+<span class="w">         </span><span class="s2">"maxImageHeight"</span><span class="o">:</span><span class="w"> </span><span class="mf">4096</span><span class="p">,</span>
+<span class="w">         </span><span class="c1">// maximum records that will be returned from a query</span>
+<span class="w">         </span><span class="s2">"maxRecordCount"</span><span class="o">:</span><span class="w"> </span><span class="mf">1000</span>
+<span class="w">     </span><span class="p">},</span>
+
+<span class="w">     </span><span class="c1">// Whether clients are allowed to log in through the web interface</span>
+<span class="w">     </span><span class="s2">"allowFormsLogin"</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">     </span><span class="c1">// It can be assumed that all calls are made over HTTPS</span>
+<span class="w">     </span><span class="c1">// (auch security:force-https)</span>
+<span class="w">     </span><span class="s2">"force-https"</span><span class="o">:</span><span class="w">  </span><span class="kc">false</span><span class="p">,</span>
+
+<span class="w">     </span><span class="c1">// Reverse Proxies, Admin-Netze, Login-Sperre, CORS, Grenzen</span>
+<span class="w">     </span><span class="c1">// (siehe Sicherheit gView.Server)</span>
+<span class="w">     </span><span class="s2">"security"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">     </span><span class="c1">// the level that causes an error on load and deploy services</span>
+<span class="w">     </span><span class="s2">"CriticalErrorLevel"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="s2">"ErrorType"</span><span class="o">:</span><span class="w"> </span><span class="s2">"error"</span><span class="w">  </span><span class="c1">// any, warning, error, critical, never</span>
+<span class="w">     </span><span class="p">},</span>
+
+<span class="w">     </span><span class="c1">// optional: graphic engines. gdiplus only works on windows systems</span>
+<span class="w">     </span><span class="s2">"graphics"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="s2">"rendering"</span><span class="o">:</span><span class="w"> </span><span class="s2">"skia"</span><span class="p">,</span><span class="w">  </span><span class="c1">// engine for rendering: skia|gdiplus</span>
+<span class="w">         </span><span class="s2">"encoding"</span><span class="o">:</span><span class="w"> </span><span class="s2">"skia"</span><span class="w">  </span><span class="c1">// engine for encoding images (jpg|png): skia|gdiplus</span>
+<span class="w">     </span><span class="p">},</span>
+
+<span class="w">     </span><span class="c1">// Schriftdateien (*.ttf, *.otf, *.ttc) in diesen Verzeichnissen werden beim</span>
+<span class="w">     </span><span class="c1">// Serverstart für das Rendering verfügbar gemacht - die Schriften müssen</span>
+<span class="w">     </span><span class="c1">// NICHT im Betriebssystem installiert sein. Funktioniert unter Windows und</span>
+<span class="w">     </span><span class="c1">// Linux gleich. Neue Schriftdateien erfordern einen Server-Neustart.</span>
+<span class="w">     </span><span class="s2">"fonts"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="s2">"directories"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"C:\\gView5\\Server\\Fonts"</span><span class="w"> </span><span class="p">],</span>
+<span class="w">         </span><span class="c1">// optional, Standard false: Schriften zusätzlich in den benutzerbezogenen</span>
+<span class="w">         </span><span class="c1">// Schriftspeicher des Betriebssystems kopieren (best effort)</span>
+<span class="w">         </span><span class="s2">"install-to-system"</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">     </span><span class="p">},</span>
+
+<span class="w">     </span><span class="c1">// RasterNet raster data source (GeoTIFF/COG, JPEG2000, Arc/Info grids, images, ...)</span>
+<span class="w">     </span><span class="s2">"rasternet"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="s2">"blockcache-mb"</span><span class="o">:</span><span class="w"> </span><span class="mf">256</span><span class="p">,</span><span class="w">               </span><span class="c1">// cache of decoded blocks; 0 disables it</span>
+<span class="w">         </span><span class="s2">"blockcache-maxidle-minutes"</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w">   </span><span class="c1">// release blocks not used for this long; 0 keeps them until the budget is needed</span>
+<span class="w">         </span><span class="s2">"max-threads"</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w">                   </span><span class="c1">// decoding threads per request; 0 = half of the cores, at most 8</span>
+<span class="w">         </span><span class="s2">"http-timeout-seconds"</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span><span class="w">         </span><span class="c1">// rasters given as http(s) URL (GeoTIFF/COG only): timeout of one range request</span>
+<span class="w">         </span><span class="s2">"http-retries"</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w">                  </span><span class="c1">// retries after network errors, timeouts and HTTP 408/429/5xx</span>
+<span class="w">         </span><span class="s2">"http-headers"</span><span class="o">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">                 </span><span class="c1">// headers for every request, e.g. "X-Api-Key=...;X-Other=..."</span>
+<span class="w">         </span><span class="s2">"http-probe-sidecars"</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="w">        </span><span class="c1">// look for .ovr and .aux.xml next to the URL</span>
+<span class="w">     </span><span class="p">},</span>
+
+<span class="w">     </span><span class="c1">// optional: projection engine</span>
+<span class="w">     </span><span class="s2">"proj-engine"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="s2">"engine"</span><span class="o">:</span><span class="w"> </span><span class="s2">"ManageProj4Parallel"</span><span class="w"> </span><span class="c1">// ManagedProj4, NativeProj4</span>
+<span class="w">     </span><span class="p">},</span>
+
+<span class="w">     </span><span class="c1">// Optional Settings</span>
+<span class="w">     </span><span class="s2">"Facilities"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="s2">"MessageQueue"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">             </span><span class="s2">"Type"</span><span class="o">:</span><span class="w"> </span><span class="s2">"messagequeue-net"</span><span class="p">,</span>
+<span class="w">             </span><span class="s2">"ConnectionString"</span><span class="o">:</span><span class="w"> </span><span class="s2">"http://localhost:9091"</span><span class="p">,</span>
+<span class="w">             </span><span class="s2">"Namespace"</span><span class="o">:</span><span class="w"> </span><span class="s2">"development"</span>
+<span class="w">         </span><span class="p">}</span>
+<span class="w">     </span><span class="p">}</span>
+<span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Der Abschnitt <code class="docutils literal notranslate"><span class="pre">security</span></code> (Reverse Proxies, HTTPS, Admin-Netze, Login-Sperre, Sitzungen, CORS
+und Grenzen) ist unter <a class="reference internal" href="security-server.html#security-server"><span class="std std-ref">Sicherheit gView.Server</span></a> beschrieben.</p>
+<p>Im ersten Abschnitt werden Pfade und URLs definiert. Diese werden im ersten Schritt über das <code class="docutils literal notranslate"><span class="pre">gview.deploy</span></code>
+Tool angelegt und können hier noch einfach angepasst werden.</p>
+<p>Unter <code class="docutils literal notranslate"><span class="pre">task-queue</span></code> kann angegeben werden, wie viele Requests gleichzeitig abgearbeitet werden können.
+Wenn ausreichend RAM zur Verfügung steht, kann dieser Wert beliebig erhöht werden. Man muss jedoch bedenken,
+dass der Server Kartenbilder (Bitmaps) erzeugt, die einiges an RAM benötigen können. Ist man mit der
+RAM-Auslastung immer wieder am Limit (aufgrund vieler Anfragen), kann der Wert auch niedriger angesetzt werden.
+Sind alle Tasks belegt, kommt ein Request in die Warteschleife. Die Länge der Warteschleife kann hier ebenfalls
+angepasst werden.</p>
+<p>Unter <code class="docutils literal notranslate"><span class="pre">preload-services</span></code> können Dienstnamen (auch mit den Wildcards <code class="docutils literal notranslate"><span class="pre">*</span></code> und <code class="docutils literal notranslate"><span class="pre">?</span></code>) angegeben werden,
+die direkt nach dem Serverstart in den Speicher geladen werden sollen, statt erst beim ersten
+eingehenden Request. Das Laden erfolgt im Hintergrund und verzögert den Serverstart nicht. Damit stehen
+diese Dienste bereits beim ersten Client-Request geladen zur Verfügung, was die erste Antwortzeit
+verbessert. Mögliche Werte sind z. B. <code class="docutils literal notranslate"><span class="pre">*</span></code> (alle Dienste), <code class="docutils literal notranslate"><span class="pre">myfolder/*</span></code> (alle Dienste in einem Ordner)
+oder <code class="docutils literal notranslate"><span class="pre">myfolder/myservice</span></code> (ein einzelner Dienst).</p>
+<p>Mit <code class="docutils literal notranslate"><span class="pre">networks-folder</span></code> (optional) wird der Ordner festgelegt, in dem die gebauten Netzwerke (SpatialNET) der Dienste
+liegen. Standard ist <code class="docutils literal notranslate"><span class="pre">{services-folder}/networks</span></code>; die Netzwerke liegen dort in <code class="docutils literal notranslate"><span class="pre">{ordner}/{dienst}.network</span></code>.
+Die Suchen auf diesen Netzwerken (<em>NetworkServer</em>) werden zusätzlich im Abschnitt <code class="docutils literal notranslate"><span class="pre">Network</span></code> der <code class="docutils literal notranslate"><span class="pre">appsettings.json</span></code>
+begrenzt (<code class="docutils literal notranslate"><span class="pre">MaxResultNodes</span></code>, <code class="docutils literal notranslate"><span class="pre">TimeoutSeconds</span></code>, <code class="docutils literal notranslate"><span class="pre">MaxParallel</span></code>, <code class="docutils literal notranslate"><span class="pre">MaxLoadedShards</span></code>, <code class="docutils literal notranslate"><span class="pre">IdleMinutes</span></code>).
+Die genaue Beschreibung der Parameter steht in <a class="reference internal" href="../spec/network_service/administration.html#network-service-administration"><span class="std std-ref">Zugriff, Aufbau und Konfiguration</span></a>.</p>
+<p>Im Abschnitt <code class="docutils literal notranslate"><span class="pre">mapserver-defaults</span></code> können <em>Default-Werte</em> für Kartendienste angegeben werden.
+Werden für einen Dienst diese Werte nicht explizit gesetzt, wird der hier eingestellte
+<em>Default-Wert</em> verwendet. Dabei geht es um die maximale Größe eines Kartenbildes in Pixel,
+das von einem Client abgeholt werden kann. Ebenfalls kann hier angegeben werden, wie viele
+Geo-Objekte bei einer Abfrage maximal abgeholt werden dürfen. Wird der Abschnitt oder einzelne
+Werte nicht angeführt, gelten die oben angeführten Werte.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Die hier angegebenen Werte sind <em>Default-Werte</em> und können für jedes Service über die
+<em>Map Service Einstellung</em> in <em>gView.Carto</em> überschrieben werden. Es können dort für
+einzelne Dienste auch Werte angeführt werden, die höher sind als die <em>Default-Werte</em>.
+Die Werte in dieser Konfiguration sind keine <em>globalen Maximalwerte</em>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Ein Client kann ein Kartenbild anfordern, das größer ist als die Maximalwerte. Der Kartenserver
+liefert dann keinen Fehler, sondern ein verkleinertes Bild, das den Maximalwerten
+entspricht. Das Seitenverhältnis und der geografische Ausschnitt bleiben erhalten. Allerdings
+wird dann automatisch die Auflösung des Bildes (DPI-Wert) angepasst, damit der Maßstab
+dem ursprünglich bestellten Kartenbild entspricht.</p>
+<p>Ein Client kann überprüfen, ob das Bild skaliert wurde, indem die Größe des Ergebnisbildes
+geprüft wird. Die Werte stehen beim <em>GeoServices Response</em> auch im Ergebnis-JSON.</p>
+</div>
+<p>Im Abschnitt <code class="docutils literal notranslate"><span class="pre">graphics</span></code> kann die <em>Graphic Engine</em> angegeben werden. Diese kann entweder <code class="docutils literal notranslate"><span class="pre">skia</span></code> oder
+<code class="docutils literal notranslate"><span class="pre">gdiplus</span></code> (auf Windows-Plattformen) sein. <code class="docutils literal notranslate"><span class="pre">gdiplus</span></code> ist allerdings ein Auslaufmodell und
+funktioniert nur, wenn die Anwendung auf einem Windows-System ausgeführt wird.</p>
+<p>Im optionalen Abschnitt <code class="docutils literal notranslate"><span class="pre">fonts</span></code> können unter <code class="docutils literal notranslate"><span class="pre">directories</span></code> Verzeichnisse angegeben werden, in
+denen Schriftdateien (<code class="docutils literal notranslate"><span class="pre">*.ttf</span></code>, <code class="docutils literal notranslate"><span class="pre">*.otf</span></code>, <code class="docutils literal notranslate"><span class="pre">*.ttc</span></code>) liegen. Diese Schriften werden beim
+Serverstart für das Rendering verfügbar gemacht, ohne dass sie im Betriebssystem installiert sein
+müssen. Das funktioniert unter Windows und Linux gleich. Neue Schriftdateien in diesen
+Verzeichnissen erfordern einen Server-Neustart, damit sie berücksichtigt werden. Mit
+<code class="docutils literal notranslate"><span class="pre">install-to-system</span></code> (optional, Standard <code class="docutils literal notranslate"><span class="pre">false</span></code>) können die Schriften zusätzlich in den
+benutzerbezogenen Schriftspeicher des Betriebssystems kopiert werden (<em>best effort</em>).</p>
+<p id="config-rasternet">Der optionale Abschnitt <code class="docutils literal notranslate"><span class="pre">rasternet</span></code> konfiguriert die Raster-Datenquelle <em>RasterNet</em>. <em>RasterNet</em> ist ein
+vollständig in .NET geschriebener Raster-Reader, der für die unterstützten Formate (siehe <a class="reference internal" href="../appendix/formats.html#formats-raster"><span class="std std-ref">Rasterdaten</span></a>)
+vor GDAL zum Zug kommt; Formate, die <em>RasterNet</em> nicht lesen kann, werden weiterhin über GDAL gelesen.
+Fehlt der Abschnitt, gelten die angegebenen Standardwerte:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">blockcache-mb</span></code>: Größe des gemeinsamen Caches für dekodierte Blöcke in MB (Standard <code class="docutils literal notranslate"><span class="pre">256</span></code>, <code class="docutils literal notranslate"><span class="pre">0</span></code> schaltet ihn ab).
+Benachbarte und überlappende Kartenanfragen verwenden bereits dekodierte Blöcke wieder; bei JPEG2000-Orthofotos
+verdoppelt sich dadurch etwa der Durchsatz.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">blockcache-maxidle-minutes</span></code>: Blöcke, die so lange nicht verwendet wurden, werden freigegeben (Standard <code class="docutils literal notranslate"><span class="pre">10</span></code>;
+<code class="docutils literal notranslate"><span class="pre">0</span></code> behält sie, bis der Platz gebraucht wird).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max-threads</span></code>: Threads, mit denen eine einzelne Anfrage dekodiert (Standard und <code class="docutils literal notranslate"><span class="pre">0</span></code>: die Hälfte der Kerne,
+höchstens 8).</p></li>
+</ul>
+<p>Raster können auch als <code class="docutils literal notranslate"><span class="pre">http://</span></code>- oder <code class="docutils literal notranslate"><span class="pre">https://</span></code>-URL angegeben werden (nur GeoTIFF/COG, siehe
+<a class="reference internal" href="../webapps/dataexplorer/connections.html#dataexplorer-cog"><span class="std std-ref">Cloud Optimized GeoTIFF (COG) über HTTP</span></a>). Gelesen wird mit Range-Requests, ohne die Datei herunterzuladen. Dafür gelten:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">http-timeout-seconds</span></code>: Timeout eines einzelnen Requests in Sekunden (Standard <code class="docutils literal notranslate"><span class="pre">30</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">http-retries</span></code>: Wiederholungen nach Netzwerkfehlern, Timeouts und HTTP 408, 429 und 5xx (Standard <code class="docutils literal notranslate"><span class="pre">3</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">http-headers</span></code>: Header für jeden Request, als <code class="docutils literal notranslate"><span class="pre">Name=Wert;Name2=Wert2</span></code> (z. B. ein API-Key).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">http-probe-sidecars</span></code>: <code class="docutils literal notranslate"><span class="pre">true</span></code>, um neben der URL nach <code class="docutils literal notranslate"><span class="pre">.ovr</span></code> (externe Overviews) und <code class="docutils literal notranslate"><span class="pre">.aux.xml</span></code>
+(Georeferenzierung) zu suchen (Standard <code class="docutils literal notranslate"><span class="pre">false</span></code>; ein COG enthält beides selbst).</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Der Server muss Range-Requests unterstützen (Antwort <code class="docutils literal notranslate"><span class="pre">206</span> <span class="pre">Partial</span> <span class="pre">Content</span></code>), wie es Webserver und Object
+Stores (S3, Azure Blob Storage) tun. Geschützte Dateien werden über vorsignierte bzw. SAS-URLs oder über
+<code class="docutils literal notranslate"><span class="pre">http-headers</span></code> eingebunden. Wird eine Datei auf dem Server ersetzt, während der Dienst läuft, schlägt das
+Lesen fehl, statt zwei Versionen zu mischen; der Dienst muss dann neu geladen werden.</p>
+</div>
+<p>Der Abschnitt <code class="docutils literal notranslate"><span class="pre">CriticalErrorLevel</span></code> ist optionsal. Hier kann angegeben werden, ab welchem
+Fehlerlevel ein Dienst nicht geladen oder bereitgestellt werden kann. Mögliche Werte sind:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">any</span></code>: Jeder Fehler, egal ob Warnung oder kritischer Fehler, verhindert das Laden und Bereitstellen eines Dienstes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">warning</span></code>: Ab Warnungen wird ein Dienst nicht geladen oder bereitgestellt.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">error</span></code>: Ab Fehlern wird ein Dienst nicht geladen oder bereitgestellt.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">critical</span></code>: Nur bei kritischen Fehlern wird ein Dienst nicht geladen oder bereitgestellt.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">never</span></code>: Ein Dienst wird immer geladen und bereitgestellt, egal welche Fehler auftreten.</p></li>
+</ul>
+<p>Der Abschnitt <code class="docutils literal notranslate"><span class="pre">proj-engine</span></code> ist optional. Hier kann angegeben werden, ob die <em>Proj4 Engine</em></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ManageProj4Parallel</span></code>: Verwendet die Proj4-Portierung in C#, wobei bei Objekten mit vielen
+Vertices (&gt;100) die Transformation parallelisiert wird (höhere Performance).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ManagedProj4</span></code>: Verwendet die Proj4-Portierung in C#.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NativeProj4</span></code>: Verwendet die native C++ Proj4-Bibliothek.</p></li>
+</ul>
+<p>Empfohlen wird eine der Managed-Versionen, da diese plattformunabhängig sind und
+mittlerweile keine Performance-Einbußen mehr haben. Auf die native Version
+kann zurückgegriffen werden, wenn die Managed-Version nicht die richtigen Ergebnisse liefert.</p>
+<p>Unter <code class="docutils literal notranslate"><span class="pre">Facilities</span></code> können weitere optionale Einstellungen vorgenommen werden.</p>
+<p>Eine Option ist beispielsweise <code class="docutils literal notranslate"><span class="pre">MessageQueue</span></code>. Dort kann bisher nur eine MessageQueue vom
+Typ <code class="docutils literal notranslate"><span class="pre">messagequeue-net</span></code> angegeben werden (<a class="reference external" href="https://github.com/jugstalt/messagequeuenet">https://github.com/jugstalt/messagequeuenet</a>).
+Eine MessageQueue ist sinnvoll, wenn der <em>gView.Server</em> in mehreren Instanzen gleichzeitig ausgeführt wird,
+beispielsweise wenn <em>gView.Server</em> in Kubernetes mit mehreren <em>Replicas</em> läuft.
+Über die MessageQueue können die einzelnen Komponenten miteinander kommunizieren, wenn beispielsweise
+ein Kartendienst geändert oder gelöscht wird. So bleiben alle Instanzen auf dem aktuellen Stand.
+Mit <code class="docutils literal notranslate"><span class="pre">Namespace</span></code> kann hier ein Namensraum angegeben werden, der definiert, welche Instanzen zusammengehören.
+Da beispielsweise sowohl Instanzen aus <code class="docutils literal notranslate"><span class="pre">Staging</span></code> als auch <code class="docutils literal notranslate"><span class="pre">Production</span></code> auf dieselbe
+MessageQueue-API zugreifen können, kann über den Namensraum unterschieden werden, welche Instanzen wirklich
+zusammengehören.</p>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="config-webapps.html">
+                    <span class="icon">&lt;</span><span>Konfiguration gView.WebApps</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="security-server.html"><span>Sicherheit gView.Server</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, Jürgen Gstaltmaier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

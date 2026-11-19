@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Security gView.Server &#8212; gView GIS 8.x documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=9b2032db" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=247da48f" />
+    <script src="../_static/documentation_options.js?v=5f428a84"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/petite-vue.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="gView WebApps" href="../webapps/index.html" />
+    <link rel="prev" title="Configuration gView.Server" href="config-server.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../index.html" title="Go to homepage">gView GIS 8.x documentation</a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Table of contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="deploy.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">Running gView Applications</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="config.html">Configuration</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="config-webapps.html">Configuration of gView.WebApps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config-server.html">Configuration gView.Server</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Security gView.Server</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../webapps/index.html">gView WebApps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server/index.html">gView Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commandline/index.html">gView Command Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commandline/index.html#command-line-tools-interactive-mode">Command Line Tools (Interactive Mode)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/index.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spec/geojson_service/index.html">GeoJson Service Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spec/network_service/index.html">Network Service Specification</a></li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="security-gview-server">
+<span id="security-server"></span><h1>Security gView.Server<a class="headerlink" href="#security-gview-server" title="Link to this heading">¶</a></h1>
+<p>The <em>gView Server</em> is usually reachable from the internet. This page describes the security
+settings in <code class="docutils literal notranslate"><span class="pre">_config/mapserver.json</span></code> and how the server runs safely behind a reverse proxy.</p>
+<section id="recommended-setup">
+<h2>Recommended setup<a class="headerlink" href="#recommended-setup" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Run the <em>gView Server</em> behind a reverse proxy (IIS, nginx, Traefik, a Kubernetes ingress,
+Azure Application Gateway, …) that terminates TLS and sends <code class="docutils literal notranslate"><span class="pre">X-Forwarded-For</span></code> and
+<code class="docutils literal notranslate"><span class="pre">X-Forwarded-Proto</span></code>.</p></li>
+<li><p>Enter the addresses of your proxies in <code class="docutils literal notranslate"><span class="pre">security:known-proxies</span></code> (or <code class="docutils literal notranslate"><span class="pre">known-networks</span></code>).</p></li>
+<li><p>Keep the admin pages in your internal network (<code class="docutils literal notranslate"><span class="pre">security:manage:allowed-networks</span></code>, the
+default) or use an OIDC admin login.</p></li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">force-https</span></code> when the server is only reachable via https.</p></li>
+<li><p>Create the first admin with <code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_USER</span></code>/<code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_PASSWORD</span></code> or the setup code
+from the log before the server is reachable from outside (see <a class="reference internal" href="../server/inst/postinstallation.html#server-postinstallation"><span class="std std-ref">Post-installation</span></a>).</p></li>
+</ul>
+</section>
+<section id="the-security-section">
+<h2>The security section<a class="headerlink" href="#the-security-section" title="Link to this heading">¶</a></h2>
+<p>All settings are optional; the values shown are the defaults.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">     </span><span class="s2">"security"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="c1">// the server is only reachable via https: https urls in capabilities and HSTS</span>
+<span class="w">         </span><span class="c1">// (the top level "force-https" is still read, "security:force-https" wins)</span>
+<span class="w">         </span><span class="s2">"force-https"</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">         </span><span class="c1">// redirect http requests to https; only if the proxy sends X-Forwarded-Proto,</span>
+<span class="w">         </span><span class="c1">// otherwise every request looks like http and the redirect loops</span>
+<span class="w">         </span><span class="s2">"https-redirect"</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">         </span><span class="s2">"hsts-max-age-days"</span><span class="o">:</span><span class="w"> </span><span class="mf">365</span><span class="p">,</span>
+
+<span class="w">         </span><span class="c1">// reverse proxies whose X-Forwarded-For/-Proto headers are accepted.</span>
+<span class="w">         </span><span class="c1">// Without an entry: loopback and the private networks</span>
+<span class="w">         </span><span class="c1">// (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, fc00::/7)</span>
+<span class="w">         </span><span class="s2">"known-proxies"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"10.0.0.5"</span><span class="w"> </span><span class="p">],</span>
+<span class="w">         </span><span class="s2">"known-networks"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"10.0.0.0/24"</span><span class="w"> </span><span class="p">],</span>
+
+<span class="w">         </span><span class="s2">"manage"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">             </span><span class="c1">// networks the admin pages answer to; "*" = everywhere.</span>
+<span class="w">             </span><span class="c1">// Default: loopback and the private networks</span>
+<span class="w">             </span><span class="s2">"allowed-networks"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"10.1.5.0/24"</span><span class="w"> </span><span class="p">],</span>
+<span class="w">             </span><span class="c1">// admin login, renewed while the admin is active</span>
+<span class="w">             </span><span class="s2">"session-hours"</span><span class="o">:</span><span class="w"> </span><span class="mf">8</span>
+<span class="w">         </span><span class="p">},</span>
+
+<span class="w">         </span><span class="s2">"login"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">             </span><span class="s2">"max-failures"</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w">          </span><span class="c1">// per user ...</span>
+<span class="w">             </span><span class="s2">"max-failures-per-ip"</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span><span class="w">   </span><span class="c1">// ... and per client ip ...</span>
+<span class="w">             </span><span class="s2">"window-minutes"</span><span class="o">:</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span><span class="w">         </span><span class="c1">// ... within this time ...</span>
+<span class="w">             </span><span class="s2">"lockout-minutes"</span><span class="o">:</span><span class="w"> </span><span class="mf">15</span><span class="w">        </span><span class="c1">// ... lock logins for this time</span>
+<span class="w">         </span><span class="p">},</span>
+
+<span class="w">         </span><span class="s2">"cors"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">             </span><span class="c1">// origins allowed to call the services from a browser</span>
+<span class="w">             </span><span class="s2">"allowed-origins"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"*"</span><span class="w"> </span><span class="p">]</span>
+<span class="w">         </span><span class="p">},</span>
+
+<span class="w">         </span><span class="c1">// maximum size of a request body; 0 = no limit</span>
+<span class="w">         </span><span class="s2">"max-request-body-mb"</span><span class="o">:</span><span class="w"> </span><span class="mf">50</span><span class="p">,</span>
+
+<span class="w">         </span><span class="c1">// rate limit for the services per client ip (admin pages are not limited);</span>
+<span class="w">         </span><span class="c1">// usually better done by the reverse proxy</span>
+<span class="w">         </span><span class="s2">"rate-limit"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">             </span><span class="s2">"enabled"</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">             </span><span class="s2">"requests-per-minute"</span><span class="o">:</span><span class="w"> </span><span class="mf">600</span>
+<span class="w">         </span><span class="p">}</span>
+<span class="w">     </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="reverse-proxy-and-https">
+<h2>Reverse proxy and HTTPS<a class="headerlink" href="#reverse-proxy-and-https" title="Link to this heading">¶</a></h2>
+<p>The server takes the client ip and the scheme (http/https) from <code class="docutils literal notranslate"><span class="pre">X-Forwarded-For</span></code> and
+<code class="docutils literal notranslate"><span class="pre">X-Forwarded-Proto</span></code>, but only if the request comes from a trusted proxy. The client ip is
+used for the admin networks, the login lockout, the rate limit and the logs; the scheme for the
+urls in the capabilities.</p>
+<ul class="simple">
+<li><p>Without <code class="docutils literal notranslate"><span class="pre">known-proxies</span></code>/<code class="docutils literal notranslate"><span class="pre">known-networks</span></code> every host in the private networks is trusted.
+This fits Docker, Kubernetes and most installations behind a proxy in the same network. It
+also means that every host in your LAN could send a fake <code class="docutils literal notranslate"><span class="pre">X-Forwarded-For</span></code>. If you restrict
+the admin networks, enter your proxies: otherwise the server writes a warning to the log at
+startup.</p></li>
+<li><p>A proxy on a public address must be entered, otherwise its headers are ignored.</p></li>
+<li><p>Several proxies in a row are supported; the headers are processed up to the first address
+that is not trusted.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">force-https</span></code> makes the server generate https urls and send HSTS, even if the proxy does not
+send <code class="docutils literal notranslate"><span class="pre">X-Forwarded-Proto</span></code>. <code class="docutils literal notranslate"><span class="pre">https-redirect</span></code> additionally redirects http requests; enable it
+only if the proxy sends <code class="docutils literal notranslate"><span class="pre">X-Forwarded-Proto</span></code>.</p>
+</section>
+<section id="the-first-admin">
+<h2>The first admin<a class="headerlink" href="#the-first-admin" title="Link to this heading">¶</a></h2>
+<p>A first login no longer creates the admin. Instead:</p>
+<ul class="simple">
+<li><p><strong>Environment:</strong> if <code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_USER</span></code> and <code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_PASSWORD</span></code> are set (environment
+variables or configuration values) and no admin exists, the admin is created at startup.
+Useful for Docker. The password must be strong enough, otherwise the server falls back to the
+setup code.</p></li>
+<li><p><strong>Setup code:</strong> otherwise the server writes a one-time code to the log
+(<code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">admin</span> <span class="pre">login</span> <span class="pre">exists.</span> <span class="pre">Open</span> <span class="pre">/manage/login</span> <span class="pre">and</span> <span class="pre">use</span> <span class="pre">this</span> <span class="pre">setup</span> <span class="pre">code</span> <span class="pre">...</span></code>). The login page
+then asks for the code, a username and the password (twice). The code is valid until the
+server restarts; wrong codes are locked out like failed logins.</p></li>
+</ul>
+</section>
+<section id="admin-networks">
+<h2>Admin networks<a class="headerlink" href="#admin-networks" title="Link to this heading">¶</a></h2>
+<p>The admin pages (<code class="docutils literal notranslate"><span class="pre">/manage</span></code>, setup, publishing and deleting services and folders in
+<code class="docutils literal notranslate"><span class="pre">/browseservices</span></code>, the legacy urls <code class="docutils literal notranslate"><span class="pre">AddMap</span></code>/<code class="docutils literal notranslate"><span class="pre">RemoveMap</span></code>/<code class="docutils literal notranslate"><span class="pre">GetMetadata</span></code>/<code class="docutils literal notranslate"><span class="pre">SetMetadata</span></code>)
+only answer to clients in <code class="docutils literal notranslate"><span class="pre">security:manage:allowed-networks</span></code>. Everyone else gets a 404 and the
+request is logged. The <strong>Manage</strong> links are hidden outside.</p>
+<ul class="simple">
+<li><p>Default: loopback and the private networks.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;*&quot;</span></code> allows everywhere.</p></li>
+<li><p>With an OIDC admin login (<code class="docutils literal notranslate"><span class="pre">Authentication:Type</span> <span class="pre">=</span> <span class="pre">oidc</span></code>) the restriction only applies if
+<code class="docutils literal notranslate"><span class="pre">allowed-networks</span></code> is configured.</p></li>
+<li><p><em>gView Carto</em> publishes services with <code class="docutils literal notranslate"><span class="pre">BrowseServices/PublishService</span></code>: the Carto server must
+be in an allowed network.</p></li>
+</ul>
+</section>
+<section id="logins-lockout-and-sessions">
+<h2>Logins, lockout and sessions<a class="headerlink" href="#logins-lockout-and-sessions" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Passwords are stored as PBKDF2 hashes. Hashes from older versions keep working and are
+replaced on the next successful login.</p></li>
+<li><p>Failed logins (manage login, token login, <code class="docutils literal notranslate"><span class="pre">generateToken</span></code>, Basic auth) are counted per user
+and per client ip (<code class="docutils literal notranslate"><span class="pre">security:login</span></code>). While locked, every login fails as if the password
+were wrong. The counters live in the memory of each server instance.</p></li>
+<li><p>Admin sessions last <code class="docutils literal notranslate"><span class="pre">security:manage:session-hours</span></code> (8) and are renewed while the admin is
+active.</p></li>
+<li><p>Every token from a login (admin cookie, token user cookie, GeoServices token) carries the
+security stamp of the login. Changing the password ends all sessions and tokens of that user.
+<strong>Sign out everywhere</strong> (sidebar, for admins) does the same without changing the password; it
+writes <code class="docutils literal notranslate"><span class="pre">&lt;user&gt;.stamp</span></code> next to the <code class="docutils literal notranslate"><span class="pre">&lt;user&gt;.lgn</span></code> file.</p></li>
+</ul>
+</section>
+<section id="cors-cookies-and-security-headers">
+<h2>CORS, cookies and security headers<a class="headerlink" href="#cors-cookies-and-security-headers" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>CORS headers are sent for the services only (<code class="docutils literal notranslate"><span class="pre">security:cors:allowed-origins</span></code>), never for
+the admin and login pages.</p></li>
+<li><p>The login cookie is <code class="docutils literal notranslate"><span class="pre">HttpOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">Secure</span></code> and <code class="docutils literal notranslate"><span class="pre">SameSite=Lax</span></code>.</p></li>
+<li><p>State changing admin requests sent with cookies need an antiforgery token (the admin pages
+send it automatically). Requests with an <code class="docutils literal notranslate"><span class="pre">Authorization</span></code> header (Basic, Bearer) are not
+checked.</p></li>
+<li><p>Every response gets <code class="docutils literal notranslate"><span class="pre">X-Content-Type-Options:</span> <span class="pre">nosniff</span></code> and
+<code class="docutils literal notranslate"><span class="pre">Referrer-Policy:</span> <span class="pre">strict-origin-when-cross-origin</span></code>; the admin and login pages also
+<code class="docutils literal notranslate"><span class="pre">X-Frame-Options:</span> <span class="pre">DENY</span></code> and a Content-Security-Policy. Map services can still be embedded by
+other applications.</p></li>
+</ul>
+</section>
+<section id="url-tokens">
+<h2>Url tokens<a class="headerlink" href="#url-tokens" title="Link to this heading">¶</a></h2>
+<p>Url tokens (<code class="docutils literal notranslate"><span class="pre">/geoservices(token-name~secret)/rest/...</span></code>) are stored hashed. A new or recycled
+token is shown <strong>once</strong>, right after it is created; the list shows <code class="docutils literal notranslate"><span class="pre">token-name~(hidden)</span></code>. Url
+tokens from older versions are hashed on their first use. A wrong url token is answered with
+<em>Invalid Token (498)</em>.</p>
+</section>
+<section id="limits">
+<h2>Limits<a class="headerlink" href="#limits" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Request body:</strong> <code class="docutils literal notranslate"><span class="pre">security:max-request-body-mb</span></code> (50 MB) for Kestrel, IIS and forms. With
+IIS, <code class="docutils literal notranslate"><span class="pre">requestLimits</span> <span class="pre">maxAllowedContentLength</span></code> in <code class="docutils literal notranslate"><span class="pre">web.config</span></code> must be at least as large.</p></li>
+<li><p><strong>Features per request:</strong> GeoServices, OGC API Features and WFS return at most the
+<code class="docutils literal notranslate"><span class="pre">MaxRecordCount</span></code> of the service (service setting, else <code class="docutils literal notranslate"><span class="pre">mapserver-defaults:maxRecordCount</span></code>,
+else 1000). WFS <code class="docutils literal notranslate"><span class="pre">MAXFEATURES</span></code> is limited by it, too.</p></li>
+<li><p><strong>Vector tile glyphs</strong> are cached per installed font, not per requested font stack.</p></li>
+<li><p><strong>Rate limit:</strong> optional, <code class="docutils literal notranslate"><span class="pre">security:rate-limit</span></code>, answers with 429.</p></li>
+</ul>
+</section>
+<section id="logging">
+<h2>Logging<a class="headerlink" href="#logging" title="Link to this heading">¶</a></h2>
+<p>Security events are logged with the category <code class="docutils literal notranslate"><span class="pre">gView.Server.Security</span></code>: failed and refused
+logins, lockouts, refused admin requests, the admin setup, <em>Sign out everywhere</em> and
+configuration warnings. The client ip and the username are logged, passwords never. Use the
+category to filter the log or to forward it (fail2ban, SIEM).</p>
+<p>Tokens, passwords, secrets, url tokens and <code class="docutils literal notranslate"><span class="pre">Authorization</span></code> values are masked (<code class="docutils literal notranslate"><span class="pre">***</span></code>) in the
+gView service logs (<code class="docutils literal notranslate"><span class="pre">Logging:LogServiceRequests</span></code>/<code class="docutils literal notranslate"><span class="pre">...Details</span></code>). The ASP.NET request log
+(<code class="docutils literal notranslate"><span class="pre">Microsoft.AspNetCore.Hosting</span></code>) is not masked: keep it at <code class="docutils literal notranslate"><span class="pre">Warning</span></code> (the default in
+<code class="docutils literal notranslate"><span class="pre">appsettings.json</span></code>), otherwise query strings with tokens are written in plain text.</p>
+</section>
+<section id="upgrading-to-v9">
+<h2>Upgrading to v9<a class="headerlink" href="#upgrading-to-v9" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Sessions and tokens:</strong> tokens issued before v9 have no security stamp and are rejected.
+Admins and token users log in again, GeoServices clients request a new token.</p></li>
+<li><p><strong>Admin pages from outside:</strong> only from <code class="docutils literal notranslate"><span class="pre">security:manage:allowed-networks</span></code> (default: private
+networks). Enter your networks, <code class="docutils literal notranslate"><span class="pre">&quot;*&quot;</span></code> or use OIDC.</p></li>
+<li><p><strong>Proxy on a public address:</strong> enter it in <code class="docutils literal notranslate"><span class="pre">security:known-proxies</span></code>, otherwise the server
+does not see the client ip and https.</p></li>
+<li><p><strong>First admin:</strong> a fresh installation needs <code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_USER</span></code>/<code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_PASSWORD</span></code> or
+the setup code from the log.</p></li>
+<li><p><strong>WFS:</strong> <code class="docutils literal notranslate"><span class="pre">GetFeature</span></code> returns at most <code class="docutils literal notranslate"><span class="pre">MaxRecordCount</span></code> features.</p></li>
+</ul>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">Security gView.Server</a><ul>
+<li><a class="reference internal" href="#recommended-setup">Recommended setup</a></li>
+<li><a class="reference internal" href="#the-security-section">The security section</a></li>
+<li><a class="reference internal" href="#reverse-proxy-and-https">Reverse proxy and HTTPS</a></li>
+<li><a class="reference internal" href="#the-first-admin">The first admin</a></li>
+<li><a class="reference internal" href="#admin-networks">Admin networks</a></li>
+<li><a class="reference internal" href="#logins-lockout-and-sessions">Logins, lockout and sessions</a></li>
+<li><a class="reference internal" href="#cors-cookies-and-security-headers">CORS, cookies and security headers</a></li>
+<li><a class="reference internal" href="#url-tokens">Url tokens</a></li>
+<li><a class="reference internal" href="#limits">Limits</a></li>
+<li><a class="reference internal" href="#logging">Logging</a></li>
+<li><a class="reference internal" href="#upgrading-to-v9">Upgrading to v9</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="config-server.html">
+                    <span class="icon">&lt;</span><span>Configuration gView.Server</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="../webapps/index.html"><span>gView WebApps</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

@@ -1,0 +1,239 @@
+.. _config-server:
+
+Configuration gView.Server
+==========================
+
+The **gView.Server** can be configured via the file ``_config/mapserver.json``:
+
+.. code-block:: javascript
+
+   {
+        // Folder, where gView Server stores Services, Logins, etc
+        "services-folder": "{repository-path}/server/configuration",
+
+        // Folder where the built networks (SpatialNET) of the services are stored (optional).
+        // Default: {services-folder}/networks, details see Network Service Specification
+        "networks-folder": "{repository-path}/server/networks",
+
+        // Path, where gView Server stores Map Request Images
+        "output-path": "{repository-path}/server/web/output",
+        // Url to the Path, where gView Server stores Map Request Images
+        "output-url": "{server-url}/output",
+
+        // Path, where gView Server stores Tiles
+        "tilecache-root": "{repository-path}/server/web/tile-caches",
+
+        // Service names (wildcards "*"/"?" allowed) that should be loaded into memory
+        // right after server start, instead of on the first incoming request.
+        // Loading happens in the background and does not delay the server start.
+        // Examples: "*" (all services), "myfolder/*" (all services in a folder), "myfolder/myservice"
+        "preload-services": [ "myfolder/*" ],
+
+        // The Task Queue
+        "task-queue": {
+            // Indicates how many requests can be processed at the same time
+            "max-parallel-tasks": 50,
+            // The maximum length of the queue
+            "max-queue-length": 1000
+        },
+
+        // default value for mapserver and services
+        "mapserver-defaults": {
+            // maximum width in pixel of an map image
+            "maxImageWidth": 4096,
+            // maximum height in pixel of an map image
+            "maxImageHeight": 4096,
+            // maximum records that will be returned from a query
+            "maxRecordCount": 1000
+        },
+
+        // Whether clients are allowed to log in through the web interface
+        "allowFormsLogin": true,
+        // It can be assumed that all calls are made over HTTPS
+        // (also security:force-https)
+        "force-https":  false,
+
+        // Reverse proxies, admin networks, login lockout, CORS, limits
+        // (see Security gView.Server)
+        "security": { },
+
+        // the level that causes an error on load and deploy services
+        "CriticalErrorLevel": {
+            "ErrorType": "error"  // any, warning, error, critical, never (default: error)
+        },
+
+        // optional: graphic engines. gdiplus only works on windows systems
+        "graphics": {
+            "rendering": "skia",  // engine for rendering: skia|gdiplus
+            "encoding": "skia"  // engine for encoding images (jpg|png): skia|gdiplus
+        },
+
+        // Font files (*.ttf, *.otf, *.ttc) in these directories are made available
+        // for rendering at server start - the fonts do NOT need to be installed in
+        // the operating system. Works the same way on Windows and Linux. New font
+        // files require a server restart.
+        "fonts": {
+            "directories": [ "C:\\gView5\\Server\\Fonts" ],
+            // optional, default false: additionally copy the fonts into the
+            // operating system's user-level font store (best effort)
+            "install-to-system": false
+        },
+
+        // RasterNet raster data source (GeoTIFF/COG, JPEG2000, Arc/Info grids, images, ...)
+        "rasternet": {
+            "blockcache-mb": 256,               // cache of decoded blocks; 0 disables it
+            "blockcache-maxidle-minutes": 10,   // release blocks not used for this long; 0 keeps them until the budget is needed
+            "max-threads": 4,                   // decoding threads per request; 0 = half of the cores, at most 8
+            "http-timeout-seconds": 30,         // rasters given as http(s) URL (GeoTIFF/COG only): timeout of one range request
+            "http-retries": 3,                  // retries after network errors, timeouts and HTTP 408/429/5xx
+            "http-headers": "",                 // headers for every request, e.g. "X-Api-Key=...;X-Other=..."
+            "http-probe-sidecars": false        // look for .ovr and .aux.xml next to the URL
+        },
+
+        // optional: projection engine
+        "proj-engine": {
+            "engine": "ManageProj4Parallel" // ManagedProj4, NativeProj4
+        },
+
+        // Optional Settings
+        "Facilities": {
+            "MessageQueue": {
+                "Type": "messagequeue-net",
+                "ConnectionString": "http://localhost:9091",
+                "Namespace": "development"
+            }
+        }
+    }
+
+The ``security`` section (reverse proxies, HTTPS, admin networks, login lockout, sessions, CORS
+and limits) is described in :ref:`security-server`.
+
+In the first section, paths and URLs are defined. These are initially set up via the ``gview.deploy``
+tool and can easily be adjusted here.
+
+Under ``task-queue``, it can be specified how many requests can be processed simultaneously.
+If sufficient RAM is available, this value can be increased arbitrarily. However, one must consider
+that the server generates map images (bitmaps) which can require a significant amount of RAM. If you are 
+consistently reaching the limit of RAM usage (due to many requests), the value can also be set lower.
+If all tasks are occupied, a request goes into the queue. The length of this queue can also be
+adjusted here.
+
+Under ``preload-services``, service names (wildcards ``*`` and ``?`` are allowed) can be specified
+that should be loaded into memory right after the server starts, instead of on the first incoming
+request. Loading happens in the background and does not delay the server start. This way, these
+services are already loaded by the time the first client request arrives, improving the first
+response time. Possible values are, for example, ``*`` (all services), ``myfolder/*`` (all services
+in a folder), or ``myfolder/myservice`` (a single service).
+
+With ``networks-folder`` (optional) the folder is set where the built networks (SpatialNET) of the services are stored. The default is ``{services-folder}/networks``; the networks live there in ``{folder}/{service}.network``. The searches on these networks (*NetworkServer*) are limited additionally in the section ``Network`` of ``appsettings.json`` (``MaxResultNodes``, ``TimeoutSeconds``, ``MaxParallel``, ``MaxLoadedShards``, ``IdleMinutes``). The exact description of the parameters is in :ref:`network-service-administration`.
+
+In the section ``mapserver-defaults``, *default values* for map services can be specified.
+If these values are not explicitly set for a service, the *default value* configured here will be used. 
+This refers to the maximum size of a map image in pixels that can be retrieved by a client. 
+It can also be specified how many geo-objects can be retrieved in a query at most.
+If the section or individual values are not specified, the values mentioned above apply.
+
+.. note::
+
+    The values specified here are *default values* and can be overridden for each service via the 
+    *Map Service Setting* in *gView.Carto*. Higher values than the *default values* can also be 
+    set for individual services. The values in this configuration are not *global maximum values*.
+
+.. note::
+
+    A client can request a map image larger than the maximum values. The map server 
+    will not return an error but instead deliver a resized image that matches the maximum values. 
+    The aspect ratio and geographic area remain intact. However, the resolution of the image 
+    (DPI value) is automatically adjusted so that the scale corresponds to the originally 
+    requested map image.
+
+    A client can verify whether the image was scaled by checking the size of the resulting image. 
+    The values are also included in the *GeoServices Response* in the result JSON.
+
+
+In the section ``graphics``, the *Graphic Engine* can be specified. This can either be ``skia`` or
+``gdiplus`` (on Windows platforms). However, ``gdiplus`` is becoming obsolete and 
+only works if the application is run on a Windows system.
+
+In the ``graphics`` section, the *Graphic Engine* can be specified. This can either be ``skia`` or
+``gdiplus`` (on Windows platforms). However, ``gdiplus`` is considered deprecated and
+only works when the application is running on a Windows system.
+
+In the optional ``fonts`` section, ``directories`` can specify directories containing font
+files (``*.ttf``, ``*.otf``, ``*.ttc``). These fonts are made available for rendering at server
+start, without needing to be installed in the operating system. This works the same way on
+Windows and Linux. New font files placed in these directories require a server restart to be
+picked up. With ``install-to-system`` (optional, default ``false``), the fonts can additionally
+be copied into the operating system's user-level font store (*best effort*).
+
+.. _config-rasternet:
+
+The optional ``rasternet`` section configures the *RasterNet* raster data source. *RasterNet* is a raster reader
+written entirely in .NET that takes precedence over GDAL for the formats it supports (see :ref:`formats-raster`);
+formats *RasterNet* cannot read are still read through GDAL. Without the section, the defaults shown apply:
+
+- ``blockcache-mb``: size of the shared cache of decoded blocks in MB (default ``256``, ``0`` disables it).
+  Neighboring and overlapping map requests reuse blocks that are already decoded; for JPEG2000 orthophotos this
+  roughly doubles the throughput.
+- ``blockcache-maxidle-minutes``: blocks not used for this long are released (default ``10``; ``0`` keeps them
+  until the space is needed).
+- ``max-threads``: threads one request decodes with (default and ``0``: half of the cores, at most 8).
+
+Rasters can also be given as ``http://`` or ``https://`` URL (GeoTIFF/COG only, see :ref:`dataexplorer-cog`).
+They are read with range requests, without downloading the file. These settings apply:
+
+- ``http-timeout-seconds``: timeout of a single request in seconds (default ``30``).
+- ``http-retries``: retries after network errors, timeouts and HTTP 408, 429 and 5xx (default ``3``).
+- ``http-headers``: headers for every request, as ``Name=Value;Name2=Value2`` (e.g. an API key).
+- ``http-probe-sidecars``: ``true`` to look for ``.ovr`` (external overviews) and ``.aux.xml`` (georeferencing)
+  next to the URL (default ``false``; a COG contains both itself).
+
+.. note::
+   The server must support range requests (response ``206 Partial Content``), as web servers and object stores
+   (S3, Azure Blob Storage) do. Protected files are added with presigned or SAS URLs or with ``http-headers``.
+   If a file is replaced on the server while the service runs, reading it fails instead of mixing two versions;
+   the service must then be reloaded.
+
+The ``CriticalErrorLevel`` section is optional. Here, you can specify from which
+error level a service cannot be loaded or deployed. Possible values are:
+
+- ``any``: Any error, whether a warning or a critical error, prevents a service from being loaded and deployed.
+
+- ``warning``: From warnings onwards, a service will not be loaded or deployed.
+
+- ``error``: From errors onwards, a service will not be loaded or deployed.
+
+- ``critical``: Only in the case of critical errors will a service not be loaded or deployed.
+
+- ``never``: A service will always be loaded and deployed, regardless of any errors that occur.
+
+The ``proj-engine`` section is optional. Here, you can specify which *Proj4 Engine* to use:
+
+- ``ManageProj4Parallel``: Uses the Proj4 port in C#, where transformations are parallelized 
+  for objects with many vertices (>100) to improve performance.
+
+- ``ManagedProj4``: Uses the Proj4 port in C#.
+
+- ``NativeProj4``: Uses the native C++ Proj4 library.
+
+One of the managed versions is recommended, as they are platform-independent and 
+no longer suffer from performance drawbacks. The native version can be used 
+if the managed version does not produce the correct results.
+
+Under ``Facilities``, further optional settings can be made.
+
+One option is ``MessageQueue``. Currently, only a message queue of the 
+type ``messagequeue-net`` can be specified (https://github.com/jugstalt/messagequeuenet).
+A message queue makes sense when the *gView.Server* is run in multiple instances simultaneously,
+for example, when *gView.Server* is running in Kubernetes with several *Replicas*.
+The message queue allows the individual components to communicate with each other, for instance, 
+when a map service is modified or deleted. This keeps all instances up to date.
+With ``Namespace``, a namespace can be specified here, which defines which instances belong together.
+Since instances from both ``Staging`` and ``Production`` can access the same 
+MessageQueue API, the namespace can differentiate which instances really 
+belong together.
+
+
+
+
+

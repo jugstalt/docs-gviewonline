@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html lang="de" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Installation mit Docker Compose &#8212; IdentityserverNET 7.0.0 Dokumentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=d7bb20b6" />
+    <script src="../_static/documentation_options.js?v=929a6565"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/translations.js?v=70a09b52"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/petite-vue.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Installation mit Kubernetes" href="installation-kubernetes.html" />
+    <link rel="prev" title="Installation mit Docker" href="installation-docker.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../index.html" title="Go to homepage">IdentityserverNET 7.0.0 Dokumentation</a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Schnellsuche</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Los" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Erste Schritte</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="installation-windows.html">Installation unter Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-linux.html">Installation unter Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-docker.html">Installation mit Docker</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation mit Docker Compose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-kubernetes.html">Installation mit Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation-aspire.html">Installation mit Aspire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">Konfiguration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="login-as-admin.html">Als Administrator anmelden</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin-server.html">Administration des Servers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../clients/index.html">Clients verwalten</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../accessories/index.html">Weitere Admin-Werkzeuge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etc/index.html">Weitere Themen</a></li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="installation-mit-docker-compose">
+<h1>Installation mit Docker Compose<a class="headerlink" href="#installation-mit-docker-compose" title="Link to this heading">¶</a></h1>
+<p>Mit <strong>Docker Compose</strong> lässt sich <em>IdentityServerNET</em> am einfachsten in einer eigenen
+Umgebung starten. Alle Einstellungen werden in einer zentralen <code class="docutils literal notranslate"><span class="pre">.env</span></code>-Datei verwaltet
+und können von dort direkt in andere Projekte übernommen werden.</p>
+<p>Die notwendigen Dateien befinden sich im Repository unter
+<a class="reference external" href="https://github.com/jugstalt/identityserver.net/tree/master/dist/docker-compose">dist/docker-compose/</a>.</p>
+<section id="schnellstart">
+<h2>Schnellstart<a class="headerlink" href="#schnellstart" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/jugstalt/identityserver.net.git
+<span class="nb">cd</span><span class="w"> </span>identityserver.net/dist/docker-compose
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</pre></div>
+</div>
+<p>Die Anwendung ist danach unter <a class="reference external" href="http://localhost:8080">http://localhost:8080</a> erreichbar.</p>
+</section>
+<section id="dateien">
+<h2>Dateien<a class="headerlink" href="#dateien" title="Link to this heading">¶</a></h2>
+<section id="docker-compose-yml">
+<h3><code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code><a class="headerlink" href="#docker-compose-yml" title="Link to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">identityserver</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gstalt/identityserver-net:latest</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;${HOST_PORT:-8080}:8080&quot;</span>
+<span class="w">    </span><span class="nt">env_file</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.env</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ASPNETCORE_URLS</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://*:8080&quot;</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">identityserver-data:/home/app</span>
+
+<span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">identityserver-data</span><span class="p">:</span>
+</pre></div>
+</div>
+<p>Das Volume wird bei <code class="docutils literal notranslate"><span class="pre">/home/app</span></code> eingehängt (nicht bei <code class="docutils literal notranslate"><span class="pre">/home/app/identityserver-net</span></code>),
+damit Docker die Dateirechte aus dem Image (Benutzer <code class="docutils literal notranslate"><span class="pre">app</span></code>) korrekt übernimmt.</p>
+</section>
+<section id="env">
+<h3><code class="docutils literal notranslate"><span class="pre">.env</span></code><a class="headerlink" href="#env" title="Link to this heading">¶</a></h3>
+<p>Alle Einstellungen stehen in der <code class="docutils literal notranslate"><span class="pre">.env</span></code>-Datei. Die Variablennamen verwenden <code class="docutils literal notranslate"><span class="pre">__</span></code>
+als Trennzeichen für hierarchische ASP.NET Core-Konfigurationswerte.</p>
+</section>
+</section>
+<section id="wichtige-grundeinstellungen">
+<h2>Wichtige Grundeinstellungen<a class="headerlink" href="#wichtige-grundeinstellungen" title="Link to this heading">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 45.0%" />
+<col style="width: 55.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">HOST_PORT</span></code></p></td>
+<td><p>Externer Port auf dem Host (Standard: <code class="docutils literal notranslate"><span class="pre">8080</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IDENTITYSERVER__PUBLICORIGIN</span></code></p></td>
+<td><p>Öffentliche URL des Servers, z. B. <code class="docutils literal notranslate"><span class="pre">https://auth.example.com</span></code>.
+Muss mit der URL übereinstimmen, unter der Clients den Server erreichen.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IDENTITYSERVER__APPLICATIONTITLE</span></code></p></td>
+<td><p>Titel in der Titelleiste und auf der Anmeldeseite</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IDENTITYSERVER__SIGNINGCREDENTIAL__CERTPASSWORD</span></code></p></td>
+<td><p>Passwort für das automatisch erzeugte Signatur-Zertifikat. Unbedingt ändern!</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="datenbank-speicher">
+<h2>Datenbank / Speicher<a class="headerlink" href="#datenbank-speicher" title="Link to this heading">¶</a></h2>
+<p>Standardmäßig wird <strong>LiteDB</strong> verwendet (dateibasiert, kein zusätzlicher Dienst nötig).
+Alternativ stehen SQL Server, PostgreSQL, SQLite und MongoDB zur Verfügung:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 45.0%" />
+<col style="width: 55.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Beispielwert</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IDENTITYSERVER__CONNECTIONSTRINGS__LITEDB</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/home/app/identityserver-net/is_identityserver-net.db</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IDENTITYSERVER__CONNECTIONSTRINGS__SQLSERVER</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Server=db;Database=IdentityServerNET;User</span> <span class="pre">Id=sa;Password=...</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IDENTITYSERVER__CONNECTIONSTRINGS__POSTGRES</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Host=db;Database=identityservernet;Username=postgres;Password=...</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IDENTITYSERVER__CONNECTIONSTRINGS__SQLITE</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Source=/home/app/identityserver-net/is.sqlite</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IDENTITYSERVER__CONNECTIONSTRINGS__MONGODB</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mongodb://mongo:27017</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Es darf immer nur <strong>eine</strong> Connection String gesetzt sein.</p>
+</section>
+<section id="passkey-webauthn-fido2">
+<h2>Passkey (WebAuthn / FIDO2)<a class="headerlink" href="#passkey-webauthn-fido2" title="Link to this heading">¶</a></h2>
+<p>Passkeys ermöglichen die passwortlose Anmeldung per Biometrie oder Hardware-Schlüssel.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 55.0%" />
+<col style="width: 45.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IDENTITYSERVER__LOGIN__PASSKEY__ALLOWPASSWORDLESS</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code> – passwortlose Erstfaktor-Anmeldung aktivieren</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IDENTITYSERVER__LOGIN__PASSKEY__ALLOWSECONDFACTOR</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code> – Passkey als zweiten Faktor nach Benutzername/Passwort aktivieren</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IDENTITYSERVER__LOGIN__PASSKEY__SERVERDOMAIN</span></code></p></td>
+<td><p>WebAuthn Relying Party ID, z. B. <code class="docutils literal notranslate"><span class="pre">example.com</span></code>. Leer lassen = vom Request-Host ableiten.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IDENTITYSERVER__LOGIN__PASSKEY__RELYINGPARTYNAME</span></code></p></td>
+<td><p>Anzeigename im Authenticator während der Registrierung</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="migrationen-seeding">
+<h2>Migrationen (Seeding)<a class="headerlink" href="#migrationen-seeding" title="Link to this heading">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Migrationen werden nur ausgeführt, wenn <code class="docutils literal notranslate"><span class="pre">ASPNETCORE_ENVIRONMENT=Development</span></code> gesetzt ist.
+Sie legen fehlende Einträge beim ersten Start an und überschreiben niemals vorhandene Daten.
+Nach dem ersten erfolgreichen Start kann <code class="docutils literal notranslate"><span class="pre">ASPNETCORE_ENVIRONMENT</span></code> entfernt werden – oder
+dauerhaft gesetzt bleiben, da nachfolgende Starts nichts Bestehendes verändern.</p>
+</div>
+<p>In der <code class="docutils literal notranslate"><span class="pre">.env</span></code>-Datei können Migrationen über Umgebungsvariablen definiert werden:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">ASPNETCORE_ENVIRONMENT</span><span class="o">=</span>Development
+<span class="nv">IDENTITYSERVER__MIGRATIONS__ADMINPASSWORD</span><span class="o">=</span>Admin1234!
+
+<span class="c1"># Identity Resources</span>
+<span class="nv">IDENTITYSERVER__MIGRATIONS__IDENTITYRESOURCES__0__NAME</span><span class="o">=</span>openid
+<span class="nv">IDENTITYSERVER__MIGRATIONS__IDENTITYRESOURCES__1__NAME</span><span class="o">=</span>profile
+<span class="nv">IDENTITYSERVER__MIGRATIONS__IDENTITYRESOURCES__2__NAME</span><span class="o">=</span>role
+
+<span class="c1"># API Resource mit Scopes</span>
+<span class="nv">IDENTITYSERVER__MIGRATIONS__APIRESOURCES__0__NAME</span><span class="o">=</span>my-api
+<span class="nv">IDENTITYSERVER__MIGRATIONS__APIRESOURCES__0__APISECRET</span><span class="o">=</span>apisecret
+<span class="nv">IDENTITYSERVER__MIGRATIONS__APIRESOURCES__0__SCOPES__0__NAME</span><span class="o">=</span><span class="nb">read</span>
+<span class="nv">IDENTITYSERVER__MIGRATIONS__APIRESOURCES__0__SCOPES__1__NAME</span><span class="o">=</span>write
+
+<span class="c1"># Rollen</span>
+<span class="nv">IDENTITYSERVER__MIGRATIONS__ROLES__0__NAME</span><span class="o">=</span>admin
+<span class="nv">IDENTITYSERVER__MIGRATIONS__ROLES__1__NAME</span><span class="o">=</span>user
+
+<span class="c1"># Benutzer</span>
+<span class="nv">IDENTITYSERVER__MIGRATIONS__USERS__0__NAME</span><span class="o">=</span>alice@example.com
+<span class="nv">IDENTITYSERVER__MIGRATIONS__USERS__0__PASSWORD</span><span class="o">=</span>Alice1234!
+<span class="nv">IDENTITYSERVER__MIGRATIONS__USERS__0__ROLES__0</span><span class="o">=</span>admin
+
+<span class="c1"># Web Application Client (Authorization Code + PKCE)</span>
+<span class="nv">IDENTITYSERVER__MIGRATIONS__CLIENTS__0__CLIENTTYPE</span><span class="o">=</span>WebApplication
+<span class="nv">IDENTITYSERVER__MIGRATIONS__CLIENTS__0__CLIENTID</span><span class="o">=</span>my-webapp
+<span class="nv">IDENTITYSERVER__MIGRATIONS__CLIENTS__0__CLIENTSECRET</span><span class="o">=</span>secret
+<span class="nv">IDENTITYSERVER__MIGRATIONS__CLIENTS__0__CLIENTURL</span><span class="o">=</span>https://myapp.example.com
+<span class="nv">IDENTITYSERVER__MIGRATIONS__CLIENTS__0__SCOPES__0</span><span class="o">=</span>openid
+<span class="nv">IDENTITYSERVER__MIGRATIONS__CLIENTS__0__SCOPES__1</span><span class="o">=</span>profile
+<span class="nv">IDENTITYSERVER__MIGRATIONS__CLIENTS__0__SCOPES__2</span><span class="o">=</span>role
+
+<span class="c1"># API Client (Client Credentials)</span>
+<span class="nv">IDENTITYSERVER__MIGRATIONS__CLIENTS__1__CLIENTTYPE</span><span class="o">=</span>ApiClient
+<span class="nv">IDENTITYSERVER__MIGRATIONS__CLIENTS__1__CLIENTID</span><span class="o">=</span>my-service
+<span class="nv">IDENTITYSERVER__MIGRATIONS__CLIENTS__1__CLIENTSECRET</span><span class="o">=</span>secret
+<span class="nv">IDENTITYSERVER__MIGRATIONS__CLIENTS__1__SCOPES__0</span><span class="o">=</span>my-api
+<span class="nv">IDENTITYSERVER__MIGRATIONS__CLIENTS__1__SCOPES__1</span><span class="o">=</span>my-api.read
+
+<span class="c1"># JavaScript / SPA Client (kein Secret)</span>
+<span class="nv">IDENTITYSERVER__MIGRATIONS__CLIENTS__2__CLIENTTYPE</span><span class="o">=</span>JavascriptClient
+<span class="nv">IDENTITYSERVER__MIGRATIONS__CLIENTS__2__CLIENTID</span><span class="o">=</span>my-spa
+<span class="nv">IDENTITYSERVER__MIGRATIONS__CLIENTS__2__CLIENTURL</span><span class="o">=</span>https://spa.example.com
+<span class="nv">IDENTITYSERVER__MIGRATIONS__CLIENTS__2__SCOPES__0</span><span class="o">=</span>openid
+<span class="nv">IDENTITYSERVER__MIGRATIONS__CLIENTS__2__SCOPES__1</span><span class="o">=</span>profile
+</pre></div>
+</div>
+</section>
+<section id="hinter-einem-reverse-proxy">
+<h2>Hinter einem Reverse Proxy<a class="headerlink" href="#hinter-einem-reverse-proxy" title="Link to this heading">¶</a></h2>
+<p>Wenn <em>IdentityServerNET</em> hinter nginx, Traefik oder einem anderen TLS-Terminator läuft,
+müssen folgende Einstellungen gesetzt werden:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">IDENTITYSERVER__PUBLICORIGIN</span><span class="o">=</span>https://auth.example.com
+<span class="nv">IDENTITYSERVER__CONFIGURE__USEHTTPSREDIRECTION</span><span class="o">=</span><span class="nb">false</span>
+<span class="nv">IDENTITYSERVER__CONFIGURE__ADDXFORWARDEDPROTOMIDDLEWARE</span><span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">Installation mit Docker Compose</a><ul>
+<li><a class="reference internal" href="#schnellstart">Schnellstart</a></li>
+<li><a class="reference internal" href="#dateien">Dateien</a><ul>
+<li><a class="reference internal" href="#docker-compose-yml"><code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code></a></li>
+<li><a class="reference internal" href="#env"><code class="docutils literal notranslate"><span class="pre">.env</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#wichtige-grundeinstellungen">Wichtige Grundeinstellungen</a></li>
+<li><a class="reference internal" href="#datenbank-speicher">Datenbank / Speicher</a></li>
+<li><a class="reference internal" href="#passkey-webauthn-fido2">Passkey (WebAuthn / FIDO2)</a></li>
+<li><a class="reference internal" href="#migrationen-seeding">Migrationen (Seeding)</a></li>
+<li><a class="reference internal" href="#hinter-einem-reverse-proxy">Hinter einem Reverse Proxy</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="installation-docker.html">
+                    <span class="icon">&lt;</span><span>Installation mit Docker</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="installation-kubernetes.html"><span>Installation mit Kubernetes</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026, Jürgen Gstaltmaier.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>
