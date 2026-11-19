@@ -67,5 +67,6 @@ zu ändern:
 
    config-webapps
    config-server
+   security-server
 
 

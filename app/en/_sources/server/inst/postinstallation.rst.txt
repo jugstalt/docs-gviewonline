@@ -19,12 +19,28 @@ After successful configuration, the application will look like this after the fi
 The red ``Manage`` button indicates that no administrator has been created yet. The **gView Server**
 requires an administrator user who can create **Logins** and **Folders** (directories for map services).
 
-As long as this button is red, this administrator must be created. To create the administrator,
-click on the red tile and assign a username and password for the administrator:
+The first login does **not** create the administrator (otherwise anyone who reaches a fresh
+installation first could take it over). There are two ways:
+
+- **Environment variables:** if ``GVIEW_ADMIN_USER`` and ``GVIEW_ADMIN_PASSWORD`` are set
+  (environment variables or values in ``mapserver.json``), the server creates the administrator
+  at startup. This is the easiest way for Docker and Kubernetes.
+- **Setup code:** otherwise the server writes a one-time setup code to its log at startup
+  (console, ``docker logs``, ``stdout`` of IIS):
+
+  .. code-block:: text
+
+     No admin login exists. Open /manage/login and use this setup code to create the admin: ABCD-EFGH-JKLM
+
+  Click on the red tile, enter the **Setup code**, a username and the password twice and
+  click **Create admin**:
 
 .. image:: img/postinstallation3.png
 
 If the password is not strong enough, a stronger password may need to be specified.
+The setup code is valid until the server is restarted (a restart writes a new one). Wrong codes
+are locked out like failed logins. The setup page is only reachable from the admin networks
+(by default the internal networks), see :ref:`security-server`.
 After the administrator has been successfully created, the interface switches to the **Manage** area 
 of the gView Server. This is only visible to the administrator after successful login:
 

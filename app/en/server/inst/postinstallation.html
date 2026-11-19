@@ -160,10 +160,26 @@ of this file is shown in the section <a class="reference internal" href="../../s
 <img alt="../../_images/postinstallation2.png" src="../../_images/postinstallation2.png" />
 <p>The red <code class="docutils literal notranslate"><span class="pre">Manage</span></code> button indicates that no administrator has been created yet. The <strong>gView Server</strong>
 requires an administrator user who can create <strong>Logins</strong> and <strong>Folders</strong> (directories for map services).</p>
-<p>As long as this button is red, this administrator must be created. To create the administrator,
-click on the red tile and assign a username and password for the administrator:</p>
+<p>The first login does <strong>not</strong> create the administrator (otherwise anyone who reaches a fresh
+installation first could take it over). There are two ways:</p>
+<ul>
+<li><p><strong>Environment variables:</strong> if <code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_USER</span></code> and <code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_PASSWORD</span></code> are set
+(environment variables or values in <code class="docutils literal notranslate"><span class="pre">mapserver.json</span></code>), the server creates the administrator
+at startup. This is the easiest way for Docker and Kubernetes.</p></li>
+<li><p><strong>Setup code:</strong> otherwise the server writes a one-time setup code to its log at startup
+(console, <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">logs</span></code>, <code class="docutils literal notranslate"><span class="pre">stdout</span></code> of IIS):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>No admin login exists. Open /manage/login and use this setup code to create the admin: ABCD-EFGH-JKLM
+</pre></div>
+</div>
+<p>Click on the red tile, enter the <strong>Setup code</strong>, a username and the password twice and
+click <strong>Create admin</strong>:</p>
+</li>
+</ul>
 <img alt="../../_images/postinstallation3.png" src="../../_images/postinstallation3.png" />
 <p>If the password is not strong enough, a stronger password may need to be specified.
+The setup code is valid until the server is restarted (a restart writes a new one). Wrong codes
+are locked out like failed logins. The setup page is only reachable from the admin networks
+(by default the internal networks), see <a class="reference internal" href="../../setup/security-server.html#security-server"><span class="std std-ref">Security gView.Server</span></a>.
 After the administrator has been successfully created, the interface switches to the <strong>Manage</strong> area
 of the gView Server. This is only visible to the administrator after successful login:</p>
 <img alt="../../_images/postinstallation4.png" src="../../_images/postinstallation4.png" />

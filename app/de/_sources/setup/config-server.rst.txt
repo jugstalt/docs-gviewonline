@@ -51,7 +51,12 @@ Der **gView.Server** kann über die Datei ``_config/mapserver.json`` konfigurier
         // Whether clients are allowed to log in through the web interface
         "allowFormsLogin": true,
         // It can be assumed that all calls are made over HTTPS
+        // (auch security:force-https)
         "force-https":  false,
+
+        // Reverse Proxies, Admin-Netze, Login-Sperre, CORS, Grenzen
+        // (siehe Sicherheit gView.Server)
+        "security": { },
 
         // the level that causes an error on load and deploy services
         "CriticalErrorLevel": {
@@ -100,6 +105,9 @@ Der **gView.Server** kann über die Datei ``_config/mapserver.json`` konfigurier
             }
         }
     }
+
+Der Abschnitt ``security`` (Reverse Proxies, HTTPS, Admin-Netze, Login-Sperre, Sitzungen, CORS
+und Grenzen) ist unter :ref:`security-server` beschrieben.
 
 Im ersten Abschnitt werden Pfade und URLs definiert. Diese werden im ersten Schritt über das ``gview.deploy``
 Tool angelegt und können hier noch einfach angepasst werden.

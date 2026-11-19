@@ -64,5 +64,6 @@ The best practice is to change the values in the file
 
    config-webapps
    config-server
+   security-server
 
 

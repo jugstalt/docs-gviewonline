@@ -16,7 +16,7 @@
     <script src="../_static/js/petite-vue.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="gView WebApps" href="../webapps/index.html" />
+    <link rel="next" title="Security gView.Server" href="security-server.html" />
     <link rel="prev" title="Configuration of gView.WebApps" href="config-webapps.html" /> 
   </head><body data-dark_mode_code_blocks="true">
 
@@ -127,6 +127,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="config.html">Configuration</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="config-webapps.html">Configuration of gView.WebApps</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Configuration gView.Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="security-server.html">Security gView.Server</a></li>
 </ul>
 </li>
 </ul>
@@ -196,7 +197,12 @@
 <span class="w">     </span><span class="c1">// Whether clients are allowed to log in through the web interface</span>
 <span class="w">     </span><span class="s2">"allowFormsLogin"</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">     </span><span class="c1">// It can be assumed that all calls are made over HTTPS</span>
+<span class="w">     </span><span class="c1">// (also security:force-https)</span>
 <span class="w">     </span><span class="s2">"force-https"</span><span class="o">:</span><span class="w">  </span><span class="kc">false</span><span class="p">,</span>
+
+<span class="w">     </span><span class="c1">// Reverse proxies, admin networks, login lockout, CORS, limits</span>
+<span class="w">     </span><span class="c1">// (see Security gView.Server)</span>
+<span class="w">     </span><span class="s2">"security"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">},</span>
 
 <span class="w">     </span><span class="c1">// the level that causes an error on load and deploy services</span>
 <span class="w">     </span><span class="s2">"CriticalErrorLevel"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
@@ -247,6 +253,8 @@
 <span class="w"> </span><span class="p">}</span>
 </pre></div>
 </div>
+<p>The <code class="docutils literal notranslate"><span class="pre">security</span></code> section (reverse proxies, HTTPS, admin networks, login lockout, sessions, CORS
+and limits) is described in <a class="reference internal" href="security-server.html#security-server"><span class="std std-ref">Security gView.Server</span></a>.</p>
 <p>In the first section, paths and URLs are defined. These are initially set up via the <code class="docutils literal notranslate"><span class="pre">gview.deploy</span></code>
 tool and can easily be adjusted here.</p>
 <p>Under <code class="docutils literal notranslate"><span class="pre">task-queue</span></code>, it can be specified how many requests can be processed simultaneously.
@@ -374,7 +382,7 @@ belong together.</p>
 
             <div class="right">
                 
-                    <a href="../webapps/index.html"><span>gView WebApps</span><span class="icon">&gt;</span></a>
+                    <a href="security-server.html"><span>Security gView.Server</span><span class="icon">&gt;</span></a>
                 
             </div>
         </div>
