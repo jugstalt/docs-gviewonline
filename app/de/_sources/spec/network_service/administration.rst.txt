@@ -100,9 +100,11 @@ weiteres ``!`` verneint wie bisher das ganze Muster (``!a | b`` = alles außer a
 - Verwendet werden die Kantentypen der Ebenen, geschnitten mit ``filter``. Die Sperren der Ebenen werden zu ``block`` addiert.
 - ``supply`` / ``outage``: es gelten die Quellen der Ebene mit dem kleinsten ``order`` und die Senken der Ebene mit dem
   größten ``order`` (``tier=MS,NS``: Quellen von MS, Senken von NS). ``sources`` / ``sinks`` der Anfrage haben Vorrang.
-- ``trace`` mit Ebene hält an den Quellen der Ebene an (Ergebnis ``Source``). ``stopAtSources=false`` läuft weiter.
+- ``trace`` mit Ebene hält an den Quellen an, die die Ebene selbst nennt (Ergebnis ``Source``), nicht an den globalen Versorgungsquellen. ``stopAtSources=false`` läuft weiter.
 - ``validate``: eine Regel mit dem Attribut ``tier`` prüft nur die Kanten und Knoten dieser Ebene (Subjekt und gezählte Kanten);
-  mit ``tier`` in der Anfrage werden alle Regeln so eingeschränkt. Endtypen werden nicht eingeschränkt.
+  mit ``tier`` in der Anfrage werden alle Regeln so eingeschränkt. Die Endtypen einer Kantenregel brauchen keinen Schnitt: die Enden
+  sind Enden von Kanten der Ebene und gehören damit unabhängig von ihrem Typ zur Ebene. Bleibt einer Regel nichts zu prüfen (z. B.
+  Regel-Ebene ``NS`` und ``tier=MS`` in der Anfrage), wird sie übersprungen und das Ergebnis sagt es.
 
 Ohne ``tier`` ändert sich nichts. Die Ebenen stehen in ``tiers`` der NetworkServer-Ressource. In *Carto* hat das
 Netzwerk-Suchwerkzeug das Dropdown **Ebene**.

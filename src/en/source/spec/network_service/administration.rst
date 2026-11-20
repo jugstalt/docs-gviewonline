@@ -100,9 +100,11 @@ further ``!`` negates the whole pattern as before (``!a | b`` = everything excep
 - The edge types used are those of the tiers, cut by ``filter``. Tier blocks are added to ``block``.
 - ``supply`` / ``outage``: the sources of the tier with the lowest ``order`` and the sinks of the tier with the highest
   ``order`` are used (``tier=MS,NS``: sources of MS, sinks of NS). ``sources`` / ``sinks`` of the request win.
-- ``trace`` with a tier stops at the sources of the tier (they are reported as ``Source``). ``stopAtSources=false`` goes on.
+- ``trace`` with a tier stops at the sources the tier itself names (reported as ``Source``), not at the global supply sources. ``stopAtSources=false`` goes on.
 - ``validate``: a rule with the attribute ``tier`` only checks the edges and nodes of that tier (subject and counted edges);
-  with ``tier`` in the request all rules are restricted this way. End types are not restricted.
+  with ``tier`` in the request all rules are restricted this way. The end types of an edge rule need no cut: the ends are ends of
+  edges of the tier, so they belong to the tier whatever their type. A rule that has nothing left to check (for example the rule
+  tier ``NS`` and ``tier=MS`` in the request) is skipped, and the result says so.
 
 Without ``tier`` nothing changes. The tiers are listed in the ``tiers`` of the NetworkServer resource. In *Carto* the
 network search tool has the dropdown **Ebene**.
