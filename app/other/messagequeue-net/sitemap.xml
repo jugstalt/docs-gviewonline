@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://docs.gviewonline.com/other/messagequeue-net/index.html</loc>
+        <lastmod>2026-11-20</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.gviewonline.com/other/messagequeue-net/index.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.gviewonline.com/other/messagequeue-net/de/index.html"/>
+    </url>
+    <url>
+        <loc>https://docs.gviewonline.com/other/messagequeue-net/changelog.html</loc>
+        <lastmod>2026-11-20</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.gviewonline.com/other/messagequeue-net/changelog.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.gviewonline.com/other/messagequeue-net/de/changelog.html"/>
+    </url>
+    <url>
+        <loc>https://docs.gviewonline.com/other/messagequeue-net/client.html</loc>
+        <lastmod>2026-11-20</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.gviewonline.com/other/messagequeue-net/client.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.gviewonline.com/other/messagequeue-net/de/client.html"/>
+    </url>
+    <url>
+        <loc>https://docs.gviewonline.com/other/messagequeue-net/installation.html</loc>
+        <lastmod>2026-11-20</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.gviewonline.com/other/messagequeue-net/installation.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.gviewonline.com/other/messagequeue-net/de/installation.html"/>
+    </url>
+    <url>
+        <loc>https://docs.gviewonline.com/other/messagequeue-net/release.html</loc>
+        <lastmod>2026-11-20</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.gviewonline.com/other/messagequeue-net/release.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.gviewonline.com/other/messagequeue-net/de/release.html"/>
+    </url>
+    <url>
+        <loc>https://docs.gviewonline.com/other/messagequeue-net/tools.html</loc>
+        <lastmod>2026-11-20</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.gviewonline.com/other/messagequeue-net/tools.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.gviewonline.com/other/messagequeue-net/de/tools.html"/>
+    </url>
+    <url>
+        <loc>https://docs.gviewonline.com/other/messagequeue-net/api/configuration.html</loc>
+        <lastmod>2026-11-20</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.gviewonline.com/other/messagequeue-net/api/configuration.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.gviewonline.com/other/messagequeue-net/de/api/configuration.html"/>
+    </url>
+    <url>
+        <loc>https://docs.gviewonline.com/other/messagequeue-net/api/rest.html</loc>
+        <lastmod>2026-11-20</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.gviewonline.com/other/messagequeue-net/api/rest.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.gviewonline.com/other/messagequeue-net/de/api/rest.html"/>
+    </url>
+    <url>
+        <loc>https://docs.gviewonline.com/other/messagequeue-net/patterns/app-topic.html</loc>
+        <lastmod>2026-11-20</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.gviewonline.com/other/messagequeue-net/patterns/app-topic.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.gviewonline.com/other/messagequeue-net/de/patterns/app-topic.html"/>
+    </url>
+    <url>
+        <loc>https://docs.gviewonline.com/other/messagequeue-net/patterns/queue-worker.html</loc>
+        <lastmod>2026-11-20</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.gviewonline.com/other/messagequeue-net/patterns/queue-worker.html"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.gviewonline.com/other/messagequeue-net/de/patterns/queue-worker.html"/>
+    </url>
+    <url>
+        <loc>https://docs.gviewonline.com/other/messagequeue-net/de/index.html</loc>
+        <lastmod>2026-11-20</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.gviewonline.com/other/messagequeue-net/de/index.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.gviewonline.com/other/messagequeue-net/index.html"/>
+    </url>
+    <url>
+        <loc>https://docs.gviewonline.com/other/messagequeue-net/de/changelog.html</loc>
+        <lastmod>2026-11-20</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.gviewonline.com/other/messagequeue-net/de/changelog.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.gviewonline.com/other/messagequeue-net/changelog.html"/>
+    </url>
+    <url>
+        <loc>https://docs.gviewonline.com/other/messagequeue-net/de/client.html</loc>
+        <lastmod>2026-11-20</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.gviewonline.com/other/messagequeue-net/de/client.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.gviewonline.com/other/messagequeue-net/client.html"/>
+    </url>
+    <url>
+        <loc>https://docs.gviewonline.com/other/messagequeue-net/de/installation.html</loc>
+        <lastmod>2026-11-20</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.gviewonline.com/other/messagequeue-net/de/installation.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.gviewonline.com/other/messagequeue-net/installation.html"/>
+    </url>
+    <url>
+        <loc>https://docs.gviewonline.com/other/messagequeue-net/de/release.html</loc>
+        <lastmod>2026-11-20</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.gviewonline.com/other/messagequeue-net/de/release.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.gviewonline.com/other/messagequeue-net/release.html"/>
+    </url>
+    <url>
+        <loc>https://docs.gviewonline.com/other/messagequeue-net/de/tools.html</loc>
+        <lastmod>2026-11-20</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.gviewonline.com/other/messagequeue-net/de/tools.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.gviewonline.com/other/messagequeue-net/tools.html"/>
+    </url>
+    <url>
+        <loc>https://docs.gviewonline.com/other/messagequeue-net/de/api/configuration.html</loc>
+        <lastmod>2026-11-20</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.gviewonline.com/other/messagequeue-net/de/api/configuration.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.gviewonline.com/other/messagequeue-net/api/configuration.html"/>
+    </url>
+    <url>
+        <loc>https://docs.gviewonline.com/other/messagequeue-net/de/api/rest.html</loc>
+        <lastmod>2026-11-20</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.gviewonline.com/other/messagequeue-net/de/api/rest.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.gviewonline.com/other/messagequeue-net/api/rest.html"/>
+    </url>
+    <url>
+        <loc>https://docs.gviewonline.com/other/messagequeue-net/de/patterns/app-topic.html</loc>
+        <lastmod>2026-11-20</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.gviewonline.com/other/messagequeue-net/de/patterns/app-topic.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.gviewonline.com/other/messagequeue-net/patterns/app-topic.html"/>
+    </url>
+    <url>
+        <loc>https://docs.gviewonline.com/other/messagequeue-net/de/patterns/queue-worker.html</loc>
+        <lastmod>2026-11-20</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.gviewonline.com/other/messagequeue-net/de/patterns/queue-worker.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.gviewonline.com/other/messagequeue-net/patterns/queue-worker.html"/>
+    </url>
+</urlset>

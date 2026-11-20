@@ -88,6 +88,10 @@ nächsten Sphinx-Build überschrieben.
 ## gView.Pipe (Doku aus dem Repo gview-pipe)
 
 `app/other/gview-pipe` enthält die Doku von [gView.Pipe](https://github.com/jugstalt/gview-pipe) (MkDocs, Englisch im Wurzelordner, Deutsch unter `de/`). Sie wird **nicht** hier gebaut und nie hier editiert: Im Repo `gview-pipe` spiegelt `.uild.cmd DocsPublish` die fertige Site in diesen Ordner (löscht ihn vorher komplett). Danach hier `git status` ansehen, committen und pushen wie bei den anderen Ordnern unter `app/`.
+
+## MessageQueue.NET (Doku aus dem Repo MessageQueueNET)
+
+`app/other/messagequeue-net` enthält die Doku von [MessageQueue.NET](https://github.com/jugstalt/MessageQueueNET) (MkDocs, Englisch im Wurzelordner, Deutsch unter `de/`). Sie wird **nicht** hier gebaut und nie hier editiert: Im Repo `MessageQueueNET` spiegelt `.\build.cmd DocsPublish` die fertige Site in diesen Ordner (löscht ihn vorher komplett). Danach hier `git status` ansehen, committen und pushen wie bei den anderen Ordnern unter `app/`.
 
 ## Sonstiges
 
