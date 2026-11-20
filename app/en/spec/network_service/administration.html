@@ -185,6 +185,75 @@ that are used as defaults by <code class="docutils literal notranslate"><span cl
 </ul>
 <p>In <em>gView Carto</em> they are set on the network module page, tab <strong>General</strong>, card <strong>Supply</strong>.</p>
 </section>
+<section id="refresh-metadata">
+<h2>Refresh metadata<a class="headerlink" href="#refresh-metadata" title="Link to this heading">¶</a></h2>
+<p>Supply sources, customers, rules and tiers do not depend on the data. To change them without building the shards again:</p>
+<ul class="simple">
+<li><p><strong>Carto:</strong> network module page, tab <strong>Ebenen</strong>, <strong>Refresh metadata</strong>.</p></li>
+<li><p><strong>Command line:</strong> <code class="docutils literal notranslate"><span class="pre">gView.Cmd</span> <span class="pre">--command</span> <span class="pre">Network</span> <span class="pre">-u</span> <span class="pre">refresh-metadata</span> <span class="pre">-mxl</span> <span class="pre">map.mxl</span></code> (or <code class="docutils literal notranslate"><span class="pre">-config</span> <span class="pre">net.json</span></code>, optionally <code class="docutils literal notranslate"><span class="pre">-output</span> <span class="pre">&lt;network</span> <span class="pre">directory&gt;</span></code>).</p></li>
+</ul>
+<p>Only <code class="docutils literal notranslate"><span class="pre">supplySources</span></code>, <code class="docutils literal notranslate"><span class="pre">customers</span></code>, <code class="docutils literal notranslate"><span class="pre">rules</span></code> and <code class="docutils literal notranslate"><span class="pre">tiers</span></code> in <code class="docutils literal notranslate"><span class="pre">network.json</span></code> are rewritten (tier patterns are checked
+against the types of the built network). The server opens the network again when <code class="docutils literal notranslate"><span class="pre">network.json</span></code> changes.</p>
+</section>
+<section id="tiers-ebenen">
+<span id="network-service-tiers"></span><h2>Tiers (Ebenen)<a class="headerlink" href="#tiers-ebenen" title="Link to this heading">¶</a></h2>
+<p>A tier restricts searches to a part of the network, e.g. high (HS), medium (MS) or low (NS) voltage. The network configuration
+has a section <code class="docutils literal notranslate"><span class="pre">tiers</span></code> (written into <code class="docutils literal notranslate"><span class="pre">network.json</span></code> at build and by <em>Refresh metadata</em>):</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"tiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MS"</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">"filter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mittelspannung.*"</span><span class="p">,</span><span class="w"> </span><span class="nt">"sources"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[*,Umspannwerk,*]"</span><span class="p">,</span><span class="w"> </span><span class="nt">"sinks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[*,Trafo,*]"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NS"</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">"filter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Niederspannung.*"</span><span class="p">,</span><span class="w"> </span><span class="nt">"sources"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[*,Trafo,*]"</span><span class="p">,</span><span class="w"> </span><span class="nt">"sinks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[*,Kunde,*]"</span><span class="p">,</span><span class="w"> </span><span class="nt">"block"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[*,Schalter,*]"</span><span class="w"> </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
+<td><p>Name of the tier, unique, no comma. Used as the <code class="docutils literal notranslate"><span class="pre">tier</span></code> parameter.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">order</span></code></p></td>
+<td><p>Rank: lower is higher up (HS before MS before NS).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">filter</span></code></p></td>
+<td><p>Edge types of the tier (type pattern, see below).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">nodes</span></code></p></td>
+<td><p>Optional node pattern: nodes that belong to the tier although no edge of it touches them.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sources</span></code>, <code class="docutils literal notranslate"><span class="pre">sinks</span></code></p></td>
+<td><p>Node references or patterns. They replace <code class="docutils literal notranslate"><span class="pre">supplySources</span></code> / <code class="docutils literal notranslate"><span class="pre">customers</span></code> when the tier is searched
+(if empty, the global ones are used).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">block</span></code></p></td>
+<td><p>Nodes that are blocked in every search on the tier.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Membership.</strong> Edges belong to a tier by their type. A node belongs to every tier whose edges touch it, so a transformer
+between medium and low voltage is in both.</p>
+<p><strong>Pattern syntax</strong> (also for <code class="docutils literal notranslate"><span class="pre">filter</span></code>): <code class="docutils literal notranslate"><span class="pre">|</span></code> is <em>or</em>, <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> is <em>and</em> (binds tighter than <code class="docutils literal notranslate"><span class="pre">|</span></code>), <code class="docutils literal notranslate"><span class="pre">!</span></code> negates one term.
+<code class="docutils literal notranslate"><span class="pre">Mittelspannung.*</span> <span class="pre">&amp;</span> <span class="pre">!Mittelspannung.Freileitung</span> <span class="pre">|</span> <span class="pre">Niederspannung.*</span></code>. A leading <code class="docutils literal notranslate"><span class="pre">!</span></code> in a pattern without <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> and without
+further <code class="docutils literal notranslate"><span class="pre">!</span></code> negates the whole pattern as before (<code class="docutils literal notranslate"><span class="pre">!a</span> <span class="pre">|</span> <span class="pre">b</span></code> = everything except a and b).</p>
+<p><strong>Searches</strong> (<code class="docutils literal notranslate"><span class="pre">trace</span></code>, <code class="docutils literal notranslate"><span class="pre">reach</span></code>, <code class="docutils literal notranslate"><span class="pre">path</span></code>, <code class="docutils literal notranslate"><span class="pre">supply</span></code>, <code class="docutils literal notranslate"><span class="pre">outage</span></code>, <code class="docutils literal notranslate"><span class="pre">validate</span></code>) take <code class="docutils literal notranslate"><span class="pre">tier</span></code> (comma separated names):</p>
+<ul class="simple">
+<li><p>The edge types used are those of the tiers, cut by <code class="docutils literal notranslate"><span class="pre">filter</span></code>. Tier blocks are added to <code class="docutils literal notranslate"><span class="pre">block</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">supply</span></code> / <code class="docutils literal notranslate"><span class="pre">outage</span></code>: the sources of the tier with the lowest <code class="docutils literal notranslate"><span class="pre">order</span></code> and the sinks of the tier with the highest
+<code class="docutils literal notranslate"><span class="pre">order</span></code> are used (<code class="docutils literal notranslate"><span class="pre">tier=MS,NS</span></code>: sources of MS, sinks of NS). <code class="docutils literal notranslate"><span class="pre">sources</span></code> / <code class="docutils literal notranslate"><span class="pre">sinks</span></code> of the request win.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trace</span></code> with a tier stops at the sources of the tier (they are reported as <code class="docutils literal notranslate"><span class="pre">Source</span></code>). <code class="docutils literal notranslate"><span class="pre">stopAtSources=false</span></code> goes on.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">validate</span></code>: a rule with the attribute <code class="docutils literal notranslate"><span class="pre">tier</span></code> only checks the edges and nodes of that tier (subject and counted edges);
+with <code class="docutils literal notranslate"><span class="pre">tier</span></code> in the request all rules are restricted this way. End types are not restricted.</p></li>
+</ul>
+<p>Without <code class="docutils literal notranslate"><span class="pre">tier</span></code> nothing changes. The tiers are listed in the <code class="docutils literal notranslate"><span class="pre">tiers</span></code> of the NetworkServer resource. In <em>Carto</em> the
+network search tool has the dropdown <strong>Ebene</strong>.</p>
+</section>
 <section id="configuration-appsettings-section-network">
 <h2>Configuration (appsettings, section <code class="docutils literal notranslate"><span class="pre">Network</span></code>)<a class="headerlink" href="#configuration-appsettings-section-network" title="Link to this heading">¶</a></h2>
 <table class="docutils align-default">
@@ -244,6 +313,8 @@ that are used as defaults by <code class="docutils literal notranslate"><span cl
 <li><a class="reference internal" href="#location">Location</a></li>
 <li><a class="reference internal" href="#building-the-network">Building the network</a></li>
 <li><a class="reference internal" href="#network-configuration">Network configuration</a></li>
+<li><a class="reference internal" href="#refresh-metadata">Refresh metadata</a></li>
+<li><a class="reference internal" href="#tiers-ebenen">Tiers (Ebenen)</a></li>
 <li><a class="reference internal" href="#configuration-appsettings-section-network">Configuration (appsettings, section <code class="docutils literal notranslate"><span class="pre">Network</span></code>)</a></li>
 </ul>
 </li>

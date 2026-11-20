@@ -50,6 +50,10 @@ For ``trace``, ``reach``, ``path``, ``supply`` and ``outage``:
      - Description
    * - ``filter``
      - Only edges of these types are used (type pattern).
+   * - ``tier``
+     - Only these tiers (Ebenen, comma separated names), see :ref:`network-service-tiers`.
+   * - ``stopAtSources``
+     - ``trace`` with ``tier``: ``false`` does not stop at the sources of the tier.
    * - ``block``
      - Nodes that are blocked for this search.
    * - ``unblock``

@@ -50,6 +50,10 @@ Für ``trace``, ``reach``, ``path``, ``supply`` und ``outage``:
      - Beschreibung
    * - ``filter``
      - Nur Kanten dieser Typen werden verwendet (Typ-Muster).
+   * - ``tier``
+     - Nur diese Ebenen (Namen, durch Komma getrennt), siehe :ref:`network-service-tiers`.
+   * - ``stopAtSources``
+     - ``trace`` mit ``tier``: ``false`` hält nicht an den Quellen der Ebene an.
    * - ``block``
      - Knoten, die für diese Suche gesperrt werden.
    * - ``unblock``
