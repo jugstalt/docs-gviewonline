@@ -121,15 +121,15 @@ Connecting and splitting at build
 
 By default the build connects everything within the tolerance: line ends and points become one node, and a node at the
 inside of a line splits it. When the tiers are kept by different departments, elements often lie on top of each other by
-chance, e.g. a low voltage joint on a vertex of a medium voltage cable. Two settings of the network configuration control this:
+chance, e.g. a low voltage joint on a vertex of a medium voltage cable. These settings of the network configuration control this:
 
 .. code-block:: json
 
    "separateTiers": true,
+   "nodesOnLine": "ignore",
+   "lineEndsOnLine": "report",
    "connectRules": [
-     { "at": "inside", "nodes": "[Niederspannung,Trenner,*]", "edges": "[Niederspannung,*,*]", "action": "connect" },
-     { "at": "inside", "nodes": "* | untyped", "edges": "[Niederspannung,*,*]", "action": "report" },
-     { "at": "inside", "nodes": "* | untyped", "edges": "[Mittelspannung,*,*]", "action": "report" }
+     { "at": "inside", "nodes": "[Niederspannung,Trenner,*]", "edges": "[Niederspannung,*,*]", "action": "connect" }
    ]
 
 - ``separateTiers`` (default ``false``): connect and split only within a tier. Line ends of a tier also connect to its
@@ -138,6 +138,12 @@ chance, e.g. a low voltage joint on a vertex of a medium voltage cable. Two sett
   helper nodes (a transition between tiers needs a real node). When a line end may connect to several nodes of one place,
   they are merged as with ``nodeConflicts`` (``priorityByToc``: the layer higher in the TOC wins, the others become aliases).
 - ``connectRules``: the first rule that matches decides; without a match the tiers decide (or: everything connects).
+- ``nodesOnLine`` and ``lineEndsOnLine`` (``connect``, ``ignore`` or ``report``, default ``connect``): whether a real node or
+  a line end (T junction) at the inside of a line splits it when no rule matches and, with ``separateTiers``, both are of one
+  tier. A T junction that is not split stays unconnected; with ``report`` the places are listed in the build log.
+
+The decision for a split: the first rule that matches, then another tier (``ignore``), then ``nodesOnLine`` /
+``lineEndsOnLine``. For line ends: the first rule that matches, then the ``sources`` of the tier, then the tiers.
 
 .. list-table::
    :header-rows: 1
@@ -156,9 +162,11 @@ chance, e.g. a low voltage joint on a vertex of a medium voltage cable. Two sett
      - ``connect`` (connect or split), ``ignore`` (do not connect, silently) or ``report`` (do not connect and report it in
        the build: ``ConnectionRefused`` / ``SplitRefused`` with the location and both objects, probably a data error).
 
-The example describes a network whose lines are already cut at the real nodes: in the low voltage only switches split a
-line, every other node and T junction is reported. In *Carto*: network module page, tab **General** (*Separate tiers*) and
-tab **Connections**. Build the network again after a change.
+The example describes a network whose lines are already cut at the real nodes: only switches split a low voltage line,
+other nodes split nothing, T junctions are reported. In *Carto*: network module page, tab **Connections** (*Separate tiers*
+and the two defaults at the top, the rules below). In the pattern editor the switch **untyped** of a row means the helper
+nodes of these types (``untyped & [Niederspannung,*,*]``); **Text** shows the whole pattern as text, e.g. for ``&`` and ``!``.
+Build the network again after a change.
 
 Configuration (appsettings, section ``Network``)
 ------------------------------------------------

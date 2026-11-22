@@ -122,15 +122,15 @@ Verbinden und Teilen beim Aufbau
 Ohne weitere Angaben verbindet der Aufbau alles, was innerhalb der Toleranz liegt: Linienenden und Punkte werden zu einem
 Knoten, und ein Knoten am Inneren einer Linie teilt sie. Werden die Ebenen in verschiedenen Abteilungen gepflegt, liegen
 Elemente aber oft nur zufällig aufeinander, z. B. eine Niederspannungsmuffe auf einem Stützpunkt einer Mittelspannungsleitung.
-Zwei Einstellungen der Netzwerk-Konfiguration steuern das:
+Diese Einstellungen der Netzwerk-Konfiguration steuern das:
 
 .. code-block:: json
 
    "separateTiers": true,
+   "nodesOnLine": "ignore",
+   "lineEndsOnLine": "report",
    "connectRules": [
-     { "at": "inside", "nodes": "[Niederspannung,Trenner,*]", "edges": "[Niederspannung,*,*]", "action": "connect" },
-     { "at": "inside", "nodes": "* | untyped", "edges": "[Niederspannung,*,*]", "action": "report" },
-     { "at": "inside", "nodes": "* | untyped", "edges": "[Mittelspannung,*,*]", "action": "report" }
+     { "at": "inside", "nodes": "[Niederspannung,Trenner,*]", "edges": "[Niederspannung,*,*]", "action": "connect" }
    ]
 
 - ``separateTiers`` (Standard ``false``): verbunden und geteilt wird nur innerhalb einer Ebene. Linienenden einer Ebene
@@ -140,6 +140,13 @@ Zwei Einstellungen der Netzwerk-Konfiguration steuern das:
   einen echten Knoten). Darf ein Linienende an mehrere Knoten einer Stelle anschließen, werden sie wie mit
   ``nodeConflicts`` zusammengeführt (``priorityByToc``: der Layer weiter oben im TOC gewinnt, die anderen werden Aliase).
 - ``connectRules``: die erste passende Regel entscheidet, ohne Treffer die Ebenen (oder: alles verbindet sich).
+- ``nodesOnLine`` und ``lineEndsOnLine`` (``connect``, ``ignore`` oder ``report``, Standard ``connect``): ob ein echter
+  Knoten bzw. ein Linienende (T-Stoß) am Inneren einer Linie sie teilt, wenn keine Regel passt und – mit ``separateTiers`` –
+  beide in derselben Ebene liegen. Ein nicht geteilter T-Stoß bleibt unverbunden; mit ``report`` stehen die Stellen im
+  Aufbau-Log.
+
+Die Entscheidung beim Teilen: erste passende Regel, dann eine andere Ebene (``ignore``), dann ``nodesOnLine`` /
+``lineEndsOnLine``. Beim Anschließen an Linienenden: erste passende Regel, dann die ``sources`` der Ebene, dann die Ebenen.
 
 .. list-table::
    :header-rows: 1
@@ -158,9 +165,11 @@ Zwei Einstellungen der Netzwerk-Konfiguration steuern das:
      - ``connect`` (verbinden bzw. teilen), ``ignore`` (nicht verbinden, still) oder ``report`` (nicht verbinden und im
        Aufbau melden: ``ConnectionRefused`` / ``SplitRefused`` mit Ort und beiden Objekten, wahrscheinlich ein Datenfehler).
 
-Das Beispiel beschreibt ein Netz, dessen Linien schon an den echten Knoten aufgeteilt sind: in der Niederspannung teilen nur
-Trenner eine Linie, alle anderen Knoten und T-Stöße werden gemeldet. In *Carto*: Seite des Netzwerk-Moduls, Tab **General**
-(*Separate tiers*) und Tab **Connections**. Nach einer Änderung muss das Netzwerk neu gebaut werden.
+Das Beispiel beschreibt ein Netz, dessen Linien schon an den echten Knoten aufgeteilt sind: nur Trenner teilen eine
+Niederspannungslinie, andere Knoten teilen nichts, T-Stöße werden gemeldet. In *Carto*: Seite des Netzwerk-Moduls, Tab
+**Connections** (oben *Separate tiers* und die beiden Standards, darunter die Regeln). Im Muster-Editor wählt der Schalter
+**untyped** einer Zeile die Hilfsknoten dieser Typen (``untyped & [Niederspannung,*,*]``); **Text** zeigt das ganze Muster
+als Text, z. B. für ``&`` und ``!``. Nach einer Änderung muss das Netzwerk neu gebaut werden.
 
 Konfiguration (appsettings, Abschnitt ``Network``)
 --------------------------------------------------
