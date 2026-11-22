@@ -18,7 +18,9 @@ nehmen eine kommagetrennte Liste von:
   des Netzwerks oder in ``inSR``. Das schließt **Hilfsknoten** ein, also Linienenden, die erst beim Aufbau entstehen
   (z. B. dort, wo eine *Leitung* an einem *Anlagen Verbinder* in einer Station hängt). Der Radius wird in
   Netzwerkeinheiten angegeben, Standard ist das 10-fache der Aufbau-Toleranz. Liegt kein Knoten im Radius, schlägt die
-  Anfrage fehl. Das Komma in ``@x,y`` trennt die Liste nicht, z. B. ``start=@5,0, Trafo%231``.
+  Anfrage fehl. Das Komma in ``@x,y`` trennt die Liste nicht, z. B. ``start=@5,0, Trafo%231``. Liegen an der Stelle
+  mehrere Knoten (getrennte Ebenen, siehe :ref:`network-service-connect`), wählt ``tier`` den Knoten der Ebene; bleiben
+  mehrere übrig, schlägt die Anfrage fehl und nennt sie (dann per ``Layer#OID`` oder ID angeben).
 
 Zusammengeführte Punkte werden zu dem Knoten aufgelöst, in den sie zusammengeführt wurden.
 Bei ``path`` (``from``, ``to``) und ``info`` (``node``) muss die Referenz genau einen Knoten ergeben.

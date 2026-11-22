@@ -18,7 +18,9 @@ take a comma separated list of:
   the network or in ``inSR``. This includes **helper nodes**, i.e. line ends that only arise during the build (e.g. where
   a *Leitung* hangs on an *Anlagen Verbinder* at a station). The radius is given in network units, the default is
   10 × the build tolerance. If no node lies within the radius, the request fails. The comma inside ``@x,y`` does not
-  split the list, e.g. ``start=@5,0, Trafo%231``.
+  split the list, e.g. ``start=@5,0, Trafo%231``. When several nodes lie at the place (separate tiers, see
+  :ref:`network-service-connect`), ``tier`` chooses the node of the tier; when more than one is left, the request fails
+  and lists them (then give one by ``Layer#OID`` or id).
 
 Merged points resolve to the node they were merged into.
 For ``path`` (``from``, ``to``) and ``info`` (``node``) the reference must result in exactly one node.

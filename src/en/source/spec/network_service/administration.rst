@@ -47,25 +47,31 @@ Refresh metadata
 
 Supply sources, customers, rules and tiers do not depend on the data. To change them without building the shards again:
 
-- **Carto:** network module page, tab **Ebenen**, **Refresh metadata**.
+- **Carto:** network module page, tab **Tiers**, **Refresh metadata**.
 - **Command line:** ``gView.Cmd --command Network -u refresh-metadata -mxl map.mxl`` (or ``-config net.json``, optionally ``-output <network directory>``).
 
-Only ``supplySources``, ``customers``, ``rules`` and ``tiers`` in ``network.json`` are rewritten (tier patterns are checked
-against the types of the built network). The server opens the network again when ``network.json`` changes.
+Only ``supplySources``, ``customers``, ``rules`` and ``tiers`` in ``network.json`` are rewritten (tiers and patterns are
+checked against the types of the built network). ``separateTiers`` and ``connectRules`` apply at build: build the network
+again after changing them. The server opens the network again when ``network.json`` changes.
 
 .. _network-service-tiers:
 
 Tiers (Ebenen)
 --------------
 
-A tier restricts searches to a part of the network, e.g. high (HS), medium (MS) or low (NS) voltage. The network configuration
-has a section ``tiers`` (written into ``network.json`` at build and by *Refresh metadata*):
+A tier restricts searches to a part of the network, e.g. high (HS), medium (MS) or low (NS) voltage. **The tier of a type is
+the value of its first facet** (e.g. ``Ebene``): ``[Mittelspannung,Leitung,Kabel]`` belongs to the tier ``Mittelspannung``.
+Every value of the first facet that edge types use is a tier, also without an entry. In *Carto*, one group per tier gives
+the value through the type template ``{group-name}`` of the first facet.
+
+The section ``tiers`` of the network configuration (written into ``network.json`` at build and by *Refresh metadata*) only
+adds settings:
 
 .. code-block:: json
 
    "tiers": [
-     { "name": "MS", "order": 2, "filter": "Mittelspannung.*", "sources": "[*,Umspannwerk,*]", "sinks": "[*,Trafo,*]" },
-     { "name": "NS", "order": 3, "filter": "Niederspannung.*", "sources": "[*,Trafo,*]", "sinks": "[*,Kunde,*]", "block": "[*,Schalter,*]" }
+     { "name": "Mittelspannung", "order": 2, "sources": "[*,Umspannwerk,*]", "sinks": "[*,Trafo,*]" },
+     { "name": "Niederspannung", "order": 3, "sources": "[*,Trafo,*]", "sinks": "[*,Kunde,*]", "block": "[*,Schalter,*]" }
    ]
 
 .. list-table::
@@ -75,25 +81,23 @@ has a section ``tiers`` (written into ``network.json`` at build and by *Refresh 
    * - Field
      - Meaning
    * - ``name``
-     - Name of the tier, unique, no comma. Used as the ``tier`` parameter.
+     - A value of the first facet. Used as the ``tier`` parameter.
    * - ``order``
-     - Rank: lower is higher up (HS before MS before NS).
-   * - ``filter``
-     - Edge types of the tier (type pattern, see below).
-   * - ``nodes``
-     - Optional node pattern: nodes that belong to the tier although no edge of it touches them.
+     - Rank: lower is higher up (HS before MS before NS). Empty: the number of the facet value.
    * - ``sources``, ``sinks``
      - Node references or patterns. They replace ``supplySources`` / ``customers`` when the tier is searched
-       (if empty, the global ones are used).
+       (if empty, the global ones are used). With ``separateTiers``, line ends of the tier may connect to nodes of these types.
    * - ``block``
      - Nodes that are blocked in every search on the tier.
 
-**Membership.** Edges belong to a tier by their type. A node belongs to every tier whose edges touch it, so a transformer
-between medium and low voltage is in both.
+**Membership.** Edges belong to the tier of their type. A node belongs to the tier of its type and to every tier whose edges
+touch it, so a transformer between medium and low voltage is in both.
 
-**Pattern syntax** (also for ``filter``): ``|`` is *or*, ``&`` is *and* (binds tighter than ``|``), ``!`` negates one term.
-``Mittelspannung.* & !Mittelspannung.Freileitung | Niederspannung.*``. A leading ``!`` in a pattern without ``&`` and without
-further ``!`` negates the whole pattern as before (``!a | b`` = everything except a and b).
+**Pattern syntax:** ``[Mittelspannung,*,*]`` has one entry per facet (``*`` = any). ``|`` is *or*, ``&`` is *and* (binds
+tighter than ``|``), ``!`` negates one term: ``[Mittelspannung,*,*] & ![*,*,Freileitung] | [Niederspannung,*,*]``. A leading
+``!`` in a pattern without ``&`` and without further ``!`` negates the whole pattern (``!a | b`` = everything except a and b).
+``untyped`` are the helper nodes (line ends without a point); with separate tiers every tier has a helper type of its own,
+e.g. ``untyped & [Niederspannung,*,*]``. The short form ``Mittelspannung.*`` is still read.
 
 **Searches** (``trace``, ``reach``, ``path``, ``supply``, ``outage``, ``validate``) take ``tier`` (comma separated names):
 
@@ -105,9 +109,56 @@ further ``!`` negates the whole pattern as before (``!a | b`` = everything excep
   with ``tier`` in the request all rules are restricted this way. The end types of an edge rule need no cut: the ends are ends of
   edges of the tier, so they belong to the tier whatever their type. A rule that has nothing left to check (for example the rule
   tier ``NS`` and ``tier=MS`` in the request) is skipped, and the result says so.
+- ``@x,y``: when several nodes lie at the place (separate tiers), the node of the tier is taken.
 
 Without ``tier`` nothing changes. The tiers are listed in the ``tiers`` of the NetworkServer resource. In *Carto* the
 network search tool has the dropdown **Ebene**.
+
+.. _network-service-connect:
+
+Connecting and splitting at build
+---------------------------------
+
+By default the build connects everything within the tolerance: line ends and points become one node, and a node at the
+inside of a line splits it. When the tiers are kept by different departments, elements often lie on top of each other by
+chance, e.g. a low voltage joint on a vertex of a medium voltage cable. Two settings of the network configuration control this:
+
+.. code-block:: json
+
+   "separateTiers": true,
+   "connectRules": [
+     { "at": "inside", "nodes": "[Niederspannung,Trenner,*]", "edges": "[Niederspannung,*,*]", "action": "connect" },
+     { "at": "inside", "nodes": "* | untyped", "edges": "[Niederspannung,*,*]", "action": "report" },
+     { "at": "inside", "nodes": "* | untyped", "edges": "[Mittelspannung,*,*]", "action": "report" }
+   ]
+
+- ``separateTiers`` (default ``false``): connect and split only within a tier. Line ends of a tier also connect to its
+  ``sources`` (type patterns, e.g. the transformer of the low voltage). Elements without a tier connect to everything. Real
+  nodes of different tiers at one place are no conflict but two nodes; line ends of different tiers at one place give two
+  helper nodes (a transition between tiers needs a real node). When a line end may connect to several nodes of one place,
+  they are merged as with ``nodeConflicts`` (``priorityByToc``: the layer higher in the TOC wins, the others become aliases).
+- ``connectRules``: the first rule that matches decides; without a match the tiers decide (or: everything connects).
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 80
+
+   * - Field
+     - Meaning
+   * - ``at``
+     - ``end``: a line end meets a node (connect?). ``inside``: a node lies at the inside of a line (split?); the node is a
+       real node or the helper node of a T junction (``untyped``). ``any`` (default): both.
+   * - ``nodes``
+     - Node types (pattern), e.g. ``[Niederspannung,Trenner,*]`` or ``untyped & [Niederspannung,*,*]``.
+   * - ``edges``
+     - Edge types (pattern).
+   * - ``action``
+     - ``connect`` (connect or split), ``ignore`` (do not connect, silently) or ``report`` (do not connect and report it in
+       the build: ``ConnectionRefused`` / ``SplitRefused`` with the location and both objects, probably a data error).
+
+The example describes a network whose lines are already cut at the real nodes: in the low voltage only switches split a
+line, every other node and T junction is reported. In *Carto*: network module page, tab **General** (*Separate tiers*) and
+tab **Connections**. Build the network again after a change.
 
 Configuration (appsettings, section ``Network``)
 ------------------------------------------------
