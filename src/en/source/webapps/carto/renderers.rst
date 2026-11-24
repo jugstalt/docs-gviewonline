@@ -193,6 +193,20 @@ The Wizard also attempts to create a smooth transition between the starting and 
 .. image:: img/renderers9.png
     :width: 300
 
+In the wizard you can also choose:
+
+* **Method:** ``Equal Interval`` divides the value range into classes of the same width (fixed number or
+  fixed step width). ``Quantile`` creates classes with as close to the same number of features as possible.
+  ``Natural Breaks (Jenks)`` puts the limits at the natural gaps of the values. With very many values an
+  even sample of 5000 values is used for this.
+* **Colors:** ``Minimum to maximum symbol`` interpolates between the two symbols as above. ``Palette``
+  takes the style of the minimum symbol and assigns the colors from a palette (as with **Recolor ...**).
+* **Decimals:** number of decimals of the class limits and labels (e.g. ``10 – 20``). The suggestion is
+  derived from the value range. The decimal separator is always a point.
+
+Minimum, maximum and classes respect the filter of the layer. After creating the classes the number of
+features per class is shown.
+
 Scale Dependent Renderer
 ------------------------
 

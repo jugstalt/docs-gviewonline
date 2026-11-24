@@ -193,6 +193,20 @@ Der Wizard versucht außerdem, einen fließenden Übergang zwischen den Anfangs-
 .. image:: img/renderers9.png
     :width: 300
 
+Im Wizard kann außerdem gewählt werden:
+
+* **Method:** ``Equal Interval`` teilt den Wertebereich in gleich breite Klassen (fixe Anzahl oder fixe
+  Schrittweite). ``Quantile`` erzeugt Klassen mit möglichst gleich vielen Features. ``Natural Breaks (Jenks)``
+  legt die Grenzen an die natürlichen Lücken der Werte. Bei sehr vielen Werten wird dafür eine
+  gleichmäßige Stichprobe von 5000 Werten verwendet.
+* **Colors:** ``Minimum to maximum symbol`` interpoliert wie oben zwischen den beiden Symbolen. ``Palette``
+  übernimmt den Stil des Minimum-Symbols und vergibt die Farben aus einer Palette (wie bei **Recolor ...**).
+* **Decimals:** Anzahl der Nachkommastellen für die Klassengrenzen und die Beschriftung (z. B. ``10 – 20``).
+  Der Vorschlag ergibt sich aus dem Wertebereich. Als Dezimaltrennzeichen wird immer ein Punkt verwendet.
+
+Minimum, Maximum und Klassen berücksichtigen den Filter des Layers. Nach dem Erzeugen wird die
+Anzahl der Features pro Klasse angezeigt.
+
 Scale Dependent Renderer
 ------------------------
 
