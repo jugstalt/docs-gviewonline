@@ -117,6 +117,18 @@ The dialog shows how many there are.
 .. note::
    The changes take effect with ``Apply``. ``Cancel`` in the layer dialog discards them.
 
+Number of features per category
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``Add all values`` also counts how many features fall into each category. For existing categories
+the ``More ...`` menu has the entry **Count Features**. The number is shown on the right of the list;
+categories without features are greyed out. ``All Other`` shows the features that fall into no other
+category. Counting uses the filter of the layer. The numbers are not saved.
+
+**Order by ...** sorts the list by label, value or (if counted) by number of features; ``All Other``
+always stays at the end. **Select empty** selects all categories without features, e.g. to remove them
+with ``Remove selected``.
+
 Selecting categories
 ~~~~~~~~~~~~~~~~~~~~
 

@@ -117,6 +117,18 @@ werden. Kategorien mit zusammengesetzten Symbolen (z. B. aus dem **Symbol Stack*
 .. note::
    Die Änderungen wirken erst mit ``Apply``. Mit ``Cancel`` im Layer-Dialog werden sie verworfen.
 
+Anzahl der Features pro Kategorie
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``Add all values`` zählt gleich mit, wie viele Features in jede Kategorie fallen. Für bestehende
+Kategorien gibt es im Menü ``More ...`` den Eintrag **Count Features**. Die Anzahl wird rechts in der Liste
+angezeigt, Kategorien ohne Features werden ausgegraut. ``All Other`` zeigt die Features, die in keine
+andere Kategorie fallen. Gezählt wird mit dem Filter des Layers. Die Zahlen werden nicht gespeichert.
+
+Mit **Order by ...** lässt sich die Liste nach Beschriftung, Wert oder (wenn gezählt) nach Anzahl sortieren,
+``All Other`` bleibt immer am Ende. **Select empty** wählt alle Kategorien ohne Features aus, z. B. um sie
+mit ``Remove selected`` zu entfernen.
+
 Kategorien auswählen
 ~~~~~~~~~~~~~~~~~~~~
 
