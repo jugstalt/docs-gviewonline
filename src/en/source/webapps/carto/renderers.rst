@@ -59,9 +59,10 @@ On the map, the result would look something like this:
 
 .. image:: img/renderers3.png
 
-To change a symbol in the Renderer dialog, simply click on the symbol in the corresponding 
-category. This will display the *Symbol Mask*. From there, it is possible to open the 
-**Symbol Composer** again.
+To change a symbol in the Renderer dialog, simply click on the symbol in the corresponding
+category. The *Symbol Mask* opens below the category while the list stays in place. From there, it is
+possible to open the **Symbol Composer** again. Another click on the symbol or the ✕ closes the mask;
+only one mask is open at a time.
 A single category can be deleted with the *trash can* symbol.
 
 At the bottom of the list, there are additional buttons:
@@ -151,7 +152,7 @@ For whole categories there are two ways:
 
 * In the ``More ...`` menu: **Paste Symbol** and **Paste Symbol, keep colors** paste the copied
   symbol into the selected categories (without a selection into all except ``All Other``).
-* In the *Symbol Mask* of a category: the **Apply to ...** menu next to ``Done`` transfers the
+* In the *Symbol Mask* of a category: the **Apply to ...** menu below the settings transfers the
   symbol of this category to the selected or all other categories.
 
 The symbol is replaced completely; the label of the category is kept. With **keep colors** each

@@ -58,9 +58,10 @@ In der Karte würde das Ergebnis dann etwa so aussehen:
 
 .. image:: img/renderers3.png
 
-Um ein Symbol im Renderer-Dialog zu ändern, reicht ein Klick auf das Symbol in der entsprechenden 
-Kategorie. Damit wird die *Symbol Maske* angezeigt. Von dort ist es wieder möglich, den 
-**Symbol Composer** zu öffnen. 
+Um ein Symbol im Renderer-Dialog zu ändern, reicht ein Klick auf das Symbol in der entsprechenden
+Kategorie. Damit klappt unter der Kategorie die *Symbol Maske* auf, die Liste bleibt dabei stehen. Von dort
+ist es wieder möglich, den **Symbol Composer** zu öffnen. Ein erneuter Klick auf das Symbol oder das ✕
+schließt die Maske wieder. Es ist immer nur eine Maske offen.
 Eine einzelne Kategorie kann mit dem *Papierkorb*-Symbol gelöscht werden.
 
 Am unteren Rand der Liste gibt es noch weitere Buttons:
@@ -151,7 +152,7 @@ Für ganze Kategorien gibt es zwei Wege:
 
 * Im Menü ``More ...``: **Paste Symbol** und **Paste Symbol, keep colors** fügen das kopierte Symbol
   in die ausgewählten Kategorien ein (ohne Auswahl in alle außer ``All Other``).
-* In der *Symbol Maske* einer Kategorie: Das Menü **Apply to ...** neben ``Done`` überträgt das
+* In der *Symbol Maske* einer Kategorie: Das Menü **Apply to ...** unter den Einstellungen überträgt das
   Symbol dieser Kategorie auf die ausgewählten bzw. alle anderen Kategorien.
 
 Das Symbol wird jeweils komplett ersetzt, die Beschriftung der Kategorie bleibt. Mit
