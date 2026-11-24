@@ -118,6 +118,17 @@ werden. Kategorien mit zusammengesetzten Symbolen (z. B. aus dem **Symbol Stack*
 .. note::
    Die Änderungen wirken erst mit ``Apply``. Mit ``Cancel`` im Layer-Dialog werden sie verworfen.
 
+Rückgängig machen
+~~~~~~~~~~~~~~~~~
+
+Über der Liste nimmt **Undo** die letzte Änderung an den Kategorien zurück, der Button nennt sie
+(z. B. ``Undo Recolor``). Es lassen sich bis zu 20 Schritte zurücknehmen. Rückgängig gemacht werden
+``Add all values``, ``Remove All``, ``Remove, if not exists in source``, ``Remove selected``, das Löschen und
+Verschieben einzelner Kategorien, **Recolor ...**, **Set Symbol Properties ...**, das Einfügen von Symbolen,
+**Apply to ...**, **Order by ...**, **Label Style ...**, ``Data Value => Label`` und der *Wizard* des
+``Quantity Renderer``. Änderungen in der *Symbol Maske* einer einzelnen Kategorie haben dort ein eigenes
+**Undo**. Beim Wechsel des Feldes beginnt die Liste der Schritte von vorne.
+
 Anzahl der Features pro Kategorie
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

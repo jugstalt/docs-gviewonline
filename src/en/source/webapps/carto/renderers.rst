@@ -118,6 +118,17 @@ The dialog shows how many there are.
 .. note::
    The changes take effect with ``Apply``. ``Cancel`` in the layer dialog discards them.
 
+Undo
+~~~~
+
+Above the list, **Undo** takes back the last change to the categories; the button names it (e.g.
+``Undo Recolor``). Up to 20 steps can be undone. Undo covers ``Add all values``, ``Remove All``,
+``Remove, if not exists in source``, ``Remove selected``, deleting and moving single categories,
+**Recolor ...**, **Set Symbol Properties ...**, pasting symbols, **Apply to ...**, **Order by ...**,
+**Label Style ...**, ``Data Value => Label`` and the *Wizard* of the ``Quantity Renderer``. Changes in the
+*Symbol Mask* of a single category have their own **Undo** there. When the field changes, the undo steps
+start over.
+
 Number of features per category
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
