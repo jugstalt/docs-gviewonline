@@ -117,6 +117,38 @@ The dialog shows how many there are.
 .. note::
    The changes take effect with ``Apply``. ``Cancel`` in the layer dialog discards them.
 
+Selecting categories
+~~~~~~~~~~~~~~~~~~~~
+
+Each category has a checkbox on the left. Holding ``Shift`` selects a whole range; above the list
+there are ``All``, ``None``, ``Invert`` and ``Remove selected``.
+
+If anything is selected, **Recolor ...**, **Set Symbol Properties ...** and pasting symbols only
+affect the selected categories, otherwise all of them. The selection is reset when the field
+changes and is not saved.
+
+Copying and pasting symbols
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Wherever the *Symbol Mask* is shown, there are **Copy symbol** and **Paste symbol** buttons next to
+**Random** and **Undo**. A copied symbol can also be pasted into another layer (e.g. into the
+``Simple Renderer``) as long as the geometry type matches. Pasting into a single symbol mask can be
+reverted with **Undo**.
+
+For whole categories there are two ways:
+
+* In the ``More ...`` menu: **Paste Symbol** and **Paste Symbol, keep colors** paste the copied
+  symbol into the selected categories (without a selection into all except ``All Other``).
+* In the *Symbol Mask* of a category: the **Apply to ...** menu next to ``Done`` transfers the
+  symbol of this category to the selected or all other categories.
+
+The symbol is replaced completely; the label of the category is kept. With **keep colors** each
+category keeps its color (for polygons fill and outline separately), everything else (line width,
+dash style, transparency, …) comes from the pasted symbol. This is the fastest way to apply, for
+example, a dash style to all categories. **keep colors** is only available for simple symbols.
+Categories that had a composite symbol get the colors of the pasted symbol; a message shows how
+many there were.
+
 Many Value Map Renderer
 -----------------------
 

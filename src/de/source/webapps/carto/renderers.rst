@@ -117,6 +117,38 @@ werden. Kategorien mit zusammengesetzten Symbolen (z. B. aus dem **Symbol Stack*
 .. note::
    Die Änderungen wirken erst mit ``Apply``. Mit ``Cancel`` im Layer-Dialog werden sie verworfen.
 
+Kategorien auswählen
+~~~~~~~~~~~~~~~~~~~~
+
+Jede Kategorie hat links eine Checkbox. Mit gedrückter ``Shift``-Taste wird ein ganzer Bereich
+ausgewählt, über der Liste gibt es ``All``, ``None``, ``Invert`` und ``Remove selected``.
+
+Ist etwas ausgewählt, wirken **Recolor ...**, **Set Symbol Properties ...** und das Einfügen
+von Symbolen nur auf die ausgewählten Kategorien, sonst auf alle. Die Auswahl wird beim Wechsel
+des Feldes zurückgesetzt und nicht gespeichert.
+
+Symbole kopieren und einfügen
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Überall, wo die *Symbol Maske* angezeigt wird, gibt es neben **Random** und **Undo** die Buttons
+**Copy symbol** und **Paste symbol**. Ein kopiertes Symbol kann auch in einem anderen Layer
+eingefügt werden (z. B. im ``Simple Renderer``), solange der Geometrietyp passt.
+Das Einfügen in eine einzelne Symbol Maske kann mit **Undo** zurückgenommen werden.
+
+Für ganze Kategorien gibt es zwei Wege:
+
+* Im Menü ``More ...``: **Paste Symbol** und **Paste Symbol, keep colors** fügen das kopierte Symbol
+  in die ausgewählten Kategorien ein (ohne Auswahl in alle außer ``All Other``).
+* In der *Symbol Maske* einer Kategorie: Das Menü **Apply to ...** neben ``Done`` überträgt das
+  Symbol dieser Kategorie auf die ausgewählten bzw. alle anderen Kategorien.
+
+Das Symbol wird jeweils komplett ersetzt, die Beschriftung der Kategorie bleibt. Mit
+**keep colors** behält jede Kategorie ihre Farbe (bei Flächen Füllung und Umriss getrennt), alles
+andere (Strichstärke, Strichart, Transparenz, …) kommt vom eingefügten Symbol. Das ist der schnellste
+Weg, um z. B. eine Strichart auf alle Kategorien zu übertragen. **keep colors** gibt es nur für
+einfache Symbole. Kategorien, die bisher ein zusammengesetztes Symbol hatten, bekommen die Farben
+des eingefügten Symbols. Ein Hinweis zeigt an, wie viele das waren.
+
 Many Value Map Renderer
 -----------------------
 
