@@ -84,6 +84,39 @@ Am unteren Rand der Liste gibt es noch weitere Buttons:
   .. image:: img/renderers5.png
        :width: 300
 
+.. _carto-renderers-bulk-edit:
+
+Alle Symbole auf einmal ändern
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Bei vielen Kategorien muss nicht jedes Symbol einzeln angeklickt werden. Im Menü ``More ...``
+gibt es zwei Einträge, die auf alle Kategorien gleichzeitig wirken. Beide gibt es auch im
+**Many Value Map Renderer** und im **Quantity Renderer**:
+
+* **Recolor ...:** Vergibt die Farben neu, und zwar in der Reihenfolge der Liste. Zur Auswahl stehen:
+
+  - ``Palette``: vordefinierte Farbpaletten. Sequenzielle (z. B. ``Viridis``, ``Blues``, ``YlOrRd``)
+    und divergierende (``RdYlGn``, ``RdBu``) Paletten werden auf die Anzahl der Kategorien
+    verteilt. Qualitative Paletten (``Set1``, ``Set3``, ``Paired``) wiederholen sich, wenn es
+    mehr Kategorien als Farben gibt.
+  - ``Gradient (2 colors)``: ein Verlauf von einer Start- zu einer Endfarbe.
+  - ``Random``: zufällige Farben (wie bei ``Add all values``).
+
+  Mit ``Reverse`` wird die Reihenfolge umgedreht. Bei Flächen kann gewählt werden, ob die Füllung,
+  der Umriss oder beides umgefärbt wird. Die vorhandene Transparenz jedes Symbols bleibt erhalten.
+
+* **Set Symbol Properties ...:** Setzt einzelne Eigenschaften für alle Symbole auf denselben Wert,
+  z. B. die Linienstärke. Übernommen werden nur die angehakten Eigenschaften, alle anderen
+  bleiben pro Kategorie erhalten. Je nach Geometrietyp gibt es ``Color``, ``Width`` bzw.
+  ``Outline width``, ``Dash style``, ``Fill opacity``, ``Size`` und ``Smoothing``.
+
+Die Kategorie ``All Other`` wird standardmäßig ausgelassen und kann im Dialog dazugenommen
+werden. Kategorien mit zusammengesetzten Symbolen (z. B. aus dem **Symbol Stack** des
+**Symbol Composer**) werden übersprungen. Der Dialog zeigt an, wie viele das sind.
+
+.. note::
+   Die Änderungen wirken erst mit ``Apply``. Mit ``Cancel`` im Layer-Dialog werden sie verworfen.
+
 Many Value Map Renderer
 -----------------------
 

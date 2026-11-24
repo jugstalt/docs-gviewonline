@@ -84,6 +84,39 @@ At the bottom of the list, there are additional buttons:
   .. image:: img/renderers5.png
        :width: 300
 
+.. _carto-renderers-bulk-edit:
+
+Change all symbols at once
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+With many categories, there is no need to click every symbol one by one. The ``More ...`` menu
+has two entries that work on all categories at once. Both are also available in the
+**Many Value Map Renderer** and the **Quantity Renderer**:
+
+* **Recolor ...:** Assigns new colors in the order of the list. The options are:
+
+  - ``Palette``: predefined color palettes. Sequential (e.g. ``Viridis``, ``Blues``, ``YlOrRd``)
+    and diverging (``RdYlGn``, ``RdBu``) palettes are spread over the number of categories.
+    Qualitative palettes (``Set1``, ``Set3``, ``Paired``) repeat when there are more categories
+    than colors.
+  - ``Gradient (2 colors)``: a gradient from a start color to an end color.
+  - ``Random``: random colors (as with ``Add all values``).
+
+  ``Reverse`` reverses the order. For polygons, you can choose whether the fill, the outline or
+  both are recolored. The existing transparency of each symbol is kept.
+
+* **Set Symbol Properties ...:** Sets single properties of all symbols to the same value, e.g.
+  the line width. Only checked properties are applied; all others are kept per category.
+  Depending on the geometry type, there are ``Color``, ``Width`` or ``Outline width``,
+  ``Dash style``, ``Fill opacity``, ``Size`` and ``Smoothing``.
+
+The ``All Other`` category is left out by default and can be included in the dialog. Categories
+with composite symbols (e.g. from the **Symbol Stack** of the **Symbol Composer**) are skipped.
+The dialog shows how many there are.
+
+.. note::
+   The changes take effect with ``Apply``. ``Cancel`` in the layer dialog discards them.
+
 Many Value Map Renderer
 -----------------------
 
