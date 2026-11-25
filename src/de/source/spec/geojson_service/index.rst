@@ -151,7 +151,9 @@ Im Folgenden sind die verschiedenen API-Endpunkte aufgeführt, zusammen mit eine
 
     Die OpenAPI-3.1-Beschreibung des Dienstes, nur mit den Operationen, für die der Benutzer Rechte hat. Mit ``?f=html``
     zeigt Scalar die Beschreibung an, mit allen Parametern und Schemas zum Ausprobieren (auch in *Browse Services*
-    verlinkt).
+    verlinkt). Die Beispiele sind mit Werten des Dienstes ausgefüllt (Gesamtausdehnung und Koordinatensystem der
+    Karte, die standardmäßig sichtbaren Layer, der erste abfragbare Layer, der Kartenmittelpunkt für Identify), so dass
+    ein Request gleich gesendet werden kann.
 
 **Token**
 

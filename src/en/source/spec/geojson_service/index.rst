@@ -150,7 +150,9 @@ The following outlines the various API endpoints along with a brief description 
   - ``https://{server}/geojsonservice/v1/services/{folder}/{service}/api``
 
     The OpenAPI 3.1 description of the service, only with the operations the user has the rights for. With ``?f=html``
-    Scalar shows it, with all parameters and schemas to try out (also linked in *Browse Services*).
+    Scalar shows it, with all parameters and schemas to try out (also linked in *Browse Services*). The examples are
+    filled with values of the service (full extent and coordinate system of the map, the layers visible by default, the
+    first queryable layer, the map center for identify), so a request can be sent right away.
 
 **Token**
 
