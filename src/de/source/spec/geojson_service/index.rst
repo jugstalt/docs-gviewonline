@@ -87,6 +87,22 @@ Im Folgenden sind die verschiedenen API-Endpunkte aufgeführt, zusammen mit eine
     
     Gibt die Legende für einen Service innerhalb eines bestimmten Ordners zurück.
 
+**Layers**
+
+- **GET**
+
+  - ``https://{server}/geojsonservice/v1/services/{folder}/{service}/layers[/{layerId}]``
+
+    Gibt die Layer mit Ausdehnung, Eigenschaften, Wertebereichen und Renderer zurück.
+
+**Identify**
+
+- **GET/POST**
+
+  - ``https://{server}/geojsonservice/v1/services/{folder}/{service}/identify``
+
+    Gibt die Features mehrerer Layer an einem Punkt oder in einer Geometrie zurück.
+
 **Query**
 
 - **GET/POST**
@@ -129,6 +145,8 @@ Im Folgenden sind die verschiedenen API-Endpunkte aufgeführt, zusammen mit eine
    capabilities
    map
    legend
+   layers
+   identify
    query
    features
    token
