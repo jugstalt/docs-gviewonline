@@ -127,6 +127,14 @@ The following outlines the various API endpoints along with a brief description 
     
     Adds, updates, or deletes features in a specific layer of a service within a specific folder.
 
+**ApplyEdits**
+
+- **POST**
+
+  - ``https://{server}/geojsonservice/v1/services/{folder}/{service}/applyEdits``
+
+    Adds, updates and deletes features of several layers in one transaction.
+
 **Token**
 
 - **GET/POST**
@@ -149,5 +157,6 @@ The following outlines the various API endpoints along with a brief description 
    identify
    query
    features
+   applyedits
    token
    errorhandling

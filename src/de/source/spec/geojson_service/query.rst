@@ -65,7 +65,7 @@ folgende Objekt definiert:
     }
 
 - **type**: (string) Der Typ der Anfrage, in diesem Fall "GetFeatures".  
-- **command**: (string) Der Befehl, z. B. "select", "distinct", "countOnly" oder "IdsOnly".  
+- **command**: (string) Der Befehl: "select", "distinct", "countOnly", "idsOnly" oder "statistics" (siehe unten).  
 - **outFields**: (array) Eine Liste der Felder, die in der Antwort zurückgegeben werden sollen.  
 - **returnGeometry**: (string) Gibt an, ob und welche Geometrieinformationen zurückgegeben werden sollen: "none", "geometry" oder "bbox".  
 - **outCRS** (optional): (object) Das Koordinatenreferenzsystem für die Ausgabe.  
@@ -117,6 +117,49 @@ Eine Abfrage kann auch als GET-Request gestellt werden, z. B.:
 - **filter**, **filter-lang**: CQL2-Filter, ``cql2-text`` (Standard) oder ``cql2-json``
 - **bbox**, **bbox-crs**, **spatialOperator**: räumlicher Filter ``minx,miny,maxx,maxy``
 - **limit**, **offset**: Paging
+
+Statistik
+---------
+
+Mit ``"command": "statistics"`` liefert die Abfrage eine Tabelle statt Features, z. B. die Anzahl der Bezirke und die
+Summe der Einwohner je Bundesland:
+
+.. code-block:: json
+
+    {
+      "type": "GetFeatures",
+      "command": "statistics",
+      "statistics": [
+        { "type": "count", "field": "BEZIRK_ID", "alias": "n" },
+        { "type": "sum", "field": "EINWOHNER" }
+      ],
+      "groupBy": [ "LAND" ],
+      "having": "n > 10",
+      "orderByFields": [ "n DESC" ],
+      "filter": { "cql2": "EINWOHNER > 0" },
+      "limit": 5
+    }
+
+- **statistics**: **type** ``count``, ``sum``, ``min``, ``max``, ``avg``, ``stddev`` oder ``var`` (``sum``, ``avg``,
+  ``stddev``, ``var`` nur für Zahlenfelder), **field** und **alias** (Name der Spalte; Standard ``{type}_{field}``).
+- **groupBy** (optional): die Felder, nach denen gruppiert wird; ohne eine Zeile.
+- **having** (optional): ein CQL2-Filter auf die Zeilen des Ergebnisses (Text oder JSON), mit den Namen der
+  **groupBy**-Felder und Statistiken.
+- **orderByFields**: Namen der **groupBy**-Felder oder Statistiken, mit ``ASC``/``DESC``.
+- **filter**, **spatialFilter**, **objectIds**, **limit**, **offset** wie bei einer normalen Abfrage; **limit** und
+  **offset** gelten für die Zeilen des Ergebnisses.
+
+Als GET: ``?command=statistics&statistics=count:BEZIRK_ID:n,sum:EINWOHNER&groupBy=LAND&having=n%20%3E%2010&orderBy=n%20DESC``
+(``statistics`` als ``type:field[:alias]``, durch Komma getrennt).
+
+.. code-block:: json
+
+    {
+      "type": "FeaturesStatisticsResponse",
+      "fields": [ { "name": "LAND", "type": "String" }, { "name": "n", "type": "Integer" }, { "name": "sum_EINWOHNER", "type": "Float" } ],
+      "rows": [ { "LAND": "NIEDERÖSTERREICH", "n": 25, "sum_EINWOHNER": 1690879 } ],
+      "exceededLimit": true
+    }
 
 Response-Struktur
 ------------------  

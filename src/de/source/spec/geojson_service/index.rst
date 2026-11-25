@@ -127,6 +127,14 @@ Im Folgenden sind die verschiedenen API-Endpunkte aufgeführt, zusammen mit eine
     
     Fügt Features hinzu, aktualisiert oder löscht Features in einem bestimmten Layer eines Services innerhalb eines bestimmten Ordners.
 
+**ApplyEdits**
+
+- **POST**
+
+  - ``https://{server}/geojsonservice/v1/services/{folder}/{service}/applyEdits``
+
+    Fügt Features mehrerer Layer in einer Transaktion hinzu, ändert und löscht sie.
+
 **Token**
 
 - **GET/POST**
@@ -149,5 +157,6 @@ Im Folgenden sind die verschiedenen API-Endpunkte aufgeführt, zusammen mit eine
    identify
    query
    features
+   applyedits
    token
    errorhandling

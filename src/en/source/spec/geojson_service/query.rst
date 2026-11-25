@@ -65,7 +65,7 @@ following object:
     }
 
 - **type**: (string) The type of request, in this case "GetFeatures".  
-- **command**: (string) The command, e.g., "select", "distinct", "countOnly", or "IdsOnly".  
+- **command**: (string) The command: "select", "distinct", "countOnly", "idsOnly" or "statistics" (see below).  
 - **outFields**: (array) A list of fields to be returned in the response.  
 - **returnGeometry**: (string) Indicates whether and which geometry information should be returned: "none", "geometry", or "bbox".  
 - **outCRS** (optional): (object) The coordinate reference system for the output.  
@@ -117,6 +117,49 @@ A query can also be sent as GET request, e.g.:
 - **filter**, **filter-lang**: CQL2 filter, ``cql2-text`` (default) or ``cql2-json``
 - **bbox**, **bbox-crs**, **spatialOperator**: spatial filter ``minx,miny,maxx,maxy``
 - **limit**, **offset**: paging
+
+Statistics
+----------
+
+With ``"command": "statistics"`` the query returns a table instead of features, e.g. the number of districts and the
+sum of the inhabitants per state:
+
+.. code-block:: json
+
+    {
+      "type": "GetFeatures",
+      "command": "statistics",
+      "statistics": [
+        { "type": "count", "field": "BEZIRK_ID", "alias": "n" },
+        { "type": "sum", "field": "EINWOHNER" }
+      ],
+      "groupBy": [ "LAND" ],
+      "having": "n > 10",
+      "orderByFields": [ "n DESC" ],
+      "filter": { "cql2": "EINWOHNER > 0" },
+      "limit": 5
+    }
+
+- **statistics**: **type** ``count``, ``sum``, ``min``, ``max``, ``avg``, ``stddev`` or ``var`` (``sum``, ``avg``,
+  ``stddev``, ``var`` only for numeric fields), **field** and **alias** (name of the column; default ``{type}_{field}``).
+- **groupBy** (optional): the fields to group by; without, one row.
+- **having** (optional): a CQL2 filter on the rows of the result (text or JSON), with the names of the **groupBy**
+  fields and statistics.
+- **orderByFields**: names of **groupBy** fields or statistics, with ``ASC``/``DESC``.
+- **filter**, **spatialFilter**, **objectIds**, **limit**, **offset** as with a normal query; **limit** and **offset**
+  apply to the rows of the result.
+
+As GET: ``?command=statistics&statistics=count:BEZIRK_ID:n,sum:EINWOHNER&groupBy=LAND&having=n%20%3E%2010&orderBy=n%20DESC``
+(``statistics`` as ``type:field[:alias]``, comma separated).
+
+.. code-block:: json
+
+    {
+      "type": "FeaturesStatisticsResponse",
+      "fields": [ { "name": "LAND", "type": "String" }, { "name": "n", "type": "Integer" }, { "name": "sum_EINWOHNER", "type": "Float" } ],
+      "rows": [ { "LAND": "NIEDERÖSTERREICH", "n": 25, "sum_EINWOHNER": 1690879 } ],
+      "exceededLimit": true
+    }
 
 Response Structure
 ------------------  

@@ -30,6 +30,8 @@ Beispiele für Fehlercodes
 
 - **404**: Not Found - Das Objekt existiert nicht oder liegt außerhalb der Definitionsabfrage des Layers (Ändern, Löschen).  
 
+- **412**: Precondition Failed - Ein Feature hat nicht mehr die angegebene Version (applyEdits).  
+
 - **498**: Invalid Token - Das bereitgestellte Token ist ungültig oder abgelaufen.  
   - Beispiel: `"errorMessage": "The provided token is invalid."`  
 
