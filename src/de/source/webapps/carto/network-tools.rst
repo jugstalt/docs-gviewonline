@@ -76,8 +76,9 @@ Versorgung
 .. image:: img/network-supply.png
 
 *supply* ohne angeklickte Quellen nimmt die Quellen des Netzes (bzw. der Ebene). Hier sind sechs Kunden versorgt (grün),
-``kunde#4`` hinter dem offenen Trenner nicht (rot, größer). Kunden, die über mehrere Wege versorgt sind, erscheinen orange
-als *Multiple*.
+``kunde#4`` nicht (rot, größer): Sein Hausanschluss endet auf einer Leitung, ohne angeschlossen zu sein. Das ist der
+T-Stoß aus dem Beispiel, den der Bau gemeldet statt verbunden hat (siehe *problems* unten). Kunden, die über mehrere Wege
+versorgt sind, erscheinen orange als *Multiple*.
 
 Feeders: Trafo und Abzweig
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -107,7 +108,9 @@ Kürzester Weg
 
 .. image:: img/network-path.png
 
-*path*: **From** und **To** anklicken, **Run**. Der Bericht listet die Kanten des Wegs mit den aufsummierten Kosten.
+*path*: **From** und **To** anklicken, **Run**. Der Bericht listet die Kanten des Wegs mit den aufsummierten Kosten. Gesperrte
+Knoten passiert der Weg nicht. Im Beispiel führt er durch ``trenner#1``, weil für den Trenner kein Schaltzustand
+eingestellt ist (Layer Settings, **Normal switching state**); mit **Blocked nodes** lässt er sich für eine Suche sperren.
 
 Info
 ~~~~

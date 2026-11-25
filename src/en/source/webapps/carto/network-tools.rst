@@ -76,8 +76,9 @@ Supply
 .. image:: img/network-supply.png
 
 *supply* without picked sources takes the sources of the network (or of the tier). Here six customers are supplied
-(green), ``kunde#4`` behind the open switch is not (red, larger). Customers supplied over more than one way appear orange
-as *Multiple*.
+(green), ``kunde#4`` is not (red, larger): its service line ends on a cable without being connected. That is the T
+junction of the sample that the build reported instead of connecting (see *problems* below). Customers supplied over more
+than one way appear orange as *Multiple*.
 
 Feeders: transformer and outlet
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -106,7 +107,9 @@ Shortest path
 
 .. image:: img/network-path.png
 
-*path*: click **From** and **To**, **Run**. The report lists the edges of the way with the summed up cost.
+*path*: click **From** and **To**, **Run**. The report lists the edges of the way with the summed up cost. The way does
+not pass blocked nodes. In the sample it goes through ``trenner#1`` because no switching state is set for the switch
+(Layer Settings, **Normal switching state**); **Blocked nodes** blocks it for one search.
 
 Info
 ~~~~
