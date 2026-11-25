@@ -161,6 +161,16 @@ As GET: ``?command=statistics&statistics=count:BEZIRK_ID:n,sum:EINWOHNER&groupBy
       "exceededLimit": true
     }
 
+Geometry options
+----------------
+
+For :doc:`query`, :doc:`identify` and :doc:`find`:
+
+- **returnGeometry** ``centroid``: a point instead of the geometry, inside polygons, at half the length of lines.
+- **maxAllowableOffset**: lines and polygons are generalized; vertices closer than this distance (in units of
+  **outCRS**) are dropped. Good for overview maps.
+- **geometryPrecision**: the coordinates are rounded to this number of decimal places.
+
 Response Structure
 ------------------  
 

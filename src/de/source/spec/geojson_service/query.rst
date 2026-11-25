@@ -161,6 +161,16 @@ Als GET: ``?command=statistics&statistics=count:BEZIRK_ID:n,sum:EINWOHNER&groupB
       "exceededLimit": true
     }
 
+Geometrie-Optionen
+------------------
+
+Für :doc:`query`, :doc:`identify` und :doc:`find`:
+
+- **returnGeometry** ``centroid``: statt der Geometrie ein Punkt, bei Flächen sicher innerhalb, bei Linien auf halber Länge.
+- **maxAllowableOffset**: Linien und Flächen werden generalisiert; Stützpunkte, die näher als dieser Abstand (in
+  Einheiten von **outCRS**) sind, entfallen. Gut für Übersichtskarten.
+- **geometryPrecision**: die Koordinaten werden auf diese Anzahl Nachkommastellen gerundet.
+
 Response-Struktur
 ------------------  
 

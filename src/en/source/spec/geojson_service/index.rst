@@ -135,6 +135,23 @@ The following outlines the various API endpoints along with a brief description 
 
     Adds, updates and deletes features of several layers in one transaction.
 
+**Find**
+
+- **GET/POST**
+
+  - ``https://{server}/geojsonservice/v1/services/{folder}/{service}/find``
+
+    Searches a text in the text fields of several layers.
+
+**API (OpenAPI)**
+
+- **GET**
+
+  - ``https://{server}/geojsonservice/v1/services/{folder}/{service}/api``
+
+    The OpenAPI 3.1 description of the service, only with the operations the user has the rights for. With ``?f=html``
+    Scalar shows it, with all parameters and schemas to try out (also linked in *Browse Services*).
+
 **Token**
 
 - **GET/POST**
@@ -155,6 +172,7 @@ The following outlines the various API endpoints along with a brief description 
    legend
    layers
    identify
+   find
    query
    features
    applyedits

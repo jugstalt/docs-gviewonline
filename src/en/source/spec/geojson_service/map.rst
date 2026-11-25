@@ -62,6 +62,12 @@ The POST request is defined by the following object (BODY):
 - **dpi** (optional): (int) The resolution of the image in DPI.  
 - **responseFormat**: (string) The format of the response, e.g., "Url", "Base64", "Image".  
 
+- **layerDefs** (optional): an additional filter per layer id, like **filter** of :doc:`query` (``whereClause``
+  and/or ``cql2``), e.g. ``{ "0": { "cql2": "LAND = 'WIEN'" } }``. It applies on top of the definition query of the layer.
+- **highlight** (optional): object ids per layer id, drawn highlighted on top of the map, e.g. ``{ "0": [1, 2, 3] }``.
+
+With GET, **layerDefs** and **highlight** are passed as JSON.
+
 Response Structure
 ------------------  
 
