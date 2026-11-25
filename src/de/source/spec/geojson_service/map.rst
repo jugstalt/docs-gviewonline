@@ -96,7 +96,7 @@ Die Struktur des Responses ist wie folgt definiert:
 - **type**: (string) Der Typ der Antwort, in diesem Fall "GetMapResponse".  
 - **imageUrl** (optional): (string) URL zum abgerufenen Kartenbild, falls der Response als URL angefordert wurde.  
 - **imageBase64** (optional): (string) Das Kartenbild im Base64-Format, falls dies angefordert wurde.  
-- **bbox**: (object) Die Bounding Box der Karte.  
+- **bbox**: (object) Die Bounding Box der Karte. Der tatsächlich gezeichnete Ausschnitt: Er folgt dem Seitenverhältnis des Bildes und kann daher größer sein als der angefragte.  
 - **crs**: (object) Das verwendete Koordinatenreferenzsystem.  
 - **width**: (int) Die Breite des zurückgegebenen Kartenbildes in Pixeln.  
 - **height**: (int) Die Höhe des zurückgegebenen Kartenbildes in Pixeln.  

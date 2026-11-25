@@ -76,6 +76,48 @@ following object:
 - **limit** (optional): (int) The maximum number of features to return.  
 - **offset** (optional): (int) The offset for pagination.  
 
+Attribute filter: SQL or CQL2
+-----------------------------
+
+**filter** can hold a SQL expression, a CQL2 filter or both (both must apply):
+
+.. code-block:: text
+
+    "filter": {
+      "whereClause": "BEZIRK_ID = @id",
+      "parameters": { "id": 101 }
+    }
+
+    "filter": { "cql2": "NAME = 'Wien' AND EW > 1000" }
+
+    "filter": { "cql2": { "op": "=", "args": [ { "property": "NAME" }, "Wien" ] } }
+
+- **whereClause**: SQL expression in the syntax of the data source. Parameters are written as ``@name`` in the
+  expression, the key in **parameters** with or without ``@``. Numbers and booleans become literals, texts SQL strings
+  (quotes doubled). The expression is checked against SQL injection.
+- **cql2**: a CQL2 filter. A string is CQL2-Text, an object CQL2-JSON. Supported are comparisons, ``LIKE``,
+  ``BETWEEN``, ``IN``, ``IS NULL``, ``AND``/``OR``/``NOT`` and ``CASEI`` (case-insensitive); dates and booleans only
+  for data sources with a known SQL dialect. CQL2 does not depend on the database: gView translates the filter into
+  SQL itself, unknown fields are rejected with 400.
+
+GET parameters
+--------------
+
+A query can also be sent as GET request, e.g.:
+
+``https://{server}/geojsonservice/v1/services/{folder}/{service}/query/0?outFields=NAME,EW&filter=EW%20%3E%201000&limit=100``
+
+- **command**: ``select`` (default), ``distinct``, ``countOnly``, ``idsOnly``
+- **outFields**: field names, comma separated (default ``*``)
+- **returnGeometry**: ``none`` (default), ``geometry``, ``bbox``
+- **outCRS**: ``EPSG:4326`` or ``4326``
+- **orderBy**: e.g. ``NAME,EW DESC``
+- **objectIds**: object ids, comma separated
+- **where**: SQL expression (like **whereClause**)
+- **filter**, **filter-lang**: CQL2 filter, ``cql2-text`` (default) or ``cql2-json``
+- **bbox**, **bbox-crs**, **spatialOperator**: spatial filter ``minx,miny,maxx,maxy``
+- **limit**, **offset**: paging
+
 Response Structure
 ------------------  
 
@@ -104,10 +146,23 @@ The structure of the response is defined as follows:
             "field2": 123
           }
         }
-      ]
+      ],
+      "exceededLimit": false
     }
 
 - **type**: (string) The type of response, in this case "FeatureCollection".  
 - **crs** (optional): (object) The coordinate reference system of the output.  
 - **features**: (array) A list of queried features, each feature  
   contains geometry and attribute information.  
+- **exceededLimit**: (bool) ``true`` if there are more features than returned (**limit** or the max. number of
+  the service). The next page starts at **offset** plus the number of features.
+- Each feature also has **oid**, the object id.
+
+The other commands have their own responses:
+
+- ``countOnly``: ``{ "type": "FeaturesCountOnlyResponse", "count": 117 }``
+- ``idsOnly``: ``{ "type": "FeaturesIdsOnlyResponse", "objectIdFieldName": "OBJECTID", "objectIds": [1, 2, 3] }``
+- ``distinct``: ``{ "type": "FeaturesDistinct", "distinctField": "LAND", "distinctValues": ["Wien", "Tirol"] }``
+
+**objectIds** also applies together with a spatial filter; ``distinct`` can't be combined with a spatial filter. A
+spatial filter holds either **geometry** or **bbox**.

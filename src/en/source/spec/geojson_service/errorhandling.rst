@@ -28,6 +28,8 @@ Examples of Error Codes
 - **400**: Bad Request - The request parameters are invalid or incomplete.  
   - Example: `"errorMessage": "Invalid request parameters."`  
 
+- **404**: Not Found - The object doesn't exist or is outside the definition query of the layer (update, delete).  
+
 - **498**: Invalid Token - The provided token is invalid or expired.  
   - Example: `"errorMessage": "The provided token is invalid."`  
 

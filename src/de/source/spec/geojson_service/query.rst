@@ -76,6 +76,48 @@ folgende Objekt definiert:
 - **limit** (optional): (int) Die maximale Anzahl an Features, die zurückgegeben werden soll.  
 - **offset** (optional): (int) Der Offset für die Paginierung.  
 
+Attributfilter: SQL oder CQL2
+-----------------------------
+
+**filter** kann einen SQL-Ausdruck, einen CQL2-Filter oder beides (beide müssen gelten) enthalten:
+
+.. code-block:: text
+
+    "filter": {
+      "whereClause": "BEZIRK_ID = @id",
+      "parameters": { "id": 101 }
+    }
+
+    "filter": { "cql2": "NAME = 'Wien' AND EW > 1000" }
+
+    "filter": { "cql2": { "op": "=", "args": [ { "property": "NAME" }, "Wien" ] } }
+
+- **whereClause**: SQL-Ausdruck in der Syntax der Datenquelle. Parameter werden im Ausdruck mit ``@name``
+  geschrieben, der Schlüssel in **parameters** mit oder ohne ``@``. Zahlen und Wahrheitswerte werden als Literale
+  eingesetzt, Texte als SQL-Strings (Anführungszeichen verdoppelt). Der Ausdruck wird gegen SQL-Injection geprüft.
+- **cql2**: ein CQL2-Filter. Ein String ist CQL2-Text, ein Objekt CQL2-JSON. Unterstützt werden Vergleiche,
+  ``LIKE``, ``BETWEEN``, ``IN``, ``IS NULL``, ``AND``/``OR``/``NOT`` und ``CASEI`` (ohne Groß/Kleinschreibung);
+  Datum und Wahrheitswerte nur bei Datenquellen mit bekanntem SQL-Dialekt. CQL2 ist unabhängig von der Datenbank:
+  gView übersetzt den Filter selbst in SQL, unbekannte Felder werden mit 400 abgelehnt.
+
+GET-Parameter
+-------------
+
+Eine Abfrage kann auch als GET-Request gestellt werden, z. B.:
+
+``https://{server}/geojsonservice/v1/services/{folder}/{service}/query/0?outFields=NAME,EW&filter=EW%20%3E%201000&limit=100``
+
+- **command**: ``select`` (Standard), ``distinct``, ``countOnly``, ``idsOnly``
+- **outFields**: Feldnamen, durch Komma getrennt (Standard ``*``)
+- **returnGeometry**: ``none`` (Standard), ``geometry``, ``bbox``
+- **outCRS**: ``EPSG:4326`` oder ``4326``
+- **orderBy**: z. B. ``NAME,EW DESC``
+- **objectIds**: Objekt-IDs, durch Komma getrennt
+- **where**: SQL-Ausdruck (wie **whereClause**)
+- **filter**, **filter-lang**: CQL2-Filter, ``cql2-text`` (Standard) oder ``cql2-json``
+- **bbox**, **bbox-crs**, **spatialOperator**: räumlicher Filter ``minx,miny,maxx,maxy``
+- **limit**, **offset**: Paging
+
 Response-Struktur
 ------------------  
 
@@ -104,10 +146,23 @@ Die Struktur des Responses ist wie folgt definiert:
             "field2": 123
           }
         }
-      ]
+      ],
+      "exceededLimit": false
     }
 
 - **type**: (string) Der Typ der Antwort, in diesem Fall "FeatureCollection".  
 - **crs** (optional): (object) Das Koordinatenreferenzsystem der Ausgabe.  
 - **features**: (array) Eine Liste der abgefragten Features, jedes Feature  
   enthält Geometrie- und Attributinformationen.  
+- **exceededLimit**: (bool) ``true``, wenn es mehr Features gibt als zurückgegeben wurden (**limit** oder die
+  maximale Anzahl des Dienstes). Die nächste Seite beginnt bei **offset** plus der Anzahl der Features.
+- Jedes Feature hat zusätzlich **oid**, die Objekt-ID.
+
+Die anderen Befehle liefern eigene Antworten:
+
+- ``countOnly``: ``{ "type": "FeaturesCountOnlyResponse", "count": 117 }``
+- ``idsOnly``: ``{ "type": "FeaturesIdsOnlyResponse", "objectIdFieldName": "OBJECTID", "objectIds": [1, 2, 3] }``
+- ``distinct``: ``{ "type": "FeaturesDistinct", "distinctField": "LAND", "distinctValues": ["Wien", "Tirol"] }``
+
+**objectIds** wirkt auch zusammen mit einem räumlichen Filter; ``distinct`` kann nicht mit einem räumlichen Filter
+kombiniert werden. Ein räumlicher Filter enthält entweder **geometry** oder **bbox**.

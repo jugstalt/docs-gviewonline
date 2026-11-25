@@ -72,9 +72,16 @@ wie folgt definiert:
     {
       "succeeded": true,
       "statement": "INSERT", // INSERT,UPDATE,DELETE
-      "count": 3
+      "count": 3,
+      "objectIds": [12, 13, 14]
     }
 
 - **succeeded**: (bool) Gibt an, ob die Operation erfolgreich war.  
 - **statement**: (string) Das ausgeführte Datenbank-Statement.  
 - **count**: (int) Die Anzahl der betroffenen Features.  
+- **objectIds**: (array) Die Objekt-IDs der Features in der Reihenfolge des Requests, bei ``INSERT`` die neu
+  vergebenen IDs (0, wenn die Datenbank sie nicht liefern kann).
+
+Hinzufügen, Ändern und Löschen laufen in einer Transaktion, wenn die Datenbank das unterstützt: alle Features oder
+keines. Zu ändernde Features geben ihre ID in **oid** an. Ändern und Löschen treffen nur Objekte, die der Layer zeigt:
+Hat der Layer eine Definitionsabfrage, ist eine ID außerhalb davon (oder eine nicht vorhandene) ein Fehler ``404``.

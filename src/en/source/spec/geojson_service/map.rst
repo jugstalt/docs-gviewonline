@@ -96,7 +96,7 @@ The structure of the response is defined as follows:
 - **type**: (string) The type of response, in this case "GetMapResponse".  
 - **imageUrl** (optional): (string) URL to the retrieved map image if the response was requested as a URL.  
 - **imageBase64** (optional): (string) The map image in Base64 format if this was requested.  
-- **bbox**: (object) The bounding box of the map.  
+- **bbox**: (object) The bounding box of the map. The extent actually drawn: it follows the aspect ratio of the image and may be larger than the requested one.  
 - **crs**: (object) The coordinate reference system used.  
 - **width**: (int) The width of the returned map image in pixels.  
 - **height**: (int) The height of the returned map image in pixels.  

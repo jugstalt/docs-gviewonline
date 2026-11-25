@@ -27,6 +27,8 @@ For a POST request, the following body is used:
 - **height**: (int) The height of a legend item in pixels.  
 - **dpi** (optional): (int) The resolution of the legend in DPI.  
 
+Width and height are limited to 1 to 1024 pixels, the dpi to the maximum of the service.
+
 Response Structure
 ------------------  
 
