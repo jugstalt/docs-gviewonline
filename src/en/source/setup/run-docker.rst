@@ -39,7 +39,9 @@ The two environment variables let you override the most important values of
 After startup, the management interface is available at http://localhost:45622 (in the example
 above). The first administrator comes from the environment variables ``GVIEW_ADMIN_USER`` and
 ``GVIEW_ADMIN_PASSWORD`` or from the setup code the server writes to the log
-(``docker logs gview-server``), see :doc:`security-server`.
+(``docker logs gview-server``), see :doc:`security-server`. If an admin lost the phone and the
+recovery codes of the two-factor login, ``GVIEW_ADMIN_RESET_2FA=<user>`` resets it at startup
+(remove it afterwards).
 
 
 gView.WebApps Image
