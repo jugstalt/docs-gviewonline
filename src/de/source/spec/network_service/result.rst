@@ -57,5 +57,7 @@ GeoJSON und CSV
 Fehler
 ------
 
-Fehler (unbekannte Operation, ungültige Referenz, kein Netzwerk, fehlendes Recht, Zeitüberschreitung ``504``) werden
-wie bei den anderen GeoServices-Ressourcen als Fehlerobjekt geliefert.
+Fehler (unbekannte Operation, ungültige Referenz, kein Netzwerk, fehlendes Recht) werden wie bei den anderen
+GeoServices-Ressourcen als Fehlerobjekt geliefert (HTTP 200). ``code`` ist ``504`` bei Zeitüberschreitung, ``503``, wenn zu
+viele Suchen gleichzeitig laufen, sonst ``999``. Ein Netzwerk, das mit einer älteren Version gebaut wurde, meldet
+"rebuild network": Es muss neu gebaut werden.

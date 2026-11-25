@@ -183,13 +183,16 @@ Konfiguration (appsettings, Abschnitt ``Network``)
      - Bedeutung
    * - ``MaxResultNodes``
      - 50000
-     - Größere Ergebnisse werden abgeschnitten (``exceededLimit``).
+     - Ergebnisse mit mehr Knoten oder mehr Kanten werden abgeschnitten (``exceededLimit``).
+       Die Suche selbst läuft vollständig.
    * - ``TimeoutSeconds``
      - 120
-     - Längere Suchen werden mit Fehler 504 beantwortet.
+     - Längere Suchen werden mit Fehler 504 beantwortet; die Zeit gilt auch für das Lesen der Geometrien und
+       Attribute des Ergebnisses.
    * - ``MaxParallel``
      - 2
-     - Gleichzeitig laufende Suchen, weitere warten.
+     - Gleichzeitig laufende Suchen. Weitere warten höchstens ``TimeoutSeconds`` auf einen freien Platz, dann
+       Fehler 503. Beschreibung und Formulare warten nicht.
    * - ``MaxLoadedShards``
      - 512
      - Geladene Shards pro Netzwerk (0 = unbegrenzt).

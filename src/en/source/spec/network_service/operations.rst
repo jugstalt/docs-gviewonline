@@ -96,7 +96,7 @@ For all operations with a result (``info``: only ``f``):
      - EPSG code of the coordinates in ``x``/``y`` and in every ``@x,y`` reference. Default: spatial reference of the
        network. The radius stays in network units.
    * - ``f``
-     - ``json``, ``pjson`` (indented), ``geojson`` or ``csv``. Without ``f``: HTML form.
+     - ``json`` (default), ``pjson`` (indented), ``geojson`` or ``csv``. Without any parameter: HTML form.
 
 trace
 -----

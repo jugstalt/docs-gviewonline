@@ -33,4 +33,5 @@ only of vector data.
     scales
     layersettings
     network
+    network-tools
     managemaps

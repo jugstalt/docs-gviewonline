@@ -65,8 +65,13 @@ Im Tab **Connections** wird festgelegt, was beim Bauen verbunden und geteilt wir
 * **Nodes on a line**, **Line ends on a line (T junctions)**: was gilt, wenn keine Regel passt. Im Beispiel teilt kein
   Knoten eine Linie (*Ignore*), T-Stöße werden gemeldet (*Report*).
 * **Regeln**: Die erste passende Regel gewinnt. Hier darf ein Trenner der Niederspannung eine Niederspannungsleitung teilen.
-  Der Schalter **untyped** einer Zeile wählt die Hilfsknoten (Linienenden ohne Punkt), z. B. für Regeln zu T-Stößen;
-  **Text** zeigt das Muster als Text (``&`` und, ``!`` nicht).
+  Jede Regel ist ein Panel mit Kopfzeile (Häkchen = aktiv, Nummer, Name, Muster, **Where** und **Action**); aufgeklappt
+  stehen **Name**, **Description** (warum es die Regel gibt) und die Muster. Der Schalter **untyped** einer Zeile wählt die
+  Hilfsknoten (Linienenden ohne Punkt), z. B. für Regeln zu T-Stößen; **Text** zeigt das Muster als Text (``&`` und,
+  ``!`` nicht). Mit den Pfeilen ändert man die Reihenfolge, das Filterfeld sucht in Name, Beschreibung und Typen.
+* **Action**: *Connect / split* verbindet bzw. teilt, *Ignore* nicht, *Report* nicht und meldet die Stelle,
+  *Connect / split + report* verbindet und meldet trotzdem (z. B. eine Linie, die an einer Muffe nicht aufgeteilt ist).
+  Gemeldete Stellen zeigt das Werkzeug **Network Search** mit der Operation *problems*, Kategorie **Rules**.
 
 Die Felder der Muster schlagen die Werte der Facetten vor. Wie die Entscheidung im Einzelnen fällt, steht unter
 :ref:`network-service-connect`.
@@ -75,19 +80,24 @@ Die Felder der Muster schlagen die Werte der Facetten vor. Wie die Entscheidung 
 -------------
 
 Im Tab **Rules** stehen Regeln, die Topologiefehler finden: Eine Regel zählt die direkten Nachbarn von Knoten oder Kanten
-und vergleicht die Anzahl mit Min und Max, auf Wunsch nur in einer Ebene.
+und vergleicht die Anzahl mit Min und Max, auf Wunsch nur in einer Ebene. Die Kopfzeile zeigt Schweregrad (*Error*,
+*Warning*), Name, Muster und Beschreibung; aufgeklappt wird die Regel bearbeitet. **Export rules**/**Import rules** tauschen
+die Regeln als JSON-Datei aus.
 
 .. image:: img/network-rules.png
 
-Geprüft wird mit dem Werkzeug **Network Search** (Operation *validate*) oder mit ``gView.Cmd -u validate``.
+Geprüft wird mit dem Werkzeug **Network Search** (Operation *validate*) oder mit ``gView.Cmd -u validate``, nie beim
+Bauen: Eine Regel mit einer unbekannten Ebene hält den Bau nicht auf, das Log warnt, und *validate* schlägt fehl, bis sie
+korrigiert ist.
 
 5. Bauen
 --------
 
 Tab **Build**, **Build network**. Die Karte muss gespeichert sein: Das Netzwerk wird neben ihr abgelegt
 (``{Karte}.network``). Das Log zeigt die Anzahl der Knoten, Kanten und Shards, die Hinweise (z. B. ``SplitRefused`` für den
-gemeldeten T-Stoß) und die verwendeten Typen. ``conflicts.json`` im Netzwerkverzeichnis listet Konflikte, wenn der Bau
-abbricht.
+gemeldeten T-Stoß, ``OutsideShardRegions`` für Objekte außerhalb der Shard-Flächen) und die verwendeten Typen.
+``conflicts.json`` im Netzwerkverzeichnis listet Konflikte, wenn der Bau abbricht. Alle Berichte des Baus lassen sich mit
+dem Werkzeug **Network Search**, Operation *problems*, in der Karte ansehen (siehe :ref:`carto-network-tools`).
 
 .. image:: img/network-build.png
 
@@ -98,8 +108,9 @@ Unter **JSON (gView.Cmd)** lässt sich die Konfiguration exportieren und importi
 ---------
 
 Das Werkzeug **Network Search** (Werkzeugleiste **Tools**) sucht auf dem gebauten Netz: Operation wählen (trace, reach,
-path, supply, outage, validate), Start mit **Start** in der Karte anklicken, **Run**. Unter **Options** schränkt **Tiers** die
-Suche auf Ebenen ein; ein Bereich (**Area**) begrenzt sie räumlich.
+path, supply, outage, feeders, info, validate, problems), Start mit **Start** in der Karte anklicken, **Run**. Unter
+**Options** schränkt **Tiers** die Suche auf Ebenen ein; ein Bereich (**Area**) begrenzt sie räumlich. Alle Operationen
+beschreibt :ref:`carto-network-tools`.
 
 .. image:: img/network-trace.png
 

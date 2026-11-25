@@ -61,9 +61,14 @@ The tab **Connections** decides what is connected and split at build:
   splits it; low voltage cables connect to the transformers because they are sources of their tier.
 * **Nodes on a line**, **Line ends on a line (T junctions)**: what applies when no rule matches. In the sample no node
   splits a line (*Ignore*), T junctions are reported (*Report*).
-* **Rules**: the first rule that matches wins. Here a low voltage switch may split a low voltage cable. The switch
-  **untyped** of a row means the helper nodes (line ends without a point), e.g. for rules about T junctions; **Text** shows
-  the pattern as text (``&`` and, ``!`` not).
+* **Rules**: the first rule that matches wins. Here a low voltage switch may split a low voltage cable. Each rule is a
+  panel with a header (check box = enabled, number, name, patterns, **Where** and **Action**); expanded it shows **Name**,
+  **Description** (why the rule exists) and the patterns. The switch **untyped** of a row means the helper nodes (line ends
+  without a point), e.g. for rules about T junctions; **Text** shows the pattern as text (``&`` and, ``!`` not). The arrows
+  change the order, the filter field searches name, description and types.
+* **Action**: *Connect / split* connects or splits, *Ignore* does not, *Report* does not and reports the place,
+  *Connect / split + report* connects anyway and reports it (e.g. a line not broken up at a joint). The tool
+  **Network Search** shows reported places with the operation *problems*, category **Rules**.
 
 The fields of the patterns suggest the values of the facets. How the decision is made in detail is described in
 :ref:`network-service-connect`.
@@ -72,18 +77,22 @@ The fields of the patterns suggest the values of the facets. How the decision is
 --------
 
 The tab **Rules** holds rules that find topology errors: a rule counts the direct neighbours of nodes or edges and compares
-the count with min and max, optionally within one tier.
+the count with min and max, optionally within one tier. The header shows severity (*Error*, *Warning*), name, patterns and
+description; expand a rule to edit it. **Export rules**/**Import rules** exchange the rules as a JSON file.
 
 .. image:: img/network-rules.png
 
-Checks run with the tool **Network Search** (operation *validate*) or with ``gView.Cmd -u validate``.
+Checks run with the tool **Network Search** (operation *validate*) or with ``gView.Cmd -u validate``, never at build: a rule
+with an unknown tier does not stop the build, the log warns, and *validate* fails until it is fixed.
 
 5. Build
 --------
 
 Tab **Build**, **Build network**. The map must be saved: the network is stored next to it (``{map}.network``). The log
-shows the number of nodes, edges and shards, the notes (e.g. ``SplitRefused`` for the reported T junction) and the types
-used. ``conflicts.json`` in the network directory lists conflicts when the build stops.
+shows the number of nodes, edges and shards, the notes (e.g. ``SplitRefused`` for the reported T junction,
+``OutsideShardRegions`` for features outside the shard polygons) and the types used. ``conflicts.json`` in the network
+directory lists conflicts when the build stops. All reports of the build can be viewed in the map with the tool
+**Network Search**, operation *problems* (see :ref:`carto-network-tools`).
 
 .. image:: img/network-build.png
 
@@ -93,8 +102,9 @@ used. ``conflicts.json`` in the network directory lists conflicts when the build
 ---------
 
 The tool **Network Search** (toolbar **Tools**) searches the built network: choose an operation (trace, reach, path,
-supply, outage, validate), click the start in the map with **Start**, **Run**. Under **Options**, **Tiers** restricts the
-search to tiers; an **Area** limits it in space.
+supply, outage, feeders, info, validate, problems), click the start in the map with **Start**, **Run**. Under **Options**,
+**Tiers** restricts the search to tiers; an **Area** limits it in space. All operations are described in
+:ref:`carto-network-tools`.
 
 .. image:: img/network-trace.png
 

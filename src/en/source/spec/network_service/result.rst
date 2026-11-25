@@ -57,5 +57,6 @@ GeoJSON and CSV
 Errors
 ------
 
-Errors (unknown operation, invalid reference, no network, missing right, timeout ``504``) are returned like for the
-other GeoServices resources as an error object.
+Errors (unknown operation, invalid reference, no network, missing right) are returned like for the other GeoServices
+resources as an error object (HTTP 200). ``code`` is ``504`` on timeout, ``503`` when too many searches run at the same
+time, otherwise ``999``. A network built by an older version answers "rebuild network": build it again.

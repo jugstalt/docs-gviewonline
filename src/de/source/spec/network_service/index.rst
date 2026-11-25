@@ -45,8 +45,9 @@ Struktur der API-Links
   - ``https://{server}/geoservices/rest/services/[{folder}/]{service}/networkserver/info``
   - ``https://{server}/geoservices/rest/services/[{folder}/]{service}/networkserver/validate``
 
-Ohne den Parameter ``f`` liefert jede Ressource eine HTML-Seite bzw. ein Formular zum Ausprobieren.
-Parameter werden als Query-String, als Formularfelder oder als JSON-Body (``application/json``) übergeben.
+Eine Operation ohne Parameter liefert ein HTML-Formular zum Ausprobieren, die Beschreibung ohne ``f`` eine HTML-Seite.
+Parameter werden als Query-String, als Formularfelder oder als JSON-Body (``application/json``, auch ``"f": "json"``)
+übergeben. Sobald ein Parameter (außer ``token``) angegeben ist, läuft die Suche; ohne ``f`` ist das Ergebnis JSON.
 
 Beispiele (Dienst ``sqlite/net``):
 

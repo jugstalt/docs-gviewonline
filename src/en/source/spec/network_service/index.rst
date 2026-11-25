@@ -45,8 +45,9 @@ Structure of the API links
   - ``https://{server}/geoservices/rest/services/[{folder}/]{service}/networkserver/info``
   - ``https://{server}/geoservices/rest/services/[{folder}/]{service}/networkserver/validate``
 
-Without the parameter ``f`` every resource returns an HTML page or a form to try it out.
-Parameters are sent as query string, form fields or JSON body (``application/json``).
+An operation without parameters returns an HTML form to try it out, the description without ``f`` an HTML page.
+Parameters are sent as query string, form fields or JSON body (``application/json``, also ``"f": "json"``). As soon as a
+parameter (other than ``token``) is given, the search runs; without ``f`` the result is JSON.
 
 Examples (service ``sqlite/net``):
 

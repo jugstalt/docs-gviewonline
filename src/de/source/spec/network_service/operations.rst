@@ -96,7 +96,7 @@ Für alle Operationen mit Ergebnis (bei ``info`` nur ``f``):
      - EPSG-Code der Koordinaten in ``x``/``y`` und in jeder ``@x,y``-Referenz. Standard: Koordinatensystem des
        Netzwerks. Der Radius bleibt in Netzwerkeinheiten.
    * - ``f``
-     - ``json``, ``pjson`` (eingerückt), ``geojson`` oder ``csv``. Ohne ``f``: HTML-Formular.
+     - ``json`` (Standard), ``pjson`` (eingerückt), ``geojson`` oder ``csv``. Ganz ohne Parameter: HTML-Formular.
 
 trace
 -----

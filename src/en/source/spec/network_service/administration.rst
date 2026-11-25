@@ -180,13 +180,15 @@ Configuration (appsettings, section ``Network``)
      - Meaning
    * - ``MaxResultNodes``
      - 50000
-     - Larger results are cut (``exceededLimit``).
+     - Results with more nodes or more edges are cut (``exceededLimit``). The search itself runs completely.
    * - ``TimeoutSeconds``
      - 120
-     - Longer searches are answered with error 504.
+     - Longer searches are answered with error 504; the time also covers reading the geometry and attributes of
+       the result.
    * - ``MaxParallel``
      - 2
-     - Searches running at the same time, others wait.
+     - Searches running at the same time. Others wait at most ``TimeoutSeconds`` for a free slot, then error 503.
+       The description and the forms do not wait.
    * - ``MaxLoadedShards``
      - 512
      - Shards loaded per network (0 = unlimited).
