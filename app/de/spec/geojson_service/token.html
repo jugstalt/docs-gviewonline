@@ -204,6 +204,10 @@ Die Struktur des Responses ist wie folgt definiert:</p>
 <p class="admonition-title">Bemerkung</p>
 <p>Der <code class="docutils literal notranslate"><span class="pre">access_token</span></code> ist allen Requests im HTTP-Header <code class="docutils literal notranslate"><span class="pre">Authorization</span></code> als <strong>Bearer Token</strong> zu übergeben:
 (<code class="docutils literal notranslate"><span class="pre">Bearer</span> <span class="pre">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...</span></code>).</p>
+<p>Ein abgelaufenes oder ungültiges Token wird mit <code class="docutils literal notranslate"><span class="pre">errorCode</span></code> 498 (HTTP-Status 401) abgelehnt: der Client fordert ein
+neues Token an. Bearer-Tokens anderer Aussteller (z. B. von einem Proxy gesetzt) werden ignoriert; der Request läuft
+dann ohne Benutzer. Fehler des Token-Endpunkts selbst (unbekannte <strong>clientId</strong> oder <strong>clientSecret</strong>) liefern den
+HTTP-Status 400.</p>
 </div>
 </section>
 <section id="verwendungsmoglichkeiten">

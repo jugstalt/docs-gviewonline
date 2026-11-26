@@ -203,6 +203,9 @@ The structure of the response is defined as follows:</p>
 <p class="admonition-title">Note</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">access_token</span></code> must be included in all requests in the HTTP header <code class="docutils literal notranslate"><span class="pre">Authorization</span></code> as a <strong>Bearer Token</strong>:
 (<code class="docutils literal notranslate"><span class="pre">Bearer</span> <span class="pre">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...</span></code>).</p>
+<p>An expired or invalid token is rejected with <code class="docutils literal notranslate"><span class="pre">errorCode</span></code> 498 (HTTP status 401): the client requests a new token.
+Bearer tokens of other issuers (e.g. set by a proxy) are ignored; the request then runs without a user.
+Errors of the token endpoint itself (unknown <strong>clientId</strong> or <strong>clientSecret</strong>) are answered with HTTP status 400.</p>
 </div>
 </section>
 <section id="use-cases">

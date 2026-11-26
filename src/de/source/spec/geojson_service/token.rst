@@ -49,6 +49,11 @@ Die Struktur des Responses ist wie folgt definiert:
    Der ``access_token`` ist allen Requests im HTTP-Header ``Authorization`` als **Bearer Token** zu übergeben:  
    (``Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...``).  
 
+   Ein abgelaufenes oder ungültiges Token wird mit ``errorCode`` 498 (HTTP-Status 401) abgelehnt: der Client fordert ein
+   neues Token an. Bearer-Tokens anderer Aussteller (z. B. von einem Proxy gesetzt) werden ignoriert; der Request läuft
+   dann ohne Benutzer. Fehler des Token-Endpunkts selbst (unbekannte **clientId** oder **clientSecret**) liefern den
+   HTTP-Status 400.
+
 Verwendungsmöglichkeiten
 ------------------------  
 

@@ -49,6 +49,10 @@ The structure of the response is defined as follows:
    The ``access_token`` must be included in all requests in the HTTP header ``Authorization`` as a **Bearer Token**:  
    (``Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...``).  
 
+   An expired or invalid token is rejected with ``errorCode`` 498 (HTTP status 401): the client requests a new token.
+   Bearer tokens of other issuers (e.g. set by a proxy) are ignored; the request then runs without a user.
+   Errors of the token endpoint itself (unknown **clientId** or **clientSecret**) are answered with HTTP status 400.
+
 Use Cases
 ---------  
 
