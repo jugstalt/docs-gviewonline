@@ -135,8 +135,12 @@
 <li class="toctree-l2"><a class="reference internal" href="capabilities.html">(Service)Capabilities Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="map.html">Map Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="legend.html">Legend Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers.html">Layers Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identify.html">Identify Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="find.html">Find Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="query.html">Query Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="features.html">Features Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="applyedits.html">ApplyEdits Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="token.html">Token Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="errorhandling.html">Error Handling</a></li>
 </ul>
@@ -209,8 +213,8 @@ The structure of the response is defined as follows:</p>
 <h2>Explanation of the Example<a class="headerlink" href="#explanation-of-the-example" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><strong>type</strong>: Indicates the type of response, in this case “GetServicesResponse”.</p></li>
-<li><p><strong>folders</strong>: Contains a list of folders that are available. In this example, “Maps” and “TrafficData” are two existing folders.</p></li>
-<li><p><strong>services</strong>: Contains a list of services that are available. In this example, “WeatherMaps” and “PopulationDensity” are two available services.</p></li>
+<li><p><strong>folders</strong>: the names of the subfolders (here “folder1” and “folder2”); their services are listed with <code class="docutils literal notranslate"><span class="pre">.../services/{folder}</span></code>.</p></li>
+<li><p><strong>services</strong>: the names of the services (here “service1” and “service2”), in a folder without the folder name.</p></li>
 </ul>
 </section>
 <section id="use-cases">

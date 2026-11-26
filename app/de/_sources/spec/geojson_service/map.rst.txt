@@ -62,6 +62,13 @@ Die POST-Anfrage wird durch das folgende Objekt (BODY) definiert:
 - **dpi** (optional): (int) Die Auflösung des Bildes in DPI.  
 - **responseFormat**: (string) Das Format des Responses, z. B. "Url", "Base64", "Image".  
 
+- **layerDefs** (optional): ein zusätzlicher Filter je Layer-ID, wie **filter** bei :doc:`query` (``whereClause``
+  und/oder ``cql2``), z. B. ``{ "0": { "cql2": "LAND = 'WIEN'" } }``. Er gilt zusätzlich zur Definitionsabfrage des Layers.
+- **highlight** (optional): Objekt-IDs je Layer-ID, die hervorgehoben über der Karte gezeichnet werden, z. B.
+  ``{ "0": [1, 2, 3] }``.
+
+Bei GET werden **layerDefs** und **highlight** als JSON übergeben.
+
 Response-Struktur
 ------------------  
 
@@ -96,7 +103,7 @@ Die Struktur des Responses ist wie folgt definiert:
 - **type**: (string) Der Typ der Antwort, in diesem Fall "GetMapResponse".  
 - **imageUrl** (optional): (string) URL zum abgerufenen Kartenbild, falls der Response als URL angefordert wurde.  
 - **imageBase64** (optional): (string) Das Kartenbild im Base64-Format, falls dies angefordert wurde.  
-- **bbox**: (object) Die Bounding Box der Karte.  
+- **bbox**: (object) Die Bounding Box der Karte. Der tatsächlich gezeichnete Ausschnitt: Er folgt dem Seitenverhältnis des Bildes und kann daher größer sein als der angefragte.  
 - **crs**: (object) Das verwendete Koordinatenreferenzsystem.  
 - **width**: (int) Die Breite des zurückgegebenen Kartenbildes in Pixeln.  
 - **height**: (int) Die Höhe des zurückgegebenen Kartenbildes in Pixeln.  

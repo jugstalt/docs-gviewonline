@@ -72,9 +72,16 @@ defined as follows:
     {
       "succeeded": true,
       "statement": "INSERT", // INSERT,UPDATE,DELETE
-      "count": 3
+      "count": 3,
+      "objectIds": [12, 13, 14]
     }
 
 - **succeeded**: (bool) Indicates whether the operation was successful.  
 - **statement**: (string) The executed database statement.  
 - **count**: (int) The number of affected features.  
+- **objectIds**: (array) The object ids of the features in the order of the request; for ``INSERT`` the new ids
+  (0 if the database can't report them).
+
+Inserts, updates and deletes run in one transaction if the database supports it: all features or none. Features to
+update give their id in **oid**. Updates and deletes only touch objects the layer shows: if the layer has a definition
+query, an id outside of it (or one that doesn't exist) is an error ``404``.

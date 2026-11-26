@@ -136,8 +136,12 @@
 <li class="toctree-l2"><a class="reference internal" href="capabilities.html">(Service)Capabilities Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="map.html">Map Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="legend.html">Legend Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers.html">Layers Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identify.html">Identify Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="find.html">Find Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="query.html">Query Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="features.html">Features Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="applyedits.html">ApplyEdits Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="token.html">Token Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="errorhandling.html">Error Handling</a></li>
 </ul>
@@ -185,6 +189,16 @@ Hierzu muss den Requests ein <strong>Bearer Token</strong> im <strong>Authorizat
 <h2>Struktur der API-Links<a class="headerlink" href="#struktur-der-api-links" title="Link to this heading">¶</a></h2>
 <p>Die API folgt einer konsistenten URL-Struktur, die das Abrufen von Informationen oder das Vornehmen von Änderungen vereinfacht.
 Im Folgenden sind die verschiedenen API-Endpunkte aufgeführt, zusammen mit einer kurzen Beschreibung ihrer Funktion.</p>
+<p><strong>Info</strong></p>
+<ul>
+<li><p><strong>GET</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/info</span></code></p>
+<p>Version, Token-Einstellungen und die Einstiegspunkte der API.</p>
+</li>
+</ul>
+</li>
+</ul>
 <p><strong>Services</strong></p>
 <ul>
 <li><p><strong>GET</strong></p>
@@ -238,6 +252,26 @@ Im Folgenden sind die verschiedenen API-Endpunkte aufgeführt, zusammen mit eine
 </ul>
 </li>
 </ul>
+<p><strong>Layers</strong></p>
+<ul>
+<li><p><strong>GET</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{folder}/{service}/layers[/{layerId}]</span></code></p>
+<p>Gibt die Layer mit Ausdehnung, Eigenschaften, Wertebereichen und Renderer zurück.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Identify</strong></p>
+<ul>
+<li><p><strong>GET/POST</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{folder}/{service}/identify</span></code></p>
+<p>Gibt die Features mehrerer Layer an einem Punkt oder in einer Geometrie zurück.</p>
+</li>
+</ul>
+</li>
+</ul>
 <p><strong>Query</strong></p>
 <ul>
 <li><p><strong>GET/POST</strong></p>
@@ -264,11 +298,45 @@ Im Folgenden sind die verschiedenen API-Endpunkte aufgeführt, zusammen mit eine
 </ul>
 </li>
 </ul>
+<p><strong>ApplyEdits</strong></p>
+<ul>
+<li><p><strong>POST</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{folder}/{service}/applyEdits</span></code></p>
+<p>Fügt Features mehrerer Layer in einer Transaktion hinzu, ändert und löscht sie.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Find</strong></p>
+<ul>
+<li><p><strong>GET/POST</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{folder}/{service}/find</span></code></p>
+<p>Sucht einen Text in den Textfeldern mehrerer Layer.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>API (OpenAPI)</strong></p>
+<ul>
+<li><p><strong>GET</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/services/{folder}/{service}/api</span></code></p>
+<p>Die OpenAPI-3.1-Beschreibung des Dienstes, nur mit den Operationen, für die der Benutzer Rechte hat. Mit <code class="docutils literal notranslate"><span class="pre">?f=html</span></code>
+zeigt Scalar die Beschreibung an, mit allen Parametern und Schemas zum Ausprobieren (auch in <em>Browse Services</em>
+verlinkt). Die Beispiele sind mit Werten des Dienstes ausgefüllt (Gesamtausdehnung und Koordinatensystem der
+Karte, die standardmäßig sichtbaren Layer, der erste abfragbare Layer, der Kartenmittelpunkt für Identify), so dass
+ein Request gleich gesendet werden kann.</p>
+</li>
+</ul>
+</li>
+</ul>
 <p><strong>Token</strong></p>
 <ul>
 <li><p><strong>GET/POST</strong></p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/Token</span></code></p>
+<li><p><code class="docutils literal notranslate"><span class="pre">https://{server}/geojsonservice/v1/token</span></code></p>
 <p>Liefert ein Token zur Authentifizierung oder führt die Authentifizierung durch.</p>
 </li>
 </ul>
@@ -283,8 +351,12 @@ Im Folgenden sind die verschiedenen API-Endpunkte aufgeführt, zusammen mit eine
 <li class="toctree-l1"><a class="reference internal" href="capabilities.html">(Service)Capabilities Endpoint</a></li>
 <li class="toctree-l1"><a class="reference internal" href="map.html">Map Endpoint</a></li>
 <li class="toctree-l1"><a class="reference internal" href="legend.html">Legend Endpoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layers.html">Layers Endpoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="identify.html">Identify Endpoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find.html">Find Endpoint</a></li>
 <li class="toctree-l1"><a class="reference internal" href="query.html">Query Endpoint</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">Features Endpoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applyedits.html">ApplyEdits Endpoint</a></li>
 <li class="toctree-l1"><a class="reference internal" href="token.html">Token Endpoint</a></li>
 <li class="toctree-l1"><a class="reference internal" href="errorhandling.html">Error Handling</a></li>
 </ul>

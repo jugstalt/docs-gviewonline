@@ -165,7 +165,9 @@ that excludes every type is an error.</p></li>
 the network or in <code class="docutils literal notranslate"><span class="pre">inSR</span></code>. This includes <strong>helper nodes</strong>, i.e. line ends that only arise during the build (e.g. where
 a <em>Leitung</em> hangs on an <em>Anlagen Verbinder</em> at a station). The radius is given in network units, the default is
 10 × the build tolerance. If no node lies within the radius, the request fails. The comma inside <code class="docutils literal notranslate"><span class="pre">&#64;x,y</span></code> does not
-split the list, e.g. <code class="docutils literal notranslate"><span class="pre">start=&#64;5,0,</span> <span class="pre">Trafo%231</span></code>.</p></li>
+split the list, e.g. <code class="docutils literal notranslate"><span class="pre">start=&#64;5,0,</span> <span class="pre">Trafo%231</span></code>. When several nodes lie at the place (separate tiers, see
+<a class="reference internal" href="administration.html#network-service-connect"><span class="std std-ref">Connecting and splitting at build</span></a>), <code class="docutils literal notranslate"><span class="pre">tier</span></code> chooses the node of the tier; when more than one is left, the request fails
+and lists them (then give one by <code class="docutils literal notranslate"><span class="pre">Layer#OID</span></code> or id).</p></li>
 </ul>
 <p>Merged points resolve to the node they were merged into.
 For <code class="docutils literal notranslate"><span class="pre">path</span></code> (<code class="docutils literal notranslate"><span class="pre">from</span></code>, <code class="docutils literal notranslate"><span class="pre">to</span></code>) and <code class="docutils literal notranslate"><span class="pre">info</span></code> (<code class="docutils literal notranslate"><span class="pre">node</span></code>) the reference must result in exactly one node.</p>
@@ -261,7 +263,7 @@ Default <code class="docutils literal notranslate"><span class="pre">false</span
 network. The radius stays in network units.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">f</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">json</span></code>, <code class="docutils literal notranslate"><span class="pre">pjson</span></code> (indented), <code class="docutils literal notranslate"><span class="pre">geojson</span></code> or <code class="docutils literal notranslate"><span class="pre">csv</span></code>. Without <code class="docutils literal notranslate"><span class="pre">f</span></code>: HTML form.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">json</span></code> (default), <code class="docutils literal notranslate"><span class="pre">pjson</span></code> (indented), <code class="docutils literal notranslate"><span class="pre">geojson</span></code> or <code class="docutils literal notranslate"><span class="pre">csv</span></code>. Without any parameter: HTML form.</p></td>
 </tr>
 </tbody>
 </table>

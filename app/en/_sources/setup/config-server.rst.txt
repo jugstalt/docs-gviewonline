@@ -105,8 +105,8 @@ The **gView.Server** can be configured via the file ``_config/mapserver.json``:
         }
     }
 
-The ``security`` section (reverse proxies, HTTPS, admin networks, login lockout, sessions, CORS
-and limits) is described in :ref:`security-server`.
+The ``security`` section (reverse proxies, HTTPS, admin networks, login lockout, sessions,
+two-factor login, CORS and limits) is described in :ref:`security-server`.
 
 In the first section, paths and URLs are defined. These are initially set up via the ``gview.deploy``
 tool and can easily be adjusted here.

@@ -190,19 +190,24 @@ Knoten-Muster, die <code class="docutils literal notranslate"><span class="pre">
 <h2>Metadaten aktualisieren<a class="headerlink" href="#metadaten-aktualisieren" title="Link to this heading">¶</a></h2>
 <p>Versorgungsquellen, Kunden, Regeln und Ebenen hängen nicht von den Daten ab. Um sie zu ändern, ohne die Shards neu zu bauen:</p>
 <ul class="simple">
-<li><p><strong>Carto:</strong> Seite des Netzwerk-Moduls, Tab <strong>Ebenen</strong>, <strong>Refresh metadata</strong>.</p></li>
+<li><p><strong>Carto:</strong> Seite des Netzwerk-Moduls, Tab <strong>Tiers</strong>, <strong>Refresh metadata</strong>.</p></li>
 <li><p><strong>Kommandozeile:</strong> <code class="docutils literal notranslate"><span class="pre">gView.Cmd</span> <span class="pre">--command</span> <span class="pre">Network</span> <span class="pre">-u</span> <span class="pre">refresh-metadata</span> <span class="pre">-mxl</span> <span class="pre">map.mxl</span></code> (oder <code class="docutils literal notranslate"><span class="pre">-config</span> <span class="pre">net.json</span></code>, optional <code class="docutils literal notranslate"><span class="pre">-output</span> <span class="pre">&lt;Netzwerkverzeichnis&gt;</span></code>).</p></li>
 </ul>
-<p>Es werden nur <code class="docutils literal notranslate"><span class="pre">supplySources</span></code>, <code class="docutils literal notranslate"><span class="pre">customers</span></code>, <code class="docutils literal notranslate"><span class="pre">rules</span></code> und <code class="docutils literal notranslate"><span class="pre">tiers</span></code> in <code class="docutils literal notranslate"><span class="pre">network.json</span></code> neu geschrieben (die Ebenen-Muster
-werden gegen die Typen des gebauten Netzwerks geprüft). Der Server öffnet das Netzwerk neu, sobald sich <code class="docutils literal notranslate"><span class="pre">network.json</span></code> ändert.</p>
+<p>Es werden nur <code class="docutils literal notranslate"><span class="pre">supplySources</span></code>, <code class="docutils literal notranslate"><span class="pre">customers</span></code>, <code class="docutils literal notranslate"><span class="pre">rules</span></code> und <code class="docutils literal notranslate"><span class="pre">tiers</span></code> in <code class="docutils literal notranslate"><span class="pre">network.json</span></code> neu geschrieben (die Ebenen und
+Muster werden gegen die Typen des gebauten Netzwerks geprüft). <code class="docutils literal notranslate"><span class="pre">separateTiers</span></code> und <code class="docutils literal notranslate"><span class="pre">connectRules</span></code> wirken beim Aufbau:
+nach einer Änderung muss das Netzwerk neu gebaut werden. Der Server öffnet das Netzwerk neu, sobald sich <code class="docutils literal notranslate"><span class="pre">network.json</span></code> ändert.</p>
 </section>
 <section id="ebenen-tiers">
 <span id="network-service-tiers"></span><h2>Ebenen (Tiers)<a class="headerlink" href="#ebenen-tiers" title="Link to this heading">¶</a></h2>
-<p>Eine Ebene schränkt Suchen auf einen Teil des Netzes ein, z. B. Hoch- (HS), Mittel- (MS) oder Niederspannung (NS). Die
-Netzwerk-Konfiguration hat den Abschnitt <code class="docutils literal notranslate"><span class="pre">tiers</span></code> (beim Aufbau und mit <em>Refresh metadata</em> in <code class="docutils literal notranslate"><span class="pre">network.json</span></code> geschrieben):</p>
+<p>Eine Ebene schränkt Suchen auf einen Teil des Netzes ein, z. B. Hoch- (HS), Mittel- (MS) oder Niederspannung (NS).
+<strong>Die Ebene eines Typs ist der Wert seiner ersten Facette</strong> (z. B. <code class="docutils literal notranslate"><span class="pre">Ebene</span></code>): <code class="docutils literal notranslate"><span class="pre">[Mittelspannung,Leitung,Kabel]</span></code> gehört
+zur Ebene <code class="docutils literal notranslate"><span class="pre">Mittelspannung</span></code>. Jeder Wert der ersten Facette, den Kantentypen verwenden, ist eine Ebene, auch ohne Eintrag.
+In <em>Carto</em> ergibt eine Gruppe je Ebene den Wert über die Typ-Vorlage <code class="docutils literal notranslate"><span class="pre">{group-name}</span></code> der ersten Facette.</p>
+<p>Der Abschnitt <code class="docutils literal notranslate"><span class="pre">tiers</span></code> der Netzwerk-Konfiguration (beim Aufbau und mit <em>Refresh metadata</em> in <code class="docutils literal notranslate"><span class="pre">network.json</span></code>
+geschrieben) ergänzt nur Einstellungen:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"tiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MS"</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">"filter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mittelspannung.*"</span><span class="p">,</span><span class="w"> </span><span class="nt">"sources"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[*,Umspannwerk,*]"</span><span class="p">,</span><span class="w"> </span><span class="nt">"sinks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[*,Trafo,*]"</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NS"</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">"filter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Niederspannung.*"</span><span class="p">,</span><span class="w"> </span><span class="nt">"sources"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[*,Trafo,*]"</span><span class="p">,</span><span class="w"> </span><span class="nt">"sinks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[*,Kunde,*]"</span><span class="p">,</span><span class="w"> </span><span class="nt">"block"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[*,Schalter,*]"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mittelspannung"</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">"sources"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[*,Umspannwerk,*]"</span><span class="p">,</span><span class="w"> </span><span class="nt">"sinks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[*,Trafo,*]"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Niederspannung"</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">"sources"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[*,Trafo,*]"</span><span class="p">,</span><span class="w"> </span><span class="nt">"sinks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[*,Kunde,*]"</span><span class="p">,</span><span class="w"> </span><span class="nt">"block"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[*,Schalter,*]"</span><span class="w"> </span><span class="p">}</span>
 <span class="p">]</span>
 </pre></div>
 </div>
@@ -218,31 +223,27 @@ Netzwerk-Konfiguration hat den Abschnitt <code class="docutils literal notransla
 </thead>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
-<td><p>Name der Ebene, eindeutig, kein Komma. Wird als Parameter <code class="docutils literal notranslate"><span class="pre">tier</span></code> verwendet.</p></td>
+<td><p>Ein Wert der ersten Facette. Wird als Parameter <code class="docutils literal notranslate"><span class="pre">tier</span></code> verwendet.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">order</span></code></p></td>
-<td><p>Rang: niedriger ist weiter oben (HS vor MS vor NS).</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">filter</span></code></p></td>
-<td><p>Kantentypen der Ebene (Typ-Muster, siehe unten).</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">nodes</span></code></p></td>
-<td><p>Optionales Knoten-Muster: Knoten, die zur Ebene gehören, obwohl keine ihrer Kanten sie berührt.</p></td>
+<td><p>Rang: niedriger ist weiter oben (HS vor MS vor NS). Leer: die Nummer des Facettenwerts.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sources</span></code>, <code class="docutils literal notranslate"><span class="pre">sinks</span></code></p></td>
 <td><p>Knotenreferenzen oder Muster. Sie ersetzen <code class="docutils literal notranslate"><span class="pre">supplySources</span></code> / <code class="docutils literal notranslate"><span class="pre">customers</span></code>, wenn die Ebene durchsucht wird
-(leer: die globalen).</p></td>
+(leer: die globalen). Mit <code class="docutils literal notranslate"><span class="pre">separateTiers</span></code> dürfen Linienenden der Ebene an Knoten dieser Typen anschließen.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">block</span></code></p></td>
 <td><p>Knoten, die in jeder Suche auf der Ebene gesperrt sind.</p></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Zugehörigkeit.</strong> Kanten gehören über ihren Typ zu einer Ebene. Ein Knoten gehört zu jeder Ebene, deren Kanten ihn berühren;
-ein Trafo zwischen Mittel- und Niederspannung liegt also in beiden.</p>
-<p><strong>Muster-Syntax</strong> (auch für <code class="docutils literal notranslate"><span class="pre">filter</span></code>): <code class="docutils literal notranslate"><span class="pre">|</span></code> ist <em>oder</em>, <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> ist <em>und</em> (bindet stärker als <code class="docutils literal notranslate"><span class="pre">|</span></code>), <code class="docutils literal notranslate"><span class="pre">!</span></code> verneint einen Term.
-<code class="docutils literal notranslate"><span class="pre">Mittelspannung.*</span> <span class="pre">&amp;</span> <span class="pre">!Mittelspannung.Freileitung</span> <span class="pre">|</span> <span class="pre">Niederspannung.*</span></code>. Ein führendes <code class="docutils literal notranslate"><span class="pre">!</span></code> in einem Muster ohne <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> und ohne
-weiteres <code class="docutils literal notranslate"><span class="pre">!</span></code> verneint wie bisher das ganze Muster (<code class="docutils literal notranslate"><span class="pre">!a</span> <span class="pre">|</span> <span class="pre">b</span></code> = alles außer a und b).</p>
+<p><strong>Zugehörigkeit.</strong> Kanten gehören zur Ebene ihres Typs. Ein Knoten gehört zur Ebene seines Typs und zu jeder Ebene, deren
+Kanten ihn berühren; ein Trafo zwischen Mittel- und Niederspannung liegt also in beiden.</p>
+<p><strong>Muster-Syntax:</strong> <code class="docutils literal notranslate"><span class="pre">[Mittelspannung,*,*]</span></code> hat einen Eintrag je Facette (<code class="docutils literal notranslate"><span class="pre">*</span></code> = beliebig). <code class="docutils literal notranslate"><span class="pre">|</span></code> ist <em>oder</em>, <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> ist
+<em>und</em> (bindet stärker als <code class="docutils literal notranslate"><span class="pre">|</span></code>), <code class="docutils literal notranslate"><span class="pre">!</span></code> verneint einen Term: <code class="docutils literal notranslate"><span class="pre">[Mittelspannung,*,*]</span> <span class="pre">&amp;</span> <span class="pre">![*,*,Freileitung]</span> <span class="pre">|</span> <span class="pre">[Niederspannung,*,*]</span></code>.
+Ein führendes <code class="docutils literal notranslate"><span class="pre">!</span></code> in einem Muster ohne <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> und ohne weiteres <code class="docutils literal notranslate"><span class="pre">!</span></code> verneint das ganze Muster (<code class="docutils literal notranslate"><span class="pre">!a</span> <span class="pre">|</span> <span class="pre">b</span></code> = alles außer a
+und b). <code class="docutils literal notranslate"><span class="pre">untyped</span></code> sind die Hilfsknoten (Linienenden ohne Punkt); mit getrennten Ebenen hat jede Ebene ihren eigenen
+Hilfsknotentyp, z. B. <code class="docutils literal notranslate"><span class="pre">untyped</span> <span class="pre">&amp;</span> <span class="pre">[Niederspannung,*,*]</span></code>. Die Kurzform <code class="docutils literal notranslate"><span class="pre">Mittelspannung.*</span></code> wird weiter gelesen.</p>
 <p><strong>Suchen</strong> (<code class="docutils literal notranslate"><span class="pre">trace</span></code>, <code class="docutils literal notranslate"><span class="pre">reach</span></code>, <code class="docutils literal notranslate"><span class="pre">path</span></code>, <code class="docutils literal notranslate"><span class="pre">supply</span></code>, <code class="docutils literal notranslate"><span class="pre">outage</span></code>, <code class="docutils literal notranslate"><span class="pre">validate</span></code>) nehmen <code class="docutils literal notranslate"><span class="pre">tier</span></code> (Namen, durch Komma getrennt):</p>
 <ul class="simple">
 <li><p>Verwendet werden die Kantentypen der Ebenen, geschnitten mit <code class="docutils literal notranslate"><span class="pre">filter</span></code>. Die Sperren der Ebenen werden zu <code class="docutils literal notranslate"><span class="pre">block</span></code> addiert.</p></li>
@@ -253,9 +254,72 @@ größten <code class="docutils literal notranslate"><span class="pre">order</sp
 mit <code class="docutils literal notranslate"><span class="pre">tier</span></code> in der Anfrage werden alle Regeln so eingeschränkt. Die Endtypen einer Kantenregel brauchen keinen Schnitt: die Enden
 sind Enden von Kanten der Ebene und gehören damit unabhängig von ihrem Typ zur Ebene. Bleibt einer Regel nichts zu prüfen (z. B.
 Regel-Ebene <code class="docutils literal notranslate"><span class="pre">NS</span></code> und <code class="docutils literal notranslate"><span class="pre">tier=MS</span></code> in der Anfrage), wird sie übersprungen und das Ergebnis sagt es.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;x,y</span></code>: liegen mehrere Knoten an der Stelle (getrennte Ebenen), gilt der Knoten der Ebene.</p></li>
 </ul>
 <p>Ohne <code class="docutils literal notranslate"><span class="pre">tier</span></code> ändert sich nichts. Die Ebenen stehen in <code class="docutils literal notranslate"><span class="pre">tiers</span></code> der NetworkServer-Ressource. In <em>Carto</em> hat das
 Netzwerk-Suchwerkzeug das Dropdown <strong>Ebene</strong>.</p>
+</section>
+<section id="verbinden-und-teilen-beim-aufbau">
+<span id="network-service-connect"></span><h2>Verbinden und Teilen beim Aufbau<a class="headerlink" href="#verbinden-und-teilen-beim-aufbau" title="Link to this heading">¶</a></h2>
+<p>Ohne weitere Angaben verbindet der Aufbau alles, was innerhalb der Toleranz liegt: Linienenden und Punkte werden zu einem
+Knoten, und ein Knoten am Inneren einer Linie teilt sie. Werden die Ebenen in verschiedenen Abteilungen gepflegt, liegen
+Elemente aber oft nur zufällig aufeinander, z. B. eine Niederspannungsmuffe auf einem Stützpunkt einer Mittelspannungsleitung.
+Diese Einstellungen der Netzwerk-Konfiguration steuern das:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"separateTiers"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="nt">"nodesOnLine"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ignore"</span><span class="p">,</span>
+<span class="nt">"lineEndsOnLine"</span><span class="p">:</span><span class="w"> </span><span class="s2">"report"</span><span class="p">,</span>
+<span class="nt">"connectRules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inside"</span><span class="p">,</span><span class="w"> </span><span class="nt">"nodes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[Niederspannung,Trenner,*]"</span><span class="p">,</span><span class="w"> </span><span class="nt">"edges"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[Niederspannung,*,*]"</span><span class="p">,</span><span class="w"> </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"connect"</span><span class="w"> </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">separateTiers</span></code> (Standard <code class="docutils literal notranslate"><span class="pre">false</span></code>): verbunden und geteilt wird nur innerhalb einer Ebene. Linienenden einer Ebene
+schließen zusätzlich an ihre <code class="docutils literal notranslate"><span class="pre">sources</span></code> an (Typ-Muster, z. B. der Trafo der Niederspannung). Elemente ohne Ebene
+verbinden sich mit allem. Echte Knoten verschiedener Ebenen an derselben Stelle sind kein Konflikt, sondern zwei Knoten;
+Linienenden verschiedener Ebenen an derselben Stelle ergeben zwei Hilfsknoten (ein Übergang zwischen Ebenen braucht
+einen echten Knoten). Darf ein Linienende an mehrere Knoten einer Stelle anschließen, werden sie wie mit
+<code class="docutils literal notranslate"><span class="pre">nodeConflicts</span></code> zusammengeführt (<code class="docutils literal notranslate"><span class="pre">priorityByToc</span></code>: der Layer weiter oben im TOC gewinnt, die anderen werden Aliase).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">connectRules</span></code>: die erste passende Regel entscheidet, ohne Treffer die Ebenen (oder: alles verbindet sich).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nodesOnLine</span></code> und <code class="docutils literal notranslate"><span class="pre">lineEndsOnLine</span></code> (<code class="docutils literal notranslate"><span class="pre">connect</span></code>, <code class="docutils literal notranslate"><span class="pre">ignore</span></code> oder <code class="docutils literal notranslate"><span class="pre">report</span></code>, Standard <code class="docutils literal notranslate"><span class="pre">connect</span></code>): ob ein echter
+Knoten bzw. ein Linienende (T-Stoß) am Inneren einer Linie sie teilt, wenn keine Regel passt und – mit <code class="docutils literal notranslate"><span class="pre">separateTiers</span></code> –
+beide in derselben Ebene liegen. Ein nicht geteilter T-Stoß bleibt unverbunden; mit <code class="docutils literal notranslate"><span class="pre">report</span></code> stehen die Stellen im
+Aufbau-Log.</p></li>
+</ul>
+<p>Die Entscheidung beim Teilen: erste passende Regel, dann eine andere Ebene (<code class="docutils literal notranslate"><span class="pre">ignore</span></code>), dann <code class="docutils literal notranslate"><span class="pre">nodesOnLine</span></code> /
+<code class="docutils literal notranslate"><span class="pre">lineEndsOnLine</span></code>. Beim Anschließen an Linienenden: erste passende Regel, dann die <code class="docutils literal notranslate"><span class="pre">sources</span></code> der Ebene, dann die Ebenen.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feld</p></th>
+<th class="head"><p>Bedeutung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">at</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">end</span></code>: ein Linienende trifft einen Knoten (anschließen?). <code class="docutils literal notranslate"><span class="pre">inside</span></code>: ein Knoten liegt am Inneren einer Linie
+(teilen?); der Knoten ist ein echter Knoten oder der Hilfsknoten eines T-Stoßes (<code class="docutils literal notranslate"><span class="pre">untyped</span></code>). <code class="docutils literal notranslate"><span class="pre">any</span></code> (Standard): beides.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">nodes</span></code></p></td>
+<td><p>Knotentypen (Muster), z. B. <code class="docutils literal notranslate"><span class="pre">[Niederspannung,Trenner,*]</span></code> oder <code class="docutils literal notranslate"><span class="pre">untyped</span> <span class="pre">&amp;</span> <span class="pre">[Niederspannung,*,*]</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">edges</span></code></p></td>
+<td><p>Kantentypen (Muster).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">action</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">connect</span></code> (verbinden bzw. teilen), <code class="docutils literal notranslate"><span class="pre">ignore</span></code> (nicht verbinden, still) oder <code class="docutils literal notranslate"><span class="pre">report</span></code> (nicht verbinden und im
+Aufbau melden: <code class="docutils literal notranslate"><span class="pre">ConnectionRefused</span></code> / <code class="docutils literal notranslate"><span class="pre">SplitRefused</span></code> mit Ort und beiden Objekten, wahrscheinlich ein Datenfehler).</p></td>
+</tr>
+</tbody>
+</table>
+<p>Das Beispiel beschreibt ein Netz, dessen Linien schon an den echten Knoten aufgeteilt sind: nur Trenner teilen eine
+Niederspannungslinie, andere Knoten teilen nichts, T-Stöße werden gemeldet. In <em>Carto</em>: Seite des Netzwerk-Moduls, Tab
+<strong>Connections</strong> (oben <em>Separate tiers</em> und die beiden Standards, darunter die Regeln). Im Muster-Editor wählt der Schalter
+<strong>untyped</strong> einer Zeile die Hilfsknoten dieser Typen (<code class="docutils literal notranslate"><span class="pre">untyped</span> <span class="pre">&amp;</span> <span class="pre">[Niederspannung,*,*]</span></code>); <strong>Text</strong> zeigt das ganze Muster
+als Text, z. B. für <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> und <code class="docutils literal notranslate"><span class="pre">!</span></code>. Nach einer Änderung muss das Netzwerk neu gebaut werden.</p>
 </section>
 <section id="konfiguration-appsettings-abschnitt-network">
 <h2>Konfiguration (appsettings, Abschnitt <code class="docutils literal notranslate"><span class="pre">Network</span></code>)<a class="headerlink" href="#konfiguration-appsettings-abschnitt-network" title="Link to this heading">¶</a></h2>
@@ -274,15 +338,18 @@ Netzwerk-Suchwerkzeug das Dropdown <strong>Ebene</strong>.</p>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MaxResultNodes</span></code></p></td>
 <td><p>50000</p></td>
-<td><p>Größere Ergebnisse werden abgeschnitten (<code class="docutils literal notranslate"><span class="pre">exceededLimit</span></code>).</p></td>
+<td><p>Ergebnisse mit mehr Knoten oder mehr Kanten werden abgeschnitten (<code class="docutils literal notranslate"><span class="pre">exceededLimit</span></code>).
+Die Suche selbst läuft vollständig.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TimeoutSeconds</span></code></p></td>
 <td><p>120</p></td>
-<td><p>Längere Suchen werden mit Fehler 504 beantwortet.</p></td>
+<td><p>Längere Suchen werden mit Fehler 504 beantwortet; die Zeit gilt auch für das Lesen der Geometrien und
+Attribute des Ergebnisses.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MaxParallel</span></code></p></td>
 <td><p>2</p></td>
-<td><p>Gleichzeitig laufende Suchen, weitere warten.</p></td>
+<td><p>Gleichzeitig laufende Suchen. Weitere warten höchstens <code class="docutils literal notranslate"><span class="pre">TimeoutSeconds</span></code> auf einen freien Platz, dann
+Fehler 503. Beschreibung und Formulare warten nicht.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MaxLoadedShards</span></code></p></td>
 <td><p>512</p></td>
@@ -318,6 +385,7 @@ Netzwerk-Suchwerkzeug das Dropdown <strong>Ebene</strong>.</p>
 <li><a class="reference internal" href="#netzwerk-konfiguration">Netzwerk-Konfiguration</a></li>
 <li><a class="reference internal" href="#metadaten-aktualisieren">Metadaten aktualisieren</a></li>
 <li><a class="reference internal" href="#ebenen-tiers">Ebenen (Tiers)</a></li>
+<li><a class="reference internal" href="#verbinden-und-teilen-beim-aufbau">Verbinden und Teilen beim Aufbau</a></li>
 <li><a class="reference internal" href="#konfiguration-appsettings-abschnitt-network">Konfiguration (appsettings, Abschnitt <code class="docutils literal notranslate"><span class="pre">Network</span></code>)</a></li>
 </ul>
 </li>

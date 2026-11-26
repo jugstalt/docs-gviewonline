@@ -32,4 +32,6 @@ only of vector data.
     labeling
     scales
     layersettings
+    network
+    network-tools
     managemaps

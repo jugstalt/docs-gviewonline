@@ -22,20 +22,28 @@ The structure of the **ErrorResponse** is defined as follows:
 - **errorCode**: (int) The error code describing the type of error.  
 - **errorMessage**: (string) A description of the error that occurred.  
 
+The HTTP status of the response is the **errorCode**; only for 498 and 499 it is 401.
+
 Examples of Error Codes
 -----------------------  
 
 - **400**: Bad Request - The request parameters are invalid or incomplete.  
   - Example: `"errorMessage": "Invalid request parameters."`  
 
-- **498**: Invalid Token - The provided token is invalid or expired.  
+- **403**: Forbidden - The user doesn't have the right for the request (e.g. *Query* or *Edit*).
+
+- **404**: Not Found - The layer (query) or the object doesn't exist or is outside the definition query of the layer (update, delete).  
+
+- **412**: Precondition Failed - A feature doesn't have the given version anymore (applyEdits).  
+
+- **498**: Invalid Token - The provided token is invalid or expired (HTTP status 401).  
   - Example: `"errorMessage": "The provided token is invalid."`  
 
-- **499**: Token Required - A valid token is required for the request but was not provided.  
+- **499**: Token Required - A valid token is required for the request but was not provided (HTTP status 401).  
   - Example: `"errorMessage": "Token is required for this request."`  
 
 - **500**: Internal Server Error - An internal error occurred on the server.  
-  - Example: `"errorMessage": "An unexpected error occurred on the server."`  
+  - Example: `"errorMessage": "internal server error (id: 3f2a9c1b)"`; the details are only in the log of the server, under the same id.  
 
 Use Cases
 ---------  

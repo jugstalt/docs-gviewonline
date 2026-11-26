@@ -16,6 +16,8 @@ Recommended setup
   always on the internet: without an entry every host in the private networks counts as a proxy.
 - Keep the admin pages in your internal network (``security:manage:allowed-networks``, the
   default) or use an OIDC admin login.
+- Switch on the two-factor login for admins, on the internet as a requirement
+  (``security:manage:two-factor = required``, see :ref:`security-server-2fa`).
 - Set ``force-https`` when the server is only reachable via https.
 - Create the first admin with ``GVIEW_ADMIN_USER``/``GVIEW_ADMIN_PASSWORD`` or the setup code
   from the log before the server is reachable from outside (see :ref:`server_postinstallation`).
@@ -52,7 +54,11 @@ All settings are optional; the values shown are the defaults.
                 // Default: loopback and the private networks
                 "allowed-networks": [ "10.1.5.0/24" ],
                 // admin login, renewed while the admin is active
-                "session-hours": 8
+                "session-hours": 8,
+                // two-factor login (TOTP) for the admin login: off | optional | required
+                "two-factor": "optional",
+                // name of the server in the authenticator app
+                "two-factor-issuer": "gView Server"
             },
 
             "login": {
@@ -125,7 +131,8 @@ request is logged. The **Manage** links are hidden outside.
 - Default: loopback and the private networks.
 - ``"*"`` allows everywhere. Do **not** use it for a server on the internet: login and admin pages
   are then reachable for everyone and only protected by the password. Enter the admins' networks,
-  use a VPN or an OIDC admin login instead.
+  use a VPN or an OIDC admin login instead. If there is no other way, at least make the
+  two-factor login required; otherwise the server writes a warning to the log at startup.
 - With an OIDC admin login (``Authentication:Type = oidc``) the restriction only applies if
   ``allowed-networks`` is configured.
 - *gView Carto* publishes services with ``BrowseServices/PublishService``: the Carto server must
@@ -145,6 +152,73 @@ Logins, lockout and sessions
   security stamp of the login. Changing the password ends all sessions and tokens of that user.
   **Sign out everywhere** (sidebar, for admins) does the same without changing the password; it
   writes ``<user>.stamp`` next to the ``<user>.lgn`` file.
+
+.. _security-server-2fa:
+
+Two-factor login
+----------------
+
+The admin login can ask for a code of an authenticator app in addition to the password (TOTP,
+RFC 6238: 6 digits, a new one every 30 seconds; e.g. Microsoft Authenticator, Google
+Authenticator, Aegis, 1Password, Bitwarden).
+
+``security:manage:two-factor``:
+
+- ``off``: no two-factor login.
+- ``optional`` (default): every admin can set it up for themselves. Admins who did are asked
+  for the code after the password.
+- ``required``: required for all admins. An admin without one has to set it up right after the
+  password, before reaching the admin pages. Existing sessions of admins without a second
+  factor end when switching. Strongly recommended for servers whose admin pages are reachable
+  from the internet.
+
+**Set up:** sidebar **Two-factor login** (page ``/manage/twofactor``). Scan the QR code with the
+app (or enter the key manually) and confirm with a code from the app within 10 minutes; **Sign out
+everywhere** or a new password cancels a running setup. The server then shows 10
+recovery codes (``xxxxx-xxxxx``) **once**: copy them or download them as a text file and keep
+them safe, e.g. in a password manager. Setting it up ends all other sessions of this admin.
+
+**Log in:** after username and password the login page asks for the code. A recovery code can
+be entered instead; each recovery code works once. When two or fewer are left, the server shows
+a hint after the login.
+
+- Codes are accepted 30 seconds before and after the current time. The clocks of server and
+  phone must be correct (NTP).
+- A code that was already used is refused.
+- Wrong codes count like wrong passwords for the login lockout (``security:login``). After 5
+  wrong codes the login starts again with the password. Between password and code the browser
+  only holds a short-lived cookie (5 minutes) without admin rights.
+
+**Manage** (page **Two-factor login**, logged in):
+
+- *New recovery codes:* new recovery codes with a code from the app; the old ones become
+  invalid.
+- *New device:* move to a new phone (code from the app or a recovery code, then a new QR code).
+  The old device stays valid until the new one is confirmed. Ends all other sessions.
+- *Disable:* only with ``optional``, with password and code. Ends all other sessions.
+
+**Storage:** ``<user>.2fa`` next to ``<user>.lgn`` in the folder ``_login/manage``. The secret is
+encrypted with the server certificate (``crypto0.pfx``), the recovery codes are hashed. Back the
+file up like ``crypto0.pfx``, and keep it out of other hands.
+
+**Emergency reset** (phone and recovery codes lost):
+
+- delete the file ``_login/manage/<user>.2fa``, or
+- start the server with the environment variable (or configuration value)
+  ``GVIEW_ADMIN_RESET_2FA``: ``admin`` or ``admin1,admin2`` for single admins, ``*`` for all.
+  Handy for Docker without a shell. The variable applies on **every** start while it is set,
+  and the server then warns in the log: remove it after the reset.
+
+The reset ends all sessions of the admin. With ``required`` the admin sets the two-factor login
+up again at the next login, with ``optional`` the password is enough.
+
+**Not affected:**
+
+- Token users (token login, ``generateToken``, Basic auth, url tokens) and with them publishing
+  from *gView Carto*: these are mostly programs that cannot enter a code. Give token users with
+  publish rights long random passwords and change them regularly.
+- OIDC admin login (``Authentication:Type = oidc``): two-factor login is then up to the
+  identity provider.
 
 CORS, cookies and security headers
 ----------------------------------

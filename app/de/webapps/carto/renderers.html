@@ -134,6 +134,8 @@
 <li class="toctree-l3"><a class="reference internal" href="labeling.html">Label Renderer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="scales.html">Maßstabsgrenzen</a></li>
 <li class="toctree-l3"><a class="reference internal" href="layersettings.html">Weitere Layereigenschaften</a></li>
+<li class="toctree-l3"><a class="reference internal" href="network.html">Netzwerke erstellen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="network-tools.html">Netzwerk-Werkzeuge</a></li>
 <li class="toctree-l3"><a class="reference internal" href="managemaps.html">Speichern und Verwalten von Kartendokumenten</a></li>
 </ul>
 </li>
@@ -208,8 +210,9 @@ darzustellen. Dazu wählt man hier einfach <code class="docutils literal notrans
 <p>In der Karte würde das Ergebnis dann etwa so aussehen:</p>
 <img alt="../../_images/renderers3.png" src="../../_images/renderers3.png" />
 <p>Um ein Symbol im Renderer-Dialog zu ändern, reicht ein Klick auf das Symbol in der entsprechenden
-Kategorie. Damit wird die <em>Symbol Maske</em> angezeigt. Von dort ist es wieder möglich, den
-<strong>Symbol Composer</strong> zu öffnen.
+Kategorie. Damit klappt unter der Kategorie die <em>Symbol Maske</em> auf, die Liste bleibt dabei stehen. Von dort
+ist es wieder möglich, den <strong>Symbol Composer</strong> zu öffnen. Ein erneuter Klick auf das Symbol oder das ✕
+schließt die Maske wieder. Es ist immer nur eine Maske offen.
 Eine einzelne Kategorie kann mit dem <em>Papierkorb</em>-Symbol gelöscht werden.</p>
 <p>Am unteren Rand der Liste gibt es noch weitere Buttons:</p>
 <ul>
@@ -231,6 +234,85 @@ Features immer über untergeordneten Features gezeichnet werden (Autobahnen übe
 </a>
 </li>
 </ul>
+<section id="alle-symbole-auf-einmal-andern">
+<span id="carto-renderers-bulk-edit"></span><h3>Alle Symbole auf einmal ändern<a class="headerlink" href="#alle-symbole-auf-einmal-andern" title="Link to this heading">¶</a></h3>
+<p>Bei vielen Kategorien muss nicht jedes Symbol einzeln angeklickt werden. Im Menü <code class="docutils literal notranslate"><span class="pre">More</span> <span class="pre">...</span></code>
+gibt es zwei Einträge, die auf alle Kategorien gleichzeitig wirken. Beide gibt es auch im
+<strong>Many Value Map Renderer</strong> und im <strong>Quantity Renderer</strong>:</p>
+<ul>
+<li><p><strong>Recolor …:</strong> Vergibt die Farben neu, und zwar in der Reihenfolge der Liste. Zur Auswahl stehen:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Palette</span></code>: vordefinierte Farbpaletten. Sequenzielle (z. B. <code class="docutils literal notranslate"><span class="pre">Viridis</span></code>, <code class="docutils literal notranslate"><span class="pre">Blues</span></code>, <code class="docutils literal notranslate"><span class="pre">YlOrRd</span></code>)
+und divergierende (<code class="docutils literal notranslate"><span class="pre">RdYlGn</span></code>, <code class="docutils literal notranslate"><span class="pre">RdBu</span></code>) Paletten werden auf die Anzahl der Kategorien
+verteilt. Qualitative Paletten (<code class="docutils literal notranslate"><span class="pre">Set1</span></code>, <code class="docutils literal notranslate"><span class="pre">Set3</span></code>, <code class="docutils literal notranslate"><span class="pre">Paired</span></code>) wiederholen sich, wenn es
+mehr Kategorien als Farben gibt.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Gradient</span> <span class="pre">(2</span> <span class="pre">colors)</span></code>: ein Verlauf von einer Start- zu einer Endfarbe.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Random</span></code>: zufällige Farben (wie bei <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">all</span> <span class="pre">values</span></code>).</p></li>
+</ul>
+<p>Mit <code class="docutils literal notranslate"><span class="pre">Reverse</span></code> wird die Reihenfolge umgedreht. Bei Flächen kann gewählt werden, ob die Füllung,
+der Umriss oder beides umgefärbt wird. Die vorhandene Transparenz jedes Symbols bleibt erhalten.</p>
+</li>
+<li><p><strong>Set Symbol Properties …:</strong> Setzt einzelne Eigenschaften für alle Symbole auf denselben Wert,
+z. B. die Linienstärke. Übernommen werden nur die angehakten Eigenschaften, alle anderen
+bleiben pro Kategorie erhalten. Je nach Geometrietyp gibt es <code class="docutils literal notranslate"><span class="pre">Color</span></code>, <code class="docutils literal notranslate"><span class="pre">Width</span></code> bzw.
+<code class="docutils literal notranslate"><span class="pre">Outline</span> <span class="pre">width</span></code>, <code class="docutils literal notranslate"><span class="pre">Dash</span> <span class="pre">style</span></code>, <code class="docutils literal notranslate"><span class="pre">Fill</span> <span class="pre">opacity</span></code>, <code class="docutils literal notranslate"><span class="pre">Size</span></code> und <code class="docutils literal notranslate"><span class="pre">Smoothing</span></code>.</p></li>
+</ul>
+<p>Die Kategorie <code class="docutils literal notranslate"><span class="pre">All</span> <span class="pre">Other</span></code> wird standardmäßig ausgelassen und kann im Dialog dazugenommen
+werden. Kategorien mit zusammengesetzten Symbolen (z. B. aus dem <strong>Symbol Stack</strong> des
+<strong>Symbol Composer</strong>) werden übersprungen. Der Dialog zeigt an, wie viele das sind.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Die Änderungen wirken erst mit <code class="docutils literal notranslate"><span class="pre">Apply</span></code>. Mit <code class="docutils literal notranslate"><span class="pre">Cancel</span></code> im Layer-Dialog werden sie verworfen.</p>
+</div>
+</section>
+<section id="ruckgangig-machen">
+<h3>Rückgängig machen<a class="headerlink" href="#ruckgangig-machen" title="Link to this heading">¶</a></h3>
+<p>Über der Liste nimmt <strong>Undo</strong> die letzte Änderung an den Kategorien zurück, der Button nennt sie
+(z. B. <code class="docutils literal notranslate"><span class="pre">Undo</span> <span class="pre">Recolor</span></code>). Es lassen sich bis zu 20 Schritte zurücknehmen. Rückgängig gemacht werden
+<code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">all</span> <span class="pre">values</span></code>, <code class="docutils literal notranslate"><span class="pre">Remove</span> <span class="pre">All</span></code>, <code class="docutils literal notranslate"><span class="pre">Remove,</span> <span class="pre">if</span> <span class="pre">not</span> <span class="pre">exists</span> <span class="pre">in</span> <span class="pre">source</span></code>, <code class="docutils literal notranslate"><span class="pre">Remove</span> <span class="pre">selected</span></code>, das Löschen und
+Verschieben einzelner Kategorien, <strong>Recolor …</strong>, <strong>Set Symbol Properties …</strong>, das Einfügen von Symbolen,
+<strong>Apply to …</strong>, <strong>Order by …</strong>, <strong>Label Style …</strong>, <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Value</span> <span class="pre">=&gt;</span> <span class="pre">Label</span></code> und der <em>Wizard</em> des
+<code class="docutils literal notranslate"><span class="pre">Quantity</span> <span class="pre">Renderer</span></code>. Änderungen in der <em>Symbol Maske</em> einer einzelnen Kategorie haben dort ein eigenes
+<strong>Undo</strong>. Beim Wechsel des Feldes beginnt die Liste der Schritte von vorne.</p>
+</section>
+<section id="anzahl-der-features-pro-kategorie">
+<h3>Anzahl der Features pro Kategorie<a class="headerlink" href="#anzahl-der-features-pro-kategorie" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">all</span> <span class="pre">values</span></code> zählt gleich mit, wie viele Features in jede Kategorie fallen. Für bestehende
+Kategorien gibt es im Menü <code class="docutils literal notranslate"><span class="pre">More</span> <span class="pre">...</span></code> den Eintrag <strong>Count Features</strong>. Die Anzahl wird rechts in der Liste
+angezeigt, Kategorien ohne Features werden ausgegraut. <code class="docutils literal notranslate"><span class="pre">All</span> <span class="pre">Other</span></code> zeigt die Features, die in keine
+andere Kategorie fallen. Gezählt wird mit dem Filter des Layers. Die Zahlen werden nicht gespeichert.</p>
+<p>Mit <strong>Order by …</strong> lässt sich die Liste nach Beschriftung, Wert oder (wenn gezählt) nach Anzahl sortieren,
+<code class="docutils literal notranslate"><span class="pre">All</span> <span class="pre">Other</span></code> bleibt immer am Ende. <strong>Select empty</strong> wählt alle Kategorien ohne Features aus, z. B. um sie
+mit <code class="docutils literal notranslate"><span class="pre">Remove</span> <span class="pre">selected</span></code> zu entfernen.</p>
+</section>
+<section id="kategorien-auswahlen">
+<h3>Kategorien auswählen<a class="headerlink" href="#kategorien-auswahlen" title="Link to this heading">¶</a></h3>
+<p>Jede Kategorie hat links eine Checkbox. Mit gedrückter <code class="docutils literal notranslate"><span class="pre">Shift</span></code>-Taste wird ein ganzer Bereich
+ausgewählt, über der Liste gibt es <code class="docutils literal notranslate"><span class="pre">All</span></code>, <code class="docutils literal notranslate"><span class="pre">None</span></code>, <code class="docutils literal notranslate"><span class="pre">Invert</span></code> und <code class="docutils literal notranslate"><span class="pre">Remove</span> <span class="pre">selected</span></code>.</p>
+<p>Ist etwas ausgewählt, wirken <strong>Recolor …</strong>, <strong>Set Symbol Properties …</strong> und das Einfügen
+von Symbolen nur auf die ausgewählten Kategorien, sonst auf alle. Die Auswahl wird beim Wechsel
+des Feldes zurückgesetzt und nicht gespeichert.</p>
+</section>
+<section id="symbole-kopieren-und-einfugen">
+<h3>Symbole kopieren und einfügen<a class="headerlink" href="#symbole-kopieren-und-einfugen" title="Link to this heading">¶</a></h3>
+<p>Überall, wo die <em>Symbol Maske</em> angezeigt wird, gibt es neben <strong>Random</strong> und <strong>Undo</strong> die Buttons
+<strong>Copy symbol</strong> und <strong>Paste symbol</strong>. Ein kopiertes Symbol kann auch in einem anderen Layer
+eingefügt werden (z. B. im <code class="docutils literal notranslate"><span class="pre">Simple</span> <span class="pre">Renderer</span></code>), solange der Geometrietyp passt.
+Das Einfügen in eine einzelne Symbol Maske kann mit <strong>Undo</strong> zurückgenommen werden.</p>
+<p>Für ganze Kategorien gibt es zwei Wege:</p>
+<ul class="simple">
+<li><p>Im Menü <code class="docutils literal notranslate"><span class="pre">More</span> <span class="pre">...</span></code>: <strong>Paste Symbol</strong> und <strong>Paste Symbol, keep colors</strong> fügen das kopierte Symbol
+in die ausgewählten Kategorien ein (ohne Auswahl in alle außer <code class="docutils literal notranslate"><span class="pre">All</span> <span class="pre">Other</span></code>).</p></li>
+<li><p>In der <em>Symbol Maske</em> einer Kategorie: Das Menü <strong>Apply to …</strong> unter den Einstellungen überträgt das
+Symbol dieser Kategorie auf die ausgewählten bzw. alle anderen Kategorien.</p></li>
+</ul>
+<p>Das Symbol wird jeweils komplett ersetzt, die Beschriftung der Kategorie bleibt. Mit
+<strong>keep colors</strong> behält jede Kategorie ihre Farbe (bei Flächen Füllung und Umriss getrennt), alles
+andere (Strichstärke, Strichart, Transparenz, …) kommt vom eingefügten Symbol. Das ist der schnellste
+Weg, um z. B. eine Strichart auf alle Kategorien zu übertragen. <strong>keep colors</strong> gibt es nur für
+einfache Symbole. Kategorien, die bisher ein zusammengesetztes Symbol hatten, bekommen die Farben
+des eingefügten Symbols. Ein Hinweis zeigt an, wie viele das waren.</p>
+</section>
 </section>
 <section id="many-value-map-renderer">
 <h2>Many Value Map Renderer<a class="headerlink" href="#many-value-map-renderer" title="Link to this heading">¶</a></h2>
@@ -254,6 +336,19 @@ das Ergebnis stimmt. Danach kann der <em>Wizard</em> mit <code class="docutils l
 <p>Der Wizard versucht außerdem, einen fließenden Übergang zwischen den Anfangs- und Endsymbolen herzustellen:</p>
 <a class="reference internal image-reference" href="../../_images/renderers9.png"><img alt="../../_images/renderers9.png" src="../../_images/renderers9.png" width="300" />
 </a>
+<p>Im Wizard kann außerdem gewählt werden:</p>
+<ul class="simple">
+<li><p><strong>Method:</strong> <code class="docutils literal notranslate"><span class="pre">Equal</span> <span class="pre">Interval</span></code> teilt den Wertebereich in gleich breite Klassen (fixe Anzahl oder fixe
+Schrittweite). <code class="docutils literal notranslate"><span class="pre">Quantile</span></code> erzeugt Klassen mit möglichst gleich vielen Features. <code class="docutils literal notranslate"><span class="pre">Natural</span> <span class="pre">Breaks</span> <span class="pre">(Jenks)</span></code>
+legt die Grenzen an die natürlichen Lücken der Werte. Bei sehr vielen Werten wird dafür eine
+gleichmäßige Stichprobe von 5000 Werten verwendet.</p></li>
+<li><p><strong>Colors:</strong> <code class="docutils literal notranslate"><span class="pre">Minimum</span> <span class="pre">to</span> <span class="pre">maximum</span> <span class="pre">symbol</span></code> interpoliert wie oben zwischen den beiden Symbolen. <code class="docutils literal notranslate"><span class="pre">Palette</span></code>
+übernimmt den Stil des Minimum-Symbols und vergibt die Farben aus einer Palette (wie bei <strong>Recolor …</strong>).</p></li>
+<li><p><strong>Decimals:</strong> Anzahl der Nachkommastellen für die Klassengrenzen und die Beschriftung (z. B. <code class="docutils literal notranslate"><span class="pre">10</span> <span class="pre">–</span> <span class="pre">20</span></code>).
+Der Vorschlag ergibt sich aus dem Wertebereich. Als Dezimaltrennzeichen wird immer ein Punkt verwendet.</p></li>
+</ul>
+<p>Minimum, Maximum und Klassen berücksichtigen den Filter des Layers. Nach dem Erzeugen wird die
+Anzahl der Features pro Klasse angezeigt.</p>
 </section>
 <section id="scale-dependent-renderer">
 <h2>Scale Dependent Renderer<a class="headerlink" href="#scale-dependent-renderer" title="Link to this heading">¶</a></h2>
@@ -292,7 +387,14 @@ das die Maßstabsgrenzen innerhalb derer der <em>Renderer</em> angewendet werden
 <li><a class="reference internal" href="#">Feature Renderer</a><ul>
 <li><a class="reference internal" href="#simple-renderer">Simple Renderer</a></li>
 <li><a class="reference internal" href="#simple-renderer-aggregated">Simple Renderer (Aggregated)</a></li>
-<li><a class="reference internal" href="#value-map-renderer">Value Map Renderer</a></li>
+<li><a class="reference internal" href="#value-map-renderer">Value Map Renderer</a><ul>
+<li><a class="reference internal" href="#alle-symbole-auf-einmal-andern">Alle Symbole auf einmal ändern</a></li>
+<li><a class="reference internal" href="#ruckgangig-machen">Rückgängig machen</a></li>
+<li><a class="reference internal" href="#anzahl-der-features-pro-kategorie">Anzahl der Features pro Kategorie</a></li>
+<li><a class="reference internal" href="#kategorien-auswahlen">Kategorien auswählen</a></li>
+<li><a class="reference internal" href="#symbole-kopieren-und-einfugen">Symbole kopieren und einfügen</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#many-value-map-renderer">Many Value Map Renderer</a></li>
 <li><a class="reference internal" href="#quantity-renderer">Quantity Renderer</a></li>
 <li><a class="reference internal" href="#scale-dependent-renderer">Scale Dependent Renderer</a></li>

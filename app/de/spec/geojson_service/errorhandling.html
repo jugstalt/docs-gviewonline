@@ -136,8 +136,12 @@
 <li class="toctree-l2"><a class="reference internal" href="capabilities.html">(Service)Capabilities Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="map.html">Map Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="legend.html">Legend Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers.html">Layers Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identify.html">Identify Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="find.html">Find Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="query.html">Query Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="features.html">Features Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="applyedits.html">ApplyEdits Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="token.html">Token Endpoint</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Error Handling</a></li>
 </ul>
@@ -174,18 +178,22 @@ ein <strong>ErrorResponse</strong> zurückgegeben, der Details über den Fehler 
 <li><p><strong>errorCode</strong>: (int) Der Fehlercode, der den Typ des Fehlers beschreibt.</p></li>
 <li><p><strong>errorMessage</strong>: (string) Eine Beschreibung des aufgetretenen Fehlers.</p></li>
 </ul>
+<p>Der HTTP-Status der Antwort ist der <strong>errorCode</strong>, nur bei 498 und 499 ist er 401.</p>
 </section>
 <section id="beispiele-fur-fehlercodes">
 <h2>Beispiele für Fehlercodes<a class="headerlink" href="#beispiele-fur-fehlercodes" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><strong>400</strong>: Bad Request - Die Anfrageparameter sind ungültig oder unvollständig.
 - Beispiel: <cite>„errorMessage“: „Invalid request parameters.“</cite></p></li>
-<li><p><strong>498</strong>: Invalid Token - Das bereitgestellte Token ist ungültig oder abgelaufen.
+<li><p><strong>403</strong>: Forbidden - Dem Benutzer fehlt das Recht für den Request (z. B. <em>Query</em> oder <em>Edit</em>).</p></li>
+<li><p><strong>404</strong>: Not Found - Der Layer (Query) oder das Objekt existiert nicht oder liegt außerhalb der Definitionsabfrage des Layers (Ändern, Löschen).</p></li>
+<li><p><strong>412</strong>: Precondition Failed - Ein Feature hat nicht mehr die angegebene Version (applyEdits).</p></li>
+<li><p><strong>498</strong>: Invalid Token - Das bereitgestellte Token ist ungültig oder abgelaufen (HTTP-Status 401).
 - Beispiel: <cite>„errorMessage“: „The provided token is invalid.“</cite></p></li>
-<li><p><strong>499</strong>: Token Required - Für die Anfrage ist ein gültiges Token erforderlich, wurde jedoch nicht bereitgestellt.
+<li><p><strong>499</strong>: Token Required - Für die Anfrage ist ein gültiges Token erforderlich, wurde jedoch nicht bereitgestellt (HTTP-Status 401).
 - Beispiel: <cite>„errorMessage“: „Token is required for this request.“</cite></p></li>
 <li><p><strong>500</strong>: Internal Server Error - Ein interner Fehler ist auf dem Server aufgetreten.
-- Beispiel: <cite>„errorMessage“: „An unexpected error occurred on the server.“</cite></p></li>
+- Beispiel: <cite>„errorMessage“: „internal server error (id: 3f2a9c1b)“</cite>; die Details stehen nur im Log des Servers, unter derselben ID.</p></li>
 </ul>
 </section>
 <section id="verwendungsmoglichkeiten">

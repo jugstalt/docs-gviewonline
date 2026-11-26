@@ -193,8 +193,9 @@ Esri <em>Utility Network Service</em>.</p>
 </ul>
 </li>
 </ul>
-<p>Without the parameter <code class="docutils literal notranslate"><span class="pre">f</span></code> every resource returns an HTML page or a form to try it out.
-Parameters are sent as query string, form fields or JSON body (<code class="docutils literal notranslate"><span class="pre">application/json</span></code>).</p>
+<p>An operation without parameters returns an HTML form to try it out, the description without <code class="docutils literal notranslate"><span class="pre">f</span></code> an HTML page.
+Parameters are sent as query string, form fields or JSON body (<code class="docutils literal notranslate"><span class="pre">application/json</span></code>, also <code class="docutils literal notranslate"><span class="pre">&quot;f&quot;:</span> <span class="pre">&quot;json&quot;</span></code>). As soon as a
+parameter (other than <code class="docutils literal notranslate"><span class="pre">token</span></code>) is given, the search runs; without <code class="docutils literal notranslate"><span class="pre">f</span></code> the result is JSON.</p>
 <p>Examples (service <code class="docutils literal notranslate"><span class="pre">sqlite/net</span></code>):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/geoservices/rest/services/sqlite/net/networkserver?f=pjson
 /geoservices/rest/services/sqlite/net/networkserver/trace?start=Trafo%2336&amp;f=geojson&amp;outSR=4326

@@ -27,6 +27,8 @@ Bei einer POST-Anfrage wird der folgende Body verwendet:
 - **height**: (int) Die Höhe eines Legendenitems in Pixeln.  
 - **dpi** (optional): (int) Die Auflösung der Legende in DPI.  
 
+Breite und Höhe sind auf 1 bis 1024 Pixel begrenzt, die DPI auf das Maximum des Dienstes.
+
 Response-Struktur
 ------------------  
 

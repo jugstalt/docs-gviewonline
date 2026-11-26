@@ -34,7 +34,7 @@ For POST requests, the following must be passed in the body:
     }
 
 - **crs** (optional): The coordinate reference system used. If not specified,  
-  the default coordinate system is applied.  
+  WGS84 (EPSG:4326) is used; **fullExtent** and **initialExtent** are given in it.  
 
 Response Structure
 ------------------  
@@ -66,29 +66,41 @@ The structure of the response is defined as follows:
         },
         {
           "name": "legend",
-          "maxFeaturesLimit": 0,
           "url": "https://{server}/geojsonservice/v1/services/{folder}/{service}/legend",
-          "httpMethods": [
-            "GET"
-          ]
+          "httpMethods": [ "GET", "POST" ]
+        },
+        {
+          "name": "layers",
+          "url": "https://{server}/geojsonservice/v1/services/{folder}/{service}/layers",
+          "httpMethods": [ "GET" ]
+        },
+        {
+          "name": "find",
+          "maxFeaturesLimit": 1000,
+          "url": "https://{server}/geojsonservice/v1/services/{folder}/{service}/find",
+          "httpMethods": [ "GET", "POST" ]
+        },
+        {
+          "name": "identify",
+          "maxFeaturesLimit": 1000,
+          "url": "https://{server}/geojsonservice/v1/services/{folder}/{service}/identify",
+          "httpMethods": [ "GET", "POST" ]
         },
         {
           "name": "query",
           "maxFeaturesLimit": 1000,
-          "url": "https://{server}/geojsonservice/v1/services/{folder}/{service}/{layerId}",
-          "httpMethods": [
-            "GET",
-            "POST"
-          ]
+          "url": "https://{server}/geojsonservice/v1/services/{folder}/{service}/query/{layerId}",
+          "httpMethods": [ "GET", "POST" ]
         },
         {
           "name": "features",
-          "url": "https://{server}/geojsonservice/v1/services/{folder}/{service}/{layerId}",
-          "httpMethods": [
-            "POST",
-            "PUT",
-            "DELETE"
-          ]
+          "url": "https://{server}/geojsonservice/v1/services/{folder}/{service}/features/{layerId}",
+          "httpMethods": [ "POST", "PUT", "DELETE" ]
+        },
+        {
+          "name": "applyEdits",
+          "url": "https://{server}/geojsonservice/v1/services/{folder}/{service}/applyEdits",
+          "httpMethods": [ "POST" ]
         }
       ],
       "crs": {
@@ -109,7 +121,7 @@ The structure of the response is defined as follows:
         "maxX": 15.0,
         "maxY": 55.0
       },
-      "units": "meters",
+      "units": "Meters",
       "layers": [
         {
           "id": "layer1",
@@ -119,12 +131,6 @@ The structure of the response is defined as follows:
           "geometryType": "Point",
           "minScaleDenominator": 1000,
           "maxScaleDenominator": 5000,
-          "styles": [
-            {
-              "name": "Default Style",
-              "title": "Standard"
-            }
-          ],
           "supportedOperations": ["query", "features.post", "features.put", "features.delete"],
           "properties": [
             {
@@ -142,11 +148,11 @@ The structure of the response is defined as follows:
 - **mapTitle**: The title of the map provided by the service.  
 - **description**: A description of the service.  
 - **copyright**: Copyright information for the data.  
-- **supportedRequests**: A list of supported requests the service allows.  
+- **supportedRequests**: The requests of the service the user has the rights for, with URL, HTTP methods and limits (**maxFeaturesLimit**: max. features per request). Clients ignore names they don't know.  
 - **crs**: The coordinate reference system used.  
 - **fullExtent**: The maximum extent of the data.  
 - **initialExtent**: The initial extent of the data.  
-- **units**: The map's unit of measurement (e.g., "meters").  
+- **units**: The unit of the map in **crs**, e.g. "Meters" or "DecimalDegrees".  
 - **layers**: Information about the layers provided by the service.  
 
 **LayerInfo**  
@@ -165,12 +171,6 @@ The **LayerInfo** object describes the available layers within a service:
       "geometryType": "Point",
       "minScaleDenominator": 1000,
       "maxScaleDenominator": 5000,
-      "styles": [
-        {
-          "name": "Default Style",
-          "title": "Standard"
-        }
-      ],
       "supportedOperations": ["query", "features.post", "features.put", "features.delete"],
       "properties": [
         {
@@ -189,7 +189,6 @@ The **LayerInfo** object describes the available layers within a service:
 - **defaultVisibility**: Indicates whether the layer is visible by default.  
 - **geometryType**: The geometry type of the layer, e.g., "Point" or "Polygon".  
 - **minScaleDenominator** / **maxScaleDenominator**: Scale constraints for layer visibility.  
-- **styles**: A list of styles that can be applied to the layer.  
 - **supportedOperations**: A list of supported operations, e.g., ["query", "features.post", "features.put", "features.delete"].  
 - **properties**: A list of the layer’s properties, including name, alias, and type.  
 

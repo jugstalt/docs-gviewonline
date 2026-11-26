@@ -59,9 +59,10 @@ On the map, the result would look something like this:
 
 .. image:: img/renderers3.png
 
-To change a symbol in the Renderer dialog, simply click on the symbol in the corresponding 
-category. This will display the *Symbol Mask*. From there, it is possible to open the 
-**Symbol Composer** again.
+To change a symbol in the Renderer dialog, simply click on the symbol in the corresponding
+category. The *Symbol Mask* opens below the category while the list stays in place. From there, it is
+possible to open the **Symbol Composer** again. Another click on the symbol or the ✕ closes the mask;
+only one mask is open at a time.
 A single category can be deleted with the *trash can* symbol.
 
 At the bottom of the list, there are additional buttons:
@@ -83,6 +84,94 @@ At the bottom of the list, there are additional buttons:
 
   .. image:: img/renderers5.png
        :width: 300
+
+.. _carto-renderers-bulk-edit:
+
+Change all symbols at once
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+With many categories, there is no need to click every symbol one by one. The ``More ...`` menu
+has two entries that work on all categories at once. Both are also available in the
+**Many Value Map Renderer** and the **Quantity Renderer**:
+
+* **Recolor ...:** Assigns new colors in the order of the list. The options are:
+
+  - ``Palette``: predefined color palettes. Sequential (e.g. ``Viridis``, ``Blues``, ``YlOrRd``)
+    and diverging (``RdYlGn``, ``RdBu``) palettes are spread over the number of categories.
+    Qualitative palettes (``Set1``, ``Set3``, ``Paired``) repeat when there are more categories
+    than colors.
+  - ``Gradient (2 colors)``: a gradient from a start color to an end color.
+  - ``Random``: random colors (as with ``Add all values``).
+
+  ``Reverse`` reverses the order. For polygons, you can choose whether the fill, the outline or
+  both are recolored. The existing transparency of each symbol is kept.
+
+* **Set Symbol Properties ...:** Sets single properties of all symbols to the same value, e.g.
+  the line width. Only checked properties are applied; all others are kept per category.
+  Depending on the geometry type, there are ``Color``, ``Width`` or ``Outline width``,
+  ``Dash style``, ``Fill opacity``, ``Size`` and ``Smoothing``.
+
+The ``All Other`` category is left out by default and can be included in the dialog. Categories
+with composite symbols (e.g. from the **Symbol Stack** of the **Symbol Composer**) are skipped.
+The dialog shows how many there are.
+
+.. note::
+   The changes take effect with ``Apply``. ``Cancel`` in the layer dialog discards them.
+
+Undo
+~~~~
+
+Above the list, **Undo** takes back the last change to the categories; the button names it (e.g.
+``Undo Recolor``). Up to 20 steps can be undone. Undo covers ``Add all values``, ``Remove All``,
+``Remove, if not exists in source``, ``Remove selected``, deleting and moving single categories,
+**Recolor ...**, **Set Symbol Properties ...**, pasting symbols, **Apply to ...**, **Order by ...**,
+**Label Style ...**, ``Data Value => Label`` and the *Wizard* of the ``Quantity Renderer``. Changes in the
+*Symbol Mask* of a single category have their own **Undo** there. When the field changes, the undo steps
+start over.
+
+Number of features per category
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``Add all values`` also counts how many features fall into each category. For existing categories
+the ``More ...`` menu has the entry **Count Features**. The number is shown on the right of the list;
+categories without features are greyed out. ``All Other`` shows the features that fall into no other
+category. Counting uses the filter of the layer. The numbers are not saved.
+
+**Order by ...** sorts the list by label, value or (if counted) by number of features; ``All Other``
+always stays at the end. **Select empty** selects all categories without features, e.g. to remove them
+with ``Remove selected``.
+
+Selecting categories
+~~~~~~~~~~~~~~~~~~~~
+
+Each category has a checkbox on the left. Holding ``Shift`` selects a whole range; above the list
+there are ``All``, ``None``, ``Invert`` and ``Remove selected``.
+
+If anything is selected, **Recolor ...**, **Set Symbol Properties ...** and pasting symbols only
+affect the selected categories, otherwise all of them. The selection is reset when the field
+changes and is not saved.
+
+Copying and pasting symbols
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Wherever the *Symbol Mask* is shown, there are **Copy symbol** and **Paste symbol** buttons next to
+**Random** and **Undo**. A copied symbol can also be pasted into another layer (e.g. into the
+``Simple Renderer``) as long as the geometry type matches. Pasting into a single symbol mask can be
+reverted with **Undo**.
+
+For whole categories there are two ways:
+
+* In the ``More ...`` menu: **Paste Symbol** and **Paste Symbol, keep colors** paste the copied
+  symbol into the selected categories (without a selection into all except ``All Other``).
+* In the *Symbol Mask* of a category: the **Apply to ...** menu below the settings transfers the
+  symbol of this category to the selected or all other categories.
+
+The symbol is replaced completely; the label of the category is kept. With **keep colors** each
+category keeps its color (for polygons fill and outline separately), everything else (line width,
+dash style, transparency, …) comes from the pasted symbol. This is the fastest way to apply, for
+example, a dash style to all categories. **keep colors** is only available for simple symbols.
+Categories that had a composite symbol get the colors of the pasted symbol; a message shows how
+many there were.
 
 Many Value Map Renderer
 -----------------------
@@ -115,6 +204,20 @@ The Wizard also attempts to create a smooth transition between the starting and 
 
 .. image:: img/renderers9.png
     :width: 300
+
+In the wizard you can also choose:
+
+* **Method:** ``Equal Interval`` divides the value range into classes of the same width (fixed number or
+  fixed step width). ``Quantile`` creates classes with as close to the same number of features as possible.
+  ``Natural Breaks (Jenks)`` puts the limits at the natural gaps of the values. With very many values an
+  even sample of 5000 values is used for this.
+* **Colors:** ``Minimum to maximum symbol`` interpolates between the two symbols as above. ``Palette``
+  takes the style of the minimum symbol and assigns the colors from a palette (as with **Recolor ...**).
+* **Decimals:** number of decimals of the class limits and labels (e.g. ``10 – 20``). The suggestion is
+  derived from the value range. The decimal separator is always a point.
+
+Minimum, maximum and classes respect the filter of the layer. After creating the classes the number of
+features per class is shown.
 
 Scale Dependent Renderer
 ------------------------

@@ -204,8 +204,9 @@ violation (<code class="docutils literal notranslate"><span class="pre">rule;sev
 </section>
 <section id="errors">
 <h2>Errors<a class="headerlink" href="#errors" title="Link to this heading">¶</a></h2>
-<p>Errors (unknown operation, invalid reference, no network, missing right, timeout <code class="docutils literal notranslate"><span class="pre">504</span></code>) are returned like for the
-other GeoServices resources as an error object.</p>
+<p>Errors (unknown operation, invalid reference, no network, missing right) are returned like for the other GeoServices
+resources as an error object (HTTP 200). <code class="docutils literal notranslate"><span class="pre">code</span></code> is <code class="docutils literal notranslate"><span class="pre">504</span></code> on timeout, <code class="docutils literal notranslate"><span class="pre">503</span></code> when too many searches run at the same
+time, otherwise <code class="docutils literal notranslate"><span class="pre">999</span></code>. A network built by an older version answers “rebuild network”: build it again.</p>
 </section>
 </section>
 

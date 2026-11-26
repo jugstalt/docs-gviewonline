@@ -17,7 +17,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Error Handling" href="errorhandling.html" />
-    <link rel="prev" title="Features Endpoint" href="features.html" /> 
+    <link rel="prev" title="ApplyEdits Endpoint" href="applyedits.html" /> 
   </head><body data-dark_mode_code_blocks="true">
 
 <div id="top_nav">
@@ -135,8 +135,12 @@
 <li class="toctree-l2"><a class="reference internal" href="capabilities.html">(Service)Capabilities Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="map.html">Map Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="legend.html">Legend Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers.html">Layers Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identify.html">Identify Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="find.html">Find Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="query.html">Query Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="features.html">Features Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="applyedits.html">ApplyEdits Endpoint</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Token Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="errorhandling.html">Error Handling</a></li>
 </ul>
@@ -171,6 +175,12 @@ the GeoJSON API. A token can be requested via GET or POST.</p>
 <li><p><strong>expireMinutes</strong> (optional): (int) The desired validity period of the token in minutes (maximum as per server configuration).</p></li>
 </ul>
 </li>
+<li><p><strong>POST</strong> (form, <code class="docutils literal notranslate"><span class="pre">application/x-www-form-urlencoded</span></code>)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">geojsonservice</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">token</span>
+<span class="n">clientId</span><span class="o">=</span><span class="p">{</span><span class="n">client_id</span><span class="p">}</span><span class="o">&amp;</span><span class="n">clientSecret</span><span class="o">=</span><span class="p">{</span><span class="n">client_secret</span><span class="p">}</span><span class="o">&amp;</span><span class="n">expireMinutes</span><span class="o">=</span><span class="p">{</span><span class="n">expire_minutes</span><span class="p">}</span>
+</pre></div>
+</div>
+</li>
 </ul>
 </section>
 <section id="response-structure">
@@ -191,7 +201,7 @@ The structure of the response is defined as follows:</p>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">access_token</span></code> must be included in all requests in the <code class="docutils literal notranslate"><span class="pre">HTTP</span> <span class="pre">Header</span> <span class="pre">Authorize</span></code> as a <strong>Bearer Token</strong>:
+<p>The <code class="docutils literal notranslate"><span class="pre">access_token</span></code> must be included in all requests in the HTTP header <code class="docutils literal notranslate"><span class="pre">Authorization</span></code> as a <strong>Bearer Token</strong>:
 (<code class="docutils literal notranslate"><span class="pre">Bearer</span> <span class="pre">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...</span></code>).</p>
 </div>
 </section>
@@ -237,8 +247,8 @@ The structure of the response is defined as follows:</p>
         <div class="button_nav">
             <div class="left">
                 
-                <a href="features.html">
-                    <span class="icon">&lt;</span><span>Features Endpoint</span></a>
+                <a href="applyedits.html">
+                    <span class="icon">&lt;</span><span>ApplyEdits Endpoint</span></a>
                 
             </div>
 

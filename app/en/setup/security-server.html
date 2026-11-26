@@ -165,6 +165,8 @@ Azure Application Gateway, …) that terminates TLS and sends <code class="docut
 always on the internet: without an entry every host in the private networks counts as a proxy.</p></li>
 <li><p>Keep the admin pages in your internal network (<code class="docutils literal notranslate"><span class="pre">security:manage:allowed-networks</span></code>, the
 default) or use an OIDC admin login.</p></li>
+<li><p>Switch on the two-factor login for admins, on the internet as a requirement
+(<code class="docutils literal notranslate"><span class="pre">security:manage:two-factor</span> <span class="pre">=</span> <span class="pre">required</span></code>, see <a class="reference internal" href="#security-server-2fa"><span class="std std-ref">Two-factor login</span></a>).</p></li>
 <li><p>Set <code class="docutils literal notranslate"><span class="pre">force-https</span></code> when the server is only reachable via https.</p></li>
 <li><p>Create the first admin with <code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_USER</span></code>/<code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_PASSWORD</span></code> or the setup code
 from the log before the server is reachable from outside (see <a class="reference internal" href="../server/inst/postinstallation.html#server-postinstallation"><span class="std std-ref">Post-installation</span></a>).</p></li>
@@ -198,7 +200,11 @@ database user that only reads (see <a class="reference internal" href="#security
 <span class="w">             </span><span class="c1">// Default: loopback and the private networks</span>
 <span class="w">             </span><span class="s2">"allowed-networks"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"10.1.5.0/24"</span><span class="w"> </span><span class="p">],</span>
 <span class="w">             </span><span class="c1">// admin login, renewed while the admin is active</span>
-<span class="w">             </span><span class="s2">"session-hours"</span><span class="o">:</span><span class="w"> </span><span class="mf">8</span>
+<span class="w">             </span><span class="s2">"session-hours"</span><span class="o">:</span><span class="w"> </span><span class="mf">8</span><span class="p">,</span>
+<span class="w">             </span><span class="c1">// two-factor login (TOTP) for the admin login: off | optional | required</span>
+<span class="w">             </span><span class="s2">"two-factor"</span><span class="o">:</span><span class="w"> </span><span class="s2">"optional"</span><span class="p">,</span>
+<span class="w">             </span><span class="c1">// name of the server in the authenticator app</span>
+<span class="w">             </span><span class="s2">"two-factor-issuer"</span><span class="o">:</span><span class="w"> </span><span class="s2">"gView Server"</span>
 <span class="w">         </span><span class="p">},</span>
 
 <span class="w">         </span><span class="s2">"login"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
@@ -271,7 +277,8 @@ request is logged. The <strong>Manage</strong> links are hidden outside.</p>
 <li><p>Default: loopback and the private networks.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;*&quot;</span></code> allows everywhere. Do <strong>not</strong> use it for a server on the internet: login and admin pages
 are then reachable for everyone and only protected by the password. Enter the admins’ networks,
-use a VPN or an OIDC admin login instead.</p></li>
+use a VPN or an OIDC admin login instead. If there is no other way, at least make the
+two-factor login required; otherwise the server writes a warning to the log at startup.</p></li>
 <li><p>With an OIDC admin login (<code class="docutils literal notranslate"><span class="pre">Authentication:Type</span> <span class="pre">=</span> <span class="pre">oidc</span></code>) the restriction only applies if
 <code class="docutils literal notranslate"><span class="pre">allowed-networks</span></code> is configured.</p></li>
 <li><p><em>gView Carto</em> publishes services with <code class="docutils literal notranslate"><span class="pre">BrowseServices/PublishService</span></code>: the Carto server must
@@ -292,6 +299,67 @@ active.</p></li>
 security stamp of the login. Changing the password ends all sessions and tokens of that user.
 <strong>Sign out everywhere</strong> (sidebar, for admins) does the same without changing the password; it
 writes <code class="docutils literal notranslate"><span class="pre">&lt;user&gt;.stamp</span></code> next to the <code class="docutils literal notranslate"><span class="pre">&lt;user&gt;.lgn</span></code> file.</p></li>
+</ul>
+</section>
+<section id="two-factor-login">
+<span id="security-server-2fa"></span><h2>Two-factor login<a class="headerlink" href="#two-factor-login" title="Link to this heading">¶</a></h2>
+<p>The admin login can ask for a code of an authenticator app in addition to the password (TOTP,
+RFC 6238: 6 digits, a new one every 30 seconds; e.g. Microsoft Authenticator, Google
+Authenticator, Aegis, 1Password, Bitwarden).</p>
+<p><code class="docutils literal notranslate"><span class="pre">security:manage:two-factor</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">off</span></code>: no two-factor login.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optional</span></code> (default): every admin can set it up for themselves. Admins who did are asked
+for the code after the password.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">required</span></code>: required for all admins. An admin without one has to set it up right after the
+password, before reaching the admin pages. Existing sessions of admins without a second
+factor end when switching. Strongly recommended for servers whose admin pages are reachable
+from the internet.</p></li>
+</ul>
+<p><strong>Set up:</strong> sidebar <strong>Two-factor login</strong> (page <code class="docutils literal notranslate"><span class="pre">/manage/twofactor</span></code>). Scan the QR code with the
+app (or enter the key manually) and confirm with a code from the app within 10 minutes; <strong>Sign out
+everywhere</strong> or a new password cancels a running setup. The server then shows 10
+recovery codes (<code class="docutils literal notranslate"><span class="pre">xxxxx-xxxxx</span></code>) <strong>once</strong>: copy them or download them as a text file and keep
+them safe, e.g. in a password manager. Setting it up ends all other sessions of this admin.</p>
+<p><strong>Log in:</strong> after username and password the login page asks for the code. A recovery code can
+be entered instead; each recovery code works once. When two or fewer are left, the server shows
+a hint after the login.</p>
+<ul class="simple">
+<li><p>Codes are accepted 30 seconds before and after the current time. The clocks of server and
+phone must be correct (NTP).</p></li>
+<li><p>A code that was already used is refused.</p></li>
+<li><p>Wrong codes count like wrong passwords for the login lockout (<code class="docutils literal notranslate"><span class="pre">security:login</span></code>). After 5
+wrong codes the login starts again with the password. Between password and code the browser
+only holds a short-lived cookie (5 minutes) without admin rights.</p></li>
+</ul>
+<p><strong>Manage</strong> (page <strong>Two-factor login</strong>, logged in):</p>
+<ul class="simple">
+<li><p><em>New recovery codes:</em> new recovery codes with a code from the app; the old ones become
+invalid.</p></li>
+<li><p><em>New device:</em> move to a new phone (code from the app or a recovery code, then a new QR code).
+The old device stays valid until the new one is confirmed. Ends all other sessions.</p></li>
+<li><p><em>Disable:</em> only with <code class="docutils literal notranslate"><span class="pre">optional</span></code>, with password and code. Ends all other sessions.</p></li>
+</ul>
+<p><strong>Storage:</strong> <code class="docutils literal notranslate"><span class="pre">&lt;user&gt;.2fa</span></code> next to <code class="docutils literal notranslate"><span class="pre">&lt;user&gt;.lgn</span></code> in the folder <code class="docutils literal notranslate"><span class="pre">_login/manage</span></code>. The secret is
+encrypted with the server certificate (<code class="docutils literal notranslate"><span class="pre">crypto0.pfx</span></code>), the recovery codes are hashed. Back the
+file up like <code class="docutils literal notranslate"><span class="pre">crypto0.pfx</span></code>, and keep it out of other hands.</p>
+<p><strong>Emergency reset</strong> (phone and recovery codes lost):</p>
+<ul class="simple">
+<li><p>delete the file <code class="docutils literal notranslate"><span class="pre">_login/manage/&lt;user&gt;.2fa</span></code>, or</p></li>
+<li><p>start the server with the environment variable (or configuration value)
+<code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_RESET_2FA</span></code>: <code class="docutils literal notranslate"><span class="pre">admin</span></code> or <code class="docutils literal notranslate"><span class="pre">admin1,admin2</span></code> for single admins, <code class="docutils literal notranslate"><span class="pre">*</span></code> for all.
+Handy for Docker without a shell. The variable applies on <strong>every</strong> start while it is set,
+and the server then warns in the log: remove it after the reset.</p></li>
+</ul>
+<p>The reset ends all sessions of the admin. With <code class="docutils literal notranslate"><span class="pre">required</span></code> the admin sets the two-factor login
+up again at the next login, with <code class="docutils literal notranslate"><span class="pre">optional</span></code> the password is enough.</p>
+<p><strong>Not affected:</strong></p>
+<ul class="simple">
+<li><p>Token users (token login, <code class="docutils literal notranslate"><span class="pre">generateToken</span></code>, Basic auth, url tokens) and with them publishing
+from <em>gView Carto</em>: these are mostly programs that cannot enter a code. Give token users with
+publish rights long random passwords and change them regularly.</p></li>
+<li><p>OIDC admin login (<code class="docutils literal notranslate"><span class="pre">Authentication:Type</span> <span class="pre">=</span> <span class="pre">oidc</span></code>): two-factor login is then up to the
+identity provider.</p></li>
 </ul>
 </section>
 <section id="cors-cookies-and-security-headers">
@@ -502,6 +570,7 @@ edits also report database errors with this id only.</p></li>
 <li><a class="reference internal" href="#the-first-admin">The first admin</a></li>
 <li><a class="reference internal" href="#admin-networks">Admin networks</a></li>
 <li><a class="reference internal" href="#logins-lockout-and-sessions">Logins, lockout and sessions</a></li>
+<li><a class="reference internal" href="#two-factor-login">Two-factor login</a></li>
 <li><a class="reference internal" href="#cors-cookies-and-security-headers">CORS, cookies and security headers</a></li>
 <li><a class="reference internal" href="#url-tokens">Url tokens</a></li>
 <li><a class="reference internal" href="#limits">Limits</a></li>

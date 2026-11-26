@@ -34,7 +34,7 @@ The response contains general information about the API and is structured as fol
             "method": "POST",
             "url": "https://localhost:44331/geojsonservice/v1/token",
             "contentType": "application/x-www-form-urlencoded",
-            "body": "{client_id}&clientSecret={client_secret}&expireMinutes={expire_minutes}"
+            "body": "clientId={client_id}&clientSecret={client_secret}&expireMinutes={expire_minutes}"
           }
         ],
         "services": [

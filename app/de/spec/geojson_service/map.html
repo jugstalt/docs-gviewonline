@@ -136,8 +136,12 @@
 <li class="toctree-l2"><a class="reference internal" href="capabilities.html">(Service)Capabilities Endpoint</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Map Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="legend.html">Legend Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers.html">Layers Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identify.html">Identify Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="find.html">Find Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="query.html">Query Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="features.html">Features Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="applyedits.html">ApplyEdits Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="token.html">Token Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="errorhandling.html">Error Handling</a></li>
 </ul>
@@ -211,7 +215,12 @@ des Services wird komplett überschrieben.</p></li>
 <li><p><strong>rotation</strong> (optional): (double) Die Rotation der Karte in Grad.</p></li>
 <li><p><strong>dpi</strong> (optional): (int) Die Auflösung des Bildes in DPI.</p></li>
 <li><p><strong>responseFormat</strong>: (string) Das Format des Responses, z. B. „Url“, „Base64“, „Image“.</p></li>
+<li><p><strong>layerDefs</strong> (optional): ein zusätzlicher Filter je Layer-ID, wie <strong>filter</strong> bei <a class="reference internal" href="query.html"><span class="doc">Query Endpoint</span></a> (<code class="docutils literal notranslate"><span class="pre">whereClause</span></code>
+und/oder <code class="docutils literal notranslate"><span class="pre">cql2</span></code>), z. B. <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">&quot;0&quot;:</span> <span class="pre">{</span> <span class="pre">&quot;cql2&quot;:</span> <span class="pre">&quot;LAND</span> <span class="pre">=</span> <span class="pre">'WIEN'&quot;</span> <span class="pre">}</span> <span class="pre">}</span></code>. Er gilt zusätzlich zur Definitionsabfrage des Layers.</p></li>
+<li><p><strong>highlight</strong> (optional): Objekt-IDs je Layer-ID, die hervorgehoben über der Karte gezeichnet werden, z. B.
+<code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">&quot;0&quot;:</span> <span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]</span> <span class="pre">}</span></code>.</p></li>
 </ul>
+<p>Bei GET werden <strong>layerDefs</strong> und <strong>highlight</strong> als JSON übergeben.</p>
 </section>
 <section id="response-struktur">
 <h2>Response-Struktur<a class="headerlink" href="#response-struktur" title="Link to this heading">¶</a></h2>
@@ -245,7 +254,7 @@ Die Struktur des Responses ist wie folgt definiert:</p>
 <li><p><strong>type</strong>: (string) Der Typ der Antwort, in diesem Fall „GetMapResponse“.</p></li>
 <li><p><strong>imageUrl</strong> (optional): (string) URL zum abgerufenen Kartenbild, falls der Response als URL angefordert wurde.</p></li>
 <li><p><strong>imageBase64</strong> (optional): (string) Das Kartenbild im Base64-Format, falls dies angefordert wurde.</p></li>
-<li><p><strong>bbox</strong>: (object) Die Bounding Box der Karte.</p></li>
+<li><p><strong>bbox</strong>: (object) Die Bounding Box der Karte. Der tatsächlich gezeichnete Ausschnitt: Er folgt dem Seitenverhältnis des Bildes und kann daher größer sein als der angefragte.</p></li>
 <li><p><strong>crs</strong>: (object) Das verwendete Koordinatenreferenzsystem.</p></li>
 <li><p><strong>width</strong>: (int) Die Breite des zurückgegebenen Kartenbildes in Pixeln.</p></li>
 <li><p><strong>height</strong>: (int) Die Höhe des zurückgegebenen Kartenbildes in Pixeln.</p></li>

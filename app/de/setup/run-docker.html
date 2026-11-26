@@ -190,7 +190,9 @@ z. B. verwendet, um Kartenbilder über das Output-Verzeichnis an Clients auszuli
 <p>Nach dem Start ist die Verwaltungsoberfläche unter <a class="reference external" href="http://localhost:45622">http://localhost:45622</a> erreichbar (im Beispiel
 oben). Den ersten Administrator legt man über die Umgebungsvariablen <code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_USER</span></code> und
 <code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_PASSWORD</span></code> an oder mit dem Setup-Code, den der Server ins Log schreibt
-(<code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">logs</span> <span class="pre">gview-server</span></code>), siehe <a class="reference internal" href="security-server.html"><span class="doc">Sicherheit gView.Server</span></a>.</p>
+(<code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">logs</span> <span class="pre">gview-server</span></code>), siehe <a class="reference internal" href="security-server.html"><span class="doc">Sicherheit gView.Server</span></a>. Hat ein Admin Telefon und
+Recovery-Codes der Zwei-Faktor-Anmeldung verloren, setzt <code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_RESET_2FA=&lt;user&gt;</span></code> sie
+beim Start zurück (danach wieder entfernen).</p>
 </section>
 <section id="gview-webapps-image">
 <h2>gView.WebApps Image<a class="headerlink" href="#gview-webapps-image" title="Link to this heading">¶</a></h2>

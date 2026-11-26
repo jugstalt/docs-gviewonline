@@ -16,7 +16,7 @@
     <script src="../../_static/js/petite-vue.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Token Endpoint" href="token.html" />
+    <link rel="next" title="ApplyEdits Endpoint" href="applyedits.html" />
     <link rel="prev" title="Query Endpoint" href="query.html" /> 
   </head><body data-dark_mode_code_blocks="true">
 
@@ -135,8 +135,12 @@
 <li class="toctree-l2"><a class="reference internal" href="capabilities.html">(Service)Capabilities Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="map.html">Map Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="legend.html">Legend Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers.html">Layers Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identify.html">Identify Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="find.html">Find Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="query.html">Query Endpoint</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Features Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="applyedits.html">ApplyEdits Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="token.html">Token Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="errorhandling.html">Error Handling</a></li>
 </ul>
@@ -221,7 +225,8 @@ defined as follows:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">"succeeded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"statement"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSERT"</span><span class="p">,</span><span class="w"> </span><span class="c1">// INSERT,UPDATE,DELETE</span>
-<span class="w">  </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">  </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"objectIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="mi">14</span><span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -229,7 +234,12 @@ defined as follows:</p>
 <li><p><strong>succeeded</strong>: (bool) Indicates whether the operation was successful.</p></li>
 <li><p><strong>statement</strong>: (string) The executed database statement.</p></li>
 <li><p><strong>count</strong>: (int) The number of affected features.</p></li>
+<li><p><strong>objectIds</strong>: (array) The object ids of the features in the order of the request; for <code class="docutils literal notranslate"><span class="pre">INSERT</span></code> the new ids
+(0 if the database can’t report them).</p></li>
 </ul>
+<p>Inserts, updates and deletes run in one transaction if the database supports it: all features or none. Features to
+update give their id in <strong>oid</strong>. Updates and deletes only touch objects the layer shows: if the layer has a definition
+query, an id outside of it (or one that doesn’t exist) is an error <code class="docutils literal notranslate"><span class="pre">404</span></code>.</p>
 </section>
 </section>
 
@@ -271,7 +281,7 @@ defined as follows:</p>
 
             <div class="right">
                 
-                    <a href="token.html"><span>Token Endpoint</span><span class="icon">&gt;</span></a>
+                    <a href="applyedits.html"><span>ApplyEdits Endpoint</span><span class="icon">&gt;</span></a>
                 
             </div>
         </div>

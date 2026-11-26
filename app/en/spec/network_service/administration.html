@@ -189,19 +189,24 @@ that are used as defaults by <code class="docutils literal notranslate"><span cl
 <h2>Refresh metadata<a class="headerlink" href="#refresh-metadata" title="Link to this heading">¶</a></h2>
 <p>Supply sources, customers, rules and tiers do not depend on the data. To change them without building the shards again:</p>
 <ul class="simple">
-<li><p><strong>Carto:</strong> network module page, tab <strong>Ebenen</strong>, <strong>Refresh metadata</strong>.</p></li>
+<li><p><strong>Carto:</strong> network module page, tab <strong>Tiers</strong>, <strong>Refresh metadata</strong>.</p></li>
 <li><p><strong>Command line:</strong> <code class="docutils literal notranslate"><span class="pre">gView.Cmd</span> <span class="pre">--command</span> <span class="pre">Network</span> <span class="pre">-u</span> <span class="pre">refresh-metadata</span> <span class="pre">-mxl</span> <span class="pre">map.mxl</span></code> (or <code class="docutils literal notranslate"><span class="pre">-config</span> <span class="pre">net.json</span></code>, optionally <code class="docutils literal notranslate"><span class="pre">-output</span> <span class="pre">&lt;network</span> <span class="pre">directory&gt;</span></code>).</p></li>
 </ul>
-<p>Only <code class="docutils literal notranslate"><span class="pre">supplySources</span></code>, <code class="docutils literal notranslate"><span class="pre">customers</span></code>, <code class="docutils literal notranslate"><span class="pre">rules</span></code> and <code class="docutils literal notranslate"><span class="pre">tiers</span></code> in <code class="docutils literal notranslate"><span class="pre">network.json</span></code> are rewritten (tier patterns are checked
-against the types of the built network). The server opens the network again when <code class="docutils literal notranslate"><span class="pre">network.json</span></code> changes.</p>
+<p>Only <code class="docutils literal notranslate"><span class="pre">supplySources</span></code>, <code class="docutils literal notranslate"><span class="pre">customers</span></code>, <code class="docutils literal notranslate"><span class="pre">rules</span></code> and <code class="docutils literal notranslate"><span class="pre">tiers</span></code> in <code class="docutils literal notranslate"><span class="pre">network.json</span></code> are rewritten (tiers and patterns are
+checked against the types of the built network). <code class="docutils literal notranslate"><span class="pre">separateTiers</span></code> and <code class="docutils literal notranslate"><span class="pre">connectRules</span></code> apply at build: build the network
+again after changing them. The server opens the network again when <code class="docutils literal notranslate"><span class="pre">network.json</span></code> changes.</p>
 </section>
 <section id="tiers-ebenen">
 <span id="network-service-tiers"></span><h2>Tiers (Ebenen)<a class="headerlink" href="#tiers-ebenen" title="Link to this heading">¶</a></h2>
-<p>A tier restricts searches to a part of the network, e.g. high (HS), medium (MS) or low (NS) voltage. The network configuration
-has a section <code class="docutils literal notranslate"><span class="pre">tiers</span></code> (written into <code class="docutils literal notranslate"><span class="pre">network.json</span></code> at build and by <em>Refresh metadata</em>):</p>
+<p>A tier restricts searches to a part of the network, e.g. high (HS), medium (MS) or low (NS) voltage. <strong>The tier of a type is
+the value of its first facet</strong> (e.g. <code class="docutils literal notranslate"><span class="pre">Ebene</span></code>): <code class="docutils literal notranslate"><span class="pre">[Mittelspannung,Leitung,Kabel]</span></code> belongs to the tier <code class="docutils literal notranslate"><span class="pre">Mittelspannung</span></code>.
+Every value of the first facet that edge types use is a tier, also without an entry. In <em>Carto</em>, one group per tier gives
+the value through the type template <code class="docutils literal notranslate"><span class="pre">{group-name}</span></code> of the first facet.</p>
+<p>The section <code class="docutils literal notranslate"><span class="pre">tiers</span></code> of the network configuration (written into <code class="docutils literal notranslate"><span class="pre">network.json</span></code> at build and by <em>Refresh metadata</em>) only
+adds settings:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"tiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MS"</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">"filter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mittelspannung.*"</span><span class="p">,</span><span class="w"> </span><span class="nt">"sources"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[*,Umspannwerk,*]"</span><span class="p">,</span><span class="w"> </span><span class="nt">"sinks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[*,Trafo,*]"</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NS"</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">"filter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Niederspannung.*"</span><span class="p">,</span><span class="w"> </span><span class="nt">"sources"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[*,Trafo,*]"</span><span class="p">,</span><span class="w"> </span><span class="nt">"sinks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[*,Kunde,*]"</span><span class="p">,</span><span class="w"> </span><span class="nt">"block"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[*,Schalter,*]"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mittelspannung"</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">"sources"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[*,Umspannwerk,*]"</span><span class="p">,</span><span class="w"> </span><span class="nt">"sinks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[*,Trafo,*]"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Niederspannung"</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">"sources"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[*,Trafo,*]"</span><span class="p">,</span><span class="w"> </span><span class="nt">"sinks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[*,Kunde,*]"</span><span class="p">,</span><span class="w"> </span><span class="nt">"block"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[*,Schalter,*]"</span><span class="w"> </span><span class="p">}</span>
 <span class="p">]</span>
 </pre></div>
 </div>
@@ -217,31 +222,27 @@ has a section <code class="docutils literal notranslate"><span class="pre">tiers
 </thead>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
-<td><p>Name of the tier, unique, no comma. Used as the <code class="docutils literal notranslate"><span class="pre">tier</span></code> parameter.</p></td>
+<td><p>A value of the first facet. Used as the <code class="docutils literal notranslate"><span class="pre">tier</span></code> parameter.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">order</span></code></p></td>
-<td><p>Rank: lower is higher up (HS before MS before NS).</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">filter</span></code></p></td>
-<td><p>Edge types of the tier (type pattern, see below).</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">nodes</span></code></p></td>
-<td><p>Optional node pattern: nodes that belong to the tier although no edge of it touches them.</p></td>
+<td><p>Rank: lower is higher up (HS before MS before NS). Empty: the number of the facet value.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sources</span></code>, <code class="docutils literal notranslate"><span class="pre">sinks</span></code></p></td>
 <td><p>Node references or patterns. They replace <code class="docutils literal notranslate"><span class="pre">supplySources</span></code> / <code class="docutils literal notranslate"><span class="pre">customers</span></code> when the tier is searched
-(if empty, the global ones are used).</p></td>
+(if empty, the global ones are used). With <code class="docutils literal notranslate"><span class="pre">separateTiers</span></code>, line ends of the tier may connect to nodes of these types.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">block</span></code></p></td>
 <td><p>Nodes that are blocked in every search on the tier.</p></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Membership.</strong> Edges belong to a tier by their type. A node belongs to every tier whose edges touch it, so a transformer
-between medium and low voltage is in both.</p>
-<p><strong>Pattern syntax</strong> (also for <code class="docutils literal notranslate"><span class="pre">filter</span></code>): <code class="docutils literal notranslate"><span class="pre">|</span></code> is <em>or</em>, <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> is <em>and</em> (binds tighter than <code class="docutils literal notranslate"><span class="pre">|</span></code>), <code class="docutils literal notranslate"><span class="pre">!</span></code> negates one term.
-<code class="docutils literal notranslate"><span class="pre">Mittelspannung.*</span> <span class="pre">&amp;</span> <span class="pre">!Mittelspannung.Freileitung</span> <span class="pre">|</span> <span class="pre">Niederspannung.*</span></code>. A leading <code class="docutils literal notranslate"><span class="pre">!</span></code> in a pattern without <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> and without
-further <code class="docutils literal notranslate"><span class="pre">!</span></code> negates the whole pattern as before (<code class="docutils literal notranslate"><span class="pre">!a</span> <span class="pre">|</span> <span class="pre">b</span></code> = everything except a and b).</p>
+<p><strong>Membership.</strong> Edges belong to the tier of their type. A node belongs to the tier of its type and to every tier whose edges
+touch it, so a transformer between medium and low voltage is in both.</p>
+<p><strong>Pattern syntax:</strong> <code class="docutils literal notranslate"><span class="pre">[Mittelspannung,*,*]</span></code> has one entry per facet (<code class="docutils literal notranslate"><span class="pre">*</span></code> = any). <code class="docutils literal notranslate"><span class="pre">|</span></code> is <em>or</em>, <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> is <em>and</em> (binds
+tighter than <code class="docutils literal notranslate"><span class="pre">|</span></code>), <code class="docutils literal notranslate"><span class="pre">!</span></code> negates one term: <code class="docutils literal notranslate"><span class="pre">[Mittelspannung,*,*]</span> <span class="pre">&amp;</span> <span class="pre">![*,*,Freileitung]</span> <span class="pre">|</span> <span class="pre">[Niederspannung,*,*]</span></code>. A leading
+<code class="docutils literal notranslate"><span class="pre">!</span></code> in a pattern without <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> and without further <code class="docutils literal notranslate"><span class="pre">!</span></code> negates the whole pattern (<code class="docutils literal notranslate"><span class="pre">!a</span> <span class="pre">|</span> <span class="pre">b</span></code> = everything except a and b).
+<code class="docutils literal notranslate"><span class="pre">untyped</span></code> are the helper nodes (line ends without a point); with separate tiers every tier has a helper type of its own,
+e.g. <code class="docutils literal notranslate"><span class="pre">untyped</span> <span class="pre">&amp;</span> <span class="pre">[Niederspannung,*,*]</span></code>. The short form <code class="docutils literal notranslate"><span class="pre">Mittelspannung.*</span></code> is still read.</p>
 <p><strong>Searches</strong> (<code class="docutils literal notranslate"><span class="pre">trace</span></code>, <code class="docutils literal notranslate"><span class="pre">reach</span></code>, <code class="docutils literal notranslate"><span class="pre">path</span></code>, <code class="docutils literal notranslate"><span class="pre">supply</span></code>, <code class="docutils literal notranslate"><span class="pre">outage</span></code>, <code class="docutils literal notranslate"><span class="pre">validate</span></code>) take <code class="docutils literal notranslate"><span class="pre">tier</span></code> (comma separated names):</p>
 <ul class="simple">
 <li><p>The edge types used are those of the tiers, cut by <code class="docutils literal notranslate"><span class="pre">filter</span></code>. Tier blocks are added to <code class="docutils literal notranslate"><span class="pre">block</span></code>.</p></li>
@@ -252,9 +253,69 @@ further <code class="docutils literal notranslate"><span class="pre">!</span></c
 with <code class="docutils literal notranslate"><span class="pre">tier</span></code> in the request all rules are restricted this way. The end types of an edge rule need no cut: the ends are ends of
 edges of the tier, so they belong to the tier whatever their type. A rule that has nothing left to check (for example the rule
 tier <code class="docutils literal notranslate"><span class="pre">NS</span></code> and <code class="docutils literal notranslate"><span class="pre">tier=MS</span></code> in the request) is skipped, and the result says so.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;x,y</span></code>: when several nodes lie at the place (separate tiers), the node of the tier is taken.</p></li>
 </ul>
 <p>Without <code class="docutils literal notranslate"><span class="pre">tier</span></code> nothing changes. The tiers are listed in the <code class="docutils literal notranslate"><span class="pre">tiers</span></code> of the NetworkServer resource. In <em>Carto</em> the
 network search tool has the dropdown <strong>Ebene</strong>.</p>
+</section>
+<section id="connecting-and-splitting-at-build">
+<span id="network-service-connect"></span><h2>Connecting and splitting at build<a class="headerlink" href="#connecting-and-splitting-at-build" title="Link to this heading">¶</a></h2>
+<p>By default the build connects everything within the tolerance: line ends and points become one node, and a node at the
+inside of a line splits it. When the tiers are kept by different departments, elements often lie on top of each other by
+chance, e.g. a low voltage joint on a vertex of a medium voltage cable. These settings of the network configuration control this:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"separateTiers"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="nt">"nodesOnLine"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ignore"</span><span class="p">,</span>
+<span class="nt">"lineEndsOnLine"</span><span class="p">:</span><span class="w"> </span><span class="s2">"report"</span><span class="p">,</span>
+<span class="nt">"connectRules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inside"</span><span class="p">,</span><span class="w"> </span><span class="nt">"nodes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[Niederspannung,Trenner,*]"</span><span class="p">,</span><span class="w"> </span><span class="nt">"edges"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[Niederspannung,*,*]"</span><span class="p">,</span><span class="w"> </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"connect"</span><span class="w"> </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">separateTiers</span></code> (default <code class="docutils literal notranslate"><span class="pre">false</span></code>): connect and split only within a tier. Line ends of a tier also connect to its
+<code class="docutils literal notranslate"><span class="pre">sources</span></code> (type patterns, e.g. the transformer of the low voltage). Elements without a tier connect to everything. Real
+nodes of different tiers at one place are no conflict but two nodes; line ends of different tiers at one place give two
+helper nodes (a transition between tiers needs a real node). When a line end may connect to several nodes of one place,
+they are merged as with <code class="docutils literal notranslate"><span class="pre">nodeConflicts</span></code> (<code class="docutils literal notranslate"><span class="pre">priorityByToc</span></code>: the layer higher in the TOC wins, the others become aliases).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">connectRules</span></code>: the first rule that matches decides; without a match the tiers decide (or: everything connects).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nodesOnLine</span></code> and <code class="docutils literal notranslate"><span class="pre">lineEndsOnLine</span></code> (<code class="docutils literal notranslate"><span class="pre">connect</span></code>, <code class="docutils literal notranslate"><span class="pre">ignore</span></code> or <code class="docutils literal notranslate"><span class="pre">report</span></code>, default <code class="docutils literal notranslate"><span class="pre">connect</span></code>): whether a real node or
+a line end (T junction) at the inside of a line splits it when no rule matches and, with <code class="docutils literal notranslate"><span class="pre">separateTiers</span></code>, both are of one
+tier. A T junction that is not split stays unconnected; with <code class="docutils literal notranslate"><span class="pre">report</span></code> the places are listed in the build log.</p></li>
+</ul>
+<p>The decision for a split: the first rule that matches, then another tier (<code class="docutils literal notranslate"><span class="pre">ignore</span></code>), then <code class="docutils literal notranslate"><span class="pre">nodesOnLine</span></code> /
+<code class="docutils literal notranslate"><span class="pre">lineEndsOnLine</span></code>. For line ends: the first rule that matches, then the <code class="docutils literal notranslate"><span class="pre">sources</span></code> of the tier, then the tiers.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">at</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">end</span></code>: a line end meets a node (connect?). <code class="docutils literal notranslate"><span class="pre">inside</span></code>: a node lies at the inside of a line (split?); the node is a
+real node or the helper node of a T junction (<code class="docutils literal notranslate"><span class="pre">untyped</span></code>). <code class="docutils literal notranslate"><span class="pre">any</span></code> (default): both.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">nodes</span></code></p></td>
+<td><p>Node types (pattern), e.g. <code class="docutils literal notranslate"><span class="pre">[Niederspannung,Trenner,*]</span></code> or <code class="docutils literal notranslate"><span class="pre">untyped</span> <span class="pre">&amp;</span> <span class="pre">[Niederspannung,*,*]</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">edges</span></code></p></td>
+<td><p>Edge types (pattern).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">action</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">connect</span></code> (connect or split), <code class="docutils literal notranslate"><span class="pre">ignore</span></code> (do not connect, silently) or <code class="docutils literal notranslate"><span class="pre">report</span></code> (do not connect and report it in
+the build: <code class="docutils literal notranslate"><span class="pre">ConnectionRefused</span></code> / <code class="docutils literal notranslate"><span class="pre">SplitRefused</span></code> with the location and both objects, probably a data error).</p></td>
+</tr>
+</tbody>
+</table>
+<p>The example describes a network whose lines are already cut at the real nodes: only switches split a low voltage line,
+other nodes split nothing, T junctions are reported. In <em>Carto</em>: network module page, tab <strong>Connections</strong> (<em>Separate tiers</em>
+and the two defaults at the top, the rules below). In the pattern editor the switch <strong>untyped</strong> of a row means the helper
+nodes of these types (<code class="docutils literal notranslate"><span class="pre">untyped</span> <span class="pre">&amp;</span> <span class="pre">[Niederspannung,*,*]</span></code>); <strong>Text</strong> shows the whole pattern as text, e.g. for <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> and <code class="docutils literal notranslate"><span class="pre">!</span></code>.
+Build the network again after a change.</p>
 </section>
 <section id="configuration-appsettings-section-network">
 <h2>Configuration (appsettings, section <code class="docutils literal notranslate"><span class="pre">Network</span></code>)<a class="headerlink" href="#configuration-appsettings-section-network" title="Link to this heading">¶</a></h2>
@@ -273,15 +334,17 @@ network search tool has the dropdown <strong>Ebene</strong>.</p>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MaxResultNodes</span></code></p></td>
 <td><p>50000</p></td>
-<td><p>Larger results are cut (<code class="docutils literal notranslate"><span class="pre">exceededLimit</span></code>).</p></td>
+<td><p>Results with more nodes or more edges are cut (<code class="docutils literal notranslate"><span class="pre">exceededLimit</span></code>). The search itself runs completely.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TimeoutSeconds</span></code></p></td>
 <td><p>120</p></td>
-<td><p>Longer searches are answered with error 504.</p></td>
+<td><p>Longer searches are answered with error 504; the time also covers reading the geometry and attributes of
+the result.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MaxParallel</span></code></p></td>
 <td><p>2</p></td>
-<td><p>Searches running at the same time, others wait.</p></td>
+<td><p>Searches running at the same time. Others wait at most <code class="docutils literal notranslate"><span class="pre">TimeoutSeconds</span></code> for a free slot, then error 503.
+The description and the forms do not wait.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MaxLoadedShards</span></code></p></td>
 <td><p>512</p></td>
@@ -317,6 +380,7 @@ network search tool has the dropdown <strong>Ebene</strong>.</p>
 <li><a class="reference internal" href="#network-configuration">Network configuration</a></li>
 <li><a class="reference internal" href="#refresh-metadata">Refresh metadata</a></li>
 <li><a class="reference internal" href="#tiers-ebenen">Tiers (Ebenen)</a></li>
+<li><a class="reference internal" href="#connecting-and-splitting-at-build">Connecting and splitting at build</a></li>
 <li><a class="reference internal" href="#configuration-appsettings-section-network">Configuration (appsettings, section <code class="docutils literal notranslate"><span class="pre">Network</span></code>)</a></li>
 </ul>
 </li>

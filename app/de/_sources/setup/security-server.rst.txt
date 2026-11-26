@@ -17,6 +17,8 @@ Empfohlener Betrieb
   im Internetbetrieb immer: ohne Eintrag gilt jeder Rechner in den privaten Netzen als Proxy.
 - Die Admin-Seiten im internen Netz lassen (``security:manage:allowed-networks``, Standard) oder
   einen OIDC-Admin-Login verwenden.
+- Die Zwei-Faktor-Anmeldung für Admins einschalten, im Internetbetrieb als Pflicht
+  (``security:manage:two-factor = required``, siehe :ref:`security-server-2fa`).
 - ``force-https`` setzen, wenn der Server nur über https erreichbar ist.
 - Den ersten Admin mit ``GVIEW_ADMIN_USER``/``GVIEW_ADMIN_PASSWORD`` oder dem Setup-Code aus dem
   Log anlegen, bevor der Server von außen erreichbar ist (siehe :ref:`server_postinstallation`).
@@ -53,7 +55,11 @@ Alle Einstellungen sind optional; angegeben sind die Standardwerte.
                 // Standard: localhost und die privaten Netze
                 "allowed-networks": [ "10.1.5.0/24" ],
                 // Admin-Login, wird bei Aktivität verlängert
-                "session-hours": 8
+                "session-hours": 8,
+                // Zwei-Faktor-Anmeldung (TOTP) für den Admin-Login: off | optional | required
+                "two-factor": "optional",
+                // Name des Servers in der Authenticator-App
+                "two-factor-issuer": "gView Server"
             },
 
             "login": {
@@ -127,7 +133,9 @@ der Zugriff wird protokolliert. Der Link **Manage** wird außerhalb ausgeblendet
 - Standard: localhost und die privaten Netze.
 - ``"*"`` erlaubt den Zugriff von überall. Bei einem Server im Internet **nicht** verwenden: Dann
   sind Login und Admin-Seiten für jeden erreichbar und nur noch durch das Passwort geschützt.
-  Besser die Netze der Admins eintragen, ein VPN verwenden oder einen OIDC-Admin-Login.
+  Besser die Netze der Admins eintragen, ein VPN verwenden oder einen OIDC-Admin-Login. Geht es
+  nicht anders, mindestens die Zwei-Faktor-Anmeldung zur Pflicht machen; sonst schreibt der
+  Server beim Start eine Warnung ins Log.
 - Mit OIDC-Admin-Login (``Authentication:Type = oidc``) gilt die Einschränkung nur, wenn
   ``allowed-networks`` gesetzt ist.
 - *gView Carto* publiziert Dienste über ``BrowseServices/PublishService``: Der Carto-Server muss
@@ -147,6 +155,74 @@ Logins, Sperre und Sitzungen
   Security Stamp des Logins. Ein Passwortwechsel beendet alle Sitzungen und Tokens dieses
   Benutzers. **Sign out everywhere** (Sidebar, für Admins) macht dasselbe ohne
   Passwortwechsel; dabei wird ``<user>.stamp`` neben die Datei ``<user>.lgn`` geschrieben.
+
+.. _security-server-2fa:
+
+Zwei-Faktor-Anmeldung
+---------------------
+
+Der Admin-Login kann zusätzlich zum Passwort einen Code aus einer Authenticator-App verlangen
+(TOTP nach RFC 6238: 6 Ziffern, alle 30 Sekunden neu; z. B. Microsoft Authenticator, Google
+Authenticator, Aegis, 1Password, Bitwarden).
+
+``security:manage:two-factor``:
+
+- ``off``: keine Zwei-Faktor-Anmeldung.
+- ``optional`` (Standard): Jeder Admin kann sie für sich einrichten. Wer sie eingerichtet hat,
+  wird nach dem Passwort nach dem Code gefragt.
+- ``required``: Pflicht für alle Admins. Wer noch keine hat, muss sie direkt nach dem Passwort
+  einrichten, bevor er auf die Admin-Seiten kommt. Bestehende Sitzungen von Admins ohne zweiten
+  Faktor enden beim Umstellen. Für Server, deren Admin-Seiten aus dem Internet erreichbar sind,
+  wird ``required`` dringend empfohlen.
+
+**Einrichten:** Sidebar **Two-factor login** (Seite ``/manage/twofactor``). Den QR-Code mit der
+App scannen (oder den Schlüssel von Hand eingeben) und innerhalb von 10 Minuten mit einem Code aus
+der App bestätigen; **Sign out everywhere** oder ein neues Passwort brechen eine laufende Einrichtung ab.
+Danach zeigt der Server **einmalig** 10 Recovery-Codes (``xxxxx-xxxxx``) an: kopieren oder als
+Textdatei herunterladen und sicher aufbewahren, z. B. im Passwort-Manager. Mit dem Einrichten
+enden alle anderen Sitzungen dieses Admins.
+
+**Anmelden:** Nach Benutzername und Passwort fragt die Login-Seite nach dem Code. Statt des Codes
+kann ein Recovery-Code eingegeben werden; jeder Recovery-Code gilt nur einmal. Sind nur noch zwei
+oder weniger übrig, zeigt der Server nach dem Login einen Hinweis.
+
+- Codes werden 30 Sekunden vor und nach der aktuellen Zeit akzeptiert. Die Uhren von Server und
+  Telefon müssen stimmen (NTP).
+- Ein schon benutzter Code wird abgelehnt.
+- Falsche Codes zählen wie falsche Passwörter für die Login-Sperre (``security:login``). Nach 5
+  falschen Codes beginnt der Login wieder beim Passwort. Zwischen Passwort und Code hält der
+  Browser nur ein kurzlebiges Cookie (5 Minuten) ohne Admin-Rechte.
+
+**Verwalten** (Seite **Two-factor login**, angemeldet):
+
+- *New recovery codes:* neue Recovery-Codes mit einem Code aus der App; die alten werden ungültig.
+- *New device:* auf ein neues Telefon umziehen (Code aus der App oder Recovery-Code, dann neuer
+  QR-Code). Das alte Gerät gilt, bis das neue bestätigt ist. Beendet alle anderen Sitzungen.
+- *Disable:* nur bei ``optional``, mit Passwort und Code. Beendet alle anderen Sitzungen.
+
+**Speicherung:** ``<user>.2fa`` neben ``<user>.lgn`` im Ordner ``_login/manage``. Das Secret ist
+mit dem Server-Zertifikat (``crypto0.pfx``) verschlüsselt, die Recovery-Codes sind gehasht. Die
+Datei gehört wie ``crypto0.pfx`` in die Sicherung, aber nicht in fremde Hände.
+
+**Notfall-Reset** (Telefon und Recovery-Codes verloren):
+
+- Die Datei ``_login/manage/<user>.2fa`` löschen, oder
+- den Server mit der Umgebungsvariable (oder dem Konfigurationswert) ``GVIEW_ADMIN_RESET_2FA``
+  starten: ``admin`` bzw. ``admin1,admin2`` für einzelne Admins, ``*`` für alle. Praktisch für
+  Docker ohne Shell. Die Variable wirkt bei **jedem** Start, solange sie gesetzt ist, und der
+  Server warnt dann im Log: nach dem Reset wieder entfernen.
+
+Der Reset beendet alle Sitzungen des Admins. Bei ``required`` richtet er die
+Zwei-Faktor-Anmeldung beim nächsten Login neu ein, bei ``optional`` reicht das Passwort.
+
+**Nicht betroffen:**
+
+- Token-User (Token-Login, ``generateToken``, Basic Auth, Url-Tokens) und damit auch das
+  Publizieren aus *gView Carto*: Das sind meist Programme, die keinen Code eingeben können.
+  Token-User mit Publish-Rechten deshalb mit langen, zufälligen Passwörtern versehen und
+  regelmäßig wechseln.
+- OIDC-Admin-Login (``Authentication:Type = oidc``): Die Zwei-Faktor-Anmeldung ist dann Sache
+  des Identity Providers.
 
 CORS, Cookies und Security-Header
 ---------------------------------

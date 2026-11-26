@@ -167,6 +167,8 @@ und <code class="docutils literal notranslate"><span class="pre">X-Forwarded-Pro
 im Internetbetrieb immer: ohne Eintrag gilt jeder Rechner in den privaten Netzen als Proxy.</p></li>
 <li><p>Die Admin-Seiten im internen Netz lassen (<code class="docutils literal notranslate"><span class="pre">security:manage:allowed-networks</span></code>, Standard) oder
 einen OIDC-Admin-Login verwenden.</p></li>
+<li><p>Die Zwei-Faktor-Anmeldung für Admins einschalten, im Internetbetrieb als Pflicht
+(<code class="docutils literal notranslate"><span class="pre">security:manage:two-factor</span> <span class="pre">=</span> <span class="pre">required</span></code>, siehe <a class="reference internal" href="#security-server-2fa"><span class="std std-ref">Zwei-Faktor-Anmeldung</span></a>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">force-https</span></code> setzen, wenn der Server nur über https erreichbar ist.</p></li>
 <li><p>Den ersten Admin mit <code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_USER</span></code>/<code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_PASSWORD</span></code> oder dem Setup-Code aus dem
 Log anlegen, bevor der Server von außen erreichbar ist (siehe <a class="reference internal" href="../server/inst/postinstallation.html#server-postinstallation"><span class="std std-ref">Postinstallation</span></a>).</p></li>
@@ -200,7 +202,11 @@ und mit einem Datenbank-User, der nur liest (siehe <a class="reference internal"
 <span class="w">             </span><span class="c1">// Standard: localhost und die privaten Netze</span>
 <span class="w">             </span><span class="s2">"allowed-networks"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"10.1.5.0/24"</span><span class="w"> </span><span class="p">],</span>
 <span class="w">             </span><span class="c1">// Admin-Login, wird bei Aktivität verlängert</span>
-<span class="w">             </span><span class="s2">"session-hours"</span><span class="o">:</span><span class="w"> </span><span class="mf">8</span>
+<span class="w">             </span><span class="s2">"session-hours"</span><span class="o">:</span><span class="w"> </span><span class="mf">8</span><span class="p">,</span>
+<span class="w">             </span><span class="c1">// Zwei-Faktor-Anmeldung (TOTP) für den Admin-Login: off | optional | required</span>
+<span class="w">             </span><span class="s2">"two-factor"</span><span class="o">:</span><span class="w"> </span><span class="s2">"optional"</span><span class="p">,</span>
+<span class="w">             </span><span class="c1">// Name des Servers in der Authenticator-App</span>
+<span class="w">             </span><span class="s2">"two-factor-issuer"</span><span class="o">:</span><span class="w"> </span><span class="s2">"gView Server"</span>
 <span class="w">         </span><span class="p">},</span>
 
 <span class="w">         </span><span class="s2">"login"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
@@ -274,7 +280,9 @@ der Zugriff wird protokolliert. Der Link <strong>Manage</strong> wird außerhalb
 <li><p>Standard: localhost und die privaten Netze.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;*&quot;</span></code> erlaubt den Zugriff von überall. Bei einem Server im Internet <strong>nicht</strong> verwenden: Dann
 sind Login und Admin-Seiten für jeden erreichbar und nur noch durch das Passwort geschützt.
-Besser die Netze der Admins eintragen, ein VPN verwenden oder einen OIDC-Admin-Login.</p></li>
+Besser die Netze der Admins eintragen, ein VPN verwenden oder einen OIDC-Admin-Login. Geht es
+nicht anders, mindestens die Zwei-Faktor-Anmeldung zur Pflicht machen; sonst schreibt der
+Server beim Start eine Warnung ins Log.</p></li>
 <li><p>Mit OIDC-Admin-Login (<code class="docutils literal notranslate"><span class="pre">Authentication:Type</span> <span class="pre">=</span> <span class="pre">oidc</span></code>) gilt die Einschränkung nur, wenn
 <code class="docutils literal notranslate"><span class="pre">allowed-networks</span></code> gesetzt ist.</p></li>
 <li><p><em>gView Carto</em> publiziert Dienste über <code class="docutils literal notranslate"><span class="pre">BrowseServices/PublishService</span></code>: Der Carto-Server muss
@@ -295,6 +303,68 @@ verlängert.</p></li>
 Security Stamp des Logins. Ein Passwortwechsel beendet alle Sitzungen und Tokens dieses
 Benutzers. <strong>Sign out everywhere</strong> (Sidebar, für Admins) macht dasselbe ohne
 Passwortwechsel; dabei wird <code class="docutils literal notranslate"><span class="pre">&lt;user&gt;.stamp</span></code> neben die Datei <code class="docutils literal notranslate"><span class="pre">&lt;user&gt;.lgn</span></code> geschrieben.</p></li>
+</ul>
+</section>
+<section id="zwei-faktor-anmeldung">
+<span id="security-server-2fa"></span><h2>Zwei-Faktor-Anmeldung<a class="headerlink" href="#zwei-faktor-anmeldung" title="Link to this heading">¶</a></h2>
+<p>Der Admin-Login kann zusätzlich zum Passwort einen Code aus einer Authenticator-App verlangen
+(TOTP nach RFC 6238: 6 Ziffern, alle 30 Sekunden neu; z. B. Microsoft Authenticator, Google
+Authenticator, Aegis, 1Password, Bitwarden).</p>
+<p><code class="docutils literal notranslate"><span class="pre">security:manage:two-factor</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">off</span></code>: keine Zwei-Faktor-Anmeldung.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optional</span></code> (Standard): Jeder Admin kann sie für sich einrichten. Wer sie eingerichtet hat,
+wird nach dem Passwort nach dem Code gefragt.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">required</span></code>: Pflicht für alle Admins. Wer noch keine hat, muss sie direkt nach dem Passwort
+einrichten, bevor er auf die Admin-Seiten kommt. Bestehende Sitzungen von Admins ohne zweiten
+Faktor enden beim Umstellen. Für Server, deren Admin-Seiten aus dem Internet erreichbar sind,
+wird <code class="docutils literal notranslate"><span class="pre">required</span></code> dringend empfohlen.</p></li>
+</ul>
+<p><strong>Einrichten:</strong> Sidebar <strong>Two-factor login</strong> (Seite <code class="docutils literal notranslate"><span class="pre">/manage/twofactor</span></code>). Den QR-Code mit der
+App scannen (oder den Schlüssel von Hand eingeben) und innerhalb von 10 Minuten mit einem Code aus
+der App bestätigen; <strong>Sign out everywhere</strong> oder ein neues Passwort brechen eine laufende Einrichtung ab.
+Danach zeigt der Server <strong>einmalig</strong> 10 Recovery-Codes (<code class="docutils literal notranslate"><span class="pre">xxxxx-xxxxx</span></code>) an: kopieren oder als
+Textdatei herunterladen und sicher aufbewahren, z. B. im Passwort-Manager. Mit dem Einrichten
+enden alle anderen Sitzungen dieses Admins.</p>
+<p><strong>Anmelden:</strong> Nach Benutzername und Passwort fragt die Login-Seite nach dem Code. Statt des Codes
+kann ein Recovery-Code eingegeben werden; jeder Recovery-Code gilt nur einmal. Sind nur noch zwei
+oder weniger übrig, zeigt der Server nach dem Login einen Hinweis.</p>
+<ul class="simple">
+<li><p>Codes werden 30 Sekunden vor und nach der aktuellen Zeit akzeptiert. Die Uhren von Server und
+Telefon müssen stimmen (NTP).</p></li>
+<li><p>Ein schon benutzter Code wird abgelehnt.</p></li>
+<li><p>Falsche Codes zählen wie falsche Passwörter für die Login-Sperre (<code class="docutils literal notranslate"><span class="pre">security:login</span></code>). Nach 5
+falschen Codes beginnt der Login wieder beim Passwort. Zwischen Passwort und Code hält der
+Browser nur ein kurzlebiges Cookie (5 Minuten) ohne Admin-Rechte.</p></li>
+</ul>
+<p><strong>Verwalten</strong> (Seite <strong>Two-factor login</strong>, angemeldet):</p>
+<ul class="simple">
+<li><p><em>New recovery codes:</em> neue Recovery-Codes mit einem Code aus der App; die alten werden ungültig.</p></li>
+<li><p><em>New device:</em> auf ein neues Telefon umziehen (Code aus der App oder Recovery-Code, dann neuer
+QR-Code). Das alte Gerät gilt, bis das neue bestätigt ist. Beendet alle anderen Sitzungen.</p></li>
+<li><p><em>Disable:</em> nur bei <code class="docutils literal notranslate"><span class="pre">optional</span></code>, mit Passwort und Code. Beendet alle anderen Sitzungen.</p></li>
+</ul>
+<p><strong>Speicherung:</strong> <code class="docutils literal notranslate"><span class="pre">&lt;user&gt;.2fa</span></code> neben <code class="docutils literal notranslate"><span class="pre">&lt;user&gt;.lgn</span></code> im Ordner <code class="docutils literal notranslate"><span class="pre">_login/manage</span></code>. Das Secret ist
+mit dem Server-Zertifikat (<code class="docutils literal notranslate"><span class="pre">crypto0.pfx</span></code>) verschlüsselt, die Recovery-Codes sind gehasht. Die
+Datei gehört wie <code class="docutils literal notranslate"><span class="pre">crypto0.pfx</span></code> in die Sicherung, aber nicht in fremde Hände.</p>
+<p><strong>Notfall-Reset</strong> (Telefon und Recovery-Codes verloren):</p>
+<ul class="simple">
+<li><p>Die Datei <code class="docutils literal notranslate"><span class="pre">_login/manage/&lt;user&gt;.2fa</span></code> löschen, oder</p></li>
+<li><p>den Server mit der Umgebungsvariable (oder dem Konfigurationswert) <code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_RESET_2FA</span></code>
+starten: <code class="docutils literal notranslate"><span class="pre">admin</span></code> bzw. <code class="docutils literal notranslate"><span class="pre">admin1,admin2</span></code> für einzelne Admins, <code class="docutils literal notranslate"><span class="pre">*</span></code> für alle. Praktisch für
+Docker ohne Shell. Die Variable wirkt bei <strong>jedem</strong> Start, solange sie gesetzt ist, und der
+Server warnt dann im Log: nach dem Reset wieder entfernen.</p></li>
+</ul>
+<p>Der Reset beendet alle Sitzungen des Admins. Bei <code class="docutils literal notranslate"><span class="pre">required</span></code> richtet er die
+Zwei-Faktor-Anmeldung beim nächsten Login neu ein, bei <code class="docutils literal notranslate"><span class="pre">optional</span></code> reicht das Passwort.</p>
+<p><strong>Nicht betroffen:</strong></p>
+<ul class="simple">
+<li><p>Token-User (Token-Login, <code class="docutils literal notranslate"><span class="pre">generateToken</span></code>, Basic Auth, Url-Tokens) und damit auch das
+Publizieren aus <em>gView Carto</em>: Das sind meist Programme, die keinen Code eingeben können.
+Token-User mit Publish-Rechten deshalb mit langen, zufälligen Passwörtern versehen und
+regelmäßig wechseln.</p></li>
+<li><p>OIDC-Admin-Login (<code class="docutils literal notranslate"><span class="pre">Authentication:Type</span> <span class="pre">=</span> <span class="pre">oidc</span></code>): Die Zwei-Faktor-Anmeldung ist dann Sache
+des Identity Providers.</p></li>
 </ul>
 </section>
 <section id="cors-cookies-und-security-header">
@@ -514,6 +584,7 @@ FeatureServer-Edits melden Datenbankfehler ebenfalls nur noch mit dieser Id.</p>
 <li><a class="reference internal" href="#der-erste-admin">Der erste Admin</a></li>
 <li><a class="reference internal" href="#admin-netze">Admin-Netze</a></li>
 <li><a class="reference internal" href="#logins-sperre-und-sitzungen">Logins, Sperre und Sitzungen</a></li>
+<li><a class="reference internal" href="#zwei-faktor-anmeldung">Zwei-Faktor-Anmeldung</a></li>
 <li><a class="reference internal" href="#cors-cookies-und-security-header">CORS, Cookies und Security-Header</a></li>
 <li><a class="reference internal" href="#url-tokens">Url-Tokens</a></li>
 <li><a class="reference internal" href="#grenzen">Grenzen</a></li>

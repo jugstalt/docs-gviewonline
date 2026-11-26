@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Building networks &#8212; gView GIS 8.x documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=9b2032db" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=247da48f" />
+    <script src="../../_static/documentation_options.js?v=5f428a84"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <script src="../../_static/js/petite-vue.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Network tools" href="network-tools.html" />
+    <link rel="prev" title="Additional Layer Properties" href="layersettings.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../../index.html" title="Go to homepage">gView GIS 8.x documentation</a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Table of contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../setup/index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">gView WebApps</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">gView Carto</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="newmap.html">Creating a New Map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="adddata.html">Add Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="toc.html">Drawing Order/TOC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contexttools.html">Context-Related Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbology.html">Representation and Symbology</a></li>
+<li class="toctree-l3"><a class="reference internal" href="renderers.html">Feature Renderer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="labeling.html">Label Renderer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scales.html">Scale Limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="layersettings.html">Additional Layer Properties</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Building networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="network-tools.html">Network tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="managemaps.html">Saving and Managing Map Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dataexplorer/index.html">gView Data Explorer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../server/index.html">gView Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commandline/index.html">gView Command Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../commandline/index.html#command-line-tools-interactive-mode">Command Line Tools (Interactive Mode)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix/index.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spec/geojson_service/index.html">GeoJson Service Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spec/network_service/index.html">Network Service Specification</a></li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="building-networks">
+<span id="carto-network"></span><h1>Building networks<a class="headerlink" href="#building-networks" title="Link to this heading">¶</a></h1>
+<p>From the point and line layers of a map, <em>gView Carto</em> builds a network: a graph of nodes and edges that the
+<strong>NetworkServer</strong> of the service searches (trace, shortest path, supply, outage, rules). This page shows the steps in
+Carto with a small sample network: a substation, three medium voltage cables, two transformers and behind them a low
+voltage network with boxes, a switch, house connections and customers. The configuration in detail is described in
+<a class="reference internal" href="../../spec/network_service/administration.html#network-service-administration"><span class="std std-ref">Access, build and configuration</span></a>.</p>
+<img alt="../../_images/network-map.png" src="../../_images/network-map.png" />
+<p>In the sample a low voltage joint lies on a vertex of a medium voltage cable, and a house connection ends on a low
+voltage cable (a T junction). Both are common in real data when the tiers are kept by different departments; step 3
+shows how to deal with them.</p>
+<section id="add-layers-to-the-network">
+<h2>1. Add layers to the network<a class="headerlink" href="#add-layers-to-the-network" title="Link to this heading">¶</a></h2>
+<p>For every layer that belongs to the network: context menu of the layer, <strong>Layer Settings</strong>, page <strong>Network</strong>.</p>
+<img alt="../../_images/network-layersettings.png" src="../../_images/network-layersettings.png" />
+<ul class="simple">
+<li><p><strong>Layer takes part in the network</strong>: point layers become nodes, line layers edges, a polygon layer may give the
+<strong>shards</strong> (e.g. local networks).</p></li>
+<li><p><strong>Type</strong>: one template per facet that makes the type of every feature: a fixed text, a field <code class="docutils literal notranslate"><span class="pre">[EBENE]</span></code>,
+<code class="docutils literal notranslate"><span class="pre">{layer-name}</span></code>, <code class="docutils literal notranslate"><span class="pre">{group-name}</span></code> (the group of the layer) or <code class="docutils literal notranslate"><span class="pre">{group-name:n}</span></code>. <strong>The first facet is the tier</strong>,
+e.g. medium or low voltage: with one group per tier in the table of contents, use <code class="docutils literal notranslate"><span class="pre">{group-name}</span></code> there.</p></li>
+<li><p><strong>Where</strong>, length, direction and the normal switching state (e.g. a field whose value blocks a switch) are optional.</p></li>
+</ul>
+<p>Alternatively <strong>Service Settings</strong>, <strong>NetworkServer</strong>, tab <strong>Layers</strong>, <strong>Add all point and line layers</strong> adds all layers at once.</p>
+</section>
+<section id="basic-settings">
+<h2>2. Basic settings<a class="headerlink" href="#basic-settings" title="Link to this heading">¶</a></h2>
+<p><strong>Service Settings</strong> (toolbar <strong>Map</strong>), <strong>NetworkServer</strong> on the left, tab <strong>General</strong>:</p>
+<img alt="../../_images/network-general.png" src="../../_images/network-general.png" />
+<ul class="simple">
+<li><p><strong>Spatial reference</strong>: the metric spatial reference the network is built in (empty: the map’s).</p></li>
+<li><p><strong>Tolerance</strong>: line ends and points closer than this become one node (default 0.01).</p></li>
+<li><p><strong>Points of different layers at one place</strong>: an error, or the layer higher in the table of contents wins and the others
+become aliases (e.g. a customer drawn on a box).</p></li>
+<li><p><strong>Supply</strong>: the default sources and customers of supply and outage, as type patterns, e.g. <code class="docutils literal notranslate"><span class="pre">[Mittelspannung,Umspannwerk]</span></code>.</p></li>
+<li><p><strong>Type facets</strong> and <strong>Weights</strong>: the facets (tier, object type, …) and further weights beside the length.</p></li>
+</ul>
+</section>
+<section id="tiers-and-connections">
+<h2>3. Tiers and connections<a class="headerlink" href="#tiers-and-connections" title="Link to this heading">¶</a></h2>
+<p>Every value of the first facet is a <strong>tier</strong>. On the tab <strong>Tiers</strong> a tier gets its settings: rank, sources, sinks and
+blocked nodes. The sources of the low voltage are the transformers of the medium voltage.</p>
+<img alt="../../_images/network-tiers.png" src="../../_images/network-tiers.png" />
+<p>The tab <strong>Connections</strong> decides what is connected and split at build:</p>
+<img alt="../../_images/network-connections.png" src="../../_images/network-connections.png" />
+<ul class="simple">
+<li><p><strong>Separate tiers</strong>: connect and split only within a tier. The low voltage joint on the medium voltage cable no longer
+splits it; low voltage cables connect to the transformers because they are sources of their tier.</p></li>
+<li><p><strong>Nodes on a line</strong>, <strong>Line ends on a line (T junctions)</strong>: what applies when no rule matches. In the sample no node
+splits a line (<em>Ignore</em>), T junctions are reported (<em>Report</em>).</p></li>
+<li><p><strong>Rules</strong>: the first rule that matches wins. Here a low voltage switch may split a low voltage cable. Each rule is a
+panel with a header (check box = enabled, number, name, patterns, <strong>Where</strong> and <strong>Action</strong>); expanded it shows <strong>Name</strong>,
+<strong>Description</strong> (why the rule exists) and the patterns. The switch <strong>untyped</strong> of a row means the helper nodes (line ends
+without a point), e.g. for rules about T junctions; <strong>Text</strong> shows the pattern as text (<code class="docutils literal notranslate"><span class="pre">&amp;</span></code> and, <code class="docutils literal notranslate"><span class="pre">!</span></code> not). The arrows
+change the order, the filter field searches name, description and types.</p></li>
+<li><p><strong>Action</strong>: <em>Connect / split</em> connects or splits, <em>Ignore</em> does not, <em>Report</em> does not and reports the place,
+<em>Connect / split + report</em> connects anyway and reports it (e.g. a line not broken up at a joint). The tool
+<strong>Network Search</strong> shows reported places with the operation <em>problems</em>, category <strong>Rules</strong>.</p></li>
+</ul>
+<p>The fields of the patterns suggest the values of the facets. How the decision is made in detail is described in
+<a class="reference internal" href="../../spec/network_service/administration.html#network-service-connect"><span class="std std-ref">Connecting and splitting at build</span></a>.</p>
+</section>
+<section id="rules">
+<h2>4. Rules<a class="headerlink" href="#rules" title="Link to this heading">¶</a></h2>
+<p>The tab <strong>Rules</strong> holds rules that find topology errors: a rule counts the direct neighbours of nodes or edges and compares
+the count with min and max, optionally within one tier. The header shows severity (<em>Error</em>, <em>Warning</em>), name, patterns and
+description; expand a rule to edit it. <strong>Export rules</strong>/<strong>Import rules</strong> exchange the rules as a JSON file.</p>
+<img alt="../../_images/network-rules.png" src="../../_images/network-rules.png" />
+<p>Checks run with the tool <strong>Network Search</strong> (operation <em>validate</em>) or with <code class="docutils literal notranslate"><span class="pre">gView.Cmd</span> <span class="pre">-u</span> <span class="pre">validate</span></code>, never at build: a rule
+with an unknown tier does not stop the build, the log warns, and <em>validate</em> fails until it is fixed.</p>
+</section>
+<section id="build">
+<h2>5. Build<a class="headerlink" href="#build" title="Link to this heading">¶</a></h2>
+<p>Tab <strong>Build</strong>, <strong>Build network</strong>. The map must be saved: the network is stored next to it (<code class="docutils literal notranslate"><span class="pre">{map}.network</span></code>). The log
+shows the number of nodes, edges and shards, the notes (e.g. <code class="docutils literal notranslate"><span class="pre">SplitRefused</span></code> for the reported T junction,
+<code class="docutils literal notranslate"><span class="pre">OutsideShardRegions</span></code> for features outside the shard polygons) and the types used. <code class="docutils literal notranslate"><span class="pre">conflicts.json</span></code> in the network
+directory lists conflicts when the build stops. All reports of the build can be viewed in the map with the tool
+<strong>Network Search</strong>, operation <em>problems</em> (see <a class="reference internal" href="network-tools.html#carto-network-tools"><span class="std std-ref">Network tools</span></a>).</p>
+<img alt="../../_images/network-build.png" src="../../_images/network-build.png" />
+<p><strong>JSON (gView.Cmd)</strong> exports and imports the configuration, e.g. to build at night with <code class="docutils literal notranslate"><span class="pre">gView.Cmd</span> <span class="pre">--command</span> <span class="pre">Network</span> <span class="pre">-u</span> <span class="pre">build</span></code>.</p>
+</section>
+<section id="search">
+<h2>6. Search<a class="headerlink" href="#search" title="Link to this heading">¶</a></h2>
+<p>The tool <strong>Network Search</strong> (toolbar <strong>Tools</strong>) searches the built network: choose an operation (trace, reach, path,
+supply, outage, feeders, info, validate, problems), click the start in the map with <strong>Start</strong>, <strong>Run</strong>. Under <strong>Options</strong>,
+<strong>Tiers</strong> restricts the search to tiers; an <strong>Area</strong> limits it in space. All operations are described in
+<a class="reference internal" href="network-tools.html#carto-network-tools"><span class="std std-ref">Network tools</span></a>.</p>
+<img alt="../../_images/network-trace.png" src="../../_images/network-trace.png" />
+<p>The picture shows a trace from the substation on the medium voltage tier: it reaches both transformers, the low voltage
+joint stays out. When several nodes lie at the clicked place (separate tiers), the tier chooses the node; another click at
+the same place takes the next one.</p>
+</section>
+<section id="publish">
+<h2>7. Publish<a class="headerlink" href="#publish" title="Link to this heading">¶</a></h2>
+<p>When the map is published as a service, the network is available as the <strong>NetworkServer</strong> of the service as soon as it
+lies at the server’s location (build in the server administration, gView.Cmd, or copied). Access, location and the REST
+operations are described in <a class="reference internal" href="../../spec/network_service/administration.html#network-service-administration"><span class="std std-ref">Access, build and configuration</span></a>.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">Building networks</a><ul>
+<li><a class="reference internal" href="#add-layers-to-the-network">1. Add layers to the network</a></li>
+<li><a class="reference internal" href="#basic-settings">2. Basic settings</a></li>
+<li><a class="reference internal" href="#tiers-and-connections">3. Tiers and connections</a></li>
+<li><a class="reference internal" href="#rules">4. Rules</a></li>
+<li><a class="reference internal" href="#build">5. Build</a></li>
+<li><a class="reference internal" href="#search">6. Search</a></li>
+<li><a class="reference internal" href="#publish">7. Publish</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="layersettings.html">
+                    <span class="icon">&lt;</span><span>Additional Layer Properties</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="network-tools.html"><span>Network tools</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, https://github.com/jugstalt/docs-gviewonline.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

@@ -135,8 +135,12 @@
 <li class="toctree-l2"><a class="reference internal" href="capabilities.html">(Service)Capabilities Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="map.html">Map Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="legend.html">Legend Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers.html">Layers Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identify.html">Identify Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="find.html">Find Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="query.html">Query Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="features.html">Features Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="applyedits.html">ApplyEdits Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="token.html">Token Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="errorhandling.html">Error Handling</a></li>
 </ul>
@@ -162,17 +166,17 @@ and geometric shapes.</p>
 <p>The <strong>BBox</strong> object describes a rectangle that encloses the extent of a feature or a collection
 of features. It is used to define spatial boundaries.</p>
 <ul class="simple">
-<li><p><strong>MinX</strong>: (double) The minimum X-coordinate (e.g., longitude).</p></li>
-<li><p><strong>MinY</strong>: (double) The minimum Y-coordinate (e.g., latitude).</p></li>
-<li><p><strong>MaxX</strong>: (double) The maximum X-coordinate (e.g., longitude).</p></li>
-<li><p><strong>MaxY</strong>: (double) The maximum Y-coordinate (e.g., latitude).</p></li>
+<li><p><strong>minX</strong>: (double) The minimum X-coordinate (e.g., longitude).</p></li>
+<li><p><strong>minY</strong>: (double) The minimum Y-coordinate (e.g., latitude).</p></li>
+<li><p><strong>maxX</strong>: (double) The maximum X-coordinate (e.g., longitude).</p></li>
+<li><p><strong>maxY</strong>: (double) The maximum Y-coordinate (e.g., latitude).</p></li>
 </ul>
 <p>Example:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">"MinX"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"MinY"</span><span class="p">:</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"MaxX"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.0</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"MaxY"</span><span class="p">:</span><span class="w"> </span><span class="mf">60.0</span>
+<span class="w">  </span><span class="nt">"minX"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"minY"</span><span class="p">:</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"maxX"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"maxY"</span><span class="p">:</span><span class="w"> </span><span class="mf">60.0</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -186,14 +190,14 @@ of features. It is used to define spatial boundaries.</p>
 It contains information about how the spatial data should be interpreted,
 particularly regarding the coordinate system in use.</p>
 <ul class="simple">
-<li><p><strong>Type</strong>: (string) The type of coordinate reference system. By default, “name” is used.</p></li>
-<li><p><strong>Properties</strong>: (dictionary) A dictionary with additional properties of the coordinate reference system.
+<li><p><strong>type</strong>: (string) The type of coordinate reference system. By default, “name” is used.</p></li>
+<li><p><strong>properties</strong>: (dictionary) A dictionary with additional properties of the coordinate reference system.
 Typically, an EPSG code such as “EPSG:4326” is used.</p></li>
 </ul>
 <p>Example:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"Properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EPSG:4326"</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
@@ -202,26 +206,29 @@ Typically, an EPSG code such as “EPSG:4326” is used.</p></li>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In GET requests, the CRS can also be simplified as a URL parameter in the following form:</p>
-<p><code class="docutils literal notranslate"><span class="pre">&amp;crs=epsg:4326</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">&amp;crs=epsg:4326</span></code> or <code class="docutils literal notranslate"><span class="pre">&amp;crs=4326</span></code>; in the body <code class="docutils literal notranslate"><span class="pre">&quot;name&quot;:</span> <span class="pre">&quot;EPSG:4326&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;name&quot;:</span> <span class="pre">&quot;4326&quot;</span></code></p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>CRS is always an optional parameter in all requests. If no value is provided,
 WGS84 (EPSG:4326) is assumed as the default value for GeoJson.</p>
+<p>In a geographic coordinate system (e.g. EPSG:4326) the latitudes of request geometries (spatial filter, identify,
+edits) must be between -90 and 90, otherwise the request is rejected with <code class="docutils literal notranslate"><span class="pre">400</span></code>: projected coordinates need their
+own <strong>crs</strong>. Longitudes beyond ±180 are allowed (maps across the date line).</p>
 </div>
 <p><strong>Geometry</strong></p>
 <p>The <strong>Geometry</strong> object describes the geometric shape of a feature and is based
 on the GeoJSON standard. It contains the following attributes:</p>
 <ul class="simple">
-<li><p><strong>Type</strong>: (string) The geometry type, e.g., “Point”, “LineString”, “Polygon”, “MultiPoint”,
+<li><p><strong>type</strong>: (string) The geometry type, e.g., “Point”, “LineString”, “Polygon”, “MultiPoint”,
 “MultiLineString”, “MultiPolygon” or “Unknown”.</p></li>
-<li><p><strong>Coordinates</strong>: (array) The coordinates defining the geometry. The exact structure
+<li><p><strong>coordinates</strong>: (array) The coordinates defining the geometry. The exact structure
 depends on the geometry type and can include points, lines, or polygons.</p></li>
 </ul>
 <p>Example:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Polygon"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"Coordinates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Polygon"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"coordinates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">[</span>
 <span class="w">      </span><span class="p">[</span><span class="mf">10.0</span><span class="p">,</span><span class="w"> </span><span class="mf">50.0</span><span class="p">],</span>
 <span class="w">      </span><span class="p">[</span><span class="mf">20.0</span><span class="p">,</span><span class="w"> </span><span class="mf">50.0</span><span class="p">],</span>
@@ -244,6 +251,29 @@ in a Geometry object:</p>
 <li><p><strong>MultiLineString</strong>: A collection of lines.</p></li>
 <li><p><strong>MultiPolygon</strong>: A collection of polygons.</p></li>
 </ul>
+<p><strong>Feature</strong></p>
+<p>A feature as in GeoJSON (RFC 7946), with the object id as <strong>oid</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Feature"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"oid"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"bbox"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"minX"</span><span class="p">:</span><span class="w"> </span><span class="mf">16.48</span><span class="p">,</span><span class="w"> </span><span class="nt">"minY"</span><span class="p">:</span><span class="w"> </span><span class="mf">47.79</span><span class="p">,</span><span class="w"> </span><span class="nt">"maxX"</span><span class="p">:</span><span class="w"> </span><span class="mf">16.59</span><span class="p">,</span><span class="w"> </span><span class="nt">"maxY"</span><span class="p">:</span><span class="w"> </span><span class="mf">47.88</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"geometry"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Point"</span><span class="p">,</span><span class="w"> </span><span class="nt">"coordinates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">16.53</span><span class="p">,</span><span class="w"> </span><span class="mf">47.84</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"NAME"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eisenstadt"</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>type</strong>: always <code class="docutils literal notranslate"><span class="pre">&quot;Feature&quot;</span></code>.</p></li>
+<li><p><strong>oid</strong>: the object id.</p></li>
+<li><p><strong>bbox</strong>: the extent of the geometry as a <strong>BBox</strong> object (in responses with a geometry or with
+<code class="docutils literal notranslate"><span class="pre">returnGeometry=bbox</span></code>).</p></li>
+<li><p><strong>geometry</strong>, <strong>properties</strong>: the geometry and the attributes.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The server writes all names in camelCase (<code class="docutils literal notranslate"><span class="pre">minX</span></code>, <code class="docutils literal notranslate"><span class="pre">type</span></code>, <code class="docutils literal notranslate"><span class="pre">properties</span></code>). In requests the names are
+case-insensitive.</p>
+</div>
 </section>
 
 

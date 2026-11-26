@@ -19,6 +19,13 @@ Die URL kann aus dem Info-Endpoint-Response entnommen werden, beispielsweise
   - **clientSecret**: (string) Der Client-Secret zur Authentifizierung.  
   - **expireMinutes** (optional): (int) Die gewünschte Gültigkeitsdauer des Tokens in Minuten (maximal gemäß Serverkonfiguration).  
 
+- **POST** (Formular, ``application/x-www-form-urlencoded``)
+
+  .. code-block::
+
+      POST /geojsonservice/v1/token
+      clientId={client_id}&clientSecret={client_secret}&expireMinutes={expire_minutes}
+
 Response-Struktur
 ------------------  
 
@@ -39,7 +46,7 @@ Die Struktur des Responses ist wie folgt definiert:
 
 .. note::  
    
-   Der ``access_token`` ist allen Requests im ``HTTP Header Authorize`` als **Bearer Token** zu übergeben:  
+   Der ``access_token`` ist allen Requests im HTTP-Header ``Authorization`` als **Bearer Token** zu übergeben:  
    (``Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...``).  
 
 Verwendungsmöglichkeiten

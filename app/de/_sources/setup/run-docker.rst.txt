@@ -41,7 +41,9 @@ Der Container kann direkt gestartet werden:
 Nach dem Start ist die Verwaltungsoberfläche unter http://localhost:45622 erreichbar (im Beispiel
 oben). Den ersten Administrator legt man über die Umgebungsvariablen ``GVIEW_ADMIN_USER`` und
 ``GVIEW_ADMIN_PASSWORD`` an oder mit dem Setup-Code, den der Server ins Log schreibt
-(``docker logs gview-server``), siehe :doc:`security-server`.
+(``docker logs gview-server``), siehe :doc:`security-server`. Hat ein Admin Telefon und
+Recovery-Codes der Zwei-Faktor-Anmeldung verloren, setzt ``GVIEW_ADMIN_RESET_2FA=<user>`` sie
+beim Start zurück (danach wieder entfernen).
 
 
 gView.WebApps Image

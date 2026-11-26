@@ -167,9 +167,19 @@
 <span class="w">        </span><span class="p">{</span>
 <span class="w">            </span><span class="s2">"Title"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Local gView Server"</span><span class="p">,</span>
 <span class="w">            </span><span class="s2">"Description"</span><span class="o">:</span><span class="w"> </span><span class="s2">"gView Server in development environment"</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">"TargetUrl"</span><span class="o">:</span><span class="w"> </span><span class="s2">"https://localhost:44331"</span>
+<span class="w">            </span><span class="s2">"TargetUrl"</span><span class="o">:</span><span class="w"> </span><span class="s2">"https://localhost:44331"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"Visibility"</span><span class="o">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="w">  </span><span class="c1">// optional: admin (default), user, public</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="s2">"Home"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// optional: start page</span>
+<span class="w">        </span><span class="s2">"Title"</span><span class="o">:</span><span class="w"> </span><span class="s2">"GIS Portal"</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"WelcomeText"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Welcome to the GIS portal.\nSign in with your company account."</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"LogoUrl"</span><span class="o">:</span><span class="w"> </span><span class="s2">"https://my-server/logo.png"</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"NoAccessText"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Please ask the GIS team for access: gis@my-company.com"</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"Links"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="s2">"Title"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Manual"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Url"</span><span class="o">:</span><span class="w"> </span><span class="s2">"https://my-server/gis-manual"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="s2">"Publish"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// optional</span>
 <span class="w">        </span><span class="s2">"Servers"</span><span class="o">:</span>
 <span class="w">        </span><span class="p">[</span>
@@ -207,6 +217,61 @@ to store MXD files in a <em>private</em> directory.</p>
 <p>In the <code class="docutils literal notranslate"><span class="pre">CustomTiles</span></code> section, you can create additional tiles that are displayed on the
 homepage of <strong>gView.WebApps</strong>. This allows, for example, the creation of tiles linking to
 one or more <strong>gView.Server</strong> instances.</p>
+<p>Each tile has the following properties:</p>
+<ul class="simple">
+<li><p><strong>Title</strong>, <strong>Description:</strong> title and description of the tile.</p></li>
+<li><p><strong>TargetUrl:</strong> the URL opened when the tile is clicked.</p></li>
+<li><p><strong>BackgroundColor</strong>, <strong>FontColor:</strong> optional, background and font colour of the tile
+(e.g. <code class="docutils literal notranslate"><span class="pre">#0f766e</span></code>).</p></li>
+<li><p><strong>Visibility:</strong> optional, who sees the tile:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">admin</span></code> (default): <em>admin users</em> only</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">user</span></code>: all signed in users with a <em>gView</em> role (<em>carto users</em> and <em>admin users</em>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span></code>: everyone, including visitors who are not signed in</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="start-page">
+<span id="config-webapps-home"></span><h2>Start Page<a class="headerlink" href="#start-page" title="Link to this heading">¶</a></h2>
+<p>Visitors who are not signed in see a <strong>Sign in</strong> button on the start page and the applications
+<em>gView Carto</em> and <em>gView Explorer</em> as locked tiles. A click on a locked tile leads to the login
+and then directly into the application. Signed in users without a <em>gView</em> role (e.g. with
+<code class="docutils literal notranslate"><span class="pre">oidc</span></code> a user without <code class="docutils literal notranslate"><span class="pre">RequiredUserRole</span></code> and <code class="docutils literal notranslate"><span class="pre">RequiredAdminRole</span></code>) get a hint that they
+are missing the permission.</p>
+<p>The optional <code class="docutils literal notranslate"><span class="pre">Home</span></code> section adapts the start page to your organisation:</p>
+<ul class="simple">
+<li><p><strong>Title:</strong> heading of the start page (default: <code class="docutils literal notranslate"><span class="pre">gView</span> <span class="pre">GIS</span></code>).</p></li>
+<li><p><strong>WelcomeText:</strong> welcome text below the heading. Plain text, line breaks (<code class="docutils literal notranslate"><span class="pre">\n</span></code>) are kept.
+This is a good place to explain how to sign in.</p></li>
+<li><p><strong>LogoUrl:</strong> URL of a logo shown above the heading.</p></li>
+<li><p><strong>NoAccessText:</strong> text for signed in users without a <em>gView</em> role, e.g. whom to ask for access
+(default: <em>Please contact your administrator.</em>).</p></li>
+<li><p><strong>Links:</strong> footer links, each with <code class="docutils literal notranslate"><span class="pre">Title</span></code> and <code class="docutils literal notranslate"><span class="pre">Url</span></code>. When set, they replace the default
+links (documentation, GitHub).</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">"Home"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">"Title"</span><span class="o">:</span><span class="w"> </span><span class="s2">"GIS Portal"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"WelcomeText"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Welcome to the GIS portal.\nSign in with your company account."</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"LogoUrl"</span><span class="o">:</span><span class="w"> </span><span class="s2">"https://my-server/logo.png"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"NoAccessText"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Please ask the GIS team for access: gis@my-company.com"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"Links"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="s2">"Title"</span><span class="o">:</span><span class="w"> </span><span class="s2">"GIS manual"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Url"</span><span class="o">:</span><span class="w"> </span><span class="s2">"https://my-server/gis-manual"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The fixed texts of the start page are English. Texts in your own language can be set with
+<code class="docutils literal notranslate"><span class="pre">Title</span></code>, <code class="docutils literal notranslate"><span class="pre">WelcomeText</span></code> and <code class="docutils literal notranslate"><span class="pre">NoAccessText</span></code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Without an authentication (see below) every user sees the start page as <em>admin user</em>. If
+<strong>gView.WebApps</strong> is not called via <code class="docutils literal notranslate"><span class="pre">localhost</span></code>, the start page shows a warning in the
+<strong>System</strong> section.</p>
+</div>
 </section>
 <section id="publishing-maps">
 <h2>Publishing Maps<a class="headerlink" href="#publishing-maps" title="Link to this heading">¶</a></h2>
@@ -360,6 +425,7 @@ and <em>gView.Carto</em> and has the same entries as for <em>gView.Server</em> (
 <li><a class="reference internal" href="#">Configuration of gView.WebApps</a><ul>
 <li><a class="reference internal" href="#custom-drives-directories">Custom Drives/Directories</a></li>
 <li><a class="reference internal" href="#custom-tiles">Custom Tiles</a></li>
+<li><a class="reference internal" href="#start-page">Start Page</a></li>
 <li><a class="reference internal" href="#publishing-maps">Publishing Maps</a></li>
 <li><a class="reference internal" href="#authentication">Authentication</a><ul>
 <li><a class="reference internal" href="#forms-authentication">Forms Authentication</a></li>

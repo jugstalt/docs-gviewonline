@@ -194,8 +194,9 @@ Parameter <code class="docutils literal notranslate"><span class="pre">f=json|pj
 </ul>
 </li>
 </ul>
-<p>Ohne den Parameter <code class="docutils literal notranslate"><span class="pre">f</span></code> liefert jede Ressource eine HTML-Seite bzw. ein Formular zum Ausprobieren.
-Parameter werden als Query-String, als Formularfelder oder als JSON-Body (<code class="docutils literal notranslate"><span class="pre">application/json</span></code>) übergeben.</p>
+<p>Eine Operation ohne Parameter liefert ein HTML-Formular zum Ausprobieren, die Beschreibung ohne <code class="docutils literal notranslate"><span class="pre">f</span></code> eine HTML-Seite.
+Parameter werden als Query-String, als Formularfelder oder als JSON-Body (<code class="docutils literal notranslate"><span class="pre">application/json</span></code>, auch <code class="docutils literal notranslate"><span class="pre">&quot;f&quot;:</span> <span class="pre">&quot;json&quot;</span></code>)
+übergeben. Sobald ein Parameter (außer <code class="docutils literal notranslate"><span class="pre">token</span></code>) angegeben ist, läuft die Suche; ohne <code class="docutils literal notranslate"><span class="pre">f</span></code> ist das Ergebnis JSON.</p>
 <p>Beispiele (Dienst <code class="docutils literal notranslate"><span class="pre">sqlite/net</span></code>):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/geoservices/rest/services/sqlite/net/networkserver?f=pjson
 /geoservices/rest/services/sqlite/net/networkserver/trace?start=Trafo%2336&amp;f=geojson&amp;outSR=4326

@@ -136,8 +136,12 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">(Service)Capabilities Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="map.html">Map Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="legend.html">Legend Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers.html">Layers Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identify.html">Identify Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="find.html">Find Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="query.html">Query Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="features.html">Features Endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="applyedits.html">ApplyEdits Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="token.html">Token Endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="errorhandling.html">Error Handling</a></li>
 </ul>
@@ -184,7 +188,7 @@ einschließlich unterstützter Operationen, Layer und deren Eigenschaften.</p>
 </div>
 <ul class="simple">
 <li><p><strong>crs</strong> (optional): Das verwendete Koordinatenreferenzsystem. Falls nicht angegeben,
-wird das Standard-Koordinatensystem verwendet.</p></li>
+wird WGS84 (EPSG:4326) verwendet; darin werden <strong>fullExtent</strong> und <strong>initialExtent</strong> angegeben.</p></li>
 </ul>
 </section>
 <section id="response-struktur">
@@ -213,29 +217,41 @@ Die Struktur des Responses ist wie folgt definiert:</p>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"legend"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"maxFeaturesLimit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://{server}/geojsonservice/v1/services/{folder}/{service}/legend"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"httpMethods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">"GET"</span>
-<span class="w">      </span><span class="p">]</span>
+<span class="w">      </span><span class="nt">"httpMethods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w"> </span><span class="s2">"POST"</span><span class="w"> </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"layers"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://{server}/geojsonservice/v1/services/{folder}/{service}/layers"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"httpMethods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"GET"</span><span class="w"> </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"find"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"maxFeaturesLimit"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://{server}/geojsonservice/v1/services/{folder}/{service}/find"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"httpMethods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w"> </span><span class="s2">"POST"</span><span class="w"> </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"identify"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"maxFeaturesLimit"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://{server}/geojsonservice/v1/services/{folder}/{service}/identify"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"httpMethods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w"> </span><span class="s2">"POST"</span><span class="w"> </span><span class="p">]</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"query"</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"maxFeaturesLimit"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://{server}/geojsonservice/v1/services/{folder}/{service}/{layerId}"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"httpMethods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">"GET"</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">"POST"</span>
-<span class="w">      </span><span class="p">]</span>
+<span class="w">      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://{server}/geojsonservice/v1/services/{folder}/{service}/query/{layerId}"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"httpMethods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w"> </span><span class="s2">"POST"</span><span class="w"> </span><span class="p">]</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"features"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://{server}/geojsonservice/v1/services/{folder}/{service}/{layerId}"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"httpMethods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">"POST"</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">"PUT"</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">"DELETE"</span>
-<span class="w">      </span><span class="p">]</span>
+<span class="w">      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://{server}/geojsonservice/v1/services/{folder}/{service}/features/{layerId}"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"httpMethods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w"> </span><span class="s2">"PUT"</span><span class="p">,</span><span class="w"> </span><span class="s2">"DELETE"</span><span class="w"> </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"applyEdits"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://{server}/geojsonservice/v1/services/{folder}/{service}/applyEdits"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"httpMethods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"POST"</span><span class="w"> </span><span class="p">]</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">],</span>
 <span class="w">  </span><span class="nt">"crs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -256,7 +272,7 @@ Die Struktur des Responses ist wie folgt definiert:</p>
 <span class="w">    </span><span class="nt">"maxX"</span><span class="p">:</span><span class="w"> </span><span class="mf">15.0</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">"maxY"</span><span class="p">:</span><span class="w"> </span><span class="mf">55.0</span>
 <span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">"units"</span><span class="p">:</span><span class="w"> </span><span class="s2">"meters"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"units"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Meters"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"layers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"layer1"</span><span class="p">,</span>
@@ -266,12 +282,6 @@ Die Struktur des Responses ist wie folgt definiert:</p>
 <span class="w">      </span><span class="nt">"geometryType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Point"</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"minScaleDenominator"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"maxScaleDenominator"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"styles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default Style"</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Standard"</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">      </span><span class="p">],</span>
 <span class="w">      </span><span class="nt">"supportedOperations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"query"</span><span class="p">,</span><span class="w"> </span><span class="s2">"features.post"</span><span class="p">,</span><span class="w"> </span><span class="s2">"features.put"</span><span class="p">,</span><span class="w"> </span><span class="s2">"features.delete"</span><span class="p">],</span>
 <span class="w">      </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span>
@@ -291,11 +301,11 @@ Die Struktur des Responses ist wie folgt definiert:</p>
 <li><p><strong>mapTitle</strong>: Der Titel der Karte, die durch den Service bereitgestellt wird.</p></li>
 <li><p><strong>description</strong>: Eine Beschreibung des Services.</p></li>
 <li><p><strong>copyright</strong>: Copyright-Informationen für die Daten.</p></li>
-<li><p><strong>supportedRequests</strong>: Eine Liste der unterstützten Anfragen, die der Service ermöglicht.</p></li>
+<li><p><strong>supportedRequests</strong>: Die Requests des Service, für die der Benutzer Rechte hat, mit URL, HTTP-Methoden und Grenzen (<strong>maxFeaturesLimit</strong>: max. Features je Request). Clients ignorieren Namen, die sie nicht kennen.</p></li>
 <li><p><strong>crs</strong>: Das verwendete Koordinatenreferenzsystem.</p></li>
 <li><p><strong>fullExtent</strong>: Die maximale Ausdehnung der Daten.</p></li>
 <li><p><strong>initialExtent</strong>: Die anfängliche Ausdehnung der Daten.</p></li>
-<li><p><strong>units</strong>: Die Maßeinheit der Karte (z. B. „meters“).</p></li>
+<li><p><strong>units</strong>: Die Einheit der Karte in <strong>crs</strong>, z. B. „Meters“ oder „DecimalDegrees“.</p></li>
 <li><p><strong>layers</strong>: Informationen zu den Layern, die vom Service bereitgestellt werden.</p></li>
 </ul>
 </section>
@@ -311,12 +321,6 @@ Die Struktur des Responses ist wie folgt definiert:</p>
 <span class="w">  </span><span class="nt">"geometryType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Point"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"minScaleDenominator"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"maxScaleDenominator"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"styles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default Style"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Standard"</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">],</span>
 <span class="w">  </span><span class="nt">"supportedOperations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"query"</span><span class="p">,</span><span class="w"> </span><span class="s2">"features.post"</span><span class="p">,</span><span class="w"> </span><span class="s2">"features.put"</span><span class="p">,</span><span class="w"> </span><span class="s2">"features.delete"</span><span class="p">],</span>
 <span class="w">  </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
@@ -337,7 +341,6 @@ Die Struktur des Responses ist wie folgt definiert:</p>
 <li><p><strong>defaultVisibility</strong>: Gibt an, ob der Layer standardmäßig sichtbar ist.</p></li>
 <li><p><strong>geometryType</strong>: Der Geometrietyp des Layers, z. B. „Point“ oder „Polygon“.</p></li>
 <li><p><strong>minScaleDenominator</strong> / <strong>maxScaleDenominator</strong>: Maßstabsbeschränkungen für die Sichtbarkeit des Layers.</p></li>
-<li><p><strong>styles</strong>: Eine Liste von Stilen, die auf den Layer angewendet werden können.</p></li>
 <li><p><strong>supportedOperations</strong>: Eine Liste der unterstützten Operationen, z. B. [„query“, „features.post“, „features.put“, „features.delete“].</p></li>
 <li><p><strong>properties</strong>: Eine Liste der Eigenschaften des Layers, einschließlich Name, Alias und Typ.</p></li>
 </ul>

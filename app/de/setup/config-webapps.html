@@ -168,9 +168,19 @@
 <span class="w">        </span><span class="p">{</span>
 <span class="w">            </span><span class="s2">"Title"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Local gView Server"</span><span class="p">,</span>
 <span class="w">            </span><span class="s2">"Description"</span><span class="o">:</span><span class="w"> </span><span class="s2">"gView Server in development environment"</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">"TargetUrl"</span><span class="o">:</span><span class="w"> </span><span class="s2">"https://localhost:44331"</span>
+<span class="w">            </span><span class="s2">"TargetUrl"</span><span class="o">:</span><span class="w"> </span><span class="s2">"https://localhost:44331"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"Visibility"</span><span class="o">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="w">  </span><span class="c1">// optional: admin (default), user, public</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="s2">"Home"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// optional: start page</span>
+<span class="w">        </span><span class="s2">"Title"</span><span class="o">:</span><span class="w"> </span><span class="s2">"GIS Portal"</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"WelcomeText"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Welcome to the GIS portal.\nSign in with your company account."</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"LogoUrl"</span><span class="o">:</span><span class="w"> </span><span class="s2">"https://my-server/logo.png"</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"NoAccessText"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Please ask the GIS team for access: gis@my-company.com"</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"Links"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="s2">"Title"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Manual"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Url"</span><span class="o">:</span><span class="w"> </span><span class="s2">"https://my-server/gis-manual"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="s2">"Publish"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// optional</span>
 <span class="w">        </span><span class="s2">"Servers"</span><span class="o">:</span>
 <span class="w">        </span><span class="p">[</span>
@@ -211,6 +221,62 @@ Anwender beispielsweise MXD-Dateien in einem <em>privaten</em> Verzeichnis ableg
 <p>Im Abschnitt <code class="docutils literal notranslate"><span class="pre">CustomTiles</span></code> können beliebige weitere Kacheln angelegt werden, die auf der
 Startseite von <strong>gView.WebApps</strong> angezeigt werden. Damit können beispielsweise Kacheln zu
 einer oder mehreren <strong>gView.Server</strong> Instanzen angelegt werden.</p>
+<p>Jede Kachel hat folgende Eigenschaften:</p>
+<ul class="simple">
+<li><p><strong>Title</strong>, <strong>Description:</strong> Titel und Beschreibung der Kachel.</p></li>
+<li><p><strong>TargetUrl:</strong> Die URL, die beim Klick auf die Kachel geöffnet wird.</p></li>
+<li><p><strong>BackgroundColor</strong>, <strong>FontColor:</strong> optional, Hintergrund- und Schriftfarbe der Kachel
+(z. B. <code class="docutils literal notranslate"><span class="pre">#0f766e</span></code>).</p></li>
+<li><p><strong>Visibility:</strong> optional, wer die Kachel sieht:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">admin</span></code> (Standard): nur <em>Admin-User</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">user</span></code>: alle angemeldeten Benutzer mit einer <em>gView</em> Rolle (<em>Carto-User</em> und <em>Admin-User</em>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span></code>: alle, auch Besucher, die nicht angemeldet sind</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="startseite">
+<span id="config-webapps-home"></span><h2>Startseite<a class="headerlink" href="#startseite" title="Link to this heading">¶</a></h2>
+<p>Wer nicht angemeldet ist, sieht auf der Startseite einen <strong>Sign in</strong> Button und die Anwendungen
+<em>gView Carto</em> und <em>gView Explorer</em> als gesperrte Kacheln. Ein Klick auf eine gesperrte Kachel
+führt zur Anmeldung und danach direkt in die Anwendung. Angemeldete Benutzer ohne <em>gView</em> Rolle
+(z. B. bei <code class="docutils literal notranslate"><span class="pre">oidc</span></code> ein Benutzer ohne <code class="docutils literal notranslate"><span class="pre">RequiredUserRole</span></code> und <code class="docutils literal notranslate"><span class="pre">RequiredAdminRole</span></code>) bekommen
+einen Hinweis, dass ihnen die Berechtigung fehlt.</p>
+<p>Über den optionalen Abschnitt <code class="docutils literal notranslate"><span class="pre">Home</span></code> kann die Startseite an die eigene Organisation angepasst
+werden:</p>
+<ul class="simple">
+<li><p><strong>Title:</strong> Überschrift der Startseite (Standard: <code class="docutils literal notranslate"><span class="pre">gView</span> <span class="pre">GIS</span></code>).</p></li>
+<li><p><strong>WelcomeText:</strong> Willkommenstext unter der Überschrift. Reiner Text, Zeilenumbrüche
+(<code class="docutils literal notranslate"><span class="pre">\n</span></code>) werden übernommen. Hier kann z. B. stehen, wie man sich anmeldet.</p></li>
+<li><p><strong>LogoUrl:</strong> URL zu einem Logo, das über der Überschrift angezeigt wird.</p></li>
+<li><p><strong>NoAccessText:</strong> Text für angemeldete Benutzer ohne <em>gView</em> Rolle, z. B. an wen sie sich
+wenden können (Standard: <em>Please contact your administrator.</em>).</p></li>
+<li><p><strong>Links:</strong> Links in der Fußzeile, jeweils mit <code class="docutils literal notranslate"><span class="pre">Title</span></code> und <code class="docutils literal notranslate"><span class="pre">Url</span></code>. Werden Links angegeben,
+ersetzen sie die Standard-Links (Dokumentation, GitHub).</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">"Home"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">"Title"</span><span class="o">:</span><span class="w"> </span><span class="s2">"GIS Stadtwerke Musterstadt"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"WelcomeText"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Willkommen im GIS-Portal der Stadtwerke.\nMelde dich mit deinem Firmenkonto an."</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"LogoUrl"</span><span class="o">:</span><span class="w"> </span><span class="s2">"https://my-server/logo.png"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"NoAccessText"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Bitte beim GIS-Team anfragen: gis@stadtwerke.example"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"Links"</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="s2">"Title"</span><span class="o">:</span><span class="w"> </span><span class="s2">"GIS-Handbuch"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Url"</span><span class="o">:</span><span class="w"> </span><span class="s2">"https://my-server/gis-handbuch"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Die festen Texte der Startseite sind englisch. Texte in der eigenen Sprache können über
+<code class="docutils literal notranslate"><span class="pre">Title</span></code>, <code class="docutils literal notranslate"><span class="pre">WelcomeText</span></code> und <code class="docutils literal notranslate"><span class="pre">NoAccessText</span></code> angegeben werden.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Ist keine Authentifizierung konfiguriert (siehe unten), sieht jeder Benutzer die Startseite
+als <em>Admin-User</em>. Wird <strong>gView.WebApps</strong> dann nicht über <code class="docutils literal notranslate"><span class="pre">localhost</span></code> aufgerufen, zeigt die
+Startseite im Bereich <strong>System</strong> eine Warnung.</p>
+</div>
 </section>
 <section id="karten-veroffentlichen">
 <h2>Karten Veröffentlichen<a class="headerlink" href="#karten-veroffentlichen" title="Link to this heading">¶</a></h2>
@@ -374,6 +440,7 @@ Werte empfohlen:</p>
 <li><a class="reference internal" href="#">Konfiguration gView.WebApps</a><ul>
 <li><a class="reference internal" href="#benutzerdefinierte-laufwerke-verzeichnisse">Benutzerdefinierte Laufwerke/Verzeichnisse</a></li>
 <li><a class="reference internal" href="#benutzerdefinierte-kacheln">Benutzerdefinierte Kacheln</a></li>
+<li><a class="reference internal" href="#startseite">Startseite</a></li>
 <li><a class="reference internal" href="#karten-veroffentlichen">Karten Veröffentlichen</a></li>
 <li><a class="reference internal" href="#authentifizierung">Authentifizierung</a><ul>
 <li><a class="reference internal" href="#forms-authentifizierung">Forms Authentifizierung</a></li>

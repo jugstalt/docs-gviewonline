@@ -166,7 +166,9 @@ außen vor). Ein Muster, das alle Typen ausschließt, ist ein Fehler.</p></li>
 des Netzwerks oder in <code class="docutils literal notranslate"><span class="pre">inSR</span></code>. Das schließt <strong>Hilfsknoten</strong> ein, also Linienenden, die erst beim Aufbau entstehen
 (z. B. dort, wo eine <em>Leitung</em> an einem <em>Anlagen Verbinder</em> in einer Station hängt). Der Radius wird in
 Netzwerkeinheiten angegeben, Standard ist das 10-fache der Aufbau-Toleranz. Liegt kein Knoten im Radius, schlägt die
-Anfrage fehl. Das Komma in <code class="docutils literal notranslate"><span class="pre">&#64;x,y</span></code> trennt die Liste nicht, z. B. <code class="docutils literal notranslate"><span class="pre">start=&#64;5,0,</span> <span class="pre">Trafo%231</span></code>.</p></li>
+Anfrage fehl. Das Komma in <code class="docutils literal notranslate"><span class="pre">&#64;x,y</span></code> trennt die Liste nicht, z. B. <code class="docutils literal notranslate"><span class="pre">start=&#64;5,0,</span> <span class="pre">Trafo%231</span></code>. Liegen an der Stelle
+mehrere Knoten (getrennte Ebenen, siehe <a class="reference internal" href="administration.html#network-service-connect"><span class="std std-ref">Verbinden und Teilen beim Aufbau</span></a>), wählt <code class="docutils literal notranslate"><span class="pre">tier</span></code> den Knoten der Ebene; bleiben
+mehrere übrig, schlägt die Anfrage fehl und nennt sie (dann per <code class="docutils literal notranslate"><span class="pre">Layer#OID</span></code> oder ID angeben).</p></li>
 </ul>
 <p>Zusammengeführte Punkte werden zu dem Knoten aufgelöst, in den sie zusammengeführt wurden.
 Bei <code class="docutils literal notranslate"><span class="pre">path</span></code> (<code class="docutils literal notranslate"><span class="pre">from</span></code>, <code class="docutils literal notranslate"><span class="pre">to</span></code>) und <code class="docutils literal notranslate"><span class="pre">info</span></code> (<code class="docutils literal notranslate"><span class="pre">node</span></code>) muss die Referenz genau einen Knoten ergeben.</p>
@@ -262,7 +264,7 @@ die Aufbau-Toleranz wird in <code class="docutils literal notranslate"><span cla
 Netzwerks. Der Radius bleibt in Netzwerkeinheiten.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">f</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">json</span></code>, <code class="docutils literal notranslate"><span class="pre">pjson</span></code> (eingerückt), <code class="docutils literal notranslate"><span class="pre">geojson</span></code> oder <code class="docutils literal notranslate"><span class="pre">csv</span></code>. Ohne <code class="docutils literal notranslate"><span class="pre">f</span></code>: HTML-Formular.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">json</span></code> (Standard), <code class="docutils literal notranslate"><span class="pre">pjson</span></code> (eingerückt), <code class="docutils literal notranslate"><span class="pre">geojson</span></code> oder <code class="docutils literal notranslate"><span class="pre">csv</span></code>. Ganz ohne Parameter: HTML-Formular.</p></td>
 </tr>
 </tbody>
 </table>

@@ -40,6 +40,14 @@ Struktur der API-Links
 Die API folgt einer konsistenten URL-Struktur, die das Abrufen von Informationen oder das Vornehmen von Änderungen vereinfacht.  
 Im Folgenden sind die verschiedenen API-Endpunkte aufgeführt, zusammen mit einer kurzen Beschreibung ihrer Funktion.
 
+**Info**
+
+- **GET**
+
+  - ``https://{server}/geojsonservice/v1/info``
+
+    Version, Token-Einstellungen und die Einstiegspunkte der API.
+
 **Services**
 
 - **GET**
@@ -87,6 +95,22 @@ Im Folgenden sind die verschiedenen API-Endpunkte aufgeführt, zusammen mit eine
     
     Gibt die Legende für einen Service innerhalb eines bestimmten Ordners zurück.
 
+**Layers**
+
+- **GET**
+
+  - ``https://{server}/geojsonservice/v1/services/{folder}/{service}/layers[/{layerId}]``
+
+    Gibt die Layer mit Ausdehnung, Eigenschaften, Wertebereichen und Renderer zurück.
+
+**Identify**
+
+- **GET/POST**
+
+  - ``https://{server}/geojsonservice/v1/services/{folder}/{service}/identify``
+
+    Gibt die Features mehrerer Layer an einem Punkt oder in einer Geometrie zurück.
+
 **Query**
 
 - **GET/POST**
@@ -111,11 +135,39 @@ Im Folgenden sind die verschiedenen API-Endpunkte aufgeführt, zusammen mit eine
     
     Fügt Features hinzu, aktualisiert oder löscht Features in einem bestimmten Layer eines Services innerhalb eines bestimmten Ordners.
 
+**ApplyEdits**
+
+- **POST**
+
+  - ``https://{server}/geojsonservice/v1/services/{folder}/{service}/applyEdits``
+
+    Fügt Features mehrerer Layer in einer Transaktion hinzu, ändert und löscht sie.
+
+**Find**
+
+- **GET/POST**
+
+  - ``https://{server}/geojsonservice/v1/services/{folder}/{service}/find``
+
+    Sucht einen Text in den Textfeldern mehrerer Layer.
+
+**API (OpenAPI)**
+
+- **GET**
+
+  - ``https://{server}/geojsonservice/v1/services/{folder}/{service}/api``
+
+    Die OpenAPI-3.1-Beschreibung des Dienstes, nur mit den Operationen, für die der Benutzer Rechte hat. Mit ``?f=html``
+    zeigt Scalar die Beschreibung an, mit allen Parametern und Schemas zum Ausprobieren (auch in *Browse Services*
+    verlinkt). Die Beispiele sind mit Werten des Dienstes ausgefüllt (Gesamtausdehnung und Koordinatensystem der
+    Karte, die standardmäßig sichtbaren Layer, der erste abfragbare Layer, der Kartenmittelpunkt für Identify), so dass
+    ein Request gleich gesendet werden kann.
+
 **Token**
 
 - **GET/POST**
   
-  - ``https://{server}/geojsonservice/v1/Token``
+  - ``https://{server}/geojsonservice/v1/token``
     
     Liefert ein Token zur Authentifizierung oder führt die Authentifizierung durch.
 
@@ -129,7 +181,11 @@ Im Folgenden sind die verschiedenen API-Endpunkte aufgeführt, zusammen mit eine
    capabilities
    map
    legend
+   layers
+   identify
+   find
    query
    features
+   applyedits
    token
    errorhandling

@@ -20,9 +20,19 @@ The *gView.WebApps* application can be configured via the file ``_config/gview-w
             {
                 "Title": "Local gView Server",
                 "Description": "gView Server in development environment",
-                "TargetUrl": "https://localhost:44331"
+                "TargetUrl": "https://localhost:44331",
+                "Visibility": "admin"  // optional: admin (default), user, public
             }
         ],
+        "Home": {  // optional: start page
+            "Title": "GIS Portal",
+            "WelcomeText": "Welcome to the GIS portal.\nSign in with your company account.",
+            "LogoUrl": "https://my-server/logo.png",
+            "NoAccessText": "Please ask the GIS team for access: gis@my-company.com",
+            "Links": [
+                { "Title": "Manual", "Url": "https://my-server/gis-manual" }
+            ]
+        },
         "Publish": {  // optional
             "Servers":
             [
@@ -62,6 +72,63 @@ Custom Tiles
 In the ``CustomTiles`` section, you can create additional tiles that are displayed on the 
 homepage of **gView.WebApps**. This allows, for example, the creation of tiles linking to 
 one or more **gView.Server** instances.
+
+Each tile has the following properties:
+
+* **Title**, **Description:** title and description of the tile.
+* **TargetUrl:** the URL opened when the tile is clicked.
+* **BackgroundColor**, **FontColor:** optional, background and font colour of the tile
+  (e.g. ``#0f766e``).
+* **Visibility:** optional, who sees the tile:
+
+  * ``admin`` (default): *admin users* only
+  * ``user``: all signed in users with a *gView* role (*carto users* and *admin users*)
+  * ``public``: everyone, including visitors who are not signed in
+
+.. _config_webapps_home:
+
+Start Page
+----------
+
+Visitors who are not signed in see a **Sign in** button on the start page and the applications
+*gView Carto* and *gView Explorer* as locked tiles. A click on a locked tile leads to the login
+and then directly into the application. Signed in users without a *gView* role (e.g. with
+``oidc`` a user without ``RequiredUserRole`` and ``RequiredAdminRole``) get a hint that they
+are missing the permission.
+
+The optional ``Home`` section adapts the start page to your organisation:
+
+* **Title:** heading of the start page (default: ``gView GIS``).
+* **WelcomeText:** welcome text below the heading. Plain text, line breaks (``\n``) are kept.
+  This is a good place to explain how to sign in.
+* **LogoUrl:** URL of a logo shown above the heading.
+* **NoAccessText:** text for signed in users without a *gView* role, e.g. whom to ask for access
+  (default: *Please contact your administrator.*).
+* **Links:** footer links, each with ``Title`` and ``Url``. When set, they replace the default
+  links (documentation, GitHub).
+
+.. code-block:: javascript
+
+    "Home": {
+        "Title": "GIS Portal",
+        "WelcomeText": "Welcome to the GIS portal.\nSign in with your company account.",
+        "LogoUrl": "https://my-server/logo.png",
+        "NoAccessText": "Please ask the GIS team for access: gis@my-company.com",
+        "Links": [
+            { "Title": "GIS manual", "Url": "https://my-server/gis-manual" }
+        ]
+    }
+
+.. note::
+
+    The fixed texts of the start page are English. Texts in your own language can be set with
+    ``Title``, ``WelcomeText`` and ``NoAccessText``.
+
+.. note::
+
+    Without an authentication (see below) every user sees the start page as *admin user*. If
+    **gView.WebApps** is not called via ``localhost``, the start page shows a warning in the
+    **System** section.
 
 Publishing Maps
 ---------------

@@ -133,6 +133,8 @@
 <li class="toctree-l3"><a class="reference internal" href="labeling.html">Label Renderer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="scales.html">Scale Limits</a></li>
 <li class="toctree-l3"><a class="reference internal" href="layersettings.html">Additional Layer Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="network.html">Building networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="network-tools.html">Network tools</a></li>
 <li class="toctree-l3"><a class="reference internal" href="managemaps.html">Saving and Managing Map Documents</a></li>
 </ul>
 </li>
@@ -206,8 +208,9 @@ Simply select <code class="docutils literal notranslate"><span class="pre">LAND<
 <p>On the map, the result would look something like this:</p>
 <img alt="../../_images/renderers3.png" src="../../_images/renderers3.png" />
 <p>To change a symbol in the Renderer dialog, simply click on the symbol in the corresponding
-category. This will display the <em>Symbol Mask</em>. From there, it is possible to open the
-<strong>Symbol Composer</strong> again.
+category. The <em>Symbol Mask</em> opens below the category while the list stays in place. From there, it is
+possible to open the <strong>Symbol Composer</strong> again. Another click on the symbol or the ✕ closes the mask;
+only one mask is open at a time.
 A single category can be deleted with the <em>trash can</em> symbol.</p>
 <p>At the bottom of the list, there are additional buttons:</p>
 <ul>
@@ -228,6 +231,85 @@ features are always drawn over subordinate features (highways over country roads
 </a>
 </li>
 </ul>
+<section id="change-all-symbols-at-once">
+<span id="carto-renderers-bulk-edit"></span><h3>Change all symbols at once<a class="headerlink" href="#change-all-symbols-at-once" title="Link to this heading">¶</a></h3>
+<p>With many categories, there is no need to click every symbol one by one. The <code class="docutils literal notranslate"><span class="pre">More</span> <span class="pre">...</span></code> menu
+has two entries that work on all categories at once. Both are also available in the
+<strong>Many Value Map Renderer</strong> and the <strong>Quantity Renderer</strong>:</p>
+<ul>
+<li><p><strong>Recolor …:</strong> Assigns new colors in the order of the list. The options are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Palette</span></code>: predefined color palettes. Sequential (e.g. <code class="docutils literal notranslate"><span class="pre">Viridis</span></code>, <code class="docutils literal notranslate"><span class="pre">Blues</span></code>, <code class="docutils literal notranslate"><span class="pre">YlOrRd</span></code>)
+and diverging (<code class="docutils literal notranslate"><span class="pre">RdYlGn</span></code>, <code class="docutils literal notranslate"><span class="pre">RdBu</span></code>) palettes are spread over the number of categories.
+Qualitative palettes (<code class="docutils literal notranslate"><span class="pre">Set1</span></code>, <code class="docutils literal notranslate"><span class="pre">Set3</span></code>, <code class="docutils literal notranslate"><span class="pre">Paired</span></code>) repeat when there are more categories
+than colors.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Gradient</span> <span class="pre">(2</span> <span class="pre">colors)</span></code>: a gradient from a start color to an end color.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Random</span></code>: random colors (as with <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">all</span> <span class="pre">values</span></code>).</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">Reverse</span></code> reverses the order. For polygons, you can choose whether the fill, the outline or
+both are recolored. The existing transparency of each symbol is kept.</p>
+</li>
+<li><p><strong>Set Symbol Properties …:</strong> Sets single properties of all symbols to the same value, e.g.
+the line width. Only checked properties are applied; all others are kept per category.
+Depending on the geometry type, there are <code class="docutils literal notranslate"><span class="pre">Color</span></code>, <code class="docutils literal notranslate"><span class="pre">Width</span></code> or <code class="docutils literal notranslate"><span class="pre">Outline</span> <span class="pre">width</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Dash</span> <span class="pre">style</span></code>, <code class="docutils literal notranslate"><span class="pre">Fill</span> <span class="pre">opacity</span></code>, <code class="docutils literal notranslate"><span class="pre">Size</span></code> and <code class="docutils literal notranslate"><span class="pre">Smoothing</span></code>.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">All</span> <span class="pre">Other</span></code> category is left out by default and can be included in the dialog. Categories
+with composite symbols (e.g. from the <strong>Symbol Stack</strong> of the <strong>Symbol Composer</strong>) are skipped.
+The dialog shows how many there are.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The changes take effect with <code class="docutils literal notranslate"><span class="pre">Apply</span></code>. <code class="docutils literal notranslate"><span class="pre">Cancel</span></code> in the layer dialog discards them.</p>
+</div>
+</section>
+<section id="undo">
+<h3>Undo<a class="headerlink" href="#undo" title="Link to this heading">¶</a></h3>
+<p>Above the list, <strong>Undo</strong> takes back the last change to the categories; the button names it (e.g.
+<code class="docutils literal notranslate"><span class="pre">Undo</span> <span class="pre">Recolor</span></code>). Up to 20 steps can be undone. Undo covers <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">all</span> <span class="pre">values</span></code>, <code class="docutils literal notranslate"><span class="pre">Remove</span> <span class="pre">All</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Remove,</span> <span class="pre">if</span> <span class="pre">not</span> <span class="pre">exists</span> <span class="pre">in</span> <span class="pre">source</span></code>, <code class="docutils literal notranslate"><span class="pre">Remove</span> <span class="pre">selected</span></code>, deleting and moving single categories,
+<strong>Recolor …</strong>, <strong>Set Symbol Properties …</strong>, pasting symbols, <strong>Apply to …</strong>, <strong>Order by …</strong>,
+<strong>Label Style …</strong>, <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Value</span> <span class="pre">=&gt;</span> <span class="pre">Label</span></code> and the <em>Wizard</em> of the <code class="docutils literal notranslate"><span class="pre">Quantity</span> <span class="pre">Renderer</span></code>. Changes in the
+<em>Symbol Mask</em> of a single category have their own <strong>Undo</strong> there. When the field changes, the undo steps
+start over.</p>
+</section>
+<section id="number-of-features-per-category">
+<h3>Number of features per category<a class="headerlink" href="#number-of-features-per-category" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">all</span> <span class="pre">values</span></code> also counts how many features fall into each category. For existing categories
+the <code class="docutils literal notranslate"><span class="pre">More</span> <span class="pre">...</span></code> menu has the entry <strong>Count Features</strong>. The number is shown on the right of the list;
+categories without features are greyed out. <code class="docutils literal notranslate"><span class="pre">All</span> <span class="pre">Other</span></code> shows the features that fall into no other
+category. Counting uses the filter of the layer. The numbers are not saved.</p>
+<p><strong>Order by …</strong> sorts the list by label, value or (if counted) by number of features; <code class="docutils literal notranslate"><span class="pre">All</span> <span class="pre">Other</span></code>
+always stays at the end. <strong>Select empty</strong> selects all categories without features, e.g. to remove them
+with <code class="docutils literal notranslate"><span class="pre">Remove</span> <span class="pre">selected</span></code>.</p>
+</section>
+<section id="selecting-categories">
+<h3>Selecting categories<a class="headerlink" href="#selecting-categories" title="Link to this heading">¶</a></h3>
+<p>Each category has a checkbox on the left. Holding <code class="docutils literal notranslate"><span class="pre">Shift</span></code> selects a whole range; above the list
+there are <code class="docutils literal notranslate"><span class="pre">All</span></code>, <code class="docutils literal notranslate"><span class="pre">None</span></code>, <code class="docutils literal notranslate"><span class="pre">Invert</span></code> and <code class="docutils literal notranslate"><span class="pre">Remove</span> <span class="pre">selected</span></code>.</p>
+<p>If anything is selected, <strong>Recolor …</strong>, <strong>Set Symbol Properties …</strong> and pasting symbols only
+affect the selected categories, otherwise all of them. The selection is reset when the field
+changes and is not saved.</p>
+</section>
+<section id="copying-and-pasting-symbols">
+<h3>Copying and pasting symbols<a class="headerlink" href="#copying-and-pasting-symbols" title="Link to this heading">¶</a></h3>
+<p>Wherever the <em>Symbol Mask</em> is shown, there are <strong>Copy symbol</strong> and <strong>Paste symbol</strong> buttons next to
+<strong>Random</strong> and <strong>Undo</strong>. A copied symbol can also be pasted into another layer (e.g. into the
+<code class="docutils literal notranslate"><span class="pre">Simple</span> <span class="pre">Renderer</span></code>) as long as the geometry type matches. Pasting into a single symbol mask can be
+reverted with <strong>Undo</strong>.</p>
+<p>For whole categories there are two ways:</p>
+<ul class="simple">
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">More</span> <span class="pre">...</span></code> menu: <strong>Paste Symbol</strong> and <strong>Paste Symbol, keep colors</strong> paste the copied
+symbol into the selected categories (without a selection into all except <code class="docutils literal notranslate"><span class="pre">All</span> <span class="pre">Other</span></code>).</p></li>
+<li><p>In the <em>Symbol Mask</em> of a category: the <strong>Apply to …</strong> menu below the settings transfers the
+symbol of this category to the selected or all other categories.</p></li>
+</ul>
+<p>The symbol is replaced completely; the label of the category is kept. With <strong>keep colors</strong> each
+category keeps its color (for polygons fill and outline separately), everything else (line width,
+dash style, transparency, …) comes from the pasted symbol. This is the fastest way to apply, for
+example, a dash style to all categories. <strong>keep colors</strong> is only available for simple symbols.
+Categories that had a composite symbol get the colors of the pasted symbol; a message shows how
+many there were.</p>
+</section>
 </section>
 <section id="many-value-map-renderer">
 <h2>Many Value Map Renderer<a class="headerlink" href="#many-value-map-renderer" title="Link to this heading">¶</a></h2>
@@ -251,6 +333,19 @@ the result is correct. Afterward, the <em>Wizard</em> can be closed with <code c
 <p>The Wizard also attempts to create a smooth transition between the starting and ending symbols:</p>
 <a class="reference internal image-reference" href="../../_images/renderers9.png"><img alt="../../_images/renderers9.png" src="../../_images/renderers9.png" width="300" />
 </a>
+<p>In the wizard you can also choose:</p>
+<ul class="simple">
+<li><p><strong>Method:</strong> <code class="docutils literal notranslate"><span class="pre">Equal</span> <span class="pre">Interval</span></code> divides the value range into classes of the same width (fixed number or
+fixed step width). <code class="docutils literal notranslate"><span class="pre">Quantile</span></code> creates classes with as close to the same number of features as possible.
+<code class="docutils literal notranslate"><span class="pre">Natural</span> <span class="pre">Breaks</span> <span class="pre">(Jenks)</span></code> puts the limits at the natural gaps of the values. With very many values an
+even sample of 5000 values is used for this.</p></li>
+<li><p><strong>Colors:</strong> <code class="docutils literal notranslate"><span class="pre">Minimum</span> <span class="pre">to</span> <span class="pre">maximum</span> <span class="pre">symbol</span></code> interpolates between the two symbols as above. <code class="docutils literal notranslate"><span class="pre">Palette</span></code>
+takes the style of the minimum symbol and assigns the colors from a palette (as with <strong>Recolor …</strong>).</p></li>
+<li><p><strong>Decimals:</strong> number of decimals of the class limits and labels (e.g. <code class="docutils literal notranslate"><span class="pre">10</span> <span class="pre">–</span> <span class="pre">20</span></code>). The suggestion is
+derived from the value range. The decimal separator is always a point.</p></li>
+</ul>
+<p>Minimum, maximum and classes respect the filter of the layer. After creating the classes the number of
+features per class is shown.</p>
 </section>
 <section id="scale-dependent-renderer">
 <h2>Scale Dependent Renderer<a class="headerlink" href="#scale-dependent-renderer" title="Link to this heading">¶</a></h2>
@@ -288,7 +383,14 @@ within which the <em>Renderer</em> should be applied:</p>
 <li><a class="reference internal" href="#">Feature Renderer</a><ul>
 <li><a class="reference internal" href="#simple-renderer">Simple Renderer</a></li>
 <li><a class="reference internal" href="#simple-renderer-aggregated">Simple Renderer (Aggregated)</a></li>
-<li><a class="reference internal" href="#value-map-renderer">Value Map Renderer</a></li>
+<li><a class="reference internal" href="#value-map-renderer">Value Map Renderer</a><ul>
+<li><a class="reference internal" href="#change-all-symbols-at-once">Change all symbols at once</a></li>
+<li><a class="reference internal" href="#undo">Undo</a></li>
+<li><a class="reference internal" href="#number-of-features-per-category">Number of features per category</a></li>
+<li><a class="reference internal" href="#selecting-categories">Selecting categories</a></li>
+<li><a class="reference internal" href="#copying-and-pasting-symbols">Copying and pasting symbols</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#many-value-map-renderer">Many Value Map Renderer</a></li>
 <li><a class="reference internal" href="#quantity-renderer">Quantity Renderer</a></li>
 <li><a class="reference internal" href="#scale-dependent-renderer">Scale Dependent Renderer</a></li>

@@ -14,9 +14,9 @@ following object:
 
     {
       "type": "GetFeatures",
-      "command": "select",  // "select", "distinct", "countOnly", "IdsOnly"
+      "command": "select",  // "select", "distinct", "countOnly", "idsOnly", "statistics"
       "outFields": ["field1", "field2"],
-      "returnGeometry": "geometry",  // "none", "geometry", "bbox"
+      "returnGeometry": "geometry",  // "none", "geometry", "bbox", "centroid"
       "outCRS": {
         "type": "name",
         "properties": {
@@ -65,9 +65,9 @@ following object:
     }
 
 - **type**: (string) The type of request, in this case "GetFeatures".  
-- **command**: (string) The command, e.g., "select", "distinct", "countOnly", or "IdsOnly".  
+- **command**: (string) The command: "select", "distinct", "countOnly", "idsOnly" or "statistics" (see below).  
 - **outFields**: (array) A list of fields to be returned in the response.  
-- **returnGeometry**: (string) Indicates whether and which geometry information should be returned: "none", "geometry", or "bbox".  
+- **returnGeometry**: (string) Indicates whether and which geometry information should be returned: "none", "geometry", "bbox" or "centroid" (see Geometry options).  
 - **outCRS** (optional): (object) The coordinate reference system for the output.  
 - **orderByFields** (optional): (array) The fields by which the results should be sorted.  
 - **objectIds** (optional): (array) A list of object IDs to be queried.  
@@ -75,6 +75,102 @@ following object:
 - **filter** (optional): (object) An attribute filter to restrict the results.  
 - **limit** (optional): (int) The maximum number of features to return.  
 - **offset** (optional): (int) The offset for pagination.  
+
+Attribute filter: SQL or CQL2
+-----------------------------
+
+**filter** can hold a SQL expression, a CQL2 filter or both (both must apply):
+
+.. code-block:: text
+
+    "filter": {
+      "whereClause": "BEZIRK_ID = @id",
+      "parameters": { "id": 101 }
+    }
+
+    "filter": { "cql2": "NAME = 'Wien' AND EW > 1000" }
+
+    "filter": { "cql2": { "op": "=", "args": [ { "property": "NAME" }, "Wien" ] } }
+
+- **whereClause**: SQL expression in the syntax of the data source. Parameters are written as ``@name`` in the
+  expression, the key in **parameters** with or without ``@``. Numbers and booleans become literals, texts SQL strings
+  (quotes doubled). The expression is checked against SQL injection.
+- **cql2**: a CQL2 filter. A string is CQL2-Text, an object CQL2-JSON. Supported are comparisons, ``LIKE``,
+  ``BETWEEN``, ``IN``, ``IS NULL``, ``AND``/``OR``/``NOT`` and ``CASEI`` (case-insensitive); dates and booleans only
+  for data sources with a known SQL dialect. CQL2 does not depend on the database: gView translates the filter into
+  SQL itself, unknown fields are rejected with 400.
+
+GET parameters
+--------------
+
+A query can also be sent as GET request, e.g.:
+
+``https://{server}/geojsonservice/v1/services/{folder}/{service}/query/0?outFields=NAME,EW&filter=EW%20%3E%201000&limit=100``
+
+- **command**: ``select`` (default), ``distinct``, ``countOnly``, ``idsOnly``, ``statistics``
+- **outFields**: field names, comma separated (default ``*``)
+- **returnGeometry**: ``none`` (default), ``geometry``, ``bbox``, ``centroid``
+- **outCRS**: ``EPSG:4326`` or ``4326``
+- **orderBy**: e.g. ``NAME,EW DESC``
+- **objectIds**: object ids, comma separated
+- **where**: SQL expression (like **whereClause**)
+- **filter**, **filter-lang**: CQL2 filter, ``cql2-text`` (default) or ``cql2-json``
+- **bbox**, **bbox-crs**, **spatialOperator**: spatial filter ``minx,miny,maxx,maxy``
+- **limit**, **offset**: paging
+- **maxAllowableOffset**, **geometryPrecision**: see Geometry options
+
+Statistics
+----------
+
+With ``"command": "statistics"`` the query returns a table instead of features, e.g. the number of districts and the
+sum of the inhabitants per state:
+
+.. code-block:: json
+
+    {
+      "type": "GetFeatures",
+      "command": "statistics",
+      "statistics": [
+        { "type": "count", "field": "BEZIRK_ID", "alias": "n" },
+        { "type": "sum", "field": "EINWOHNER" }
+      ],
+      "groupBy": [ "LAND" ],
+      "having": "n > 10",
+      "orderByFields": [ "n DESC" ],
+      "filter": { "cql2": "EINWOHNER > 0" },
+      "limit": 5
+    }
+
+- **statistics**: **type** ``count``, ``sum``, ``min``, ``max``, ``avg``, ``stddev`` or ``var`` (``sum``, ``avg``,
+  ``stddev``, ``var`` only for numeric fields), **field** and **alias** (name of the column; default ``{type}_{field}``).
+- **groupBy** (optional): the fields to group by; without, one row.
+- **having** (optional): a CQL2 filter on the rows of the result (text or JSON), with the names of the **groupBy**
+  fields and statistics.
+- **orderByFields**: names of **groupBy** fields or statistics, with ``ASC``/``DESC``.
+- **filter**, **spatialFilter**, **objectIds**, **limit**, **offset** as with a normal query; **limit** and **offset**
+  apply to the rows of the result.
+
+As GET: ``?command=statistics&statistics=count:BEZIRK_ID:n,sum:EINWOHNER&groupBy=LAND&having=n%20%3E%2010&orderBy=n%20DESC``
+(``statistics`` as ``type:field[:alias]``, comma separated).
+
+.. code-block:: json
+
+    {
+      "type": "FeaturesStatisticsResponse",
+      "fields": [ { "name": "LAND", "type": "String" }, { "name": "n", "type": "Integer" }, { "name": "sum_EINWOHNER", "type": "Float" } ],
+      "rows": [ { "LAND": "NIEDERÖSTERREICH", "n": 25, "sum_EINWOHNER": 1690879 } ],
+      "exceededLimit": true
+    }
+
+Geometry options
+----------------
+
+For :doc:`query`, :doc:`identify` and :doc:`find`:
+
+- **returnGeometry** ``centroid``: a point instead of the geometry, inside polygons, at half the length of lines.
+- **maxAllowableOffset**: lines and polygons are generalized; vertices closer than this distance (in units of
+  **outCRS**) are dropped. Good for overview maps.
+- **geometryPrecision**: the coordinates are rounded to this number of decimal places.
 
 Response Structure
 ------------------  
@@ -95,6 +191,7 @@ The structure of the response is defined as follows:
       "features": [
         {
           "type": "Feature",
+          "oid": 1,
           "geometry": {
             "type": "Point",
             "coordinates": [10.0, 50.0]
@@ -104,10 +201,25 @@ The structure of the response is defined as follows:
             "field2": 123
           }
         }
-      ]
+      ],
+      "exceededLimit": false
     }
 
 - **type**: (string) The type of response, in this case "FeatureCollection".  
 - **crs** (optional): (object) The coordinate reference system of the output.  
 - **features**: (array) A list of queried features, each feature  
   contains geometry and attribute information.  
+- **exceededLimit**: (bool) ``true`` if there are more features than returned (**limit** or the max. number of
+  the service). The next page starts at **offset** plus the number of features.
+- Each feature has **type** ``Feature``, **oid** (the object id) and, with a geometry, **bbox** (see :doc:`types`).
+
+The other commands have their own responses:
+
+- ``countOnly``: ``{ "type": "FeaturesCountOnlyResponse", "count": 117 }``
+- ``idsOnly``: ``{ "type": "FeaturesIdsOnlyResponse", "objectIdFieldName": "OBJECTID", "objectIds": [1, 2, 3] }``
+- ``distinct``: ``{ "type": "FeaturesDistinct", "distinctField": "LAND", "distinctValues": ["Wien", "Tirol"] }``
+
+**objectIds** also applies together with a spatial filter; ``distinct`` can't be combined with a spatial filter. A
+spatial filter holds either **geometry** or **bbox**.
+
+A layer id that doesn't exist answers ``404``, a layer without a table (e.g. a group layer) ``400``.

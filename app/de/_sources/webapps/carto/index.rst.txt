@@ -32,4 +32,6 @@ nur aus Vektordaten besteht.
     labeling
     scales
     layersettings
+    network
+    network-tools
     managemaps

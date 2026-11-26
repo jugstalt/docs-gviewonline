@@ -20,9 +20,19 @@ Die *gView.WebApps* Anwendung kann über die Datei ``_config/gview-webapps.confi
             {
                 "Title": "Local gView Server",
                 "Description": "gView Server in development environment",
-                "TargetUrl": "https://localhost:44331"
+                "TargetUrl": "https://localhost:44331",
+                "Visibility": "admin"  // optional: admin (default), user, public
             }
         ],
+        "Home": {  // optional: start page
+            "Title": "GIS Portal",
+            "WelcomeText": "Welcome to the GIS portal.\nSign in with your company account.",
+            "LogoUrl": "https://my-server/logo.png",
+            "NoAccessText": "Please ask the GIS team for access: gis@my-company.com",
+            "Links": [
+                { "Title": "Manual", "Url": "https://my-server/gis-manual" }
+            ]
+        },
         "Publish": {  // optional
             "Servers":
             [
@@ -65,6 +75,64 @@ Benutzerdefinierte Kacheln
 Im Abschnitt ``CustomTiles`` können beliebige weitere Kacheln angelegt werden, die auf der 
 Startseite von **gView.WebApps** angezeigt werden. Damit können beispielsweise Kacheln zu 
 einer oder mehreren **gView.Server** Instanzen angelegt werden.
+
+Jede Kachel hat folgende Eigenschaften:
+
+* **Title**, **Description:** Titel und Beschreibung der Kachel.
+* **TargetUrl:** Die URL, die beim Klick auf die Kachel geöffnet wird.
+* **BackgroundColor**, **FontColor:** optional, Hintergrund- und Schriftfarbe der Kachel
+  (z. B. ``#0f766e``).
+* **Visibility:** optional, wer die Kachel sieht:
+
+  * ``admin`` (Standard): nur *Admin-User*
+  * ``user``: alle angemeldeten Benutzer mit einer *gView* Rolle (*Carto-User* und *Admin-User*)
+  * ``public``: alle, auch Besucher, die nicht angemeldet sind
+
+.. _config_webapps_home:
+
+Startseite
+----------
+
+Wer nicht angemeldet ist, sieht auf der Startseite einen **Sign in** Button und die Anwendungen
+*gView Carto* und *gView Explorer* als gesperrte Kacheln. Ein Klick auf eine gesperrte Kachel
+führt zur Anmeldung und danach direkt in die Anwendung. Angemeldete Benutzer ohne *gView* Rolle
+(z. B. bei ``oidc`` ein Benutzer ohne ``RequiredUserRole`` und ``RequiredAdminRole``) bekommen
+einen Hinweis, dass ihnen die Berechtigung fehlt.
+
+Über den optionalen Abschnitt ``Home`` kann die Startseite an die eigene Organisation angepasst
+werden:
+
+* **Title:** Überschrift der Startseite (Standard: ``gView GIS``).
+* **WelcomeText:** Willkommenstext unter der Überschrift. Reiner Text, Zeilenumbrüche
+  (``\n``) werden übernommen. Hier kann z. B. stehen, wie man sich anmeldet.
+* **LogoUrl:** URL zu einem Logo, das über der Überschrift angezeigt wird.
+* **NoAccessText:** Text für angemeldete Benutzer ohne *gView* Rolle, z. B. an wen sie sich
+  wenden können (Standard: *Please contact your administrator.*).
+* **Links:** Links in der Fußzeile, jeweils mit ``Title`` und ``Url``. Werden Links angegeben,
+  ersetzen sie die Standard-Links (Dokumentation, GitHub).
+
+.. code-block:: javascript
+
+    "Home": {
+        "Title": "GIS Stadtwerke Musterstadt",
+        "WelcomeText": "Willkommen im GIS-Portal der Stadtwerke.\nMelde dich mit deinem Firmenkonto an.",
+        "LogoUrl": "https://my-server/logo.png",
+        "NoAccessText": "Bitte beim GIS-Team anfragen: gis@stadtwerke.example",
+        "Links": [
+            { "Title": "GIS-Handbuch", "Url": "https://my-server/gis-handbuch" }
+        ]
+    }
+
+.. note::
+
+    Die festen Texte der Startseite sind englisch. Texte in der eigenen Sprache können über
+    ``Title``, ``WelcomeText`` und ``NoAccessText`` angegeben werden.
+
+.. note::
+
+    Ist keine Authentifizierung konfiguriert (siehe unten), sieht jeder Benutzer die Startseite
+    als *Admin-User*. Wird **gView.WebApps** dann nicht über ``localhost`` aufgerufen, zeigt die
+    Startseite im Bereich **System** eine Warnung.
 
 Karten Veröffentlichen
 ----------------------

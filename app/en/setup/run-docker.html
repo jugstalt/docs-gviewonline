@@ -187,7 +187,9 @@ is used, for example, to deliver map images to clients via the output directory.
 <p>After startup, the management interface is available at <a class="reference external" href="http://localhost:45622">http://localhost:45622</a> (in the example
 above). The first administrator comes from the environment variables <code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_USER</span></code> and
 <code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_PASSWORD</span></code> or from the setup code the server writes to the log
-(<code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">logs</span> <span class="pre">gview-server</span></code>), see <a class="reference internal" href="security-server.html"><span class="doc">Security gView.Server</span></a>.</p>
+(<code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">logs</span> <span class="pre">gview-server</span></code>), see <a class="reference internal" href="security-server.html"><span class="doc">Security gView.Server</span></a>. If an admin lost the phone and the
+recovery codes of the two-factor login, <code class="docutils literal notranslate"><span class="pre">GVIEW_ADMIN_RESET_2FA=&lt;user&gt;</span></code> resets it at startup
+(remove it afterwards).</p>
 </section>
 <section id="gview-webapps-image">
 <h2>gView.WebApps Image<a class="headerlink" href="#gview-webapps-image" title="Link to this heading">¶</a></h2>
