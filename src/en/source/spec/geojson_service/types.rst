@@ -57,12 +57,16 @@ Example:
 
     In GET requests, the CRS can also be simplified as a URL parameter in the following form:  
 
-    ``&crs=epsg:4326``  
+    ``&crs=epsg:4326`` or ``&crs=4326``; in the body ``"name": "EPSG:4326"`` or ``"name": "4326"``  
 
 .. note::  
 
     CRS is always an optional parameter in all requests. If no value is provided,  
-    WGS84 (EPSG:4326) is assumed as the default value for GeoJson.  
+    WGS84 (EPSG:4326) is assumed as the default value for GeoJson.
+
+    In a geographic coordinate system (e.g. EPSG:4326) the latitudes of request geometries (spatial filter, identify,
+    edits) must be between -90 and 90, otherwise the request is rejected with ``400``: projected coordinates need their
+    own **crs**. Longitudes beyond ±180 are allowed (maps across the date line).  
 
 **Geometry**  
 
