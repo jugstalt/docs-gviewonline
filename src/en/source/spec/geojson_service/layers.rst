@@ -33,6 +33,7 @@ Response Structure
           "minScaleDenominator": 0,
           "maxScaleDenominator": 0,
           "description": "...",
+          "copyright": "...",
           "extent": { "minX": -514573.9, "minY": 138504.0, "maxX": 61824.1, "maxY": 432276.0 },
           "crs": { "type": "name", "properties": { "name": "EPSG:31256" } },
           "editOperations": [ "insert", "update", "delete" ],
@@ -62,6 +63,7 @@ Response Structure
     }
 
 - **layerType**: ``FeatureLayer``, ``RasterLayer``, ``GroupLayer`` or ``Layer``.
+- **description**, **copyright**: the description and the copyright text of the layer.
 - **extent**, **crs**: the extent of the data (only with the right *Map*).
 - **editOperations**: ``insert``, ``update``, ``delete``: what the service allows for this layer (only with the right *Edit*).
 - **properties** (only with the right *Query* or *Edit*): as in the capabilities, plus **length**, **nullable**,
