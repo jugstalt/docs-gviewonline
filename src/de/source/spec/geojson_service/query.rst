@@ -14,9 +14,9 @@ folgende Objekt definiert:
 
     {
       "type": "GetFeatures",
-      "command": "select",  // "select", "distinct", "countOnly", "IdsOnly"
+      "command": "select",  // "select", "distinct", "countOnly", "idsOnly", "statistics"
       "outFields": ["field1", "field2"],
-      "returnGeometry": "geometry",  // "none", "geometry", "bbox"
+      "returnGeometry": "geometry",  // "none", "geometry", "bbox", "centroid"
       "outCRS": {
         "type": "name",
         "properties": {
@@ -67,7 +67,7 @@ folgende Objekt definiert:
 - **type**: (string) Der Typ der Anfrage, in diesem Fall "GetFeatures".  
 - **command**: (string) Der Befehl: "select", "distinct", "countOnly", "idsOnly" oder "statistics" (siehe unten).  
 - **outFields**: (array) Eine Liste der Felder, die in der Antwort zurückgegeben werden sollen.  
-- **returnGeometry**: (string) Gibt an, ob und welche Geometrieinformationen zurückgegeben werden sollen: "none", "geometry" oder "bbox".  
+- **returnGeometry**: (string) Gibt an, ob und welche Geometrieinformationen zurückgegeben werden sollen: "none", "geometry", "bbox" oder "centroid" (siehe Geometrie-Optionen).  
 - **outCRS** (optional): (object) Das Koordinatenreferenzsystem für die Ausgabe.  
 - **orderByFields** (optional): (array) Die Felder, nach denen die Ergebnisse sortiert werden sollen.  
 - **objectIds** (optional): (array) Eine Liste von Objekt-IDs, die abgefragt werden sollen.  
@@ -107,9 +107,9 @@ Eine Abfrage kann auch als GET-Request gestellt werden, z. B.:
 
 ``https://{server}/geojsonservice/v1/services/{folder}/{service}/query/0?outFields=NAME,EW&filter=EW%20%3E%201000&limit=100``
 
-- **command**: ``select`` (Standard), ``distinct``, ``countOnly``, ``idsOnly``
+- **command**: ``select`` (Standard), ``distinct``, ``countOnly``, ``idsOnly``, ``statistics``
 - **outFields**: Feldnamen, durch Komma getrennt (Standard ``*``)
-- **returnGeometry**: ``none`` (Standard), ``geometry``, ``bbox``
+- **returnGeometry**: ``none`` (Standard), ``geometry``, ``bbox``, ``centroid``
 - **outCRS**: ``EPSG:4326`` oder ``4326``
 - **orderBy**: z. B. ``NAME,EW DESC``
 - **objectIds**: Objekt-IDs, durch Komma getrennt
@@ -117,6 +117,7 @@ Eine Abfrage kann auch als GET-Request gestellt werden, z. B.:
 - **filter**, **filter-lang**: CQL2-Filter, ``cql2-text`` (Standard) oder ``cql2-json``
 - **bbox**, **bbox-crs**, **spatialOperator**: räumlicher Filter ``minx,miny,maxx,maxy``
 - **limit**, **offset**: Paging
+- **maxAllowableOffset**, **geometryPrecision**: siehe Geometrie-Optionen
 
 Statistik
 ---------
@@ -190,6 +191,7 @@ Die Struktur des Responses ist wie folgt definiert:
       "features": [
         {
           "type": "Feature",
+          "oid": 1,
           "geometry": {
             "type": "Point",
             "coordinates": [10.0, 50.0]
@@ -209,7 +211,7 @@ Die Struktur des Responses ist wie folgt definiert:
   enthält Geometrie- und Attributinformationen.  
 - **exceededLimit**: (bool) ``true``, wenn es mehr Features gibt als zurückgegeben wurden (**limit** oder die
   maximale Anzahl des Dienstes). Die nächste Seite beginnt bei **offset** plus der Anzahl der Features.
-- Jedes Feature hat zusätzlich **oid**, die Objekt-ID.
+- Jedes Feature hat **type** ``Feature``, **oid** (die Objekt-ID) und mit Geometrie **bbox** (siehe :doc:`types`).
 
 Die anderen Befehle liefern eigene Antworten:
 
@@ -219,3 +221,5 @@ Die anderen Befehle liefern eigene Antworten:
 
 **objectIds** wirkt auch zusammen mit einem räumlichen Filter; ``distinct`` kann nicht mit einem räumlichen Filter
 kombiniert werden. Ein räumlicher Filter enthält entweder **geometry** oder **bbox**.
+
+Eine Layer-ID, die es nicht gibt, liefert ``404``, ein Layer ohne Tabelle (z. B. ein Gruppenlayer) ``400``.

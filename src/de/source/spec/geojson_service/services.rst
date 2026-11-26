@@ -50,8 +50,8 @@ Erläuterung des Beispiels
 -------------------------  
 
 - **type**: Gibt den Typ der Antwort an, in diesem Fall "GetServicesResponse".  
-- **folders**: Enthält eine Liste von Ordnern, die verfügbar sind. In diesem Beispiel sind "Landkarten" und "Verkehrsdaten" zwei vorhandene Ordner.  
-- **services**: Enthält eine Liste der Services, die verfügbar sind. In diesem Beispiel sind "Wetterkarten" und "Bevölkerungsdichte" zwei verfügbare Services.  
+- **folders**: die Namen der Unterordner (hier "folder1" und "folder2"); ihre Services liefert ``.../services/{folder}``.
+- **services**: die Namen der Services (hier "service1" und "service2"), in einem Ordner ohne den Ordnernamen.
 
 Verwendungsmöglichkeiten
 ------------------------  

@@ -38,7 +38,7 @@ GET or POST:
 - **tolerance**: tolerance around a point in pixels (default 3).
 - **mapExtent**, **imageWidth**, **imageHeight**, **dpi**: the map the client shows. They give the scale and the
   tolerance in map units. Required for ``visible`` and ``top``.
-- **returnGeometry**: ``geometry`` (default), ``bbox`` or ``none``.
+- **returnGeometry**: ``geometry`` (default), ``bbox``, ``centroid`` or ``none``; **maxAllowableOffset** and **geometryPrecision** as with :doc:`query`.
 - **outCRS** (optional): the coordinate system of the results; default **crs**.
 - **limit** (optional): max. features per layer (default and maximum: the max. number of the service).
 

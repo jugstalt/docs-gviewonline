@@ -10,20 +10,20 @@ und geometrische Formen zu beschreiben.
 Das **BBox**-Objekt beschreibt ein Rechteck, das die Ausdehnung eines Features oder einer Sammlung  
 von Features umschließt. Es wird verwendet, um räumliche Begrenzungen festzulegen.
 
-- **MinX**: (double) Die minimale X-Koordinate (z. B. Längengrad).  
-- **MinY**: (double) Die minimale Y-Koordinate (z. B. Breitengrad).  
-- **MaxX**: (double) Die maximale X-Koordinate (z. B. Längengrad).  
-- **MaxY**: (double) Die maximale Y-Koordinate (z. B. Breitengrad).  
+- **minX**: (double) Die minimale X-Koordinate (z. B. Längengrad).  
+- **minY**: (double) Die minimale Y-Koordinate (z. B. Breitengrad).  
+- **maxX**: (double) Die maximale X-Koordinate (z. B. Längengrad).  
+- **maxY**: (double) Die maximale Y-Koordinate (z. B. Breitengrad).  
 
 Beispiel:
 
 .. code-block:: json
 
     {
-      "MinX": 10.0,
-      "MinY": 50.0,
-      "MaxX": 20.0,
-      "MaxY": 60.0
+      "minX": 10.0,
+      "minY": 50.0,
+      "maxX": 20.0,
+      "maxY": 60.0
     }
 
 .. note::  
@@ -39,8 +39,8 @@ Geometrie verwendet wird.
 Es enthält Informationen darüber, wie die räumlichen Daten interpretiert werden sollen,  
 insbesondere hinsichtlich des verwendeten Koordinatensystems.
 
-- **Type**: (string) Der Typ des Koordinatenreferenzsystems. Standardmäßig wird "name" verwendet.  
-- **Properties**: (dictionary) Ein Wörterbuch mit zusätzlichen Eigenschaften des Koordinatenreferenzsystems.  
+- **type**: (string) Der Typ des Koordinatenreferenzsystems. Standardmäßig wird "name" verwendet.  
+- **properties**: (dictionary) Ein Wörterbuch mit zusätzlichen Eigenschaften des Koordinatenreferenzsystems.  
   In der Regel wird ein EPSG-Code verwendet, wie "EPSG:4326".  
 
 Beispiel:
@@ -48,8 +48,8 @@ Beispiel:
 .. code-block:: json
 
     {
-      "Type": "name",
-      "Properties": {
+      "type": "name",
+      "properties": {
         "name": "EPSG:4326"
       }
     }
@@ -70,9 +70,9 @@ Beispiel:
 Das **Geometry**-Objekt beschreibt die geometrische Form eines Features und basiert  
 auf dem GeoJSON-Standard. Es enthält folgende Attribute:  
 
-- **Type**: (string) Der Geometrietyp, z. B. "Point", "LineString", "Polygon", "MultiPoint",  
+- **type**: (string) Der Geometrietyp, z. B. "Point", "LineString", "Polygon", "MultiPoint",  
   "MultiLineString", "MultiPolygon" oder "Unknown".  
-- **Coordinates**: (array) Die Koordinaten, die die Geometrie definieren. Der genaue Aufbau  
+- **coordinates**: (array) Die Koordinaten, die die Geometrie definieren. Der genaue Aufbau  
   hängt vom Geometrietyp ab und kann Punkte, Linien oder Polygone enthalten.  
 
 Beispiel: 
@@ -80,8 +80,8 @@ Beispiel:
 .. code-block:: json
 
     {
-      "Type": "Polygon",
-      "Coordinates": [
+      "type": "Polygon",
+      "coordinates": [
         [
           [10.0, 50.0],
           [20.0, 50.0],
@@ -102,4 +102,29 @@ verwendet werden können:
 - **Polygon**: Ein Polygon.  
 - **MultiPoint**: Eine Sammlung von Punkten.  
 - **MultiLineString**: Eine Sammlung von Linien.  
-- **MultiPolygon**: Eine Sammlung von Polygonen.  
+- **MultiPolygon**: Eine Sammlung von Polygonen.
+
+**Feature**
+
+Ein Feature wie in GeoJSON (RFC 7946), mit der Objekt-ID als **oid**:
+
+.. code-block:: json
+
+    {
+      "type": "Feature",
+      "oid": 12,
+      "bbox": { "minX": 16.48, "minY": 47.79, "maxX": 16.59, "maxY": 47.88 },
+      "geometry": { "type": "Point", "coordinates": [16.53, 47.84] },
+      "properties": { "NAME": "Eisenstadt" }
+    }
+
+- **type**: immer ``"Feature"``.
+- **oid**: die Objekt-ID.
+- **bbox**: die Ausdehnung der Geometrie als **BBox**-Objekt (in Responses mit Geometrie oder mit
+  ``returnGeometry=bbox``).
+- **geometry**, **properties**: die Geometrie und die Attribute.
+
+.. note::
+
+    Der Server schreibt alle Namen in camelCase (``minX``, ``type``, ``properties``). In Requests spielt die
+    Groß- und Kleinschreibung der Namen keine Rolle.

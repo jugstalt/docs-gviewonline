@@ -40,6 +40,14 @@ API Link Structure
 The API follows a consistent URL structure, making it easy to retrieve information or make changes.  
 The following outlines the various API endpoints along with a brief description of their function.
 
+**Info**
+
+- **GET**
+
+  - ``https://{server}/geojsonservice/v1/info``
+
+    Version, token settings and the entry points of the API.
+
 **Services**
 
 - **GET**
@@ -158,7 +166,7 @@ The following outlines the various API endpoints along with a brief description 
 
 - **GET/POST**
   
-  - ``https://{server}/geojsonservice/v1/Token``
+  - ``https://{server}/geojsonservice/v1/token``
     
     Returns a token for authentication or performs the authentication process.
 

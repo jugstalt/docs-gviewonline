@@ -38,7 +38,7 @@ GET oder POST:
 - **tolerance**: Toleranz um einen Punkt in Pixeln (Standard 3).
 - **mapExtent**, **imageWidth**, **imageHeight**, **dpi**: die Karte, die der Client zeigt. Daraus ergeben sich Maßstab
   und Toleranz in Karteneinheiten. Für ``visible`` und ``top`` erforderlich.
-- **returnGeometry**: ``geometry`` (Standard), ``bbox`` oder ``none``.
+- **returnGeometry**: ``geometry`` (Standard), ``bbox``, ``centroid`` oder ``none``; **maxAllowableOffset** und **geometryPrecision** wie bei :doc:`query`.
 - **outCRS** (optional): das Koordinatensystem der Ergebnisse; Standard **crs**.
 - **limit** (optional): maximale Anzahl Features je Layer (Standard und Höchstwert: die maximale Anzahl des Dienstes).
 

@@ -14,9 +14,9 @@ following object:
 
     {
       "type": "GetFeatures",
-      "command": "select",  // "select", "distinct", "countOnly", "IdsOnly"
+      "command": "select",  // "select", "distinct", "countOnly", "idsOnly", "statistics"
       "outFields": ["field1", "field2"],
-      "returnGeometry": "geometry",  // "none", "geometry", "bbox"
+      "returnGeometry": "geometry",  // "none", "geometry", "bbox", "centroid"
       "outCRS": {
         "type": "name",
         "properties": {
@@ -67,7 +67,7 @@ following object:
 - **type**: (string) The type of request, in this case "GetFeatures".  
 - **command**: (string) The command: "select", "distinct", "countOnly", "idsOnly" or "statistics" (see below).  
 - **outFields**: (array) A list of fields to be returned in the response.  
-- **returnGeometry**: (string) Indicates whether and which geometry information should be returned: "none", "geometry", or "bbox".  
+- **returnGeometry**: (string) Indicates whether and which geometry information should be returned: "none", "geometry", "bbox" or "centroid" (see Geometry options).  
 - **outCRS** (optional): (object) The coordinate reference system for the output.  
 - **orderByFields** (optional): (array) The fields by which the results should be sorted.  
 - **objectIds** (optional): (array) A list of object IDs to be queried.  
@@ -107,9 +107,9 @@ A query can also be sent as GET request, e.g.:
 
 ``https://{server}/geojsonservice/v1/services/{folder}/{service}/query/0?outFields=NAME,EW&filter=EW%20%3E%201000&limit=100``
 
-- **command**: ``select`` (default), ``distinct``, ``countOnly``, ``idsOnly``
+- **command**: ``select`` (default), ``distinct``, ``countOnly``, ``idsOnly``, ``statistics``
 - **outFields**: field names, comma separated (default ``*``)
-- **returnGeometry**: ``none`` (default), ``geometry``, ``bbox``
+- **returnGeometry**: ``none`` (default), ``geometry``, ``bbox``, ``centroid``
 - **outCRS**: ``EPSG:4326`` or ``4326``
 - **orderBy**: e.g. ``NAME,EW DESC``
 - **objectIds**: object ids, comma separated
@@ -117,6 +117,7 @@ A query can also be sent as GET request, e.g.:
 - **filter**, **filter-lang**: CQL2 filter, ``cql2-text`` (default) or ``cql2-json``
 - **bbox**, **bbox-crs**, **spatialOperator**: spatial filter ``minx,miny,maxx,maxy``
 - **limit**, **offset**: paging
+- **maxAllowableOffset**, **geometryPrecision**: see Geometry options
 
 Statistics
 ----------
@@ -190,6 +191,7 @@ The structure of the response is defined as follows:
       "features": [
         {
           "type": "Feature",
+          "oid": 1,
           "geometry": {
             "type": "Point",
             "coordinates": [10.0, 50.0]
@@ -209,7 +211,7 @@ The structure of the response is defined as follows:
   contains geometry and attribute information.  
 - **exceededLimit**: (bool) ``true`` if there are more features than returned (**limit** or the max. number of
   the service). The next page starts at **offset** plus the number of features.
-- Each feature also has **oid**, the object id.
+- Each feature has **type** ``Feature``, **oid** (the object id) and, with a geometry, **bbox** (see :doc:`types`).
 
 The other commands have their own responses:
 
@@ -219,3 +221,5 @@ The other commands have their own responses:
 
 **objectIds** also applies together with a spatial filter; ``distinct`` can't be combined with a spatial filter. A
 spatial filter holds either **geometry** or **bbox**.
+
+A layer id that doesn't exist answers ``404``, a layer without a table (e.g. a group layer) ``400``.
