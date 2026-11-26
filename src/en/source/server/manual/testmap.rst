@@ -26,8 +26,9 @@ map extent is kept when switching.
 - **WMTS** (1.0.0): only for services with a tile cache. One cache is shown at a time (choose it
   in the layer list, plus its **Style**), in the projection of its tile grid – the tiles are not
   reprojected in the browser. A click does not query anything.
-- **WFS** (1.1.0): like in a desktop GIS, every view loads the features of the checked feature
-  types with ``GetFeature`` (at most **Limit** per type) and draws them as vectors. A click
+- **WFS** (2.0.0): like in a desktop GIS, every view loads the features of the checked feature
+  types with ``GetFeature`` (at most **Limit** per type, as GeoJSON, ``SRSNAME`` and ``BBOX`` in
+  URN notation, see :ref:`server-wfs`) and draws them as vectors. A click
   selects loaded features without a new request.
 - **OGC API**: map image from ``/map``, a click queries ``/collections/{id}/items`` around the
   clicked point.

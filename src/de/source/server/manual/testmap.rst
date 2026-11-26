@@ -26,8 +26,9 @@ freigegeben sind; beim Wechsel bleibt der Kartenausschnitt erhalten.
 - **WMTS** (1.0.0): nur für Dienste mit Tile-Cache. Es wird immer ein Cache angezeigt (Auswahl in
   der Layerliste, dazu der **Style**), und zwar in der Projektion seines Kachel-Grids – die
   Kacheln werden im Browser nicht umprojiziert. Ein Klick fragt nichts ab.
-- **WFS** (1.1.0): wie in einem Desktop-GIS werden bei jeder Ansicht die Features der
-  angehakten Feature-Types per ``GetFeature`` geladen (höchstens **Limit** pro Type) und als
+- **WFS** (2.0.0): wie in einem Desktop-GIS werden bei jeder Ansicht die Features der
+  angehakten Feature-Types per ``GetFeature`` geladen (höchstens **Limit** pro Type, als GeoJSON,
+  ``SRSNAME`` und ``BBOX`` in URN-Schreibweise, siehe :ref:`server-wfs`) und als
   Vektoren gezeichnet. Ein Klick wählt geladene Features aus, ohne neuen Request.
 - **OGC API**: Kartenbild über ``/map``, ein Klick fragt ``/collections/{id}/items`` rund um
   den Klickpunkt ab.

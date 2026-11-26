@@ -20,4 +20,5 @@ Die folgenden Punkte decken noch weitere Themen ab:
     cli
     browse
     testmap
+    wfs
     geoservices-rest
