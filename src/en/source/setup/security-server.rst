@@ -81,7 +81,11 @@ All settings are optional; the values shown are the defaults.
             "rate-limit": {
                 "enabled": false,
                 "requests-per-minute": 600
-            }
+            },
+
+            // who may open the test map of a service: admin | users | all
+            // (see Server › User Manual › Test Map)
+            "test-map": "admin"
         }
    }
 

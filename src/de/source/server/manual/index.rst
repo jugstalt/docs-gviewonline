@@ -19,4 +19,5 @@ Die folgenden Punkte decken noch weitere Themen ab:
     manage
     cli
     browse
+    testmap
     geoservices-rest

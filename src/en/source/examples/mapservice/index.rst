@@ -61,7 +61,7 @@ In this interface, a new client can be created:
 .. image:: img/manage2.png
 
 The next step should be to create a directory where the new client can publish maps. 
-For this, switch first via the *Sidebar* to ``Browse Services``.
+For this, switch first via the *Sidebar* to ``Services``.
 In this view, a new directory can be created under ``Create Folder``. After clicking 
 on ``Create new folder``, the new directory should appear in the list.
 
@@ -84,7 +84,7 @@ However, one could now log out and then log in via the *Sidebar* with
 Publish Services
 ++++++++++++++++
 
-To publish services, switch to the ``Browse Services`` area (*Sidebar*). Here, 
+To publish services, switch to the ``Services`` area (*Sidebar*). Here, 
 you must also switch to the desired directory. If you are authorized to publish services with the logged-in user, 
 the ``Publish`` button will appear. There, an MXL file (map project) can be selected:
 

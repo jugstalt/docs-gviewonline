@@ -61,7 +61,7 @@ In dieser Oberfläche kann ein neuer Client angelegt werden:
 .. image:: img/manage2.png
 
 Im nächsten Schritt sollte ein Verzeichnis angelegt werden, in dem der neue Client Karten veröffentlichen 
-darf. Dafür wechselt man zuerst über die *Sidebar* zu ``Browse Services``.
+darf. Dafür wechselt man zuerst über die *Sidebar* zu ``Services``.
 In dieser Ansicht kann unter ``Create Folder`` ein neues Verzeichnis angelegt werden. Klickt man danach 
 auf ``Create new folder``, sollte das neue Verzeichnis in der Liste erscheinen.
 
@@ -84,7 +84,7 @@ Allerdings könnte man sich jetzt auch abmelden und dann über die *Sidebar* mit
 Publish Services
 ++++++++++++++++
 
-Zum Veröffentlichen von Diensten ist in den Bereich ``Browse Services`` (*Sidebar*) zu wechseln. Hier 
+Zum Veröffentlichen von Diensten ist in den Bereich ``Services`` (*Sidebar*) zu wechseln. Hier 
 muss noch in das gewünschte Verzeichnis gewechselt werden. Ist man mit dem angemeldeten Benutzer zum 
 Veröffentlichen von Diensten berechtigt, erscheint die Schaltfläche ``Publish``. Dort kann ein 
 MXL File (Kartenprojekt) ausgewählt werden:

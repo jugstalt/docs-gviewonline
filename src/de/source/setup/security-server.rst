@@ -82,7 +82,11 @@ Alle Einstellungen sind optional; angegeben sind die Standardwerte.
             "rate-limit": {
                 "enabled": false,
                 "requests-per-minute": 600
-            }
+            },
+
+            // wer die Testkarte eines Dienstes öffnen darf: admin | users | all
+            // (siehe Server › Benutzerhandbuch › Testkarte)
+            "test-map": "admin"
         }
    }
 

@@ -1,44 +1,78 @@
-Browse Services
-===============
+Services
+========
 
-This section demonstrates how *gView MapServer* lists services and directories in the 
-web interface. To list services, the menu item ``Browse Services`` is available 
-(tile on the homepage or sidebar):
+This section shows how the services and folders of *gView MapServer* are listed in the web
+interface and how to find the urls to add a service to a *GIS program*.
 
-.. image:: img/browse1.png 
+Home page
+---------
 
-The initial view at ``Browse Service`` looks approximately like this:
+The home page leads to the **Services** and to **Manage** (administration, administrators only).
+Below are the **catalog endpoints**: urls where a client finds all services of the server, e.g.
+for an *ArcGIS Server* connection (GeoServices REST) or an OGC API client. **Copy** copies the url
+to the clipboard.
 
-.. image:: img/browse2.png 
+.. image:: img/browse-home.jpg
 
-**Folders** are displayed in bold. Services are displayed in regular font. Moreover, 
-there is an option to delete services using the trash bin icon.
-This is only displayed if the logged-in user/client is authorized to do so.
+Services and folders
+--------------------
+
+**Services** (tile on the home page or *Sidebar*) lists the folders (with a folder icon and a
+trailing ``/``) and the services. Click a folder to open it, the breadcrumb at the top leads
+back. **Filter services** filters the list by name.
+
+.. image:: img/browse-services.jpg
 
 .. note::
-   ``Browse Services`` is possible for every user (even without logging in). However, only 
-   those services for which the current user is authorized are listed.
+   The list is available to every user (even without logging in). However, only the services
+   the current user is authorized for are listed.
 
 .. note::
-   In this example, the administrator is still logged in. Therefore, the options ``Publish Service`` 
-   and ``Create Folder`` are also available. The procedure for publishing is discussed 
-   under :ref:`publish-map-service-example` in the section :ref:`examples`.
+   In this example the administrator is logged in. That is why **Publish Service**,
+   **Create Folder** and the trash bin icon to delete a service are available. Publishing is
+   covered in :ref:`publish-map-service-example` in the section :ref:`examples`.
 
 .. note::
-   In this example, the service ``ortsplan`` is not located in a directory but in the 
-   so-called **root** area. In practice, services should always be organized in directories!
+   In practice, services should always be organized in folders and not in the so-called
+   **root** area.
 
-Clicking on a service in this view displays all possible interfaces for that service:
+The page of a service
+---------------------
 
-.. image:: img/browse3.png 
+Click a service to open its page:
 
-For each of these interfaces, links are provided that can be used to integrate these services 
-into various *GIS programs*. For example, clicking on a link for WMS displays the 
-*Capabilities Request* for that service in the browser:
+.. image:: img/browse-service.jpg
 
-.. image:: img/browse4.png 
+At the top are the name, the folder and the properties of the service: the GeoServices REST
+resources (**MapServer**, **FeatureServer**, **NetworkServer**), whether the service is public
+(**Public**) or secured (**Secured**), the number of layers and since when it has been running.
+Below:
 
-This link could also be integrated into **QGIS** as a *WMS Layer*.
+- **Explore**: the service in the HTML pages of the GeoJson service – layers, fields and queries
+  right in the browser.
+- **Test map**: the service in a small map application, with an overview of all requests (see
+  :ref:`server-testmap`). Whether the button is shown depends on the setting
+  ``security:test-map``.
+- **Manage** and **Delete** (administrators and users with the publish permission only): the
+  service in the administration, or delete the service.
 
-Which interfaces are offered here can be determined via the *Manage Web Interface* in
-the permissions for the service or directory.
+Connect
+-------
+
+**Connect** lists the interfaces of the service, grouped into **OGC Standards** (OGC API, WMS,
+WMTS, WFS), **Esri compatible** (GeoServices REST, ArcXML) and **gView** (GeoJson). For the chosen
+interface the page shows:
+
+- the **recommended url** to add the service, with **Copy URL**,
+- a hint how to add the url in common programs (e.g. **QGIS**, **ArcGIS Pro**),
+- under **More requests** further urls, e.g. other versions or the variant with Basic
+  Authentication under ``/ogc``.
+
+Clicking a url opens the request in the browser, e.g. the *capabilities request* for WMS:
+
+.. image:: img/browse4.png
+
+This url could, for example, be added to **QGIS** as a *WMS Layer*.
+
+Which interfaces are offered is set in the *Manage web interface* in the permissions for the
+service or folder.
