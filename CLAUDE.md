@@ -72,13 +72,15 @@ make.bat html       # Windows
 Output landet in `src/{de,en}/build/html` (gitignored, lokales Build-Artefakt).
 
 **`app/de` und `app/en` sind exakt das, was live veröffentlicht wird.** Es gibt keinen
-Build-Schritt in der CI — die GitHub-Action (`.github/workflows/azure-static-web-apps-*.yml`)
-lädt bei jedem Push auf den konfigurierten Branch (aktuell `gview6`) den kompletten Inhalt von
-`app/` 1:1 als Azure Static Web App hoch. D. h. nach jeder inhaltlichen Änderung müssen:
+Build-Schritt in der CI — die GitHub-Action
+(`.github/workflows/azure-static-web-apps-agreeable-rock-0f2a9d803.yml`) lädt bei jedem Push auf
+**`master`** den kompletten Inhalt von `app/` 1:1 als Azure Static Web App hoch. Nur `master` wird
+deployed; die Branches `gview8`, `gview9`, … stehen für die jeweilige gView-Version und lösen
+kein Deployment aus. D. h. nach jeder inhaltlichen Änderung müssen:
 
 1. beide Sprachen neu gebaut werden (`make.bat html` in `src/de` **und** `src/en`),
 2. der Inhalt von `src/{de,en}/build/html` nach `app/{de,en}` kopiert werden,
-3. die Änderungen unter `app/` committet und gepusht werden — erst dann ist die Änderung online.
+3. die Änderungen unter `app/` committet und auf `master` gepusht werden — erst dann ist die Änderung online.
 
 Für den kompletten Build-und-Kopier-Ablauf siehe den `deploy`-Skill.
 

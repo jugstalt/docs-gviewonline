@@ -54,7 +54,7 @@ warum `app/` = live). Dieser Skill deckt nur den mechanischen Build- und Kopier-
 
 4. **Committen und pushen ist ein separater, expliziter Schritt** — nicht automatisch nach dem
    Kopieren ausführen. Erst nach Zustimmung des Nutzers `git add app/`, commit und push, da der
-   Push auf den konfigurierten Branch sofort die Azure-Static-Web-Apps-Deployment-Action
+   Push auf `master` sofort die Azure-Static-Web-Apps-Deployment-Action
    auslöst und die Seite live aktualisiert.
 
 ## Nicht anfassen
