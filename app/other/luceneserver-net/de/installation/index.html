@@ -530,10 +530,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#swagger" class="md-nav__link">
+  <a href="#api-dokumentation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Swagger
+        API-Dokumentation
       
     </span>
   </a>
@@ -564,6 +564,34 @@
     
   
     Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="operations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Betrieb
   
 
     
@@ -705,9 +733,25 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../api.html" class="md-nav__link">
+    
+    
+    
+    
+      
         
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
   
   
   <span class="md-ellipsis">
@@ -721,7 +765,79 @@
   
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    REST-API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v1
+  
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-v2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -837,6 +953,33 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admin-Oberfläche
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1027,10 +1170,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#swagger" class="md-nav__link">
+  <a href="#api-dokumentation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Swagger
+        API-Dokumentation
       
     </span>
   </a>
@@ -1059,7 +1202,8 @@
 
 <h1 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h1>
 <p>LuceneServer.NET ist eine ASP.NET-Core-Anwendung (.NET 10). Fertige Binaries gibt es noch nicht,
-der Server wird aus dem Quellcode gebaut.</p>
+der Server wird aus dem Quellcode gebaut, als <a href="docker.html">Docker-Image</a> oder mit dem NUKE-Build
+(ZIP-Dateien, siehe <a href="operations.html#build-und-deploy-nuke">Betrieb</a>).</p>
 <h2 id="voraussetzungen">Voraussetzungen<a class="headerlink" href="#voraussetzungen" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://dotnet.microsoft.com/download">.NET 10 SDK</a> zum Bauen, ASP.NET Core 10 Runtime zum Ausführen</li>
@@ -1128,8 +1272,10 @@ Die Identität des Anwendungspools braucht Schreibrechte auf <code>RootPath</cod
 <strong>IIS</strong> empfohlen.</p>
 <h3 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h3>
 <p>Siehe <a href="docker.html">Docker</a>.</p>
-<h2 id="swagger">Swagger<a class="headerlink" href="#swagger" title="Permanent link">&para;</a></h2>
-<p>Mit <code>"useSwagger": true</code> (oder in der Umgebung <code>Development</code>) ist die Swagger-UI unter <code>/swagger</code> erreichbar.</p>
+<h2 id="api-dokumentation">API-Dokumentation<a class="headerlink" href="#api-dokumentation" title="Permanent link">&para;</a></h2>
+<p>Mit <code>"useSwagger": true</code> (oder in der Umgebung <code>Development</code>) ist die API-Referenz-UI (Scalar) unter
+<code>/scalar</code> erreichbar, die OpenAPI-Dokumente unter <code>/openapi/v1.json</code> und <code>/openapi/v2.json</code>.
+<code>/swagger</code> leitet auf <code>/scalar</code> weiter.</p>
 
 
 

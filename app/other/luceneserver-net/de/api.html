@@ -16,7 +16,7 @@
         <link rel="prev" href="configuration/authentication.html">
       
       
-        <link rel="next" href="clients/dotnet-client.html">
+        <link rel="next" href="api-v2.html">
       
       
         
@@ -31,7 +31,7 @@
     
     
       
-        <title>REST-API - LuceneServer.NET</title>
+        <title>v1 - LuceneServer.NET</title>
       
     
     
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              REST-API
+              v1
             
           </span>
         </div>
@@ -412,6 +412,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation/operations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Betrieb
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -542,6 +570,60 @@
   
   
   
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST-API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    REST-API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
     <li class="md-nav__item md-nav__item--active">
       
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
@@ -557,7 +639,7 @@
   <span class="md-ellipsis">
     
   
-    REST-API
+    v1
   
 
     
@@ -575,7 +657,7 @@
   <span class="md-ellipsis">
     
   
-    REST-API
+    v1
   
 
     
@@ -658,6 +740,42 @@
     </ul>
   
 </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api-v2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -774,6 +892,33 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="admin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admin-Oberfläche
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -934,6 +1079,11 @@
 
 
 <h1 id="rest-api">REST-API<a class="headerlink" href="#rest-api" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">API v2</p>
+<p>Parallel steht eine ressourcenorientierte <a href="api-v2.html">API v2</a> (<code>/api/v2/indices/...</code>) mit Paging zur Verfügung.
+Die hier beschriebenen v1-Endpunkte bleiben unterstützt, gelten aber als deprecated.</p>
+</div>
 <p>Alle Endpunkte liegen unter <code>/Lucene</code>. <code>{index}</code> ist immer der Name des Index
 (<code>a-z</code>, <code>0-9</code>, <code>_</code>, <code>-</code>, max. 64 Zeichen). Die benötigte <a href="configuration/authentication.html#rollen">Rolle</a>
 ist nur relevant, wenn die Authentifizierung aktiviert ist.</p>
@@ -944,7 +1094,7 @@ ist nur relevant, wenn die Authentifizierung aktiviert ist.</p>
 <span class="p">}</span>
 </code></pre></div>
 <p>Je nach Endpunkt kommen weitere Attribute hinzu, z. B. <code>hits[]</code> bei Abfragen.
-Das vollständige Schema zeigt die Swagger-UI (<code>/swagger</code>, falls aktiviert).</p>
+Das vollständige Schema gibt es als OpenAPI-Dokument (<code>/openapi/v1.json</code>) und in der API-Referenz-UI (<code>/scalar</code>), falls aktiviert.</p>
 <h2 id="uberblick">Überblick<a class="headerlink" href="#uberblick" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -961,12 +1111,12 @@ Das vollständige Schema zeigt die Swagger-UI (<code>/swagger</code>, falls akti
 <td>read</td>
 </tr>
 <tr>
-<td>GET</td>
+<td>POST</td>
 <td><code>/Lucene/createindex/{index}</code></td>
 <td>write</td>
 </tr>
 <tr>
-<td>GET</td>
+<td>DELETE</td>
 <td><code>/Lucene/removeindex/{index}</code></td>
 <td>admin</td>
 </tr>
@@ -976,12 +1126,12 @@ Das vollständige Schema zeigt die Swagger-UI (<code>/swagger</code>, falls akti
 <td>read</td>
 </tr>
 <tr>
-<td>GET</td>
+<td>POST</td>
 <td><code>/Lucene/refresh/{index}</code></td>
 <td>write</td>
 </tr>
 <tr>
-<td>GET</td>
+<td>POST</td>
 <td><code>/Lucene/releaseall</code></td>
 <td>admin</td>
 </tr>
@@ -1021,7 +1171,7 @@ Das vollständige Schema zeigt die Swagger-UI (<code>/swagger</code>, falls akti
 <td>write</td>
 </tr>
 <tr>
-<td>GET</td>
+<td>DELETE</td>
 <td><code>/Lucene/remove/{index}</code></td>
 <td>write</td>
 </tr>
@@ -1043,16 +1193,16 @@ Das vollständige Schema zeigt die Swagger-UI (<code>/swagger</code>, falls akti
 </tbody>
 </table>
 <h2 id="index-verwaltung">Index-Verwaltung<a class="headerlink" href="#index-verwaltung" title="Permanent link">&para;</a></h2>
-<p><strong>[GET] /Lucene/createindex/{index}</strong></p>
+<p><strong>[POST] /Lucene/createindex/{index}</strong></p>
 <p>Erstellt einen Index mit dem Namen {index}</p>
-<p><strong>[GET] /Lucene/removeindex/{index}</strong></p>
+<p><strong>[DELETE] /Lucene/removeindex/{index}</strong></p>
 <p>Löscht den Index unwiderruflich</p>
 <p><strong>[GET] /Lucene/indexexists/{index}</strong></p>
 <p>Überprüft, ob ein Index existiert.</p>
-<p><strong>[GET] /Lucene/refresh/{index}</strong></p>
+<p><strong>[POST] /Lucene/refresh/{index}</strong></p>
 <p>Führt zu einem Refresh des angeführten Index. Damit wird nach einem Hinzufügen von Dokumenten gewährleistet, dass nach den neu indizierten Dokumenten gesucht werden kann.
 Verwendet man den <a href="clients/dotnet-client.html">.NET-Client</a> erfolgt dieser Aufruf automatisch beim Entladen (<code>Dispose()</code>) des Clients.</p>
-<p><strong>[GET] /Lucene/releaseall</strong></p>
+<p><strong>[POST] /Lucene/releaseall</strong></p>
 <p>Gibt alle geteilten Resourcen innerhalb des Servers frei. Dies sind beispielsweise der <code>IndexReader</code> oder <code>IndexWriter</code>, die im Server über mehrere Abfragen geteilt werden, um eine optimale Performance zu bieten.
 Nach dem Freigeben werden die Resourcen beim nächsten Zugriff auf einen Index wieder initialisiert.
 Dieser Aufruf ist hauptsächlich für die Entwicklung notwendig und sollte in einem Produktivbetrieb nicht notwendig sein.</p>
@@ -1171,7 +1321,7 @@ Werden neue Dokumente zu einem Index hinzufügt oder gelöscht, wird das erst na
 <span class="w">  </span><span class="p">}</span>
 <span class="p">]</span>
 </code></pre></div>
-<p><strong>[GET] /Lucene/remove/{index}?term={query-term}&amp;termField={optional:field-used-for-term}</strong></p>
+<p><strong>[DELETE] /Lucene/remove/{index}?term={query-term}&amp;termField={optional:field-used-for-term}</strong></p>
 <p>Als <code>term</code> kann eine Abfrage übergeben werden. Nach den Kriterien aus der Abfrage wird in <code>termField</code> gesucht und die entsprechenden Objekte gelöscht.</p>
 <p>Der <em>Default</em> Wert für <code>termField</code> ist <code>_guid</code>. Idealweise stellt man im <em>Mapping</em> für Dokument ein Field mit den Type <code>guid</code> ein. Nur so können einzelne Dokument wieder gezielt gelöscht werden.</p>
 <p><strong>[GET] /Lucene/search/{index}?q={query}&amp;outFields={optional:fields-for-the-result-comma-separated}&amp;filter={geo-filter}&amp;format={output-format}</strong></p>
@@ -1192,6 +1342,9 @@ Werden neue Dokumente zu einem Index hinzufügt oder gelöscht, wird das erst na
 <span class="w">  </span><span class="s2">"milliSeconds"</span><span class="o">:</span><span class="w"> </span><span class="mf">1.8725</span>
 <span class="p">}</span>
 </code></pre></div>
+<p><strong>Paging:</strong> optionale Parameter <code>from</code> (Offset, Standard 0; <code>from + size</code> max. 10000), <code>size</code> (Standard 20)
+und <code>searchAfter</code> (Cursor). Die Antwort enthält zusätzlich <code>totalHits</code>, <code>from</code>, <code>size</code> und
+<code>nextSearchAfter</code>, siehe <a href="api-v2.html#suche-und-paging">API v2 – Suche und Paging</a>.</p>
 <p><code>Query</code> entspricht der <em>Lucene</em> Syntax, siehe auch <a href="https://lucene.apache.org/core/2_9_4/queryparsersyntax.html">hier</a> </p>
 <p>Auf die <code>oufFields</code> können zusätzlich Funktionen angewendet werden, um beispielsweise nur eine bestimmte Anzeil an Zeichen zurück zu liefern. Das man Sinn, wenn sehr große Dokumente Indiziert werden und nicht immer der komplette Inhalt der Dokumente zurückgeben werden soll. Werden <em>outField-Funktionen</em> verwendet, muss als Trennzeichen zwischen den einzelnen Werten ein Strichpunkt (<code>;</code>) verwendet werden. Wird nur ein Feld übergeben, muss die Anweisung mit einem Strichpunkt abgeschlossen werden:</p>
 <p>Funktionen werden mit einem <code>.</code> an eine Feld angefügt. In einer Kette können auch mehrere Funktionen hinterander angegeben werden:</p>

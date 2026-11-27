@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://docs.gviewonline.com/other/luceneserver-net/de/configuration/index.html">
       
       
-        <link rel="prev" href="../installation/docker.html">
+        <link rel="prev" href="../installation/operations.html">
       
       
         <link rel="next" href="authentication.html">
@@ -412,6 +412,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/operations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Betrieb
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -551,10 +579,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#swagger" class="md-nav__link">
+  <a href="#api-dokumentation-openapi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Swagger
+        API-Dokumentation (OpenAPI)
       
     </span>
   </a>
@@ -644,9 +672,25 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../api.html" class="md-nav__link">
+    
+    
+    
+    
+      
         
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
   
   
   <span class="md-ellipsis">
@@ -660,7 +704,79 @@
   
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    REST-API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v1
+  
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-v2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -787,6 +903,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../admin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admin-Oberfläche
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../tools.html" class="md-nav__link">
         
   
@@ -872,10 +1015,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#swagger" class="md-nav__link">
+  <a href="#api-dokumentation-openapi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Swagger
+        API-Dokumentation (OpenAPI)
       
     </span>
   </a>
@@ -945,7 +1088,9 @@ Die Datei wird beim ersten Start erzeugt (siehe <a href="../installation/index.h
 <span class="w">    </span><span class="nt">"ArchivePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c:\\data\\lucene\\archive"</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">"AutoRestoreOnStartup"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">"AutoRestoreOnStartupCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"AutoRestoreOnStartupSinceSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">86400</span>
+<span class="w">    </span><span class="nt">"AutoRestoreOnStartupSinceSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">86400</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"MaxRequestBodySizeBytes"</span><span class="p">:</span><span class="w"> </span><span class="mi">31457280</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"UseHttpsRedirection"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="nt">"useSwagger"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"Authorization"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -974,7 +1119,11 @@ Diese werden ignoriert. Zum Aktivieren den Unterstrich entfernen.</p>
 </tr>
 <tr>
 <td><code>ArchivePath</code></td>
-<td>Optional. Ist er gesetzt, werden Mapping, Metadaten und jedes indizierte Dokument zusätzlich als JSON-Dateien hier abgelegt, damit ein Index neu aufgebaut werden kann.</td>
+<td>Optional, standardmäßig nicht gesetzt. Ist er gesetzt, werden Mapping, Metadaten und jedes indizierte Dokument zusätzlich als JSON-Dateien hier abgelegt (eine Datei pro Dokument), damit ein Index neu aufgebaut werden kann. Das bremst das Indizieren deutlich (gemessen: etwa Faktor 26 unter Windows); nur für Indizes ohne andere Quelle verwenden. Mit <code>?archive=false</code> angelegte Indizes (z. B. von Import-Jobs) werden nie archiviert.</td>
+</tr>
+<tr>
+<td><code>BackgroundCommitSeconds</code></td>
+<td>Optional, Standard <code>20</code>. Intervall (Sekunden), in dem der Server alle offenen Indizes im Hintergrund refresht und committet. Änderungen sind spätestens nach dieser Zeit in der Suche sichtbar, auch ohne explizites <code>refresh</code>.</td>
 </tr>
 <tr>
 <td><code>AutoRestoreOnStartup</code></td>
@@ -988,9 +1137,21 @@ Diese werden ignoriert. Zum Aktivieren den Unterstrich entfernen.</p>
 <td><code>AutoRestoreOnStartupSinceSeconds</code></td>
 <td>Wenn <code>Count</code> <code>0</code> ist und dieser Wert <code>&gt; 0</code>: nur Dokumente aus diesem Zeitraum wiederherstellen (Standard <code>86400</code> = 1 Tag). Sind beide <code>0</code>, werden alle Dokumente wiederhergestellt.</td>
 </tr>
+<tr>
+<td><code>AllowLegacyGetMutations</code></td>
+<td>Standard <code>true</code>. Erlaubt übergangsweise die veralteten <strong>GET</strong>-Aufrufe von <code>createindex</code>, <code>removeindex</code>, <code>remove</code>, <code>refresh</code> und <code>releaseall</code> (Antwort mit <code>Deprecation</code>/<code>Warning</code>-Header und Log-Warnung). Bei <code>false</code> liefern diese GET-Aufrufe <code>405 Method Not Allowed</code>; nur noch POST/DELETE sind erlaubt. Wird in einer künftigen Version standardmäßig <code>false</code>.</td>
+</tr>
+<tr>
+<td><code>MaxRequestBodySizeBytes</code></td>
+<td>Maximale Größe eines Request-Bodys in Bytes (z. B. beim Indizieren), gilt für Kestrel und IIS. Standard <code>31457280</code> (30 MB). Größere Requests werden abgewiesen; große Datenmengen in mehreren Aufrufen indizieren.</td>
+</tr>
+<tr>
+<td><code>UseHttpsRedirection</code></td>
+<td>Standard <code>false</code>. Bei <code>true</code> werden HTTP-Aufrufe auf HTTPS umgeleitet. Nur sinnvoll, wenn der Server selbst HTTPS anbietet (nicht hinter einem TLS-terminierenden Proxy).</td>
+</tr>
 </tbody>
 </table>
-<h2 id="swagger">Swagger<a class="headerlink" href="#swagger" title="Permanent link">&para;</a></h2>
+<h2 id="api-dokumentation-openapi">API-Dokumentation (OpenAPI)<a class="headerlink" href="#api-dokumentation-openapi" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -1001,7 +1162,7 @@ Diese werden ignoriert. Zum Aktivieren den Unterstrich entfernen.</p>
 <tbody>
 <tr>
 <td><code>useSwagger</code></td>
-<td><code>true</code> aktiviert die Swagger-UI unter <code>/swagger</code>. In <code>Development</code> immer aktiv.</td>
+<td><code>true</code> veröffentlicht die OpenAPI-Dokumente (<code>/openapi/v1.json</code>, <code>/openapi/v2.json</code>) und die API-Referenz-UI (<a href="https://scalar.com">Scalar</a>) unter <code>/scalar</code>. In <code>Development</code> immer aktiv. Die alten URLs <code>/swagger</code> und <code>/swagger/{v}/swagger.json</code> leiten auf die neuen weiter. Diese Endpunkte sind ohne Anmeldung erreichbar; außerhalb von <code>Development</code> wird beim Start eine Warnung geloggt.</td>
 </tr>
 </tbody>
 </table>

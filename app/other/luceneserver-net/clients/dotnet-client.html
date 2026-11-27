@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://docs.gviewonline.com/other/luceneserver-net/clients/dotnet-client.html">
       
       
-        <link rel="prev" href="../api.html">
+        <link rel="prev" href="../api-v2.html">
       
       
         <link rel="next" href="samples.html">
@@ -412,6 +412,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/operations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -540,9 +568,25 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../api.html" class="md-nav__link">
+    
+    
+    
+    
+      
         
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
   
   
   <span class="md-ellipsis">
@@ -556,7 +600,79 @@
   
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    REST API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v1
+  
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-v2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -693,6 +809,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#refresh-and-dispose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Refresh and Dispose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#httpclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HttpClient
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#authentication" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -776,6 +914,33 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admin UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -872,6 +1037,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#refresh-and-dispose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Refresh and Dispose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#httpclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HttpClient
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#authentication" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -941,23 +1128,51 @@
 this repository.</p>
 <h2 id="instantiation">Instantiation<a class="headerlink" href="#instantiation" title="Permanent link">&para;</a></h2>
 <p>A client can be instantiated as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="n">using</span><span class="p">(</span><span class="kt">var</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LuceneServerClient</span><span class="p">(</span><span class="n">serverUrl</span><span class="p">,</span><span class="w"> </span><span class="n">indexName</span><span class="p">))</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><span class="k">await</span><span class="w"> </span><span class="nf">using</span><span class="w"> </span><span class="p">(</span><span class="kt">var</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LuceneServerClient</span><span class="p">(</span><span class="n">serverUrl</span><span class="p">,</span><span class="w"> </span><span class="n">indexName</span><span class="p">))</span>
 <span class="p">{</span>
 <span class="w">    </span><span class="c1">// client operations</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>The client should be created with 'using' when changes are made to the index within the client (create or delete document).
-<code>Dispose()</code> ensures that the index on the server is <em>refreshed</em> and that all changes become visible. If the client is used only for querying,
-<code>using</code> can also be omitted.</p>
 <p>A client always refers to one index. The corresponding index can be specified via the <code>indexName</code>.</p>
-<p>To communicate with the LuceneServerNET, the client uses an instance of <code>System.Net.Http.HttpClient</code>. Each instance creates a new <code>HttpClient</code>.
-If an existing <code>HttpClient</code> is used, it can be passed as an additional parameter during instantiation:</p>
-<div class="highlight"><pre><span></span><code><span class="n">using</span><span class="p">(</span><span class="kt">var</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LuceneServerClient</span><span class="p">(</span><span class="n">serverUrl</span><span class="p">,</span><span class="w"> </span><span class="n">indexName</span><span class="p">,</span><span class="w"> </span><span class="n">myHttpClient</span><span class="p">))</span><span class="w"> </span>
+<h2 id="refresh-and-dispose">Refresh and Dispose<a class="headerlink" href="#refresh-and-dispose" title="Permanent link">&para;</a></h2>
+<p>New or removed documents are not immediately visible to searches. The server makes them visible and
+writes them to disk (<em>commit</em>) on a <strong>refresh</strong>. This happens</p>
+<ul>
+<li>explicitly via <code>await client.RefreshIndex()</code>,</li>
+<li>automatically in the background on the server <strong>within about 20 seconds</strong>,</li>
+<li>when the server shuts down normally.</li>
+</ul>
+<p>If documents were indexed or removed with a client and no <code>RefreshIndex()</code> followed, the client refreshes
+the index when it is disposed. Changes are then visible immediately after the <code>using</code> block, e.g. for
+an import tool that searches right afterwards or exits. If the client is used only for querying,
+<code>using</code> can be omitted.</p>
+<ul>
+<li>Use <code>await using</code> (<code>DisposeAsync()</code>) in async code. The synchronous <code>Dispose()</code> is still supported.</li>
+<li>Errors during this refresh are not thrown (the server commits in the background anyway); they are
+  written to the optional <code>Logger</code>.</li>
+<li>The refresh on dispose can be switched off, e.g. for a web application that makes many small changes
+  and can live with the short delay:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">await</span><span class="w"> </span><span class="nf">using</span><span class="w"> </span><span class="p">(</span><span class="kt">var</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LuceneServerClient</span><span class="p">(</span><span class="n">serverUrl</span><span class="p">,</span><span class="w"> </span><span class="n">indexName</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">RefreshChangedIndicesOnDispose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span><span class="p">,</span><span class="w">   </span><span class="c1">// default: true</span>
+<span class="w">    </span><span class="n">Logger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">loggerFactory</span><span class="p">.</span><span class="n">CreateLogger</span><span class="o">&lt;</span><span class="n">LuceneServerClient</span><span class="o">&gt;</span><span class="p">()</span><span class="w">  </span><span class="c1">// optional, default: no logging</span>
+<span class="p">})</span>
 <span class="p">{</span>
 <span class="w">    </span><span class="c1">// client operations</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>This ensures that, for example, <em>Authorization headers</em> set on that <code>HttpClient</code> are passed to the server.</p>
+<h2 id="httpclient">HttpClient<a class="headerlink" href="#httpclient" title="Permanent link">&para;</a></h2>
+<p>To communicate with the LuceneServerNET, the client uses a <code>System.Net.Http.HttpClient</code>. If none is passed,
+all client instances share one internal <code>HttpClient</code> (creating one per instance can exhaust sockets).
+An existing <code>HttpClient</code> (e.g. from <code>IHttpClientFactory</code>) can be passed as an additional parameter:</p>
+<div class="highlight"><pre><span></span><code><span class="k">await</span><span class="w"> </span><span class="nf">using</span><span class="w"> </span><span class="p">(</span><span class="kt">var</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LuceneServerClient</span><span class="p">(</span><span class="n">serverUrl</span><span class="p">,</span><span class="w"> </span><span class="n">indexName</span><span class="p">,</span><span class="w"> </span><span class="n">myHttpClient</span><span class="p">))</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// client operations</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This ensures that, for example, <em>Authorization headers</em> set on that <code>HttpClient</code> are passed to the server.
+A passed <code>HttpClient</code> is not disposed by the client.</p>
 <h2 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h2>
 <p>If the server requires <a href="../configuration/authentication.html">Basic authentication</a>, pass the client id and secret:</p>
 <div class="highlight"><pre><span></span><code><span class="n">using</span><span class="p">(</span><span class="kt">var</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LuceneServerClient</span><span class="p">(</span><span class="n">serverUrl</span><span class="p">,</span><span class="w"> </span><span class="n">indexName</span><span class="p">,</span><span class="w"> </span><span class="s">"importer"</span><span class="p">,</span><span class="w"> </span><span class="s">"my-secret"</span><span class="p">))</span>

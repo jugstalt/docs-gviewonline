@@ -1,0 +1,1819 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A REST server on top of Lucene.NET">
+      
+      
+      
+        <link rel="canonical" href="https://docs.gviewonline.com/other/luceneserver-net/admin.html">
+      
+      
+        <link rel="prev" href="clients/samples.html">
+      
+      
+        <link rel="next" href="tools.html">
+      
+      
+        
+          <link rel="alternate" href="admin.html" hreflang="en">
+        
+          <link rel="alternate" href="de/admin.html" hreflang="de">
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Admin UI - LuceneServer.NET</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#admin-ui" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LuceneServer.NET" class="md-header__button md-logo" aria-label="LuceneServer.NET" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LuceneServer.NET
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Admin UI
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="admin.html" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="de/admin.html" hreflang="de" class="md-select__link">
+              Deutsch
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jugstalt/LuceneServerNET" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LuceneServer.NET" class="md-nav__button md-logo" aria-label="LuceneServer.NET" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    LuceneServer.NET
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jugstalt/LuceneServerNET" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation/docker.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation/operations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Configuration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="configuration/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="configuration/authentication.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    REST API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api-v2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clients
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Clients
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="clients/dotnet-client.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    .NET client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="clients/samples.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sample applications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admin UI
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="admin.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admin UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Run">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-as-windows-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run as Windows service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IIS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Import
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Import">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database import
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geo-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Geo data
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Copy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Import jobs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Import jobs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sources-and-the-webgis-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources and the webgis template
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trigger-import-jobs-from-outside" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trigger import jobs from outside
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-and-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backup and restore
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="tools.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="changelog.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Run">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-as-windows-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run as Windows service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IIS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Import
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Import">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database import
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geo-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Geo data
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Copy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Import jobs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Import jobs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sources-and-the-webgis-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources and the webgis template
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trigger-import-jobs-from-outside" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trigger import jobs from outside
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-and-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backup and restore
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="admin-ui">Admin UI<a class="headerlink" href="#admin-ui" title="Permanent link">&para;</a></h1>
+<p><code>LuceneServerNET.Admin</code> is a separate web application (Blazor Server, MudBlazor) to administrate
+<strong>one or more</strong> LuceneServer.NET instances. It talks to the servers only through the
+<a href="api-v2.html">REST API v2</a>, so it can run anywhere that reaches the servers.</p>
+<h2 id="features">Features<a class="headerlink" href="#features" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>What you can do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dashboard</td>
+<td>Health, version, uptime, memory and number of indices of every instance, roles of the API client</td>
+</tr>
+<tr>
+<td>Instances</td>
+<td>Add, edit, remove and test instances (in addition to the ones from the configuration)</td>
+</tr>
+<tr>
+<td>Indices</td>
+<td>List with document count, size on disk and last modification; filter and sort</td>
+</tr>
+<tr>
+<td>Search</td>
+<td>Autocomplete input (search as you type, every word is a required prefix: <code>graz haupt</code> → <code>+graz* +haupt*</code>), search with <code>size</code>/<code>from</code>/<code>searchAfter</code>, sort, spatial filter, phonetic search, group by, results as table or JSON, request as <code>curl</code> command</td>
+</tr>
+<tr>
+<td>Create index</td>
+<td>Mapping editor: fields, types, indexed/stored, primary fields, phonetics</td>
+</tr>
+<tr>
+<td>Database connections</td>
+<td>SQL Server, PostgreSQL and SQLite connections as import source (stored encrypted), connection test (also in the list); <em>Show connection string</em> shows the stored string with masked password (audit log <code>connection.show</code>), a kept <code>*****</code> keeps the stored password</td>
+</tr>
+<tr>
+<td>Import</td>
+<td>From a database query or upload CSV, JSON or GeoJSON (including geo data) (array or NDJSON), preview, mapping <strong>proposed from the first 200 rows</strong> (new index) or columns assigned to the existing mapping, configurable batch size, cancel, error report</td>
+</tr>
+<tr>
+<td>Metadata</td>
+<td>Show and edit custom metadata</td>
+</tr>
+<tr>
+<td>Import jobs</td>
+<td>Recurring imports from a database query (cron schedule): rebuild and switch an alias, clear and refill, or append; run history</td>
+</tr>
+<tr>
+<td>Audit log</td>
+<td>Who changed what and when (index, metadata, import, instances, connections, logins), with filters; kept for <code>Admin:Audit:RetentionDays</code> (default 180)</td>
+</tr>
+<tr>
+<td>Aliases</td>
+<td>Create, switch and remove index aliases (see <a href="api-v2.html#aliases">API v2</a>); aliases are shown in the index list; clicking an alias opens its page: search, <code>curl</code> command, copy and backup use the alias name (always the current generation); maintenance and import only on the index itself</td>
+</tr>
+<tr>
+<td>Backup / restore</td>
+<td>Download an index as ZIP (<em>Backup</em> on the index page) and restore it on any instance (<em>Restore</em> in the index list)</td>
+</tr>
+<tr>
+<td>Copy</td>
+<td>Copy an index (mapping, metadata, documents) to a new name on the same instance or to another instance</td>
+</tr>
+<tr>
+<td>Maintenance</td>
+<td>Refresh, delete documents by query, clear index, delete index (admin role, confirm by name)</td>
+</tr>
+</tbody>
+</table>
+<p>The UI only offers actions the API client of an instance is allowed to do: it asks the server
+(<code>GET /api/v2/admin/whoami</code>) for the roles <code>read</code>, <code>write</code> and <code>admin</code>.</p>
+<h2 id="run">Run<a class="headerlink" href="#run" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Aspire</label><label for="__tabbed_1_2">dotnet</label><label for="__tabbed_1_3">Docker</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>The AppHost starts the server and the admin UI:</p>
+<div class="highlight"><pre><span></span><code>dotnet<span class="w"> </span>run<span class="w"> </span>--project<span class="w"> </span>src/aspire/LuceneServerNET.AppHost
+</code></pre></div>
+<p>Login <code>admin</code> / <code>admin</code> (parameter <code>admin-password</code>, change it in the user secrets of the AppHost).</p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>dotnet<span class="w"> </span>run<span class="w"> </span>--project<span class="w"> </span>src/LuceneServerNET.Admin
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>./build.cmd<span class="w"> </span>DockerBuild<span class="w">   </span><span class="c1"># or: docker pull ghcr.io/jugstalt/luceneserver-net-admin</span>
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>ghcr.io/jugstalt/luceneserver-net-admin<span class="w"> </span>--hash-password<span class="w"> </span><span class="s2">"my password"</span>
+docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">8081</span>:8080<span class="w"> </span>-v<span class="w"> </span>luceneserver-admin-data:/data<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">Admin__Authentication__Users__0__Name</span><span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">Admin__Authentication__Users__0__PasswordHash</span><span class="o">=</span><span class="s1">'pbkdf2-sha256$...'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">Admin__Instances__0__Name</span><span class="o">=</span>prod<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">Admin__Instances__0__Url</span><span class="o">=</span>http://luceneserver:8080<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>ghcr.io/jugstalt/luceneserver-net-admin
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="run-as-windows-service">Run as Windows service<a class="headerlink" href="#run-as-windows-service" title="Permanent link">&para;</a></h3>
+<p>The release ZIP (<code>luceneserver-net-win64-{version}.zip</code>) contains the admin UI in <code>{version}/admin</code> and two scripts in
+the version folder:</p>
+<table>
+<thead>
+<tr>
+<th>Script</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lucene-admin.bat</code></td>
+<td>starts the admin UI in a console (<code>http://localhost:5180</code>)</td>
+</tr>
+<tr>
+<td><code>lucene-admin-service.bat</code></td>
+<td>installs it as a Windows service</td>
+</tr>
+</tbody>
+</table>
+<p>Import jobs only run while the application runs. A Windows service starts with the server and is restarted after a
+crash, so it is the recommended way on Windows. Run the script in a command prompt <strong>as administrator</strong>:</p>
+<div class="highlight"><pre><span></span><code>lucene-admin-service.bat install [name] [port]
+lucene-admin-service.bat uninstall [name]
+</code></pre></div>
+<p><code>install</code> creates the service and starts it:</p>
+<ul>
+<li>Service name <code>lucene-admin</code>, or <code>lucene-admin-&lt;name&gt;</code> with a name. It starts automatically (delayed) and is restarted after a crash.</li>
+<li>It listens on <code>http://localhost:&lt;port&gt;</code> (default <code>5180</code>). Put a reverse proxy (IIS with ARR, nginx, ...) with HTTPS in front of it
+  for access from other machines.</li>
+<li>It runs as the virtual account <code>NT SERVICE\lucene-admin[-&lt;name&gt;]</code>, which may write only to <code>admin-data</code> and read <code>_config</code>.</li>
+<li>Next to the version folders (they survive updates): <code>admin-data</code> (SQLite database <code>admin.db</code>, data protection keys) and
+  <code>_config\admin.json</code>. On the first install the script creates <code>admin.json</code> with an empty user list: add a user
+  (<code>admin\LuceneServerNET.Admin.exe --hash-password &lt;password&gt;</code>) and instances, then restart the service.
+  <code>admin.json</code> overrides <code>appsettings.json</code>; environment variables override <code>admin.json</code>.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>D:\lucene-admin\
+  3.0.0\                          version folder from the ZIP
+    admin\                        application
+    lucene-admin-service.bat
+  admin-data\                     admin.db, keys
+  _config\admin.json              configuration
+</code></pre></div>
+<p><strong>Several instances</strong> on one server: one root folder per instance, each with its own name and port.
+<code>install</code> refuses a name whose service belongs to another root folder.</p>
+<p><strong>Update:</strong> unpack the new version into the same root folder and run its <code>lucene-admin-service.bat install</code> with the same
+name and port. The script stops the service, points it to the new version and starts it again (database migrations run
+on start). To go back, run <code>install</code> of the old version (only if the new version did not migrate the database).</p>
+<p><strong>Own account:</strong> for SQL Server with Windows authentication, the virtual account needs a login on the SQL Server
+(<code>NT SERVICE\lucene-admin</code>), or enter a domain account in the service properties (tab <strong>Log On</strong>) and give it the same rights.</p>
+<p>Warnings and errors go to the Windows event log (application log, source <code>LuceneServer.NET Admin</code>).</p>
+<h3 id="iis">IIS<a class="headerlink" href="#iis" title="Permanent link">&para;</a></h3>
+<p>The admin UI also runs in IIS (ASP.NET Core Hosting Bundle, in-process). IIS starts the application with the first request
+and recycles it (idle timeout, by default every 29 hours), so <strong>scheduled import jobs do not run reliably</strong> in IIS. Either:</p>
+<ul>
+<li>run the UI in IIS with <code>Admin:Jobs:Enabled = false</code> and additionally the Windows service on the <strong>same</strong> <code>DataPath</code>
+  (it runs the jobs; same data protection keys, so both can decrypt the stored secrets), or</li>
+<li>configure the application pool: <em>Start Mode</em> <code>AlwaysRunning</code>, <em>Idle Time-out</em> <code>0</code>, no periodic recycling, and
+  <em>Preload Enabled</em> <code>true</code> on the site (feature <em>Application Initialization</em>). Missed runs are caught up after a recycle
+  (<em>Catch up missed runs</em>).</li>
+</ul>
+<p>The application pool identity needs write access to <code>DataPath</code>. Blazor Server needs WebSockets (IIS feature <em>WebSocket Protocol</em>).</p>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>{
+  "Admin": {
+    "DataPath": "_data",            // SQLite database (admin.db) + data protection keys
+    "PublicUrl": "https://admin.example.com",  // optional: links in job webhooks
+    "Import": { "MaxFileSizeMB": 500, "CommandTimeoutSeconds": 600 },
+    "Audit": { "RetentionDays": 180 },
+    "Jobs": { "Enabled": true },    // false: no scheduled runs (e.g. a second admin instance on the same database)
+    "Authentication": {
+      "Type": "Local",              // Local | Oidc | None (None: no login, local development only!)
+      "Users": [
+        { "Name": "admin", "PasswordHash": "pbkdf2-sha256$..." }
+      ],
+      "Oidc": {
+        "Authority": "https://login.example.com/realms/main",
+        "ClientId": "lucene-admin",
+        "ClientSecret": "...",
+        "Scopes": [ "openid", "profile" ],
+        "RequiredRole": "lucene-admin"   // optional, role claim "roles"
+      }
+    },
+    "Instances": [
+      { "Name": "prod", "Url": "https://lucene.example.com", "ClientId": "admin-ui", "ClientSecret": "..." }
+    ]
+  }
+}
+</code></pre></div>
+<ul>
+<li><strong>Password hashes</strong>: <code>LuceneServerNET.Admin --hash-password &lt;password&gt;</code> (same format as the server's <code>--hash-secret</code>).
+  A plain <code>Password</code> works too, but logs a warning.</li>
+<li><strong>Configuration file outside the application folder</strong>: the environment variable <code>LUCENE_ADMIN_CONFIG=&lt;path&gt;dmin.json</code>
+  loads an additional file that overrides <code>appsettings.json</code> (used by the Windows service scripts).</li>
+<li><strong>Instances</strong> from the configuration are read only in the UI. Instances added in the UI are stored in
+  <code>admin.db</code>; their client secrets are encrypted with ASP.NET Core Data Protection (keys in <code>DataPath/keys</code>).
+  Keep <code>DataPath</code> on a persistent volume, otherwise stored secrets can not be decrypted after a restart.</li>
+<li><strong>API client per instance</strong>: create a client on the server (see <a href="configuration/authentication.html">Authentication</a>)
+  with the role you want to allow in the UI, e.g. <code>admin</code> for full administration or <code>read</code> for search only.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Whoever can log in to the admin UI can do everything the configured API clients are allowed to do on all
+instances. Do not expose it publicly without OIDC or strong passwords, and use HTTPS.</p>
+</div>
+<h2 id="import">Import<a class="headerlink" href="#import" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Select an existing index or enter the name of a new index.</li>
+<li><strong>File:</strong> upload a CSV file (header row, delimiter <code>,</code> <code>;</code> tab or <code>|</code> is detected) or JSON
+   (array of objects, <code>{ "items": [...] }</code> or NDJSON).
+   <strong>Database:</strong> choose a connection (menu <em>Database connections</em>), enter a SELECT query and click <em>Preview</em>.
+   The index name is taken from the table after <code>FROM</code>.</li>
+<li>Check the proposed mapping. Rules: integers → <code>int32</code>, numbers → <code>double</code>, ISO dates → <code>datetime</code>,
+   short values without spaces → <code>string</code>, everything else → <code>text</code>. Columns <code>lat</code>/<code>lon</code> (also
+   <code>latitude</code>/<code>longitude</code>, <code>lng</code>) are additionally combined into a <code>geo</code> field <code>location</code>.
+   Text fields become primary fields. Field names must not start with <code>_</code>.</li>
+<li>Choose the batch size (documents per request, default 500) and start. Rows that do not match the
+   mapping are skipped and listed in the report; if the server rejects a batch, its documents are sent
+   one by one to find the failing rows. The index is refreshed once at the end.</li>
+</ol>
+<h3 id="database-import">Database import<a class="headerlink" href="#database-import" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Providers: SQL Server (<code>Microsoft.Data.SqlClient</code>), PostgreSQL (<code>Npgsql</code>), SQLite (<code>Microsoft.Data.Sqlite</code>).</li>
+<li>Only a single <code>SELECT</code> (or <code>WITH ... SELECT</code>) statement is accepted. It runs in a transaction that is always
+  rolled back. This is a safety net, not a permission system: <strong>use a database user with read permissions only</strong>.</li>
+<li>The query is executed twice: for the preview (first 200 rows) and for the import (streamed, all rows).
+  Columns with the same name get a suffix (<code>id</code>, <code>id2</code>), binary columns are skipped, <code>decimal</code> becomes <code>double</code>.</li>
+<li>Timeout per query: <code>Admin:Import:CommandTimeoutSeconds</code> (default 600).</li>
+</ul>
+<h3 id="geo-data">Geo data<a class="headerlink" href="#geo-data" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Recognized as</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Columns <code>lat</code>/<code>lon</code> (also <code>latitude</code>/<code>longitude</code>, <code>lng</code>)</td>
+<td>Point, EPSG:4326</td>
+</tr>
+<tr>
+<td>Columns <code>x</code>/<code>y</code> (also <code>rechtswert</code>/<code>hochwert</code>, <code>easting</code>/<code>northing</code>)</td>
+<td>Point, the EPSG code has to be chosen</td>
+</tr>
+<tr>
+<td>Geometry column: WKB/EWKB (bytes), WKT/EWKT (<code>SRID=31256;POLYGON(...)</code>), GeoJSON geometry</td>
+<td>Point, line, polygon (also multi)</td>
+</tr>
+<tr>
+<td>GeoJSON file (<code>.geojson</code>, FeatureCollection)</td>
+<td><code>properties</code> become fields, <code>geometry</code> a geometry column, <code>id</code> the field <code>id</code></td>
+</tr>
+</tbody>
+</table>
+<p>Further coordinate columns can be added in the mapping (<em>Add point from columns</em>).</p>
+<ul>
+<li><strong>Coordinate system</strong>: a SRID in the value (EWKB, EWKT, GeoJSON <code>crs</code>) wins, otherwise the EPSG code of the geo field
+  (default 4326). Everything is converted to WGS84 with <a href="https://github.com/jugstalt/Proj4Net.Core">Proj4Net.Core</a>;
+  unknown EPSG codes are reported before the import.</li>
+<li><strong>Lines and polygons</strong>: the server indexes points, so the <code>geo</code> field gets the <em>point on surface</em> (always on the line /
+  inside the polygon, computed with <a href="https://github.com/jugstalt/spatialNET.Core">SpatialNET</a> in the source system).
+  The bounding box is stored in <code>&lt;field&gt;_bbox</code> as <code>"minx,miny,maxx,maxy"</code> (WGS84, not indexed); points get none.</li>
+<li><strong>Template fields</strong> (<em>Add template field</em>): a field built from columns, e.g. <code>{PLZ} {ORT} {STR} {HNR}</code> or
+  <code>Adresse in {ORT} ({ORTSTEIL})</code>. Column names are case insensitive, NULL is empty, numbers are invariant (<code>12.5</code>), dates ISO;
+  whitespace is collapsed and empty brackets <code>()</code> / <code>[]</code> are removed. <em>Replacements</em> (from → to) are applied to all template fields.</li>
+<li><strong>Original geometry</strong> (optional, default off): <code>&lt;field&gt;_geojson</code>, GeoJSON in WGS84 with 7 decimals (RFC 7946).</li>
+<li><strong>Databases</strong>: PostGIS <code>geometry</code> / <code>geography</code> columns are read directly (as EWKB with SRID, also with <code>SELECT *</code>).
+  SQL Server geometry types must be selected as WKB:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1">-- PostGIS: directly, or explicitly as EWKB (keeps the SRID)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">places</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">ST_AsEWKB</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">places</span>
+<span class="c1">-- SQL Server geometry / geography (choose the EPSG code in the mapping)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">geom</span><span class="p">.</span><span class="n">STAsBinary</span><span class="p">()</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">places</span>
+</code></pre></div>
+<p>Search with the spatial filter on the geo field, e.g. <code>dist_km(geom:15.44,47.07,5)</code> or <code>bbox(geom:15.4,47.0,15.5,47.1)</code>.</p>
+<h2 id="copy">Copy<a class="headerlink" href="#copy" title="Permanent link">&para;</a></h2>
+<p><em>Copy</em> on the index page copies mapping, metadata and all documents to a new index name or another instance
+(the target API client needs the <code>write</code> role). Documents are read with <code>GET /api/v2/indices/{id}/documents/_export</code>,
+which returns the <strong>stored</strong> fields only: fields with <code>"store": false</code> are lost in the copy (the page shows them before
+copying). An existing target is only overwritten with <em>Replace the target if it exists</em>.</p>
+<h2 id="import-jobs">Import jobs<a class="headerlink" href="#import-jobs" title="Permanent link">&para;</a></h2>
+<p><em>Import jobs</em> run database queries (one or more sources) on a schedule, manually or triggered from outside and import the
+result. The mapping is detected once with the preview, can be edited and is saved with the job (the columns of the queries
+must not change afterwards).</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>What happens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rebuild and switch alias</td>
+<td>A new index <code>{alias}_{yyyyMMddHHmmss}</code> is created (without archive, it is rebuilt by every run) and filled; on success the alias is switched to it and older generations are removed, except the newest <em>Keep older generations</em> (default 1, for a rollback via the alias page). Generations used by any alias are never removed. If the run fails, the new generation is removed and the alias stays unchanged. Clients use the alias name.</td>
+</tr>
+<tr>
+<td>Clear and refill</td>
+<td>The index is emptied and filled again (searches see an empty or partial index during the run).</td>
+</tr>
+<tr>
+<td>Append</td>
+<td>Documents are added.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Schedule</strong>: cron expression with 5 fields (<code>minute hour day month weekday</code>, e.g. <code>0 3 * * *</code>) and a time zone
+  (empty = UTC). The page shows the next runs. Without a cron expression (<em>manual</em>) the job only runs with <em>Run now</em>.</li>
+<li><strong>Progress</strong> of a running job (job list and job page): rows read, rate and elapsed time; from the second run a
+  percentage estimated from the rows of the last successful run.</li>
+<li><strong>Dry run</strong> (job page): reads and converts all rows like a run, sends nothing (no index, metadata or alias changes).
+  Every run shows where the time went: <code>read</code> (database), <code>convert</code> (templates, geometry) and <code>send</code> (server).</li>
+<li><strong>Run now</strong>, <strong>cancel</strong> and a <strong>run history</strong> (status, duration, counts, index, message) per job. Every run is in the audit log.</li>
+<li><strong>External trigger</strong>: start the job from outside instead of (or in addition to) a schedule, e.g. at the end of a
+  Jenkins job that updates the database. See <a href="#trigger-import-jobs-from-outside">Trigger import jobs from outside</a>.</li>
+<li><strong>Webhook</strong> (optional): after a run, the URL is called with <code>POST</code> and a JSON body, either only on failure (failed,
+  cancelled, interrupted; default) or after every run. An optional header <code>Name: value</code> (e.g. <code>Authorization: Bearer ...</code>)
+  is stored encrypted. Up to 3 attempts (5 s apart, 30 s timeout); the result is shown in the run history, a failing
+  webhook does not change the status of the run. <em>Test webhook</em> sends a sample. The field <code>text</code> is a one-line summary,
+  so Slack and Mattermost incoming webhooks show it directly:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"❌ Import job orte: failed · prod/orte_20261107030000 · read 10, imported 9, failed 1 · 12.5 s · ..."</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"job"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orte"</span><span class="p">,</span><span class="w"> </span><span class="nt">"jobId"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="nt">"runId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">"instance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prod"</span><span class="p">,</span><span class="w"> </span><span class="nt">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orte"</span><span class="p">,</span><span class="w"> </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"replace_alias"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orte_20261107030000"</span><span class="p">,</span><span class="w"> </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"failed"</span><span class="p">,</span><span class="w"> </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">"triggeredBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"job:orte"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"startedUtc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-11-07T03:00:00Z"</span><span class="p">,</span><span class="w"> </span><span class="nt">"finishedUtc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-11-07T03:00:12.5Z"</span><span class="p">,</span><span class="w"> </span><span class="nt">"durationSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.5</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"read"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="nt">"imported"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="nt">"failed"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w"> </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://admin.example.com/jobs/7"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>status</code> is <code>succeeded</code>, <code>warning</code> (rows skipped), <code>failed</code>, <code>cancelled</code> or <code>interrupted</code>; <code>url</code> is only set if
+  <code>Admin:PublicUrl</code> is configured.
+- Runs only happen while the admin application runs. With <em>Catch up missed runs</em> (default on) a job runs once at
+  startup if a scheduled run was missed while the application was stopped (only once, however many were missed).
+  Runs that were active during a shutdown are marked <em>interrupted</em>. For reliable schedules run the admin application as a
+  service (see <a href="#run-as-windows-service">Run as Windows service</a>). Run only <strong>one</strong> admin instance with <code>Admin:Jobs:Enabled = true</code> per database.</p>
+<h3 id="sources-and-the-webgis-template">Sources and the webgis template<a class="headerlink" href="#sources-and-the-webgis-template" title="Permanent link">&para;</a></h3>
+<p>A job has one or more <strong>sources</strong> (tabs on the job page): each with its own database connection, query, mapping and
+metadata. All sources are imported into the same index (generation); with <em>Rebuild and switch alias</em> the alias is switched
+after the last source. A field used by several sources must have the same type. <em>Phonetics</em> and <em>Encode characters</em> apply to the index.</p>
+<p><strong>Metadata per source</strong>: stored in the index under the <strong>meta id</strong> of the source (32 hex characters, created once, stable
+for every run) as JSON <code>{"id", "category", "sample", "description", "service", "query", ...}</code> plus own keys. In mode
+<em>Clear and refill</em>, entries of sources removed from the job (keys that look like a meta id) are deleted.</p>
+<p><strong>Template variables</strong>: <code>{@metaid}</code> (meta id of the source) and <code>{@category}</code> (category of the metadata).</p>
+<p><strong>webgis template</strong> (<em>Apply webgis template</em> after the preview, choose the ID column): the structure of the webgis search index,
+which replaces the gView <code>FillLuceneServer</code> tool:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>{@metaid}.{ID column}</code> – webgis takes the meta id from it, reads service and query from the metadata and the object by its id</td>
+</tr>
+<tr>
+<td><code>suggested_text</code></td>
+<td>template, e.g. <code>{PLZ} {ORT} {STR} {HNR}</code> (primary field, required)</td>
+</tr>
+<tr>
+<td><code>subtext</code></td>
+<td>template, e.g. <code>Adresse in {ORT} ({ORTSTEIL})</code> (primary field)</td>
+</tr>
+<tr>
+<td><code>category</code></td>
+<td><code>{@category}</code> (primary field; the category of the metadata is required)</td>
+</tr>
+<tr>
+<td><code>thumbnail_url</code></td>
+<td>template or fixed URL (stored only)</td>
+</tr>
+<tr>
+<td><code>geo</code>, <code>bbox</code></td>
+<td>the first geo source (point; lines and polygons: point on surface, <code>bbox</code> in WGS84)</td>
+</tr>
+</tbody>
+</table>
+<p>The other columns stay visible in the mapping, but are not imported. The ID column is proposed (<code>objectid</code>, <code>oid</code>, <code>fid</code>,
+<code>gid</code>, <code>id</code>, else the first integer column). The meta id stays the same for every run, so document ids are stable
+(gView created a new one with every fill).</p>
+<p><strong>gView configuration</strong>: <em>Import gView configuration</em> on the jobs page creates a job from a gView <code>FillLuceneServer</code> JSON
+(one webgis source per feature class, <code>SELECT * FROM {name} WHERE {filter}</code>, templates, category, replacements, metadata,
+phonetics, encode characters). The connection strings of the file are not used: choose a database connection.</p>
+<h3 id="trigger-import-jobs-from-outside">Trigger import jobs from outside<a class="headerlink" href="#trigger-import-jobs-from-outside" title="Permanent link">&para;</a></h3>
+<p><em>Create trigger token</em> on the job page creates a token for this job. It is shown only once (stored as SHA-256 hash), may
+only start this job and can be renewed or revoked. Every call is in the audit log (<code>job.trigger</code>, with IP address).</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Jenkins (sh), at the end of the job that updates the database</span>
+curl<span class="w"> </span>--fail<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">"https://admin.example.com/api/jobs/7/run"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$LUCENE_JOB_TOKEN</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">"{\"note\":\"jenkins #</span><span class="nv">$BUILD_NUMBER</span><span class="s2">\"}"</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1">rem Jenkins (bat)</span>
+curl --fail -X POST <span class="s2">"https://admin.example.com/api/jobs/7/run"</span> -H <span class="s2">"Authorization: Bearer </span><span class="nv">%LUCENE_JOB_TOKEN%</span><span class="s2">"</span> -H <span class="s2">"Content-Type: application/json"</span> -d <span class="s2">"{\"</span>note\<span class="s2">":\"</span>jenkins #<span class="nv">%BUILD_NUMBER%</span>\<span class="s2">"}"</span>
+</code></pre></div>
+<p>Keep the token in a Jenkins credential (<em>Secret text</em>), not in the job definition.</p>
+<table>
+<thead>
+<tr>
+<th>Call</th>
+<th>Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST /api/jobs/{id}/run</code></td>
+<td><code>202 {"status":"started","runId":12,"statusUrl":"/api/jobs/7/runs/12"}</code>; if the job is running: <code>202 {"status":"queued"}</code> – it runs once more right after the current run (several triggers during a run: one more run)</td>
+</tr>
+<tr>
+<td><code>GET /api/jobs/{id}/runs/{runId}</code></td>
+<td><code>200</code> with <code>status</code>, <code>finished</code>, <code>success</code>, times, counts, <code>message</code>, <code>note</code>, <code>webhook</code></td>
+</tr>
+<tr>
+<td>invalid job or token</td>
+<td><code>401</code></td>
+</tr>
+<tr>
+<td>job disabled</td>
+<td><code>409</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>The token is sent as <code>Authorization: Bearer &lt;token&gt;</code> (or header <code>X-Job-Token</code>). The optional <code>note</code> (JSON body or
+  <code>?note=</code>, max. 200 characters) is shown in the run history and sent with the webhook.</li>
+<li>The call returns immediately. To fail the Jenkins build on a failed import, poll the <code>statusUrl</code> until <code>finished</code> is
+  <code>true</code> and check <code>success</code>; for notifications the job webhook is usually enough.</li>
+<li>A schedule can stay as a safety net (e.g. <code>0 6 * * *</code>): it runs independently of the trigger.</li>
+<li>The admin UI must be reachable from Jenkins (HTTPS, see <a href="#run-as-windows-service">Run as Windows service</a> / <a href="#iis">IIS</a>).</li>
+</ul>
+<h2 id="backup-and-restore">Backup and restore<a class="headerlink" href="#backup-and-restore" title="Permanent link">&para;</a></h2>
+<p><em>Backup</em> on the index page downloads a ZIP:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>manifest.json</code></td>
+<td>format, index, instance, server version, time, document count, fields that are not stored</td>
+</tr>
+<tr>
+<td><code>mapping.json</code></td>
+<td>the mapping</td>
+</tr>
+<tr>
+<td><code>metadata.json</code></td>
+<td>the custom metadata</td>
+</tr>
+<tr>
+<td><code>documents.ndjson</code></td>
+<td>all documents (stored fields, one JSON object per line)</td>
+</tr>
+</tbody>
+</table>
+<p><em>Restore</em> in the index list uploads such a ZIP (max. <code>Admin:Import:MaxFileSizeMB</code>) and creates the index under the original or
+another name, on any instance; an existing index is only replaced with <em>Replace the target if it exists</em>. Like copying, a backup
+contains only stored fields. For a complete, continuous backup use the server's archive (<code>LuceneServer:ArchivePath</code>).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.top", "content.code.copy"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
